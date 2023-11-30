@@ -1,0 +1,42 @@
+@keyframes colorChange {
+    to {
+        --fillColorBrilho: #263694;
+        --fillColorBrilhoDomo: #0026fc;
+        --fillColorSombraDomo: #1730be;
+        --fillColorBrilhoFilete: #fff;
+        --fillRiscos: #a40101;
+    }
+}
+
+@keyframes colorSpinn {
+    from {
+        transform: rotate(0deg)
+    }
+
+    to {
+        transform: rotate(360deg)
+    }
+}
+
+#domo {
+    transform-origin: center center;
+}
+
+#spinn {
+    animation: colorChange 3s ease-in-out infinite;
+    fill: red;
+    --fillColorBrilhoFilete: #fff;
+    --fillColorSombraDomo: #a40101;
+    --fillRiscos: #1730be;
+    stroke: var(--toggleCollorText);
+    stroke-width: 15px;
+    width: 120px;
+}
+
+#brilhoExterno {
+    stroke: var(--toggleCollorText);
+    transform-origin: center center;
+    animation: colorSpinn 3s ease-in-out infinite;
+}
+
+

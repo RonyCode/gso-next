@@ -1,0 +1,39 @@
+
+#sirene{
+  fill: #ffffff;
+  border-radius: 25px ;
+  padding: 1rem;
+  stroke: #333333;
+  stroke-width: 5px;
+}
+
+#domo {
+  padding: 1rem;
+  animation: flipSirene 2.5s infinite;
+  transform-origin: center center;
+  fill: #ffffff;
+
+}
+
+#riscos {
+  animation: flipBrilho 2.5s infinite;
+  transform-origin: 0 25%;
+  stroke: none;
+  fill: #bd0006;
+}
+
+@keyframes flipSirene {
+  50% {
+    transform: rotateY(180deg);
+  }
+}
+
+@keyframes flipBrilho {
+  50% {
+    transform: rotateX(180deg);
+
+  ;
+  }
+}
+
+
