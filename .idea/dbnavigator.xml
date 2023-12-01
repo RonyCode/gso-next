@@ -2,7 +2,7 @@
 <project version="4">
   <component name="DBNavigator.Project.DataEditorManager">
     <record-view-column-sorting-type value="BY_INDEX" />
-    <value-preview-text-wrapping value="true" />
+    <value-preview-text-wrapping value="false" />
     <value-preview-pinned value="false" />
   </component>
   <component name="DBNavigator.Project.DatabaseBrowserManager">
@@ -20,10 +20,7 @@
     <last-used-providers />
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files>
-      <object connection-id="8093e10b-766b-4331-aeaf-20d7c75d95c1" object-ref="schemas/gsoBackHomologacao/tables/user_auth" />
-      <object connection-id="8093e10b-766b-4331-aeaf-20d7c75d95c1" object-ref="schemas/wsgsoHomologacao/tables/user_auth" />
-    </open-files>
+    <open-files />
   </component>
   <component name="DBNavigator.Project.DatasetFilterManager">
     <filter-actions connection-id="8093e10b-766b-4331-aeaf-20d7c75d95c1" dataset="wsgsoHomologacao.user_auth" active-filter-id="EMPTY_FILTER" />

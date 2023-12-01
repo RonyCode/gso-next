@@ -1,14 +1,13 @@
-import { toast } from 'react-toastify'
-
 import { signIn } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 
 import { SignInSchema } from '@/app/(auth)/login/schemas/SignInSchema'
 import { z } from 'zod'
+import * as React from 'react'
+import { toast } from '@/ui/use-toast'
+import { ResultSignIn } from '@/types'
 
 export const useSignIn = () => {
-  const router = useRouter()
-
   async function signInWithGoogle() {
     try {
       await signIn('google', {
@@ -17,35 +16,22 @@ export const useSignIn = () => {
       })
     } catch (error) {
       // display error message to user
-      toast.error('Erro ao tentar logar tente novamente! 🤯')
+      toast({
+        variant: 'destructive',
+        title: 'Error: Falha ao logar no Google 🤯',
+        description: 'Erro ao tentar logar tente novamente! 🤯',
+      })
     }
   }
   const signInWithCredentials = async (data: SignInSchema) => {
-    try {
-      const { email, senha, is_user_external } = data
-      await signIn('credentials', {
-        email,
-        senha,
-        is_user_external,
-        redirect: false,
-      }).then((res) => {
-        console.log(res)
-        if (res?.error == null) {
-          toast.success('Login realizado com sucesso! 👌')
-          router.push('/dashboard')
-        } else {
-          toast.error('Email ou senha incorretos, tente novamente! 🤯')
-        }
-      })
-    } catch (error) {
-      if (error instanceof z.ZodError) {
-        return error
-      }
-      if (error instanceof Error) {
-        return error
-      }
-      toast.error('Something went wrong with your login.')
-    }
+    const { email, senha, is_user_external: isUserExternal } = data
+    const result = await signIn('credentials', {
+      email,
+      senha,
+      isUserExternal,
+      redirect: false,
+    })
+    return result as unknown as ResultSignIn
   }
   return {
     signInWithCredentials,

@@ -52,9 +52,10 @@ const LoginFormSlice = () => {
                       : '/images/cadastro.webp'
                   }`}
                   fill
-                  objectFit="cover"
+                  sizes="100"
+                  priority={false}
                   alt="Authentication"
-                  className="block rounded-[8px] object-cover brightness-[60%]"
+                  className=" block	 rounded-[8px]  object-cover brightness-[60%]"
                 />
                 <div className="relative   flex  flex-col items-center justify-center">
                   <blockquote className="space-y-2 px-4 ">

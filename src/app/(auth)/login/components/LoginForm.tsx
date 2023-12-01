@@ -25,22 +25,37 @@ import * as z from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { toast } from '@/ui/use-toast'
 import { LuMail, LuSquareAsterisk } from 'react-icons/lu'
+import { SubmitFormAction } from '@/actions/SubmitFormAction'
+import { SignUpChema } from '@/schemas/SignUpChema'
+import { useFormStatus } from 'react-dom'
+import { signIn } from 'next-auth/react'
+import { ResultSignIn } from '@/types'
 
 type UserAuthFormProps = React.HTMLAttributes<HTMLDivElement>
 
 const LoginForm = ({ className, ...props }: UserAuthFormProps) => {
-  const { errors, register } = useFormLogin()
-  const { signInWithGoogle, signInWithCredentials } = useSignIn()
-  const [pending, startTransition] = useTransition()
+  const { signInWithCredentials } = useSignIn()
+  const { pending, data, method, action } = useFormStatus()
 
-  const handleSubmitLogin = async (data: FormData) => {
-    const result: SignInSchema = await signInServerActions(data)
-    startTransition(async () => {
-      await signInWithCredentials(result)
-    })
+  const handleSubmitLogin = async (data: FormData | SignInSchema) => {
+    const resultData = await signInServerActions(data)
+    const result: ResultSignIn = await signInWithCredentials(resultData)
+    if (!result.ok) {
+      toast({
+        variant: 'destructive',
+        title: 'Error🤯',
+        description: 'Erro ao tentar logar tente novamente! 🤯',
+      })
+    }
+    if (result.ok) {
+      toast({
+        variant: 'default',
+        title: 'Success 🚀',
+        description: 'Login realizado com sucesso! 🚀',
+      })
+    }
   }
 
-  const [isLoading, setIsLoading] = React.useState<boolean>(false)
   const form = useForm<SignInSchema>({
     resolver: zodResolver(SignInSchema),
     mode: 'all',
@@ -49,20 +64,6 @@ const LoginForm = ({ className, ...props }: UserAuthFormProps) => {
       senha: '',
     },
   })
-
-  async function onSubmit(data: SignInSchema) {
-    toast({
-      title: 'You submitted the following values:',
-      description: (
-        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-          <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-        </pre>
-      ),
-    })
-    startTransition(async () => {
-      await signInWithCredentials(data)
-    })
-  }
 
   return (
     <>
@@ -77,7 +78,9 @@ const LoginForm = ({ className, ...props }: UserAuthFormProps) => {
         <div className={cn('grid gap-6', className)} {...props}>
           <Form {...form}>
             <form
-              onSubmit={form.handleSubmit(onSubmit)}
+              onSubmit={form.handleSubmit(async (data) => {
+                await handleSubmitLogin(data)
+              })}
               className="w-full space-y-4"
             >
               {' '}
@@ -101,7 +104,7 @@ const LoginForm = ({ className, ...props }: UserAuthFormProps) => {
                         autoCapitalize="none"
                         autoComplete="email"
                         autoCorrect="off"
-                        disabled={isLoading}
+                        disabled={pending}
                       />
                     </FormControl>
                     <FormMessage />
@@ -128,15 +131,15 @@ const LoginForm = ({ className, ...props }: UserAuthFormProps) => {
                         autoCapitalize="none"
                         autoComplete="senha"
                         autoCorrect="off"
-                        disabled={isLoading}
+                        disabled={pending}
                       />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
-              <Button disabled={isLoading} className="w-full">
-                {isLoading && (
+              <Button disabled={pending} className="w-full">
+                {pending && (
                   <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
                 )}
                 Entrar
@@ -145,7 +148,6 @@ const LoginForm = ({ className, ...props }: UserAuthFormProps) => {
           </Form>
         </div>
       </div>
-
       {/* <div className=" w-full  md:w-96  "> */}
       {/*  <form action={handleSubmitLogin}> */}
       {/*    <Input.Root> */}
@@ -165,7 +167,6 @@ const LoginForm = ({ className, ...props }: UserAuthFormProps) => {
       {/*    </Input.Root> */}
       {/*    <Input.Root className="mb-2"> */}
       {/*      <Input.Label label="Senha" icon={FaUnlockKeyhole} htmlFor="senha" /> */}
-
       {/*      <Input.Content */}
       {/*        {...register('senha')} */}
       {/*        name="senha" */}
@@ -195,9 +196,7 @@ const LoginForm = ({ className, ...props }: UserAuthFormProps) => {
       {/*      </Link> */}
       {/*    </div> */}
       {/*  </form> */}
-
       {/*  <h1 className="py-4 text-center text-xl">Entrar com</h1> */}
-
       {/*  <ButtonNoTheme */}
       {/*    disabled={pending} */}
       {/*    isLoading={pending} */}
@@ -236,7 +235,6 @@ const LoginForm = ({ className, ...props }: UserAuthFormProps) => {
       {/*    </svg> */}
       {/*    Google */}
       {/*  </ButtonNoTheme> */}
-
       {/*  <div className="text-center text-xs text-gray-500"> */}
       {/*    &copy;2023 RCode All rights reserved. */}
       {/*  </div> */}
