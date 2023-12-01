@@ -1,7 +1,7 @@
-import { useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form'
 
-import { SignInSchema } from '@/app/(auth)/login/schemas/SignInSchema';
-import { zodResolver } from '@hookform/resolvers/zod';
+import { SignInSchema } from '@/app/(auth)/login/schemas/SignInSchema'
+import { zodResolver } from '@hookform/resolvers/zod'
 
 export const useFormLogin = () => {
   const {
@@ -9,17 +9,17 @@ export const useFormLogin = () => {
     handleSubmit,
     setError,
     setValue,
-    formState: { errors }
+    formState: { errors },
   } = useForm<SignInSchema>({
     resolver: zodResolver(SignInSchema),
-    mode: 'all'
-  });
+    mode: 'all',
+  })
 
   return {
     setValue,
     errors,
     setError,
     register,
-    handleSubmit
-  };
-};
+    handleSubmit,
+  }
+}

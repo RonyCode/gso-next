@@ -1,6 +1,7 @@
 import { Metadata } from 'next'
 
 import LoginFormSlice from '@/app/(auth)/login/components/LoginFormSlice'
+import { FormShadcn } from '@/app/(auth)/login/components/FormShadcn'
 
 export const metadata: Metadata = {
   title: 'Authentication',

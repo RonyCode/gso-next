@@ -16,8 +16,8 @@ const LoginFormSlice = () => {
   return (
     <>
       <div className="flex h-screen  w-screen  items-center justify-center">
-        <div className="  grid   h-[800px] w-9/12 grid-flow-col  grid-cols-2 grid-rows-1 place-items-center rounded-[8px] border border-[var(--border)] ">
-          <div className=" relative  col-span-1 col-start-1 h-full w-full place-content-center place-items-center ">
+        <div className="  grid   h-[800px] w-9/12 grid-flow-col  grid-cols-2 grid-rows-1 place-items-center rounded-[8px] border border-[var(--border)]  ">
+          <div className=" relative col-span-1 col-start-1 h-full w-full  place-content-center place-items-center">
             <Button
               className={cn(
                 buttonVariants({ variant: 'ghost' }),
@@ -37,11 +37,13 @@ const LoginFormSlice = () => {
               </div>
             </div>
             <div
-              className={`${sliceLogin} rounder   d-[8px] relative z-20 hidden h-full flex-col   rounded-[8px] border border-[var(--border)]  bg-muted bg-slate-400 text-white dark:border-r lg:flex `}
+              className={`${sliceLogin} rounder   d-[8px] relative z-20 hidden h-full flex-col   rounded-[8px] border-l border-r border-[var(--border)]  bg-muted bg-slate-400 text-white dark:border-r lg:flex `}
             >
               <div className=" absolute  inset-0  flex flex-col justify-between bg-zinc-900 py-12 ">
                 <div className="relative z-20 flex items-center  justify-center text-lg font-medium">
-                  <Logo width={128} />{' '}
+                  <Link href="/">
+                    <Logo width={128} />
+                  </Link>
                 </div>
                 <Image
                   src={`${
@@ -76,7 +78,7 @@ const LoginFormSlice = () => {
             </div>
           </div>
 
-          <div className=" relative col-span-1  col-start-2 flex h-full w-full">
+          <div className=" relative col-span-1 col-start-2 flex  h-full w-full ">
             <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
               <div className="flex flex-col space-y-2 text-center">
                 <h1 className="text-2xl font-semibold tracking-tight">

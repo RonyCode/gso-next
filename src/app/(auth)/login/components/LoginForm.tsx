@@ -2,9 +2,6 @@
 
 import * as React from 'react'
 import { useTransition } from 'react'
-import { FaUnlockKeyhole, FaUser } from 'react-icons/fa6'
-
-import Link from 'next/link'
 
 import { signInServerActions } from '@/app/(auth)/login/actions/signInServerAction'
 import { useFormLogin } from '@/app/(auth)/login/hooks/useFormLogin'
@@ -15,7 +12,19 @@ import { cn } from '@/lib/utils'
 import { Button } from '@/ui/button'
 import { Icons } from '@/ui/icons'
 import { Label } from '@/components/ui/label'
-import { UserAuthForm } from '@/app/(auth)/login/components/UserAuthForm'
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@/ui/form'
+import { useForm } from 'react-hook-form'
+import * as z from 'zod'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { toast } from '@/ui/use-toast'
+import { LuMail, LuSquareAsterisk } from 'react-icons/lu'
 
 type UserAuthFormProps = React.HTMLAttributes<HTMLDivElement>
 
@@ -23,6 +32,7 @@ const LoginForm = ({ className, ...props }: UserAuthFormProps) => {
   const { errors, register } = useFormLogin()
   const { signInWithGoogle, signInWithCredentials } = useSignIn()
   const [pending, startTransition] = useTransition()
+
   const handleSubmitLogin = async (data: FormData) => {
     const result: SignInSchema = await signInServerActions(data)
     startTransition(async () => {
@@ -30,25 +40,28 @@ const LoginForm = ({ className, ...props }: UserAuthFormProps) => {
     })
   }
 
-  const handleSubmitLoginWithGoogle = async () => {
-    startTransition(async () => {
-      await signInWithGoogle()
-    })
-  }
-
-  const hasError =
-    (errors.email?.message?.length && errors.email?.message?.length > 0) ||
-    (errors.senha?.message?.length && errors.senha?.message?.length > 0)
-
   const [isLoading, setIsLoading] = React.useState<boolean>(false)
+  const form = useForm<SignInSchema>({
+    resolver: zodResolver(SignInSchema),
+    mode: 'all',
+    defaultValues: {
+      email: '',
+      senha: '',
+    },
+  })
 
-  async function onSubmit(event: React.SyntheticEvent) {
-    event.preventDefault()
-    setIsLoading(true)
-
-    setTimeout(() => {
-      setIsLoading(false)
-    }, 3000)
+  async function onSubmit(data: SignInSchema) {
+    toast({
+      title: 'You submitted the following values:',
+      description: (
+        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
+          <code className="text-white">{JSON.stringify(data, null, 2)}</code>
+        </pre>
+      ),
+    })
+    startTransition(async () => {
+      await signInWithCredentials(data)
+    })
   }
 
   return (
@@ -62,43 +75,74 @@ const LoginForm = ({ className, ...props }: UserAuthFormProps) => {
         </div>
 
         <div className={cn('grid gap-6', className)} {...props}>
-          <form onSubmit={onSubmit}>
-            <div className="grid gap-2">
-              <div className="grid gap-1">
-                <Label className="sr-only" htmlFor="password" />
-                Email
-                <Input
-                  id="email"
-                  placeholder="email@exemplo.com"
-                  type="email"
-                  autoCapitalize="none"
-                  autoComplete="email"
-                  autoCorrect="off"
-                  disabled={isLoading}
-                />
-              </div>
-
-              <div className=" gap-1">
-                <Label className="sr-only" htmlFor="password" />
-                Senha
-                <Input
-                  id="email"
-                  placeholder="******"
-                  type="password"
-                  autoCapitalize="none"
-                  autoComplete="email"
-                  autoCorrect="off"
-                  disabled={isLoading}
-                />
-              </div>
-              <Button disabled={isLoading}>
+          <Form {...form}>
+            <form
+              onSubmit={form.handleSubmit(onSubmit)}
+              className="w-full space-y-4"
+            >
+              {' '}
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel
+                      htmlFor="email"
+                      className="flex items-center gap-1"
+                    >
+                      <LuMail /> Email
+                    </FormLabel>
+                    <FormControl>
+                      <Input
+                        {...field}
+                        id="email"
+                        placeholder="email@exemplo.com"
+                        type="email"
+                        autoCapitalize="none"
+                        autoComplete="email"
+                        autoCorrect="off"
+                        disabled={isLoading}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="senha"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel
+                      htmlFor="senha"
+                      className="flex items-center gap-1"
+                    >
+                      <LuSquareAsterisk /> Senha
+                    </FormLabel>{' '}
+                    <FormControl>
+                      <Input
+                        {...field}
+                        id="senha"
+                        placeholder="******"
+                        type="password"
+                        autoCapitalize="none"
+                        autoComplete="senha"
+                        autoCorrect="off"
+                        disabled={isLoading}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <Button disabled={isLoading} className="w-full">
                 {isLoading && (
                   <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
                 )}
                 Entrar
-              </Button>
-            </div>
-          </form>
+              </Button>{' '}
+            </form>
+          </Form>
         </div>
       </div>
 
