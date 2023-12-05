@@ -1,8 +1,32 @@
+'use client'
 import Link from 'next/link'
 
-import { LuMenu, LuSearch } from 'react-icons/lu'
-import { useState } from 'react'
+import {
+  LuCog,
+  LuLogOut,
+  LuMegaphone,
+  LuMenu,
+  LuSearch,
+  LuSettings,
+  LuUser,
+} from 'react-icons/lu'
+import React, { useState } from 'react'
 import Logo from '../../../public/images/Logo'
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuShortcut,
+  DropdownMenuTrigger,
+} from '@/ui/dropdown-menu'
+import { Button } from '@/ui/button'
+import { Avatar, AvatarFallback, AvatarImage } from '@/ui/avatar'
+import { ModeToggle } from '@/ui/ModeTogle'
+import { HiOutlineColorSwatch } from 'react-icons/hi'
+import { LucideCog } from 'lucide-react'
 
 export function MainNav({
   className,
@@ -11,23 +35,22 @@ export function MainNav({
   const [state, setState] = useState(false)
 
   const menus = [
-    { title: 'Home', path: '/your-path' },
-    { title: 'Blog', path: '/your-path' },
-    { title: 'About Us', path: '/your-path' },
-    { title: 'Contact Us', path: '/your-path' },
+    { title: 'Dashboard', path: '/dashboard' },
+    { title: 'Contato', path: '/contact' },
+    { title: 'Sobre nos', path: '/about' },
   ]
   return (
-    <nav className="w-full border-b bg-white md:border-0">
-      <div className="mx-auto max-w-screen-xl items-center px-4 md:flex md:px-8">
+    <header className="sticky top-0 z-50  w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <div className="max-w-screen mx-auto items-center  px-4 md:flex md:px-8">
         <div className="flex items-center justify-between py-3 md:block md:py-5">
-          <Link href="/">
+          <Link href="/" className="hidden">
             <h1 className="text-3xl font-bold text-purple-600">
               <Logo width={100} />
             </h1>
           </Link>
           <div className="md:hidden">
             <button
-              className="rounded-md p-2 text-gray-700 outline-none focus:border focus:border-gray-400"
+              className="rounded-md   p-3 outline-none focus:border focus:border-gray-400"
               onClick={() => setState(!state)}
             >
               <LuMenu />
@@ -41,13 +64,89 @@ export function MainNav({
         >
           <ul className="items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0">
             {menus.map((item, idx) => (
-              <li key={idx} className="text-gray-600 hover:text-indigo-600">
+              <li
+                key={idx}
+                className="text-foreground/60 transition-colors hover:text-foreground/80"
+              >
                 <Link href={item.path}>{item.title}</Link>
               </li>
             ))}
           </ul>
         </div>
+
+        <div
+          className={`    ${
+            state ? 'absolute  right-2 top-2 flex md:hidden' : 'hidden md:flex'
+          } ml-auto  items-center space-x-4    `}
+        >
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button
+                variant="ghost"
+                className="relative h-14 w-14 rounded-full"
+              >
+                <Avatar className="h-12 w-12">
+                  <AvatarImage
+                    src="https://avatars.githubusercontent.com/u/65975236?s=400&u=9ad183d9c5fab1003e9d60b0d0f83e8b51b70b9a&v=4"
+                    alt="@shadcn"
+                  />
+                  <AvatarFallback>SC</AvatarFallback>
+                </Avatar>
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="w-64" align="end" forceMount>
+              <DropdownMenuLabel className="font-normal">
+                <div className="flex flex-col space-y-1">
+                  <p className="text-sm font-medium leading-none">
+                    Rony Anderson
+                  </p>
+                  <p className="text-xs leading-none text-muted-foreground">
+                    ronyanderson@gmail.com
+                  </p>
+                </div>
+                <div className="absolute right-2 top-2"></div>
+              </DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              <DropdownMenuGroup>
+                <DropdownMenuItem>
+                  Minha Conta
+                  <DropdownMenuShortcut>
+                    <LuUser style={{ fontSize: '20px' }} />
+                  </DropdownMenuShortcut>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  Configuração
+                  <DropdownMenuShortcut>
+                    <LuSettings style={{ fontSize: '20px' }} />
+                  </DropdownMenuShortcut>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  Notificações~
+                  <DropdownMenuShortcut>
+                    <LuMegaphone style={{ fontSize: '20px' }} />
+                  </DropdownMenuShortcut>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  Tema
+                  <DropdownMenuShortcut>
+                    <div className="m-0">
+                      <ModeToggle />
+                    </div>
+                  </DropdownMenuShortcut>
+                </DropdownMenuItem>{' '}
+              </DropdownMenuGroup>
+              <DropdownMenuSeparator />
+
+              <DropdownMenuItem>
+                Sair
+                <DropdownMenuShortcut>
+                  <LuLogOut style={{ fontSize: '20px' }} />
+                </DropdownMenuShortcut>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </div>
       </div>
-    </nav>
+    </header>
   )
 }

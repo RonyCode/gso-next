@@ -8,34 +8,17 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Form, FormControl, FormField, FormItem, FormMessage } from '@/ui/form'
 import { useForm } from 'react-hook-form'
-import * as z from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { toast } from '@/ui/use-toast'
-import { SignInSchema } from '@/app/(auth)/login/schemas/SignInSchema'
 import { useTransition } from 'react'
 import { useSignIn } from '@/app/(auth)/login/hooks/useSign'
 import { preRegisterUserServerActions } from '@/app/(auth)/precadastro-usuario/actions/preRegisterUserServerAction'
 import { redirect } from 'next/navigation'
-import { MessageRabbit } from '@/functions/MessageRabbit'
-import { ResultSignIn } from '@/types'
 import { PreRegisterUserSchema } from '@/app/(auth)/precadastro-usuario/schemas/PreRegisterUserSchema'
 import { usePreRegister } from '@/app/(auth)/precadastro-usuario/hooks/usePreRegister/usePreRegister'
-import { ResponsePreRegisterUser } from '@/app/(auth)/precadastro-usuario/types/registerUserForm'
-import { ZodError } from 'zod'
 
 type UserAuthFormProps = React.HTMLAttributes<HTMLDivElement>
 
-const FormSchema = z.object({
-  email: z.string().email({ message: 'Please enter a valid email address.' }),
-})
-
-type MessageEventProps = {
-  messages: []
-  email: string
-  message: string
-  status: string
-  code: number
-}
 export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
   const [pending, startTransition] = useTransition()
   const { signInWithGoogle } = useSignIn()
@@ -62,32 +45,14 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
       const result = await preRegisterUserServerActions(data)
       if (result?.email !== 'failed') {
         const emailSended = await preRegisterUser(result)
-        console.log(emailSended)
         if (emailSended?.data) {
-          const resultMesseger = await MessageRabbit(
-            result?.email,
-            'email-sended',
-          )
-
-          if (resultMesseger.code !== 400) {
-            resultMesseger.messages.forEach((message: MessageEventProps) => {
-              if (message.email === result?.email) {
-                toast({
-                  title: 'Email enviado com sucesso! 😍',
-                  description: message.message,
-                  variant: 'success',
-                })
-              }
-              redirect('/')
-            })
-          }
-
-          if (resultMesseger.code === 400) {
+          if (emailSended.code !== 400) {
             toast({
-              title: 'Email ja Cadastrado',
-              description: emailSended?.message,
-              variant: 'danger',
+              title: 'Email enviado com sucesso! 😍',
+              description: emailSended.message,
+              variant: 'success',
             })
+            redirect('/')
           }
         }
         if (!emailSended?.data) {

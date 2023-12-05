@@ -2,7 +2,6 @@
 
 import { revalidatePath } from 'next/cache'
 import { PreRegisterUserSchema } from '@/app/(auth)/precadastro-usuario/schemas/PreRegisterUserSchema'
-import { ZodError } from 'zod'
 
 export const preRegisterUserServerActions = async (
   data: FormData | PreRegisterUserSchema,

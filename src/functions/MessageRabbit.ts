@@ -1,5 +1,4 @@
 import { fetchWrapper } from '@/functions/fetch'
-import { toast } from '@/ui/use-toast'
 
 type MessageEventProps = {
   messages: []

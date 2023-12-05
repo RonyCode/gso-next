@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { PreRegisterUserSchema } from '@/app/(auth)/precadastro-usuario/schemas/PreRegisterUserSchema'
 
 export async function POST(request: NextRequest): Promise<NextResponse> {
   const { email } = await request.json()
