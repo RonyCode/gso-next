@@ -1,35 +1,46 @@
-import { toast } from 'react-toastify';
+import { toast } from 'react-toastify'
 
-import { PreRegisterUserSchema } from '@/app/(auth)/precadastro-usuario/schemas/PreRegisterUserSchema';
-import { ResponsePreRegisterUser } from '@/app/(auth)/precadastro-usuario/types/registerUserForm';
-import { fetchWrapper } from '@/functions/fetch';
-import { z } from 'zod';
+import { PreRegisterUserSchema } from '@/app/(auth)/precadastro-usuario/schemas/PreRegisterUserSchema'
+import { ResponsePreRegisterUser } from '@/app/(auth)/precadastro-usuario/types/registerUserForm'
+import { fetchWrapper } from '@/functions/fetch'
+import { z } from 'zod'
 
 export const usePreRegister = () => {
-  const preRegisterUser = async ({ email }: PreRegisterUserSchema) => {
+  const preRegisterUser = async (data: PreRegisterUserSchema) => {
+    const { email } = data
     try {
       return await fetchWrapper<ResponsePreRegisterUser>(
-        `${process.env.NEXTAUTH_URL}/api/pre-cadastro-usuario`,
+        '/api/pre-cadastro-usuario',
         {
           method: 'POST',
           headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
           },
-          body: JSON.stringify(email)
-        }
-      );
+          body: JSON.stringify({ email }),
+        },
+      )
     } catch (error) {
       if (error instanceof z.ZodError) {
-        return error;
+        return {
+          data: false,
+          status: 'failure',
+          code: 400,
+          message: error.message,
+        }
       }
       if (error instanceof Error) {
-        return error;
+        return {
+          data: false,
+          status: 'failure',
+          code: 400,
+          message: error.message,
+        }
       }
-      toast.error('Something went wrong with your login.');
+      toast.error('Something went wrong with your login.')
     }
-  };
+  }
 
   return {
-    preRegisterUser
-  };
-};
+    preRegisterUser,
+  }
+}

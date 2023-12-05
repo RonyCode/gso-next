@@ -58,8 +58,7 @@ export default async function NavbarHome() {
               </div>
             ) : (
               <div className="gap-2 space-x-6">
-                <Link href="/precadastro-usuario">Cadastrar</Link>
-                <Link href="/auth">Login</Link>
+                <Link href="/auth">Area de acesso</Link>
               </div>
             )}{' '}
           </div>

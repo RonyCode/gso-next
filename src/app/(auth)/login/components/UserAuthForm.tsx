@@ -6,45 +6,98 @@ import { cn } from '@/lib/utils'
 import { Icons } from '@/components/ui/icons'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@/ui/form'
+import { Form, FormControl, FormField, FormItem, FormMessage } from '@/ui/form'
 import { useForm } from 'react-hook-form'
 import * as z from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { toast } from '@/ui/use-toast'
+import { SignInSchema } from '@/app/(auth)/login/schemas/SignInSchema'
+import { useTransition } from 'react'
+import { useSignIn } from '@/app/(auth)/login/hooks/useSign'
+import { preRegisterUserServerActions } from '@/app/(auth)/precadastro-usuario/actions/preRegisterUserServerAction'
+import { redirect } from 'next/navigation'
+import { MessageRabbit } from '@/functions/MessageRabbit'
+import { ResultSignIn } from '@/types'
+import { PreRegisterUserSchema } from '@/app/(auth)/precadastro-usuario/schemas/PreRegisterUserSchema'
+import { usePreRegister } from '@/app/(auth)/precadastro-usuario/hooks/usePreRegister/usePreRegister'
+import { ResponsePreRegisterUser } from '@/app/(auth)/precadastro-usuario/types/registerUserForm'
+import { ZodError } from 'zod'
 
 type UserAuthFormProps = React.HTMLAttributes<HTMLDivElement>
 
 const FormSchema = z.object({
-  username: z.string().min(2, {
-    message: 'Username must be at least 2 characters.',
-  }),
+  email: z.string().email({ message: 'Please enter a valid email address.' }),
 })
+
+type MessageEventProps = {
+  messages: []
+  email: string
+  message: string
+  status: string
+  code: number
+}
 export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
-  const [isLoading, setIsLoading] = React.useState<boolean>(false)
-  const form = useForm<z.infer<typeof FormSchema>>({
-    resolver: zodResolver(FormSchema),
+  const [pending, startTransition] = useTransition()
+  const { signInWithGoogle } = useSignIn()
+  const { preRegisterUser } = usePreRegister()
+
+  const form = useForm<PreRegisterUserSchema>({
+    resolver: zodResolver(PreRegisterUserSchema),
+    mode: 'all',
     defaultValues: {
-      username: '',
+      email: '',
     },
   })
 
-  function onSubmit(data: z.infer<typeof FormSchema>) {
-    toast({
-      title: 'You submitted the following values:',
-      description: (
-        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-          <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-        </pre>
-      ),
+  const handleSubmitLoginWithGoogle = async () => {
+    startTransition(async () => {
+      await signInWithGoogle()
+    })
+  }
+
+  const handleSubmitPreCadastro = async (
+    data: FormData | PreRegisterUserSchema,
+  ) => {
+    startTransition(async () => {
+      const result = await preRegisterUserServerActions(data)
+      if (result?.email !== 'failed') {
+        const emailSended = await preRegisterUser(result)
+        console.log(emailSended)
+        if (emailSended?.data) {
+          const resultMesseger = await MessageRabbit(
+            result?.email,
+            'email-sended',
+          )
+
+          if (resultMesseger.code !== 400) {
+            resultMesseger.messages.forEach((message: MessageEventProps) => {
+              if (message.email === result?.email) {
+                toast({
+                  title: 'Email enviado com sucesso! 😍',
+                  description: message.message,
+                  variant: 'success',
+                })
+              }
+              redirect('/')
+            })
+          }
+
+          if (resultMesseger.code === 400) {
+            toast({
+              title: 'Email ja Cadastrado',
+              description: emailSended?.message,
+              variant: 'danger',
+            })
+          }
+        }
+        if (!emailSended?.data) {
+          toast({
+            title: 'Error ao enviar email',
+            description: emailSended?.message,
+            variant: 'danger',
+          })
+        }
+      }
     })
   }
 
@@ -53,18 +106,17 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
       <div>
         <Form {...form}>
           <form
-            onSubmit={form.handleSubmit(onSubmit)}
+            onSubmit={form.handleSubmit(async (data) => {
+              await handleSubmitPreCadastro(data)
+            })}
             className="w-full space-y-4"
           >
             {' '}
             <FormField
               control={form.control}
-              name="username"
+              name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="sr-only" htmlFor="email">
-                    Email
-                  </FormLabel>
                   <FormControl>
                     <Input
                       {...field}
@@ -74,15 +126,15 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
                       autoCapitalize="none"
                       autoComplete="email"
                       autoCorrect="off"
-                      disabled={isLoading}
+                      disabled={pending}
                     />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
-            <Button disabled={isLoading} className="w-full">
-              {isLoading && (
+            <Button type="submit" disabled={pending} className="w-full">
+              {pending && (
                 <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
               )}
               Se increver com email
@@ -100,8 +152,13 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
           </span>
         </div>
       </div>
-      <Button variant="outline" type="button" disabled={isLoading}>
-        {isLoading ? (
+      <Button
+        onClick={handleSubmitLoginWithGoogle}
+        variant="outline"
+        type="button"
+        disabled={pending}
+      >
+        {pending ? (
           <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
         ) : (
           <svg

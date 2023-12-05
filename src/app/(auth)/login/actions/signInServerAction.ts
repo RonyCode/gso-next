@@ -1,7 +1,6 @@
 'use server'
 import { SignInSchema } from '@/app/(auth)/login/schemas/SignInSchema'
 import { ZodError } from 'zod'
-import { signIn } from 'next-auth/react'
 import { revalidatePath } from 'next/cache'
 
 export const signInServerActions = async (data: FormData | SignInSchema) => {

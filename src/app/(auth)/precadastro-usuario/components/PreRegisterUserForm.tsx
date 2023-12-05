@@ -9,18 +9,21 @@ import { redirect } from 'next/navigation'
 import { preRegisterUserServerActions } from '@/app/(auth)/precadastro-usuario/actions/preRegisterUserServerAction'
 import { useFormPreRegister } from '@/app/(auth)/precadastro-usuario/hooks/useFormPreRegister'
 import { Input } from '@/components/Form/Input'
-import { MessageEvent } from '@/functions/MessageEvent'
+import { MessageRabbit } from '@/functions/MessageRabbit'
 import ButtonNoTheme from '@/ui/ButtonNoTheme'
+import { usePreRegister } from '@/app/(auth)/precadastro-usuario/hooks/usePreRegister/usePreRegister'
 
 const PreRegisterUserForm = () => {
   const { errors, register } = useFormPreRegister()
   const [pending, startTransition] = useTransition()
+  const { preRegisterUser } = usePreRegister()
 
   const handleSubmitPreCadastro = async (data: FormData) => {
-    const result = await preRegisterUserServerActions(data)
     startTransition(async () => {
+      const result = await preRegisterUserServerActions(data)
+      await preRegisterUser(result)
       if (result) {
-        await MessageEvent(result?.data?.email, 'email-sended')
+        await MessageRabbit(result?.data?.email, 'email-sended')
         redirect('/')
       }
     })

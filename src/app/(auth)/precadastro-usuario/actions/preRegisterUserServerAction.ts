@@ -1,24 +1,30 @@
-'use server';
+'use server'
 
-import { revalidatePath } from 'next/cache';
+import { revalidatePath } from 'next/cache'
+import { PreRegisterUserSchema } from '@/app/(auth)/precadastro-usuario/schemas/PreRegisterUserSchema'
+import { ZodError } from 'zod'
 
-import { usePreRegister } from '@/app/(auth)/precadastro-usuario/hooks/usePreRegister/usePreRegister';
-import { PreRegisterUserSchema } from '@/app/(auth)/precadastro-usuario/schemas/PreRegisterUserSchema';
-
-export const preRegisterUserServerActions = async (data: FormData) => {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const { preRegisterUser } = usePreRegister();
-  revalidatePath('/');
-
+export const preRegisterUserServerActions = async (
+  data: FormData | PreRegisterUserSchema,
+) => {
+  revalidatePath('/')
   try {
-    const formData = Object.fromEntries(data.entries());
-    const result = PreRegisterUserSchema.safeParse(formData);
+    if (data instanceof FormData) {
+      const formData = Object.fromEntries(data.entries())
+      const result = PreRegisterUserSchema.safeParse(formData)
 
-    if (result.success) {
-      await preRegisterUser(result.data as PreRegisterUserSchema);
-      return result;
+      if (result.success) {
+        return { email: result.data.email }
+      }
+
+      if (!result.success) {
+        console.log(result.error.message)
+        return { email: 'failed' }
+      }
     }
+    return data
   } catch (error) {
-    console.log(error);
+    console.log(error)
+    return JSON.parse(JSON.stringify(error))
   }
-};
+}

@@ -15,10 +15,6 @@ export default async function Home() {
         height: '70vh',
       }}
     >
-      <button type="button" className="bg-indigo-500" disabled>
-        <svg className="... mr-3 h-5 w-5" viewBox="0 0 24 24"></svg>
-        Loading...
-      </button>
       <div className="min-w-max">
         <h1>Server Session</h1>
         <pre>{'nome; ' + session?.nome}</pre>
