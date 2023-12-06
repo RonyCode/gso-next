@@ -1,4 +1,4 @@
-import './Iconloading.css';
+import './Iconloading.css'
 export default function IconLoading() {
   return (
     <svg
@@ -41,5 +41,5 @@ export default function IconLoading() {
         />
       </g>
     </svg>
-  );
+  )
 }

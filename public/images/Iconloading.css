@@ -28,13 +28,14 @@
     --fillColorBrilhoFilete: #fff;
     --fillColorSombraDomo: #a40101;
     --fillRiscos: #1730be;
-    stroke: var(--toggleCollorText);
-    stroke-width: 15px;
-    width: 120px;
+    stroke: #fff;
+    stroke-width: 1px;
+    stroke-linecap: round;
+    width: 96px;
 }
 
 #brilhoExterno {
-    stroke: var(--toggleCollorText);
+    stroke: var(--foreground);
     transform-origin: center center;
     animation: colorSpinn 3s ease-in-out infinite;
 }

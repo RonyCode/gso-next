@@ -68,7 +68,9 @@ module.exports = {
         'login-bg-light': "url('/examples/authentication-light.png')",
         'login-bg-dark': "url('/examples/authentication-dark.png')",
       },
-
+      zIndex: {
+        100: '100',
+      },
       keyframes: {
         'accordion-down': {
           from: { height: 0 },

@@ -23,7 +23,8 @@ import { toast } from '@/ui/use-toast'
 import { LuMail, LuSquareAsterisk } from 'react-icons/lu'
 import { ResultSignIn } from '@/types'
 import { useRouter } from 'next/navigation'
-import { useTransition } from 'react'
+import { Suspense, useTransition } from 'react'
+import LoadingPage from '@/components/Loadings/LoadingPage'
 
 type UserAuthFormProps = React.HTMLAttributes<HTMLDivElement>
 
@@ -65,6 +66,8 @@ const LoginForm = ({ className, ...props }: UserAuthFormProps) => {
 
   return (
     <>
+      <LoadingPage pending={pending} />
+
       <div className=" flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
         <div className="flex flex-col space-y-2 text-center">
           <h1 className="text-2xl font-semibold tracking-tight">Login</h1>
