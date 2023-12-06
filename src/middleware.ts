@@ -35,7 +35,7 @@ export async function middleware(request: NextRequest) {
 
   // SE TEM TOKEN  PROTEGE AS ROTAS E IMPEDE PAGINA DE LOGIN POIS JA ESTA LOGADO
   if (token || refreshToken) {
-    if (request.nextUrl.pathname === '/login') {
+    if (request.nextUrl.pathname === '/auth') {
       return NextResponse.redirect(new URL('/dashboard', request.url))
     }
   }
@@ -77,16 +77,16 @@ export async function middleware(request: NextRequest) {
         })
         return response
       } else {
-        return NextResponse.redirect(new URL('/login', request.url))
+        return NextResponse.redirect(new URL('/auth', request.url))
       }
     }
 
     if (!token) {
-      return NextResponse.redirect(new URL('/login', request.url))
+      return NextResponse.redirect(new URL('/auth', request.url))
     }
     // SE NÃO TEM O REFRESH-TOKEN PROTEGE TUDO
     if (!sessaoToken) {
-      return NextResponse.redirect(new URL('/login', request.url))
+      return NextResponse.redirect(new URL('/auth', request.url))
     }
   }
 }
