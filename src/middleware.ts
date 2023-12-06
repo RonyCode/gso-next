@@ -1,5 +1,7 @@
 import type { NextRequest } from 'next/server'
 import { NextResponse } from 'next/server'
+import { headers } from 'next/headers'
+import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 
 // This function can be marked `async` if using `await` inside
 export async function middleware(request: NextRequest) {
@@ -33,12 +35,6 @@ export async function middleware(request: NextRequest) {
   const sessaoToken = request.cookies.get('next-auth.session-token')?.value
   const refreshToken = request.cookies.get('refresh_token')?.value
 
-  // SE TEM TOKEN  PROTEGE AS ROTAS E IMPEDE PAGINA DE LOGIN POIS JA ESTA LOGADO
-  if (token || refreshToken) {
-    if (request.nextUrl.pathname === '/auth') {
-      return NextResponse.redirect(new URL('/dashboard', request.url))
-    }
-  }
   // SE TEM NÃO TEM SESSION-TOKEN VERIFICA O TOKEN
   if (!refreshToken) {
     if (token) {

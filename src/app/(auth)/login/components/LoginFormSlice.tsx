@@ -1,6 +1,5 @@
 'use client'
 
-import React, { Suspense } from 'react'
 import { UserAuthForm } from '@/app/(auth)/login/components/UserAuthForm'
 import { Button, buttonVariants } from '@/ui/button'
 import { cn } from '@/lib/utils'
@@ -8,12 +7,22 @@ import Logo from '../../../../../public/images/Logo'
 import Image from 'next/image'
 import Link from 'next/link'
 import LoginForm from '@/app/(auth)/login/components/LoginForm'
-import LoadingPage from '@/components/Loadings/LoadingPage'
+import React from 'react'
+import { useSession } from 'next-auth/react'
+import { usePathname, useRouter } from 'next/navigation'
 
 const LoginFormSlice = () => {
   const [sliceLogin, setSliceLoagin] = React.useState<string>(
     'animate-registerSlice',
   )
+
+  const session = useSession()
+  const pathName = usePathname()
+  const router = useRouter()
+  if (session.data && pathName === '/auth') {
+    router.push('/')
+  }
+
   return (
     <>
       <div className="grid h-[800px]  w-full grid-flow-col grid-cols-2  grid-rows-1 place-items-center rounded-[8px] border border-[var(--border)]">
