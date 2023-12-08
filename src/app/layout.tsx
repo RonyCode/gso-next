@@ -29,12 +29,15 @@ export default function RootLayout({
           >
             <Providers>
               <MainNav />
-              <section className=" container h-auto w-screen border bg-secondary p-0 text-foreground">
-                {children}
+              <section className=" container min-h-screen w-screen border  p-0 text-foreground">
+                <header></header>
+                <main className="min-h-[calc(100vh-72px)] w-full ">
+                  {children}
+                </main>
+                <footer className="static bottom-0 h-48 border-t bg-background text-center text-sm leading-5 text-foreground ">
+                  © 2024 Rcode Copyright. Todos os direitos reservados.
+                </footer>
               </section>
-              <footer className="static bottom-0 h-48 border-t bg-background text-center text-sm leading-5 text-foreground ">
-                © 2024 Copyright. Todos os direitos reservados.
-              </footer>
             </Providers>{' '}
           </ThemeProvider>
         </Suspense>

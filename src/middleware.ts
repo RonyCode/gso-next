@@ -1,7 +1,5 @@
 import type { NextRequest } from 'next/server'
 import { NextResponse } from 'next/server'
-import { headers } from 'next/headers'
-import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 
 // This function can be marked `async` if using `await` inside
 export async function middleware(request: NextRequest) {
@@ -34,16 +32,16 @@ export async function middleware(request: NextRequest) {
   const token = request.cookies.get('token')?.value
   const sessaoToken = request.cookies.get('next-auth.session-token')?.value
   const refreshToken = request.cookies.get('refresh_token')?.value
+  const regex = /[.!]/g
+  const tokenPayload = token?.replaceAll(regex, '+')
+  const response = NextResponse.next()
 
   // SE TEM NÃO TEM SESSION-TOKEN VERIFICA O TOKEN
-  if (!refreshToken) {
+  if (!refreshToken && sessaoToken) {
     if (token) {
-      const regex = /[.!]/g
-      const tokenPayload = token?.replace(regex, '+')
-
       // RENOVA OS TOKENS
       const resp = await fetch(
-        `${process.env.API_GSO}/auth/refresh-token/${tokenPayload}`,
+        `${process.env.API_GSO}/api/auth/refresh-token/${tokenPayload}`,
         {
           method: 'GET',
           headers: {
@@ -52,11 +50,9 @@ export async function middleware(request: NextRequest) {
           },
         },
       )
-
       // SALVA NOVOS COKKIES
-      const tokenRes = await resp.json()
       if (resp.ok) {
-        const response = NextResponse.next()
+        const tokenRes = await resp?.json()
         response.cookies.set({
           name: 'token',
           value: tokenRes.token,
@@ -80,10 +76,10 @@ export async function middleware(request: NextRequest) {
     if (!token) {
       return NextResponse.redirect(new URL('/auth', request.url))
     }
-    // SE NÃO TEM O REFRESH-TOKEN PROTEGE TUDO
-    if (!sessaoToken) {
-      return NextResponse.redirect(new URL('/auth', request.url))
-    }
+  }
+  // SE NÃO TEM O REFRESH-TOKEN PROTEGE TUDO
+  if (!sessaoToken) {
+    return NextResponse.redirect(new URL('/auth', request.url))
   }
 }
 

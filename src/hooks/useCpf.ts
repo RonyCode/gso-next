@@ -1,7 +1,7 @@
-import { toast } from 'react-toastify';
+import { toast } from 'react-toastify'
 
-import { fetchWrapper } from '@/functions/fetch';
-import { z } from 'zod';
+import { fetchWrapper } from '@/functions/fetch'
+import { z } from 'zod'
 
 export const useCpf = () => {
   const findPersonByCpf = async (cpf: string, dataNascimento: string) => {
@@ -9,22 +9,22 @@ export const useCpf = () => {
       await fetchWrapper('/api/cpf', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ cpf, dataNascimento })
-      });
+        body: JSON.stringify({ cpf, dataNascimento }),
+      })
     } catch (error) {
       if (error instanceof z.ZodError) {
-        return error;
+        return error
       }
       if (error instanceof Error) {
-        return error;
+        return error
       }
-      toast.error('Something went wrong with your login.');
+      toast.error('Something went wrong with your login.')
     }
-  };
+  }
 
   return {
-    findPersonByCpf
-  };
-};
+    findPersonByCpf,
+  }
+}

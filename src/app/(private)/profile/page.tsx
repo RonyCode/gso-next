@@ -3,6 +3,6 @@ const MeuPerfil = () => {
     <>
       <h1>Meu perfil</h1>
     </>
-  );
-};
-export default MeuPerfil;
+  )
+}
+export default MeuPerfil

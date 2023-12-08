@@ -26,9 +26,6 @@ import { ModeToggle } from '@/ui/ModeTogle'
 import { deleteCookies } from '@/components/Buttoms/SignOutButton/LogoutAction'
 import { signOut, useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
-import { getServerSession } from 'next-auth'
-import { authOptions } from '@/lib/auth'
-import LoadingPage from '@/components/Loadings/LoadingPage'
 
 export function MainNav({
   className,
@@ -53,7 +50,7 @@ export function MainNav({
   ]
   return (
     <header className="sticky top-0 z-50 border-b bg-background/95  backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="max-w-screen container mx-auto items-center  p-0 md:flex">
+      <nav className="max-w-screen container mx-auto items-center  p-0 md:flex">
         <div className="flex items-center justify-between py-3 md:block md:py-5">
           <Link href="/" className="hidden md:block">
             <h1 className="text-3xl font-bold text-purple-600">
@@ -164,7 +161,7 @@ export function MainNav({
             <Link href="/auth"> Area de acesso</Link>
           </p>
         )}
-      </div>
+      </nav>
     </header>
   )
 }

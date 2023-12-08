@@ -3,15 +3,15 @@
 import * as React from 'react'
 
 import { cn } from '@/lib/utils'
-import { Icons } from '@/components/ui/icons'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
+import { Icons } from '@/ui/icons'
+import { Button } from '@/ui/button'
+import { Input } from '@/ui/input'
 import { Form, FormControl, FormField, FormItem, FormMessage } from '@/ui/form'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { toast } from '@/ui/use-toast'
 import { useTransition } from 'react'
-import { useSignIn } from '@/app/(auth)/login/hooks/useSign'
+import { useSignIn } from '@/app/(auth)/auth/hooks/useSign'
 import { preRegisterUserServerActions } from '@/app/(auth)/precadastro-usuario/actions/preRegisterUserServerAction'
 import { redirect } from 'next/navigation'
 import { PreRegisterUserSchema } from '@/app/(auth)/precadastro-usuario/schemas/PreRegisterUserSchema'
@@ -120,7 +120,6 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
       <Button
         onClick={handleSubmitLoginWithGoogle}
         variant="outline"
-        type="button"
         disabled={pending}
       >
         {pending ? (
@@ -155,7 +154,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
             <path d="M1 1h22v22H1z" fill="none" />
           </svg>
         )}{' '}
-        Google Google
+        Google
       </Button>
     </div>
   )

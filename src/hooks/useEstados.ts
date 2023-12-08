@@ -1,16 +1,16 @@
+import { fetchWrapper } from '@/functions/fetch'
+import { CepProps } from '@/types'
+
 export const useEstados = () => {
-  const getData = async () => {
-    const estados = await fetch('http://localhost:3000/api/estados', {
+  const getEstados = async () => {
+    return await fetchWrapper<CepProps>('/api/estados', {
       method: 'GET',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
-      cache: 'no-store'
-    });
-
-    return await estados.json();
-  };
+    })
+  }
   return {
-    getData
-  };
-};
+    getEstados,
+  }
+}

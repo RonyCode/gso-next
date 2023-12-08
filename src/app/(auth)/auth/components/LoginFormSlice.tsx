@@ -1,12 +1,12 @@
 'use client'
 
-import { UserAuthForm } from '@/app/(auth)/login/components/UserAuthForm'
+import { UserAuthForm } from '@/app/(auth)/auth/components/UserAuthForm'
 import { Button, buttonVariants } from '@/ui/button'
 import { cn } from '@/lib/utils'
 import Logo from '../../../../../public/images/Logo'
 import Image from 'next/image'
 import Link from 'next/link'
-import LoginForm from '@/app/(auth)/login/components/LoginForm'
+import LoginForm from '@/app/(auth)/auth/components/LoginForm'
 import React from 'react'
 import { useSession } from 'next-auth/react'
 import { usePathname, useRouter } from 'next/navigation'
@@ -48,7 +48,7 @@ const LoginFormSlice = () => {
             </div>
           </div>
           <div
-            className={`${sliceLogin} rounder d-[8px] rela21tive  z-10 hidden h-full flex-col   rounded-[8px] border-l border-r border-[var(--border)]  bg-muted bg-slate-400 text-white dark:border-r lg:flex `}
+            className={`${sliceLogin} rounder d-[8px] relative z-10 hidden h-full flex-col   rounded-[8px] border-l border-r border-[var(--border)]  bg-muted bg-slate-400 text-white dark:border-r lg:flex `}
           >
             <div className=" absolute  inset-0  flex flex-col justify-between bg-zinc-900 py-12 ">
               <div className="relative flex items-center  justify-center text-lg font-medium">

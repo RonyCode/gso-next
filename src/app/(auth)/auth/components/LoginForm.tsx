@@ -2,13 +2,12 @@
 
 import * as React from 'react'
 
-import { signInServerActions } from '@/app/(auth)/login/actions/signInServerAction'
-import { useSignIn } from '@/app/(auth)/login/hooks/useSign'
-import { SignInSchema } from '@/app/(auth)/login/schemas/SignInSchema'
-import { Input } from '@/components/ui/input'
+import { signInServerActions } from '@/app/(auth)/auth/actions/signInServerAction'
+import { useSignIn } from '@/app/(auth)/auth/hooks/useSign'
+import { SignInSchema } from '@/app/(auth)/auth/schemas/SignInSchema'
+import { Input } from '@/ui/input'
 import { cn } from '@/lib/utils'
 import { Button } from '@/ui/button'
-import { Icons } from '@/ui/icons'
 import {
   Form,
   FormControl,
@@ -23,8 +22,9 @@ import { toast } from '@/ui/use-toast'
 import { LuMail, LuSquareAsterisk } from 'react-icons/lu'
 import { ResultSignIn } from '@/types'
 import { useRouter } from 'next/navigation'
-import { Suspense, useTransition } from 'react'
+import { useTransition } from 'react'
 import LoadingPage from '@/components/Loadings/LoadingPage'
+import { FaSpinner } from 'react-icons/fa6'
 
 type UserAuthFormProps = React.HTMLAttributes<HTMLDivElement>
 
@@ -63,6 +63,21 @@ const LoginForm = ({ className, ...props }: UserAuthFormProps) => {
       senha: '',
     },
   })
+  let countShow = true
+
+  const detectCapsLock = (keyEvent: React.KeyboardEvent<HTMLInputElement>) => {
+    if (/[A-Z]/.test(keyEvent.currentTarget.value)) {
+      if (countShow) {
+        countShow = false
+
+        toast({
+          variant: 'warning',
+          title: 'CAPS LOCK! 📌',
+          description: 'Cuidado a tecla CAPS LOCK está ativa',
+        })
+      }
+    }
+  }
 
   return (
     <>
@@ -133,6 +148,7 @@ const LoginForm = ({ className, ...props }: UserAuthFormProps) => {
                         autoComplete="senha"
                         autoCorrect="off"
                         disabled={pending}
+                        onInput={detectCapsLock}
                       />
                     </FormControl>
                     <FormMessage />
@@ -140,9 +156,7 @@ const LoginForm = ({ className, ...props }: UserAuthFormProps) => {
                 )}
               />
               <Button disabled={pending} className="w-full">
-                {pending && (
-                  <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
-                )}
+                {pending && <FaSpinner className="mr-2 h-4 w-4 animate-spin" />}
                 Entrar
               </Button>{' '}
             </form>

@@ -1,7 +1,7 @@
-'use server';
+'use server'
 
-import { revalidatePath } from 'next/cache';
-import { cookies } from 'next/headers';
+import { revalidatePath } from 'next/cache'
+import { cookies } from 'next/headers'
 
 export const deleteCookies = () => {
   cookies().set({
@@ -9,23 +9,23 @@ export const deleteCookies = () => {
     value: '',
     expires: new Date('2016-10-05'),
     path: '/',
-    maxAge: 0
-  });
+    maxAge: 0,
+  })
 
   cookies().set({
     name: 'token',
     value: '',
     expires: new Date('2016-10-05'),
     path: '/',
-    maxAge: 0
-  });
+    maxAge: 0,
+  })
 
   cookies().set({
     name: 'refresh_token',
     value: '',
     expires: new Date('2016-10-05'),
     path: '/',
-    maxAge: 0
-  });
-  revalidatePath('/');
-};
+    maxAge: 0,
+  })
+  revalidatePath('/')
+}

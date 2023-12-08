@@ -1,4 +1,4 @@
-import { SignInSchema } from '@/app/(auth)/login/schemas/SignInSchema'
+import { SignInSchema } from '@/app/(auth)/auth/schemas/SignInSchema'
 
 interface LoginForm {
   handleSubmitLogin: FormData<FormDataEvent>

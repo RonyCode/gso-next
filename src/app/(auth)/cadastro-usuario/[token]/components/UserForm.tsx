@@ -1,31 +1,52 @@
 'use client'
 
 import * as React from 'react'
-import { useTransition } from 'react'
+import { useEffect, useTransition } from 'react'
 import {
-  FaCakeCandles,
+  FaBuildingColumns,
   FaCity,
   FaEnvelope,
   FaHashtag,
-  FaHouse,
-  FaHouseUser,
-  FaIdCard,
   FaMapLocationDot,
-  FaMountainCity,
   FaPhone,
+  FaSpinner,
   FaTreeCity,
-  FaUnlockKeyhole,
+  FaUser,
+  FaUserLock,
 } from 'react-icons/fa6'
-import { toast } from 'react-toastify'
-
-import { useFormRegister } from '@/app/(auth)/cadastro-usuario/[token]/hooks/useFormRegister'
-import { Input } from '@/components/Form/Input'
 import { useCep } from '@/hooks/useCep'
-import { CepProps } from '@/types'
-import ButtonNoTheme from '@/ui/ButtonNoTheme'
-import debounce from 'lodash.debounce'
 
-import { submitUserForm } from '../actions/userActions'
+import { signedUpAction } from '../actions/signedUpAction'
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@/ui/form'
+import { Button, buttonVariants } from '@/ui/button'
+import { useForm } from 'react-hook-form'
+import { RegisterUserSchema } from '@/app/(auth)/cadastro-usuario/[token]/schemas/RegisterUserSchema'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { cn } from '@/lib/utils'
+import { Input } from '@/ui/input'
+import { MyInputMask } from '@/components/ui/myInputMask'
+import { FaBirthdayCake } from 'react-icons/fa'
+import { toast } from '@/ui/use-toast'
+import { CepProps } from '@/types'
+import LoadingPage from '@/components/Loadings/LoadingPage'
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
+import { useEstados } from '@/hooks/useEstados'
+import { useEndereco } from '@/hooks/useEndereco'
 
 enum Fields {
   nome = 'nome',
@@ -43,50 +64,77 @@ enum Fields {
   confirmaSenha = 'confirmaSenha',
 }
 
-export const UserForm = () => {
-  const {
-    errors,
-    register,
-    isValid,
-    setValue,
-    setError,
-    dirtyFields,
-    clearErrors,
-  } = useFormRegister()
-  const { findCep } = useCep()
+type UserRegisterFormProps = React.HTMLAttributes<HTMLDivElement>
+
+export const UserForm = async ({
+  className,
+  ...props
+}: UserRegisterFormProps) => {
+  const form = useForm<RegisterUserSchema>({
+    mode: 'all',
+    criteriaMode: 'all',
+    resolver: zodResolver(RegisterUserSchema),
+    defaultValues: {
+      nome: '',
+      email: '',
+      cpf: '',
+      data_nascimento: '',
+      telefone: '',
+      cep: '',
+      endereco: '',
+      numero: '',
+      bairro: '',
+      cidade: '',
+      estado: '',
+      senha: '',
+      confirmaSenha: '',
+    },
+  })
+
+  const { getEstados, findCep, getCidades } = useEndereco()
 
   const [pending, startTransition] = useTransition()
+  const estados = await getEstados()
+  const cidades = await getCidades(form.getValues().estado)
 
-  const handleSubmit = async (data: FormData) => {
+  console.log(form.getValues().estado)
+  // useEffect(() => {
+  //   if (estados) {
+  //     console.log(estados)
+  //   }
+  // }, [])
+
+  const handleSubmit = async (data: RegisterUserSchema) => {
     startTransition(async () => {
-      const restult = await submitUserForm(data)
-      if (restult?.errors) {
-        const arrayErrors = Object.entries(restult.errors)
-        for (const error of arrayErrors) {
-          chageValueInputError(error[0] as Fields, error[1])
-        }
-      }
+      const restult = await signedUpAction(data)
+      // if (restult?.errors) {
+      //   const arrayErrors = Object.entries(restult.errors)
+      //   for (const error of arrayErrors) {
+      //     chageValueInputError(error[0] as Fields, error[1])
+      //   }
+      // }
     })
   }
 
   const chageValueInput = (field: Fields, newValue: string) => {
-    setValue(field, newValue, {
+    form.setValue(field, newValue, {
       shouldDirty: true,
       shouldTouch: true,
     })
-    clearErrors(field)
-  }
-  const chageValueInputError = (field: Fields, newValueError: string) => {
-    setError(field, { message: newValueError })
+    form.clearErrors(field)
   }
 
-  const handleCep = debounce(async (e) => {
-    if (e?.target?.value) {
+  const handleCep = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e?.target?.value.length >= 9) {
       startTransition(async () => {
         const { street, city, district, stateShortname }: CepProps =
           await findCep(e?.target?.value)
         if (!city) {
-          toast.error('cep não encontrado')
+          toast({
+            variant: 'danger',
+            title: 'Cep Incorreto! 🤯 ',
+            description: 'Cep não encontrado',
+          })
         }
         chageValueInput(Fields.endereco, street)
         chageValueInput(Fields.cidade, city)
@@ -94,241 +142,431 @@ export const UserForm = () => {
         chageValueInput(Fields.estado, stateShortname)
       })
     }
-  }, 800)
+  }
 
-  const hasErro = !isValid || Object.keys(dirtyFields).length == 0
   return (
-    <form action={handleSubmit} className="min-w-full">
-      <div className="my-2 flex flex-col gap-2 sm:flex-row">
-        {}
+    <div className=" container flex w-full flex-col py-16 md:w-9/12">
+      <div className="flex flex-col space-y-2 text-center">
+        <h1 className="text-2xl font-semibold tracking-tight">Cadastro</h1>
+        <p className="text-sm text-muted-foreground">
+          Complete o cadastro observe os campos obrigatórios
+        </p>
+      </div>
 
-        <Input.Load pending={pending} />
-        <Input.Root>
-          <Input.Label label="Nome" icon={FaHouse} htmlFor="nome" />
-          <Input.Content
-            {...register('nome')}
-            id="nome"
-            name="nome"
-            placeholder="Digite seu nome"
-            hasError={errors.nome?.message}
-          />
-          <Input.HelpText
-            text={errors.nome?.message && '📣 ' + errors.nome?.message}
-          />
-        </Input.Root>
-      </div>
-      <div className="my-2 flex flex-col gap-2 sm:flex-row">
-        <Input.Root>
-          <Input.Label label="Email" icon={FaEnvelope} htmlFor="email" />
-          <Input.Content
-            {...register('email')}
-            name="email"
-            id="email"
-            placeholder="Digite seu email"
-            hasError={errors.email?.message}
-          />
-          <Input.HelpText
-            text={errors.email?.message && '📣 ' + errors.email?.message}
-          />
-        </Input.Root>
+      <div className={cn('mt-4 grid gap-6 py-16', className)} {...props}>
+        <LoadingPage pending={pending} />
+        <Form {...form}>
+          <form
+            onSubmit={form.handleSubmit(async (data) => {
+              await handleSubmit(data)
+            })}
+            className="w-full space-y-4"
+          >
+            <div className="flex w-full flex-col  gap-2 md:flex-row">
+              <FormField
+                control={form.control}
+                name="nome"
+                render={({ field }) => (
+                  <FormItem className="w-full">
+                    <FormLabel
+                      htmlFor="nome"
+                      className="flex items-center gap-1"
+                    >
+                      <FaUser /> Nome
+                    </FormLabel>
+                    <FormControl>
+                      <Input
+                        {...field}
+                        id="nome"
+                        placeholder="Digite seu nome"
+                        autoCapitalize="none"
+                        autoComplete="nome"
+                        autoCorrect="off"
+                        disabled={pending}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem className="w-full">
+                    <FormLabel
+                      htmlFor="email"
+                      className="flex items-center gap-1"
+                    >
+                      <FaEnvelope /> Email
+                    </FormLabel>
+                    <FormControl>
+                      <Input
+                        {...field}
+                        id="email"
+                        placeholder="email@exemplo.com"
+                        type="email"
+                        autoCapitalize="none"
+                        autoComplete="email"
+                        autoCorrect="off"
+                        disabled={pending}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+            <div className="flex w-full flex-col  gap-2 md:flex-row">
+              <FormField
+                control={form.control}
+                name="cpf"
+                render={({ field }) => (
+                  <FormItem className="w-full">
+                    <FormLabel
+                      htmlFor="cpf"
+                      className="flex items-center gap-1"
+                    >
+                      <FaHashtag /> CPF
+                    </FormLabel>
+                    <FormControl>
+                      <MyInputMask
+                        className={cn(
+                          'flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50',
+                          className,
+                        )}
+                        {...field}
+                        id="cpf"
+                        placeholder="000.000.000-00"
+                        mask="___.___.___-__"
+                        autoCapitalize="none"
+                        autoComplete="cpf"
+                        autoCorrect="off"
+                        disabled={pending}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="data_nascimento"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel
+                      htmlFor="data_nascimento"
+                      className="flex items-center gap-1"
+                    >
+                      <FaBirthdayCake />
+                      Nascimento
+                    </FormLabel>
+                    <FormControl>
+                      <MyInputMask
+                        {...field}
+                        id="data_nascimento"
+                        placeholder="00/00/0000"
+                        mask="__/__/____"
+                        autoCapitalize="none"
+                        autoComplete="data_nascimento"
+                        autoCorrect="off"
+                        disabled={pending}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="telefone"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel
+                      htmlFor="telefone"
+                      className="flex items-center gap-1"
+                    >
+                      <FaPhone /> Telefone
+                    </FormLabel>
+                    <FormControl>
+                      <MyInputMask
+                        {...field}
+                        id="telefone"
+                        placeholder="(00) 00000-0000"
+                        mask="(__) _____-____"
+                        autoCapitalize="none"
+                        autoComplete="telefone"
+                        autoCorrect="off"
+                        disabled={pending}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+            <div className="flex w-full flex-col  gap-2 md:flex-row">
+              <FormField
+                control={form.control}
+                name="endereco"
+                render={({ field }) => (
+                  <FormItem className="w-full">
+                    <FormLabel
+                      htmlFor="endereco"
+                      className="flex items-center gap-1"
+                    >
+                      <FaMapLocationDot width={16} /> Endereco
+                    </FormLabel>
+                    <FormControl>
+                      <Input
+                        {...field}
+                        id="endereco"
+                        placeholder="Digite seu endereço"
+                        autoCapitalize="none"
+                        autoComplete="endereco"
+                        autoCorrect="off"
+                        disabled={pending}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="numero"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel
+                      htmlFor="numero"
+                      className="flex items-center gap-1"
+                    >
+                      <FaHashtag /> Numero
+                    </FormLabel>
+                    <FormControl>
+                      <Input
+                        {...field}
+                        id="numero"
+                        placeholder="Digite o numero da casa"
+                        autoCapitalize="none"
+                        autoComplete="numero"
+                        autoCorrect="off"
+                        disabled={pending}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="cep"
+                render={({ field }) => (
+                  <FormItem onChange={handleCep}>
+                    <FormLabel
+                      htmlFor="cep"
+                      className="flex items-center gap-1"
+                    >
+                      <FaHashtag /> Cep
+                    </FormLabel>
+                    <FormControl>
+                      <MyInputMask
+                        {...field}
+                        id="cep"
+                        placeholder="00000-000"
+                        mask="_____-___"
+                        autoCapitalize="none"
+                        autoComplete="cep"
+                        autoCorrect="off"
+                        disabled={pending}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+            <div className="flex w-full flex-col  gap-2 md:flex-row">
+              <FormField
+                control={form.control}
+                name="estado"
+                render={({ field }) => (
+                  <FormItem className="w-full">
+                    <FormLabel
+                      htmlFor="estado"
+                      className="flex items-center gap-1"
+                    >
+                      <FaBuildingColumns /> Estado
+                    </FormLabel>{' '}
+                    <Select
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                    >
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Selecione um Estado" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        <SelectGroup>
+                          <SelectLabel>Selecione</SelectLabel>
 
-        <Input.Root className="w-full md:w-6/12">
-          <Input.Label htmlFor="cpf" label="Cpf" icon={FaIdCard} />
-          <Input.ContentMasked
-            {...register('cpf')}
-            name="cpf"
-            id="cpf"
-            mask="___.___.___-__"
-            placeholder="999.999.999-99"
-            hasError={errors.cpf?.message}
-          />
-          <Input.HelpText
-            text={errors.cpf?.message && '📣 ' + errors.cpf?.message}
-          />
-        </Input.Root>
-      </div>
-      <div className="my-2 flex flex-col gap-2 sm:flex-row ">
-        <Input.Root>
-          <Input.Label
-            label="Nascimento"
-            icon={FaCakeCandles}
-            htmlFor="data_nascimento"
-          />
-          <Input.ContentMasked
-            {...register('data_nascimento')}
-            mask="__/__/____"
-            name="data_nascimento"
-            id="data_nascimento"
-            placeholder="99/99/9999"
-            hasError={errors.data_nascimento?.message}
-          />
-          <Input.HelpText
-            text={
-              errors.data_nascimento?.message &&
-              '📣 ' + errors.data_nascimento?.message
-            }
-          />
-        </Input.Root>
+                          {estados?.result?.map((state) => (
+                            <SelectItem
+                              key={state.abbreviation}
+                              value={state.shortName}
+                            >
+                              {state.name}
+                            </SelectItem>
+                          ))}
+                        </SelectGroup>
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
-        <Input.Root>
-          <Input.Label label="Telefone" icon={FaPhone} htmlFor="telefone" />
-          <Input.ContentMasked
-            {...register('telefone')}
-            id="telefone"
-            name="telefone"
-            mask="(__) _____-____"
-            placeholder="(99) 99999-9999"
-            hasError={errors.telefone?.message}
-          />
-          <Input.HelpText
-            text={errors.telefone?.message && '📣 ' + errors.telefone?.message}
-          />
-        </Input.Root>
-        <Input.Root>
-          <Input.Label label="Cep" icon={FaMapLocationDot} htmlFor="cep" />
-          <Input.ContentMasked
-            {...register('cep')}
-            onChange={handleCep}
-            name="cep"
-            id="cep"
-            mask="_____-___"
-            placeholder="99999-999"
-            hasError={errors.cep?.message}
-          />
-          <Input.HelpText
-            text={errors.cep?.message && '📣 ' + errors.cep?.message}
-          />
-        </Input.Root>
-      </div>
-      <div className="my-2 flex flex-col gap-2 sm:flex-row">
-        <Input.Root>
-          <Input.Label label="Endereço" icon={FaHouseUser} htmlFor="endereco" />
-          <Input.Content
-            {...register('endereco')}
-            name="endereco"
-            id="endereco"
-            placeholder="Digite seu endereco"
-            hasError={errors.endereco?.message}
-          />
-          <Input.HelpText
-            text={errors.endereco?.message && '📣 ' + errors.endereco?.message}
-          />
-        </Input.Root>
+              <FormField
+                control={form.control}
+                name="cidade"
+                render={({ field }) => (
+                  <FormItem className="w-full">
+                    <FormLabel
+                      htmlFor="cidade"
+                      className="flex items-center gap-1"
+                    >
+                      <FaBuildingColumns /> Cidade
+                    </FormLabel>{' '}
+                    <Select
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                    >
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Selecione uma Cidade" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        <SelectGroup>
+                          <SelectLabel>Selecione</SelectLabel>
 
-        <Input.Root className="w-full md:w-6/12">
-          <Input.Label label="Numero" icon={FaHashtag} htmlFor="numero" />
-          <Input.Content
-            {...register('numero')}
-            name="numero"
-            id="numero"
-            placeholder="Numero residência"
-            hasError={errors.numero?.message}
-          />
-          <Input.HelpText
-            text={errors.numero?.message && '📣 ' + errors.numero?.message}
-          />
-        </Input.Root>
+                          {estados?.result?.map((state) => (
+                            <SelectItem
+                              key={state.shortName}
+                              value={state.shortName}
+                            >
+                              {state.name}
+                            </SelectItem>
+                          ))}
+                        </SelectGroup>
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="bairro"
+                render={({ field }) => (
+                  <FormItem className="w-full">
+                    <FormLabel
+                      htmlFor="bairro"
+                      className="flex items-center gap-1"
+                    >
+                      <FaTreeCity /> Bairro
+                    </FormLabel>
+                    <FormControl>
+                      <Input
+                        {...field}
+                        id="bairro"
+                        placeholder="bairro"
+                        autoCapitalize="none"
+                        autoComplete="bairro"
+                        autoCorrect="off"
+                        disabled={pending}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+            <div className="flex w-full flex-col  justify-center gap-2 md:flex-row">
+              <FormField
+                control={form.control}
+                name="senha"
+                render={({ field }) => (
+                  <FormItem className="w-full">
+                    <FormLabel
+                      htmlFor="senha"
+                      className="flex items-center gap-1"
+                    >
+                      <FaUserLock /> Senha
+                    </FormLabel>{' '}
+                    <FormControl>
+                      <Input
+                        {...field}
+                        id="senha"
+                        placeholder="******"
+                        type="password"
+                        autoCapitalize="none"
+                        autoComplete="senha"
+                        autoCorrect="off"
+                        disabled={pending}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="confirmaSenha"
+                render={({ field }) => (
+                  <FormItem className="w-full">
+                    <FormLabel
+                      htmlFor="senha"
+                      className="flex items-center gap-1"
+                    >
+                      <FaUserLock /> Senha
+                    </FormLabel>{' '}
+                    <FormControl>
+                      <Input
+                        {...field}
+                        id="confirmaSenha"
+                        placeholder="******"
+                        type="password"
+                        autoCapitalize="none"
+                        autoComplete="confirmaSenha"
+                        autoCorrect="off"
+                        disabled={pending}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <div className="mt-[1.380rem] w-5/12 gap-1">
+                <Button
+                  disabled={pending}
+                  className={cn(
+                    buttonVariants({ variant: 'default' }),
+                    ' w-full',
+                  )}
+                  type="submit"
+                >
+                  {pending && (
+                    <FaSpinner className="mr-2 h-4 w-4 animate-spin" />
+                  )}
+                  Cadastrar
+                </Button>{' '}
+              </div>
+            </div>
+          </form>
+        </Form>
       </div>
-      <div className="my-2 flex flex-col gap-2 sm:flex-row">
-        <Input.Root>
-          <Input.Label label="Bairro" icon={FaTreeCity} htmlFor="bairro" />
-          <Input.Content
-            {...register('bairro')}
-            name="bairro"
-            id="bairro"
-            placeholder="Digite seu bairro"
-            hasError={errors.bairro?.message}
-          />
-          <Input.HelpText
-            text={errors.bairro?.message && '📣 ' + errors.bairro?.message}
-          />
-        </Input.Root>
-        <Input.Root>
-          <Input.Label label="Cidade" icon={FaCity} htmlFor="cidade" />
-          <Input.Content
-            {...register('cidade')}
-            name="cidade"
-            id="cidade"
-            placeholder="Digite sua cidade"
-            hasError={errors.cidade?.message}
-          />
-          <Input.HelpText
-            text={errors.cidade?.message && '📣 ' + errors.cidade?.message}
-          />
-        </Input.Root>
-
-        <Input.Root>
-          <Input.Label label="Estado" icon={FaMountainCity} htmlFor="estado" />
-          <Input.Content
-            {...register('estado')}
-            name="estado"
-            id="estado"
-            placeholder="Digite seu estado"
-            hasError={errors.estado?.message}
-          />
-          <Input.HelpText
-            text={errors?.estado?.message && '📣 ' + errors.estado?.message}
-          />
-        </Input.Root>
-      </div>
-      <div className="my-2 flex flex-col gap-2 sm:flex-row">
-        <Input.Root>
-          <Input.Label label="Senha" icon={FaUnlockKeyhole} htmlFor="senha" />
-          <Input.Content
-            {...register('senha')}
-            name="senha"
-            id="senha"
-            placeholder="Digite sua senha"
-            type="password"
-            hasError={errors.senha?.message}
-          />
-          <Input.HelpText
-            text={errors.senha?.message && '📣 ' + errors.senha?.message}
-          />
-        </Input.Root>
-
-        <Input.Root>
-          <Input.Label
-            label="Confirma Senha"
-            icon={FaUnlockKeyhole}
-            htmlFor="confirmaSenha"
-          />
-          <Input.Content
-            {...register('confirmaSenha')}
-            type="password"
-            name="confirmaSenha"
-            id="confirmaSenha"
-            placeholder="Repita sua senha"
-            hasError={errors.confirmaSenha?.message}
-          />
-          <Input.HelpText
-            text={
-              errors.confirmaSenha?.message &&
-              '📣 ' + errors.confirmaSenha?.message
-            }
-          />
-        </Input.Root>
-      </div>
-      <div className=" float-right mt-3 flex w-1/2 items-center justify-end ">
-        <ButtonNoTheme
-          isLoading={pending}
-          disabled={pending}
-          variant="default"
-          size="default"
-          type="submit"
-        >
-          Cancelar
-        </ButtonNoTheme>
-        <ButtonNoTheme
-          isLoading={pending}
-          disabled={hasErro || pending}
-          variant="default"
-          size="default"
-          type="submit"
-        >
-          Cadastrar
-        </ButtonNoTheme>
-      </div>
-    </form>
+    </div>
   )
 }

@@ -43,7 +43,7 @@ const PageNotFound = ({
           <div className=" flex h-screen flex-col items-center justify-evenly">
             <Image
               className="image-404"
-              src="http://salehriaz.com/404Page/img/404.svg"
+              src="/images/404.svg"
               width="300"
               height="0"
               alt="image-404"
@@ -59,7 +59,7 @@ const PageNotFound = ({
           <div className="objects">
             <Image
               className="object_rocket"
-              src="http://salehriaz.com/404Page/img/rocket.svg"
+              src="/images/rocket.svg"
               width="40"
               height="0"
               alt="object_rocket"
@@ -67,14 +67,14 @@ const PageNotFound = ({
             <div className="earth-moon">
               <Image
                 className="object_earth"
-                src="http://salehriaz.com/404Page/img/earth.svg"
+                src="/images/earth.svg"
                 width="100"
                 height="0"
                 alt="object_earth"
               />
               <Image
                 className="object_moon"
-                src="http://salehriaz.com/404Page/img/moon.svg"
+                src="/images/moon.svg"
                 width="80"
                 height="0"
                 alt="object_moon"
@@ -83,7 +83,7 @@ const PageNotFound = ({
             <div className="box_astronaut">
               <Image
                 className="object_astronaut"
-                src="http://salehriaz.com/404Page/img/astronaut.svg"
+                src="/images/astronaut.svg"
                 width="140"
                 height="0"
                 alt="object_astronaut"

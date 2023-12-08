@@ -1,9 +1,6 @@
 import { signIn } from 'next-auth/react'
-import { useRouter } from 'next/navigation'
 
-import { SignInSchema } from '@/app/(auth)/login/schemas/SignInSchema'
-import { z } from 'zod'
-import * as React from 'react'
+import { SignInSchema } from '@/app/(auth)/auth/schemas/SignInSchema'
 import { toast } from '@/ui/use-toast'
 import { ResultSignIn } from '@/types'
 

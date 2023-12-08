@@ -3,5 +3,5 @@ export default function About() {
     <>
       <h1>res</h1>
     </>
-  );
+  )
 }
