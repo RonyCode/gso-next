@@ -7,9 +7,8 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
   const origin: string | null = request.headers.get('origin')
   const remaining: number = await limiter.removeTokens(1)
   const body: RegisterUserSchema = await request.json()
-  const { email, nome, senha } = body
 
-  if (!email || !nome || !senha)
+  if (!body)
     return NextResponse.json({ message: 'Erro parametros necessários' })
 
   if (remaining < 0) {
@@ -22,13 +21,13 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     })
   }
 
-  const res = await fetch(`${process.env.API_GSO}/api/auth/cadastro/usuario`, {
+  const res = await fetch(`${process.env.API_GSO}/api/auth/cadastro`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': origin || '*',
     },
-    body: JSON.stringify({ email, nome, senha }),
+    body: JSON.stringify({ ...body }),
   })
 
   if (!res.ok) {

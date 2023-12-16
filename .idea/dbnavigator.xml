@@ -22,7 +22,11 @@
   <component name="DBNavigator.Project.DatabaseFileManager">
     <open-files />
   </component>
+  <component name="DBNavigator.Project.DatabaseSessionManager">
+    <connection id="8093e10b-766b-4331-aeaf-20d7c75d95c1" />
+  </component>
   <component name="DBNavigator.Project.DatasetFilterManager">
+    <filter-actions connection-id="8093e10b-766b-4331-aeaf-20d7c75d95c1" dataset="wsgsoHomologacao.user" active-filter-id="EMPTY_FILTER" />
     <filter-actions connection-id="8093e10b-766b-4331-aeaf-20d7c75d95c1" dataset="wsgsoHomologacao.user_auth" active-filter-id="EMPTY_FILTER" />
     <filter-actions connection-id="8093e10b-766b-4331-aeaf-20d7c75d95c1" dataset="gsoBackHomologacao.user_auth" active-filter-id="EMPTY_FILTER" />
   </component>

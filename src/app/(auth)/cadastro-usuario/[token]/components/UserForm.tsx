@@ -1,10 +1,9 @@
 'use client'
 
 import * as React from 'react'
-import { useEffect, useTransition } from 'react'
+import { use, useState, useTransition } from 'react'
 import {
   FaBuildingColumns,
-  FaCity,
   FaEnvelope,
   FaHashtag,
   FaMapLocationDot,
@@ -14,7 +13,6 @@ import {
   FaUser,
   FaUserLock,
 } from 'react-icons/fa6'
-import { useCep } from '@/hooks/useCep'
 
 import { signedUpAction } from '../actions/signedUpAction'
 import {
@@ -33,20 +31,26 @@ import { cn } from '@/lib/utils'
 import { Input } from '@/ui/input'
 import { MyInputMask } from '@/components/ui/myInputMask'
 import { FaBirthdayCake } from 'react-icons/fa'
-import { toast } from '@/ui/use-toast'
-import { CepProps } from '@/types'
 import LoadingPage from '@/components/Loadings/LoadingPage'
+import { getAllStates } from '@/lib/getAllStates'
 import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select'
-import { useEstados } from '@/hooks/useEstados'
-import { useEndereco } from '@/hooks/useEndereco'
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@/components/ui/popover'
+import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+} from '@/ui/command'
+import { Check, ChevronsUpDown } from 'lucide-react'
+import { getCep } from '@/lib/getCep'
+import { getAllCitiesByState } from '@/lib/getAllCitiesByState'
+import { AddressProps } from '../../../../../../types'
+import { toast } from '@/ui/use-toast'
+import { redirect } from 'next/navigation'
 
 enum Fields {
   nome = 'nome',
@@ -56,6 +60,8 @@ enum Fields {
   telefone = 'telefone',
   cep = 'cep',
   endereco = 'endereco',
+  sigla = 'sigla',
+  complemento = 'complemento',
   numero = 'numero',
   bairro = 'bairro',
   cidade = 'cidade',
@@ -65,11 +71,11 @@ enum Fields {
 }
 
 type UserRegisterFormProps = React.HTMLAttributes<HTMLDivElement>
+// CHAMA O FETCH FORA DO COMPONENTE PARA NAO RE - RENDERIZAR LOOP INFINITO
 
-export const UserForm = async ({
-  className,
-  ...props
-}: UserRegisterFormProps) => {
+const getEstates = getAllStates()
+
+export const UserForm = ({ className, ...props }: UserRegisterFormProps) => {
   const form = useForm<RegisterUserSchema>({
     mode: 'all',
     criteriaMode: 'all',
@@ -82,6 +88,8 @@ export const UserForm = async ({
       telefone: '',
       cep: '',
       endereco: '',
+      complemento: '',
+      sigla: '',
       numero: '',
       bairro: '',
       cidade: '',
@@ -91,28 +99,31 @@ export const UserForm = async ({
     },
   })
 
-  const { getEstados, findCep, getCidades } = useEndereco()
-
   const [pending, startTransition] = useTransition()
-  const estados = await getEstados()
-  const cidades = await getCidades(form.getValues().estado)
+  const [arrayCitiesByState, setArrayCitiesByState] = useState<AddressProps[]>(
+    [],
+  )
 
-  console.log(form.getValues().estado)
-  // useEffect(() => {
-  //   if (estados) {
-  //     console.log(estados)
-  //   }
-  // }, [])
+  const states = use(getEstates)
 
-  const handleSubmit = async (data: RegisterUserSchema) => {
+  const handleSubmit = (data: RegisterUserSchema) => {
     startTransition(async () => {
       const restult = await signedUpAction(data)
-      // if (restult?.errors) {
-      //   const arrayErrors = Object.entries(restult.errors)
-      //   for (const error of arrayErrors) {
-      //     chageValueInputError(error[0] as Fields, error[1])
-      //   }
-      // }
+      if (!restult?.id) {
+        toast({
+          variant: 'danger',
+          title: 'Erro ao cadastrar usuário! 🤯 ',
+          description: restult?.message,
+        })
+      }
+      if (restult?.id) {
+        toast({
+          variant: 'success',
+          title: 'Ok! Usuário Cadastrado! 🤯 ',
+          description: 'Tudo certo usuário cadastrado',
+        })
+        redirect('/auth')
+      }
     })
   }
 
@@ -121,14 +132,25 @@ export const UserForm = async ({
       shouldDirty: true,
       shouldTouch: true,
     })
+    if (field === Fields.estado) handleCity(newValue)
     form.clearErrors(field)
+  }
+  async function handleCity(value: string) {
+    const arrayCities = await getAllCitiesByState(value)
+    setArrayCitiesByState(arrayCities)
   }
 
   const handleCep = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e?.target?.value.length >= 9) {
       startTransition(async () => {
-        const { street, city, district, stateShortname }: CepProps =
-          await findCep(e?.target?.value)
+        const { street, city, district, stateShortname } = await getCep(
+          e.target?.value,
+        )
+        chageValueInput(Fields.endereco, street)
+        chageValueInput(Fields.sigla, stateShortname)
+        chageValueInput(Fields.cidade, city)
+        chageValueInput(Fields.bairro, district)
+        chageValueInput(Fields.estado, stateShortname)
         if (!city) {
           toast({
             variant: 'danger',
@@ -136,10 +158,6 @@ export const UserForm = async ({
             description: 'Cep não encontrado',
           })
         }
-        chageValueInput(Fields.endereco, street)
-        chageValueInput(Fields.cidade, city)
-        chageValueInput(Fields.bairro, district)
-        chageValueInput(Fields.estado, stateShortname)
       })
     }
   }
@@ -158,7 +176,7 @@ export const UserForm = async ({
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(async (data) => {
-              await handleSubmit(data)
+              handleSubmit(data)
             })}
             className="w-full space-y-4"
           >
@@ -308,6 +326,34 @@ export const UserForm = async ({
             <div className="flex w-full flex-col  gap-2 md:flex-row">
               <FormField
                 control={form.control}
+                name="cep"
+                render={({ field }) => (
+                  <FormItem onChange={handleCep}>
+                    <FormLabel
+                      htmlFor="cep"
+                      className="flex items-center gap-1"
+                    >
+                      <FaHashtag /> Cep
+                    </FormLabel>
+                    <FormControl>
+                      <MyInputMask
+                        {...field}
+                        id="cep"
+                        placeholder="00000-000"
+                        mask="_____-___"
+                        autoCapitalize="none"
+                        autoComplete="cep"
+                        autoCorrect="off"
+                        disabled={pending}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
                 name="endereco"
                 render={({ field }) => (
                   <FormItem className="w-full">
@@ -332,6 +378,8 @@ export const UserForm = async ({
                   </FormItem>
                 )}
               />
+            </div>
+            <div className="flex w-full flex-col  gap-2 md:flex-row">
               <FormField
                 control={form.control}
                 name="numero"
@@ -358,26 +406,24 @@ export const UserForm = async ({
                   </FormItem>
                 )}
               />
+
               <FormField
                 control={form.control}
-                name="cep"
+                name="complemento"
                 render={({ field }) => (
-                  <FormItem onChange={handleCep}>
+                  <FormItem className="w-full">
                     <FormLabel
-                      htmlFor="cep"
+                      htmlFor="complemento"
                       className="flex items-center gap-1"
                     >
-                      <FaHashtag /> Cep
+                      <FaHashtag /> Complemento
                     </FormLabel>
                     <FormControl>
-                      <MyInputMask
+                      <Input
                         {...field}
-                        id="cep"
-                        placeholder="00000-000"
-                        mask="_____-___"
-                        autoCapitalize="none"
-                        autoComplete="cep"
-                        autoCorrect="off"
+                        id="complemento"
+                        placeholder="Digite ponto de referência"
+                        autoComplete="complemento"
                         disabled={pending}
                       />
                     </FormControl>
@@ -391,37 +437,62 @@ export const UserForm = async ({
                 control={form.control}
                 name="estado"
                 render={({ field }) => (
-                  <FormItem className="w-full">
+                  <FormItem className="flex w-full flex-col">
                     <FormLabel
-                      htmlFor="estado"
+                      htmlFor="cidade"
                       className="flex items-center gap-1"
                     >
                       <FaBuildingColumns /> Estado
                     </FormLabel>{' '}
-                    <Select
-                      onValueChange={field.onChange}
-                      defaultValue={field.value}
-                    >
-                      <FormControl>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Selecione um Estado" />
-                        </SelectTrigger>
-                      </FormControl>
-                      <SelectContent>
-                        <SelectGroup>
-                          <SelectLabel>Selecione</SelectLabel>
-
-                          {estados?.result?.map((state) => (
-                            <SelectItem
-                              key={state.abbreviation}
-                              value={state.shortName}
-                            >
-                              {state.name}
-                            </SelectItem>
-                          ))}
-                        </SelectGroup>
-                      </SelectContent>
-                    </Select>
+                    <Popover>
+                      <PopoverTrigger asChild>
+                        <FormControl>
+                          <Button
+                            variant="outline"
+                            role="combobox"
+                            className={cn(
+                              'w-full justify-between',
+                              !field.value && 'text-muted-foreground',
+                            )}
+                          >
+                            {field.value
+                              ? states.find(
+                                  (state) => state.shortName === field.value,
+                                )?.state
+                              : 'Selecione um Estado'}
+                            <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                          </Button>
+                        </FormControl>
+                      </PopoverTrigger>
+                      <PopoverContent className="w-[200px] p-0">
+                        <Command>
+                          <CommandInput placeholder="Search language..." />
+                          <CommandEmpty>Estado não encontrado.</CommandEmpty>
+                          <CommandGroup>
+                            {states.map((state) => (
+                              <CommandItem
+                                value={state.shortName}
+                                key={state.id}
+                                onSelect={() => {
+                                  handleCity(state.shortName)
+                                  form.setValue('estado', state.shortName)
+                                }}
+                              >
+                                <Check
+                                  className={cn(
+                                    'mr-2 h-4 w-4',
+                                    state.shortName === field.value
+                                      ? 'opacity-100'
+                                      : 'opacity-0',
+                                  )}
+                                />
+                                {state.state}
+                              </CommandItem>
+                            ))}
+                          </CommandGroup>
+                        </Command>
+                      </PopoverContent>
+                    </Popover>
                     <FormMessage />
                   </FormItem>
                 )}
@@ -431,41 +502,66 @@ export const UserForm = async ({
                 control={form.control}
                 name="cidade"
                 render={({ field }) => (
-                  <FormItem className="w-full">
+                  <FormItem className="flex w-full flex-col">
                     <FormLabel
                       htmlFor="cidade"
                       className="flex items-center gap-1"
                     >
                       <FaBuildingColumns /> Cidade
                     </FormLabel>{' '}
-                    <Select
-                      onValueChange={field.onChange}
-                      defaultValue={field.value}
-                    >
-                      <FormControl>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Selecione uma Cidade" />
-                        </SelectTrigger>
-                      </FormControl>
-                      <SelectContent>
-                        <SelectGroup>
-                          <SelectLabel>Selecione</SelectLabel>
-
-                          {estados?.result?.map((state) => (
-                            <SelectItem
-                              key={state.shortName}
-                              value={state.shortName}
-                            >
-                              {state.name}
-                            </SelectItem>
-                          ))}
-                        </SelectGroup>
-                      </SelectContent>
-                    </Select>
+                    <Popover>
+                      <PopoverTrigger asChild>
+                        <FormControl>
+                          <Button
+                            variant="outline"
+                            role="combobox"
+                            className={cn(
+                              'w-full justify-between',
+                              !field.value && 'text-muted-foreground',
+                            )}
+                          >
+                            {field.value
+                              ? arrayCitiesByState.find(
+                                  (city) => city.city === field.value,
+                                )?.city
+                              : 'Selecione uma Cidade'}
+                            <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                          </Button>
+                        </FormControl>
+                      </PopoverTrigger>
+                      <PopoverContent className="w-[200px] p-0">
+                        <Command>
+                          <CommandInput placeholder="Procurando cidade..." />
+                          <CommandEmpty>Cidade não encontrada.</CommandEmpty>
+                          <CommandGroup>
+                            {arrayCitiesByState.map((city) => (
+                              <CommandItem
+                                value={city.city}
+                                key={city.id}
+                                onSelect={() => {
+                                  form.setValue('cidade', city.city)
+                                }}
+                              >
+                                <Check
+                                  className={cn(
+                                    'mr-2 h-4 w-4',
+                                    city.city === field.value
+                                      ? 'opacity-100'
+                                      : 'opacity-0',
+                                  )}
+                                />
+                                {city.city}
+                              </CommandItem>
+                            ))}
+                          </CommandGroup>
+                        </Command>
+                      </PopoverContent>
+                    </Popover>
                     <FormMessage />
                   </FormItem>
                 )}
               />
+
               <FormField
                 control={form.control}
                 name="bairro"

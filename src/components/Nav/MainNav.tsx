@@ -82,7 +82,6 @@ export function MainNav({
             ))}
           </ul>
         </div>
-
         {session?.user ? (
           <div
             className={`    ${

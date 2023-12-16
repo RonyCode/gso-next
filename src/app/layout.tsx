@@ -1,11 +1,11 @@
 import '../../styles/globals.css'
 import { Providers } from '@/providers'
 import { ThemeProvider } from '@/ui/ThemeProvider'
-import { cn } from '@/lib/ultis'
 import { fontSans } from '@/lib/fonts'
 import { Suspense } from 'react'
 import LoadingPage from '@/components/Loadings/LoadingPage'
 import { MainNav } from '@/components/Nav/MainNav'
+import { cn } from '@/lib/utils'
 
 export default function RootLayout({
   children,

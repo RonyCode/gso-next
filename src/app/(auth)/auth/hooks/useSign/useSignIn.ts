@@ -2,7 +2,7 @@ import { signIn } from 'next-auth/react'
 
 import { SignInSchema } from '@/app/(auth)/auth/schemas/SignInSchema'
 import { toast } from '@/ui/use-toast'
-import { ResultSignIn } from '@/types'
+import { ResultSignIn } from '../../../../../../types/index'
 
 export const useSignIn = () => {
   async function signInWithGoogle() {

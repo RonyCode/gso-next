@@ -20,7 +20,7 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { toast } from '@/ui/use-toast'
 import { LuMail, LuSquareAsterisk } from 'react-icons/lu'
-import { ResultSignIn } from '@/types'
+import { ResultSignIn } from '../../../../../types/index'
 import { useRouter } from 'next/navigation'
 import { useTransition } from 'react'
 import LoadingPage from '@/components/Loadings/LoadingPage'
@@ -106,7 +106,7 @@ const LoginForm = ({ className, ...props }: UserAuthFormProps) => {
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel
-                      htmlFor="email"
+                      htmlFor="emailsignIn"
                       className="flex items-center gap-1"
                     >
                       <LuMail /> Email
@@ -114,7 +114,7 @@ const LoginForm = ({ className, ...props }: UserAuthFormProps) => {
                     <FormControl>
                       <Input
                         {...field}
-                        id="email"
+                        id="emailsignIn"
                         placeholder="email@exemplo.com"
                         type="email"
                         autoCapitalize="none"

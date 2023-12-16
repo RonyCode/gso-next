@@ -1,5 +1,5 @@
 import { fetchWrapper } from '@/functions/fetch'
-import { CepProps } from '@/types'
+import { CepProps } from '../../types/index'
 import { toast } from '@/ui/use-toast'
 
 export const useCep = () => {

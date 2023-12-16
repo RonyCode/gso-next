@@ -8,20 +8,11 @@ import Image from 'next/image'
 import Link from 'next/link'
 import LoginForm from '@/app/(auth)/auth/components/LoginForm'
 import React from 'react'
-import { useSession } from 'next-auth/react'
-import { usePathname, useRouter } from 'next/navigation'
 
 const LoginFormSlice = () => {
   const [sliceLogin, setSliceLoagin] = React.useState<string>(
     'animate-registerSlice',
   )
-
-  const session = useSession()
-  const pathName = usePathname()
-  const router = useRouter()
-  if (session.data && pathName === '/auth') {
-    router.push('/')
-  }
 
   return (
     <>
@@ -64,7 +55,7 @@ const LoginFormSlice = () => {
                 }`}
                 fill
                 sizes="100"
-                priority={false}
+                priority={true}
                 alt="Authentication"
                 className=" block	 rounded-[8px]  object-cover brightness-[60%]"
               />

@@ -1,14 +1,14 @@
-import { UserType } from '@/types';
-import { create } from 'zustand';
+import { UserType } from '../../../types/index'
+import { create } from 'zustand'
 
 type ActionsProps = {
-  add: (user: UserType) => void;
-};
+  add: (user: UserType) => void
+}
 
 type UserStore = {
-  state: { user: UserType };
-  actions: ActionsProps;
-};
+  state: { user: UserType }
+  actions: ActionsProps
+}
 
 export const useUserStore = create<UserStore>()((set) => {
   return {
@@ -26,16 +26,16 @@ export const useUserStore = create<UserStore>()((set) => {
         numero: '',
         cidade: '',
         confirmaSenha: '',
-        senha: ''
-      }
+        senha: '',
+      },
     },
     actions: {
       add: (user: UserType) =>
         set((state) => ({
           state: {
-            user: { ...state.state.user, ...user }
-          }
-        }))
-    }
-  };
-});
+            user: { ...state.state.user, ...user },
+          },
+        })),
+    },
+  }
+})

@@ -1,1 +1,1 @@
-export * from './initializeStores';
+export * from './initializeStores'

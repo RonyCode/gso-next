@@ -1,5 +1,7 @@
 import type { NextRequest } from 'next/server'
 import { NextResponse } from 'next/server'
+import { getUrlSideServer } from '@/functions/getUrlSideServer'
+import { headers } from 'next/headers'
 
 // This function can be marked `async` if using `await` inside
 export async function middleware(request: NextRequest) {
@@ -72,19 +74,29 @@ export async function middleware(request: NextRequest) {
         return NextResponse.redirect(new URL('/auth', request.url))
       }
     }
+    if (!token && sessaoToken) {
+      return NextResponse.redirect(new URL('/api/logout', request.url))
+    }
+  }
 
-    if (!token) {
+  // SE NÃO TEM O REFRESH-TOKEN PROTEGE TUDO
+  if (!sessaoToken) {
+    if (request.nextUrl.pathname === '/auth') {
+      return response
+    } else {
       return NextResponse.redirect(new URL('/auth', request.url))
     }
   }
-  // SE NÃO TEM O REFRESH-TOKEN PROTEGE TUDO
-  if (!sessaoToken) {
-    return NextResponse.redirect(new URL('/auth', request.url))
+
+  // SE JÁ LOGADO IMPEDE PAGINA DE LOGIN
+  if (sessaoToken && request.nextUrl.pathname === '/auth') {
+    return NextResponse.redirect(new URL('/', request.url))
   }
 }
 
 export const config = {
   matcher: [
+    '/auth/:path*',
     '/dashboard/:path*',
     '/private/:path*',
     '/about/:path*',

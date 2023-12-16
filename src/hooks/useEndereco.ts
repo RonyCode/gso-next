@@ -1,5 +1,5 @@
 import { fetchWrapper } from '@/functions/fetch'
-import { CepProps } from '@/types'
+import { CepProps } from '../../types/index'
 import { toast } from '@/ui/use-toast'
 
 export const useEndereco = () => {
@@ -20,8 +20,8 @@ export const useEndereco = () => {
       return {} as CepProps
     }
   }
-  const getEstados = async () => {
-    return await fetchWrapper<CepProps>('/api/estados', {
+  const getEstados = () => {
+    return fetch('localhost:3000/api/estados', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

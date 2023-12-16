@@ -1,10 +1,10 @@
-import { UserType } from '@/types';
-import { create } from 'zustand';
+import { UserType } from '../../../types/index'
+import { create } from 'zustand'
 
 type UserStore = {
-  user: UserType;
-  add: (user: UserType) => void;
-};
+  user: UserType
+  add: (user: UserType) => void
+}
 
 export const userErrorRegisterStore = create<UserStore>()((set) => {
   return {
@@ -21,8 +21,8 @@ export const userErrorRegisterStore = create<UserStore>()((set) => {
       numero: '',
       cidade: '',
       confirmaSenha: '',
-      senha: ''
+      senha: '',
     },
-    add: (user: UserType) => set((state) => ({ ...state.user, user }))
-  };
-});
+    add: (user: UserType) => set((state) => ({ ...state.user, user })),
+  }
+})

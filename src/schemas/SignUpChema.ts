@@ -42,14 +42,14 @@ export const SignUpChema = z
     cep: z.string().min(9, {
       message: 'Cep inválido',
     }),
-    cidade: z.string().min(3, {
-      message: 'Cidade inválida deve conter no mínimo 3 caracteres',
+    cidade: z.string().min(1, {
+      message: 'Cidade inválida deve conter no mínimo 1 caracteres',
     }),
-    estado: z.string().min(2, {
-      message: 'Estado deve conter no mínimo 2 caracteres',
+    estado: z.string().min(1, {
+      message: 'Estado deve conter no mínimo 1 caracteres',
     }),
-    bairro: z.string().min(3, {
-      message: 'Estado deve conter no mínimo 2 caracteres',
+    bairro: z.string().min(1, {
+      message: 'Estado deve conter no mínimo 1 caracteres',
     }),
     confirmaSenha: z.string(),
     telefone: z

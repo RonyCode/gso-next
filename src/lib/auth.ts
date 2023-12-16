@@ -18,8 +18,8 @@ function getGoogleCredentials() {
 }
 
 export const confereLogado = async (payload: {
-  email?: string
-  senha?: string
+  email: string
+  senha: string
   is_user_external: number
 }) => {
   const res = await fetch(`${process.env.API_NEXT}/login`, {
@@ -61,8 +61,8 @@ export const authOptions: NextAuthOptions = {
 
       async authorize(credentials) {
         const payload = {
-          email: credentials?.email,
-          senha: credentials?.senha,
+          email: credentials!.email,
+          senha: credentials!.senha,
           is_user_external: 0,
         }
 
@@ -99,11 +99,11 @@ export const authOptions: NextAuthOptions = {
   debug: process.env.NODE_ENV === 'development',
 
   callbacks: {
-    jwt: async function ({ token, user, account }) {
+    jwt: async function ({ token, user, account, trigger, session }) {
       if (account && user) {
         if (account.provider === 'google') {
           const payload = {
-            email: token.email,
+            email: token.email!,
             senha: String(token.sub) + 'a',
             is_user_external: 1,
           }
@@ -169,6 +169,10 @@ export const authOptions: NextAuthOptions = {
             expires_at: user?.data_expirar_token,
           }
         }
+      }
+
+      if (trigger === 'update') {
+        return token
       }
       return token
     },
