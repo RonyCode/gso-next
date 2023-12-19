@@ -16,7 +16,7 @@ export default function RootLayout({
     <html lang="pt-BR">
       <body
         className={cn(
-          'min-h-screen bg-background font-sans antialiased',
+          ' m-0 h-screen min-h-screen w-full bg-background p-0 font-sans antialiased',
           fontSans.variable,
         )}
       >
@@ -28,9 +28,9 @@ export default function RootLayout({
             disableTransitionOnChange
           >
             <Providers>
-              <section className=" min-h-screen w-screen border bg-background text-foreground">
+              <section className="bg-background text-foreground">
                 <NavbarHome />
-                <main className="relative h-screen min-h-screen w-full">
+                <main className="relative  min-h-screen  w-full ">
                   {children}
                 </main>
                 <footer className="static bottom-0 h-48 border-t bg-background text-center text-sm leading-5 text-foreground ">

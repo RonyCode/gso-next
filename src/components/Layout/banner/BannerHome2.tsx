@@ -2,7 +2,7 @@ import React from 'react'
 
 const BannerMain = () => {
   return (
-    <header className="min-w-screen min-h-screen">
+    <header className="min-w-screen h-screen">
       {/* <div */}
       {/*  className="min-h-screen w-full rotate-180 bg-secondary  bg-contain bg-center bg-no-repeat text-foreground brightness-75" */}
       {/*  style={{ */}
@@ -10,7 +10,7 @@ const BannerMain = () => {
       {/*  }} */}
       {/* > */}
       <div
-        className="min-h-screen w-full rotate-180 bg-contain   bg-center bg-no-repeat pt-48 text-foreground"
+        className="h-[1024px] w-full rotate-180 bg-contain bg-center bg-no-repeat pt-48 text-foreground"
         style={{
           backgroundImage: 'url(/images/banner1.png)',
         }}
@@ -32,7 +32,6 @@ const BannerMain = () => {
             </a>
           </div>
         </div>
-        {/* </div> */}
       </div>
     </header>
   )

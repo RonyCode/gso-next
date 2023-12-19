@@ -81,7 +81,7 @@ export function NavbarHome({
           : ' fixed left-0  top-0 z-50 w-screen bg-background/95 transition  duration-500 md:bg-background/10'
       }
     >
-      <nav className="container mx-auto  items-center   md:flex">
+      <nav className="container mx-auto  flex   items-center justify-between ">
         <div className="flex items-center justify-between py-3 md:block md:py-5">
           <Link href="/" className="hidden md:block">
             <h1 className="text-3xl font-bold text-purple-600">
@@ -102,7 +102,7 @@ export function NavbarHome({
             state ? 'block' : 'hidden'
           }`}
         >
-          <ul className="items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0">
+          <ul className="items-center justify-center space-y-8 text-sm md:flex md:space-x-6 md:space-y-0">
             {menus.map((item, idx) => (
               <li
                 key={idx}
@@ -203,14 +203,15 @@ export function NavbarHome({
             </DropdownMenu>
           </div>
         ) : (
-          <p className="flex items-center space-x-1 text-foreground/60 transition-colors hover:text-primary/80">
-            <DoorOpen />
+          <p className="text-sm">
             <Link
               href="/auth"
-              className="text-foreground hover:text-foreground/80"
+              className="flex items-center space-x-1  text-foreground hover:text-primary/80"
             >
-              {' '}
-              Area de acesso
+              <DoorOpen />{' '}
+              <span className="hidden text-foreground  hover:text-foreground/80 md:block">
+                Area de acesso
+              </span>
             </Link>
           </p>
         )}

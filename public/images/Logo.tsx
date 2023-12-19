@@ -1,6 +1,6 @@
-'use client';
+'use client'
 
-import './logo.css';
+import './logo.css'
 export default function Logo({ width = 200 }: { width?: number }) {
   return (
     <svg
@@ -260,5 +260,5 @@ export default function Logo({ width = 200 }: { width?: number }) {
         />
       </g>
     </svg>
-  );
+  )
 }
