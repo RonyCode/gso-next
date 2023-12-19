@@ -3,6 +3,6 @@ const RecuperaSenha = () => {
     <>
       <h1>Recupera senha</h1>
     </>
-  );
-};
-export default RecuperaSenha;
+  )
+}
+export default RecuperaSenha

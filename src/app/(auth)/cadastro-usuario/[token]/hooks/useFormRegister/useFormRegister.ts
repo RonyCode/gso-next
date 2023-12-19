@@ -1,7 +1,7 @@
-import { useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form'
 
-import { RegisterUserSchema } from '@/app/(auth)/cadastro-usuario/[token]/schemas/RegisterUserSchema';
-import { zodResolver } from '@hookform/resolvers/zod';
+import { RegisterUserSchema } from '@/app/(auth)/cadastro-usuario/[token]/schemas/RegisterUserSchema'
+import { zodResolver } from '@hookform/resolvers/zod'
 
 export const useFormRegister = () => {
   const {
@@ -9,7 +9,7 @@ export const useFormRegister = () => {
     setError,
     setValue,
     clearErrors,
-    formState: { errors, isValid, dirtyFields }
+    formState: { errors, isValid, dirtyFields },
   } = useForm<RegisterUserSchema>({
     mode: 'all',
     criteriaMode: 'all',
@@ -27,9 +27,9 @@ export const useFormRegister = () => {
       cidade: '',
       estado: '',
       senha: '',
-      confirmaSenha: ''
-    }
-  });
+      confirmaSenha: '',
+    },
+  })
 
   return {
     clearErrors,
@@ -38,6 +38,6 @@ export const useFormRegister = () => {
     setError,
     register,
     isValid,
-    dirtyFields
-  };
-};
+    dirtyFields,
+  }
+}

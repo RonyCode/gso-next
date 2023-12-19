@@ -1,12 +1,12 @@
-'use server';
+'use server'
 
-import { RegisterUserSchema } from '@/app/(auth)/cadastro-usuario/[token]/schemas/RegisterUserSchema';
-import { ZodError } from 'zod';
+import { RegisterUserSchema } from '@/app/(auth)/cadastro-usuario/[token]/schemas/RegisterUserSchema'
+import { ZodError } from 'zod'
 
 export const registerUserServerActions = async (data: FormData) => {
   try {
-    return RegisterUserSchema.parse(data);
+    return RegisterUserSchema.parse(data)
   } catch (error) {
-    return JSON.parse(JSON.stringify(error as ZodError));
+    return JSON.parse(JSON.stringify(error as ZodError))
   }
-};
+}

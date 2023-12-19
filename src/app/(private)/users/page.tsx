@@ -1,9 +1,9 @@
-import { getServerSession } from 'next-auth';
+import { getServerSession } from 'next-auth'
 
-import { authOptions } from '@/lib/auth';
+import { authOptions } from '@/lib/auth'
 
 const Users = async () => {
-  const session = await getServerSession(authOptions);
+  const session = await getServerSession(authOptions)
 
   // if (!session?.status?.authorized) {
   //   redirect('/login');
@@ -21,6 +21,6 @@ const Users = async () => {
         </div>
       </section>
     </>
-  );
-};
-export default Users;
+  )
+}
+export default Users

@@ -1,17 +1,17 @@
 interface InputLabelProps {
-  text?: string;
+  text?: string
 }
 
 const InputHelpText = ({ text }: InputLabelProps) => {
-  let hasError = false;
-  if (text) hasError = text.length > 0;
+  let hasError = false
+  if (text) hasError = text.length > 0
 
   return (
     <>
-      <div className="text-sm text-red-600 mt-1 mb-2">
+      <div className="mb-2 mt-1 text-sm text-red-600">
         {hasError && <p> {text}</p>}
       </div>
     </>
-  );
-};
-export default InputHelpText;
+  )
+}
+export default InputHelpText

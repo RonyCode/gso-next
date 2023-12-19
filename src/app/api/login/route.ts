@@ -7,7 +7,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
   const origin: string | null = request.headers.get('origin')
   const remaining: number = await limiter.removeTokens(1)
   const body: SignInSchema = await request.json()
-  const { email, senha, is_user_external } = body
+  const { email, senha, is_user_external: isUserExternal } = body
 
   if (!email || !senha)
     return NextResponse.json({ message: 'Erro parametros necessários' })
@@ -31,7 +31,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     body: JSON.stringify({
       email,
       senha,
-      is_user_external,
+      isUserExternal,
     }),
   })
 

@@ -1,14 +1,15 @@
-import { forwardRef, InputHTMLAttributes, LegacyRef } from 'react';
-import InputMask from 'react-input-mask';
+import { forwardRef, InputHTMLAttributes, LegacyRef } from 'react'
+import { InputMaskProps } from '@react-input/mask'
 
 type InputProps = InputHTMLAttributes<HTMLInputElement> & {
-  label?: string;
-  hasError?: string | undefined;
-  registerInput?: string;
-  mask?: string;
-  ref: LegacyRef<InputMask> | undefined;
-};
+  label?: string
+  hasError?: string | undefined
+  registerInput?: string
+  mask?: string
+  ref: LegacyRef<any> | undefined
+}
 
+// eslint-disable-next-line react/display-name
 const InputContent = forwardRef<HTMLInputElement, InputProps>(
   ({ name = '', hasError = '', type = 'text', ...props }, ref) => {
     return (
@@ -29,7 +30,7 @@ const InputContent = forwardRef<HTMLInputElement, InputProps>(
                       disabled:text-slate-500 disabled:shadow-none`}
         />
       </div>
-    );
-  }
-);
-export default InputContent;
+    )
+  },
+)
+export default InputContent

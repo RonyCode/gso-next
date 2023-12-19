@@ -1,22 +1,23 @@
-'use client';
+'use client'
 
-import { ElementType, forwardRef, InputHTMLAttributes, LegacyRef } from 'react';
+import { ElementType, forwardRef, InputHTMLAttributes, LegacyRef } from 'react'
 
-import { InputMask, InputMaskProps } from '@react-input/mask';
-import { twMerge } from 'tailwind-merge';
+import { InputMask, InputMaskProps } from '@react-input/mask'
+import { twMerge } from 'tailwind-merge'
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
-  label?: string;
-  hasError?: string;
-  registerInput?: string;
-  mask?: string;
-  icon?: ElementType;
-  ref: LegacyRef<InputMaskProps> | undefined;
+  label?: string
+  hasError?: string
+  registerInput?: string
+  mask?: string
+  icon?: ElementType
+  ref: LegacyRef<InputMaskProps> | undefined
 }
 
+// eslint-disable-next-line react/display-name
 const InputmaskCustom = forwardRef<HTMLInputElement, InputProps>(
   ({ name = '', hasError = '', type = 'text', ...props }, ref) => {
-    const error = hasError.length > 0;
+    const error = hasError.length > 0
 
     return (
       <div className="min-w-screen flex flex-col">
@@ -41,7 +42,7 @@ const InputmaskCustom = forwardRef<HTMLInputElement, InputProps>(
           }
         />
       </div>
-    );
-  }
-);
-export default InputmaskCustom;
+    )
+  },
+)
+export default InputmaskCustom

@@ -1,1 +1,1 @@
-export { useFormRegister } from './useFormRegister';
+export { useFormRegister } from './useFormRegister'

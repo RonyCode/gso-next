@@ -10,7 +10,6 @@ import {
   CardTitle,
 } from '@/ui/card'
 import { cn } from '@/lib/utils'
-import { BellRing } from 'lucide-react'
 
 type CardProps = React.ComponentProps<typeof Card> & {
   title?: string

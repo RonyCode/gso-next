@@ -1,8 +1,4 @@
-import Link from 'next/link'
-
 import { UserForm } from '@/app/(auth)/cadastro-usuario/[token]/components/UserForm'
-import { CardWithLogo } from '@/ui/CardWithLogo'
-import { decodeJwt } from 'jose'
 
 const CadastroUsuario = async ({ params }: { params: { token: string } }) => {
   const tokenReplaced = params.token.replaceAll('%2B', '.')

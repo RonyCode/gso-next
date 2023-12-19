@@ -1,1 +1,1 @@
-export { useFormLogin } from './useFormLogin';
+export { useFormLogin } from './useFormLogin'
