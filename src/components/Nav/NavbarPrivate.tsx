@@ -5,11 +5,9 @@ import Link from 'next/link'
 import SignOutButton from '@/components/Buttoms/SignOutButton/SignOutButton'
 
 import Logo from '../../../public/images/Logo'
-import { getServerSession } from 'next-auth'
-import { authOptions } from '@/lib/auth'
 
 export default async function NavbarPrivate() {
-  const session = await getServerSession(authOptions)
+  // const session = await getServerSession(authOptions)
 
   return (
     <>

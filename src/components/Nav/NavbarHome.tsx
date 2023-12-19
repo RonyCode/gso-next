@@ -27,6 +27,7 @@ import {
   FaScrewdriverWrench,
 } from 'react-icons/fa6'
 import { DoorOpen } from 'lucide-react'
+import { cn } from '@/lib/utils'
 
 export function NavbarHome({
   className,
@@ -68,6 +69,7 @@ export function NavbarHome({
   ]
   return (
     <header
+      {...props}
       ref={myRef}
       className={
         showTopBtn
@@ -75,7 +77,12 @@ export function NavbarHome({
           : ' fixed left-0  top-0 z-50 w-screen bg-background/95 transition  duration-500 md:bg-background/10'
       }
     >
-      <nav className="container mx-auto  flex   items-center justify-between ">
+      <nav
+        className={cn(
+          'container mx-auto  flex   items-center justify-between ',
+          className,
+        )}
+      >
         <div className="flex items-center justify-between py-3 md:block md:py-5">
           <Link href="/" className="hidden md:block">
             <h1 className="text-3xl font-bold text-purple-600">

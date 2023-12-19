@@ -6,7 +6,7 @@ type InputProps = InputHTMLAttributes<HTMLInputElement> & {
   hasError?: string | undefined
   registerInput?: string
   mask?: string
-  ref: LegacyRef<any> | undefined
+  ref: LegacyRef<InputMaskProps> | undefined
 }
 
 // eslint-disable-next-line react/display-name

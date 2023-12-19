@@ -1,5 +1,4 @@
 import React from 'react'
-import { CardsBanner } from '@/components/Cards/CardsBanner'
 import Logo from '../../../../public/images/Logo'
 
 const BannerHome1 = () => {
