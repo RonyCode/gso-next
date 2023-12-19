@@ -5,20 +5,26 @@ import Link from 'next/link'
 import SignOutButton from '@/components/Buttoms/SignOutButton/SignOutButton'
 
 import Logo from '../../../public/images/Logo'
+import { getServerSession } from 'next-auth'
+import { authOptions } from '@/lib/auth'
 
 export default async function NavbarPrivate() {
+  const session = await getServerSession(authOptions)
+
   return (
     <>
-      <nav className="flex h-20 w-screen items-center justify-around bg-slate-600 text-white shadow-2xl">
-        <Link className=" w-auto" href="/">
-          <Logo width={160} />
-        </Link>
+      <header className="sticky top-0 z-50 border-b bg-background/95  backdrop-blur supports-[backdrop-filter]:bg-background/60">
+        <nav className="max-w-screen container mx-auto items-center  p-0 md:flex">
+          <Link className=" w-auto" href="/">
+            <Logo width={120} />
+          </Link>
 
-        <div className="flex  flex-row justify-around ">
-          <div className="mr-6"></div>
-          <SignOutButton />
-        </div>
-      </nav>
+          <div className="flex  flex-row justify-around ">
+            <div className="mr-6"></div>
+            <SignOutButton />
+          </div>
+        </nav>
+      </header>
     </>
   )
 }

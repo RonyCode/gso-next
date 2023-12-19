@@ -4,7 +4,7 @@ import { ScrollArea } from '@/ui/scroll-area'
 import { FaUser } from 'react-icons/fa6'
 
 interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> {
-  playlists: []
+  playlists: string[]
 }
 
 export function Sidebar({ className, playlists }: SidebarProps) {
@@ -55,7 +55,7 @@ export function Sidebar({ className, playlists }: SidebarProps) {
                 <path d="M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5" />
                 <path d="M19.1 4.9C23 8.8 23 15.1 19.1 19" />
               </svg>
-              Radio
+              Dados
             </Button>
           </div>
         </div>

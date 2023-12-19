@@ -1,5 +1,4 @@
 import React from 'react'
-import { Menu } from '@/components/menu/menu'
 import { Sidebar } from '@/components/Layout/sidebar/sidebar'
 import { Separator } from '@/ui/separator'
 import { ScrollArea, ScrollBar } from '@/ui/scroll-area'
@@ -8,7 +7,7 @@ import { Button } from '@/ui/button'
 import { PlusCircledIcon } from '@radix-ui/react-icons'
 import Image from 'next/image'
 
-const playlistNames = [
+const playlistNames: string[] = [
   'Recently Added',
   'Recently Played',
   'Top Songs',

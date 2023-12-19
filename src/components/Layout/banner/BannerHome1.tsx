@@ -1,10 +1,10 @@
 import React from 'react'
 
-const BannerMain = () => {
+const BannerHome1 = () => {
   return (
-    <header className="absolute w-full">
+    <header className="fixed h-full w-screen">
       <div
-        className="  h-auto bg-cover bg-center object-fill px-10 py-56 text-white brightness-75"
+        className=" flex h-[750px] w-full items-center  bg-contain bg-no-repeat text-foreground brightness-75"
         style={{
           backgroundImage: 'url(/images/banner.jpg)',
         }}
@@ -14,7 +14,7 @@ const BannerMain = () => {
             <p className="text-sm font-bold uppercase">Services</p>
             <p className="text-3xl font-bold">Multimedia products</p>
             <p className="mb-10 text-2xl leading-none">
-              Atractive designs for your brand
+              Attractive designs for your brand
             </p>
 
             <a
@@ -31,4 +31,4 @@ const BannerMain = () => {
   )
 }
 
-export default BannerMain
+export default BannerHome1

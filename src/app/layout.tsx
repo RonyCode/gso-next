@@ -4,7 +4,7 @@ import { ThemeProvider } from '@/ui/ThemeProvider'
 import { fontSans } from '@/lib/fonts'
 import { Suspense } from 'react'
 import LoadingPage from '@/components/Loadings/LoadingPage'
-import { MainNav } from '@/components/Nav/MainNav'
+import { NavbarHome } from '@/components/Nav/NavbarHome'
 import { cn } from '@/lib/utils'
 
 export default function RootLayout({
@@ -28,10 +28,9 @@ export default function RootLayout({
             disableTransitionOnChange
           >
             <Providers>
-              <MainNav />
-              <section className=" container min-h-screen w-screen border  p-0 text-foreground">
-                <header></header>
-                <main className="min-h-[calc(100vh-72px)] w-full ">
+              <section className=" min-h-screen w-screen border bg-background text-foreground">
+                <NavbarHome />
+                <main className="relative h-screen min-h-screen w-full">
                   {children}
                 </main>
                 <footer className="static bottom-0 h-48 border-t bg-background text-center text-sm leading-5 text-foreground ">
