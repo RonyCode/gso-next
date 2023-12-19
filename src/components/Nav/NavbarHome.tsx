@@ -1,13 +1,7 @@
 'use client'
 import Link from 'next/link'
 
-import {
-  LuLogOut,
-  LuMegaphone,
-  LuMenu,
-  LuSettings,
-  LuUser,
-} from 'react-icons/lu'
+import { LuLogOut, LuMegaphone, LuSettings, LuUser } from 'react-icons/lu'
 import React, { ReactElement, useEffect, useRef, useState } from 'react'
 import Logo from '../../../public/images/Logo'
 import {
