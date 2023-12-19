@@ -39,7 +39,7 @@ const LoginFormSlice = () => {
             </div>
           </div>
           <div
-            className={`${sliceLogin} rounder d-[8px] relative z-10 hidden h-full flex-col   rounded-[8px] border-l border-r border-[var(--border)]  bg-muted bg-slate-400 text-white dark:border-r lg:flex `}
+            className={`${sliceLogin} rounder d-[8px] relative z-10 hidden h-full flex-col   rounded-[8px] border-l border-r border-[var(--border)]  bg-muted bg-slate-400 text-white lg:flex dark:border-r `}
           >
             <div className=" absolute  inset-0  flex flex-col justify-between bg-zinc-900 py-12 ">
               <div className="relative flex items-center  justify-center text-lg font-medium">
