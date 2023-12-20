@@ -33,16 +33,19 @@ export const RegisterUserSchema = z
     endereco: z.string().min(3, {
       message: 'endereço inválido deve conter no mínimo 3 caracteres',
     }),
-    complemento: z.string().nullable(),
+    complemento: z.string() || null || undefined,
     sigla: z.string().min(2, {
       message: 'endereço inválido deve conter no mínimo 2 caracteres',
     }),
-    numero: z
-      .string()
-      .min(1, {
-        message: 'número inválido deve conter no mínimo 1 caracteres',
-      })
-      .nullable(),
+    numero:
+      z.string() ||
+      undefined ||
+      z
+        .number()
+        .min(1, {
+          message: 'número inválido deve conter no mínimo 1 caracteres',
+        })
+        .nullable(),
     cep: z.string().min(9, {
       message: 'Cep inválido',
     }),

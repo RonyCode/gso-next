@@ -10,13 +10,14 @@ const CadastroUsuario = async ({ params }: { params: { token: string } }) => {
   //     new Date(payload.exp * 1000).toLocaleString() >
   //     new Date().toLocaleString('pt-BR')
   // }
+  console.log(params)
   return (
     <>
       {/* {jwtValid ? ( */}
       {/* <CardWithLogo> */}
       <div className="flex  h-full w-full">
         <UserForm />
-        {params.token}
+        {/* {params.token} */}
       </div>
       {/* </CardWithLogo> */}
       {/* ) : ( */}

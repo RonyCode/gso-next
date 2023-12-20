@@ -57,6 +57,7 @@ export type ResultSignIn = {
   url?: string
 }
 export type ResponseUserSigned = {
+  data: boolean
   id: number
   id_account: number
   id_address: number

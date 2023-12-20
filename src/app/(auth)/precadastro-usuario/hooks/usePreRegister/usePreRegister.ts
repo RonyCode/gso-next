@@ -1,15 +1,15 @@
 import { toast } from 'react-toastify'
 
 import { PreRegisterUserSchema } from '@/app/(auth)/precadastro-usuario/schemas/PreRegisterUserSchema'
-import { ResponsePreRegisterUser } from '@/app/(auth)/precadastro-usuario/types/registerUserForm'
 import { fetchWrapper } from '@/functions/fetch'
 import { z } from 'zod'
+import { ResponseUserSigned } from '../../../../../../types/index'
 
 export const usePreRegister = () => {
   const preRegisterUser = async (data: PreRegisterUserSchema) => {
     const { email } = data
     try {
-      return await fetchWrapper<ResponsePreRegisterUser>(
+      return await fetchWrapper<ResponseUserSigned>(
         '/api/pre-cadastro-usuario',
         {
           method: 'POST',

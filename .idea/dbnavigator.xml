@@ -30,6 +30,9 @@
     <filter-actions connection-id="8093e10b-766b-4331-aeaf-20d7c75d95c1" dataset="wsgsoHomologacao.user_auth" active-filter-id="EMPTY_FILTER" />
     <filter-actions connection-id="8093e10b-766b-4331-aeaf-20d7c75d95c1" dataset="gsoBackHomologacao.user_auth" active-filter-id="EMPTY_FILTER" />
   </component>
+  <component name="DBNavigator.Project.ExecutionManager">
+    <retain-sticky-names value="false" />
+  </component>
   <component name="DBNavigator.Project.ObjectQuickFilterManager">
     <last-used-operator value="EQUAL" />
     <filters />

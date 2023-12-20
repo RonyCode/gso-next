@@ -73,6 +73,10 @@ enum Fields {
 type UserRegisterFormProps = React.HTMLAttributes<HTMLDivElement>
 // CHAMA O FETCH FORA DO COMPONENTE PARA NAO RE - RENDERIZAR LOOP INFINITO
 
+export async function generateStaticParams() {
+  const getEstates = await getAllStates()
+  return getEstates.map((item) => ({ state: item }))
+}
 const getEstates = getAllStates()
 
 export const UserForm = ({ className, ...props }: UserRegisterFormProps) => {
@@ -127,12 +131,12 @@ export const UserForm = ({ className, ...props }: UserRegisterFormProps) => {
     })
   }
 
-  const chageValueInput = (field: Fields, newValue: string) => {
+  const chageValueInput = async (field: Fields, newValue: string) => {
     form.setValue(field, newValue, {
       shouldDirty: true,
       shouldTouch: true,
     })
-    if (field === Fields.estado) handleCity(newValue)
+    if (field === Fields.estado) await handleCity(newValue)
     form.clearErrors(field)
   }
   async function handleCity(value: string) {
@@ -146,11 +150,11 @@ export const UserForm = ({ className, ...props }: UserRegisterFormProps) => {
         const { street, city, district, stateShortname } = await getCep(
           e.target?.value,
         )
-        chageValueInput(Fields.endereco, street)
-        chageValueInput(Fields.sigla, stateShortname)
-        chageValueInput(Fields.cidade, city)
-        chageValueInput(Fields.bairro, district)
-        chageValueInput(Fields.estado, stateShortname)
+        await chageValueInput(Fields.endereco, street)
+        await chageValueInput(Fields.sigla, stateShortname)
+        await chageValueInput(Fields.cidade, city)
+        await chageValueInput(Fields.bairro, district)
+        await chageValueInput(Fields.estado, stateShortname)
         if (!city) {
           toast({
             variant: 'danger',
@@ -395,6 +399,7 @@ export const UserForm = ({ className, ...props }: UserRegisterFormProps) => {
                       <Input
                         {...field}
                         id="numero"
+                        type="text"
                         placeholder="Digite o numero da casa"
                         autoCapitalize="none"
                         autoComplete="numero"
