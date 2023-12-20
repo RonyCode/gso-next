@@ -30,8 +30,8 @@ export default function RootLayout({
             <Providers>
               <section className="bg-background text-foreground">
                 <NavbarHome />
-                <main className="relative  min-h-screen  w-full ">
-                  {children}
+                <main className="relative flex min-h-screen w-full  flex-col">
+                  <div className="flex-1 flex-grow">{children}</div>
                 </main>
                 <footer className="static bottom-0 h-48 border-t bg-background text-center text-sm leading-5 text-foreground ">
                   © 2024 Rcode Copyright. Todos os direitos reservados.

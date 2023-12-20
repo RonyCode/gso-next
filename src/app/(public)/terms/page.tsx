@@ -1,4 +1,4 @@
-export const Terms = () => {
+const Terms = () => {
   return (
     <>
       <p>
@@ -22,3 +22,5 @@ export const Terms = () => {
     </>
   )
 }
+
+export default Terms

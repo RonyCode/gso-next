@@ -105,16 +105,15 @@ export default async function Home() {
           {/*  ></path> */}
           {/* </svg> */}
           {/* </div> */}
-          <div
-            className="h-[120vh] min-h-screen w-full rotate-180 bg-secondary  bg-cover bg-center bg-no-repeat text-foreground brightness-75"
-            style={{
-              backgroundImage: 'url(/images/fog1.png)',
-            }}
-          >
-            <BannerHome2 />
-          </div>
         </header>
-
+        <div
+          className=" min-h-[100vh] w-full scroll-smooth bg-secondary   bg-cover bg-center bg-no-repeat text-foreground brightness-75"
+          style={{
+            backgroundImage: 'url(/images/newcity.jpg)',
+          }}
+        >
+          {/* <BannerHome2 /> */}
+        </div>
         <section className="relative  min-h-screen ">
           <h1>Server Session</h1>
           <pre>{'nome; ' + session?.nome}</pre>

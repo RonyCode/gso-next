@@ -39,17 +39,17 @@ export function NavbarHome({
 
   const myRef = useRef(null)
 
-  const [showTopBtn, setShowTopBtn] = useState(false)
+  const [showNavBar, setShowNavBar] = useState(false)
 
   useEffect(() => {
     window.addEventListener('scroll', () => {
       if (window.scrollY > 100) {
-        setShowTopBtn(true)
+        setShowNavBar(true)
       } else {
-        setShowTopBtn(false)
+        setShowNavBar(false)
       }
     })
-  }, [showTopBtn])
+  }, [showNavBar])
 
   const handleClick = async () => {
     deleteCookies()
@@ -72,9 +72,9 @@ export function NavbarHome({
       {...props}
       ref={myRef}
       className={
-        showTopBtn
+        showNavBar
           ? ' fixed left-0  top-0 z-50  w-screen border-b bg-background/95  backdrop-blur supports-[backdrop-filter]:bg-background/60'
-          : ' fixed left-0  top-0 z-50 w-screen bg-background/95 transition  duration-500 md:bg-background/10'
+          : ' fixed left-0  top-0 z-50 w-screen bg-background/95 text-[#e5e7eb]/60 transition duration-500 md:bg-background/10 dark:text-foreground/60'
       }
     >
       <nav
@@ -107,7 +107,7 @@ export function NavbarHome({
             {menus.map((item, idx) => (
               <li
                 key={idx}
-                className="text-foreground/60 transition-colors hover:text-foreground/80"
+                className="text-[#e5e7eb]/60 transition-colors hover:text-[#e5e7eb]/80"
               >
                 <div className="flex items-center space-x-1 transition-colors hover:text-primary/80">
                   <label
@@ -120,7 +120,11 @@ export function NavbarHome({
                     {item.icon}
                   </label>
                   <Link
-                    className=" text-foreground/60 hover:text-foreground/80"
+                    className={
+                      showNavBar
+                        ? ' text-foreground/60 hover:text-foreground/80'
+                        : 'text-[#e5e7eb]/60 hover:text-[#e5e7eb]/80'
+                    }
                     href={item.path}
                   >
                     {item.title}
@@ -207,10 +211,10 @@ export function NavbarHome({
           <p className="text-sm">
             <Link
               href="/auth"
-              className="flex items-center space-x-1  text-foreground hover:text-primary/80"
+              className="flex items-center space-x-1  text-[#e5e7eb]/60 hover:text-primary/80"
             >
               <DoorOpen />{' '}
-              <span className="hidden text-foreground  hover:text-foreground/80 md:block">
+              <span className="hidden text-[#e5e7eb]/60  hover:text-[#e5e7eb]/80 md:block">
                 Area de acesso
               </span>
             </Link>

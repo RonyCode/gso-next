@@ -1,4 +1,4 @@
-export const Privacy = () => {
+const Privacy = () => {
   return (
     <>
       <p>
@@ -23,3 +23,5 @@ export const Privacy = () => {
     </>
   )
 }
+
+export default Privacy
