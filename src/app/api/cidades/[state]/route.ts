@@ -1,8 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
 
-export function generateStaticParams() {
-  return [{ state: 'TO' }]
-}
 export async function GET(
   request: NextRequest,
   { params }: { params: { state: string } },
