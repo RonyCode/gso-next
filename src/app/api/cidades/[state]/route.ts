@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 
 export function generateStaticParams() {
-  return [{ state: 'TO' }, { state: '2' }, { state: '3' }]
+  return [{ state: 'TO' }]
 }
 export async function GET(
   request: NextRequest,
