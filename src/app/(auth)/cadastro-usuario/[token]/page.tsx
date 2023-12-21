@@ -16,7 +16,7 @@ const CadastroUsuario = async ({ params }: { params: { token: string } }) => {
       {/* {jwtValid ? ( */}
       {/* <CardWithLogo> */}
       <div className="flex  h-full w-full">
-        {/* <UserForm /> */}
+        <UserForm />
         {/* {params.token} */}
       </div>
       {/* </CardWithLogo> */}
@@ -31,15 +31,3 @@ const CadastroUsuario = async ({ params }: { params: { token: string } }) => {
 }
 
 export default CadastroUsuario
-
-export async function generateStaticParams() {
-  const test = [
-    'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9%2BeyJpc3MiOiIvaG9tZS9yb255L3dlYi93c2dzbyIsImF1ZCI6Ii9ob21lL3Jvbnkvd2ViL3dzZ3NvIiwiaWF0IjoxNjk5OTY4MzM5LCJleHAiOjE2OTk5NjkyMzksImRhdGEiOnsiZW1haWwiOiJyb255YWFzX19fQGhvdG1haWwuY29tIn19%2BfVTyu-rnmvuwn8JDOQAoB5aPxE4FYUtdPMpvFl26By8',
-  ]
-
-  return test.map((token) => {
-    return {
-      token: '5aPxE4FYUtdPMpvFl26By8',
-    }
-  })
-}
