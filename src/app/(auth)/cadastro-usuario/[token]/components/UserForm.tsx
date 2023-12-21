@@ -97,7 +97,7 @@ export const UserForm = ({ className, ...props }: UserRegisterFormProps) => {
       numero: '',
       bairro: '',
       cidade: '',
-      estado: 'DF',
+      estado: '',
       senha: '',
       confirmaSenha: '',
     },
