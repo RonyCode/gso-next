@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 
 import { SignInSchema } from '@/app/(auth)/auth/schemas/SignInSchema'
-import { limiter } from '@/pages/api/config/limiter'
+import { limiter } from '@/app/api/config/limiter'
 
 export async function POST(request: NextRequest): Promise<NextResponse> {
   const origin: string | null = request.headers.get('origin')
