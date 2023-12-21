@@ -8,8 +8,6 @@ import { CardsBanner } from '@/components/Cards/CardsBanner'
 import MaxWidthWrapper from '@/components/Layout/MaxWidthWrapper'
 
 export default async function Home() {
-  const session = await getServerSession(authOptions)
-
   return (
     <>
       <MaxWidthWrapper>
