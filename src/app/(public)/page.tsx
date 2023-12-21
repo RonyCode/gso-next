@@ -4,27 +4,30 @@ import 'react-toastify/dist/ReactToastify.css'
 import { authOptions } from '@/lib/auth'
 import BannerHome1 from '@/components/Layout/banner/BannerHome1'
 import BannerHome2 from '@/components/Layout/banner/BannerHome2'
+import { CardsBanner } from '@/components/Cards/CardsBanner'
+import MaxWidthWrapper from '@/components/Layout/MaxWidthWrapper'
 
 export default async function Home() {
   const session = await getServerSession(authOptions)
 
   return (
     <>
-      <main className="  h-full w-full bg-gradient-to-t from-background to-secondary">
-        <header className="h-full min-h-screen w-full">
-          <BannerHome1 />
-        </header>
-
-        <BannerHome2 />
-
-        <section className="relative  min-h-screen bg-secondary ">
-          <h1>Server Session</h1>
-          <pre>{'nome; ' + session?.nome}</pre>
-          <pre>{'email: ' + session?.email}</pre>
-          <pre>{'image: ' + session?.image}</pre>
-          <pre>{'cod_usuario: ' + session?.cod_usuario}</pre>
-        </section>
-      </main>
+      <MaxWidthWrapper>
+        <main className="  h-full  bg-gradient-to-t from-background to-secondary ">
+          <header className="h-full min-h-screen  ">
+            <BannerHome1 />
+          </header>
+          <BannerHome2 />
+          <section className=" relative  min-h-screen bg-gradient-to-t from-background to-secondary ">
+            <section className="container relative  grid min-h-screen  grid-cols-2 place-items-center ">
+              <CardsBanner />
+              <CardsBanner />
+              <CardsBanner />
+              <CardsBanner />
+            </section>
+          </section>
+        </main>
+      </MaxWidthWrapper>
     </>
   )
 }

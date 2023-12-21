@@ -1,23 +1,46 @@
-import React from 'react'
+'use client'
+import React, { useEffect, useState } from 'react'
 import Logo from '../../../../public/images/Logo'
 
 const BannerHome1 = () => {
+  const [showNavBar, setShowNavBar] = useState(false)
+
+  useEffect(() => {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 350) {
+        setShowNavBar(true)
+      } else {
+        setShowNavBar(false)
+      }
+    })
+  }, [showNavBar])
+
   return (
-    <header className="h-full w-full  ">
+    <div className="relative h-full ">
       <div
-        className=" fixed flex h-screen w-full  place-items-center bg-no-repeat  brightness-75  md:grid md:grid-cols-2 md:justify-center"
+        className=" fixed  grid h-full w-screen bg-no-repeat brightness-75  md:w-[calc(100%-160px)] md:grid-cols-2
+        md:place-items-center md:bg-auto"
         style={{
           backgroundImage: 'url(/images/banner.jpg)',
         }}
       >
         <div
-          className="  flex max-w-prose flex-col
-          place-items-center items-center justify-center
-          gap-y-3 rounded-3xl p-6 tracking-tight text-[#f2f2f2]
-          antialiased shadow-2xl brightness-125 backdrop-blur-[2px]
-          md:col-start-2  md:grid"
+          className={
+            showNavBar
+              ? 'min-w-screen fixed h-screen min-h-screen w-screen brightness-[30%]  backdrop-blur-sm ' +
+                'transition duration-200 ease-in-out'
+              : 'min-w-screen fixed h-screen  min-h-screen  w-screen transition duration-200 ease-in-out'
+          }
+        ></div>
+        <div
+          className="flex
+          flex-col place-content-center items-center justify-center gap-y-3 rounded-md p-4
+          tracking-tight text-[#f2f2f2]  antialiased md:col-start-2 md:grid md:max-w-xl
+          md:place-items-center md:shadow-2xl"
         >
-          <Logo width={156} />
+          <span className=" md:block">
+            <Logo width={156} />
+          </span>
           <h1 className="text-center text-5xl  font-bold  md:text-4xl">
             <p className=" ">Gestão de Serviços e Operações</p>
           </h1>
@@ -26,32 +49,20 @@ const BannerHome1 = () => {
             Gerenciamento, Transformando Desafios em{' '}
             <span className="text-4xl font-bold text-primary">Resultados!</span>
           </p>
-
           <a
             href="/contact"
-            className="inline-flex h-10 items-center justify-center whitespace-nowrap rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground ring-offset-background transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50
+            className="inline-flex h-10 items-center justify-center whitespace-nowrap
+              rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground
+              ring-offset-background transition-colors hover:bg-primary/90 focus-visible:outline-none
+              focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2
+              disabled:pointer-events-none disabled:opacity-50
             "
           >
             Saiba mais...
           </a>
         </div>
       </div>
-      {/* <div className="grid h-full grid-cols-2 grid-rows-[300px_minmax(700px,_1fr)_100px] place-items-center gap-2 bg-foreground text-center  text-background"> */}
-      {/*  <div className="col-start-1 col-end-4 flex h-full w-full  place-content-center items-center  justify-center text-3xl"> */}
-      {/*    <span className="bg-primary  p-4 text-5xl font-bold text-foreground/80"> */}
-      {/*      Projeto GSO */}
-      {/*    </span> */}
-      {/*    Desenvolvido por quem conhece as demandas */}
-      {/*  </div>{' '} */}
-      {/*  <p className="h-full w-full border border-amber-800 leading-none"> */}
-      {/*    Projeto RCode Desenvolvido por quem conhece */}
-      {/*  </p>{' '} */}
-      {/*  <p className="h-full w-full border border-amber-800 text-3xl"> */}
-      {/*    Projeto RCode Desenvolvido por quem conhece */}
-      {/*  </p>{' '} */}
-      {/*  /!* <CardsBanner /> *!/ */}
-      {/* </div> */}
-    </header>
+    </div>
   )
 }
 

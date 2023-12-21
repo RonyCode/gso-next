@@ -1,26 +1,31 @@
 import React from 'react'
+import { ArrowRightToLine } from 'lucide-react'
 
 const BannerMain = () => {
   return (
-    <header className="min-w-screen h-screen">
+    <header className="h-screen">
       <div
-        className="  min-h-screen w-full  bg-cover bg-center bg-no-repeat text-foreground brightness-75 backdrop-blur-sm"
+        className="h-full w-full bg-auto  bg-bottom bg-no-repeat text-foreground brightness-75 md:bg-cover "
         style={{
           backgroundImage: 'url(/images/cidade.png)',
         }}
       >
         <div
-          className="grid h-screen w-full grid-cols-2 items-end  bg-contain bg-center bg-no-repeat pt-48 text-foreground"
+          className=" b grid h-full  grid-cols-1  place-items-end bg-cover  bg-center bg-no-repeat pb-12 text-foreground  md:grid-cols-2 md:place-items-end   md:bg-contain md:p-0 "
           style={{
             backgroundImage: 'url(/images/banner1.png)',
           }}
         >
-          <div className="border-r-8 border-primary p-12 text-start shadow-2xl shadow-black backdrop-blur-sm">
+          <div className="text-center tracking-tighter md:border-r-8 md:border-primary md:p-8 md:text-start md:shadow-2xl md:shadow-black  md:backdrop-blur-sm ">
             <div>
-              <p className="text-sm font-bold uppercase">Services</p>
-              <p className="text-3xl font-bold">Multimedia products</p>
-              <p className="mb-5 text-2xl leading-none">
-                Attractive designs for your brand
+              <p className="text-4xl  font-bold uppercase">Integração</p>
+              <p className="text-2xl font-bold">
+                Integração de Sistemas e Colaboração Interinstitucional:
+              </p>
+              <p className="mb-5 text-lg leading-none">
+                Digitalização facilita a integração de sistemas e a colaboração
+                entre diferentes órgãos de segurança, melhorando a comunicação e
+                a eficácia na resposta a emergências.
               </p>
 
               <a
@@ -28,16 +33,19 @@ const BannerMain = () => {
                 className="inline-flex  items-center justify-center whitespace-nowrap rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground ring-offset-background transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50
             "
               >
-                Contato
+                <span className="mr-1">saiba mais </span>
+                <ArrowRightToLine />
               </a>
             </div>
           </div>
-          <div className=" flex place-content-end justify-end border-r-8 border-primary p-12 text-end shadow-2xl shadow-black backdrop-blur-sm">
+          <div className=" hidden	text-start tracking-tighter md:block md:place-content-end md:border-r-8 md:border-primary md:p-8 md:shadow-2xl md:shadow-black  md:backdrop-blur-sm">
             <div>
-              <p className="text-sm font-bold uppercase">Services</p>
-              <p className="text-3xl font-bold">Multimedia products</p>
-              <p className="mb-5 text-2xl leading-none">
-                Attractive designs for your brand
+              <p className="text-4xl font-bold uppercase">Monitoramento</p>
+              <p className="text-2xl font-bold">Monitoramento em Tempo Real:</p>
+              <p className="mb-4 text-lg leading-none">
+                Utilização de tecnologias para coletar, processar e analisar
+                dados em tempo real, permitindo às agências de segurança
+                monitorar eventos e responder rapidamente a incidentes.
               </p>
 
               <a
@@ -45,7 +53,8 @@ const BannerMain = () => {
                 className="inline-flex  items-center justify-center whitespace-nowrap rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground ring-offset-background transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50
             "
               >
-                Contato
+                <span className="mr-1">saiba mais </span>
+                <ArrowRightToLine />{' '}
               </a>
             </div>
           </div>

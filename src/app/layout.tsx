@@ -16,7 +16,7 @@ export default function RootLayout({
     <html lang="pt-BR">
       <body
         className={cn(
-          ' m-0 h-screen min-h-screen w-full bg-background p-0 font-sans antialiased',
+          ' min-w-screen m-0 h-screen min-h-screen w-full p-0 font-sans antialiased',
           fontSans.variable,
         )}
       >
@@ -28,15 +28,13 @@ export default function RootLayout({
             disableTransitionOnChange
           >
             <Providers>
-              <section className="bg-background text-foreground">
-                <NavbarHome />
-                <main className="relative flex min-h-screen w-full  flex-col">
-                  <div className="flex-1 flex-grow">{children}</div>
-                </main>
-                <footer className="static bottom-0 h-48 border-t bg-background text-center text-sm leading-5 text-foreground ">
-                  © 2024 Rcode Copyright. Todos os direitos reservados.
-                </footer>
-              </section>
+              <NavbarHome />
+              <main className="relative flex min-h-screen w-full flex-col  bg-gradient-to-t from-background to-secondary">
+                <div className="flex-1 flex-grow">{children}</div>
+              </main>
+              <footer className="static bottom-0 h-48 border-t bg-background text-center text-sm leading-5 text-foreground ">
+                © 2024 Rcode Copyright. Todos os direitos reservados.
+              </footer>
             </Providers>{' '}
           </ThemeProvider>
         </Suspense>

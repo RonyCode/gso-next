@@ -31,7 +31,7 @@ export const CardsBanner = ({ className, ...props }: CardProps) => {
   ]
   return (
     <>
-      <Card className={cn('w-full', className)} {...props}>
+      <Card className={cn('w-[380px]', className)} {...props}>
         <CardHeader>
           <CardTitle>Notifications</CardTitle>
           <CardDescription>You have 3 unread messages.</CardDescription>
