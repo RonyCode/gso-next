@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 
 import { RegisterUserSchema } from '@/app/(auth)/cadastro-usuario/[token]/schemas/RegisterUserSchema'
-import { limiter } from '@/app/api/config/limiter'
+import { limiter } from '@/pages/api/config/limiter'
 
 export async function POST(request: NextRequest): Promise<NextResponse> {
   const origin: string | null = request.headers.get('origin')
