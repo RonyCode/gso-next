@@ -10,6 +10,7 @@ export async function signedUpAction(formData: RegisterUserSchema) {
   try {
     if (formData) {
       revalidatePath('/')
+
       return fetchWrapper<ResponseUserSigned>(
         'http://localhost:3000/api/cadastrar-usuario',
         {

@@ -19,7 +19,7 @@ const BannerHome1 = () => {
     <div className="relative h-full ">
       <div
         className=" fixed  grid h-full w-screen bg-no-repeat brightness-75  md:w-[calc(100%-160px)] md:grid-cols-2
-        md:place-items-center md:bg-auto"
+        md:place-items-center md:bg-cover"
         style={{
           backgroundImage: 'url(/images/banner.jpg)',
         }}

@@ -5,7 +5,7 @@ import { useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import ButtonNoTheme from '@/ui/ButtonNoTheme'
+import { Button } from '@/ui/button'
 
 const PageNotFound = ({
   error,
@@ -20,8 +20,8 @@ const PageNotFound = ({
   }, [error])
 
   return (
-    <div className="main">
-      <div className="bg-purple">
+    <div className="main fixed  left-0 right-0 top-0 z-50">
+      <div className="bg-purple h-screen">
         <div className="stars">
           <div className="custom-navbar">
             <div className="brand-logo">
@@ -48,13 +48,9 @@ const PageNotFound = ({
               height="0"
               alt="image-404"
             />
-            <ButtonNoTheme
-              variant="default"
-              size="default"
-              onClick={() => reset()}
-            >
+            <Button variant="default" size="default" onClick={() => reset()}>
               Tentar novamente
-            </ButtonNoTheme>
+            </Button>
           </div>
           <div className="objects">
             <Image
