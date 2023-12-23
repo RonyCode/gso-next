@@ -51,6 +51,7 @@ import { getAllCitiesByState } from '@/lib/getAllCitiesByState'
 import { AddressProps } from '../../../../../../types'
 import { toast } from '@/ui/use-toast'
 import { redirect } from 'next/navigation'
+import { stateStore } from '@/stores/Address/stateStore'
 
 enum Fields {
   email = 'email',
@@ -67,10 +68,10 @@ enum Fields {
 type UserRegisterFormProps = React.HTMLAttributes<HTMLDivElement>
 // CHAMA O FETCH FORA DO COMPONENTE PARA NAO RE - RENDERIZAR LOOP INFINITO
 
-export async function generateStaticParams() {
-  const getEstates = await getAllStates()
-  return getEstates.map((item) => ({ state: item }))
-}
+// export async function generateStaticParams() {
+//   const getEstates = await getAllStates()
+//   return getEstates.map((item) => ({ state: item }))
+// }
 const getEstates = getAllStates()
 
 export const UserForm = ({ className, ...props }: UserRegisterFormProps) => {
@@ -102,8 +103,10 @@ export const UserForm = ({ className, ...props }: UserRegisterFormProps) => {
     [],
   )
 
-  const states = use(getEstates)
+  // const states = use(getEstates)
+  const states = stateStore().states
 
+  console.log(states)
   const handleSubmit = (data: RegisterUserSchema) => {
     startTransition(async () => {
       const restult = await signedUpAction(data)
