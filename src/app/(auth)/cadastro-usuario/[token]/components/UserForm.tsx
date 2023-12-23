@@ -1,7 +1,7 @@
 'use client'
 
 import * as React from 'react'
-import { use, useState, useTransition } from 'react'
+import { use, useEffect, useState, useTransition } from 'react'
 import {
   FaBuildingColumns,
   FaEnvelope,
@@ -72,7 +72,7 @@ type UserRegisterFormProps = React.HTMLAttributes<HTMLDivElement>
 //   const getEstates = await getAllStates()
 //   return getEstates.map((item) => ({ state: item }))
 // }
-const getEstates = getAllStates()
+// const getEstates = getAllStates()
 
 export const UserForm = ({ className, ...props }: UserRegisterFormProps) => {
   const form = useForm<RegisterUserSchema>({
@@ -103,10 +103,8 @@ export const UserForm = ({ className, ...props }: UserRegisterFormProps) => {
     [],
   )
 
-  // const states = use(getEstates)
   const states = stateStore().states
 
-  console.log(states)
   const handleSubmit = (data: RegisterUserSchema) => {
     startTransition(async () => {
       const restult = await signedUpAction(data)
