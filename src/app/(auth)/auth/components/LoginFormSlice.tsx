@@ -11,7 +11,7 @@ import React from 'react'
 
 const LoginFormSlice = () => {
   const [sliceLogin, setSliceLoagin] = React.useState<string>(
-    'animate-registerSlice',
+    'animate-sliceRegister',
   )
 
   return (
@@ -20,8 +20,8 @@ const LoginFormSlice = () => {
         <div
           className={`${
             sliceLogin === 'animate-sliceRegister'
-              ? 'hidden h-screen w-full border border-amber-800 lg:relative lg:col-start-1 lg:col-end-2  lg:block lg:h-full lg:place-content-center lg:place-items-center'
-              : ' h-screen w-full  border border-amber-800 lg:relative lg:col-start-1  lg:col-end-2 lg:h-full lg:place-content-center lg:place-items-center'
+              ? 'hidden h-screen w-full lg:relative lg:col-start-1 lg:col-end-2  lg:block lg:h-full lg:place-content-center lg:place-items-center'
+              : 'h-screen w-full  lg:relative lg:col-start-1  lg:col-end-2 lg:h-full lg:place-content-center lg:place-items-center'
           }`}
         >
           <div className=" flex lg:justify-center">
@@ -91,7 +91,7 @@ const LoginFormSlice = () => {
           className={`${
             sliceLogin === 'animate-sliceLogin'
               ? 'hidden lg:relative lg:col-start-2 lg:col-end-3  lg:flex lg:h-full lg:w-full'
-              : 'absolute lg:relative lg:col-start-2 lg:col-end-3  lg:flex lg:h-full lg:w-full'
+              : 'absolute  lg:relative lg:col-start-2 lg:col-end-3  lg:flex lg:h-full lg:w-full'
           }`}
         >
           <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">

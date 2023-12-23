@@ -66,13 +66,13 @@ enum Fields {
 }
 
 type UserRegisterFormProps = React.HTMLAttributes<HTMLDivElement>
-// CHAMA O FETCH FORA DO COMPONENTE PARA NAO RE - RENDERIZAR LOOP INFINITO
 
 // export async function generateStaticParams() {
 //   const getEstates = await getAllStates()
 //   return getEstates.map((item) => ({ state: item }))
 // }
 
+// CHAMA O FETCH FORA DO COMPONENTE PARA NAO RE - RENDERIZAR LOOP INFINITO
 // INITIALIZE STATES
 getAllStates()
 
@@ -101,9 +101,6 @@ export const UserForm = ({ className, ...props }: UserRegisterFormProps) => {
   })
 
   const [pending, startTransition] = useTransition()
-  // const [arrayCitiesByState, setArrayCitiesByState] = useState<AddressProps[]>(
-  //   [],
-  // )
 
   const handleSubmit = (data: RegisterUserSchema) => {
     startTransition(async () => {
