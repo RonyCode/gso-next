@@ -12,6 +12,6 @@ export const getAllStates = async () => {
       },
     },
   )
-  stateStore.setState({ states: res })
+  stateStore.setState({ states: res.result })
   return res
 }
