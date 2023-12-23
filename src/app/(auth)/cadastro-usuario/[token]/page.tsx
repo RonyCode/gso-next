@@ -13,7 +13,8 @@ const CadastroUsuario = async ({ params }: { params: { token: string } }) => {
   // }
   return (
     <MaxWidthWrapper className=" w-7/12">
-      <UserForm />
+      {/* <UserForm /> */}
+      <h1></h1>
       {/* {params.token} */}
     </MaxWidthWrapper>
   )
