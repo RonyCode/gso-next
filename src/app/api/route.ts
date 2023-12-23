@@ -2,14 +2,30 @@ import { NextResponse } from 'next/server'
 
 export async function OPTIONS(request: Request) {
   const allowedOrigin = request.headers.get('origin')
-  return new NextResponse(null, {
-    status: 200,
-    headers: {
-      'Access-Control-Allow-Origin': allowedOrigin || '*',
-      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-      'Access-Control-Allow-Headers':
-        'Content-Type, Authorization, X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Date, X-Api-Version',
-      'Access-Control-Max-Age': '86400',
-    },
-  })
+  const allowedOrigins =
+    process.env.NODE_ENV === 'production'
+      ? [
+          'https://servicodados.ibge.gov.br/api/v1/localidades/estados',
+          `${process.env.API_NEXT}`,
+          `${process.env.NEXTAUTH_URL}`,
+          'http://127.0.0.1:3000',
+        ]
+      : [
+          `${process.env.API_GSO}`,
+          `${process.env.API_NEXT}`,
+          `${process.env.NEXTAUTH_URL}`,
+          'http://127.0.0.1:3000',
+        ]
+
+  const origin = request.headers.get('origin')
+  if (origin && !allowedOrigins.includes(origin)) {
+    return new NextResponse(null, {
+      status: 400,
+      statusText: 'Bad Request',
+      headers: {
+        'Content-Type': 'text/plain',
+        'Access-Control-Allow-Origin': origin || '*',
+      },
+    })
+  }
 }
