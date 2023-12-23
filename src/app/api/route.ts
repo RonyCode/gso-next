@@ -1,12 +1,12 @@
 import { NextResponse } from 'next/server'
 
 export async function OPTIONS(request: Request) {
-  const allowedOrigin = request.headers.get('origin')
   const allowedOrigins =
     process.env.NODE_ENV === 'production'
       ? [
           'https://servicodados.ibge.gov.br/api/v1/localidades/estados',
           `${process.env.API_NEXT}`,
+          `${process.env.API_GSO}`,
           `${process.env.NEXTAUTH_URL}`,
           'http://127.0.0.1:3000',
         ]
