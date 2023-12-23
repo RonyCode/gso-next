@@ -76,7 +76,10 @@ type UserRegisterFormProps = React.HTMLAttributes<HTMLDivElement>
 // INITIALIZE STATES
 getAllStates()
 
-export const UserForm = ({ className, ...props }: UserRegisterFormProps) => {
+export const UserRegisterForm = ({
+  className,
+  ...props
+}: UserRegisterFormProps) => {
   const form = useForm<RegisterUserSchema>({
     mode: 'all',
     criteriaMode: 'all',
@@ -162,15 +165,18 @@ export const UserForm = ({ className, ...props }: UserRegisterFormProps) => {
 
   return (
     <>
-      <div className="  flex flex-col">
+      <div className="  flex  h-full  flex-col ">
         <div className="flex flex-col space-y-2 text-center">
           <h1 className="text-2xl font-semibold tracking-tight">Cadastro</h1>
-          <p className="text-sm text-muted-foreground">
+          <p className="text-sm text-muted-foreground ">
             Complete o cadastro observe os campos obrigatórios
           </p>
         </div>
 
-        <div className={cn('mt-4 grid gap-6 py-16', className)} {...props}>
+        <div
+          className={cn(' grid place-items-center pt-4  lg:pt-12', className)}
+          {...props}
+        >
           <LoadingPage pending={pending} />
           <Form {...form}>
             <form
@@ -644,12 +650,12 @@ export const UserForm = ({ className, ...props }: UserRegisterFormProps) => {
                     </FormItem>
                   )}
                 />
-                <div className="mt-[1.380rem] w-5/12 gap-1">
+                <div className=" mb-4 mt-2 w-full lg:mt-[1.380rem] lg:w-5/12 lg:gap-1">
                   <Button
                     disabled={pending}
                     className={cn(
                       buttonVariants({ variant: 'default' }),
-                      ' w-full',
+                      ' w-full ',
                     )}
                     type="submit"
                   >

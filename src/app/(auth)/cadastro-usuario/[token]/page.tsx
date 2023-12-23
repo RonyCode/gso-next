@@ -1,4 +1,4 @@
-import { UserForm } from '@/app/(auth)/cadastro-usuario/[token]/components/UserForm'
+import { UserRegisterForm } from '@/app/(auth)/cadastro-usuario/[token]/components/UserRegisterForm'
 import MaxWidthWrapper from '@/components/Layout/MaxWidthWrapper'
 
 const CadastroUsuario = async ({ params }: { params: { token: string } }) => {
@@ -12,9 +12,8 @@ const CadastroUsuario = async ({ params }: { params: { token: string } }) => {
   //     new Date().toLocaleString('pt-BR')
   // }
   return (
-    <MaxWidthWrapper className=" w-7/12">
-      <UserForm />
-      <h1></h1>
+    <MaxWidthWrapper className="mt-24 px-6 lg:mt-0 lg:w-7/12 lg:px-0 ">
+      <UserRegisterForm />
       {/* {params.token} */}
     </MaxWidthWrapper>
   )
