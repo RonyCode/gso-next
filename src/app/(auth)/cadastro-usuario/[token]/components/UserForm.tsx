@@ -52,6 +52,7 @@ import { AddressProps } from '../../../../../../types'
 import { toast } from '@/ui/use-toast'
 import { redirect } from 'next/navigation'
 import { stateStore } from '@/stores/Address/stateStore'
+import { cityStore } from '@/stores/Address/CityByStateStore'
 
 enum Fields {
   email = 'email',
@@ -101,11 +102,9 @@ export const UserForm = ({ className, ...props }: UserRegisterFormProps) => {
   })
 
   const [pending, startTransition] = useTransition()
-  const [arrayCitiesByState, setArrayCitiesByState] = useState<AddressProps[]>(
-    [],
-  )
-
-  const states = stateStore().states
+  // const [arrayCitiesByState, setArrayCitiesByState] = useState<AddressProps[]>(
+  //   [],
+  // )
 
   const handleSubmit = (data: RegisterUserSchema) => {
     startTransition(async () => {
@@ -137,9 +136,11 @@ export const UserForm = ({ className, ...props }: UserRegisterFormProps) => {
     form.clearErrors(field)
   }
   async function handleCity(value: string) {
-    const arrayCities = await getAllCitiesByState(value)
-    setArrayCitiesByState(arrayCities)
+    await getAllCitiesByState(value)
   }
+
+  const states = stateStore().states
+  const arrayCitiesByState = cityStore().cities
 
   const handleCep = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e?.target?.value.length >= 9) {
