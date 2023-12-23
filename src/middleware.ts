@@ -6,7 +6,7 @@ export async function middleware(request: NextRequest) {
   const allowedOrigins =
     process.env.NODE_ENV === 'production'
       ? [
-          `${process.env.API_GSO}`,
+          'https://servicodados.ibge.gov.br/api/v1/localidades/estados',
           `${process.env.API_NEXT}`,
           `${process.env.NEXTAUTH_URL}`,
           'http://127.0.0.1:3000',
