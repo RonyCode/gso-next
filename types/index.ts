@@ -47,6 +47,8 @@ export interface AddressProps {
   nome: string
   state: string
   city: string
+  name: string
+  result: object
   shortName: string
 }
 
