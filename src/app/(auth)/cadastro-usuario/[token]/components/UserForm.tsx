@@ -53,16 +53,10 @@ import { toast } from '@/ui/use-toast'
 import { redirect } from 'next/navigation'
 
 enum Fields {
-  nome = 'nome',
   email = 'email',
-  cpf = 'cpf',
-  data_nascimento = 'data_nascimento',
-  telefone = 'telefone',
   cep = 'cep',
   endereco = 'endereco',
   sigla = 'sigla',
-  complemento = 'complemento',
-  numero = 'numero',
   bairro = 'bairro',
   cidade = 'cidade',
   estado = 'estado',
