@@ -67,14 +67,14 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
   }
 
   return (
-    <div className={cn('grid gap-6', className)} {...props}>
+    <div className={cn('grid gap-y-4 px-9 lg:px-0', className)} {...props}>
       <div>
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(async (data) => {
               await handleSubmitPreCadastro(data)
             })}
-            className="w-full space-y-4"
+            className="w-full "
           >
             {' '}
             <FormField
@@ -98,7 +98,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
                 </FormItem>
               )}
             />
-            <Button type="submit" disabled={pending} className="w-full">
+            <Button type="submit" disabled={pending} className="mt-4 w-full">
               {pending && (
                 <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
               )}

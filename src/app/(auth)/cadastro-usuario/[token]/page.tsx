@@ -1,4 +1,5 @@
 import { UserForm } from '@/app/(auth)/cadastro-usuario/[token]/components/UserForm'
+import MaxWidthWrapper from '@/components/Layout/MaxWidthWrapper'
 
 const CadastroUsuario = async ({ params }: { params: { token: string } }) => {
   // const tokenReplaced = params.token.replaceAll('%2B', '.')
@@ -11,21 +12,10 @@ const CadastroUsuario = async ({ params }: { params: { token: string } }) => {
   //     new Date().toLocaleString('pt-BR')
   // }
   return (
-    <>
-      {/* {jwtValid ? ( */}
-      {/* <CardWithLogo> */}
-      <div className="flex  h-full w-full">
-        <UserForm />
-        {/* {params.token} */}
-      </div>
-      {/* </CardWithLogo> */}
-      {/* ) : ( */}
-      {/*  <CardWithLogo */}
-      {/*    title="Link expirado" */}
-      {/*    description="Link expirado por favor tente novamente" */}
-      {/*  ></CardWithLogo> */}
-      {/* )} */}
-    </>
+    <MaxWidthWrapper className=" w-7/12">
+      <UserForm />
+      {/* {params.token} */}
+    </MaxWidthWrapper>
   )
 }
 

@@ -16,15 +16,21 @@ const LoginFormSlice = () => {
 
   return (
     <>
-      <div className="grid h-[800px]  w-full grid-flow-col grid-cols-2  grid-rows-1 place-items-center rounded-[8px] border border-[var(--border)]">
-        <div className=" relative col-span-1 col-start-1 h-full w-full  place-content-center place-items-center">
-          <div className=" flex  justify-center ">
-            <div className="absolute flex h-full w-full items-center justify-center">
-              <div className="  container relative  hidden h-[800px]  items-center md:grid lg:max-w-none lg:grid-cols-1 lg:px-0  ">
+      <div className=" grid w-full grid-cols-1 place-items-center rounded-[8px] lg:h-[800px] lg:grid-cols-2 lg:grid-rows-1 lg:border lg:border-[var(--border)]">
+        <div
+          className={`${
+            sliceLogin === 'animate-sliceRegister'
+              ? 'hidden h-screen w-full border border-amber-800 lg:relative lg:col-start-1 lg:col-end-2  lg:block lg:h-full lg:place-content-center lg:place-items-center'
+              : ' h-screen w-full  border border-amber-800 lg:relative lg:col-start-1  lg:col-end-2 lg:h-full lg:place-content-center lg:place-items-center'
+          }`}
+        >
+          <div className=" flex lg:justify-center">
+            <div className=" opacity-1 h-full w-full items-center justify-center lg:absolute lg:flex">
+              <div className="container relative  grid  h-[800px] items-center  lg:h-full lg:w-full lg:max-w-none lg:grid-cols-1 lg:px-0   ">
                 <Button
                   className={cn(
                     buttonVariants({ variant: 'default' }),
-                    '  absolute  left-6 top-6 ease-in-out md:left-6 md:top-6',
+                    '  fixed left-6  top-20 ease-in-out lg:absolute lg:left-6 lg:top-6',
                   )}
                   onClick={() => {
                     setSliceLoagin('animate-sliceRegister')
@@ -32,14 +38,14 @@ const LoginFormSlice = () => {
                 >
                   Cadastre-se
                 </Button>
-                <div className="justify-self-center">
+                <div className="justify-self-center ">
                   <LoginForm />
                 </div>
               </div>
             </div>
           </div>
           <div
-            className={`${sliceLogin} rounder d-[8px] relative z-10 hidden h-full flex-col   rounded-[8px] border-l border-r border-[var(--border)]  bg-muted bg-slate-400 text-white lg:flex dark:border-r `}
+            className={`${sliceLogin} rounder d-[8px] relative hidden h-full flex-col rounded-[8px] border-l border-r border-[var(--border)] bg-muted  bg-slate-400 text-white lg:z-10 lg:flex dark:border-r `}
           >
             <div className=" absolute  inset-0  flex flex-col justify-between bg-zinc-900 py-12 ">
               <div className="relative flex items-center  justify-center text-lg font-medium">
@@ -57,9 +63,9 @@ const LoginFormSlice = () => {
                 sizes="100"
                 priority={true}
                 alt="Authentication"
-                className=" block	 rounded-[8px]  object-cover brightness-[60%]"
+                className=" block rounded-[8px]  object-cover brightness-[60%]"
               />
-              <div className="relative   flex  flex-col items-center justify-center">
+              <div className="relative flex flex-col items-center justify-center">
                 <blockquote className="space-y-2 px-4 ">
                   {sliceLogin === 'animate-sliceLogin' ? (
                     <p className=" text-lg ">
@@ -81,7 +87,13 @@ const LoginFormSlice = () => {
           </div>
         </div>
 
-        <div className=" relative col-span-1 col-start-2  flex h-full w-full ">
+        <div
+          className={`${
+            sliceLogin === 'animate-sliceLogin'
+              ? 'hidden lg:relative lg:col-start-2 lg:col-end-3  lg:flex lg:h-full lg:w-full'
+              : 'absolute lg:relative lg:col-start-2 lg:col-end-3  lg:flex lg:h-full lg:w-full'
+          }`}
+        >
           <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
             <div className="flex flex-col space-y-2 text-center">
               <h1 className="text-2xl font-semibold tracking-tight">
@@ -95,7 +107,7 @@ const LoginFormSlice = () => {
             <Button
               className={cn(
                 buttonVariants({ variant: 'ghost' }),
-                'absolute right-6  top-0 ease-in-out md:right-6',
+                'fixed right-6 top-[54px] ease-in-out lg:absolute lg:right-6 lg:top-0',
               )}
               onClick={() => {
                 setSliceLoagin('animate-sliceLogin')

@@ -6,10 +6,10 @@ export const metadata: Metadata = {
   title: 'GSO | Login',
   description: 'Authentication forms built using the components.',
 }
-export default async function Page() {
+export default function Page() {
   return (
-    <>
+    <div className="w-screen lg:container">
       <LoginFormSlice />
-    </>
+    </div>
   )
 }
