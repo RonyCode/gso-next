@@ -72,7 +72,9 @@ type UserRegisterFormProps = React.HTMLAttributes<HTMLDivElement>
 //   const getEstates = await getAllStates()
 //   return getEstates.map((item) => ({ state: item }))
 // }
-// const getEstates = getAllStates()
+
+// INITIALIZE STATES
+getAllStates()
 
 export const UserForm = ({ className, ...props }: UserRegisterFormProps) => {
   const form = useForm<RegisterUserSchema>({
@@ -440,7 +442,7 @@ export const UserForm = ({ className, ...props }: UserRegisterFormProps) => {
                   render={({ field }) => (
                     <FormItem className="flex w-full flex-col">
                       <FormLabel
-                        htmlFor="cidade"
+                        htmlFor="estado"
                         className="flex items-center gap-1"
                       >
                         <FaBuildingColumns /> Estado
