@@ -42,13 +42,13 @@ export interface CepProps {
 }
 
 export interface AddressProps {
+  result: AddressProps[]
   id: string
   sigla: string
   nome: string
   state: string
   city: string
   name: string
-  result: object
   shortName: string
 }
 
