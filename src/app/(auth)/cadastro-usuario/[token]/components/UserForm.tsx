@@ -48,7 +48,6 @@ import {
 import { Check, ChevronsUpDown } from 'lucide-react'
 import { getCep } from '@/lib/getCep'
 import { getAllCitiesByState } from '@/lib/getAllCitiesByState'
-import { AddressProps } from '../../../../../../types'
 import { toast } from '@/ui/use-toast'
 import { redirect } from 'next/navigation'
 import { stateStore } from '@/stores/Address/stateStore'
