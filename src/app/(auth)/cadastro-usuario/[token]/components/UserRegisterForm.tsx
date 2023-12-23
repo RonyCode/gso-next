@@ -463,8 +463,8 @@ export const UserRegisterForm = ({
                             >
                               {field.value
                                 ? states.find(
-                                    (state) => state.shortName === field.value,
-                                  )?.state
+                                    (state) => state.sigla === field.value,
+                                  )?.nome
                                 : 'Selecione um Estado'}
                               <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                             </Button>
@@ -477,22 +477,22 @@ export const UserRegisterForm = ({
                             <CommandGroup>
                               {states.map((state) => (
                                 <CommandItem
-                                  value={state.shortName}
+                                  value={state.sigla}
                                   key={state.id}
                                   onSelect={() => {
-                                    handleCity(state.shortName)
-                                    form.setValue('estado', state.shortName)
+                                    handleCity(state.sigla)
+                                    form.setValue('estado', state.sigla)
                                   }}
                                 >
                                   <Check
                                     className={cn(
                                       'mr-2 h-4 w-4',
-                                      state.shortName === field.value
+                                      state.sigla === field.value
                                         ? 'opacity-100'
                                         : 'opacity-0',
                                     )}
                                   />
-                                  {state.name}
+                                  {state.nome}
                                 </CommandItem>
                               ))}
                             </CommandGroup>

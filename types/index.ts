@@ -42,7 +42,6 @@ export interface CepProps {
 }
 
 export interface AddressProps {
-  result: AddressProps[]
   id: string
   sigla: string
   nome: string
