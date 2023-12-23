@@ -492,7 +492,7 @@ export const UserRegisterForm = ({
                                         : 'opacity-0',
                                     )}
                                   />
-                                  {state.state}
+                                  {state.shortName}
                                 </CommandItem>
                               ))}
                             </CommandGroup>
