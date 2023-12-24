@@ -1,7 +1,13 @@
 'use client'
 import Link from 'next/link'
 
-import { LuLogOut, LuMegaphone, LuSettings, LuUser } from 'react-icons/lu'
+import {
+  LuLogOut,
+  LuMegaphone,
+  LuSettings,
+  LuUser,
+  LuXCircle,
+} from 'react-icons/lu'
 import React, { ReactElement, useEffect, useRef, useState } from 'react'
 import Logo from '../../../public/images/Logo'
 import {
@@ -24,9 +30,11 @@ import {
   FaAddressBook,
   FaBars,
   FaCircleInfo,
+  FaClosedCaptioning,
+  FaDoorClosed,
   FaScrewdriverWrench,
 } from 'react-icons/fa6'
-import { DoorOpen } from 'lucide-react'
+import { DoorOpen, XCircle } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 export function NavbarHome({
@@ -67,43 +75,52 @@ export function NavbarHome({
     { title: 'Contato', icon: <FaAddressBook />, path: '/contact' },
     { title: 'Sobre nos', icon: <FaCircleInfo />, path: '/about' },
   ]
+
   return (
     <header
       {...props}
       ref={myRef}
       className={
         showNavBar
-          ? ' fixed left-0  top-0 z-50  w-screen border-b bg-background/95  backdrop-blur supports-[backdrop-filter]:bg-background/60'
-          : ' fixed left-0  top-0 z-50 w-screen bg-background/95 text-[#e5e7eb]/60 transition duration-500 md:bg-background/10 dark:text-foreground/60'
+          ? ' fixed left-0  top-0 z-50  w-screen border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60'
+          : ' fixed left-0  top-0 z-50 w-screen  border-b bg-background/95 text-[#e5e7eb]/60 backdrop-blur supports-[backdrop-filter]:bg-background/60 md:bg-background/10 dark:text-foreground/60'
       }
     >
+      <div
+        className={`fixed left-0 top-32 z-[-10] h-screen w-screen ${
+          state ? 'block ' : 'hidden '
+        }`}
+        onClick={() => setState(false)}
+      ></div>
       <nav
         className={cn(
-          'container mx-auto  flex   items-center justify-between ',
+          'container relative mx-auto flex items-center justify-between lg:py-0 ',
           className,
         )}
       >
-        <div className="flex items-center justify-between py-3 md:block md:py-5">
+        <div className=" flex items-center justify-between py-3 md:block md:py-5">
           <Link href="/" className="hidden md:block">
-            <h1 className="text-3xl font-bold text-purple-600">
-              <Logo width={100} />
-            </h1>
+            <Logo width={100} />
           </Link>
-          <div className="md:hidden">
+          <div className={`md:hidden  ${state ? 'hidden  ' : 'block '}`}>
             <button
-              className="rounded-md   p-3 outline-none focus:border focus:border-gray-400"
+              className="  top-0 rounded-md p-3 outline-none focus:border focus:border-gray-400 "
               onClick={() => setState(!state)}
             >
               <FaBars />
             </button>
           </div>
         </div>
+
         <div
-          className={`mt-8 flex-1 justify-self-center pb-3 md:mt-0 md:block md:pb-0 ${
-            state ? 'block' : 'hidden'
+          className={`mt-8 flex-1 pb-3 md:mt-0 md:block md:pb-0 ${
+            state ? ' block ' : ' hidden '
           }`}
         >
-          <ul className="items-center justify-center space-y-8 text-sm md:flex md:space-x-6 md:space-y-0">
+          <Link href="/" className=" flex w-screen justify-center md:hidden">
+            <Logo width={100} />
+          </Link>
+          <ul className=" mb-3 space-y-4 text-sm md:flex  md:items-center md:justify-center md:space-x-6 md:space-y-0  ">
             {menus.map((item, idx) => (
               <li
                 key={idx}
@@ -136,11 +153,9 @@ export function NavbarHome({
         </div>
         {session?.user ? (
           <div
-            className={`    ${
-              state
-                ? 'absolute  right-2 top-2 flex md:hidden'
-                : 'hidden md:flex'
-            } ml-auto  items-center space-x-4    `}
+            className={`absolute right-5 ${
+              state ? ' flex md:hidden ' : ' md:flex'
+            } items-center`}
           >
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
@@ -157,7 +172,7 @@ export function NavbarHome({
                   </Avatar>
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent className="w-64" align="end" forceMount>
+              <DropdownMenuContent className="w-64" align="center" forceMount>
                 <DropdownMenuLabel className="font-normal">
                   <div className="flex flex-col space-y-1">
                     <p className="text-sm font-medium leading-none">

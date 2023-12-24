@@ -16,7 +16,7 @@ export default function RootLayout({
     <html lang="pt-BR">
       <body
         className={cn(
-          ' min-w-screen m-0 h-screen min-h-screen w-full p-0 font-sans antialiased',
+          ' min-w-screen m-0 h-screen min-h-screen w-full  p-0 font-sans antialiased',
           fontSans.variable,
         )}
       >
