@@ -5,7 +5,7 @@ export async function OPTIONS(request: Request) {
     process.env.NODE_ENV === 'production'
       ? [
           'https://servicodados.ibge.gov.br/api/v1/localidades/estados',
-          "'https://wsgso.000webhostapp.com",
+          'https://wsgso.000webhostapp.com',
           `${process.env.API_NEXT}`,
           `${process.env.API_GSO}`,
           `${process.env.NEXTAUTH_URL}`,
