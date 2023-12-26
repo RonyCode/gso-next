@@ -16,7 +16,7 @@ export default function RootLayout({
     <html lang="pt-BR">
       <body
         className={cn(
-          ' min-w-screen m-0 h-screen min-h-screen w-full  p-0 font-sans antialiased',
+          ' m-0 h-screen min-h-screen w-screen  overflow-x-hidden bg-orange-700 p-0 font-sans antialiased',
           fontSans.variable,
         )}
       >
@@ -29,8 +29,8 @@ export default function RootLayout({
           >
             <Providers>
               <NavbarHome />
-              <main className="relative flex min-h-screen w-full flex-col  bg-gradient-to-t from-background to-secondary">
-                <div className="flex-1 flex-grow">{children}</div>
+              <main className=" flex min-h-screen w-full flex-col  bg-gradient-to-t from-background to-secondary">
+                <div className="w-full  flex-1 flex-grow">{children}</div>
               </main>
               <footer className="static bottom-0 h-48 border-t bg-background text-center text-sm leading-5 text-foreground ">
                 © 2024 Rcode Copyright. Todos os direitos reservados.

@@ -16,9 +16,9 @@ const BannerHome1 = () => {
   }, [showNavBar])
 
   return (
-    <div className="relative h-full ">
+    <div className=" h-full  w-screen ">
       <div
-        className=" fixed  grid h-full w-screen bg-no-repeat brightness-75  md:w-[calc(100%-160px)] md:grid-cols-2
+        className=" fixed grid h-full w-screen  bg-no-repeat brightness-75 md:w-[calc(100%-146px)] md:grid-cols-2
         md:place-items-center md:bg-cover"
         style={{
           backgroundImage: 'url(/images/banner.jpg)',

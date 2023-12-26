@@ -81,9 +81,11 @@ export function NavbarHome({
       {...props}
       ref={myRef}
       className={
-        showNavBar
-          ? ' fixed left-0  top-0 z-50  w-screen border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60'
-          : ' fixed left-0  top-0 z-50 w-screen  border-b bg-background/95 text-[#e5e7eb]/60 backdrop-blur supports-[backdrop-filter]:bg-background/60 md:bg-background/10 dark:text-foreground/60'
+        'fixed left-0 top-0 z-50 w-screen border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 ' +
+        `${
+          !showNavBar &&
+          ' text-[#e5e7eb]/60  md:bg-background/10 dark:text-foreground/60'
+        }`
       }
     >
       <div

@@ -3,15 +3,15 @@ import { ArrowRightToLine } from 'lucide-react'
 
 const BannerMain = () => {
   return (
-    <header className="h-screen">
+    <header className="h-screen w-full">
       <div
-        className="h-full w-full bg-auto  bg-bottom bg-no-repeat text-foreground brightness-75 md:bg-cover "
+        className="h-full w-full   bg-bottom bg-no-repeat text-foreground brightness-75 md:bg-cover "
         style={{
           backgroundImage: 'url(/images/cidade.png)',
         }}
       >
         <div
-          className=" b grid h-full  grid-cols-1  place-items-end bg-cover  bg-center bg-no-repeat pb-12 text-foreground  md:grid-cols-2 md:place-items-end   md:bg-contain md:p-0 "
+          className=" b grid h-full  w-full grid-cols-1  place-items-end bg-cover  bg-center bg-no-repeat pb-12 text-foreground  md:grid-cols-2 md:place-items-end   md:bg-contain md:p-0 "
           style={{
             backgroundImage: 'url(/images/banner1.png)',
           }}
