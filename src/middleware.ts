@@ -7,6 +7,9 @@ export async function middleware(request: NextRequest) {
     process.env.NODE_ENV === 'production'
       ? [
           'https://servicodados.ibge.gov.br/api/v1/localidades/estados',
+          'https://wsgso.000webhostapp.com/',
+          'http://54.232.66.174',
+          `${process.env.API_GSO}`,
           `${process.env.API_NEXT}`,
           `${process.env.NEXTAUTH_URL}`,
           'http://127.0.0.1:3000',
