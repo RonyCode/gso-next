@@ -17,7 +17,7 @@ export default async function Home() {
           </header>
           <BannerHome2 />
           <section className=" relative  min-h-screen bg-gradient-to-t from-background to-secondary ">
-            <section className="container relative  grid min-h-screen  grid-cols-2 place-items-center ">
+            <section className=" relative grid  min-h-screen w-full grid-cols-1  place-items-center md:grid-cols-2 ">
               <CardsBanner />
               <CardsBanner />
               <CardsBanner />

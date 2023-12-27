@@ -96,7 +96,7 @@ export function NavbarHome({
       ></div>
       <nav
         className={cn(
-          'container relative mx-auto flex items-center justify-between lg:py-0 ',
+          'relative mx-auto flex items-center justify-between px-4 md:container lg:py-0 ',
           className,
         )}
       >
@@ -119,7 +119,7 @@ export function NavbarHome({
             state ? ' block ' : ' hidden '
           }`}
         >
-          <Link href="/" className=" flex w-screen justify-center md:hidden">
+          <Link href="/" className=" flex w-screen justify-center  md:hidden">
             <Logo width={100} />
           </Link>
           <ul className=" mb-3 space-y-4 text-sm md:flex  md:items-center md:justify-center md:space-x-6 md:space-y-0  ">
@@ -155,7 +155,7 @@ export function NavbarHome({
         </div>
         {session?.user ? (
           <div
-            className={`absolute right-5 ${
+            className={`absolute right-5  ${
               state ? ' flex md:hidden ' : ' md:flex'
             } items-center`}
           >
@@ -225,7 +225,7 @@ export function NavbarHome({
             </DropdownMenu>
           </div>
         ) : (
-          <p className="text-sm">
+          <p className={'absolute right-5 text-sm ' + `${state && 'hidden'}`}>
             <Link
               href="/auth"
               className="flex items-center space-x-1  text-[#e5e7eb]/60 hover:text-primary/80"
