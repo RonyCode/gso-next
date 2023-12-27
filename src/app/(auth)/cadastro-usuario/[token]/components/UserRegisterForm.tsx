@@ -67,11 +67,6 @@ enum Fields {
 
 type UserRegisterFormProps = React.HTMLAttributes<HTMLDivElement>
 
-// export async function generateStaticParams() {
-//   const getEstates = await getAllStates()
-//   return getEstates.map((item) => ({ state: item }))
-// }
-
 // CHAMA O FETCH FORA DO COMPONENTE PARA NAO RE - RENDERIZAR LOOP INFINITO
 // INITIALIZE STATES
 getAllStates()
@@ -138,8 +133,8 @@ export const UserRegisterForm = ({
     await getAllCitiesByState(value)
   }
 
-  const states = stateStore().states
-  const arrayCitiesByState = cityStore().cities
+  let states = stateStore().states
+  let arrayCitiesByState = cityStore().cities
 
   const handleCep = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e?.target?.value.length >= 9) {
@@ -153,6 +148,8 @@ export const UserRegisterForm = ({
         await chageValueInput(Fields.bairro, district)
         await chageValueInput(Fields.estado, stateShortname)
         if (!city) {
+          states = []
+          arrayCitiesByState = []
           toast({
             variant: 'danger',
             title: 'Cep Incorreto! 🤯 ',
@@ -527,7 +524,7 @@ export const UserRegisterForm = ({
                               )}
                             >
                               {field.value
-                                ? arrayCitiesByState.find(
+                                ? arrayCitiesByState?.find(
                                     (city) => city.city === field.value,
                                   )?.city
                                 : 'Selecione uma Cidade'}
@@ -540,7 +537,7 @@ export const UserRegisterForm = ({
                             <CommandInput placeholder="Procurando cidade..." />
                             <CommandEmpty>Cidade não encontrada.</CommandEmpty>
                             <CommandGroup>
-                              {arrayCitiesByState.map((city) => (
+                              {arrayCitiesByState?.map((city) => (
                                 <CommandItem
                                   value={city.city}
                                   key={city.id}

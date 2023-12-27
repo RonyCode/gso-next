@@ -35,7 +35,9 @@ export async function middleware(request: NextRequest) {
   }
 
   const token = request.cookies.get('token')?.value
-  const sessaoToken = request.cookies.get('next-auth.session-token')?.value
+  const sessaoToken =
+    request.cookies.get('next-auth.session-token')?.value ||
+    request.cookies.get('__Secure-next-auth.session-token')?.value
   const refreshToken = request.cookies.get('refresh_token')?.value
   const regex = /[.!]/g
   const tokenPayload = token?.replaceAll(regex, '+')
