@@ -22,7 +22,7 @@ export const confereLogado = async (payload: {
   senha?: string
   is_user_external?: number
 }) => {
-  const res = await fetch(`${process.env.API_NEXT}/login`, {
+  const res = await fetch(`${process.env.NEXTAUTH_URL}/api/login`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(payload),
