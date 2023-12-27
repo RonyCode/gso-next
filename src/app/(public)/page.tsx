@@ -1,7 +1,6 @@
 import { getServerSession } from 'next-auth'
 import 'react-toastify/dist/ReactToastify.css'
 
-import { authOptions } from '@/lib/auth'
 import BannerHome1 from '@/components/Layout/banner/BannerHome1'
 import BannerHome2 from '@/components/Layout/banner/BannerHome2'
 import { CardsBanner } from '@/components/Cards/CardsBanner'

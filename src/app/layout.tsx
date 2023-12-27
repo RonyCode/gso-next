@@ -32,7 +32,7 @@ export default function RootLayout({
               <main className=" flex min-h-screen w-full flex-col  bg-gradient-to-t from-background to-secondary">
                 <div className="w-full  flex-1 flex-grow">{children}</div>
               </main>
-              <footer className="static bottom-0 h-48 border-t bg-background text-center text-sm leading-5 text-foreground ">
+              <footer className="relative bottom-0 z-50 h-48 border-t bg-background text-center text-sm leading-5 text-foreground ">
                 © 2024 Rcode Copyright. Todos os direitos reservados.
               </footer>
             </Providers>{' '}
