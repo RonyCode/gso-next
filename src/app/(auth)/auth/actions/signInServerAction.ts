@@ -3,11 +3,11 @@ import { SignInSchema } from '@/app/(auth)/auth/schemas/SignInSchema'
 import { ZodError } from 'zod'
 import { revalidatePath } from 'next/cache'
 
-export const signInServerActions = async (data: FormData | SignInSchema) => {
-  revalidatePath('/')
+export const signInServerActions = async (payload: FormData | SignInSchema) => {
+  console.log(payload)
   try {
-    if (data instanceof FormData) {
-      const formData = Object.fromEntries(data.entries())
+    if (payload instanceof FormData) {
+      const formData = Object.fromEntries(payload.entries())
       const result = SignInSchema.safeParse(formData)
 
       if (result.success) {
@@ -19,8 +19,9 @@ export const signInServerActions = async (data: FormData | SignInSchema) => {
         return JSON.parse(JSON.stringify(result.error as ZodError))
       }
     }
+    revalidatePath('/')
 
-    return data
+    return payload
   } catch (error) {
     return JSON.parse(JSON.stringify(error as ZodError))
   }

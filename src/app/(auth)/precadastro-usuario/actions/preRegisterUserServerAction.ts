@@ -7,6 +7,7 @@ export const preRegisterUserServerActions = async (
   data: FormData | PreRegisterUserSchema,
 ) => {
   revalidatePath('/')
+  console.log(data)
   try {
     if (data instanceof FormData) {
       const formData = Object.fromEntries(data.entries())

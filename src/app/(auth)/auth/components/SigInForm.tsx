@@ -28,7 +28,7 @@ import { FaSpinner } from 'react-icons/fa6'
 
 type UserAuthFormProps = React.HTMLAttributes<HTMLDivElement>
 
-const LoginForm = ({ className, ...props }: UserAuthFormProps) => {
+const SigInForm = ({ className, ...props }: UserAuthFormProps) => {
   const [pending, startTransition] = useTransition()
   const { signInWithCredentials } = useSignIn()
   const router = useRouter()
@@ -36,6 +36,10 @@ const LoginForm = ({ className, ...props }: UserAuthFormProps) => {
   const handleSubmitLogin = async (data: FormData | SignInSchema) => {
     startTransition(async () => {
       const resultData = await signInServerActions(data)
+      console.log(data)
+      console.log(resultData)
+      console.log(process.env.NEXT_PUBLIC_NEXT_URL)
+      return
       const result: ResultSignIn = await signInWithCredentials(resultData)
       if (!result.ok) {
         toast({
@@ -166,4 +170,4 @@ const LoginForm = ({ className, ...props }: UserAuthFormProps) => {
     </>
   )
 }
-export default LoginForm
+export default SigInForm

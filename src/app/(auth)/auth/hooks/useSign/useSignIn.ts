@@ -29,6 +29,7 @@ export const useSignIn = () => {
       isUserExternal,
       redirect: false,
     })
+    console.log(result)
     return result as unknown as ResultSignIn
   }
   return {

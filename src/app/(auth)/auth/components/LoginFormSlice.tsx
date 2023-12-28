@@ -1,12 +1,12 @@
 'use client'
 
-import { UserAuthForm } from '@/app/(auth)/auth/components/UserAuthForm'
+import { SignUpForm } from '@/app/(auth)/auth/components/SignUpForm'
 import { Button, buttonVariants } from '@/ui/button'
 import { cn } from '@/lib/utils'
 import Logo from '../../../../../public/images/Logo'
 import Image from 'next/image'
 import Link from 'next/link'
-import LoginForm from '@/app/(auth)/auth/components/LoginForm'
+import SigInForm from '@/app/(auth)/auth/components/SigInForm'
 import React from 'react'
 
 const LoginFormSlice = () => {
@@ -39,7 +39,7 @@ const LoginFormSlice = () => {
                   Cadastre-se
                 </Button>
                 <div className="justify-self-center ">
-                  <LoginForm />
+                  <SigInForm />
                 </div>
               </div>
             </div>
@@ -115,7 +115,7 @@ const LoginFormSlice = () => {
             >
               Entrar
             </Button>
-            <UserAuthForm />
+            <SignUpForm />
             <p className="px-8 text-center text-sm text-muted-foreground">
               Ao se cadastrar você concorda com nossos{' '}
               <Link

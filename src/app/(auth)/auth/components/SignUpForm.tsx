@@ -19,7 +19,7 @@ import { usePreRegister } from '@/app/(auth)/precadastro-usuario/hooks/usePreReg
 
 type UserAuthFormProps = React.HTMLAttributes<HTMLDivElement>
 
-export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
+export function SignUpForm({ className, ...props }: UserAuthFormProps) {
   const [pending, startTransition] = useTransition()
   const { signInWithGoogle } = useSignIn()
   const { preRegisterUser } = usePreRegister()
