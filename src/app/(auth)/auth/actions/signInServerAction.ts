@@ -4,22 +4,20 @@ import { ZodError } from 'zod'
 import { revalidatePath } from 'next/cache'
 
 export const signInServerActions = async (payload: FormData | SignInSchema) => {
-  console.log(payload)
   try {
+    revalidatePath('/')
     if (payload instanceof FormData) {
       const formData = Object.fromEntries(payload.entries())
-      const result = SignInSchema.safeParse(formData)
 
+      const result = SignInSchema.safeParse(formData)
       if (result.success) {
         return result.data as SignInSchema
       }
-
       if (!result.success) {
         console.log(result.error.message)
         return JSON.parse(JSON.stringify(result.error as ZodError))
       }
     }
-    revalidatePath('/')
 
     return payload
   } catch (error) {

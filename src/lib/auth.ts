@@ -22,11 +22,15 @@ export const confereLogado = async (payload: {
   senha?: string
   is_user_external?: number
 }) => {
-  const res = await fetch(` ${process.env.NEXT_PUBLIC_API_NEXT}/api/login`, {
+  console.log(payload)
+  console.log(process.env.NEXT_PUBLIC_API_NEXT + '/api/login')
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_NEXT}/api/login`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(payload),
   })
+
+  console.log(res)
 
   if (res.ok) {
     return await res.json()
@@ -72,6 +76,7 @@ export const authOptions: NextAuthOptions = {
 
         const user = await confereLogado(payload)
 
+        console.log(user)
         if (user) {
           return user
         } else {
