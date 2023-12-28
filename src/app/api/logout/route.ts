@@ -6,9 +6,11 @@ export async function GET(request: Request) {
   deleteCookies()
 
   await signOut({
-    callbackUrl: '/auth',
+    callbackUrl: process.env.NEXT_PUBLIC_NEXT_URL + '/auth',
     redirect: false,
   })
 
-  return NextResponse.redirect(new URL('/auth', request.url))
+  return NextResponse.redirect(
+    new URL(process.env.NEXT_PUBLIC_NEXT_URL + '/auth', request.url),
+  )
 }

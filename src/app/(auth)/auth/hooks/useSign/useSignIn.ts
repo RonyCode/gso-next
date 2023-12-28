@@ -8,9 +8,7 @@ export const useSignIn = () => {
   async function signInWithGoogle() {
     try {
       await signIn('google', {
-        callbackUrl:
-          new TextEncoder().encode(process.env.NEXT_PUBLIC_NEXT_URL) +
-          '/dashboard',
+        callbackUrl: '/dashboard',
       })
     } catch (error) {
       // display error message to user
