@@ -6,7 +6,7 @@ import { z } from 'zod'
 export const useCpf = () => {
   const findPersonByCpf = async (cpf: string, dataNascimento: string) => {
     try {
-      await fetchWrapper('/api/cpf', {
+      await fetchWrapper(`${process.env.NEXT_PUBLIC_NEXT_URL}/api/cpf`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

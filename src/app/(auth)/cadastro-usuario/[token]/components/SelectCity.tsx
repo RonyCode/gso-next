@@ -17,9 +17,7 @@ import {
   FieldValues,
   UseFormReturn,
 } from 'react-hook-form'
-import { stateStore } from '@/stores/Address/stateStore'
 import { cityStore } from '@/stores/Address/CityByStateStore'
-import StateStoreInitialize from '@/stores/Address/StateStoreInitialize'
 import { getAllCitiesByState } from '@/lib/getAllCitiesByState'
 
 type SelectCityProps = {
@@ -27,11 +25,7 @@ type SelectCityProps = {
   field: ControllerRenderProps<FieldValues, string>
 }
 
-const arrayInitialCities = getAllCitiesByState('DF')
-
 export const SelectCity = ({ form, field }: SelectCityProps) => {
-  console.log(cityStore.getState().cities)
-
   const arrayCitiesByState = cityStore.getState().cities
   console.log(arrayCitiesByState)
   return (

@@ -10,16 +10,16 @@ export async function middleware(request: NextRequest) {
           'https://wsgso.000webhostapp.com/',
           'https://gso-next-three.vercel.app',
           'http://3.18.96.60',
-          `${process.env.API_GSO}`,
-          `${process.env.API_NEXT}`,
-          `${process.env.NEXTAUTH_URL}`,
+          `${process.env.NEXT_PUBLIC_API_GSO}`,
+          `${process.env.NEXT_PUBLIC_API_NEXT}`,
+          `${process.env.NEXT_PUBLIC_NEXT_URL}`,
           'http://127.0.0.1:3000',
         ]
       : [
-          `${process.env.API_GSO}`,
+          `${process.env.NEXT_PUBLIC_API_GSO}`,
           'https://gso-next-three.vercel.app',
-          `${process.env.API_NEXT}`,
-          `${process.env.NEXTAUTH_URL}`,
+          `${process.env.NEXT_PUBLIC_API_NEXT}`,
+          `${process.env.NEXT_PUBLIC_NEXT_URL}`,
           'http://127.0.0.1:3000',
         ]
   const origin = request.headers.get('origin')
@@ -48,7 +48,7 @@ export async function middleware(request: NextRequest) {
     if (token) {
       // RENOVA OS TOKENS
       const resp = await fetch(
-        `${process.env.API_GSO}/api/auth/refresh-token/${tokenPayload}`,
+        `${process.env.NEXT_PUBLIC_API_GSO}/api/auth/refresh-token/${tokenPayload}`,
         {
           method: 'GET',
           headers: {

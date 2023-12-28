@@ -1,13 +1,16 @@
 import { NextRequest, NextResponse } from 'next/server'
 
 export async function GET(request: NextRequest) {
-  const res = await fetch(`${process.env.REACT_APP_API_GSO}/api/auth/estados`, {
-    // const res = await fetch('https://wsgso.000webhostapp.com/api/auth/estados', {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_GSO}/api/auth/estados`,
+    {
+      // const res = await fetch('https://wsgso.000webhostapp.com/api/auth/estados', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
     },
-  })
+  )
   if (!res.ok) {
     return NextResponse.json(
       { message: res.statusText },

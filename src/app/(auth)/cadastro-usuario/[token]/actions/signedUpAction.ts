@@ -12,7 +12,7 @@ export async function signedUpAction(formData: RegisterUserSchema) {
       revalidatePath('/')
 
       return fetchWrapper<ResponseUserSigned>(
-        'http://localhost:3000/api/cadastrar-usuario',
+        `${process.env.NEXT_PUBLIC_NEXT_URL}/api/cadastro-usuario`,
         {
           method: 'POST',
           headers: {

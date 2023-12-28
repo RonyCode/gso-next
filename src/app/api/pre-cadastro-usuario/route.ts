@@ -7,7 +7,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     return NextResponse.json({ message: 'Erro parâmetros necessários' })
 
   const res = await fetch(
-    `${process.env.REACT_APP_API_GSO}/api/auth/pre-cadastro`,
+    `${process.env.NEXT_PUBLIC_API_GSO}/api/auth/pre-cadastro`,
     {
       method: 'POST',
       headers: {

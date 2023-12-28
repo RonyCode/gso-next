@@ -6,7 +6,7 @@ export const getAllCitiesByState = async (
   state: string,
 ): Promise<AddressProps[]> => {
   const res = await fetchWrapper<AddressProps[]>(
-    `${process.env.REACT_APP_NEXT_URL}/api/cidades/${state}`,
+    `${process.env.NEXT_PUBLIC_NEXT_URL}/api/cidades/${state}`,
     {
       method: 'GET',
       headers: {

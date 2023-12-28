@@ -22,7 +22,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
   }
 
   const res = await fetch(
-    `${process.env.REACT_APP_API_GSO}/api/auth/cadastro`,
+    `${process.env.NEXT_PUBLIC_API_GSO}/api/auth/cadastro`,
     {
       method: 'POST',
       headers: {

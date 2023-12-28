@@ -20,11 +20,8 @@ import {
 import { getAllStates } from '@/lib/getAllStates'
 import { use } from 'react'
 import { getAllCitiesByState } from '@/lib/getAllCitiesByState'
-import { stateStore } from '@/stores/Address/stateStore'
-import StateStoreInitialize from '@/stores/Address/StateStoreInitialize'
 import { cityStore } from '@/stores/Address/CityByStateStore'
 import { RegisterUserSchema } from '@/app/(auth)/cadastro-usuario/[token]/schemas/RegisterUserSchema'
-import { TypeScope } from '@typescript-eslint/scope-manager'
 
 type SelectStateProps = {
   form: UseFormReturn<RegisterUserSchema>
@@ -36,7 +33,6 @@ const arrayState = getAllStates()
 export default function SelectState({ form, field }: SelectStateProps) {
   async function handleCity(value: string) {
     cityStore.setState({ cities: await getAllCitiesByState(value) })
-    console.log(cityStore.getState().cities)
   }
 
   const states = use(arrayState)

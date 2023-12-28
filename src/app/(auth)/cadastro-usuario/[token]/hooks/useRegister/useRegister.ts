@@ -9,7 +9,7 @@ export const useRegister = () => {
     try {
       const { email, senha, nome, confirmaSenha, telefone } = data
       await fetchWrapper(
-        `${process.env.REACT_APP_NEXT_URL}/api/cadastrar-usuario`,
+        `${process.env.NEXT_PUBLIC_NEXT_URL}/api/cadastrar-usuario`,
         {
           method: 'POST',
           headers: {
