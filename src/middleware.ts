@@ -9,7 +9,7 @@ export async function middleware(request: NextRequest) {
           'https://servicodados.ibge.gov.br/api/v1/localidades/estados',
           'https://wsgso.000webhostapp.com/',
           'https://gso-next-three.vercel.app',
-          'http://54.232.66.174',
+          'http://3.18.96.60',
           `${process.env.API_GSO}`,
           `${process.env.API_NEXT}`,
           `${process.env.NEXTAUTH_URL}`,
