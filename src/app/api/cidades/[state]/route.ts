@@ -6,7 +6,7 @@ export async function GET(
 ) {
   const state = params.state
   const res: Response = await fetch(
-    `${process.env.API_GSO}/api/auth/cidades/${state}`,
+    `${process.env.REACT_APP_API_GSO}/api/auth/cidades/${state}`,
   )
   if (!res.ok) {
     return NextResponse.json(

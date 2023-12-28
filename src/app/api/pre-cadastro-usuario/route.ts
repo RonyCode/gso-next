@@ -6,13 +6,16 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
   if (!email)
     return NextResponse.json({ message: 'Erro parâmetros necessários' })
 
-  const res = await fetch(`${process.env.API_GSO}/api/auth/pre-cadastro`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
+  const res = await fetch(
+    `${process.env.REACT_APP_API_GSO}/api/auth/pre-cadastro`,
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email }),
     },
-    body: JSON.stringify({ email }),
-  })
+  )
 
   if (!res.ok) {
     return NextResponse.json({ ...(await res?.json()) }, { status: 400 })

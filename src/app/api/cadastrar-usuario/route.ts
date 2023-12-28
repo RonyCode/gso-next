@@ -21,14 +21,17 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     })
   }
 
-  const res = await fetch(`${process.env.API_GSO}/api/auth/cadastro`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': origin || '*',
+  const res = await fetch(
+    `${process.env.REACT_APP_API_GSO}/api/auth/cadastro`,
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': origin || '*',
+      },
+      body: JSON.stringify({ ...body }),
     },
-    body: JSON.stringify({ ...body }),
-  })
+  )
 
   if (!res.ok) {
     const { message } = await res.json()

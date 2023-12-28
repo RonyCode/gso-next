@@ -4,7 +4,7 @@ import { stateStore } from '@/stores/Address/stateStore'
 
 export const getAllStates = async () => {
   const res = await fetchWrapper<AddressProps[]>(
-    `${process.env.NEXTAUTH_URL}/api/estados`,
+    `${process.env.REACT_APP_NEXT_URL}/api/estados`,
     {
       method: 'GET',
       headers: {
