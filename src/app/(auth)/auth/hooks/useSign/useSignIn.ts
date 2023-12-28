@@ -9,7 +9,8 @@ export const useSignIn = () => {
     try {
       await signIn('google', {
         callbackUrl:
-          new TextEncoder().encode(process.env.NEXTAUTH_URL) + '/dashboard',
+          new TextEncoder().encode(process.env.NEXT_PUBLIC_NEXTAUTH_URL) +
+          '/dashboard',
       })
     } catch (error) {
       // display error message to user

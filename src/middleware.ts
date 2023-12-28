@@ -8,19 +8,14 @@ export async function middleware(request: NextRequest) {
       ? [
           'https://servicodados.ibge.gov.br/api/v1/localidades/estados',
           'https://wsgso.000webhostapp.com/',
-          'https://gso-next-three.vercel.app',
-          'http://3.18.96.60',
           `${process.env.NEXT_PUBLIC_API_GSO}`,
           `${process.env.NEXT_PUBLIC_API_NEXT}`,
           `${process.env.NEXT_PUBLIC_NEXT_URL}`,
-          'http://127.0.0.1:3000',
         ]
       : [
           `${process.env.NEXT_PUBLIC_API_GSO}`,
-          'https://gso-next-three.vercel.app',
           `${process.env.NEXT_PUBLIC_API_NEXT}`,
           `${process.env.NEXT_PUBLIC_NEXT_URL}`,
-          'http://127.0.0.1:3000',
         ]
   const origin = request.headers.get('origin')
   if (origin && !allowedOrigins.includes(origin)) {
