@@ -10,7 +10,7 @@ export const usePreRegister = () => {
     const { email } = data
     try {
       return await fetchWrapper<ResponseUserSigned>(
-        `${process.env.NEXT_PUBLIC_NEXT_URL}/api/precadastro-usuario`,
+        `${process.env.NEXT_PUBLIC_NEXT_URL}/api/pre-cadastro-usuario`,
         {
           method: 'POST',
           headers: {

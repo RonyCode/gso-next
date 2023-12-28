@@ -16,6 +16,8 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
       body: JSON.stringify({ email }),
     },
   )
+  console.log(await res.json())
+  console.log(process.env.NEXT_PUBLIC_API_GSO + '/api/auth/pre-cadastro')
 
   if (!res.ok) {
     return NextResponse.json({ ...(await res?.json()) }, { status: 400 })

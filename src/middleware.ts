@@ -9,7 +9,7 @@ export async function middleware(request: NextRequest) {
           'https://servicodados.ibge.gov.br/api/v1/localidades/estados',
           'https://wsgso.000webhostapp.com',
           'http://localhost:3000/api/auth/callback/credentials',
-          'http://localhost:3000',
+          'http://localhost:3000/api/pre-cadastro-usuario',
           `${process.env.NEXT_PUBLIC_API_GSO}`,
           `${process.env.NEXT_PUBLIC_API_NEXT}`,
           `${process.env.NEXT_PUBLIC_NEXT_URL}`,
@@ -17,7 +17,7 @@ export async function middleware(request: NextRequest) {
       : [
           'http://localhost:3000',
           'http://localhost:3000/api/auth/callback/credentials',
-
+          'http://localhost:3000/api/pre-cadastro-usuario',
           `${process.env.NEXT_PUBLIC_API_GSO}`,
           `${process.env.NEXT_PUBLIC_API_NEXT}`,
           `${process.env.NEXT_PUBLIC_NEXT_URL}`,

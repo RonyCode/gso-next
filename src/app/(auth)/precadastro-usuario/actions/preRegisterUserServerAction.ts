@@ -7,10 +7,11 @@ export const preRegisterUserServerActions = async (
   data: FormData | PreRegisterUserSchema,
 ) => {
   revalidatePath('/')
-  console.log(data)
   try {
     if (data instanceof FormData) {
       const formData = Object.fromEntries(data.entries())
+      console.log(formData)
+
       const result = PreRegisterUserSchema.safeParse(formData)
 
       if (result.success) {
