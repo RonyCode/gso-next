@@ -1,7 +1,7 @@
 'use client'
 
 import * as React from 'react'
-import { useTransition } from 'react'
+import { useEffect, useState, useTransition } from 'react'
 import {
   FaBuildingColumns,
   FaEnvelope,
@@ -102,6 +102,13 @@ export const UserRegisterForm = ({
   })
 
   const [pending, startTransition] = useTransition()
+  const [isClient, setIsClient] = useState(false)
+
+  useEffect(() => {
+    setIsClient(true)
+  }, [])
+
+  console.log(isClient ? 'This is never prerendered' : 'Prerendered')
 
   const handleSubmit = (data: RegisterUserSchema) => {
     startTransition(async () => {

@@ -23,7 +23,6 @@ export const TokenVerify = async ($token: string) => {
         code: 400,
       } as ResponseProps
     }
-
     return payload.data as ResponseProps
   } catch (error) {
     return {
