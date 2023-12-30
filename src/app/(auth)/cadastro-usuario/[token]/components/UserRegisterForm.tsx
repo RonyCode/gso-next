@@ -174,7 +174,9 @@ export const UserRegisterForm = ({
     <>
       <div className="  flex  h-full  flex-col ">
         <div className="flex flex-col space-y-2 text-center">
-          <h1 className="text-2xl font-semibold tracking-tight">Cadastro</h1>
+          <span className="text-2xl font-semibold tracking-tight">
+            Cadastro
+          </span>
           <p className="text-sm text-muted-foreground ">
             Complete o cadastro observe os campos obrigatórios
           </p>

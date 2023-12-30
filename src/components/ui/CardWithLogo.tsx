@@ -34,7 +34,7 @@ export const CardWithLogo = ({
         <CardHeader className="flex w-full flex-col items-center justify-around  space-y-4">
           <Logo width={120} />
           <CardTitle>
-            <h1 className="text-center text-2xl font-bold">{title}</h1>
+            <span className="text-center text-2xl font-bold">{title}</span>
           </CardTitle>
           <CardDescription>{description}</CardDescription>
         </CardHeader>
