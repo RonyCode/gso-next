@@ -12,10 +12,10 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { toast } from '@/ui/use-toast'
 import { useTransition } from 'react'
 import { useSignIn } from '@/app/(auth)/auth/hooks/useSign'
-import { preRegisterUserServerActions } from '@/app/(auth)/precadastro-usuario/actions/preRegisterUserServerAction'
+import { preRegisterUserServerActions } from '@/app/(auth)/auth/actions/preRegisterUserServerAction'
 import { redirect } from 'next/navigation'
-import { PreRegisterUserSchema } from '@/app/(auth)/precadastro-usuario/schemas/PreRegisterUserSchema'
-import { usePreRegister } from '@/app/(auth)/precadastro-usuario/hooks/usePreRegister/usePreRegister'
+import { PreRegisterUserSchema } from '@/app/(auth)/auth/schemas/PreRegisterUserSchema'
+import { usePreRegister } from '@/app/(auth)/auth/hooks/usePreRegister/usePreRegister'
 
 type UserAuthFormProps = React.HTMLAttributes<HTMLDivElement>
 

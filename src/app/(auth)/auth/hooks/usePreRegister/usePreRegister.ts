@@ -1,6 +1,6 @@
 import { toast } from 'react-toastify'
 
-import { PreRegisterUserSchema } from '@/app/(auth)/precadastro-usuario/schemas/PreRegisterUserSchema'
+import { PreRegisterUserSchema } from '@/app/(auth)/auth/schemas/PreRegisterUserSchema'
 import { fetchWrapper } from '@/functions/fetch'
 import { z } from 'zod'
 import { ResponseUserSigned } from '../../../../../../types/index'
