@@ -25,13 +25,3 @@ const CadastroUsuario = async ({ params }: { params: { token: string } }) => {
   )
 }
 export default CadastroUsuario
-
-export async function generateStaticParams() {
-  const test = ['OQAoB5aPxE4FYUtdPMpvFl26By8']
-
-  return test.map((token) => {
-    return {
-      token,
-    }
-  })
-}
