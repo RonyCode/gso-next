@@ -65,13 +65,16 @@ enum Fields {
   confirmaSenha = 'confirmaSenha',
 }
 
-type UserRegisterFormProps = React.HTMLAttributes<HTMLDivElement>
+type UserRegisterFormProps = React.HTMLAttributes<HTMLDivElement> & {
+  params: string
+}
 
 // CHAMA O FETCH FORA DO COMPONENTE PARA NAO RE - RENDERIZAR LOOP INFINITO
 // INITIALIZE STATES
 getAllStates()
 
 export const UserRegisterForm = ({
+  params,
   className,
   ...props
 }: UserRegisterFormProps) => {
@@ -81,7 +84,7 @@ export const UserRegisterForm = ({
     resolver: zodResolver(RegisterUserSchema),
     defaultValues: {
       nome: '',
-      email: '',
+      email: params,
       cpf: '',
       data_nascimento: '',
       telefone: '',
@@ -397,7 +400,6 @@ export const UserRegisterForm = ({
                         <Input
                           {...field}
                           id="numero"
-                          type="text"
                           placeholder="Digite o numero da casa"
                           autoCapitalize="none"
                           autoComplete="numero"

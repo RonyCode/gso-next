@@ -4,11 +4,15 @@ interface ResponseType {
   message: string
   status: string
   code: number
+  email?: string
 }
+
+type ResponseProps = JWTPayload & ResponseType
 export const TokenVerify = async ($token: string) => {
   try {
-    const payload: ResponseType | JWTPayload = decodeJwt($token)
-    const dateExpires = payload!.exp!
+    const payload = decodeJwt($token) as ResponseProps
+    const dateExpires = payload.exp!
+
     if (
       new Date(dateExpires * 1000).toLocaleString() <
       new Date().toLocaleString('pt-BR')
@@ -17,10 +21,10 @@ export const TokenVerify = async ($token: string) => {
         message: 'Token inválido ou expirado',
         status: 'failure',
         code: 400,
-      }
+      } as ResponseProps
     }
 
-    return decodeJwt($token)
+    return payload.data as ResponseProps
   } catch (error) {
     return {
       message: 'invalid token',

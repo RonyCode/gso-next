@@ -27,7 +27,6 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': origin || '*',
       },
       body: JSON.stringify({ ...body }),
     },

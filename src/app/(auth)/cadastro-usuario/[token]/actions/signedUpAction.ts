@@ -5,6 +5,7 @@ import { revalidatePath } from 'next/cache'
 import { RegisterUserSchema } from '@/app/(auth)/cadastro-usuario/[token]/schemas/RegisterUserSchema'
 import { ResponseUserSigned } from '../../../../../../types/index'
 import { fetchWrapper } from '@/functions/fetch'
+import { useUserStore } from '@/stores/user/userStore'
 
 export async function signedUpAction(formData: RegisterUserSchema) {
   try {
@@ -12,7 +13,7 @@ export async function signedUpAction(formData: RegisterUserSchema) {
       revalidatePath('/')
 
       return fetchWrapper<ResponseUserSigned>(
-        `${process.env.NEXT_PUBLIC_NEXT_URL}/api/cadastro-usuario`,
+        `${process.env.NEXT_PUBLIC_NEXT_URL}/api/cadastrar-usuario`,
         {
           method: 'POST',
           headers: {
