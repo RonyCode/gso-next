@@ -21,6 +21,13 @@ const CadastroUsuario = async ({ params }: { params: { token: string } }) => {
   console.log(jwtValid)
   return (
     <>
+      {new Date().toLocaleString('pt-BR')}
+      <br></br>
+      {new Date().toLocaleString('pt-BR', { timeZone: 'America/Araguaina' })}
+      <br></br>
+
+      {new Date().toLocaleString()}
+
       <MaxWidthWrapper className="mt-24 px-6 lg:mt-0 lg:w-7/12 lg:px-0 ">
         {jwtValid.code !== 400 ? (
           <UserRegisterForm params={jwtValid.email || ''} />
