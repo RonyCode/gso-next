@@ -7,6 +7,7 @@ export async function GET(request: Request) {
 
   if (typeof window !== 'undefined') {
     await signOut({
+      callbackUrl: process.env.NEXT_PUBLIC_NEXT_URL,
       redirect: false,
     })
   }
