@@ -22,7 +22,7 @@ const CadastroUsuario = async ({ params }: { params: { token: string } }) => {
   return (
     <>
       <MaxWidthWrapper className="mt-24 px-6 lg:mt-0 lg:w-7/12 lg:px-0 ">
-        {jwtValid ? (
+        {jwtValid.code! !== 400 ? (
           <UserRegisterForm params={jwtValid.email || ''} />
         ) : (
           <CardWithLogo>
