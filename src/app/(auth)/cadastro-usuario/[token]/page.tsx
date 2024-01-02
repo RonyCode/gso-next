@@ -18,15 +18,26 @@ const CadastroUsuario = async ({ params }: { params: { token: string } }) => {
   useUserStore.setState({
     state: { user: { email: tokenReplaced as string } as UserType },
   })
-  console.log(jwtValid)
+
+  const dateNowConverted = new Date().toLocaleString('pt-BR', {
+    timeZone: 'America/Araguaina',
+  })
+
+  const dateExpiresCpnverted = new Date(1704215133 * 1000).toLocaleString(
+    'pt-BR',
+    {
+      timeZone: 'America/Araguaina',
+    },
+  )
+
   return (
     <>
-      {new Date().toLocaleString('pt-BR')}
+      {dateNowConverted > dateExpiresCpnverted}
       <br></br>
-      {new Date().toLocaleString('pt-BR', { timeZone: 'America/Araguaina' })}
+      {dateNowConverted}
       <br></br>
 
-      {new Date().toLocaleString()}
+      {dateExpiresCpnverted}
 
       <MaxWidthWrapper className="mt-24 px-6 lg:mt-0 lg:w-7/12 lg:px-0 ">
         {jwtValid.code !== 400 ? (
