@@ -1,10 +1,15 @@
-import { getServerSession } from 'next-auth'
 import 'react-toastify/dist/ReactToastify.css'
 
 import BannerHome1 from '@/components/Layout/banner/BannerHome1'
 import BannerHome2 from '@/components/Layout/banner/BannerHome2'
 import { CardsBanner } from '@/components/Cards/CardsBanner'
 import MaxWidthWrapper from '@/components/Layout/MaxWidthWrapper'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'GSO | Home',
+  description: 'Authentication forms built using the components.',
+}
 
 export default async function Home() {
   return (
