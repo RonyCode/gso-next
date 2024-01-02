@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 const CadastroUsuario = async ({ params }: { params: { token: string } }) => {
   const tokenReplaced = params.token
     .replaceAll('%2B', '.')
-    .replaceAll('%2B', '.')
+    .replaceAll('%20', '.')
 
   const jwtValid = await TokenVerify(tokenReplaced)
 
