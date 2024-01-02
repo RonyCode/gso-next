@@ -86,7 +86,10 @@ export async function middleware(request: NextRequest) {
 
   // SE NÃO TEM O REFRESH-TOKEN PROTEGE TUDO
   if (!sessaoToken) {
-    if (request.nextUrl.pathname === '/auth') {
+    if (
+      request.nextUrl.pathname === '/auth' ||
+      request.nextUrl.pathname === '/api/logout'
+    ) {
       return response
     } else {
       return NextResponse.redirect(new URL('/auth', request.url))
