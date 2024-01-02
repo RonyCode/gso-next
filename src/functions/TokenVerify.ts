@@ -13,18 +13,18 @@ export const TokenVerify = async ($token: string) => {
     const payload = decodeJwt($token) as ResponseProps
     const dateExpires = payload.exp!
 
-    const dateNowConverted = new Date().toLocaleString('pt-BR', {
+    const dateNowConverted = new Date().toLocaleString('en-BR', {
       timeZone: 'America/Araguaina',
     })
 
     const dateExpiresCpnverted = new Date(dateExpires * 1000).toLocaleString(
-      'pt-BR',
+      'en-BR',
       {
         timeZone: 'America/Araguaina',
       },
     )
 
-    if (dateExpiresCpnverted > dateNowConverted) {
+    if (dateExpiresCpnverted < dateNowConverted) {
       return {
         message: 'Token inválido ou expirado',
         status: 'failure',
