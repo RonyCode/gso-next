@@ -12,7 +12,8 @@ export async function GET(request: Request) {
     })
   }
 
-  return NextResponse.redirect(
-    new URL(process.env.NEXT_PUBLIC_NEXT_URL + '/auth', request.url),
-  )
+  return NextResponse.next()
+  // return NextResponse.redirect(
+  //   new URL(process.env.NEXT_PUBLIC_NEXT_URL + '/auth', request.url),
+  // )
 }
