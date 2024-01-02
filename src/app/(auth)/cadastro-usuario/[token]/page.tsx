@@ -5,6 +5,7 @@ import { useUserStore } from '@/stores/user/userStore'
 import { UserType } from '../../../../../types/index'
 import { Metadata } from 'next'
 import { UserRegisterForm } from '@/app/(auth)/cadastro-usuario/[token]/components/UserRegisterForm'
+import { decodeJwt } from 'jose'
 
 export const metadata: Metadata = {
   title: 'GSO | Cadastro',
@@ -23,7 +24,10 @@ const CadastroUsuario = async ({ params }: { params: { token: string } }) => {
     timeZone: 'America/Araguaina',
   })
 
-  const dateExpiresCpnverted = new Date(1704215133 * 1000).toLocaleString(
+  const payload = decodeJwt(tokenReplaced)
+  const dateExpires = payload.exp!
+
+  const dateExpiresCpnverted = new Date(dateExpires * 1000).toLocaleString(
     'pt-BR',
     {
       timeZone: 'America/Araguaina',
