@@ -24,22 +24,22 @@ const CadastroUsuario = async ({ params }: { params: { token: string } }) => {
   const payload = decodeJwt(tokenReplaced)
   const dateExpires = payload.exp!
 
-  const dateExpiresCpnverted = new Date(1704216070 * 1000).toLocaleString(
+  const dateExpiresCpnverted = new Date(dateExpires * 1000).toLocaleString(
     'pt-BR',
     {
       timeZone: 'America/Araguaina',
     },
   )
-
   return (
     <>
-      {dateExpires}
-      <br></br>
-      {dateNowConverted}
-      <br></br>
+      <div className="p-24 text-center">
+        {tokenReplaced}
+        <br></br>
+        {dateNowConverted}
+        <br></br>
 
-      {dateExpiresCpnverted}
-
+        {dateExpiresCpnverted}
+      </div>
       <MaxWidthWrapper className="mt-24 px-6 lg:mt-0 lg:w-7/12 lg:px-0 ">
         {dateNowConverted > dateExpiresCpnverted ? (
           <UserRegisterForm params={jwtValid.email || ''} />
