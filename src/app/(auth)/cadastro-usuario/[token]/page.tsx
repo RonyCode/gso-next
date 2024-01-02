@@ -1,11 +1,8 @@
 import MaxWidthWrapper from '@/components/Layout/MaxWidthWrapper'
 import { TokenVerify } from '@/functions/TokenVerify'
 import { CardWithLogo } from '@/ui/CardWithLogo'
-import { useUserStore } from '@/stores/user/userStore'
-import { UserType } from '../../../../../types/index'
 import { Metadata } from 'next'
 import { UserRegisterForm } from '@/app/(auth)/cadastro-usuario/[token]/components/UserRegisterForm'
-import { decodeJwt } from 'jose'
 
 export const metadata: Metadata = {
   title: 'GSO | Cadastro',
