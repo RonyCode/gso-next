@@ -24,7 +24,7 @@ const CadastroUsuario = async ({ params }: { params: { token: string } }) => {
       <MaxWidthWrapper className="mt-24 px-6 lg:mt-0 lg:w-7/12 lg:px-0 ">
         {jwtValid.code === 400 ? (
           <CardWithLogo>
-            Token inválido ou expirado por favor tente novamente
+            Link inválido ou expirado por favor tente novamente
           </CardWithLogo>
         ) : (
           <UserRegisterForm params={jwtValid.email || ''} />

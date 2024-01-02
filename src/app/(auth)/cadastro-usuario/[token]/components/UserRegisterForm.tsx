@@ -102,13 +102,6 @@ export const UserRegisterForm = ({
   })
 
   const [pending, startTransition] = useTransition()
-  const [isClient, setIsClient] = useState(false)
-
-  useEffect(() => {
-    setIsClient(true)
-  }, [])
-
-  console.log(isClient ? 'This is never prerendered' : 'Prerendered')
 
   const handleSubmit = (data: RegisterUserSchema) => {
     startTransition(async () => {
