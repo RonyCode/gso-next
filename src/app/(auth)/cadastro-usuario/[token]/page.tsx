@@ -22,9 +22,9 @@ const CadastroUsuario = async ({ params }: { params: { token: string } }) => {
   })
 
   const payload = decodeJwt(tokenReplaced)
-  const dateExpires = payload.exp!
+  // const dateExpires = payload!.exp!
 
-  const dateExpiresCpnverted = new Date(dateExpires * 1000).toLocaleString(
+  const dateExpiresCpnverted = new Date(1704229070 * 1000).toLocaleString(
     'pt-BR',
     {
       timeZone: 'America/Araguaina',
