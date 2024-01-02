@@ -24,7 +24,7 @@ export const TokenVerify = async ($token: string) => {
       },
     )
 
-    if (dateExpiresCpnverted < dateNowConverted) {
+    if (dateExpiresCpnverted > dateNowConverted) {
       return {
         message: 'Token inválido ou expirado',
         status: 'failure',

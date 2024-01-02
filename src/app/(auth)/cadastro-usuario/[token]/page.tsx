@@ -21,7 +21,6 @@ const CadastroUsuario = async ({ params }: { params: { token: string } }) => {
 
   return (
     <>
-      <div className="p-24 text-center"></div>
       <MaxWidthWrapper className="mt-24 px-6 lg:mt-0 lg:w-7/12 lg:px-0 ">
         {jwtValid ? (
           <UserRegisterForm params={jwtValid.email || ''} />
