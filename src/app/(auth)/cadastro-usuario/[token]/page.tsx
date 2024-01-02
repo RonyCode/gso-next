@@ -16,9 +16,6 @@ const CadastroUsuario = async ({ params }: { params: { token: string } }) => {
   const tokenReplaced = params.token.replaceAll('%2B', '.')
 
   const jwtValid = await TokenVerify(tokenReplaced)
-  useUserStore.setState({
-    state: { user: { email: tokenReplaced as string } as UserType },
-  })
 
   const dateNowConverted = new Date().toLocaleString('pt-BR', {
     timeZone: 'America/Araguaina',
@@ -27,7 +24,7 @@ const CadastroUsuario = async ({ params }: { params: { token: string } }) => {
   const payload = decodeJwt(tokenReplaced)
   const dateExpires = payload.exp!
 
-  const dateExpiresCpnverted = new Date(dateExpires * 1000).toLocaleString(
+  const dateExpiresCpnverted = new Date(1704216070 * 1000).toLocaleString(
     'pt-BR',
     {
       timeZone: 'America/Araguaina',
@@ -36,7 +33,7 @@ const CadastroUsuario = async ({ params }: { params: { token: string } }) => {
 
   return (
     <>
-      {dateNowConverted > dateExpiresCpnverted}
+      {dateExpires}
       <br></br>
       {dateNowConverted}
       <br></br>
@@ -44,7 +41,7 @@ const CadastroUsuario = async ({ params }: { params: { token: string } }) => {
       {dateExpiresCpnverted}
 
       <MaxWidthWrapper className="mt-24 px-6 lg:mt-0 lg:w-7/12 lg:px-0 ">
-        {jwtValid.code !== 400 ? (
+        {dateNowConverted > dateExpiresCpnverted ? (
           <UserRegisterForm params={jwtValid.email || ''} />
         ) : (
           <CardWithLogo>
