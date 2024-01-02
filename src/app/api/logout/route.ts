@@ -5,10 +5,11 @@ import { signOut } from 'next-auth/react'
 export async function GET(request: Request) {
   deleteCookies()
 
-  await signOut({
-    callbackUrl: '/auth',
-    redirect: false,
-  })
+  if (typeof window !== 'undefined') {
+    await signOut({
+      redirect: false,
+    })
+  }
 
   return NextResponse.redirect(
     new URL(process.env.NEXT_PUBLIC_NEXT_URL + '/auth', request.url),
