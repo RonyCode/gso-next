@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server'
 import { redirect } from 'next/navigation'
+import { cookies } from 'next/headers'
 
 export async function GET(request: Request) {
   const userLogoutResponse = NextResponse.json(
@@ -7,9 +8,9 @@ export async function GET(request: Request) {
     { status: 200 },
   )
 
-  userLogoutResponse.cookies.delete('__Secure-next-auth.session-token')
-  userLogoutResponse.cookies.delete('__Host-next-auth.csrf-token')
-  userLogoutResponse.cookies.delete('__Secure-next-auth.callback-url')
+  cookies().delete('__Secure-next-auth.session-token')
+  cookies().delete('__Host-next-auth.csrf-token')
+  cookies().delete('__Secure-next-auth.callback-url')
 
   userLogoutResponse.cookies.set({
     name: 'next-auth.session-token',
