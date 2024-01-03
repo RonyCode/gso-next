@@ -59,6 +59,4 @@ export async function GET(request: Request) {
     path: '/',
     maxAge: 0,
   })
-
-  return redirect('/')
 }
