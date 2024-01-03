@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server'
+import { redirect } from 'next/navigation'
 
 export async function GET(request: Request) {
   const userLogoutResponse = NextResponse.json(
@@ -44,5 +45,5 @@ export async function GET(request: Request) {
     path: '/',
   })
 
-  return userLogoutResponse
+  return redirect('/')
 }
