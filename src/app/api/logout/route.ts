@@ -1,11 +1,7 @@
 import { NextResponse } from 'next/server'
-import { deleteCookies } from '@/components/Buttoms/SignOutButton/LogoutAction'
-import { signOut } from 'next-auth/react'
-import { cookies } from 'next/headers'
+import { redirect } from 'next/navigation'
 
 export async function GET(request: Request) {
-  deleteCookies()
-
   const userLogoutResponse = NextResponse.json(
     { message: 'User is logged out', sucess: true },
     { status: 200 },
@@ -59,7 +55,5 @@ export async function GET(request: Request) {
     maxAge: 0,
   })
 
-  return NextResponse.redirect(
-    new URL(process.env.NEXT_PUBLIC_NEXT_URL + '/auth', request.url),
-  )
+  return redirect('/auth')
 }
