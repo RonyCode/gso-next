@@ -1,5 +1,4 @@
 import { NextResponse } from 'next/server'
-import { redirect } from 'next/navigation'
 
 export async function GET(request: Request) {
   const userLogoutResponse = NextResponse.json(
@@ -55,5 +54,5 @@ export async function GET(request: Request) {
     maxAge: 0,
   })
 
-  return redirect('/auth')
+  return userLogoutResponse
 }
