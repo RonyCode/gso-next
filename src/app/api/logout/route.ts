@@ -59,5 +59,7 @@ export async function GET(request: Request) {
     maxAge: 0,
   })
 
-  return userLogoutResponse
+  return NextResponse.redirect(
+    new URL(process.env.NEXT_PUBLIC_NEXT_URL + '/auth', request.url),
+  )
 }
