@@ -9,49 +9,49 @@ export async function GET(request: Request) {
   userLogoutResponse.cookies.set({
     name: 'next-auth.session-token',
     value: '',
-    expires: new Date('2016-10-05'),
-    path: '/',
+    httpOnly: true,
     maxAge: 0,
+    path: '/',
   })
 
   userLogoutResponse.cookies.set({
     name: '__Secure-next-auth.session-token',
     value: '',
-    expires: new Date('2016-10-05'),
-    path: '/',
+    httpOnly: true,
     maxAge: 0,
+    path: '/',
   })
 
   userLogoutResponse.cookies.set({
     name: 'next-auth.csrf-token',
     value: '',
-    expires: new Date('2016-10-05'),
-    path: '/',
+    httpOnly: true,
     maxAge: 0,
+    path: '/',
   })
 
   userLogoutResponse.cookies.set({
     name: '__Host-next-auth.csrf-token',
     value: '',
-    expires: new Date('2016-10-05'),
-    path: '/',
+    httpOnly: true,
     maxAge: 0,
+    path: '/',
   })
 
   userLogoutResponse.cookies.set({
     name: 'next-auth.callback-url',
     value: '',
-    expires: new Date('2016-10-05'),
-    path: '/',
+    httpOnly: true,
     maxAge: 0,
+    path: '/',
   })
 
   userLogoutResponse.cookies.set({
     name: '__Secure-next-auth.callback-url',
     value: '',
-    expires: new Date('2016-10-05'),
-    path: '/',
+    httpOnly: true,
     maxAge: 0,
+    path: '/',
   })
 
   return userLogoutResponse
