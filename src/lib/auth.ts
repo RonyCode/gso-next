@@ -93,6 +93,7 @@ export const authOptions: NextAuthOptions = {
 
   pages: {
     signIn: '/auth',
+    signOut: '/signout',
   },
 
   secret: process.env.JWT_SECRET,

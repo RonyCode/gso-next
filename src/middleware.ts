@@ -80,7 +80,7 @@ export async function middleware(request: NextRequest) {
       }
     }
     if (!token && sessaoToken) {
-      return NextResponse.redirect(new URL('/api/logout', request.url))
+      return NextResponse.redirect(new URL('/signout', request.url))
     }
   }
 
@@ -88,7 +88,7 @@ export async function middleware(request: NextRequest) {
   if (!sessaoToken) {
     if (
       request.nextUrl.pathname === '/auth' ||
-      request.nextUrl.pathname === '/api/logout'
+      request.nextUrl.pathname === '/signout'
     ) {
       return response
     } else {
