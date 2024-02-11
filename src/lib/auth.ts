@@ -89,11 +89,11 @@ export const authOptions: NextAuthOptions = {
 
   session: {
     strategy: 'jwt',
+    maxAge: 60 * 60 * 24,
   },
 
   pages: {
     signIn: '/auth',
-    signOut: '/signout',
   },
 
   secret: process.env.JWT_SECRET,
@@ -117,7 +117,7 @@ export const authOptions: NextAuthOptions = {
             name: 'token',
             value: userGoogle?.token,
             httpOnly: true,
-            maxAge: 1000,
+            maxAge: 60 * 60 * 24,
             path: '/',
           })
 
@@ -125,7 +125,7 @@ export const authOptions: NextAuthOptions = {
             name: 'refresh_token',
             value: userGoogle?.refresh_token,
             httpOnly: true,
-            maxAge: 900,
+            maxAge: 60 * 60 * 2,
             path: '/',
           })
           // =====================================================================
@@ -146,7 +146,7 @@ export const authOptions: NextAuthOptions = {
             name: 'token',
             value: user?.token,
             httpOnly: true,
-            maxAge: 1000,
+            maxAge: 60 * 60 * 24,
             path: '/',
           })
 
@@ -154,7 +154,7 @@ export const authOptions: NextAuthOptions = {
             name: 'refresh_token',
             value: user?.refresh_token,
             httpOnly: true,
-            maxAge: 900,
+            maxAge: 60 * 60 * 2,
             path: '/',
           })
           //= ====================================================================

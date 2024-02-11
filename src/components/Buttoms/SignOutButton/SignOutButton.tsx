@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation'
 
 import { deleteCookies } from '@/components/Buttoms/SignOutButton/LogoutAction'
 import ButtonNoTheme from '@/ui/ButtonNoTheme'
+import { LogOut } from 'lucide-react'
 
 const SignOutButton = () => {
   const router = useRouter()
@@ -22,7 +23,7 @@ const SignOutButton = () => {
     <>
       <div>
         <ButtonNoTheme onClick={handleClick}>
-          <FaSignOutAlt
+          <LogOut
             size={32}
             className=" transition duration-0 ease-in-out hover:scale-110 hover:text-slate-300 hover:duration-300"
           />

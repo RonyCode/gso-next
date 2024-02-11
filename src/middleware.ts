@@ -64,14 +64,14 @@ export async function middleware(request: NextRequest) {
           name: 'token',
           value: tokenRes.token,
           httpOnly: true,
-          maxAge: 1000,
+          maxAge: 60 * 60 * 24,
           path: '/',
         })
         response.cookies.set({
           name: 'refresh_token',
           value: tokenRes.refresh_token,
           httpOnly: true,
-          maxAge: 900,
+          maxAge: 60 * 60 * 2,
           path: '/',
         })
         return response
@@ -79,22 +79,17 @@ export async function middleware(request: NextRequest) {
         return NextResponse.redirect(new URL('/auth', request.url))
       }
     }
-    if (!token && sessaoToken) {
-      return NextResponse.redirect(new URL('/signout', request.url))
-    }
   }
 
   // SE NÃO TEM O REFRESH-TOKEN PROTEGE TUDO
   if (!sessaoToken) {
-    if (
-      request.nextUrl.pathname === '/auth' ||
-      request.nextUrl.pathname === '/signout'
-    ) {
+    if (request.nextUrl.pathname === '/auth') {
       return response
     } else {
       return NextResponse.redirect(new URL('/auth', request.url))
     }
   }
+  console.log(request.nextUrl.pathname)
 
   // SE JÁ LOGADO IMPEDE PAGINA DE LOGIN
   if (sessaoToken && request.nextUrl.pathname === '/auth') {

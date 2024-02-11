@@ -16,7 +16,7 @@ export default function RootLayout({
     <html lang="pt-BR">
       <body
         className={cn(
-          ' m-0 h-screen min-h-screen w-screen  overflow-x-hidden bg-orange-700 p-0 font-sans antialiased',
+          ' m-0 h-screen min-h-screen w-screen  overflow-x-hidden p-0 font-sans antialiased',
           fontSans.variable,
         )}
       >
@@ -29,7 +29,7 @@ export default function RootLayout({
           >
             <Providers>
               <NavbarHome />
-              <main className=" flex min-h-screen w-full flex-col  bg-gradient-to-t from-background to-secondary">
+              <main className="flex min-h-screen w-full  flex-col bg-gradient-to-t from-background to-secondary pt-[68px]">
                 <div className="w-full  flex-1 flex-grow">{children}</div>
               </main>
               <footer className="relative bottom-0 z-50 h-48 border-t bg-background text-center text-sm leading-5 text-foreground ">

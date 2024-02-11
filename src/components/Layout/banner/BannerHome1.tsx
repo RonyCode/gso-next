@@ -1,6 +1,7 @@
 'use client'
 import React, { useEffect, useState } from 'react'
 import Logo from '../../../../public/images/Logo'
+import Link from 'next/link'
 
 const BannerHome1 = () => {
   const [showNavBar, setShowNavBar] = useState(false)
@@ -49,9 +50,9 @@ const BannerHome1 = () => {
             Gerenciamento, Transformando Desafios em{' '}
             <span className="text-4xl font-bold text-primary">Resultados!</span>
           </p>
-          <a
+          <Link
             href="/contact"
-            className="inline-flex h-10 items-center justify-center whitespace-nowrap
+            className="z-50 inline-flex h-10 items-center justify-center whitespace-nowrap
               rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground
               ring-offset-background transition-colors hover:bg-primary/90 focus-visible:outline-none
               focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2
@@ -59,7 +60,7 @@ const BannerHome1 = () => {
             "
           >
             Saiba mais...
-          </a>
+          </Link>
         </div>
       </div>
     </div>

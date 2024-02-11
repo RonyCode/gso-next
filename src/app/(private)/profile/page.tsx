@@ -24,7 +24,7 @@ const playlistNames: string[] = [
 const MeuPerfil = () => {
   return (
     <>
-      <div className="md:hidden">
+      <div className="md:hidden ">
         <Image
           src="/examples/music-light.png"
           width={1280}

@@ -2,11 +2,15 @@
 import Link from 'next/link'
 
 import {
+  LuBadgeInfo,
+  LuContact,
+  LuDoorOpen,
   LuLogOut,
   LuMegaphone,
+  LuMenu,
   LuSettings,
+  LuSlidersHorizontal,
   LuUser,
-  LuXCircle,
 } from 'react-icons/lu'
 import React, { ReactElement, useEffect, useRef, useState } from 'react'
 import Logo from '../../../public/images/Logo'
@@ -26,15 +30,6 @@ import { ModeToggle } from '@/ui/ModeTogle'
 import { deleteCookies } from '@/components/Buttoms/SignOutButton/LogoutAction'
 import { signOut, useSession } from 'next-auth/react'
 import { usePathname, useRouter } from 'next/navigation'
-import {
-  FaAddressBook,
-  FaBars,
-  FaCircleInfo,
-  FaClosedCaptioning,
-  FaDoorClosed,
-  FaScrewdriverWrench,
-} from 'react-icons/fa6'
-import { DoorOpen, XCircle } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 export function NavbarHome({
@@ -44,9 +39,7 @@ export function NavbarHome({
   const { data: session } = useSession()
   const [state, setState] = useState(false)
   const router = useRouter()
-
   const myRef = useRef(null)
-
   const [showNavBar, setShowNavBar] = useState(false)
 
   useEffect(() => {
@@ -71,9 +64,13 @@ export function NavbarHome({
   const pathname = usePathname()
 
   const menus: MenuTypes[] = [
-    { title: 'Serviços', icon: <FaScrewdriverWrench />, path: '/servicos' },
-    { title: 'Contato', icon: <FaAddressBook />, path: '/contact' },
-    { title: 'Sobre nos', icon: <FaCircleInfo />, path: '/about' },
+    {
+      title: 'Serviços',
+      icon: <LuSlidersHorizontal />,
+      path: '/servicos',
+    },
+    { title: 'Contato', icon: <LuContact />, path: '/contact' },
+    { title: 'Sobre nos', icon: <LuBadgeInfo />, path: '/about' },
   ]
 
   return (
@@ -89,14 +86,12 @@ export function NavbarHome({
       }
     >
       <div
-        className={`fixed left-0 top-32 z-[-10] h-screen w-screen ${
-          state ? 'block ' : 'hidden '
-        }`}
+        className={`fixed h-screen  w-screen ${state ? 'block ' : 'hidden '}`}
         onClick={() => setState(false)}
       ></div>
       <nav
         className={cn(
-          'relative mx-auto flex items-center justify-between px-4 md:container lg:py-0 ',
+          'relative mx-auto flex items-center justify-between px-4 md:container lg:py-0',
           className,
         )}
       >
@@ -109,7 +104,7 @@ export function NavbarHome({
               className="  top-0 rounded-md p-3 outline-none focus:border focus:border-gray-400 "
               onClick={() => setState(!state)}
             >
-              <FaBars />
+              <LuMenu />
             </button>
           </div>
         </div>
@@ -122,7 +117,7 @@ export function NavbarHome({
           <Link href="/" className=" flex w-screen justify-center  md:hidden">
             <Logo width={100} />
           </Link>
-          <ul className=" mb-3 space-y-4 text-sm md:flex  md:items-center md:justify-center md:space-x-6 md:space-y-0  ">
+          <ul className="  space-y-4  md:flex  md:items-center md:justify-center md:space-x-6 md:space-y-0  ">
             {menus.map((item, idx) => (
               <li
                 key={idx}
@@ -141,8 +136,8 @@ export function NavbarHome({
                   <Link
                     className={
                       showNavBar
-                        ? ' text-foreground/60 hover:text-foreground/80'
-                        : 'text-[#e5e7eb]/60 hover:text-[#e5e7eb]/80'
+                        ? ' text-foreground/60 hover:text-foreground/80 '
+                        : ' text-[#e5e7eb]/60 hover:text-[#e5e7eb]/80 '
                     }
                     href={item.path}
                   >
@@ -225,12 +220,12 @@ export function NavbarHome({
             </DropdownMenu>
           </div>
         ) : (
-          <p className={'absolute right-5 text-sm ' + `${state && 'hidden'}`}>
+          <p className={'absolute right-5 ' + `${state && 'hidden'}`}>
             <Link
               href="/auth"
               className="flex items-center space-x-1  text-[#e5e7eb]/60 hover:text-primary/80"
             >
-              <DoorOpen />{' '}
+              <LuDoorOpen />{' '}
               <span className="hidden text-[#e5e7eb]/60  hover:text-[#e5e7eb]/80 md:block">
                 Area de acesso
               </span>
