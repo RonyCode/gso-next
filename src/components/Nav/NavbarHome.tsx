@@ -58,7 +58,7 @@ export function NavbarHome({
       session?.name?.split(' ')?.pop()?.substring(0, 1)?.toUpperCase()
   }
 
-  if (nameNavbarSession && nameNavbarSession?.length == 1) {
+  if (nameNavbarSession && nameNavbarSession?.length === 1) {
     nameUser = session?.name
       ?.split(' ')
       ?.shift()
