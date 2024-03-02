@@ -30,7 +30,7 @@ export function Sidebar({ className, items }: SidebarNavProps) {
       ' ' +
       session?.data?.name?.split(' ')?.pop()?.substring(0, 1)?.toUpperCase()
   }
-  if (nameNavbarSession && nameNavbarSession?.length == 1) {
+  if (nameNavbarSession && nameNavbarSession?.length === 1) {
     nameUser = session?.data?.name
       ?.split(' ')
       ?.shift()
