@@ -15,7 +15,7 @@ const Users = async () => {
         <div>
           <h1>Essa página é protegida</h1>
           <h2>Logado no sistema como:</h2>
-          <p>{session?.cod_usuario}</p>
+          <p>{session?.id}</p>
           <p>{session?.nome}</p>
           <p>{session?.email}</p>
         </div>
