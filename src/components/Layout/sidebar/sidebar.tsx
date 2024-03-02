@@ -1,189 +1,99 @@
-import { cn } from '@/lib/utils'
-import { Button } from '@/ui/button'
-import { ScrollArea } from '@/ui/scroll-area'
-import { FaUser } from 'react-icons/fa6'
+'use client'
 
-interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> {
-  playlists: string[]
+import { cn } from '@/lib/utils'
+import { Button, buttonVariants } from '@/ui/button'
+import Link from 'next/link'
+import React from 'react'
+import { usePathname } from 'next/navigation'
+import { Avatar, AvatarFallback, AvatarImage } from '@/ui/avatar'
+import { useSession } from 'next-auth/react'
+
+interface SidebarNavProps extends React.HTMLAttributes<HTMLElement> {
+  items: {
+    titleGroup?: string
+    group: {
+      title: string
+      href: string
+      icon?: any
+    }[]
+  }[]
 }
 
-export function Sidebar({ className, playlists }: SidebarProps) {
+export function Sidebar({ className, items }: SidebarNavProps) {
+  const pathname = usePathname()
+  const session = useSession()
+  const nameNavbarSession = session?.data?.name?.split(' ')
+  let nameUser: string | null | undefined
+  if (nameNavbarSession && nameNavbarSession?.length > 1) {
+    nameUser =
+      session?.data?.name?.split(' ')?.shift()?.substring(0, 1)?.toUpperCase() +
+      ' ' +
+      session?.data?.name?.split(' ')?.pop()?.substring(0, 1)?.toUpperCase()
+  }
+  if (nameNavbarSession && nameNavbarSession?.length == 1) {
+    nameUser = session?.data?.name
+      ?.split(' ')
+      ?.shift()
+      ?.substring(0, 1)
+      ?.toUpperCase()
+  }
+
   return (
     <div className={cn('pb-12', className)}>
-      <div className="space-y-4 py-4">
-        <div className="px-3 py-2">
-          <h2 className="mb-2 px-4 text-lg font-semibold tracking-tight">
-            Meus Dados
-          </h2>
-          <div className="space-y-1">
-            <Button variant="secondary" className="w-full justify-start">
-              <FaUser className="mr-2" />
-              Dados Pessoais
-            </Button>
-            <Button variant="ghost" className="w-full justify-start">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="mr-2 h-4 w-4"
-              >
-                <rect width="7" height="7" x="3" y="3" rx="1" />
-                <rect width="7" height="7" x="14" y="3" rx="1" />
-                <rect width="7" height="7" x="14" y="14" rx="1" />
-                <rect width="7" height="7" x="3" y="14" rx="1" />
-              </svg>
-              Dados de Acesso
-            </Button>
-            <Button variant="ghost" className="w-full justify-start">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="mr-2 h-4 w-4"
-              >
-                <path d="M4.9 19.1C1 15.2 1 8.8 4.9 4.9" />
-                <path d="M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5" />
-                <circle cx="12" cy="12" r="2" />
-                <path d="M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5" />
-                <path d="M19.1 4.9C23 8.8 23 15.1 19.1 19" />
-              </svg>
-              Dados
-            </Button>
+      <div className=" px-3 py-8">
+        <div className="relative my-4 ml-auto mr-3 flex h-auto min-h-20 w-[86%] items-center rounded-[8px] border-r-[2px]   border-primary py-2   shadow-[3px_1px_8px_-4px_rgba(0,0,0,0.3)] shadow-foreground">
+          <Avatar className="absolute -left-8 z-10 h-24 w-24   shadow shadow-foreground ">
+            <AvatarImage
+              src={session?.data?.user?.image || '/images/avatar.svg'}
+              alt="@shadcn"
+              className="object-cover"
+            />
+            <AvatarFallback className="text-foreground">
+              {nameUser}
+            </AvatarFallback>
+          </Avatar>
+          <div>
+            <h1 className="ml-20 text-xl font-semibold tracking-tighter text-foreground">
+              {session?.data?.name}
+            </h1>
+            <p className="ml-20  text-muted-foreground">
+              {session?.data?.user?.email}
+            </p>
           </div>
         </div>
-        <div className="px-3 py-2">
-          <h2 className="mb-2 px-4 text-lg font-semibold tracking-tight">
-            Minha area
-          </h2>
-          <div className="space-y-1">
-            <Button variant="ghost" className="w-full justify-start">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="mr-2 h-4 w-4"
-              >
-                <path d="M21 15V6" />
-                <path d="M18.5 18a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z" />
-                <path d="M12 12H3" />
-                <path d="M16 6H3" />
-                <path d="M12 18H3" />
-              </svg>
-              Playlists
-            </Button>
-            <Button variant="ghost" className="w-full justify-start">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="mr-2 h-4 w-4"
-              >
-                <circle cx="8" cy="18" r="4" />
-                <path d="M12 18V2l7 4" />
-              </svg>
-              Songs
-            </Button>
-            <Button variant="ghost" className="w-full justify-start">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="mr-2 h-4 w-4"
-              >
-                <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
-                <circle cx="12" cy="7" r="4" />
-              </svg>
-              Made for You
-            </Button>
-            <Button variant="ghost" className="w-full justify-start">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="mr-2 h-4 w-4"
-              >
-                <path d="m12 8-9.04 9.06a2.82 2.82 0 1 0 3.98 3.98L16 12" />
-                <circle cx="17" cy="7" r="5" />
-              </svg>
-              Artists
-            </Button>
-            <Button variant="ghost" className="w-full justify-start">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="mr-2 h-4 w-4"
-              >
-                <path d="m16 6 4 14" />
-                <path d="M12 6v14" />
-                <path d="M8 8v12" />
-                <path d="M4 4v16" />
-              </svg>
-              Albums
-            </Button>
-          </div>
-        </div>
-        <div className="py-2">
-          <h2 className="relative px-7 text-lg font-semibold tracking-tight">
-            Meus documentos
-          </h2>
-          <ScrollArea className="h-[300px] px-1">
-            <div className="space-y-1 p-2">
-              {playlists?.map((playlist, i) => (
-                <Button
-                  key={`${playlist}-${i}`}
-                  variant="ghost"
-                  className="w-full justify-start font-normal"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="mr-2 h-4 w-4"
+
+        <div className="flex items-center space-x-2 lg:flex-col lg:space-x-0 lg:space-y-1">
+          {items.map((item) => (
+            <div
+              className="w-full items-center justify-start py-4"
+              key={item.titleGroup}
+            >
+              <h2 className="my-2 px-4 text-lg font-semibold tracking-tight">
+                {item.titleGroup}
+              </h2>
+              {item.group.map((itemGroup) => (
+                <div className="w-full  justify-start" key={itemGroup.title}>
+                  <Button
+                    variant="ghost"
+                    className=" w-full items-center justify-start"
                   >
-                    <path d="M21 15V6" />
-                    <path d="M18.5 18a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z" />
-                    <path d="M12 12H3" />
-                    <path d="M16 6H3" />
-                    <path d="M12 18H3" />
-                  </svg>
-                  {playlist}
-                </Button>
+                    <Link
+                      key={itemGroup.href}
+                      href={itemGroup.href}
+                      className={cn(
+                        buttonVariants({ variant: 'ghost' }),
+                        pathname === itemGroup.href ? 'w-full  ' : '',
+                        ' justify-start gap-2',
+                      )}
+                    >
+                      <span>{itemGroup?.icon}</span>
+                      {itemGroup.title}
+                    </Link>
+                  </Button>
+                </div>
               ))}
             </div>
-          </ScrollArea>
+          ))}
         </div>
       </div>
     </div>

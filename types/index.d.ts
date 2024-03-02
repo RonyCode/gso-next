@@ -9,6 +9,7 @@ declare module 'next-auth' {
   export interface Session {
     cod_usuario: string
     nome: string
+    name: string
     email: string
     image: string
     picture: string
@@ -16,13 +17,14 @@ declare module 'next-auth' {
     token: string
     access_token: string
     refresh_token: string
-    data_expirar_token: number
+    date_expires_token: number
     expires_at: number
   }
 
   export interface User {
     cod_usuario: string
     nome: string
+    name: string
     email: string
     image: string
     picture: string
@@ -30,7 +32,7 @@ declare module 'next-auth' {
     token: string
     access_token: string
     refresh_token: string
-    data_expirar_token: number
+    date_expires_token: number
     expires_at: number
   }
 }
@@ -39,6 +41,7 @@ declare module 'next-auth/jwt' {
   export interface JWT {
     cod_usuario: string
     nome: string
+    name: string
     email: string
     image: string
     picture: string
@@ -46,7 +49,7 @@ declare module 'next-auth/jwt' {
     token: string
     access_token: string
     refresh_token: string
-    data_expirar_token: number
+    date_expires_token: number
     expires_at: number
   }
 }

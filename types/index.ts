@@ -1,9 +1,53 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import type { Account, Session, User, DefaultSession } from 'next-auth'
+import type { Session, User, DefaultSession } from 'next-auth'
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import NextAuth from 'next-auth'
 
+export interface UserAuth {
+  email: string
+  password: string
+  isUserExternal: number
+  dateCriation: string
+}
+
+export interface Account {
+  name: string
+  cpf: string
+  phone: string
+  birthday: string
+  image: string
+}
+
+export interface Address {
+  address: string
+  number: string
+  zipCode: string
+  complement: string
+  district: string
+  city: string
+  state: string
+  shortName: string
+}
+
+export interface Profile {
+  role: string
+  dateGranted: string
+  dateExpires: string
+  grantedByIdUser: number
+}
+export interface TokenUser {
+  token: string
+  refreshToken: string
+  dateCriation: number
+  dateExpires: number
+}
+
 export interface UserType {
+  userAuth: UserAuth
+  account: Account
+  address: Address
+  profile: Profile
+  tokenUser: TokenUser
   nome: string
   email: string
   cpf: string
@@ -17,6 +61,8 @@ export interface UserType {
   estado: string
   senha: string
   confirmaSenha: string
+  id: number
+  excluded: number
 }
 
 export interface UserRegisterError {
@@ -74,8 +120,9 @@ export type ResponseUserSigned = {
 
 declare module 'next-auth' {
   interface Session {
-    cod_usuario?: string | null
+    id?: string | null
     nome?: string | null
+    name?: string | null
     email?: string | null
     image?: string | null
     picture?: string | null
@@ -83,13 +130,15 @@ declare module 'next-auth' {
     token?: string | null
     access_token?: string | null
     refresh_token?: string | null
-    data_expirar_token?: number | null
+    date_expires_token?: number | null
+    date_creation_token: number
     expires_at?: number | null
   }
 
   interface User {
-    cod_usuario: string
+    id: string
     nome: string
+    name: string
     email: string
     image: string
     picture: string
@@ -97,15 +146,17 @@ declare module 'next-auth' {
     token: string
     access_token: string
     refresh_token: string
-    data_expirar_token: number
+    date_expires_token: number
+    date_creation_token: number
     expires_at: number
   }
 }
 
 declare module 'next-auth/jwt' {
   interface JWT {
-    cod_usuario: string
+    id: string
     nome: string
+    name: string
     email: string
     image: string
     picture: string
@@ -113,7 +164,8 @@ declare module 'next-auth/jwt' {
     token: string
     access_token: string
     refresh_token: string
-    data_expirar_token: number
+    date_expires_token: number
+    date_creation_token: number
     expires_at: number
   }
 }

@@ -89,7 +89,6 @@ export async function middleware(request: NextRequest) {
       return NextResponse.redirect(new URL('/auth', request.url))
     }
   }
-  console.log(request.nextUrl.pathname)
 
   // SE JÁ LOGADO IMPEDE PAGINA DE LOGIN
   if (sessaoToken && request.nextUrl.pathname === '/auth') {

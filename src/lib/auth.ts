@@ -131,13 +131,15 @@ export const authOptions: NextAuthOptions = {
           // =====================================================================
           return {
             ...token,
-            cod_usuario: userGoogle?.cod_usuario,
+            id: userGoogle?.cod_usuario,
             email: userGoogle?.email,
+            name: userGoogle?.name,
             senha: userGoogle?.senha,
             token: userGoogle?.token,
             access_token: userGoogle?.token,
             refresh_token: userGoogle?.refresh_token,
-            data_expirar_token: userGoogle?.data_expirar_token,
+            date_expires_token: userGoogle?.date_expires_token,
+            date_creation_token: userGoogle?.date_creation_token,
             expires_at: userGoogle?.data_expirar_token,
           }
         } else {
@@ -160,14 +162,16 @@ export const authOptions: NextAuthOptions = {
           //= ====================================================================
           return {
             ...token,
-            cod_usuario: user?.cod_usuario,
+            id: user?.id,
             email: user?.email,
+            name: user?.name,
             senha: user?.senha,
             token: user?.token,
             access_token: user?.token,
             refresh_token: user?.refresh_token,
-            data_expirar_token: user?.data_expirar_token,
-            expires_at: user?.data_expirar_token,
+            date_expires_token: user?.date_expires_token,
+            date_creation_token: user?.date_creation_token,
+            expires_at: user?.date_expires_token,
           }
         }
       }
@@ -179,13 +183,15 @@ export const authOptions: NextAuthOptions = {
     },
 
     async session({ session, token }) {
-      session.cod_usuario = token?.cod_usuario
+      session.id = token?.id
       session.email = token?.email
+      session.name = token?.name
       session.senha = token?.senha
       session.token = token?.token
       session.access_token = token?.access_token
       session.refresh_token = token?.refresh_token
-      session.data_expirar_token = token?.data_expirar_token
+      session.date_expires_token = token?.date_expires_token
+      session.date_creation_token = token?.date_creation_token
       session.expires_at = token?.expires_at
       return session
     },

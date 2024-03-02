@@ -2,9 +2,14 @@
 import Link from 'next/link'
 
 import {
+  LuBadgeHelp,
   LuBadgeInfo,
+  LuBell,
+  LuBellRing,
   LuContact,
   LuDoorOpen,
+  LuHeadphones,
+  LuHelpCircle,
   LuLogOut,
   LuMegaphone,
   LuMenu,
@@ -31,6 +36,7 @@ import { deleteCookies } from '@/components/Buttoms/SignOutButton/LogoutAction'
 import { signOut, useSession } from 'next-auth/react'
 import { usePathname, useRouter } from 'next/navigation'
 import { cn } from '@/lib/utils'
+import { toast } from 'sonner'
 
 export function NavbarHome({
   className,
@@ -41,6 +47,24 @@ export function NavbarHome({
   const router = useRouter()
   const myRef = useRef(null)
   const [showNavBar, setShowNavBar] = useState(false)
+
+  const nameNavbarSession = session?.name?.split(' ')
+  let nameUser: string | null | undefined
+
+  if (nameNavbarSession && nameNavbarSession?.length > 1) {
+    nameUser =
+      session?.name?.split(' ')?.shift()?.substring(0, 1)?.toUpperCase() +
+      ' ' +
+      session?.name?.split(' ')?.pop()?.substring(0, 1)?.toUpperCase()
+  }
+
+  if (nameNavbarSession && nameNavbarSession?.length == 1) {
+    nameUser = session?.name
+      ?.split(' ')
+      ?.shift()
+      ?.substring(0, 1)
+      ?.toUpperCase()
+  }
 
   useEffect(() => {
     window.addEventListener('scroll', () => {
@@ -150,22 +174,46 @@ export function NavbarHome({
         </div>
         {session?.user ? (
           <div
-            className={`absolute right-5  ${
-              state ? ' flex md:hidden ' : ' md:flex'
-            } items-center`}
+            className={`absolute right-3  flex items-center justify-center  ${
+              state ? ' flex flex-col-reverse items-stretch gap-2' : ' md:flex'
+            }`}
           >
+            <Button
+              variant="ghost"
+              className={`relative mr-2 h-12 w-12 rounded-full border hover:border-foreground/20 md:block lg:h-14 lg:w-14  ${
+                state ? ' hidden' : ' md:flex'
+              }  `}
+              onClick={() =>
+                toast('Event has been created', {
+                  description: 'Sunday, December 03, 2023 at 9:00 AM',
+                  action: {
+                    label: 'Abrir',
+                    onClick: () => console.log('Undo'),
+                  },
+                  className: 'mt-12 md:mt-10 -right-6',
+                })
+              }
+            >
+              <div className="relative flex w-14 items-center justify-center">
+                <div className="absolute -right-1 -top-2 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-sm text-foreground lg:h-5 lg:w-5">
+                  1
+                </div>
+                <LuBell className="h-8 w-8 lg:h-9 lg:w-9" />
+              </div>
+            </Button>
+
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button
                   variant="ghost"
-                  className="relative h-14 w-14 rounded-full"
+                  className="relative h-12 w-12 rounded-full border hover:border-foreground/20 lg:h-14 lg:w-14 "
                 >
-                  <Avatar className="h-12 w-12">
+                  <Avatar className="h-10 w-10 lg:h-12 lg:w-12">
                     <AvatarImage
-                      src="https://avatars.githubusercontent.com/u/65975236?s=400&u=9ad183d9c5fab1003e9d60b0d0f83e8b51b70b9a&v=4"
+                      src={session?.user?.image || '/images/avatar.svg'}
                       alt="@shadcn"
                     />
-                    <AvatarFallback>SC</AvatarFallback>
+                    <AvatarFallback>{nameUser}</AvatarFallback>
                   </Avatar>
                 </Button>
               </DropdownMenuTrigger>
@@ -173,10 +221,10 @@ export function NavbarHome({
                 <DropdownMenuLabel className="font-normal">
                   <div className="flex flex-col space-y-1">
                     <p className="text-sm font-medium leading-none">
-                      Rony Anderson
+                      {session?.name}
                     </p>
                     <p className="mr-2 pr-2 text-xs leading-none text-muted-foreground">
-                      {session?.user && session.user.email}
+                      {session.user.email}
                     </p>
                   </div>
                   <div className="absolute right-2 top-2 ml-2 pl-2">
@@ -186,7 +234,7 @@ export function NavbarHome({
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuGroup>
-                  <Link href="/profile">
+                  <Link href={`/profile`}>
                     <DropdownMenuItem className="group-hover">
                       Minha Conta
                       <DropdownMenuShortcut className="hover:scale-125">
@@ -194,7 +242,6 @@ export function NavbarHome({
                       </DropdownMenuShortcut>
                     </DropdownMenuItem>
                   </Link>
-
                   <DropdownMenuItem>
                     Configuração
                     <DropdownMenuShortcut>
@@ -202,9 +249,15 @@ export function NavbarHome({
                     </DropdownMenuShortcut>
                   </DropdownMenuItem>
                   <DropdownMenuItem>
-                    Notificações
+                    Suporte
                     <DropdownMenuShortcut>
-                      <LuMegaphone style={{ fontSize: '20px' }} />
+                      <LuHeadphones style={{ fontSize: '20px' }} />
+                    </DropdownMenuShortcut>
+                  </DropdownMenuItem>{' '}
+                  <DropdownMenuItem>
+                    Ajuda
+                    <DropdownMenuShortcut>
+                      <LuHelpCircle style={{ fontSize: '20px' }} />
                     </DropdownMenuShortcut>
                   </DropdownMenuItem>
                 </DropdownMenuGroup>

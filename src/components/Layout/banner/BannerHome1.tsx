@@ -50,17 +50,6 @@ const BannerHome1 = () => {
             Gerenciamento, Transformando Desafios em{' '}
             <span className="text-4xl font-bold text-primary">Resultados!</span>
           </p>
-          <Link
-            href="/contact"
-            className="z-50 inline-flex h-10 items-center justify-center whitespace-nowrap
-              rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground
-              ring-offset-background transition-colors hover:bg-primary/90 focus-visible:outline-none
-              focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2
-              disabled:pointer-events-none disabled:opacity-50
-            "
-          >
-            Saiba mais...
-          </Link>
         </div>
       </div>
     </div>

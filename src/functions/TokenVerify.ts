@@ -18,7 +18,7 @@ export const TokenVerify = async ($token: string) => {
     })
 
     const dateExpiresCpnverted = new Date(dateExpires * 1000).toLocaleString(
-      'en-BR',
+      'pt-BR',
       {
         timeZone: 'America/Araguaina',
       },
