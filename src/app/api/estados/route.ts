@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server'
 export async function GET() {
-  const res = await fetch(`http://wsgso.localhost/api/auth/estados`, {
+  const res = await fetch('http://wsgso.localhost/api/auth/estados', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',

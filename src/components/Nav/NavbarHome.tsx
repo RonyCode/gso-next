@@ -2,16 +2,13 @@
 import Link from 'next/link'
 
 import {
-  LuBadgeHelp,
   LuBadgeInfo,
   LuBell,
-  LuBellRing,
   LuContact,
   LuDoorOpen,
   LuHeadphones,
   LuHelpCircle,
   LuLogOut,
-  LuMegaphone,
   LuMenu,
   LuSettings,
   LuSlidersHorizontal,
