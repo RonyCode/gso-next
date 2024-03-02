@@ -1,7 +1,6 @@
 'use client'
 import React, { useEffect, useState } from 'react'
 import Logo from '../../../../public/images/Logo'
-import Link from 'next/link'
 
 const BannerHome1 = () => {
   const [showNavBar, setShowNavBar] = useState(false)

@@ -5,7 +5,6 @@ import { revalidatePath } from 'next/cache'
 import { RegisterUserSchema } from '@/app/(auth)/cadastro-usuario/[token]/schemas/RegisterUserSchema'
 import { ResponseUserSigned } from '../../../../../../types/index'
 import { fetchWrapper } from '@/functions/fetch'
-import { useUserStore } from '@/stores/user/userStore'
 
 export async function signedUpAction(formData: RegisterUserSchema) {
   try {

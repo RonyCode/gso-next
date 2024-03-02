@@ -18,7 +18,6 @@ import {
   UseFormReturn,
 } from 'react-hook-form'
 import { cityStore } from '@/stores/Address/CityByStateStore'
-import { getAllCitiesByState } from '@/lib/getAllCitiesByState'
 
 type SelectCityProps = {
   form: UseFormReturn

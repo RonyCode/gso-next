@@ -6,8 +6,6 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from '@/ui/alert-dialog'
-import SignOutButton from '@/components/Buttoms/SignOutButton/SignOutButton'
-import { LogInIcon, User2 } from 'lucide-react'
 import SignOutButtonDefault from '@/components/Buttoms/SignOutButton/SignOutButtonDefault'
 
 const SignOut = () => {

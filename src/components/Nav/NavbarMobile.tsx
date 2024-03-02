@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import Image from 'next/image'
 
 export default function NavbarMobile() {
   const [isNavOpen, setIsNavOpen] = useState(false)
@@ -6,7 +7,7 @@ export default function NavbarMobile() {
   return (
     <div className="flex items-center justify-between border-b border-gray-400 py-8">
       <a href="/">
-        <img src="https://designbygio.it/images/logo.png" alt="logo" />
+        <Image src="https://designbygio.it/images/logo.png" alt="logo" />
       </a>
       <nav>
         <section className="MOBILE-MENU flex lg:hidden">

@@ -3,7 +3,7 @@
 import { cn } from '@/lib/utils'
 import { Button, buttonVariants } from '@/ui/button'
 import Link from 'next/link'
-import React from 'react'
+import React, { ReactNode } from 'react'
 import { usePathname } from 'next/navigation'
 import { Avatar, AvatarFallback, AvatarImage } from '@/ui/avatar'
 import { useSession } from 'next-auth/react'
@@ -14,7 +14,7 @@ interface SidebarNavProps extends React.HTMLAttributes<HTMLElement> {
     group: {
       title: string
       href: string
-      icon?: any
+      icon: ReactNode
     }[]
   }[]
 }

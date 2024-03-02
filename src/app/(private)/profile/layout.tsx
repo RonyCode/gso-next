@@ -2,7 +2,6 @@ import '@/styles/globals.css'
 import React from 'react'
 import { Sidebar } from '@/components/Layout/sidebar/sidebar'
 import { LuBell, LuMapPin, LuSettings, LuUser } from 'react-icons/lu'
-import { Toaster } from '@/components/ui/sonner'
 
 const sidebarNavItems = [
   {

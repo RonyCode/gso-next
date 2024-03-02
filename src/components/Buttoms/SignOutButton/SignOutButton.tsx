@@ -1,6 +1,5 @@
 'use client'
 import React from 'react'
-import { FaSignOutAlt } from 'react-icons/fa'
 
 import { signOut } from 'next-auth/react'
 import { useRouter } from 'next/navigation'

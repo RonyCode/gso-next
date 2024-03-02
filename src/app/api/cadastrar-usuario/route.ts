@@ -4,7 +4,6 @@ import { RegisterUserSchema } from '@/app/(auth)/cadastro-usuario/[token]/schema
 import { limiter } from '@/app/api/config/limiter'
 
 export async function POST(request: NextRequest): Promise<NextResponse> {
-  const origin: string | null = request.headers.get('origin')
   const remaining: number = await limiter.removeTokens(1)
   const body: RegisterUserSchema = await request.json()
 
