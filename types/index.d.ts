@@ -7,7 +7,8 @@
 
 declare module 'next-auth' {
   export interface Session {
-    cod_usuario: string
+    id: string
+    id_message: string
     nome: string
     name: string
     email: string
@@ -22,7 +23,8 @@ declare module 'next-auth' {
   }
 
   export interface User {
-    cod_usuario: string
+    id: string
+    id_message: string
     nome: string
     name: string
     email: string
@@ -39,7 +41,8 @@ declare module 'next-auth' {
 
 declare module 'next-auth/jwt' {
   export interface JWT {
-    cod_usuario: string
+    id: string
+    id_message: string
     nome: string
     name: string
     email: string

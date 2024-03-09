@@ -25,6 +25,8 @@ import { useRouter } from 'next/navigation'
 import { useTransition } from 'react'
 import LoadingPage from '@/components/Loadings/LoadingPage'
 import { FaSpinner } from 'react-icons/fa6'
+import { messageRabbit } from '@/functions/messageRabbit'
+import { useSession } from 'next-auth/react'
 
 type UserAuthFormProps = React.HTMLAttributes<HTMLDivElement>
 
@@ -32,6 +34,7 @@ const SigInForm = ({ className, ...props }: UserAuthFormProps) => {
   const [pending, startTransition] = useTransition()
   const { signInWithCredentials } = useSignIn()
   const router = useRouter()
+  const session = useSession()
 
   const handleSubmitLogin = async (data: FormData | SignInSchema) => {
     startTransition(async () => {
@@ -51,6 +54,13 @@ const SigInForm = ({ className, ...props }: UserAuthFormProps) => {
           title: 'Bem vindo de volta! 😍',
           description: 'Login realizado com sucesso',
         })
+
+        const data = await messageRabbit(
+          'auth',
+          'user_logged',
+          session?.data?.id_message,
+        )
+
         router.push('/dashboard')
       }
     })

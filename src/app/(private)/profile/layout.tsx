@@ -2,6 +2,12 @@ import '@/styles/globals.css'
 import React from 'react'
 import { Sidebar } from '@/components/Layout/sidebar/sidebar'
 import { LuBell, LuMapPin, LuSettings, LuUser } from 'react-icons/lu'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'GSO | Perfil',
+  description: 'page of signUp users.',
+}
 
 const sidebarNavItems = [
   {
@@ -69,14 +75,12 @@ export default function ProfileLayout({
 }) {
   return (
     <>
-      <div className="hidden md:block">
-        <div className="border-t">
-          <div className="bg-background">
-            <div className="grid lg:grid-cols-5">
-              <Sidebar items={sidebarNavItems} className="hidden lg:block" />
-              <div className="col-span-3 lg:col-span-4 lg:border-l">
-                <div className="h-screen  lg:px-8 ">{children}</div>
-              </div>
+      <div className="border-t">
+        <div className="bg-background px-4 lg:px-0">
+          <div className="grid grid-cols-1 lg:grid-cols-5">
+            <Sidebar items={sidebarNavItems} className=" lg:block" />
+            <div className="col-span-3 lg:col-span-4 lg:border-l">
+              <div className="h-screen  lg:px-8 ">{children}</div>
             </div>
           </div>
         </div>

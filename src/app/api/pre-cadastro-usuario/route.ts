@@ -20,12 +20,13 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
   if (!res.ok) {
     return NextResponse.json({ ...(await res?.json()) }, { status: 400 })
   }
-
+  const data = await res.json()
   return NextResponse.json(
     {
       data: true,
       status: 'success',
       code: 200,
+      id_request: data.id_request,
       message: 'Email enviado com sucesso!',
     },
     { status: 200 },

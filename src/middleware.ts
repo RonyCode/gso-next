@@ -1,5 +1,6 @@
 import type { NextRequest } from 'next/server'
 import { NextResponse } from 'next/server'
+import { messageRabbit } from '@/functions/messageRabbit'
 
 // This function can be marked `async` if using `await` inside
 export async function middleware(request: NextRequest) {
@@ -57,6 +58,7 @@ export async function middleware(request: NextRequest) {
           },
         },
       )
+
       // SALVA NOVOS COKKIES
       if (resp.ok) {
         const tokenRes = await resp?.json()

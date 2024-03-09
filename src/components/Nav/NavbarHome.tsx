@@ -2,16 +2,16 @@
 import Link from 'next/link'
 
 import {
-  LuBadgeInfo,
   LuBell,
+  LuComponent,
   LuContact,
   LuDoorOpen,
   LuHeadphones,
   LuHelpCircle,
   LuLogOut,
   LuMenu,
+  LuMessagesSquare,
   LuSettings,
-  LuSlidersHorizontal,
   LuUser,
 } from 'react-icons/lu'
 import React, { ReactElement, useEffect, useRef, useState } from 'react'
@@ -34,16 +34,18 @@ import { signOut, useSession } from 'next-auth/react'
 import { usePathname, useRouter } from 'next/navigation'
 import { cn } from '@/lib/utils'
 import { toast } from 'sonner'
+import { messageRabbit } from '@/functions/messageRabbit'
 
-export function NavbarHome({
-  className,
-  ...props
-}: React.HTMLAttributes<HTMLElement>) {
+export function NavbarHome(
+  teste,
+  { className, ...props }: React.HTMLAttributes<HTMLElement>,
+) {
   const { data: session } = useSession()
   const [state, setState] = useState(false)
+  const [message, setMessage] = useState(0)
+  const [showNavBar, setShowNavBar] = useState(false)
   const router = useRouter()
   const myRef = useRef(null)
-  const [showNavBar, setShowNavBar] = useState(false)
 
   const nameNavbarSession = session?.name?.split(' ')
   let nameUser: string | null | undefined
@@ -81,17 +83,38 @@ export function NavbarHome({
     router.push('/')
   }
 
+  const handleNotification = async () => {
+    const data = await messageRabbit('auth', 'user_logged', session?.id_message)
+    setMessage(data?.messages?.length)
+    if (data?.messages?.length) {
+      for (const item of data?.messages) {
+        if (item) {
+          toast(item.email, {
+            description: item.message,
+            action: {
+              label: 'Ok',
+              onClick: () => setMessage(0),
+            },
+            onDismiss: () => setMessage(0),
+            className: 'mt-12 md:mt-10 -right-6',
+            onAutoClose: () => setMessage(0),
+          })
+        }
+      }
+    }
+  }
+
   type MenuTypes = { title: string; icon: ReactElement; path: string }
   const pathname = usePathname()
 
   const menus: MenuTypes[] = [
     {
       title: 'Serviços',
-      icon: <LuSlidersHorizontal />,
+      icon: <LuComponent />,
       path: '/servicos',
     },
     { title: 'Contato', icon: <LuContact />, path: '/contact' },
-    { title: 'Sobre nos', icon: <LuBadgeInfo />, path: '/about' },
+    { title: 'Sobre nos', icon: <LuMessagesSquare />, path: '/about' },
   ]
 
   return (
@@ -180,21 +203,14 @@ export function NavbarHome({
               className={`relative mr-2 h-12 w-12 rounded-full border hover:border-foreground/20 md:block lg:h-14 lg:w-14  ${
                 state ? ' hidden' : ' md:flex'
               }  `}
-              onClick={() =>
-                toast('Event has been created', {
-                  description: 'Sunday, December 03, 2023 at 9:00 AM',
-                  action: {
-                    label: 'Abrir',
-                    onClick: () => console.log('Undo'),
-                  },
-                  className: 'mt-12 md:mt-10 -right-6',
-                })
-              }
+              onClick={handleNotification}
             >
               <div className="relative flex w-14 items-center justify-center">
-                <div className="absolute -right-1 -top-2 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-sm text-foreground lg:h-5 lg:w-5">
-                  1
-                </div>
+                {message > 0 && (
+                  <div className="absolute -right-1 -top-2 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-sm text-foreground lg:h-5 lg:w-5">
+                    {message}
+                  </div>
+                )}
                 <LuBell className="h-8 w-8 lg:h-9 lg:w-9" />
               </div>
             </Button>

@@ -131,7 +131,8 @@ export const authOptions: NextAuthOptions = {
           // =====================================================================
           return {
             ...token,
-            id: userGoogle?.cod_usuario,
+            id: userGoogle?.id,
+            id_message: userGoogle?.id_message,
             email: userGoogle?.email,
             name: userGoogle?.name,
             senha: userGoogle?.senha,
@@ -140,7 +141,7 @@ export const authOptions: NextAuthOptions = {
             refresh_token: userGoogle?.refresh_token,
             date_expires_token: userGoogle?.date_expires_token,
             date_creation_token: userGoogle?.date_creation_token,
-            expires_at: userGoogle?.data_expirar_token,
+            expires_at: userGoogle?.date_expires_token,
           }
         } else {
           // Save the access token and refresh token in the JWT on the initial login
@@ -163,6 +164,7 @@ export const authOptions: NextAuthOptions = {
           return {
             ...token,
             id: user?.id,
+            id_message: user?.id_message,
             email: user?.email,
             name: user?.name,
             senha: user?.senha,
@@ -184,6 +186,7 @@ export const authOptions: NextAuthOptions = {
 
     async session({ session, token }) {
       session.id = token?.id
+      session.id_message = token?.id_message
       session.email = token?.email
       session.name = token?.name
       session.senha = token?.senha

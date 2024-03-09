@@ -121,6 +121,7 @@ export type ResponseUserSigned = {
 declare module 'next-auth' {
   interface Session {
     id?: string | null
+    id_message?: string | null
     nome?: string | null
     name?: string | null
     email?: string | null
@@ -137,6 +138,7 @@ declare module 'next-auth' {
 
   interface User {
     id: string
+    id_message: string
     nome: string
     name: string
     email: string
@@ -155,6 +157,7 @@ declare module 'next-auth' {
 declare module 'next-auth/jwt' {
   interface JWT {
     id: string
+    id_message: string
     nome: string
     name: string
     email: string
