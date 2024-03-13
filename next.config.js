@@ -1,26 +1,31 @@
-/** @type {import('next').NextConfig} */
+const {
+  PHASE_DEVELOPMENT_SERVER,
+  PHASE_PRODUCTION_BUILD,
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+} = require('next/constants')
+
+/** @type {import("next").NextConfig} */
 const nextConfig = {
-  // async headers() {
-  //   return [
-  //     {
-  //       // matching all API routes
-  //       source: '/api/:path*',
-  //       headers: [
-  //         { key: 'Access-Control-Allow-Credentials', value: 'true' },
-  //         { key: 'Access-Control-Allow-Origin', value: '*' },
-  //         {
-  //           key: 'Access-Control-Allow-Methods',
-  //           value: 'GET,OPTIONS,PATCH,DELETE,POST,PUT',
-  //         },
-  //         {
-  //           key: 'Access-Control-Allow-Headers',
-  //           value:
-  //             'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version',
-  //         },
-  //       ],
-  //     },
-  //   ]
-  // },
+  reactStrictMode: true,
 }
 
-module.exports = nextConfig
+module.exports = (phase) => {
+  if (phase === PHASE_DEVELOPMENT_SERVER || phase === PHASE_PRODUCTION_BUILD) {
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    const withPWA = require('@ducanh2912/next-pwa').default({
+      dest: 'public',
+      disable: false,
+      // disable: process.env.NODE_ENV === 'development',
+      cacheOnFrontEndNavigation: true,
+      aggressiveFrontEndNavCaching: true,
+      reloadOnOnline: true,
+      swcMinify: true,
+      serviceWorker: true,
+      workboxOptions: {
+        disableDevLogs: true,
+      },
+    })
+    return withPWA(nextConfig)
+  }
+  return nextConfig
+}

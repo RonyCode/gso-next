@@ -2,7 +2,6 @@
 import Link from 'next/link'
 
 import {
-  LuBell,
   LuComponent,
   LuContact,
   LuDoorOpen,
@@ -33,16 +32,14 @@ import { deleteCookies } from '@/components/Buttoms/SignOutButton/LogoutAction'
 import { signOut, useSession } from 'next-auth/react'
 import { usePathname, useRouter } from 'next/navigation'
 import { cn } from '@/lib/utils'
-import { toast } from 'sonner'
-import { messageRabbit } from '@/functions/messageRabbit'
+import NotificationUser from '@/app/(private)/users/components/notificationUser'
 
-export function NavbarHome(
-  teste,
-  { className, ...props }: React.HTMLAttributes<HTMLElement>,
-) {
+export function NavbarHome({
+  className,
+  ...props
+}: React.HTMLAttributes<HTMLElement>) {
   const { data: session } = useSession()
   const [state, setState] = useState(false)
-  const [message, setMessage] = useState(0)
   const [showNavBar, setShowNavBar] = useState(false)
   const router = useRouter()
   const myRef = useRef(null)
@@ -83,27 +80,6 @@ export function NavbarHome(
     router.push('/')
   }
 
-  const handleNotification = async () => {
-    const data = await messageRabbit('auth', 'user_logged', session?.id_message)
-    setMessage(data?.messages?.length)
-    if (data?.messages?.length) {
-      for (const item of data?.messages) {
-        if (item) {
-          toast(item.email, {
-            description: item.message,
-            action: {
-              label: 'Ok',
-              onClick: () => setMessage(0),
-            },
-            onDismiss: () => setMessage(0),
-            className: 'mt-12 md:mt-10 -right-6',
-            onAutoClose: () => setMessage(0),
-          })
-        }
-      }
-    }
-  }
-
   type MenuTypes = { title: string; icon: ReactElement; path: string }
   const pathname = usePathname()
 
@@ -129,6 +105,8 @@ export function NavbarHome(
         }`
       }
     >
+      {/* <UserNotifcationStoreInitialize userNotification={notification} /> */}
+
       <div
         className={`fixed h-screen  w-screen ${state ? 'block ' : 'hidden '}`}
         onClick={() => setState(false)}
@@ -198,23 +176,24 @@ export function NavbarHome(
               state ? ' flex flex-col-reverse items-stretch gap-2' : ' md:flex'
             }`}
           >
-            <Button
-              variant="ghost"
-              className={`relative mr-2 h-12 w-12 rounded-full border hover:border-foreground/20 md:block lg:h-14 lg:w-14  ${
-                state ? ' hidden' : ' md:flex'
-              }  `}
-              onClick={handleNotification}
-            >
-              <div className="relative flex w-14 items-center justify-center">
-                {message > 0 && (
-                  <div className="absolute -right-1 -top-2 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-sm text-foreground lg:h-5 lg:w-5">
-                    {message}
-                  </div>
-                )}
-                <LuBell className="h-8 w-8 lg:h-9 lg:w-9" />
-              </div>
-            </Button>
+            {/* <Button */}
+            {/*  variant="ghost" */}
+            {/*  className={`relative mr-2 h-12 w-12 rounded-full border hover:border-foreground/20 md:block lg:h-14 lg:w-14  ${ */}
+            {/*    state ? ' hidden' : ' md:flex' */}
+            {/*  }  `} */}
+            {/*  onClick={handleNotification} */}
+            {/* > */}
+            {/*  <div className="relative flex w-14 items-center justify-center"> */}
+            {/*    {notification?.messages?.length > 0 && ( */}
+            {/*      <div className="absolute -right-1 -top-2 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-sm text-foreground lg:h-5 lg:w-5"> */}
+            {/*        {notification?.messages?.length} */}
+            {/*      </div> */}
+            {/*    )} */}
+            {/*    <LuBell className="h-8 w-8 lg:h-9 lg:w-9" /> */}
+            {/*  </div> */}
+            {/* </Button> */}
 
+            <NotificationUser />
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button

@@ -70,6 +70,22 @@ export interface UserRegisterError {
   success: boolean
 }
 
+export interface NotificationMessage {
+  id_message: string
+  email: boolean
+  message: string
+}
+
+export interface UserNotification {
+  messages: NotificationMessage[]
+  id: string
+  title: string
+  type: string
+  qtd: number
+  status: string
+  code: number
+}
+
 export interface CepProps {
   city: string
   cityId: string
