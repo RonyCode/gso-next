@@ -1,7 +1,5 @@
 import { fetchWrapper } from '@/functions/fetch'
 import { UserNotification } from '../../types/index'
-import { getServerSession } from 'next-auth'
-import { authOptions } from '@/lib/auth'
 import { useNotificationStore } from '@/stores/user/useNotificationStore'
 
 export const getUserNotification = async (

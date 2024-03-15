@@ -1,6 +1,4 @@
-import { toast } from '@/components/ui/use-toast'
 import { fetchWrapper } from '@/functions/fetch'
-import { useNotificationStore } from '@/stores/user/useNotificationStore'
 import { UserNotification } from '../../../../../types/index'
 
 export const userNotification = () => {

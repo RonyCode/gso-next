@@ -9,8 +9,9 @@ export default function Docs() {
     ) {
       // eslint-disable-next-line no-new
       new Notification('GSO', {
-        body: 'asdasd',
+        body: 'Teste push notification',
         icon: 'images/logo_x72.png',
+        badge: 'images/logo_x72.png',
       })
     }
   }

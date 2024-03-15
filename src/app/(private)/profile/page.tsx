@@ -1,5 +1,4 @@
 import React from 'react'
-import { Metadata } from 'next'
 
 const ProfileUser = async () => {
   return (

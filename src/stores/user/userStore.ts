@@ -5,12 +5,12 @@ type ActionsProps = {
   add: (user: UserType) => void
 }
 
-type UserStore = {
+type UserProps = {
   state: { user: UserType }
   actions: ActionsProps
 }
 
-export const useUserStore = create<UserStore>()((set) => {
+export const useUserStore = create<UserProps>()((set) => {
   return {
     state: {
       user: {

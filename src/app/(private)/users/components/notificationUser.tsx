@@ -1,19 +1,10 @@
 'use client'
 import { getUserNotification } from '@/functions/getNotificationUser'
 import { toast } from 'sonner'
-import { useNotificationStore } from '@/stores/user/useNotificationStore'
 import { UserNotification } from '../../../../../types'
 import { Button } from '@/ui/button'
 import { LuBell } from 'react-icons/lu'
-import React, {
-  forwardRef,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from 'react'
-import { getServerSession } from 'next-auth'
-import { authOptions } from '@/lib/auth'
+import React, { useCallback, useEffect, useState } from 'react'
 import { useSession } from 'next-auth/react'
 
 const NotificationUser = () => {
@@ -21,37 +12,37 @@ const NotificationUser = () => {
   const [state, setState] = useState(false)
   const [count, setcount] = useState(false)
 
-  const handleNotification = async (notification: UserNotification | null) => {
+  const handleNotification = async (notification: UserNotification) => {
     if (notification?.messages?.length) {
       for (const item of notification?.messages) {
         if (item) {
           toast(item.email, {
             description: item.message,
-            action: {
-              label: 'Ok',
-              onClick: async () =>
-                // eslint-disable-next-line react-hooks/rules-of-hooks
-                useNotificationStore().actions.add({
-                  messages: [],
-                  id: '',
-                  status: '',
-                  title: '',
-                  type: '',
-                  qtd: 0,
-                  code: 0,
-                }),
-            },
+            // action: {
+            //   label: 'Ok',
+            // onClick: async () =>
+            // eslint-disable-next-line react-hooks/rules-of-hooks
+            //     useNotificationStore().actions.add({
+            //       messages: [],
+            //       id: '',
+            //       status: '',
+            //       title: '',
+            //       type: '',
+            //       qtd: 0,
+            //       code: 0,
+            //     }),
+            // },
 
             className: 'mt-12 md:mt-10 -right-6',
           })
         }
       }
     }
-    if (notification) {
-      setcount(
-        useNotificationStore?.getState()?.state?.notification?.id.length > 0,
-      )
-    }
+    // if (notification) {
+    //   setcount(
+    //     useNotificationStore?.getState()?.state?.notification?.id.length > 0,
+    //   )
+    // }
   }
 
   setInterval(async () => {
@@ -75,6 +66,8 @@ const NotificationUser = () => {
         body: 'asdasd',
         icon: 'images/logo_x72.png',
       })
+      setcount((prevState) => !prevState)
+      setState((prevState) => !prevState)
     }
   }
   const requestNotificationPermission = useCallback(() => {
