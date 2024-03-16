@@ -33,6 +33,7 @@ import { signOut, useSession } from 'next-auth/react'
 import { usePathname, useRouter } from 'next/navigation'
 import { cn } from '@/lib/utils'
 import NotificationUser from '@/app/(private)/users/components/notificationUser'
+import LoadingPage from '@/components/Loadings/LoadingPage'
 
 export function NavbarHome({
   className,
@@ -192,8 +193,9 @@ export function NavbarHome({
             {/*    <LuBell className="h-8 w-8 lg:h-9 lg:w-9" /> */}
             {/*  </div> */}
             {/* </Button> */}
-
-            <NotificationUser />
+            <React.Suspense fallback={<LoadingPage pending={true} />}>
+              <NotificationUser />
+            </React.Suspense>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button

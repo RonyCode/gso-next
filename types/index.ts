@@ -35,6 +35,7 @@ export interface Profile {
   dateExpires: string
   grantedByIdUser: number
 }
+
 export interface TokenUser {
   token: string
   refreshToken: string
@@ -91,6 +92,16 @@ export interface CepProps {
   cityId: string
   complement: string
   district: string
+  cep: string
+  logradouro: string
+  complemento: string
+  bairro: string
+  localidade: string
+  uf: string
+  ibge: number
+  gia: string
+  ddd: number
+  siafi: number
   districtId: string
   ibgeId: string
   state: string
@@ -111,6 +122,16 @@ export interface AddressProps {
   city: string
   name: string
   shortName: string
+  cep: string
+  logradouro: string
+  complemento: string
+  bairro: string
+  localidade: string
+  uf: string
+  ibge: number
+  gia: string
+  ddd: number
+  siafi: number
 }
 
 export type ResultSignIn = {

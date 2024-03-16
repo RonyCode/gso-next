@@ -6,12 +6,11 @@ import { Suspense } from 'react'
 import LoadingPage from '@/components/Loadings/LoadingPage'
 import { NavbarHome } from '@/components/Nav/NavbarHome'
 import { cn } from '@/lib/utils'
-import Script from 'next/script'
 import { Metadata, Viewport } from 'next'
 
 const APP_NAME = 'GSO'
 const APP_DEFAULT_TITLE = 'My GSO PWA App'
-const APP_TITLE_TEMPLATE = '%s - PWA GSO'
+const APP_TITLE_TEMPLATE = '%s'
 const APP_DESCRIPTION = 'Best PWA app in the world!'
 
 export const metadata: Metadata = {
@@ -77,10 +76,7 @@ export default function RootLayout({
             <Providers>
               <NavbarHome />
               <main className="flex min-h-screen w-full  flex-col bg-gradient-to-t from-background to-secondary pt-[68px]">
-                <div className="w-full  flex-1 flex-grow">
-                  {children}
-                  <Script src="/service-worker.js" />
-                </div>
+                <div className="w-full  flex-1 flex-grow">{children}</div>
               </main>
               <footer className="relative bottom-0 z-50 h-48 border-t bg-background text-center text-sm leading-5 text-foreground ">
                 © 2024 Rcode Copyright. Todos os direitos reservados.

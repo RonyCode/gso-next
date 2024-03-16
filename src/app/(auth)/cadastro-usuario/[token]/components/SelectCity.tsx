@@ -26,7 +26,6 @@ type SelectCityProps = {
 
 export const SelectCity = ({ form, field }: SelectCityProps) => {
   const arrayCitiesByState = cityStore.getState().cities
-  console.log(arrayCitiesByState)
   return (
     <FormItem className="flex w-full flex-col">
       <FormLabel htmlFor="cidade" className="flex items-center gap-1">

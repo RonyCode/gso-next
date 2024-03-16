@@ -142,15 +142,15 @@ export const UserRegisterForm = ({
   const handleCep = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e?.target?.value.length >= 9) {
       startTransition(async () => {
-        const { street, city, district, stateShortname } = await getCep(
+        const { logradouro, localidade, uf, bairro } = await getCep(
           e.target?.value,
         )
-        await chageValueInput(Fields.endereco, street)
-        await chageValueInput(Fields.sigla, stateShortname)
-        await chageValueInput(Fields.cidade, city)
-        await chageValueInput(Fields.bairro, district)
-        await chageValueInput(Fields.estado, stateShortname)
-        if (!city) {
+        await chageValueInput(Fields.endereco, logradouro)
+        await chageValueInput(Fields.sigla, uf)
+        await chageValueInput(Fields.cidade, localidade)
+        await chageValueInput(Fields.bairro, bairro)
+        await chageValueInput(Fields.estado, uf)
+        if (!localidade) {
           states = []
           arrayCitiesByState = []
           toast({

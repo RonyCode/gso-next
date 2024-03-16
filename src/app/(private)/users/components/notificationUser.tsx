@@ -1,104 +1,120 @@
 'use client'
-import { getUserNotification } from '@/functions/getNotificationUser'
 import { toast } from 'sonner'
+import { useNotificationStore } from '@/stores/user/useNotificationStore'
 import { UserNotification } from '../../../../../types'
 import { Button } from '@/ui/button'
 import { LuBell } from 'react-icons/lu'
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useSession } from 'next-auth/react'
+import { getUserNotification } from '@/functions/getNotificationUser'
 
 const NotificationUser = () => {
   const { data: session } = useSession()
-  const [state, setState] = useState(false)
-  const [count, setcount] = useState(false)
+  const [notiication, setNotiication] = useState({} as UserNotification)
 
-  const handleNotification = async (notification: UserNotification) => {
+  navigator.serviceWorker
+    .register('/service-worker/index.js')
+    .then(async (serviceWorker) => {
+      let subscription = await serviceWorker.pushManager.getSubscription()
+      if (!subscription) {
+        const publicKey = await fetch(
+          `${process.env.NEXT_PUBLIC_NEXT_URL}/api/notification/public-key`,
+        )
+
+        const { data } = await publicKey.json()
+        subscription = await serviceWorker.pushManager.subscribe({
+          userVisibleOnly: true,
+          applicationServerKey: data,
+        })
+      }
+      const res = await getUserNotification(
+        'auth',
+        'user_logged',
+        session?.id_message,
+      )
+      if (res?.code !== 400) {
+        await handleNotification(res)
+      }
+      console.log(JSON.stringify(subscription))
+    })
+
+  const handleNotification = async (notification: UserNotification | null) => {
+    console.log('teste')
     if (notification?.messages?.length) {
       for (const item of notification?.messages) {
         if (item) {
           toast(item.email, {
             description: item.message,
-            // action: {
-            //   label: 'Ok',
-            // onClick: async () =>
-            // eslint-disable-next-line react-hooks/rules-of-hooks
-            //     useNotificationStore().actions.add({
-            //       messages: [],
-            //       id: '',
-            //       status: '',
-            //       title: '',
-            //       type: '',
-            //       qtd: 0,
-            //       code: 0,
-            //     }),
-            // },
-
+            action: {
+              label: 'Ok',
+              onClick: async () =>
+                // eslint-disable-next-line react-hooks/rules-of-hooks
+                useNotificationStore.getState().actions.add({
+                  messages: [],
+                  id: '',
+                  status: '',
+                  title: '',
+                  type: '',
+                  qtd: 0,
+                  code: 0,
+                }),
+            },
+            onDismiss: async () =>
+              // eslint-disable-next-line react-hooks/rules-of-hooks
+              useNotificationStore.getState().actions.add({
+                messages: [],
+                id: '',
+                status: '',
+                title: '',
+                type: '',
+                qtd: 0,
+                code: 0,
+              }),
             className: 'mt-12 md:mt-10 -right-6',
+            onAutoClose: async () =>
+              // eslint-disable-next-line react-hooks/rules-of-hooks
+              useNotificationStore.getState().actions.add({
+                messages: [],
+                id: '',
+                status: '',
+                title: '',
+                type: '',
+                qtd: 0,
+                code: 0,
+              }),
           })
         }
       }
     }
-    // if (notification) {
-    //   setcount(
-    //     useNotificationStore?.getState()?.state?.notification?.id.length > 0,
-    //   )
-    // }
-  }
-
-  setInterval(async () => {
-    const res = await getUserNotification(
-      'auth',
-      'user_logged',
-      session?.id_message,
-    )
-    if (res?.code !== 400) {
-      await handleNotification(res)
-    }
-  }, 60_000)
-
-  const sendNotifications = () => {
-    if (
-      'Notification' in window &&
-      window.Notification.permission === 'granted'
-    ) {
-      // eslint-disable-next-line no-new
-      new Notification('GSO', {
-        body: 'asdasd',
-        icon: 'images/logo_x72.png',
-      })
-      setcount((prevState) => !prevState)
-      setState((prevState) => !prevState)
+    if (notification) {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-expect-error
+      setNotiication(useNotificationStore.getState()?.state?.notification)
     }
   }
-  const requestNotificationPermission = useCallback(() => {
-    if ('Notification' in window) {
-      Notification.requestPermission().then(function (permission) {
-        if (permission === 'granted') {
-          sendNotifications()
-        }
-      })
-    }
-  }, [])
 
-  useEffect(() => {
-    if ('Notification' in window) {
-      requestNotificationPermission()
-    }
-  }, [requestNotificationPermission])
+  // setInterval(async () => {
+  //   const res = await getUserNotification(
+  //     'auth',
+  //     'user_logged',
+  //     session?.id_message,
+  //   )
+  //   if (res?.code !== 400) {
+  //     await handleNotification(res)
+  //   }
+  // }, 20000)
 
   return (
     <>
       <Button
         variant="ghost"
-        className={`relative mr-2 h-12 w-12 rounded-full border hover:border-foreground/20 md:block lg:h-14 lg:w-14  ${
-          state ? ' hidden' : ' md:flex'
-        }  `}
+        className="relative mr-2 h-12 w-12 rounded-full border hover:border-foreground/20 md:block md:flex lg:h-14 lg:w-14"
         onClick={() => handleNotification}
       >
         <div className="relative flex w-14 items-center justify-center">
-          {count && (
+          {notiication?.messages?.length > 0 && (
             <div className="absolute -right-1 -top-2 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-sm text-foreground lg:h-5 lg:w-5">
-              {count}{' '}
+              {notiication?.messages?.length}{' '}
             </div>
           )}
           <LuBell className="h-8 w-8 lg:h-9 lg:w-9" />
