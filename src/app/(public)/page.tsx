@@ -26,7 +26,6 @@ export default async function Home() {
               <CardsBanner />
               <CardsBanner />
               <CardsBanner />
-              <CardsBanner />
             </section>
           </section>
         </main>

@@ -106,8 +106,6 @@ export function NavbarHome({
         }`
       }
     >
-      {/* <UserNotifcationStoreInitialize userNotification={notification} /> */}
-
       <div
         className={`fixed h-screen  w-screen ${state ? 'block ' : 'hidden '}`}
         onClick={() => setState(false)}
@@ -177,22 +175,6 @@ export function NavbarHome({
               state ? ' flex flex-col-reverse items-stretch gap-2' : ' md:flex'
             }`}
           >
-            {/* <Button */}
-            {/*  variant="ghost" */}
-            {/*  className={`relative mr-2 h-12 w-12 rounded-full border hover:border-foreground/20 md:block lg:h-14 lg:w-14  ${ */}
-            {/*    state ? ' hidden' : ' md:flex' */}
-            {/*  }  `} */}
-            {/*  onClick={handleNotification} */}
-            {/* > */}
-            {/*  <div className="relative flex w-14 items-center justify-center"> */}
-            {/*    {notification?.messages?.length > 0 && ( */}
-            {/*      <div className="absolute -right-1 -top-2 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-sm text-foreground lg:h-5 lg:w-5"> */}
-            {/*        {notification?.messages?.length} */}
-            {/*      </div> */}
-            {/*    )} */}
-            {/*    <LuBell className="h-8 w-8 lg:h-9 lg:w-9" /> */}
-            {/*  </div> */}
-            {/* </Button> */}
             <React.Suspense fallback={<LoadingPage pending={true} />}>
               <NotificationUser />
             </React.Suspense>

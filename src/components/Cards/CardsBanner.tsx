@@ -33,18 +33,20 @@ export const CardsBanner = ({ className, ...props }: CardProps) => {
     <>
       <Card className={cn(' w-full md:w-[380px]', className)} {...props}>
         <CardHeader>
-          <CardTitle>Notifications</CardTitle>
-          <CardDescription>You have 3 unread messages.</CardDescription>
+          <CardTitle>Notiicações</CardTitle>
+          <CardDescription>
+            Você tem {notifications.length} notificações novas
+          </CardDescription>
         </CardHeader>
         <CardContent className="grid gap-4">
           <div className=" flex items-center space-x-4 rounded-md border p-4">
             <BellRing />
             <div className="flex-1 space-y-1">
               <p className="text-sm font-medium leading-none">
-                Push Notifications
+                Alerta de notificatções
               </p>
               <p className="text-sm text-muted-foreground">
-                Send notifications to device.
+                Aceitar notificações neste dispositivo.
               </p>
             </div>
             <Switch />
@@ -70,7 +72,7 @@ export const CardsBanner = ({ className, ...props }: CardProps) => {
         </CardContent>
         <CardFooter>
           <Button className="w-full">
-            <Check className="mr-2 h-4 w-4" /> Mark all as read
+            <Check className="mr-2 h-4 w-4" /> Marcar todas como lidas
           </Button>
         </CardFooter>
       </Card>
