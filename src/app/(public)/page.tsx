@@ -4,8 +4,11 @@ import BannerHome1 from '@/components/Layout/banner/BannerHome1'
 import BannerHome2 from '@/components/Layout/banner/BannerHome2'
 import { CardsBanner } from '@/components/Cards/CardsBanner'
 import MaxWidthWrapper from '@/components/Layout/MaxWidthWrapper'
+
 import { Metadata } from 'next'
-import React from 'react'
+import React, { Suspense } from 'react'
+
+import { AllowCookie } from '@/components/AllowCookies/AllowCookie'
 
 export const metadata: Metadata = {
   title: 'GSO | Home',

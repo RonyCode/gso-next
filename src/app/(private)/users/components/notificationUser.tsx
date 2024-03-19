@@ -14,10 +14,12 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/ui/dropdown-menu'
+import { AllowCookie } from '@/components/AllowCookies/AllowCookie'
 
 const NotificationUser = () => {
   const { data: session } = useSession()
   const [notiication, setNotiication] = useState({} as UserNotification)
+  const [showHaveNotification, setShowHaveNotification] = useState(false)
 
   navigator.serviceWorker
     .register('/service-worker/index.js')
@@ -40,6 +42,7 @@ const NotificationUser = () => {
         session?.id_message,
       )
       if (res?.code !== 400) {
+        setShowHaveNotification(true)
         await handleNotification(res)
       }
       console.log(JSON.stringify(subscription))
@@ -146,6 +149,8 @@ const NotificationUser = () => {
   return (
     <>
       <DropdownMenu>
+        <AllowCookie />
+
         <DropdownMenuTrigger asChild>
           {/* <Button */}
           {/*  variant="ghost" */}
@@ -157,7 +162,6 @@ const NotificationUser = () => {
           <Button
             variant="ghost"
             className="relative mr-2 h-12 w-12 rounded-full border hover:border-foreground/20 md:block md:flex lg:h-14 lg:w-14"
-            onClick={() => handleNotification}
           >
             <div className="relative flex w-14 items-center justify-center">
               {notiication?.messages?.length > 0 && (

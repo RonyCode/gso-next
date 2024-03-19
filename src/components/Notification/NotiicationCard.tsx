@@ -14,6 +14,9 @@ import React from 'react'
 import { NotificationMessage } from '../../../types/index'
 import Link from 'next/link'
 import { DropdownMenuSeparator } from '@/ui/dropdown-menu'
+import { useNotificationStore } from '@/stores/user/useNotificationStore'
+import { useRouter } from 'next/navigation'
+import { AllowCookie } from '@/components/AllowCookies/AllowCookie'
 
 type NotificationProps = {
   notifications: NotificationMessage[]
@@ -24,6 +27,8 @@ export const NotificationCard = ({
   className,
   ...props
 }: NotificationProps) => {
+  const router = useRouter()
+
   return (
     <>
       <Card className={cn(' w-full md:w-[380px]', className)} {...props}>
@@ -71,7 +76,21 @@ export const NotificationCard = ({
         </CardContent>
         {notifications?.length > 0 && (
           <CardFooter>
-            <Button className="w-full">
+            <Button
+              onClick={() => {
+                useNotificationStore.getState().actions.add({
+                  messages: [],
+                  id: '',
+                  status: '',
+                  title: '',
+                  type: '',
+                  qtd: 0,
+                  code: 0,
+                })
+                router.refresh()
+              }}
+              className="w-full"
+            >
               <Check className="mr-2 h-4 w-4" /> Marcar todas como lidas
             </Button>
           </CardFooter>
