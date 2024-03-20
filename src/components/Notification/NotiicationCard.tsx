@@ -16,10 +16,9 @@ import Link from 'next/link'
 import { DropdownMenuSeparator } from '@/ui/dropdown-menu'
 import { useNotificationStore } from '@/stores/user/useNotificationStore'
 import { useRouter } from 'next/navigation'
-import { AllowCookie } from '@/components/AllowCookies/AllowCookie'
 
 type NotificationProps = {
-  notifications: NotificationMessage[]
+  notifications: NotificationMessage[] | null | undefined
 } & React.ComponentProps<typeof Card>
 
 export const NotificationCard = ({
@@ -74,7 +73,7 @@ export const NotificationCard = ({
             ))}
           </div>
         </CardContent>
-        {notifications?.length > 0 && (
+        {notifications && notifications?.length > 0 && (
           <CardFooter>
             <Button
               onClick={() => {
