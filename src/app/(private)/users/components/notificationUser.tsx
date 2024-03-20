@@ -59,8 +59,6 @@ const NotificationUser = () => {
     if (stopTime) {
       clearInterval(stopTime)
     }
-    console.log(useNotificationStore.getState()?.state?.notification?.messages)
-    console.log(stopTime)
     return () => clearInterval(interval)
   }, [notiication, session?.id_message, stopTime])
 
