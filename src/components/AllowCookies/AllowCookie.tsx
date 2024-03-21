@@ -14,7 +14,7 @@ import { LuCookie } from 'react-icons/lu'
 
 export const AllowCookie = () => {
   const [show, setShow] = useState(true)
-  // TODO: onClick
+
   return (
     <>
       <Drawer open={show}>

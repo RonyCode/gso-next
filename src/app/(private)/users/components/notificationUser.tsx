@@ -1,9 +1,9 @@
 'use client'
 import { useNotificationStore } from '@/stores/user/useNotificationStore'
-import { UserNotification } from '../../../../../types'
+// import { UserNotification } from '../../../../../types'
 import { Button } from '@/ui/button'
 import { LuBell } from 'react-icons/lu'
-import React, { useEffect, useState } from 'react'
+// import React, { useEffect, useState } from 'react'
 import { useSession } from 'next-auth/react'
 import { getUserNotification } from '@/functions/getNotificationUser'
 import { NotificationCard } from '@/components/Notification/NotiicationCard'
@@ -15,11 +15,11 @@ import {
   DropdownMenuTrigger,
 } from '@/ui/dropdown-menu'
 import { AllowCookie } from '@/components/AllowCookies/AllowCookie'
+import { useState } from 'react'
 
 const NotificationUser = () => {
   const { data: session } = useSession()
-  const [notiication, setNotiication] = useState({} as UserNotification)
-  const [stopTime, setStopTime] = useState({} as NodeJS.Timeout)
+  const [count, setCount] = useState(1)
 
   navigator.serviceWorker
     .register('/service-worker/index.js')
@@ -36,45 +36,17 @@ const NotificationUser = () => {
           applicationServerKey: data,
         })
       }
-    })
+      console.log(JSON.stringify(subscription))
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      getUserNotification('auth', 'user_logged', session?.id_message).then(
-        (res) => {
-          if (res?.messages?.length) {
-            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-            // @ts-expect-error
-            setNotiication(useNotificationStore.getState()?.state?.notification)
-            setStopTime(
-              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-              // @ts-expect-error
-              useNotificationStore.getState()?.state?.notification?.messages
-                ?.length === 0,
-            )
-          }
-        },
-      )
-    }, 3000)
-    if (stopTime) {
-      clearInterval(stopTime)
-    }
-    return () => clearInterval(interval)
-  }, [notiication, session?.id_message, stopTime])
+      await getUserNotification('auth', 'user_logged', session?.id_message)
+    })
 
   return (
     <>
       <DropdownMenu>
-        <AllowCookie />
+        {/* <AllowCookie /> */}
 
         <DropdownMenuTrigger asChild>
-          {/* <Button */}
-          {/*  variant="ghost" */}
-          {/*  className="relative h-12 w-12 rounded-full border hover:border-foreground/20 lg:h-14 lg:w-14 " */}
-          {/* > */}
-          {/*  */}
-          {/* </Button> */}
-
           <Button
             variant="ghost"
             className="relative mr-2 h-12 w-12 rounded-full border hover:border-foreground/20 md:block md:flex lg:h-14 lg:w-14"
