@@ -15,11 +15,11 @@ import {
   DropdownMenuTrigger,
 } from '@/ui/dropdown-menu'
 import { AllowCookie } from '@/components/AllowCookies/AllowCookie'
-import { useState } from 'react'
 
 const NotificationUser = () => {
   const { data: session } = useSession()
-  const [count, setCount] = useState(1)
+
+  getUserNotification('auth', 'user_logged', session?.id_message)
 
   navigator.serviceWorker
     .register('/service-worker/index.js')
@@ -37,27 +37,25 @@ const NotificationUser = () => {
         })
       }
       console.log(JSON.stringify(subscription))
-
-      await getUserNotification('auth', 'user_logged', session?.id_message)
     })
 
   return (
     <>
       <DropdownMenu>
-        {/* <AllowCookie /> */}
+        <AllowCookie />
 
         <DropdownMenuTrigger asChild>
           <Button
             variant="ghost"
-            className="relative mr-2 h-12 w-12 rounded-full border hover:border-foreground/20 md:block md:flex lg:h-14 lg:w-14"
+            className="relative mr-2 h-12 w-12  rounded-full border hover:border-foreground/20 md:block md:flex lg:h-14 lg:w-14"
           >
-            <div className="relative flex w-14 items-center justify-center">
+            <div className="relative flex w-14 items-center justify-center ">
               {
                 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                 // @ts-expect-error
                 useNotificationStore?.getState()?.state?.notification?.messages
                   ?.length > 0 && (
-                  <div className="absolute -right-1 -top-2 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-sm text-foreground lg:h-5 lg:w-5">
+                  <div className="absolute -right-1 -top-2 flex h-4 w-4 items-center  justify-center rounded-full bg-primary text-sm text-foreground lg:h-5 lg:w-5">
                     {
                       useNotificationStore.getState()?.state?.notification
                         ?.messages?.length
@@ -69,7 +67,11 @@ const NotificationUser = () => {
             </div>
           </Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent className="w-96" align="center" forceMount>
+        <DropdownMenuContent
+          className="w-full md:w-96"
+          align="center"
+          forceMount
+        >
           <DropdownMenuGroup>
             <DropdownMenuItem className="h-full">
               <NotificationCard

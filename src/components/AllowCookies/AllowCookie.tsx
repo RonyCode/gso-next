@@ -11,9 +11,16 @@ import {
 import { Button } from '@/ui/button'
 import React, { useState } from 'react'
 import { LuCookie } from 'react-icons/lu'
+import notificationUser from '@/app/(private)/users/components/notificationUser'
 
 export const AllowCookie = () => {
   const [show, setShow] = useState(true)
+
+  const handleClick = () => {
+    Notification.requestPermission()
+
+    setShow(false)
+  }
 
   return (
     <>
@@ -38,11 +45,7 @@ export const AllowCookie = () => {
           </DrawerHeader>
           <DrawerFooter className=" p-0 pb-4">
             <DrawerClose>
-              <Button
-                onClick={() => setShow(false)}
-                variant="default"
-                className="mb-4"
-              >
+              <Button onClick={handleClick} variant="default" className="mb-4">
                 Aceitar
               </Button>
             </DrawerClose>

@@ -30,15 +30,20 @@ export const NotificationCard = ({
 
   return (
     <>
-      <Card className={cn(' w-full md:w-[380px]', className)} {...props}>
+      <Card className={cn(' w-full md:w-[380px] ', className)} {...props}>
         <CardHeader>
           <CardTitle>Notificações</CardTitle>
           <CardDescription>
-            Você tem {notifications?.length} notificações novas
+            Você tem{' '}
+            <strong className="font-extrabold text-foreground ">
+              {' '}
+              {notifications?.length}
+            </strong>{' '}
+            notificações novas
           </CardDescription>
         </CardHeader>
-        <CardContent className="grid gap-4">
-          <div className=" flex items-center space-x-4 rounded-md border p-4">
+        <CardContent className="grid max-h-[calc(100vh_-_15rem)] w-96 overflow-y-scroll ">
+          <div className=" flex max-h-[100px] items-center space-x-4 rounded-md border p-4">
             <BellRing />
             <div className="flex-1 space-y-1">
               <p className="text-sm font-medium leading-none">
@@ -51,13 +56,25 @@ export const NotificationCard = ({
             <Switch />
           </div>
           <div>
-            {notifications?.map((notification, index) => (
+            {notifications?.map((notification, indexNoti) => (
               <Link
-                key={index}
-                href={`/messages/${notification?.id_message}`}
+                key={indexNoti}
+                href={`/`}
+                target="_blank"
                 className="-mx-1 my-1 h-px bg-muted"
+                onClick={async () => {
+                  useNotificationStore
+                    .getState()
+                    .state.notification?.messages.forEach((item, index) => {
+                      if (index === indexNoti) {
+                        if (index > -1) {
+                          notifications.splice(index, 1)
+                        }
+                      }
+                    })
+                }}
               >
-                <div className="mb-4 grid grid-cols-[25px_1fr] items-start pb-4 last:mb-0 last:pb-0">
+                <div className=" mb-2 grid grid-cols-[25px_1fr] items-start pb-2 last:mb-0 last:pb-0">
                   <span className="flex h-2 w-2 translate-y-1 rounded-full bg-sky-500" />
                   <div className="space-y-1">
                     <p className="text-sm font-medium leading-none">

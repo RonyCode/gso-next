@@ -43,7 +43,7 @@ self.addEventListener('push', function (event) {
   const pushData = event.data.json()
   const options = {
     body: pushData.body,
-    icon: 'logo_x72.png',
+    icon: '/images/logo_x72.png',
     badge: pushData.badge,
     data: {
       notifURL: pushData.url,
