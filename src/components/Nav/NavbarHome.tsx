@@ -85,11 +85,7 @@ export function NavbarHome({
   const pathname = usePathname()
 
   const menus: MenuTypes[] = [
-    {
-      title: 'Serviços',
-      icon: <LuComponent />,
-      path: '/servicos',
-    },
+    { title: 'Serviços', icon: <LuComponent />, path: '/servicos' },
     { title: 'Contato', icon: <LuContact />, path: '/contact' },
     { title: 'Sobre nos', icon: <LuMessagesSquare />, path: '/about' },
   ]

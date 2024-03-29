@@ -10,8 +10,19 @@ export interface UserAuth {
   dateCriation: string
 }
 
+export interface FileType {
+  file: ((false | File) & (false | File | undefined)) | null
+  lastModified: string
+  lastModifiedDate: object
+  name: string
+  size: string
+  type: string
+  webkitRelativePath: string
+}
+
 export interface Account {
   name: string
+  file: FileType
   cpf: string
   phone: string
   birthday: string
@@ -72,9 +83,11 @@ export interface UserRegisterError {
 }
 
 export interface NotificationMessage {
+  title: string
   id_message: string
   email: boolean
   message: string
+  url: string
 }
 
 export interface UserNotification {

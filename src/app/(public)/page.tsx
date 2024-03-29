@@ -6,6 +6,8 @@ import { CardsBanner } from '@/components/Cards/CardsBanner'
 import MaxWidthWrapper from '@/components/Layout/MaxWidthWrapper'
 
 import { Metadata } from 'next'
+import { EditPhoto } from '@/components/EditPhoto/EditPhoto'
+import React from 'react'
 
 export const metadata: Metadata = {
   title: 'GSO | Home',

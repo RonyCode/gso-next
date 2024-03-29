@@ -6,7 +6,7 @@ import { RegisterUserSchema } from '@/app/(auth)/cadastro-usuario/[token]/schema
 import { ResponseUserSigned } from '../../../../../../types/index'
 import { fetchWrapper } from '@/functions/fetch'
 
-export async function signedUpAction(formData: RegisterUserSchema) {
+export async function signedUpAction(formData?: RegisterUserSchema) {
   try {
     if (formData) {
       revalidatePath('/')

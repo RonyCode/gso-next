@@ -11,7 +11,6 @@ import {
 import { Button } from '@/ui/button'
 import React, { useState } from 'react'
 import { LuCookie } from 'react-icons/lu'
-import notificationUser from '@/app/(private)/users/components/notificationUser'
 
 export const AllowCookie = () => {
   const [show, setShow] = useState(true)

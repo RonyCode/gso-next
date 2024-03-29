@@ -60,7 +60,6 @@ export async function middleware(request: NextRequest) {
         },
       )
 
-      console.log(await resp.text())
       // SALVA NOVOS COKKIES
       if (resp.ok) {
         const tokenRes = await resp?.json()

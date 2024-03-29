@@ -20,12 +20,12 @@ const sidebarNavItems = [
       },
       {
         title: 'Editar Perfil',
-        href: '/profile/settings',
+        href: '/profile/edit',
         icon: <LuSettings size={20} />,
       },
       {
         title: 'Endereço',
-        href: '/profile/edit',
+        href: '/profile/settings',
         icon: <LuMapPin size={20} />,
       },
       {

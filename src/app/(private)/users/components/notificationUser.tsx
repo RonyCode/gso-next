@@ -1,9 +1,7 @@
 'use client'
 import { useNotificationStore } from '@/stores/user/useNotificationStore'
-// import { UserNotification } from '../../../../../types'
 import { Button } from '@/ui/button'
 import { LuBell } from 'react-icons/lu'
-// import React, { useEffect, useState } from 'react'
 import { useSession } from 'next-auth/react'
 import { getUserNotification } from '@/functions/getNotificationUser'
 import { NotificationCard } from '@/components/Notification/NotiicationCard'
@@ -14,7 +12,6 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/ui/dropdown-menu'
-import { AllowCookie } from '@/components/AllowCookies/AllowCookie'
 
 const NotificationUser = () => {
   const { data: session } = useSession()
@@ -42,7 +39,7 @@ const NotificationUser = () => {
   return (
     <>
       <DropdownMenu>
-        <AllowCookie />
+        {/* <AllowCookie /> */}
 
         <DropdownMenuTrigger asChild>
           <Button

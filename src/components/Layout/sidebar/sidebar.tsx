@@ -7,6 +7,8 @@ import React, { ReactNode } from 'react'
 import { usePathname } from 'next/navigation'
 import { Avatar, AvatarFallback, AvatarImage } from '@/ui/avatar'
 import { useSession } from 'next-auth/react'
+import { LuCamera } from 'react-icons/lu'
+import { EditPhoto } from '@/components/EditPhoto/EditPhoto'
 
 interface SidebarNavProps extends React.HTMLAttributes<HTMLElement> {
   items: {
@@ -61,6 +63,9 @@ export function Sidebar({ className, items }: SidebarNavProps) {
             {nameUser}
           </AvatarFallback>
         </Avatar>
+        <div className="absolute left-[5px] top-24 z-50">
+          <EditPhoto />
+        </div>
         <div className="flex items-center space-x-2 lg:flex-col lg:space-x-0 lg:space-y-1">
           {items.map((item) => (
             <div

@@ -53,15 +53,17 @@ export const NotificationCard = ({
                 Aceitar notificações neste dispositivo.
               </p>
             </div>
-            <Switch />
+            <Switch
+              onClick={() => Notification.requestPermission()}
+              checked={Notification.permission === 'granted'}
+            />
           </div>
           <div>
             {notifications?.map((notification, indexNoti) => (
               <Link
                 key={indexNoti}
-                href={`/`}
-                target="_blank"
-                className="-mx-1 my-1 h-px bg-muted"
+                href={notification?.url}
+                className="-mx-1 my-1 h-px bg-muted "
                 onClick={async () => {
                   useNotificationStore
                     .getState()
@@ -74,11 +76,11 @@ export const NotificationCard = ({
                     })
                 }}
               >
-                <div className=" mb-2 grid grid-cols-[25px_1fr] items-start pb-2 last:mb-0 last:pb-0">
-                  <span className="flex h-2 w-2 translate-y-1 rounded-full bg-sky-500" />
-                  <div className="space-y-1">
-                    <p className="text-sm font-medium leading-none">
-                      {notification?.id_message}
+                <div className=" animate trasnsition group  grid grid-cols-[25px_1fr] items-center justify-center rounded-2xl  p-4  duration-300 last:mb-0 last:pb-0 hover:bg-background/90">
+                  <span className="flex h-2 w-2  rounded-full bg-primary  group-hover:bg-foreground" />
+                  <div>
+                    <p className="mb-2 text-sm font-medium leading-none">
+                      {notification?.title}
                     </p>
                     <p className="text-sm text-muted-foreground">
                       {notification?.message}

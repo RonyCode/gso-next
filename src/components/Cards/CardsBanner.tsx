@@ -11,6 +11,7 @@ import { BellRing, Check } from 'lucide-react'
 import { Switch } from '@/ui/switch'
 import { Button } from '@/ui/button'
 import React from 'react'
+import { EditPhoto } from '@/components/EditPhoto/EditPhoto'
 
 type CardProps = React.ComponentProps<typeof Card>
 
@@ -49,6 +50,8 @@ export const CardsBanner = ({ className, ...props }: CardProps) => {
                 Aceitar notificações neste dispositivo.
               </p>
             </div>
+            <EditPhoto />
+
             <Switch />
           </div>
           <div>

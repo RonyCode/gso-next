@@ -68,6 +68,7 @@ export const RegisterUserSchema = z
       message: 'Data inválida',
     }),
     email: z.string().email({ message: 'Email inválido' }),
+    image: z.string().min(1, { message: 'Imagem inválido' }),
     senha: z
       .string()
       .min(8, {

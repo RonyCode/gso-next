@@ -8,9 +8,6 @@ export async function GET(request: Request) {
       'Content-Type': 'application/json',
     },
   })
-  console.log(await res.text())
-  // const { result } = await res.json()
-  // const { result } = await res.json()
-  // return NextResponse.json(result)
-  return NextResponse.json('result')
+  const result = await res.json()
+  return NextResponse.json(result)
 }
