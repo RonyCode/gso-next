@@ -27,13 +27,16 @@ export const useUserStore = create<UserProps>()((set) => {
         cidade: '',
         confirmaSenha: '',
         senha: '',
+
         account: {
           name: '',
+          file: null,
           cpf: '',
           phone: '',
           birthday: '',
           image: '',
         },
+
         address: {
           address: '',
           number: '',
@@ -44,24 +47,28 @@ export const useUserStore = create<UserProps>()((set) => {
           state: '',
           shortName: '',
         },
+
         profile: {
           role: '',
           dateGranted: '',
           dateExpires: '',
           grantedByIdUser: 0,
         },
+
         tokenUser: {
           token: '',
           refreshToken: '',
           dateCriation: 0,
           dateExpires: 0,
         },
+
         userAuth: {
           email: '',
           password: '',
           isUserExternal: 0,
           dateCriation: '',
         },
+
         excluded: 0,
         id: 0,
       },

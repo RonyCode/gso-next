@@ -2,7 +2,7 @@ import { z } from 'zod'
 
 const MAX_SIZE_MB = 2
 
-export const EdiPhotoSchema = z.object({
+export const FileSchema = z.object({
   file: z
     .custom<FileList>()
     .transform((file) => file.length > 0 && file.item(0))
@@ -18,4 +18,4 @@ export const EdiPhotoSchema = z.object({
     })
     .nullable(),
 })
-export type EdiPhotoSchema = z.infer<typeof EdiPhotoSchema>
+export type FileSchema = z.infer<typeof FileSchema>

@@ -21,12 +21,12 @@ export interface FileType {
 }
 
 export interface Account {
+  image: string
   name: string
-  file: FileType
   cpf: string
   phone: string
   birthday: string
-  image: string
+  file: FileType | null
 }
 
 export interface Address {
@@ -55,11 +55,11 @@ export interface TokenUser {
 }
 
 export interface UserType {
-  userAuth: UserAuth
-  account: Account
-  address: Address
-  profile: Profile
-  tokenUser: TokenUser
+  userAuth: UserAuth | null
+  account: Account | null
+  address: Address | null
+  profile: Profile | null
+  tokenUser: TokenUser | null
   nome: string
   email: string
   cpf: string

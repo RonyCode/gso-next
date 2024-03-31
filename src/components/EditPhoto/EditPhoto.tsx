@@ -1,8 +1,7 @@
 'use client'
-import React, { useTransition } from 'react'
+import React, { useState, useTransition } from 'react'
 import {
   Dialog,
-  DialogClose,
   DialogContent,
   DialogDescription,
   DialogHeader,
@@ -15,9 +14,7 @@ import { cn } from '@/lib/utils'
 import { LuCamera } from 'react-icons/lu'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { signedUpAction } from '@/app/(auth)/cadastro-usuario/[token]/actions/signedUpAction'
 import { toast } from '@/ui/use-toast'
-import { redirect } from 'next/navigation'
 import LoadingPage from '@/components/Loadings/LoadingPage'
 import {
   Form,
@@ -27,9 +24,12 @@ import {
   FormLabel,
   FormMessage,
 } from '@/ui/form'
+import { FileSchema } from '@/schemas/FileSchema'
+import Image from 'next/image'
 import { Progress } from '@/ui/progress'
-import { UpdatePhotoAction } from '@/app/(private)/profile/actions/UpdatePhotoAction'
-import { EdiPhotoSchema } from '@/app/(private)/profile/schemas/EditPhotoSchema'
+import axios, { AxiosProgressEvent } from 'axios'
+import { useSession } from 'next-auth/react'
+import { useUserStore } from '@/stores/user/userStore'
 
 type EditPhotoProps = {
   className?: string
@@ -37,11 +37,16 @@ type EditPhotoProps = {
 
 export const EditPhoto = ({ className, ...props }: EditPhotoProps) => {
   const [pending, startTransition] = useTransition()
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null)
+  const [file, setFile] = useState<File | null>(null)
+  const [nameFile, setNameFile] = useState<string | null>(null)
+  const [percent, setPercent] = useState<number | null>(0)
+  const { data: session, update } = useSession()
 
-  const form = useForm<EdiPhotoSchema>({
+  const form = useForm<FileSchema>({
     mode: 'all',
     criteriaMode: 'all',
-    resolver: zodResolver(EdiPhotoSchema),
+    resolver: zodResolver(FileSchema),
     defaultValues: {
       file: null,
     },
@@ -50,27 +55,78 @@ export const EditPhoto = ({ className, ...props }: EditPhotoProps) => {
   const fileRef = form.register('file')
 
   // 2. Define a submit handler.
-  const handleSubmit = (values: EdiPhotoSchema) => {
+  const handleSubmit = (data: FileSchema) => {
     startTransition(async () => {
-      const restult = await UpdatePhotoAction(values)
-      console.log(restult)
-      // if (!restult?.name) {
-      //   toast({
-      //     variant: 'danger',
-      //     title: 'Algo deu errado! 🤯 ',
-      //     description:
-      //       'Foto de usuário não atualizada, verifique tamanho ou extensão de arquivo enviado',
-      //   })
-      // }
-      // if (restult?.name) {
-      //   toast({
-      //     variant: 'success',
-      //     title: 'Ok! Foto atualizada! 🤯 ',
-      //     description: 'Tudo certo foto de usuário atualizado',
-      //   })
-      //   redirect('/profile')
-      // }
+      const token = session?.token
+
+      const response = await axios.post(
+        `${process.env.NEXT_PUBLIC_API_GSO}/services/upload`,
+        { file: data.file },
+        {
+          onUploadProgress,
+          headers: {
+            'Content-Type': 'multipart/form-data',
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      )
+      if (response?.status !== 202) {
+        toast({
+          variant: 'danger',
+          title: 'Algo deu errado! 🤯 ',
+          description:
+            'Foto de usuário não atualizada, verifique tamanho ou extensão de arquivo enviado',
+        })
+      }
+      if (response?.status === 202) {
+        setNameFile(response.data.data)
+        useUserStore.getState().actions.add({
+          account: {
+            image: JSON.stringify(
+              process.env.NEXT_PUBLIC_API_GSO +
+                '/public/storage/image/' +
+                response.data.data,
+            ),
+          },
+        })
+        await update({
+          user: {
+            image: JSON.stringify(
+              process.env.NEXT_PUBLIC_API_GSO +
+                '/public/storage/image/' +
+                response.data.data,
+            ),
+          },
+        })
+        toast({
+          variant: 'success',
+          title: 'Ok! Foto atualizada! 🤯 ',
+          description: 'Tudo certo foto de usuário atualizado',
+        })
+        // redirect('/profile')
+      }
     })
+  }
+
+  const onUploadProgress = (progressEvent: AxiosProgressEvent) => {
+    const { loaded, total } = progressEvent
+    const percent = Math.floor((loaded * 100) / total!)
+    setPercent(percent)
+  }
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0] ?? null
+    setFile(file)
+
+    if (previewUrl) {
+      URL.revokeObjectURL(previewUrl)
+    }
+    if (file) {
+      const url = URL.createObjectURL(file)
+      setPreviewUrl(url)
+    } else {
+      setPreviewUrl(null)
+    }
   }
 
   return (
@@ -79,10 +135,7 @@ export const EditPhoto = ({ className, ...props }: EditPhotoProps) => {
         <DialogTrigger asChild>
           <LuCamera className="h-9 w-9 rounded-full border-2 border-foreground/50 bg-accent/50 p-1 text-foreground/50 backdrop-blur  hover:border-foreground hover:text-foreground " />
         </DialogTrigger>
-        <DialogContent
-          className={cn(' w-full sm:max-w-[425px]', className)}
-          {...props}
-        >
+        <DialogContent className={cn(' w-screen', className)} {...props}>
           <DialogHeader>
             <DialogTitle></DialogTitle>
             <DialogDescription>
@@ -110,6 +163,7 @@ export const EditPhoto = ({ className, ...props }: EditPhotoProps) => {
                             type="file"
                             placeholder="shadcn"
                             {...fileRef}
+                            onChange={handleChange}
                           />
                         </FormControl>
                         <FormMessage />
@@ -117,6 +171,21 @@ export const EditPhoto = ({ className, ...props }: EditPhotoProps) => {
                     )
                   }}
                 />
+                {previewUrl && file && (
+                  <div className="  my-4 w-full scale-100 transform rounded-2xl duration-300  hover:right-1/2 hover:scale-150  hover:cursor-zoom-in ">
+                    {file.type.startsWith('image/') ? (
+                      <Image
+                        src={previewUrl}
+                        width={0}
+                        height={0}
+                        alt="Selecione um arquivo"
+                        sizes="100vw"
+                        style={{ width: '100%', height: 'auto' }} // optional
+                      />
+                    ) : null}
+                    <Progress value={percent} />
+                  </div>
+                )}
                 <Button type="submit" className="mt-4">
                   Salvar
                 </Button>

@@ -100,7 +100,7 @@ export const authOptions: NextAuthOptions = {
   debug: process.env.NODE_ENV === 'development',
 
   callbacks: {
-    jwt: async function ({ token, user, account, trigger }) {
+    jwt: async function ({ token, user, account, trigger, session }) {
       if (account && user) {
         if (account.provider === 'google') {
           const payload = {
@@ -135,6 +135,7 @@ export const authOptions: NextAuthOptions = {
             id_message: userGoogle?.id_message,
             email: userGoogle?.email,
             name: userGoogle?.name,
+            image: userGoogle?.image || userGoogle?.picture,
             senha: userGoogle?.senha,
             token: userGoogle?.token,
             access_token: userGoogle?.token,
@@ -167,6 +168,7 @@ export const authOptions: NextAuthOptions = {
             id_message: user?.id_message,
             email: user?.email,
             name: user?.name,
+            image: user?.image || user?.picture,
             senha: user?.senha,
             token: user?.token,
             access_token: user?.token,
@@ -178,9 +180,10 @@ export const authOptions: NextAuthOptions = {
         }
       }
 
-      if (trigger === 'update') {
-        return token
+      if (trigger === 'update' && session) {
+        return { ...token, ...session }
       }
+
       return token
     },
 
@@ -189,6 +192,7 @@ export const authOptions: NextAuthOptions = {
       session.id_message = token?.id_message
       session.email = token?.email
       session.name = token?.name
+      session.image = token?.image || token?.picture
       session.senha = token?.senha
       session.token = token?.token
       session.access_token = token?.access_token

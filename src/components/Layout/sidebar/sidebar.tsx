@@ -9,6 +9,8 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/ui/avatar'
 import { useSession } from 'next-auth/react'
 import { LuCamera } from 'react-icons/lu'
 import { EditPhoto } from '@/components/EditPhoto/EditPhoto'
+import { Progress } from '@/ui/progress'
+import { execPercentageStore } from '@/stores/percentageStore'
 
 interface SidebarNavProps extends React.HTMLAttributes<HTMLElement> {
   items: {
@@ -25,6 +27,7 @@ export function Sidebar({ className, items }: SidebarNavProps) {
   const pathname = usePathname()
   const session = useSession()
   const nameNavbarSession = session?.data?.name?.split(' ')
+  const image = session?.data?.user?.image
   let nameUser: string | null | undefined
   if (nameNavbarSession && nameNavbarSession?.length > 1) {
     nameUser =
@@ -55,7 +58,7 @@ export function Sidebar({ className, items }: SidebarNavProps) {
         </div>
         <Avatar className="absolute top-10 z-10 h-24 w-24 shadow shadow-foreground ">
           <AvatarImage
-            src={session?.data?.user?.image || '/images/avatar.svg'}
+            src={image || '/images/avatar.svg'}
             alt="@shadcn"
             className="object-cover"
           />
