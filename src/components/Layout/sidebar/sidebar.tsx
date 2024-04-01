@@ -11,6 +11,7 @@ import { LuCamera } from 'react-icons/lu'
 import { EditPhoto } from '@/components/EditPhoto/EditPhoto'
 import { Progress } from '@/ui/progress'
 import { execPercentageStore } from '@/stores/percentageStore'
+import FileUpload from '@/components/FileUpload/FileUpload'
 
 interface SidebarNavProps extends React.HTMLAttributes<HTMLElement> {
   items: {

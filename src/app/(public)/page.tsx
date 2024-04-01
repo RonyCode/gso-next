@@ -8,6 +8,7 @@ import MaxWidthWrapper from '@/components/Layout/MaxWidthWrapper'
 import { Metadata } from 'next'
 import { EditPhoto } from '@/components/EditPhoto/EditPhoto'
 import React from 'react'
+import FileUpload from '@/components/FileUpload/FileUpload'
 
 export const metadata: Metadata = {
   title: 'GSO | Home',
@@ -28,6 +29,7 @@ export default async function Home() {
               <CardsBanner />
               <CardsBanner />
               <CardsBanner />
+              <FileUpload />
             </section>
           </section>
         </main>

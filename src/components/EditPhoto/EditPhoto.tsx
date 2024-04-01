@@ -11,7 +11,7 @@ import {
 import { Button } from '@/ui/button'
 import { Input } from '@/ui/input'
 import { cn } from '@/lib/utils'
-import { LuCamera } from 'react-icons/lu'
+import { LuCamera, LuCheckCircle } from 'react-icons/lu'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { toast } from '@/ui/use-toast'
@@ -30,6 +30,7 @@ import { Progress } from '@/ui/progress'
 import axios, { AxiosProgressEvent } from 'axios'
 import { useSession } from 'next-auth/react'
 import { useUserStore } from '@/stores/user/userStore'
+import FileUpload from '@/components/FileUpload/FileUpload'
 
 type EditPhotoProps = {
   className?: string
@@ -80,15 +81,6 @@ export const EditPhoto = ({ className, ...props }: EditPhotoProps) => {
       }
       if (response?.status === 202) {
         setNameFile(response.data.data)
-        useUserStore.getState().actions.add({
-          account: {
-            image: JSON.stringify(
-              process.env.NEXT_PUBLIC_API_GSO +
-                '/public/storage/image/' +
-                response.data.data,
-            ),
-          },
-        })
         await update({
           user: {
             image: JSON.stringify(
@@ -98,11 +90,13 @@ export const EditPhoto = ({ className, ...props }: EditPhotoProps) => {
             ),
           },
         })
+
         toast({
           variant: 'success',
           title: 'Ok! Foto atualizada! 🤯 ',
           description: 'Tudo certo foto de usuário atualizado',
         })
+
         // redirect('/profile')
       }
     })
@@ -126,6 +120,14 @@ export const EditPhoto = ({ className, ...props }: EditPhotoProps) => {
       setPreviewUrl(url)
     } else {
       setPreviewUrl(null)
+    }
+  }
+  const handleResetValues = () => {
+    if (percent! === 100) {
+      setFile(null)
+      setPercent(0)
+      setPreviewUrl(null)
+      form.resetField('file')
     }
   }
 
@@ -183,11 +185,27 @@ export const EditPhoto = ({ className, ...props }: EditPhotoProps) => {
                         style={{ width: '100%', height: 'auto' }} // optional
                       />
                     ) : null}
-                    <Progress value={percent} />
+
+                    <div className="mt-3 w-full rounded-full bg-background">
+                      <div
+                        className=" rounded-full bg-secondary   p-0.5 text-center text-xs font-medium leading-none text-foreground"
+                        style={{ width: percent + '%' }}
+                      >
+                        {percent! <= 100 && `${percent}%`}
+                        <span className="absolute -bottom-[6px] right-0 stroke-2  text-green-500">
+                          {percent === 100 && <LuCheckCircle size={30} />}
+                        </span>
+                      </div>
+                    </div>
                   </div>
                 )}
-                <Button type="submit" className="mt-4">
-                  Salvar
+                <Button
+                  onClick={handleResetValues}
+                  type="submit"
+                  className="float-end mt-4"
+                  disabled={pending || !file}
+                >
+                  {percent === 100 ? 'Arquivo enviado' : 'Enviar Arquivo'}{' '}
                 </Button>
               </form>
             </Form>
