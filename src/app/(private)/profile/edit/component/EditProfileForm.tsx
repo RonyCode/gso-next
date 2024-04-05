@@ -28,7 +28,6 @@ import { Input } from '@/ui/input'
 import { MyInputMask } from '@/components/ui/myInputMask'
 import { FaBirthdayCake } from 'react-icons/fa'
 import LoadingPage from '@/components/Loadings/LoadingPage'
-import { getAllStates } from '@/lib/getAllStates'
 import {
   Popover,
   PopoverContent,
@@ -47,16 +46,11 @@ import { getCep } from '@/lib/getCep'
 import { getAllCitiesByState } from '@/lib/getAllCitiesByState'
 import { toast } from '@/ui/use-toast'
 import { redirect } from 'next/navigation'
-import { stateStore } from '@/stores/Address/stateStore'
 import { cityStore } from '@/stores/Address/CityByStateStore'
 import { signedUpAction } from '@/app/(auth)/cadastro-usuario/[token]/actions/signedUpAction'
 import { EditUserSchema } from '@/schemas/EditUserSchema'
-import { useSession } from 'next-auth/react'
-import { GetUserById } from '@/lib/GetUserById'
-import { useUserStore } from '@/stores/user/userStore'
-import { fetchWrapper } from '@/functions/fetch'
 import moment from 'moment'
-import userStoreInitialize from '@/stores/user/userStoreInitialize'
+import { AddressProps, UserType } from '../../../../../../types/index'
 
 enum Fields {
   cep = 'cep',
@@ -70,45 +64,38 @@ enum Fields {
   image = 'image',
   email = 'email',
   cpf = 'cpf',
-  data_nascimento = 'data_nascimento',
-  telefone = 'telefone',
-  complemento = 'complemento',
-  numero = 'numero',
 }
 
-type UserRegisterFormProps = React.HTMLAttributes<HTMLDivElement>
-
-// CHAMA O FETCH FORA DO COMPONENTE PARA NAO RE - RENDERIZAR LOOP INFINITO
-// INITIALIZE STATES
-getAllStates()
-GetUserById()
+type UserRegisterFormProps = {
+  user: UserType | null
+  states: AddressProps[] | null
+  className?: string
+} & React.HTMLAttributes<HTMLDivElement>
 
 export const EditProfileForm = ({
+  user,
+  states,
   className,
   ...props
 }: UserRegisterFormProps) => {
   const [pending, startTransition] = useTransition()
 
-  let states = stateStore().states
-  const userFounded = useUserStore().state.user
-
   const defaultValues = {
-    id: userFounded?.id || '',
-    nome: userFounded?.account?.name || '',
-    image: userFounded?.account?.image || '',
-    email: userFounded?.userAuth?.email || '',
-    cpf: userFounded?.account?.cpf || '',
-    data_nascimento:
-      moment(userFounded?.account?.birthday).format('DD/MM/yyyy') || '',
-    telefone: userFounded?.account?.phone || '',
-    cep: userFounded?.address?.zipCode || '',
-    endereco: userFounded?.address?.address || '',
-    complemento: userFounded?.address?.complement || '',
-    sigla: userFounded?.address?.shortName || '',
-    numero: userFounded?.address?.number || '',
-    bairro: userFounded?.address?.district || '',
-    cidade: userFounded?.address?.city || '',
-    estado: userFounded?.address?.state || '',
+    id: user?.id || '',
+    nome: user?.account?.name || '',
+    image: user?.account?.image || '',
+    email: user?.userAuth?.email || '',
+    cpf: user?.account?.cpf || '',
+    data_nascimento: moment(user?.account?.birthday).format('DD/MM/yyyy') || '',
+    telefone: user?.account?.phone || '',
+    cep: user?.address?.zipCode || '',
+    endereco: user?.address?.address || '',
+    complemento: user?.address?.complement || '',
+    sigla: user?.address?.shortName || '',
+    numero: user?.address?.number || '',
+    bairro: user?.address?.district || '',
+    cidade: user?.address?.city || '',
+    estado: user?.address?.state || '',
   }
 
   const form = useForm<EditUserSchema>({
@@ -118,12 +105,10 @@ export const EditProfileForm = ({
     defaultValues: defaultValues as Partial<EditUserSchema>,
   })
 
-  form.setValue('email', userFounded?.userAuth?.email || '')
-  form.setValue('id', userFounded?.id.toString() || '')
-  console.log(defaultValues)
   const handleSubmit = (data: EditUserSchema) => {
     startTransition(async () => {
       const restult = await signedUpAction(data)
+      console.log(await restult)
       if (!restult?.id) {
         toast({
           variant: 'danger',
@@ -592,7 +577,7 @@ export const EditProfileForm = ({
                 />
                 <div className=" mb-4 mt-2 w-full lg:mt-[1.380rem] lg:w-3/12 lg:gap-1">
                   <Button
-                    // disabled={pending}
+                    disabled={pending}
                     className={cn(
                       buttonVariants({ variant: 'default' }),
                       ' w-full ',

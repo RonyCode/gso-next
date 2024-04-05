@@ -1,16 +1,13 @@
 import { NextResponse } from 'next/server'
-import { getServerSession } from 'next-auth'
-import { authOptions } from '@/lib/auth'
-import { useUserStore } from '@/stores/user/userStore'
-import { UserType } from '../../../../types/index'
 
 export async function GET(request: Request) {
-  const session = await getServerSession(authOptions)
   const token = request.headers.get('Authorization')
-  const id = session?.id
+  const { searchParams } = new URL(request.url)
+  const id = searchParams.get('id')
+
   if (id) {
     const res: Response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_GSO}/api/user/user-id/${82}`,
+      `${process.env.NEXT_PUBLIC_API_GSO}/api/user/user-id/${id}`,
       {
         method: 'GET',
         headers: {

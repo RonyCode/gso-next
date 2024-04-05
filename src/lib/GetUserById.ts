@@ -2,9 +2,9 @@ import { fetchWrapper } from '@/functions/fetch'
 import { useUserStore } from '@/stores/user/userStore'
 import { UserType } from '../../types/index'
 
-export const GetUserById = async () => {
+export const GetUserById = async (id: string) => {
   const response = await fetchWrapper<UserType>(
-    `${process.env.NEXT_PUBLIC_NEXT_URL}/api/user-id`,
+    `${process.env.NEXT_PUBLIC_NEXT_URL}/api/user-id?id=${id}`,
     {
       method: 'GET',
       headers: {
