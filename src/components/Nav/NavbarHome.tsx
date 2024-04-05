@@ -34,6 +34,7 @@ import { usePathname, useRouter } from 'next/navigation'
 import { cn } from '@/lib/utils'
 import NotificationUser from '@/app/(private)/users/components/notificationUser'
 import LoadingPage from '@/components/Loadings/LoadingPage'
+import { GetFirstLettersNameUser } from '@/hooks/GetFirstLettersNameUser'
 
 export function NavbarHome({
   className,
@@ -44,24 +45,7 @@ export function NavbarHome({
   const [showNavBar, setShowNavBar] = useState(false)
   const router = useRouter()
   const myRef = useRef(null)
-
-  const nameNavbarSession = session?.name?.split(' ')
-  let nameUser: string | null | undefined
-
-  if (nameNavbarSession && nameNavbarSession?.length > 1) {
-    nameUser =
-      session?.name?.split(' ')?.shift()?.substring(0, 1)?.toUpperCase() +
-      ' ' +
-      session?.name?.split(' ')?.pop()?.substring(0, 1)?.toUpperCase()
-  }
-
-  if (nameNavbarSession && nameNavbarSession?.length === 1) {
-    nameUser = session?.name
-      ?.split(' ')
-      ?.shift()
-      ?.substring(0, 1)
-      ?.toUpperCase()
-  }
+  const nameUser = GetFirstLettersNameUser()
 
   useEffect(() => {
     window.addEventListener('scroll', () => {
@@ -182,7 +166,7 @@ export function NavbarHome({
                 >
                   <Avatar className="h-10 w-10 lg:h-12 lg:w-12">
                     <AvatarImage
-                      src={session?.user?.image || '/images/avatar.svg'}
+                      src={session?.image || '/images/avatar.svg'}
                       alt="@shadcn"
                     />
                     <AvatarFallback>{nameUser}</AvatarFallback>

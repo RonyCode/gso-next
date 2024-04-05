@@ -1,7 +1,8 @@
 'use client'
-import React, { useState, useTransition } from 'react'
+import React, { useEffect, useState, useTransition } from 'react'
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogDescription,
   DialogHeader,
@@ -26,11 +27,9 @@ import {
 } from '@/ui/form'
 import { FileSchema } from '@/schemas/FileSchema'
 import Image from 'next/image'
-import { Progress } from '@/ui/progress'
 import axios, { AxiosProgressEvent } from 'axios'
 import { useSession } from 'next-auth/react'
-import { useUserStore } from '@/stores/user/userStore'
-import FileUpload from '@/components/FileUpload/FileUpload'
+import { User } from 'next-auth'
 
 type EditPhotoProps = {
   className?: string
@@ -40,20 +39,22 @@ export const EditPhoto = ({ className, ...props }: EditPhotoProps) => {
   const [pending, startTransition] = useTransition()
   const [previewUrl, setPreviewUrl] = useState<string | null>(null)
   const [file, setFile] = useState<File | null>(null)
-  const [nameFile, setNameFile] = useState<string | null>(null)
+  const [open, setOpen] = useState(false)
+
   const [percent, setPercent] = useState<number | null>(0)
   const { data: session, update } = useSession()
+  const [user, setUser] = useState<User>({} as User)
 
   const form = useForm<FileSchema>({
     mode: 'all',
     criteriaMode: 'all',
     resolver: zodResolver(FileSchema),
     defaultValues: {
-      file: null,
+      file_image: null,
     },
   })
 
-  const fileRef = form.register('file')
+  const fileRef = form.register('file_image')
 
   // 2. Define a submit handler.
   const handleSubmit = (data: FileSchema) => {
@@ -62,7 +63,7 @@ export const EditPhoto = ({ className, ...props }: EditPhotoProps) => {
 
       const response = await axios.post(
         `${process.env.NEXT_PUBLIC_API_GSO}/services/upload`,
-        { file: data.file },
+        { file: data.file_image },
         {
           onUploadProgress,
           headers: {
@@ -80,24 +81,20 @@ export const EditPhoto = ({ className, ...props }: EditPhotoProps) => {
         })
       }
       if (response?.status === 202) {
-        setNameFile(response.data.data)
         await update({
-          user: {
-            image: JSON.stringify(
-              process.env.NEXT_PUBLIC_API_GSO +
-                '/public/storage/image/' +
-                response.data.data,
-            ),
-          },
+          ...user,
+          image:
+            process.env.NEXT_PUBLIC_API_GSO +
+            '/public/storage/image/' +
+            response.data.data,
         })
-
+        setOpen(false)
+        handleResetValues()
         toast({
           variant: 'success',
           title: 'Ok! Foto atualizada! 🤯 ',
           description: 'Tudo certo foto de usuário atualizado',
         })
-
-        // redirect('/profile')
       }
     })
   }
@@ -123,23 +120,27 @@ export const EditPhoto = ({ className, ...props }: EditPhotoProps) => {
     }
   }
   const handleResetValues = () => {
-    if (percent! === 100) {
-      setFile(null)
-      setPercent(0)
-      setPreviewUrl(null)
-      form.resetField('file')
-    }
+    setFile(null)
+    setPercent(0)
+    setPreviewUrl(null)
+    form.resetField('file_image')
   }
+
+  useEffect(() => {
+    if (session) {
+      setUser(session.user as User)
+    }
+  }, [session])
 
   return (
     <>
-      <Dialog>
+      <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
           <LuCamera className="h-9 w-9 rounded-full border-2 border-foreground/50 bg-accent/50 p-1 text-foreground/50 backdrop-blur  hover:border-foreground hover:text-foreground " />
         </DialogTrigger>
         <DialogContent className={cn(' w-screen', className)} {...props}>
           <DialogHeader>
-            <DialogTitle></DialogTitle>
+            <DialogTitle>Alterar imagem</DialogTitle>
             <DialogDescription>
               Selecione uma foto que não seja maior que 2MB{' '}
             </DialogDescription>
@@ -151,11 +152,11 @@ export const EditPhoto = ({ className, ...props }: EditPhotoProps) => {
                 onSubmit={form.handleSubmit(async (data) => {
                   handleSubmit(data)
                 })}
-                className="w-full p-10"
+                className="w-full"
               >
                 <FormField
                   control={form.control}
-                  name="file"
+                  name="file_image"
                   render={() => {
                     return (
                       <FormItem>
@@ -166,6 +167,8 @@ export const EditPhoto = ({ className, ...props }: EditPhotoProps) => {
                             placeholder="shadcn"
                             {...fileRef}
                             onChange={handleChange}
+                            disabled={percent === 100}
+                            accept={'image/*'}
                           />
                         </FormControl>
                         <FormMessage />
@@ -174,7 +177,7 @@ export const EditPhoto = ({ className, ...props }: EditPhotoProps) => {
                   }}
                 />
                 {previewUrl && file && (
-                  <div className="  my-4 w-full scale-100 transform rounded-2xl duration-300  hover:right-1/2 hover:scale-150  hover:cursor-zoom-in ">
+                  <div className="  m-auto my-4 w-full rounded-2xl ">
                     {file.type.startsWith('image/') ? (
                       <Image
                         src={previewUrl}
@@ -192,27 +195,38 @@ export const EditPhoto = ({ className, ...props }: EditPhotoProps) => {
                         style={{ width: percent + '%' }}
                       >
                         {percent! <= 100 && `${percent}%`}
-                        <span className="absolute -bottom-[6px] right-0 stroke-2  text-green-500">
+                        <span className="absolute bottom-[100px] right-5 stroke-2  text-green-500">
                           {percent === 100 && <LuCheckCircle size={30} />}
                         </span>
                       </div>
                     </div>
                   </div>
                 )}
-                <Button
-                  onClick={handleResetValues}
-                  type="submit"
-                  className="float-end mt-4"
-                  disabled={pending || !file}
-                >
-                  {percent === 100 ? 'Arquivo enviado' : 'Enviar Arquivo'}{' '}
-                </Button>
+                {percent === 100 ? (
+                  <DialogClose asChild>
+                    <Button
+                      type="button"
+                      onClick={handleResetValues}
+                      className="float-end mt-4"
+                      disabled={pending || !file}
+                      variant="default"
+                    >
+                      Fechar
+                    </Button>
+                  </DialogClose>
+                ) : (
+                  <Button
+                    type="submit"
+                    variant="default"
+                    className="float-end mt-4"
+                    disabled={pending || !file}
+                  >
+                    Enviar Arquivo
+                  </Button>
+                )}{' '}
               </form>
             </Form>
           </div>
-          {/* <DialogFooter> */}
-          {/*  <Button type="submit">Salvar</Button> */}
-          {/* </DialogFooter> */}
         </DialogContent>
       </Dialog>
     </>

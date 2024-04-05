@@ -4,14 +4,18 @@ import UserErrorRegisterInitializeStore from '@/stores/user/UserErrorRegisterIni
 import { userErrorRegisterStore } from '@/stores/user/userErrorRegisterStore'
 import StateStoreInitialize from '@/stores/Address/StateStoreInitialize'
 import { stateStore } from '@/stores/Address/stateStore'
+import UserStoreInitialize from '@/stores/user/userStoreInitialize'
+import { useUserStore } from '@/stores/user/userStore'
 
 const InitializeStores = () => {
   const dataUserErro = userErrorRegisterStore.getState().user
   const dataStates = stateStore.getState().states
+  const dataUser = useUserStore.getState().state.user
   return (
     <>
       <UserErrorRegisterInitializeStore userError={dataUserErro} />
       <StateStoreInitialize states={dataStates} />
+      <UserStoreInitialize user={dataUser} />
     </>
   )
 }

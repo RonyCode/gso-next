@@ -129,6 +129,7 @@ export const authOptions: NextAuthOptions = {
             path: '/',
           })
           // =====================================================================
+
           return {
             ...token,
             id: userGoogle?.id,
@@ -162,6 +163,7 @@ export const authOptions: NextAuthOptions = {
             path: '/',
           })
           //= ====================================================================
+
           return {
             ...token,
             id: user?.id,
@@ -180,8 +182,10 @@ export const authOptions: NextAuthOptions = {
         }
       }
 
-      if (trigger === 'update' && session) {
-        return { ...token, ...session }
+      if (trigger === 'update' && session?.name && session?.image) {
+        // Note, that `session` can be any arbitrary object, remember to validate it!
+        token.name = session.name
+        token.image = session.image
       }
 
       return token
@@ -200,6 +204,7 @@ export const authOptions: NextAuthOptions = {
       session.date_expires_token = token?.date_expires_token
       session.date_creation_token = token?.date_creation_token
       session.expires_at = token?.expires_at
+
       return session
     },
   },

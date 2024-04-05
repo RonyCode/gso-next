@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 
-import { RegisterUserSchema } from '@/app/(auth)/cadastro-usuario/[token]/schemas/RegisterUserSchema'
+import { RegisterUserSchema } from '@/schemas/RegisterUserSchema'
 import { limiter } from '@/app/api/config/limiter'
 
 export async function POST(request: NextRequest): Promise<NextResponse> {

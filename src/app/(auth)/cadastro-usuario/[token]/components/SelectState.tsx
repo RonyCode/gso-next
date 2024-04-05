@@ -21,7 +21,7 @@ import { getAllStates } from '@/lib/getAllStates'
 import { use } from 'react'
 import { getAllCitiesByState } from '@/lib/getAllCitiesByState'
 import { cityStore } from '@/stores/Address/CityByStateStore'
-import { RegisterUserSchema } from '@/app/(auth)/cadastro-usuario/[token]/schemas/RegisterUserSchema'
+import { RegisterUserSchema } from '@/schemas/RegisterUserSchema'
 
 type SelectStateProps = {
   form: UseFormReturn<RegisterUserSchema>

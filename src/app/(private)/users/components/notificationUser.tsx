@@ -33,7 +33,7 @@ const NotificationUser = () => {
           applicationServerKey: data,
         })
       }
-      console.log(JSON.stringify(subscription))
+      // console.log(JSON.stringify(subscription))
     })
 
   return (

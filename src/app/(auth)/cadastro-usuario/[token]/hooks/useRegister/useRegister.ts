@@ -1,6 +1,6 @@
 import { toast } from 'react-toastify'
 
-import { RegisterUserSchema } from '@/app/(auth)/cadastro-usuario/[token]/schemas/RegisterUserSchema'
+import { RegisterUserSchema } from '@/schemas/RegisterUserSchema'
 import { fetchWrapper } from '@/functions/fetch'
 import { z } from 'zod'
 

@@ -7,6 +7,13 @@ const {
 /** @type {import("next").NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  images: {
+    domains: [
+      'lh3.googleusercontent.com',
+      'wsgso.000webhostapp.com',
+      'wsgso.localhost',
+    ],
+  },
 }
 
 module.exports = (phase) => {

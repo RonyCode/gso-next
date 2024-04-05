@@ -78,9 +78,43 @@ export async function middleware(request: NextRequest) {
           path: '/',
         })
         return response
-      } else {
-        return NextResponse.redirect(new URL('/auth', request.url))
       }
+      if (!resp.ok) {
+        response.cookies.set({
+          name: 'next-auth.session-token',
+          value: '',
+          httpOnly: true,
+          maxAge: -1,
+          path: '/',
+        })
+        response.cookies.set({
+          name: 'next-auth.callback-url',
+          value: '',
+          httpOnly: true,
+          maxAge: -1,
+          path: '/',
+        })
+
+        response.cookies.set({
+          name: 'next-auth.csrf-token',
+          value: '',
+          httpOnly: true,
+          maxAge: -1,
+          path: '/',
+        })
+
+        response.cookies.set({
+          name: 'token',
+          value: '',
+          httpOnly: true,
+          maxAge: -1,
+          path: '/',
+        })
+
+        return response
+      }
+    } else {
+      return NextResponse.redirect(new URL('/auth/logout', request.url))
     }
   }
 

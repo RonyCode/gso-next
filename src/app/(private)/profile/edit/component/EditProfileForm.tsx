@@ -4,17 +4,14 @@ import * as React from 'react'
 import { useTransition } from 'react'
 import {
   FaBuildingColumns,
-  FaEnvelope,
   FaHashtag,
   FaMapLocationDot,
   FaPhone,
   FaSpinner,
   FaTreeCity,
   FaUser,
-  FaUserLock,
 } from 'react-icons/fa6'
 
-import { signedUpAction } from '../actions/signedUpAction'
 import {
   Form,
   FormControl,
@@ -25,7 +22,6 @@ import {
 } from '@/ui/form'
 import { Button, buttonVariants } from '@/ui/button'
 import { useForm } from 'react-hook-form'
-import { RegisterUserSchema } from '@/schemas/RegisterUserSchema'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { cn } from '@/lib/utils'
 import { Input } from '@/ui/input'
@@ -44,6 +40,7 @@ import {
   CommandGroup,
   CommandInput,
   CommandItem,
+  CommandList,
 } from '@/ui/command'
 import { Check, ChevronsUpDown } from 'lucide-react'
 import { getCep } from '@/lib/getCep'
@@ -52,58 +49,79 @@ import { toast } from '@/ui/use-toast'
 import { redirect } from 'next/navigation'
 import { stateStore } from '@/stores/Address/stateStore'
 import { cityStore } from '@/stores/Address/CityByStateStore'
+import { signedUpAction } from '@/app/(auth)/cadastro-usuario/[token]/actions/signedUpAction'
+import { EditUserSchema } from '@/schemas/EditUserSchema'
+import { useSession } from 'next-auth/react'
+import { GetUserById } from '@/lib/GetUserById'
+import { useUserStore } from '@/stores/user/userStore'
+import { fetchWrapper } from '@/functions/fetch'
+import moment from 'moment'
+import userStoreInitialize from '@/stores/user/userStoreInitialize'
 
 enum Fields {
-  email = 'email',
   cep = 'cep',
   endereco = 'endereco',
   sigla = 'sigla',
   bairro = 'bairro',
   cidade = 'cidade',
   estado = 'estado',
-  senha = 'senha',
-  confirmaSenha = 'confirmaSenha',
+  id = 'id',
+  nome = 'nome',
+  image = 'image',
+  email = 'email',
+  cpf = 'cpf',
+  data_nascimento = 'data_nascimento',
+  telefone = 'telefone',
+  complemento = 'complemento',
+  numero = 'numero',
 }
 
-type UserRegisterFormProps = React.HTMLAttributes<HTMLDivElement> & {
-  params: string
-}
+type UserRegisterFormProps = React.HTMLAttributes<HTMLDivElement>
 
 // CHAMA O FETCH FORA DO COMPONENTE PARA NAO RE - RENDERIZAR LOOP INFINITO
 // INITIALIZE STATES
 getAllStates()
+GetUserById()
 
-export const UserRegisterForm = ({
-  params,
+export const EditProfileForm = ({
   className,
   ...props
 }: UserRegisterFormProps) => {
-  const form = useForm<RegisterUserSchema>({
-    mode: 'all',
-    criteriaMode: 'all',
-    resolver: zodResolver(RegisterUserSchema),
-    defaultValues: {
-      nome: '',
-      email: params,
-      cpf: '',
-      data_nascimento: '',
-      telefone: '',
-      cep: '',
-      endereco: '',
-      complemento: '',
-      sigla: '',
-      numero: '',
-      bairro: '',
-      cidade: '',
-      estado: '',
-      senha: '',
-      confirmaSenha: '',
-    },
-  })
-
   const [pending, startTransition] = useTransition()
 
-  const handleSubmit = (data: RegisterUserSchema) => {
+  let states = stateStore().states
+  const userFounded = useUserStore().state.user
+
+  const defaultValues = {
+    id: userFounded?.id || '',
+    nome: userFounded?.account?.name || '',
+    image: userFounded?.account?.image || '',
+    email: userFounded?.userAuth?.email || '',
+    cpf: userFounded?.account?.cpf || '',
+    data_nascimento:
+      moment(userFounded?.account?.birthday).format('DD/MM/yyyy') || '',
+    telefone: userFounded?.account?.phone || '',
+    cep: userFounded?.address?.zipCode || '',
+    endereco: userFounded?.address?.address || '',
+    complemento: userFounded?.address?.complement || '',
+    sigla: userFounded?.address?.shortName || '',
+    numero: userFounded?.address?.number || '',
+    bairro: userFounded?.address?.district || '',
+    cidade: userFounded?.address?.city || '',
+    estado: userFounded?.address?.state || '',
+  }
+
+  const form = useForm<EditUserSchema>({
+    mode: 'all',
+    criteriaMode: 'all',
+    resolver: zodResolver(EditUserSchema),
+    defaultValues: defaultValues as Partial<EditUserSchema>,
+  })
+
+  form.setValue('email', userFounded?.userAuth?.email || '')
+  form.setValue('id', userFounded?.id.toString() || '')
+  console.log(defaultValues)
+  const handleSubmit = (data: EditUserSchema) => {
     startTransition(async () => {
       const restult = await signedUpAction(data)
       if (!restult?.id) {
@@ -119,7 +137,7 @@ export const UserRegisterForm = ({
           title: 'Ok! Usuário Cadastrado! 🤯 ',
           description: 'Tudo certo usuário cadastrado',
         })
-        redirect('/auth')
+        redirect('/')
       }
     })
   }
@@ -135,8 +153,6 @@ export const UserRegisterForm = ({
   async function handleCity(value: string) {
     await getAllCitiesByState(value)
   }
-
-  let states = stateStore().states
   let arrayCitiesByState = cityStore().cities
 
   const handleCep = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -165,14 +181,11 @@ export const UserRegisterForm = ({
 
   return (
     <>
-      <div className="  flex  h-full  flex-col ">
+      <div className=" mb-48 ">
         <div className="flex flex-col space-y-2 text-center">
-          <span className="text-2xl font-semibold tracking-tight">
-            Cadastro
+          <span className="mb-4 text-2xl font-semibold tracking-tight">
+            Preencha os campos
           </span>
-          <p className="text-sm text-muted-foreground ">
-            Complete o cadastro observe os campos obrigatórios
-          </p>
         </div>
 
         <div
@@ -206,33 +219,6 @@ export const UserRegisterForm = ({
                           placeholder="Digite seu nome"
                           autoCapitalize="none"
                           autoComplete="nome"
-                          autoCorrect="off"
-                          disabled={pending}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="email"
-                  render={({ field }) => (
-                    <FormItem className="w-full">
-                      <FormLabel
-                        htmlFor="email"
-                        className="flex items-center gap-1"
-                      >
-                        <FaEnvelope /> Email
-                      </FormLabel>
-                      <FormControl>
-                        <Input
-                          {...field}
-                          id="email"
-                          placeholder="email@exemplo.com"
-                          type="email"
-                          autoCapitalize="none"
-                          autoComplete="email"
                           autoCorrect="off"
                           disabled={pending}
                         />
@@ -389,9 +375,175 @@ export const UserRegisterForm = ({
               <div className="flex w-full flex-col  gap-2 md:flex-row">
                 <FormField
                   control={form.control}
+                  name="estado"
+                  render={({ field }) => (
+                    <FormItem className="flex w-full flex-col">
+                      <FormLabel
+                        htmlFor="estado"
+                        className="flex items-center gap-1"
+                      >
+                        <FaBuildingColumns /> Estado
+                      </FormLabel>{' '}
+                      <Popover>
+                        <PopoverTrigger asChild>
+                          <FormControl>
+                            <Button
+                              variant="outline"
+                              role="combobox"
+                              className={cn(
+                                'w-full justify-between',
+                                !field.value && 'text-muted-foreground',
+                              )}
+                            >
+                              {field.value
+                                ? states?.find(
+                                    (state) => state.shortName === field.value,
+                                  )?.state
+                                : 'Selecione um Estado'}
+                              <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                            </Button>
+                          </FormControl>
+                        </PopoverTrigger>
+                        <PopoverContent className="w-full p-0">
+                          <Command>
+                            <CommandList>
+                              <CommandInput placeholder="Buscar Estado..." />
+                              <CommandEmpty>
+                                Estado não encontrado.
+                              </CommandEmpty>
+                              <CommandGroup>
+                                {states?.map((state) => (
+                                  <CommandItem
+                                    value={state.state}
+                                    key={state.shortName}
+                                    onSelect={() => {
+                                      handleCity(state.shortName)
+                                      form.setValue('estado', state.shortName)
+                                    }}
+                                  >
+                                    <Check
+                                      className={cn(
+                                        'mr-2 h-4 w-4',
+                                        state?.shortName === field?.value
+                                          ? 'opacity-100'
+                                          : 'opacity-0',
+                                      )}
+                                    />
+                                    {state?.state}
+                                  </CommandItem>
+                                ))}
+                              </CommandGroup>
+                            </CommandList>
+                          </Command>
+                        </PopoverContent>
+                      </Popover>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <FormField
+                  control={form.control}
+                  name="cidade"
+                  render={({ field }) => (
+                    <FormItem className="flex w-full flex-col">
+                      <FormLabel
+                        htmlFor="cidade"
+                        className="flex items-center gap-1"
+                      >
+                        <FaBuildingColumns /> Cidade
+                      </FormLabel>{' '}
+                      <Popover>
+                        <PopoverTrigger asChild>
+                          <FormControl>
+                            <Button
+                              variant="outline"
+                              role="combobox"
+                              className={cn(
+                                'w-full justify-between',
+                                !field.value && 'text-muted-foreground',
+                              )}
+                            >
+                              {field.value
+                                ? arrayCitiesByState?.find(
+                                    (city) => city.city === field.value,
+                                  )?.city
+                                : 'Selecione uma Cidade'}
+                              <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                            </Button>
+                          </FormControl>
+                        </PopoverTrigger>
+                        <PopoverContent className="w-full p-0">
+                          <Command>
+                            <CommandList>
+                              <CommandInput placeholder="Procurando cidade..." />
+                              <CommandEmpty>
+                                Cidade não encontrada.
+                              </CommandEmpty>
+                              <CommandGroup>
+                                {arrayCitiesByState?.map((city) => (
+                                  <CommandItem
+                                    value={city.city}
+                                    key={city.id}
+                                    onSelect={() => {
+                                      form.setValue('cidade', city.city)
+                                    }}
+                                  >
+                                    <Check
+                                      className={cn(
+                                        'mr-2 h-4 w-4',
+                                        city.city === field.value
+                                          ? 'opacity-100'
+                                          : 'opacity-0',
+                                      )}
+                                    />
+                                    {city.city}
+                                  </CommandItem>
+                                ))}
+                              </CommandGroup>
+                            </CommandList>
+                          </Command>
+                        </PopoverContent>
+                      </Popover>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <FormField
+                  control={form.control}
+                  name="bairro"
+                  render={({ field }) => (
+                    <FormItem className="w-full">
+                      <FormLabel
+                        htmlFor="bairro"
+                        className="flex items-center gap-1"
+                      >
+                        <FaTreeCity /> Bairro
+                      </FormLabel>
+                      <FormControl>
+                        <Input
+                          {...field}
+                          id="bairro"
+                          placeholder="Bairro"
+                          autoCapitalize="none"
+                          autoComplete="bairro"
+                          autoCorrect="off"
+                          disabled={pending}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+
+              <div className="flex w-full flex-col  gap-2 md:flex-row">
+                <FormField
+                  control={form.control}
                   name="numero"
                   render={({ field }) => (
-                    <FormItem>
+                    <FormItem className="w-full md:w-5/12">
                       <FormLabel
                         htmlFor="numero"
                         className="flex items-center gap-1"
@@ -438,222 +590,9 @@ export const UserRegisterForm = ({
                     </FormItem>
                   )}
                 />
-              </div>
-              <div className="flex w-full flex-col  gap-2 md:flex-row">
-                <FormField
-                  control={form.control}
-                  name="estado"
-                  render={({ field }) => (
-                    <FormItem className="flex w-full flex-col">
-                      <FormLabel
-                        htmlFor="estado"
-                        className="flex items-center gap-1"
-                      >
-                        <FaBuildingColumns /> Estado
-                      </FormLabel>{' '}
-                      <Popover>
-                        <PopoverTrigger asChild>
-                          <FormControl>
-                            <Button
-                              variant="outline"
-                              role="combobox"
-                              className={cn(
-                                'w-full justify-between',
-                                !field.value && 'text-muted-foreground',
-                              )}
-                            >
-                              {field.value
-                                ? states.find(
-                                    (state) => state.shortName === field.value,
-                                  )?.state
-                                : 'Selecione um Estado'}
-                              <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-                            </Button>
-                          </FormControl>
-                        </PopoverTrigger>
-                        <PopoverContent className="w-[200px] p-0">
-                          <Command>
-                            <CommandInput placeholder="Search language..." />
-                            <CommandEmpty>Estado não encontrado.</CommandEmpty>
-                            <CommandGroup>
-                              {states.map((state) => (
-                                <CommandItem
-                                  value={state.shortName}
-                                  key={state.id}
-                                  onSelect={() => {
-                                    handleCity(state.shortName)
-                                    form.setValue('estado', state.shortName)
-                                  }}
-                                >
-                                  <Check
-                                    className={cn(
-                                      'mr-2 h-4 w-4',
-                                      state.shortName === field.value
-                                        ? 'opacity-100'
-                                        : 'opacity-0',
-                                    )}
-                                  />
-                                  {state.state}
-                                </CommandItem>
-                              ))}
-                            </CommandGroup>
-                          </Command>
-                        </PopoverContent>
-                      </Popover>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                <FormField
-                  control={form.control}
-                  name="cidade"
-                  render={({ field }) => (
-                    <FormItem className="flex w-full flex-col">
-                      <FormLabel
-                        htmlFor="cidade"
-                        className="flex items-center gap-1"
-                      >
-                        <FaBuildingColumns /> Cidade
-                      </FormLabel>{' '}
-                      <Popover>
-                        <PopoverTrigger asChild>
-                          <FormControl>
-                            <Button
-                              variant="outline"
-                              role="combobox"
-                              className={cn(
-                                'w-full justify-between',
-                                !field.value && 'text-muted-foreground',
-                              )}
-                            >
-                              {field.value
-                                ? arrayCitiesByState?.find(
-                                    (city) => city.city === field.value,
-                                  )?.city
-                                : 'Selecione uma Cidade'}
-                              <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-                            </Button>
-                          </FormControl>
-                        </PopoverTrigger>
-                        <PopoverContent className="w-[200px] p-0">
-                          <Command>
-                            <CommandInput placeholder="Procurando cidade..." />
-                            <CommandEmpty>Cidade não encontrada.</CommandEmpty>
-                            <CommandGroup>
-                              {arrayCitiesByState?.map((city) => (
-                                <CommandItem
-                                  value={city.city}
-                                  key={city.id}
-                                  onSelect={() => {
-                                    form.setValue('cidade', city.city)
-                                  }}
-                                >
-                                  <Check
-                                    className={cn(
-                                      'mr-2 h-4 w-4',
-                                      city.city === field.value
-                                        ? 'opacity-100'
-                                        : 'opacity-0',
-                                    )}
-                                  />
-                                  {city.city}
-                                </CommandItem>
-                              ))}
-                            </CommandGroup>
-                          </Command>
-                        </PopoverContent>
-                      </Popover>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                <FormField
-                  control={form.control}
-                  name="bairro"
-                  render={({ field }) => (
-                    <FormItem className="w-full">
-                      <FormLabel
-                        htmlFor="bairro"
-                        className="flex items-center gap-1"
-                      >
-                        <FaTreeCity /> Bairro
-                      </FormLabel>
-                      <FormControl>
-                        <Input
-                          {...field}
-                          id="bairro"
-                          placeholder="bairro"
-                          autoCapitalize="none"
-                          autoComplete="bairro"
-                          autoCorrect="off"
-                          disabled={pending}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </div>
-              <div className="flex w-full flex-col  justify-center gap-2 md:flex-row">
-                <FormField
-                  control={form.control}
-                  name="senha"
-                  render={({ field }) => (
-                    <FormItem className="w-full">
-                      <FormLabel
-                        htmlFor="senha"
-                        className="flex items-center gap-1"
-                      >
-                        <FaUserLock /> Senha
-                      </FormLabel>{' '}
-                      <FormControl>
-                        <Input
-                          {...field}
-                          id="senha"
-                          placeholder="******"
-                          type="password"
-                          autoCapitalize="none"
-                          autoComplete="senha"
-                          autoCorrect="off"
-                          disabled={pending}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="confirmaSenha"
-                  render={({ field }) => (
-                    <FormItem className="w-full">
-                      <FormLabel
-                        htmlFor="senha"
-                        className="flex items-center gap-1"
-                      >
-                        <FaUserLock /> Senha
-                      </FormLabel>{' '}
-                      <FormControl>
-                        <Input
-                          {...field}
-                          id="confirmaSenha"
-                          placeholder="******"
-                          type="password"
-                          autoCapitalize="none"
-                          autoComplete="confirmaSenha"
-                          autoCorrect="off"
-                          disabled={pending}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <div className=" mb-4 mt-2 w-full lg:mt-[1.380rem] lg:w-5/12 lg:gap-1">
+                <div className=" mb-4 mt-2 w-full lg:mt-[1.380rem] lg:w-3/12 lg:gap-1">
                   <Button
-                    disabled={pending}
+                    // disabled={pending}
                     className={cn(
                       buttonVariants({ variant: 'default' }),
                       ' w-full ',
@@ -663,7 +602,7 @@ export const UserRegisterForm = ({
                     {pending && (
                       <FaSpinner className="mr-2 h-4 w-4 animate-spin" />
                     )}
-                    Cadastrar
+                    Salvar
                   </Button>{' '}
                 </div>
               </div>

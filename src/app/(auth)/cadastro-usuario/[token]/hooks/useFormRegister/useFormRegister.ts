@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form'
 
-import { RegisterUserSchema } from '@/app/(auth)/cadastro-usuario/[token]/schemas/RegisterUserSchema'
+import { RegisterUserSchema } from '@/schemas/RegisterUserSchema'
 import { zodResolver } from '@hookform/resolvers/zod'
 
 export const useFormRegister = () => {

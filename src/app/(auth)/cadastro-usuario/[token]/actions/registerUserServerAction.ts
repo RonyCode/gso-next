@@ -1,6 +1,6 @@
 'use server'
 
-import { RegisterUserSchema } from '@/app/(auth)/cadastro-usuario/[token]/schemas/RegisterUserSchema'
+import { RegisterUserSchema } from '@/schemas/RegisterUserSchema'
 import { ZodError } from 'zod'
 
 export const registerUserServerActions = async (data: FormData) => {
