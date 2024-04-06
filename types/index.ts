@@ -77,11 +77,6 @@ export interface UserType {
   excluded: number
 }
 
-export interface UserRegisterError {
-  errors: UserType | null
-  success: boolean
-}
-
 export interface NotificationMessage {
   title: string
   id_message: string
@@ -153,6 +148,24 @@ export type ResultSignIn = {
   status: number
   url?: string
 }
+
+export type ResultError = {
+  error: string
+  ok: boolean
+  status: number
+  data: null
+}
+
+export type DataUserRegistered = {
+  id: number
+  email: string
+  nome: string
+  token: string
+  refresh_token: string
+  date_criation_token: number
+  date_expires_token: number
+}
+
 export type ResponseUserSigned = {
   data: boolean
   id: number
@@ -166,6 +179,13 @@ export type ResponseUserSigned = {
   code: number
   message: string
   url?: string
+}
+
+export type ResultUserRegistered = {
+  data: DataUserRegistered | null
+  code: number
+  status: string
+  message: string
 }
 
 declare module 'next-auth' {

@@ -34,7 +34,7 @@ import { usePathname, useRouter } from 'next/navigation'
 import { cn } from '@/lib/utils'
 import NotificationUser from '@/app/(private)/users/components/notificationUser'
 import LoadingPage from '@/components/Loadings/LoadingPage'
-import { GetFirstLettersNameUser } from '@/hooks/GetFirstLettersNameUser'
+import { GetFirstLettersNameUser } from '@/functions/GetFirstLettersNameUser'
 
 export function NavbarHome({
   className,

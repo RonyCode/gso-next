@@ -30,6 +30,7 @@ import Image from 'next/image'
 import axios, { AxiosProgressEvent } from 'axios'
 import { useSession } from 'next-auth/react'
 import { User } from 'next-auth'
+import { useRouter } from 'next/navigation'
 
 type EditPhotoProps = {
   className?: string
@@ -40,10 +41,10 @@ export const EditPhoto = ({ className, ...props }: EditPhotoProps) => {
   const [previewUrl, setPreviewUrl] = useState<string | null>(null)
   const [file, setFile] = useState<File | null>(null)
   const [open, setOpen] = useState(false)
-
   const [percent, setPercent] = useState<number | null>(0)
   const { data: session, update } = useSession()
   const [user, setUser] = useState<User>({} as User)
+  const router = useRouter()
 
   const form = useForm<FileSchema>({
     mode: 'all',
@@ -91,6 +92,7 @@ export const EditPhoto = ({ className, ...props }: EditPhotoProps) => {
         })
         setOpen(false)
         handleResetValues()
+        router.refresh()
         toast({
           variant: 'success',
           title: 'Ok! Foto atualizada! 🤯 ',

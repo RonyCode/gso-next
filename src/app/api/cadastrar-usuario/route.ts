@@ -35,6 +35,6 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     const { message } = await res.json()
     return NextResponse.json({ message }, { status: 401 })
   }
-  const { data } = await res.json()
-  return NextResponse.json(data)
+  const response = await res.json()
+  return NextResponse.json(response)
 }

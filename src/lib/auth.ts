@@ -182,7 +182,7 @@ export const authOptions: NextAuthOptions = {
         }
       }
 
-      if (trigger === 'update' && session?.name && session?.image) {
+      if (trigger === 'update') {
         // Note, that `session` can be any arbitrary object, remember to validate it!
         token.name = session.name
         token.image = session.image

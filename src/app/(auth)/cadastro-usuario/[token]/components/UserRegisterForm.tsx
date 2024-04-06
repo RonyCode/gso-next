@@ -14,7 +14,6 @@ import {
   FaUserLock,
 } from 'react-icons/fa6'
 
-import { signedUpAction } from '../actions/signedUpAction'
 import {
   Form,
   FormControl,
@@ -52,6 +51,8 @@ import { toast } from '@/ui/use-toast'
 import { redirect } from 'next/navigation'
 import { stateStore } from '@/stores/Address/stateStore'
 import { cityStore } from '@/stores/Address/CityByStateStore'
+import { ResultUserRegistered } from '../../../../../../types'
+import { saveUserAction } from '@/app/actions/saveUserAction'
 
 enum Fields {
   email = 'email',
@@ -103,17 +104,17 @@ export const UserRegisterForm = ({
 
   const [pending, startTransition] = useTransition()
 
-  const handleSubmit = (data: RegisterUserSchema) => {
+  const handleSubmit = (formData: RegisterUserSchema) => {
     startTransition(async () => {
-      const restult = await signedUpAction(data)
-      if (!restult?.id) {
+      const result: ResultUserRegistered = await saveUserAction(formData)
+      if (!result?.data?.id) {
         toast({
           variant: 'danger',
           title: 'Erro ao cadastrar usuário! 🤯 ',
-          description: restult?.message,
+          description: result?.message,
         })
       }
-      if (restult?.id) {
+      if (result?.data?.id) {
         toast({
           variant: 'success',
           title: 'Ok! Usuário Cadastrado! 🤯 ',

@@ -1,6 +1,6 @@
 import '@/styles/globals.css'
 import React from 'react'
-import { Sidebar } from '@/components/Layout/sidebar/sidebar'
+import { Sidebar } from '@/components/sidebar/sidebar'
 import {
   LuBell,
   LuBellDot,

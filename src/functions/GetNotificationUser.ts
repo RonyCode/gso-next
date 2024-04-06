@@ -2,7 +2,7 @@ import { fetchWrapper } from '@/functions/fetch'
 import { UserNotification } from '../../types/index'
 import { useNotificationStore } from '@/stores/user/useNotificationStore'
 
-export const getUserNotification = async (
+export const GetUserNotification = async (
   queueName: string,
   exchangeName: string,
   idMessage: string | null | undefined,
