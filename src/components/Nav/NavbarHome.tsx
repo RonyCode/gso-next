@@ -168,6 +168,7 @@ export function NavbarHome({
                     <AvatarImage
                       src={session?.image || '/images/avatar.svg'}
                       alt="@shadcn"
+                      style={{ objectFit: 'contain' }}
                     />
                     <AvatarFallback>{nameUser}</AvatarFallback>
                   </Avatar>

@@ -1,7 +1,7 @@
 'use client'
 
 import * as React from 'react'
-import { useTransition } from 'react'
+import { useState, useTransition } from 'react'
 import {
   FaBuildingColumns,
   FaHashtag,
@@ -81,7 +81,7 @@ export const EditProfileForm = ({
   const [pending, startTransition] = useTransition()
 
   const defaultValues = {
-    id: user?.id || '',
+    id: user?.id.toString() || '',
     nome: user?.account?.name || '',
     image: user?.account?.image || '',
     email: user?.userAuth?.email || '',
@@ -108,7 +108,6 @@ export const EditProfileForm = ({
   const handleSubmit = (data: EditUserSchema) => {
     startTransition(async () => {
       const restult = await signedUpAction(data)
-      console.log(await restult)
       if (!restult?.id) {
         toast({
           variant: 'danger',
@@ -122,7 +121,7 @@ export const EditProfileForm = ({
           title: 'Ok! Usuário Cadastrado! 🤯 ',
           description: 'Tudo certo usuário cadastrado',
         })
-        redirect('/')
+        redirect('/profile')
       }
     })
   }
@@ -164,6 +163,7 @@ export const EditProfileForm = ({
     }
   }
 
+  console.log(form.control._formState.errors)
   return (
     <>
       <div className=" mb-48 ">
@@ -236,8 +236,8 @@ export const EditProfileForm = ({
                           placeholder="000.000.000-00"
                           mask="___.___.___-__"
                           autoCapitalize="none"
-                          autoComplete="cpf"
-                          autoCorrect="off"
+                          autoCorrect="on"
+                          autoComplete="one-time-code"
                           disabled={pending}
                         />
                       </FormControl>
@@ -400,7 +400,7 @@ export const EditProfileForm = ({
                                 {states?.map((state) => (
                                   <CommandItem
                                     value={state.state}
-                                    key={state.shortName}
+                                    key={state.id}
                                     onSelect={() => {
                                       handleCity(state.shortName)
                                       form.setValue('estado', state.shortName)
@@ -577,7 +577,7 @@ export const EditProfileForm = ({
                 />
                 <div className=" mb-4 mt-2 w-full lg:mt-[1.380rem] lg:w-3/12 lg:gap-1">
                   <Button
-                    disabled={pending}
+                    disabled={false}
                     className={cn(
                       buttonVariants({ variant: 'default' }),
                       ' w-full ',

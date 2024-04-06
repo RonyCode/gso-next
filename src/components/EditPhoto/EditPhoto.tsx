@@ -51,6 +51,7 @@ export const EditPhoto = ({ className, ...props }: EditPhotoProps) => {
     resolver: zodResolver(FileSchema),
     defaultValues: {
       file_image: null,
+      file_pdf: null,
     },
   })
 
