@@ -97,7 +97,7 @@ export const EditProfileForm = ({
     sigla: user?.address?.shortName || '',
     numero: user?.address?.number || '',
     bairro: user?.address?.district || '',
-    estado: user?.address?.shortName || '',
+    estado: user?.address?.shortName || 'DF',
     cidade: user?.address?.city || '',
   }
 
