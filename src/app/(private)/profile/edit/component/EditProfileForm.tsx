@@ -1,7 +1,6 @@
 'use client'
 
 import * as React from 'react'
-import { useTransition } from 'react'
 import {
   FaBuildingColumns,
   FaHashtag,
@@ -53,6 +52,7 @@ import { AddressProps, UserType } from '../../../../../../types/index'
 import { useSession } from 'next-auth/react'
 import { useMask } from '@/hooks/useMask'
 import { saveUserAction } from '@/app/actions/saveUserAction'
+import { use, useTransition } from 'react'
 
 enum Fields {
   cep = 'cep',
@@ -83,7 +83,6 @@ export const EditProfileForm = ({
   const [pending, startTransition] = useTransition()
   const { update } = useSession()
   const { maskCpfCnpj, maskPhone, maskZipCode } = useMask()
-
   const defaultValues = {
     id: user?.id.toString() || '',
     nome: user?.account?.name || '',
@@ -101,6 +100,7 @@ export const EditProfileForm = ({
     estado: user?.address?.shortName || '',
     cidade: user?.address?.city || '',
   }
+
   const form = useForm<EditUserSchema>({
     mode: 'all',
     criteriaMode: 'all',
@@ -132,6 +132,10 @@ export const EditProfileForm = ({
     })
   }
 
+  async function handleCity(value: string) {
+    return await getAllCitiesByState(value)
+  }
+
   const chageValueInput = async (field: Fields, newValue: string) => {
     form.setValue(field, newValue, {
       shouldDirty: true,
@@ -140,11 +144,9 @@ export const EditProfileForm = ({
     if (field === Fields.estado) await handleCity(newValue)
     form.clearErrors(field)
   }
-  async function handleCity(value: string) {
-    await getAllCitiesByState(value)
-  }
 
-  let arrayCitiesByState = cityStore().cities
+  let arrayCitiesByState: AddressProps[] = []
+  arrayCitiesByState = cityStore().cities
 
   const handleCep = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e?.target?.value.length >= 9) {
@@ -170,7 +172,6 @@ export const EditProfileForm = ({
     }
   }
 
-  console.log(form.getValues('cidade'))
   return (
     <>
       <div className=" mb-48 ">
