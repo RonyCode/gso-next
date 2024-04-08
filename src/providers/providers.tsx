@@ -5,7 +5,6 @@ import AuthProvider from '@/providers/AuthProviders/AuthProvider'
 import ToastProvider from '@/providers/ToastProvider/ToastProvider'
 import { Toaster } from '@/ui/toaster'
 import NextTopLoader from 'nextjs-toploader'
-import UserStoreInitialize from '@/stores/user/userStoreInitialize'
 import InitializeStores from '@/stores/initializeStores'
 
 export const Providers = ({ children }: { children: React.ReactNode }) => {

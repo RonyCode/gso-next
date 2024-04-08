@@ -1,19 +1,12 @@
 import '@/styles/globals.css'
 import React from 'react'
 import { Sidebar } from '@/components/sidebar/sidebar'
-import {
-  LuBell,
-  LuBellDot,
-  LuBuilding2,
-  LuMapPin,
-  LuSettings,
-  LuUser,
-  LuUserCog,
-  LuUserCog2,
-} from 'react-icons/lu'
+
 import { Metadata } from 'next'
 import {
+  LucideUser,
   LucideBuilding2,
+  LucideBellDot,
   LucideHome,
   LucideMapPinned,
   LucideSquareUserRound,
@@ -47,7 +40,7 @@ const sidebarNavItems = [
       {
         title: 'Notificações',
         href: '/examples/forms/notifications',
-        icon: <LuBellDot size={20} />,
+        icon: <LucideBellDot size={20} />,
       },
     ],
   },
@@ -69,12 +62,12 @@ const sidebarNavItems = [
       {
         title: 'Notifications',
         href: '/examples/forms/notifications',
-        icon: <LuUser size={20} />,
+        icon: <LucideUser size={20} />,
       },
       {
         title: 'Display',
         href: '/examples/forms/display',
-        icon: <LuUser size={20} />,
+        icon: <LucideUser size={20} />,
       },
     ],
   },
