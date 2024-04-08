@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server'
 export async function GET() {
-  const res = await fetch(`http://192.168.100.50/services/estados`, {
+  const res = await fetch('http://192.168.100.50/services/estados', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
