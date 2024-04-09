@@ -21,7 +21,6 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { toast } from '@/ui/use-toast'
 import { LuMail, LuSquareAsterisk } from 'react-icons/lu'
 import { ResultSignIn } from '../../../../../types/index'
-import { useRouter } from 'next/navigation'
 import { useTransition } from 'react'
 import LoadingPage from '@/components/Loadings/LoadingPage'
 import { FaSpinner } from 'react-icons/fa6'
@@ -33,7 +32,6 @@ type UserAuthFormProps = React.HTMLAttributes<HTMLDivElement>
 const SigInForm = ({ className, ...props }: UserAuthFormProps) => {
   const [pending, startTransition] = useTransition()
   const { signInWithGoogle, signInWithCredentials } = useSignIn()
-  const router = useRouter()
 
   const handleSubmitLogin = async (data: FormData | SignInSchema) => {
     startTransition(async () => {
@@ -53,7 +51,6 @@ const SigInForm = ({ className, ...props }: UserAuthFormProps) => {
           title: 'Bem vindo de volta! 😍',
           description: 'Login realizado com sucesso',
         })
-        router.push('/dashboard')
       }
     })
   }
