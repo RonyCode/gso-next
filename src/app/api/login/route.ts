@@ -12,7 +12,6 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     return NextResponse.json({ message: 'Erro parametros necessários' })
   }
 
-  console.log(body)
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_GSO}/api/auth/login`, {
     method: 'POST',
     headers: {
@@ -26,7 +25,6 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     }),
   })
 
-  console.log(await res.text())
   if (!res.ok) {
     const { message } = await res.json()
     return NextResponse.json({ message }, { status: 401 })

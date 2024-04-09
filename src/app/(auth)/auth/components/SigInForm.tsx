@@ -25,12 +25,14 @@ import LoadingPage from '@/components/Loadings/LoadingPage'
 import { FaSpinner } from 'react-icons/fa6'
 import { Icons } from '@/ui/icons'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 
 type UserAuthFormProps = React.HTMLAttributes<HTMLDivElement>
 
 const SigInForm = ({ className, ...props }: UserAuthFormProps) => {
   const [pending, startTransition] = useTransition()
   const { signInWithGoogle, signInWithCredentials } = useSignIn()
+  const router = useRouter()
 
   const handleSubmitLogin = (data: SignInSchema) => {
     startTransition(async () => {
@@ -49,6 +51,7 @@ const SigInForm = ({ className, ...props }: UserAuthFormProps) => {
           title: 'Bem vindo de volta! 😍',
           description: 'Login realizado com sucesso',
         })
+        router.push('/dashboard')
       }
     })
   }
