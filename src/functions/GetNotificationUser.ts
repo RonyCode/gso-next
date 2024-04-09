@@ -16,17 +16,19 @@ export const GetUserNotification = async (
       },
     },
   )
-  if (notification.messages?.length) {
+
+  if (notification.messages?.length && notification.code !== 400) {
     useNotificationStore.getState().actions.add(notification)
     return notification
-  }
-  return {
-    messages: [],
-    id: '',
-    title: '',
-    type: '',
-    qtd: 0,
-    status: '',
-    code: 0,
+  } else {
+    return {
+      messages: [],
+      id: '',
+      title: '',
+      type: '',
+      qtd: 0,
+      status: '',
+      code: 0,
+    }
   }
 }
