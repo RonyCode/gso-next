@@ -4,7 +4,6 @@ import { getAllStates } from '@/lib/getAllStates'
 import { GetUserById } from '@/lib/GetUserById'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth'
-export const dynamic = 'force-dynamic'
 
 const EditProfile = async () => {
   const session = await getServerSession(authOptions)
