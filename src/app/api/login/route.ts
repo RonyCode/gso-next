@@ -2,7 +2,6 @@ import { NextRequest, NextResponse } from 'next/server'
 
 import { SignInSchema } from '@/app/(auth)/auth/schemas/SignInSchema'
 
-export const runtime = 'edge'
 export async function POST(request: NextRequest): Promise<NextResponse> {
   const origin: string | null = request.headers.get('origin')
   const body: SignInSchema = await request.json()
