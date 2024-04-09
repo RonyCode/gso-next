@@ -12,6 +12,7 @@ export async function middleware(request: NextRequest) {
           'http://localhost:3000/api/auth/callback/credentials',
           'http://localhost:3000/api/pre-cadastro-usuario',
           'http://192.168.100.50',
+          'http://192.168.100.50/services/amqp/consume',
           'http://localhost:3000',
           'https://gso-dev.vercel.app/',
           `${process.env.NEXT_PUBLIC_API_GSO}`,
@@ -20,6 +21,7 @@ export async function middleware(request: NextRequest) {
         ]
       : [
           'http://192.168.100.50',
+          'http://192.168.100.50/services/amqp/consume',
           'http://localhost:3000',
           'https://gso-dev.vercel.app/',
           'http://localhost:3000/api/auth/callback/credentials',
