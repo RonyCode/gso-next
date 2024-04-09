@@ -70,9 +70,6 @@ export const authOptions: NextAuthOptions = {
         }
         const user = await confereLogado(payload)
 
-        console.log(user)
-        console.log(process.env.NEXT_PUBLIC_API_NEXT)
-
         if (user) {
           return user
         } else {
