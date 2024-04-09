@@ -20,6 +20,9 @@ export const useSignIn = () => {
     }
   }
   const signInWithCredentials = async (data: SignInSchema) => {
+    if (!data) {
+      return {} as unknown as ResultSignIn
+    }
     const { email, senha } = data
     const result = await signIn('credentials', {
       email,

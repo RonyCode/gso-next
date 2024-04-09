@@ -8,10 +8,23 @@ const {
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: [
-      'lh3.googleusercontent.com',
-      'wsgso.000webhostapp.com',
-      'wsgso.localhost',
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'lh3.googleusercontent.com',
+      },
+      {
+        protocol: 'http',
+        hostname: 'wsgso.000webhostapp.com',
+      },
+      {
+        protocol: 'http',
+        hostname: 'wsgso.localhost',
+      },
+      {
+        protocol: 'http',
+        hostname: '192.168.100.50',
+      },
     ],
   },
 }

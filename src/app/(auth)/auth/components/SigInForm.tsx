@@ -2,7 +2,6 @@
 
 import * as React from 'react'
 
-import { signInServerActions } from '@/app/(auth)/auth/actions/signInServerAction'
 import { useSignIn } from '@/app/(auth)/auth/hooks/useSign'
 import { SignInSchema } from '@/app/(auth)/auth/schemas/SignInSchema'
 import { Input } from '@/ui/input'
@@ -33,11 +32,10 @@ const SigInForm = ({ className, ...props }: UserAuthFormProps) => {
   const [pending, startTransition] = useTransition()
   const { signInWithGoogle, signInWithCredentials } = useSignIn()
 
-  const handleSubmitLogin = async (data: FormData | SignInSchema) => {
+  const handleSubmitLogin = (data: SignInSchema) => {
     startTransition(async () => {
-      const resultData = await signInServerActions(data)
+      const result: ResultSignIn = await signInWithCredentials(data)
 
-      const result: ResultSignIn = await signInWithCredentials(resultData)
       if (!result.ok) {
         toast({
           variant: 'danger',
@@ -102,8 +100,8 @@ const SigInForm = ({ className, ...props }: UserAuthFormProps) => {
         <div className={cn('grid gap-6', className)} {...props}>
           <Form {...form}>
             <form
-              onSubmit={form.handleSubmit(async (data) => {
-                await handleSubmitLogin(data)
+              onSubmit={form.handleSubmit((data) => {
+                handleSubmitLogin(data)
               })}
               className="w-full space-y-4"
             >

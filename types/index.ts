@@ -147,6 +147,15 @@ export type ResultSignIn = {
   ok: boolean
   status: number
   url?: string
+  id: number
+  id_message: string
+  email: string
+  image: string
+  name: string
+  token: string
+  refresh_token: string
+  date_creation_token: number
+  date_expires_token: number
 }
 
 export type ResultError = {

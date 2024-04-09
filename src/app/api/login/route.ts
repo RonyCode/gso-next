@@ -7,9 +7,9 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
   const body: SignInSchema = await request.json()
   const { email, senha, is_user_external: isUserExternal } = body
 
-  if (!email || !senha)
+  if (!email || !senha) {
     return NextResponse.json({ message: 'Erro parametros necessários' })
-
+  }
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_GSO}/api/auth/login`, {
     method: 'POST',
     headers: {
