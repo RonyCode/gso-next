@@ -12,7 +12,6 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/ui/dropdown-menu'
-import { NotificationMessage } from '../../../../../types/index'
 
 const NotificationUser = () => {
   const { data: session } = useSession()
