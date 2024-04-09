@@ -2,8 +2,6 @@ import type { NextAuthOptions } from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
 import GoogleProvider from 'next-auth/providers/google'
 import { cookies } from 'next/headers'
-import { fetchWrapper } from '@/functions/fetch'
-import { ResultSignIn, UserAuth, UserType } from '../../types/index'
 
 function getGoogleCredentials() {
   const googleClientId = process.env.GOOGLE_CLIENT_ID
@@ -24,16 +22,14 @@ export const confereLogado = async (payload: {
   senha?: string
   is_user_external?: number
 }) => {
-  const res = await fetch<ResultSignIn>(
-    `${process.env.NEXT_PUBLIC_API_NEXT}/api/login`,
-    {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
-    },
-  )
-  if (!res.ok) {
-    return res
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_NEXT}/api/login`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload),
+  })
+
+  if (res.ok) {
+    return await res.json()
   } else {
     return null
   }
@@ -96,7 +92,7 @@ export const authOptions: NextAuthOptions = {
   },
 
   pages: {
-    signIn: '/login',
+    signIn: '/auth',
   },
 
   secret: process.env.JWT_SECRET,
