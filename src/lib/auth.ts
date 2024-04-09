@@ -65,6 +65,7 @@ export const authOptions: NextAuthOptions = {
           senha: credentials?.senha,
           is_user_external: 0,
         }
+
         if (!payload.email || !payload.senha) {
           throw new Error('Email ou senha inválido! 🤯')
         }

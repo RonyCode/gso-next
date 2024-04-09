@@ -11,12 +11,13 @@ export async function middleware(request: NextRequest) {
           'https://wsgso.000webhostapp.com',
           'http://localhost:3000/api/auth/callback/credentials',
           'http://localhost:3000/api/pre-cadastro-usuario',
+          'http://192.168.100.50',
           `${process.env.NEXT_PUBLIC_API_GSO}`,
           `${process.env.NEXT_PUBLIC_API_NEXT}`,
           `${process.env.NEXT_PUBLIC_NEXT_URL}`,
         ]
       : [
-          'http://localhost:3000',
+          'http://192.168.100.50',
           'http://localhost:3000/api/auth/callback/credentials',
           'https://wsgso.000webhostapp.com/api/auth/estados',
           'http://localhost:3000/api/pre-cadastro-usuario',
