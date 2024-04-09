@@ -38,6 +38,7 @@ const SigInForm = ({ className, ...props }: UserAuthFormProps) => {
       const resultData = await signInServerActions(data)
 
       const result: ResultSignIn = await signInWithCredentials(resultData)
+      console.log(result)
       if (!result.ok) {
         toast({
           variant: 'danger',

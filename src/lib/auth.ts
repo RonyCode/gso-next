@@ -65,12 +65,13 @@ export const authOptions: NextAuthOptions = {
           senha: credentials?.senha,
           is_user_external: 0,
         }
-
         if (!payload.email || !payload.senha) {
           throw new Error('Email ou senha inválido! 🤯')
         }
-
         const user = await confereLogado(payload)
+
+        console.log(user)
+        console.log(process.env.NEXT_PUBLIC_API_NEXT)
 
         if (user) {
           return user
