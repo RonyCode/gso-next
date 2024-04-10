@@ -52,7 +52,7 @@ import { AddressProps, UserType } from '../../../../../../types/index'
 import { useSession } from 'next-auth/react'
 import { useMask } from '@/hooks/useMask'
 import { saveUserAction } from '@/app/actions/saveUserAction'
-import { useTransition } from 'react'
+import { useId, useTransition } from 'react'
 
 enum Fields {
   cep = 'cep',
@@ -171,6 +171,7 @@ export const EditProfileForm = ({
       })
     }
   }
+  const cuid = useId()
 
   return (
     <>
@@ -405,10 +406,10 @@ export const EditProfileForm = ({
                                 Estado não encontrado.
                               </CommandEmpty>
                               <CommandGroup>
-                                {states?.map((state) => (
+                                {states?.map((state, index) => (
                                   <CommandItem
                                     value={state.state}
-                                    key={state.id}
+                                    key={index + 1}
                                     onSelect={() => {
                                       handleCity(state.shortName)
                                       form.setValue('estado', state.shortName)
@@ -474,10 +475,10 @@ export const EditProfileForm = ({
                                 Cidade não encontrada.
                               </CommandEmpty>
                               <CommandGroup>
-                                {arrayCitiesByState?.map((city) => (
+                                {arrayCitiesByState?.map((city, index) => (
                                   <CommandItem
                                     value={city.city}
-                                    key={city.id}
+                                    key={index + 1}
                                     onSelect={() => {
                                       form.setValue('cidade', city.city)
                                     }}

@@ -30,7 +30,6 @@ export function Sidebar({ className, items }: SidebarNavProps) {
   const image = session?.image
   const nameUser = GetFirstLettersNameUser()
   const windowDevice = GetWindowSize()
-
   return (
     <div className={cn('relative pb-12', className)}>
       <div className="  px-3 py-8">

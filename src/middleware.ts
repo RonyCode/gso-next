@@ -16,6 +16,8 @@ export async function middleware(request: NextRequest) {
           'http://192.168.100.50:3000',
           'http://192.168.100.50/services/amqp/consume',
           'http://localhost:3000',
+          'http://localhost:3000/services/estados',
+          'http://localhost:3000/services/cidades/',
           'https://gso-dev.vercel.app/',
           'http://localhost:3000/api/auth/callback/credentials',
           'https://wsgso.000webhostapp.com/api/auth/estados',
