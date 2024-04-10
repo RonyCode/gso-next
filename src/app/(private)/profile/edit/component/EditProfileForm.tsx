@@ -52,7 +52,7 @@ import { AddressProps, UserType } from '../../../../../../types/index'
 import { useSession } from 'next-auth/react'
 import { useMask } from '@/hooks/useMask'
 import { saveUserAction } from '@/app/actions/saveUserAction'
-import { useId, useTransition } from 'react'
+import { useTransition } from 'react'
 
 enum Fields {
   cep = 'cep',
@@ -171,7 +171,6 @@ export const EditProfileForm = ({
       })
     }
   }
-  const cuid = useId()
 
   return (
     <>
