@@ -23,7 +23,6 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
       is_user_external: isUserExternal,
     }),
   })
-  console.log(await res.text())
   if (!res.ok) {
     const { message } = await res.json()
     return NextResponse.json({ message }, { status: 401 })
