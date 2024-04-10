@@ -188,7 +188,7 @@ export const EditPhoto = ({ className, ...props }: EditPhotoProps) => {
                         height={0}
                         alt="Selecione um arquivo"
                         sizes="100vw"
-                        style={{ width: '100%', height: 'auto' }} // optional
+                        style={{ width: '100%', height: '80%' }} // optional
                       />
                     ) : null}
 

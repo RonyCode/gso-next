@@ -62,6 +62,7 @@ export const NotificationCard = ({
             {notifications &&
               notifications?.map((notification, indexNoti) => (
                 <Link
+                  passHref
                   key={indexNoti}
                   href={notification?.url}
                   className="-mx-1 my-1 h-px bg-muted "

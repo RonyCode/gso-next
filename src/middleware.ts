@@ -7,20 +7,13 @@ export async function middleware(request: NextRequest) {
     process.env.NODE_ENV === 'production'
       ? [
           'https://servicodados.ibge.gov.br/api/v1/localidades/estados',
-          'https://wsgso.000webhostapp.com/api/auth/estados',
-          'https://wsgso.000webhostapp.com',
-          'http://localhost:3000/api/auth/callback/credentials',
-          'http://localhost:3000/api/pre-cadastro-usuario',
-          'http://192.168.100.50',
-          'http://192.168.100.50/services/amqp/consume',
-          'http://localhost:3000',
-          'https://gso-dev.vercel.app/',
           `${process.env.NEXT_PUBLIC_API_GSO}`,
           `${process.env.NEXT_PUBLIC_API_NEXT}`,
           `${process.env.NEXT_PUBLIC_NEXT_URL}`,
         ]
       : [
           'http://192.168.100.50',
+          'http://192.168.100.50:3000',
           'http://192.168.100.50/services/amqp/consume',
           'http://localhost:3000',
           'https://gso-dev.vercel.app/',
