@@ -180,7 +180,7 @@ export const EditPhoto = ({ className, ...props }: EditPhotoProps) => {
                   }}
                 />
                 {previewUrl && file && (
-                  <div className="  m-auto my-4 w-full rounded-2xl ">
+                  <div className="  m-auto my-4 h-[80%] w-full rounded-2xl ">
                     {file.type.startsWith('image/') ? (
                       <Image
                         src={previewUrl}
@@ -188,7 +188,7 @@ export const EditPhoto = ({ className, ...props }: EditPhotoProps) => {
                         height={0}
                         alt="Selecione um arquivo"
                         sizes="100vw"
-                        style={{ width: '100%', height: '80%' }} // optional
+                        style={{ width: '100%', height: '100%' }} // optional
                       />
                     ) : null}
 
