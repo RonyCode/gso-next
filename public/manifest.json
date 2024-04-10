@@ -29,5 +29,7 @@
   "background_color": "#FFFFFF",
   "start_url": "/",
   "display": "standalone",
-  "orientation": "portrait"
+  "orientation": "portrait",
+  "author": "Ronycode",
+  "version": "1.0.0"
 }

@@ -30,22 +30,23 @@ const nextConfig = {
 }
 
 module.exports = (phase) => {
-  if (phase === PHASE_DEVELOPMENT_SERVER || phase === PHASE_PRODUCTION_BUILD) {
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
-    const withPWA = require('@ducanh2912/next-pwa').default({
-      dest: 'public',
-      customWorkerSrc: 'service-worker',
-      disable: false,
-      // disable: process.env.NODE_ENV === 'development',
-      cacheOnFrontEndNavigation: true,
-      aggressiveFrontEndNavCaching: true,
-      reloadOnOnline: true,
-      swcMinify: true,
-      workboxOptions: {
-        disableDevLogs: true,
-      },
-    })
-    return withPWA(nextConfig)
-  }
-  return nextConfig
+  // if (phase === PHASE_DEVELOPMENT_SERVER || phase === PHASE_PRODUCTION_BUILD) {
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  const withPWA = require('@ducanh2912/next-pwa').default({
+    dest: 'public',
+    customWorkerSrc: 'service-worker',
+    disable: false,
+    // disable: process.env.NODE_ENV === 'development',
+    cacheOnFrontEndNavigation: true,
+    aggressiveFrontEndNavCaching: true,
+    reloadOnOnline: true,
+
+    swcMinify: true,
+    workboxOptions: {
+      disableDevLogs: true,
+    },
+  })
+  return withPWA(nextConfig)
+  // }
+  // return nextConfig
 }
