@@ -3,15 +3,15 @@
 import { cn } from '@/lib/utils'
 import { Button, buttonVariants } from '@/ui/button'
 import Link from 'next/link'
-import React, { ReactNode, useEffect } from 'react'
+import React, { ReactNode } from 'react'
 import { usePathname } from 'next/navigation'
 import { Avatar, AvatarFallback, AvatarImage } from '@/ui/avatar'
 import { useSession } from 'next-auth/react'
 import { EditPhoto } from '@/components/EditPhoto/EditPhoto'
-import { GetFirstLettersNameUser } from '@/hooks/GetFirstLettersNameUser'
-import { LuCamera, LuList, LuStepBack } from 'react-icons/lu'
+import { GetFirstLettersNameUser } from '@/functions/GetFirstLettersNameUser'
+import { LuList } from 'react-icons/lu'
 import { Dialog, DialogClose, DialogContent, DialogTrigger } from '@/ui/dialog'
-import { useWindowSize } from '@/hooks/useWindowSize'
+import { GetWindowSize } from '@/functions/GetWindowSize'
 
 interface SidebarNavProps extends React.HTMLAttributes<HTMLElement> {
   items: {
@@ -29,8 +29,7 @@ export function Sidebar({ className, items }: SidebarNavProps) {
   const { data: session } = useSession()
   const image = session?.image
   const nameUser = GetFirstLettersNameUser()
-  const windowDevice = useWindowSize()
-
+  const windowDevice = GetWindowSize()
   return (
     <div className={cn('relative pb-12', className)}>
       <div className="  px-3 py-8">

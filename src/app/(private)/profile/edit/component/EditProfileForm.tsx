@@ -1,7 +1,6 @@
 'use client'
 
 import * as React from 'react'
-import { useState, useTransition } from 'react'
 import {
   FaBuildingColumns,
   FaHashtag,
@@ -47,10 +46,13 @@ import { getAllCitiesByState } from '@/lib/getAllCitiesByState'
 import { toast } from '@/ui/use-toast'
 import { redirect } from 'next/navigation'
 import { cityStore } from '@/stores/Address/CityByStateStore'
-import { signedUpAction } from '@/app/(auth)/cadastro-usuario/[token]/actions/signedUpAction'
 import { EditUserSchema } from '@/schemas/EditUserSchema'
 import moment from 'moment'
 import { AddressProps, UserType } from '../../../../../../types/index'
+import { useSession } from 'next-auth/react'
+import { useMask } from '@/hooks/useMask'
+import { saveUserAction } from '@/app/actions/saveUserAction'
+import { useTransition } from 'react'
 
 enum Fields {
   cep = 'cep',
@@ -79,23 +81,24 @@ export const EditProfileForm = ({
   ...props
 }: UserRegisterFormProps) => {
   const [pending, startTransition] = useTransition()
-
+  const { update } = useSession()
+  const { maskCpfCnpj, maskPhone, maskZipCode } = useMask()
   const defaultValues = {
     id: user?.id.toString() || '',
     nome: user?.account?.name || '',
     image: user?.account?.image || '',
     email: user?.userAuth?.email || '',
-    cpf: user?.account?.cpf || '',
+    cpf: maskCpfCnpj(user?.account?.cpf) || '',
     data_nascimento: moment(user?.account?.birthday).format('DD/MM/yyyy') || '',
-    telefone: user?.account?.phone || '',
-    cep: user?.address?.zipCode || '',
+    telefone: maskPhone(user?.account?.phone) || '',
+    cep: maskZipCode(user?.address?.zipCode) || '',
     endereco: user?.address?.address || '',
     complemento: user?.address?.complement || '',
     sigla: user?.address?.shortName || '',
     numero: user?.address?.number || '',
     bairro: user?.address?.district || '',
+    estado: user?.address?.shortName || 'DF',
     cidade: user?.address?.city || '',
-    estado: user?.address?.state || '',
   }
 
   const form = useForm<EditUserSchema>({
@@ -105,25 +108,32 @@ export const EditProfileForm = ({
     defaultValues: defaultValues as Partial<EditUserSchema>,
   })
 
-  const handleSubmit = (data: EditUserSchema) => {
+  const handleSubmit = (dataForm: EditUserSchema) => {
     startTransition(async () => {
-      const restult = await signedUpAction(data)
-      if (!restult?.id) {
+      const { data, message } = await saveUserAction(dataForm)
+      if (!data?.id) {
         toast({
           variant: 'danger',
           title: 'Erro ao cadastrar usuário! 🤯 ',
-          description: restult?.message,
+          description: message,
         })
       }
-      if (restult?.id) {
+      if (data?.id) {
         toast({
           variant: 'success',
-          title: 'Ok! Usuário Cadastrado! 🤯 ',
-          description: 'Tudo certo usuário cadastrado',
+          title: 'Ok! Usuário Atualizado! 🤯 ',
+          description: 'Tudo certo usuário atualizado',
+        })
+        await update({
+          name: user?.account?.name,
         })
         redirect('/profile')
       }
     })
+  }
+
+  async function handleCity(value: string) {
+    return await getAllCitiesByState(value)
   }
 
   const chageValueInput = async (field: Fields, newValue: string) => {
@@ -134,10 +144,9 @@ export const EditProfileForm = ({
     if (field === Fields.estado) await handleCity(newValue)
     form.clearErrors(field)
   }
-  async function handleCity(value: string) {
-    await getAllCitiesByState(value)
-  }
-  let arrayCitiesByState = cityStore().cities
+
+  let arrayCitiesByState: AddressProps[] = []
+  arrayCitiesByState = cityStore().cities
 
   const handleCep = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e?.target?.value.length >= 9) {
@@ -163,7 +172,6 @@ export const EditProfileForm = ({
     }
   }
 
-  console.log(form.control._formState.errors)
   return (
     <>
       <div className=" mb-48 ">
@@ -397,10 +405,10 @@ export const EditProfileForm = ({
                                 Estado não encontrado.
                               </CommandEmpty>
                               <CommandGroup>
-                                {states?.map((state) => (
+                                {states?.map((state, index) => (
                                   <CommandItem
                                     value={state.state}
-                                    key={state.id}
+                                    key={index + 1}
                                     onSelect={() => {
                                       handleCity(state.shortName)
                                       form.setValue('estado', state.shortName)
@@ -466,10 +474,10 @@ export const EditProfileForm = ({
                                 Cidade não encontrada.
                               </CommandEmpty>
                               <CommandGroup>
-                                {arrayCitiesByState?.map((city) => (
+                                {arrayCitiesByState?.map((city, index) => (
                                   <CommandItem
                                     value={city.city}
-                                    key={city.id}
+                                    key={index + 1}
                                     onSelect={() => {
                                       form.setValue('cidade', city.city)
                                     }}
@@ -577,7 +585,7 @@ export const EditProfileForm = ({
                 />
                 <div className=" mb-4 mt-2 w-full lg:mt-[1.380rem] lg:w-3/12 lg:gap-1">
                   <Button
-                    disabled={false}
+                    disabled={pending || !form.formState.isValid}
                     className={cn(
                       buttonVariants({ variant: 'default' }),
                       ' w-full ',

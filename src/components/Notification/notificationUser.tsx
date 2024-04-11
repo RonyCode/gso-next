@@ -3,7 +3,7 @@ import { useNotificationStore } from '@/stores/user/useNotificationStore'
 import { Button } from '@/ui/button'
 import { LuBell } from 'react-icons/lu'
 import { useSession } from 'next-auth/react'
-import { getUserNotification } from '@/functions/getNotificationUser'
+import { GetUserNotification } from '@/functions/GetNotificationUser'
 import { NotificationCard } from '@/components/Notification/NotiicationCard'
 import {
   DropdownMenu,
@@ -16,26 +16,27 @@ import {
 const NotificationUser = () => {
   const { data: session } = useSession()
 
-  getUserNotification('auth', 'user_logged', session?.id_message)
+  GetUserNotification('auth', 'user_logged', session?.id_message)
 
-  navigator.serviceWorker
-    .register('/service-worker/index.js')
-    .then(async (serviceWorker) => {
-      let subscription = await serviceWorker.pushManager.getSubscription()
-      if (!subscription) {
-        const publicKey = await fetch(
-          `${process.env.NEXT_PUBLIC_NEXT_URL}/api/notification/public-key`,
-        )
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker
+      .register('/service-worker/index.js')
+      .then(async (serviceWorker) => {
+        let subscription = await serviceWorker.pushManager.getSubscription()
+        if (!subscription) {
+          const publicKey = await fetch(
+            `${process.env.NEXT_PUBLIC_NEXT_URL}/api/notification/public-key`,
+          )
 
-        const { data } = await publicKey.json()
-        subscription = await serviceWorker.pushManager.subscribe({
-          userVisibleOnly: true,
-          applicationServerKey: data,
-        })
-      }
-      // console.log(JSON.stringify(subscription))
-    })
-
+          const { data } = await publicKey.json()
+          subscription = await serviceWorker.pushManager.subscribe({
+            userVisibleOnly: true,
+            applicationServerKey: data,
+          })
+        }
+        console.log(JSON.stringify(subscription))
+      })
+  }
   return (
     <>
       <DropdownMenu>

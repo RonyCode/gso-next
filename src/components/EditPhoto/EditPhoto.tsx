@@ -30,6 +30,7 @@ import Image from 'next/image'
 import axios, { AxiosProgressEvent } from 'axios'
 import { useSession } from 'next-auth/react'
 import { User } from 'next-auth'
+import { useRouter } from 'next/navigation'
 
 type EditPhotoProps = {
   className?: string
@@ -40,10 +41,10 @@ export const EditPhoto = ({ className, ...props }: EditPhotoProps) => {
   const [previewUrl, setPreviewUrl] = useState<string | null>(null)
   const [file, setFile] = useState<File | null>(null)
   const [open, setOpen] = useState(false)
-
   const [percent, setPercent] = useState<number | null>(0)
   const { data: session, update } = useSession()
   const [user, setUser] = useState<User>({} as User)
+  const router = useRouter()
 
   const form = useForm<FileSchema>({
     mode: 'all',
@@ -91,6 +92,7 @@ export const EditPhoto = ({ className, ...props }: EditPhotoProps) => {
         })
         setOpen(false)
         handleResetValues()
+        router.refresh()
         toast({
           variant: 'success',
           title: 'Ok! Foto atualizada! 🤯 ',
@@ -146,7 +148,7 @@ export const EditPhoto = ({ className, ...props }: EditPhotoProps) => {
               Selecione uma foto que não seja maior que 2MB{' '}
             </DialogDescription>
           </DialogHeader>
-          <div className="grid gap-4 py-4">
+          <div className="grid gap-4 ">
             <LoadingPage pending={pending} />
             <Form {...form}>
               <form
@@ -178,7 +180,7 @@ export const EditPhoto = ({ className, ...props }: EditPhotoProps) => {
                   }}
                 />
                 {previewUrl && file && (
-                  <div className="  m-auto my-4 w-full rounded-2xl ">
+                  <div className="  mt-3 w-full rounded-2xl ">
                     {file.type.startsWith('image/') ? (
                       <Image
                         src={previewUrl}
@@ -186,7 +188,11 @@ export const EditPhoto = ({ className, ...props }: EditPhotoProps) => {
                         height={0}
                         alt="Selecione um arquivo"
                         sizes="100vw"
-                        style={{ width: '100%', height: 'auto' }} // optional
+                        style={{
+                          width: '100%',
+                          height: '60vh',
+                          objectFit: 'contain',
+                        }} // optional
                       />
                     ) : null}
 

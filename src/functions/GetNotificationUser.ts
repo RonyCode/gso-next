@@ -2,7 +2,7 @@ import { fetchWrapper } from '@/functions/fetch'
 import { UserNotification } from '../../types/index'
 import { useNotificationStore } from '@/stores/user/useNotificationStore'
 
-export const getUserNotification = async (
+export const GetUserNotification = async (
   queueName: string,
   exchangeName: string,
   idMessage: string | null | undefined,
@@ -16,17 +16,19 @@ export const getUserNotification = async (
       },
     },
   )
-  if (notification.messages?.length) {
+
+  if (notification.messages?.length && notification.code !== 400) {
     useNotificationStore.getState().actions.add(notification)
     return notification
-  }
-  return {
-    messages: [],
-    id: '',
-    title: '',
-    type: '',
-    qtd: 0,
-    status: '',
-    code: 0,
+  } else {
+    return {
+      messages: [],
+      id: '',
+      title: '',
+      type: '',
+      qtd: 0,
+      status: '',
+      code: 0,
+    }
   }
 }

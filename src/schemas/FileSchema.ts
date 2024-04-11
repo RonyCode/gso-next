@@ -18,7 +18,7 @@ export const FileSchema = z.object({
         (!!file && file.type === 'image/png') ||
         file.type === 'image/jpg' ||
         file.type === 'image/jpeg' ||
-        file.type === 'image/svg',
+        file.type === 'image/svg+xml',
 
       {
         message:

@@ -22,12 +22,11 @@ export const confereLogado = async (payload: {
   senha?: string
   is_user_external?: number
 }) => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_NEXT}/api/login`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_NEXT_URL}/api/login`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(payload),
   })
-
   if (res.ok) {
     return await res.json()
   } else {
@@ -69,7 +68,6 @@ export const authOptions: NextAuthOptions = {
         if (!payload.email || !payload.senha) {
           throw new Error('Email ou senha inválido! 🤯')
         }
-
         const user = await confereLogado(payload)
 
         if (user) {
@@ -182,7 +180,7 @@ export const authOptions: NextAuthOptions = {
         }
       }
 
-      if (trigger === 'update' && session?.name && session?.image) {
+      if (trigger === 'update') {
         // Note, that `session` can be any arbitrary object, remember to validate it!
         token.name = session.name
         token.image = session.image

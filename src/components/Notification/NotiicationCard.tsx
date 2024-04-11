@@ -59,37 +59,39 @@ export const NotificationCard = ({
             />
           </div>
           <div>
-            {notifications?.map((notification, indexNoti) => (
-              <Link
-                key={indexNoti}
-                href={notification?.url}
-                className="-mx-1 my-1 h-px bg-muted "
-                onClick={async () => {
-                  useNotificationStore
-                    .getState()
-                    .state.notification?.messages.forEach((item, index) => {
-                      if (index === indexNoti) {
-                        if (index > -1) {
-                          notifications.splice(index, 1)
+            {notifications &&
+              notifications?.map((notification, indexNoti) => (
+                <Link
+                  passHref
+                  key={indexNoti}
+                  href={notification?.url}
+                  className="-mx-1 my-1 h-px bg-muted "
+                  onClick={async () => {
+                    useNotificationStore
+                      .getState()
+                      .state.notification?.messages.forEach((item, index) => {
+                        if (index === indexNoti) {
+                          if (index > -1) {
+                            notifications.splice(index, 1)
+                          }
                         }
-                      }
-                    })
-                }}
-              >
-                <div className=" animate trasnsition group  grid grid-cols-[25px_1fr] items-center justify-center rounded-2xl  p-4  duration-300 last:mb-0 last:pb-0 hover:bg-background/90">
-                  <span className="flex h-2 w-2  rounded-full bg-primary  group-hover:bg-foreground" />
-                  <div>
-                    <p className="mb-2 text-sm font-medium leading-none">
-                      {notification?.title}
-                    </p>
-                    <p className="text-sm text-muted-foreground">
-                      {notification?.message}
-                    </p>
+                      })
+                  }}
+                >
+                  <div className=" animate trasnsition group  grid grid-cols-[25px_1fr] items-center justify-center rounded-2xl  p-4  duration-300 last:mb-0 last:pb-0 hover:bg-background/90">
+                    <span className="flex h-2 w-2  rounded-full bg-primary  group-hover:bg-foreground" />
+                    <div>
+                      <p className="mb-2 text-sm font-medium leading-none">
+                        {notification?.title}
+                      </p>
+                      <p className="text-sm text-muted-foreground">
+                        {notification?.message}
+                      </p>
+                    </div>
                   </div>
-                </div>
-                <DropdownMenuSeparator />
-              </Link>
-            ))}
+                  <DropdownMenuSeparator />
+                </Link>
+              ))}
           </div>
         </CardContent>
         {notifications && notifications?.length > 0 && (

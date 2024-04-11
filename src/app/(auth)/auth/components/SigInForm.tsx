@@ -2,7 +2,6 @@
 
 import * as React from 'react'
 
-import { signInServerActions } from '@/app/(auth)/auth/actions/signInServerAction'
 import { useSignIn } from '@/app/(auth)/auth/hooks/useSign'
 import { SignInSchema } from '@/app/(auth)/auth/schemas/SignInSchema'
 import { Input } from '@/ui/input'
@@ -21,12 +20,12 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { toast } from '@/ui/use-toast'
 import { LuMail, LuSquareAsterisk } from 'react-icons/lu'
 import { ResultSignIn } from '../../../../../types/index'
-import { useRouter } from 'next/navigation'
 import { useTransition } from 'react'
 import LoadingPage from '@/components/Loadings/LoadingPage'
 import { FaSpinner } from 'react-icons/fa6'
 import { Icons } from '@/ui/icons'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 
 type UserAuthFormProps = React.HTMLAttributes<HTMLDivElement>
 
@@ -35,11 +34,10 @@ const SigInForm = ({ className, ...props }: UserAuthFormProps) => {
   const { signInWithGoogle, signInWithCredentials } = useSignIn()
   const router = useRouter()
 
-  const handleSubmitLogin = async (data: FormData | SignInSchema) => {
+  const handleSubmitLogin = (data: SignInSchema) => {
     startTransition(async () => {
-      const resultData = await signInServerActions(data)
+      const result: ResultSignIn = await signInWithCredentials(data)
 
-      const result: ResultSignIn = await signInWithCredentials(resultData)
       if (!result.ok) {
         toast({
           variant: 'danger',
@@ -105,8 +103,8 @@ const SigInForm = ({ className, ...props }: UserAuthFormProps) => {
         <div className={cn('grid gap-6', className)} {...props}>
           <Form {...form}>
             <form
-              onSubmit={form.handleSubmit(async (data) => {
-                await handleSubmitLogin(data)
+              onSubmit={form.handleSubmit((data) => {
+                handleSubmitLogin(data)
               })}
               className="w-full space-y-4"
             >

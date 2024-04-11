@@ -1,9 +1,11 @@
 import { fetchWrapper } from '@/functions/fetch'
-import { CepProps } from '../../types/index'
+import { AddressProps, CepProps } from '../../types/index'
 import { toast } from '@/ui/use-toast'
+import { stateStore } from '@/stores/Address/stateStore'
+import { cityStore } from '@/stores/Address/CityByStateStore'
 
 export const useEndereco = () => {
-  const findCep = async (cep: string) => {
+  const getCep = async (cep: string) => {
     try {
       return fetchWrapper<CepProps>(
         `${process.env.NEXT_PUBLIC_NEXT_URL}/api/cep?cep=${cep?.replace(
@@ -27,27 +29,37 @@ export const useEndereco = () => {
       return {} as CepProps
     }
   }
-  const getEstados = () => {
-    return fetch('localhost:3000/api/estados', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
+  const getEstados = async () => {
+    const res = await fetchWrapper<AddressProps[]>(
+      `${process.env.NEXT_PUBLIC_NEXT_URL}/api/estados`,
+      {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
       },
-    })
+    )
+    stateStore.setState({ states: res })
+    return res
   }
 
-  const getCidades = async (shortName: string) => {
-    return await fetchWrapper('/api/cidades?short-name=' + shortName, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
+  const getCidadeByState = async (state: string) => {
+    const res = await fetchWrapper<AddressProps[]>(
+      `${process.env.NEXT_PUBLIC_NEXT_URL}/api/cidades/${state}`,
+      {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
       },
-    })
+    )
+    cityStore.setState({ cities: res })
+    return res
   }
 
   return {
-    findCep,
+    getCep,
     getEstados,
-    getCidades,
+    getCidadeByState,
   }
 }
