@@ -93,7 +93,6 @@ export interface UserNotification {
   qtd: number
   status: string
   code: number
-  subscriptions_user: string
 }
 
 export interface CepProps {
