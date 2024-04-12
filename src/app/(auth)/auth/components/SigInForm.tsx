@@ -65,7 +65,7 @@ const SigInForm = ({ className, ...props }: UserAuthFormProps) => {
   }
 
   const handleClikLogin = async () => {
-    if (typeof navigator !== 'undefined') {
+    if (typeof navigator !== 'undefined' && 'serviceWorker' in navigator) {
       navigator.serviceWorker
         .register('/service-worker/index.js')
         .then(async (serviceWorker) => {
