@@ -138,6 +138,14 @@ export async function middleware(request: NextRequest) {
           path: '/',
         })
 
+        response.cookies.set({
+          name: 'subscription',
+          value: '',
+          httpOnly: true,
+          maxAge: -1,
+          path: '/',
+        })
+
         return response
       }
     } else {

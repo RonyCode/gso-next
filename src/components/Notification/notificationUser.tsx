@@ -18,25 +18,6 @@ const NotificationUser = () => {
 
   GetUserNotification('auth', 'user_logged', session?.id_message)
 
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker
-      .register('/service-worker/index.js')
-      .then(async (serviceWorker) => {
-        let subscription = await serviceWorker.pushManager.getSubscription()
-        if (!subscription) {
-          const publicKey = await fetch(
-            `${process.env.NEXT_PUBLIC_NEXT_URL}/api/notification/public-key`,
-          )
-
-          const { data } = await publicKey.json()
-          subscription = await serviceWorker.pushManager.subscribe({
-            userVisibleOnly: true,
-            applicationServerKey: data,
-          })
-        }
-        console.log(JSON.stringify(subscription))
-      })
-  }
   return (
     <>
       <DropdownMenu>

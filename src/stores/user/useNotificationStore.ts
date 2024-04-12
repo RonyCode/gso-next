@@ -21,6 +21,7 @@ export const useNotificationStore = create<UserNotificationStore>()((set) => {
         qtd: 0,
         status: '',
         code: 0,
+        subscriptions_user: '',
       },
     },
     actions: {
