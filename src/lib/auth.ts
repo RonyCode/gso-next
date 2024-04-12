@@ -21,21 +21,18 @@ export const confereLogado = async (payload: {
   email?: string
   senha?: string
   is_user_external?: number
-  subscriptions_user?: string
+  subscription_user?: string
 }) => {
   const subscriptionsUser = cookies().get('subscription')?.value
   subscriptionsUser
-    ? (payload.subscriptions_user = JSON.parse(subscriptionsUser))
-    : (payload.subscriptions_user = '')
+    ? (payload.subscription_user = JSON.parse(subscriptionsUser))
+    : (payload.subscription_user = '')
 
   const res = await fetch(`${process.env.NEXT_PUBLIC_NEXT_URL}/api/login`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      ...payload,
-    }),
+    body: JSON.stringify(payload),
   })
-
   if (res.ok) {
     return await res.json()
   } else {

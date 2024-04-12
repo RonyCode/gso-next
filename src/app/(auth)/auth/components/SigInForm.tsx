@@ -39,7 +39,6 @@ const SigInForm = ({ className, ...props }: UserAuthFormProps) => {
   const handleSubmitLogin = (data: SignInSchema) => {
     startTransition(async () => {
       const result: ResultSignIn = await signInWithCredentials(data)
-
       if (!result.ok) {
         toast({
           variant: 'danger',

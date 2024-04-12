@@ -5,10 +5,6 @@ import { authOptions } from '@/lib/auth'
 const Users = async () => {
   const session = await getServerSession(authOptions)
 
-  // if (!session?.status?.authorized) {
-  //   redirect('/login');
-  // }
-
   return (
     <>
       <section>
