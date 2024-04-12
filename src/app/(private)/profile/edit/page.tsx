@@ -13,6 +13,7 @@ const EditProfile = async () => {
     <>
       <MaxWidthWrapper className="pt-8 ">
         <h1 className="mb-6 text-3xl">Editar perfil</h1>
+
         <EditProfileForm user={user} states={state} />
       </MaxWidthWrapper>
     </>

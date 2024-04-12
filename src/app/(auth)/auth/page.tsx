@@ -6,6 +6,8 @@ export const metadata: Metadata = {
   title: 'GSO | Login',
   description: 'Authentication forms built using the components.',
 }
+
+export const runtime = 'edge'
 export default function Page() {
   return (
     <div className="w-screen lg:container">

@@ -13,6 +13,14 @@ export const deleteCookies = () => {
   })
 
   cookies().set({
+    name: 'subscription',
+    value: '',
+    expires: new Date('2016-10-05'),
+    path: '/',
+    maxAge: 0,
+  })
+
+  cookies().set({
     name: '__Secure-next-auth.session-token',
     value: '',
     expires: new Date('2016-10-05'),

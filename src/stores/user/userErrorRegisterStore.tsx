@@ -24,6 +24,7 @@ export const userErrorRegisterStore = create<UserStore>()((set) => {
       senha: '',
       account: {
         name: '',
+        file: null,
         cpf: '',
         phone: '',
         birthday: '',

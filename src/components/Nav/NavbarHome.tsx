@@ -32,7 +32,7 @@ import { deleteCookies } from '@/components/Buttoms/SignOutButton/LogoutAction'
 import { signOut, useSession } from 'next-auth/react'
 import { usePathname, useRouter } from 'next/navigation'
 import { cn } from '@/lib/utils'
-import NotificationUser from '@/app/(private)/users/components/notificationUser'
+import NotificationUser from '@/components/Notification/notificationUser'
 import LoadingPage from '@/components/Loadings/LoadingPage'
 import { GetFirstLettersNameUser } from '@/functions/GetFirstLettersNameUser'
 

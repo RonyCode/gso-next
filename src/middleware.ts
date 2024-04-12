@@ -7,16 +7,18 @@ export async function middleware(request: NextRequest) {
     process.env.NODE_ENV === 'production'
       ? [
           'https://servicodados.ibge.gov.br/api/v1/localidades/estados',
-          'https://wsgso.000webhostapp.com/api/auth/estados',
-          'https://wsgso.000webhostapp.com',
-          'http://localhost:3000/api/auth/callback/credentials',
-          'http://localhost:3000/api/pre-cadastro-usuario',
           `${process.env.NEXT_PUBLIC_API_GSO}`,
           `${process.env.NEXT_PUBLIC_API_NEXT}`,
           `${process.env.NEXT_PUBLIC_NEXT_URL}`,
         ]
       : [
+          'http://192.168.100.50',
+          'http://192.168.100.50:3000',
+          'http://192.168.100.50/services/amqp/consume',
           'http://localhost:3000',
+          'http://localhost:3000/services/estados',
+          'http://localhost:3000/services/cidades/',
+          'https://gso-dev.vercel.app/',
           'http://localhost:3000/api/auth/callback/credentials',
           'https://wsgso.000webhostapp.com/api/auth/estados',
           'http://localhost:3000/api/pre-cadastro-usuario',
@@ -87,8 +89,25 @@ export async function middleware(request: NextRequest) {
           maxAge: -1,
           path: '/',
         })
+
+        response.cookies.set({
+          name: '__Secure-next-auth.session-token',
+          value: '',
+          httpOnly: true,
+          maxAge: -1,
+          path: '/',
+        })
+
         response.cookies.set({
           name: 'next-auth.callback-url',
+          value: '',
+          httpOnly: true,
+          maxAge: -1,
+          path: '/',
+        })
+
+        response.cookies.set({
+          name: '__Secure-next-auth.callback-url',
           value: '',
           httpOnly: true,
           maxAge: -1,
@@ -104,7 +123,23 @@ export async function middleware(request: NextRequest) {
         })
 
         response.cookies.set({
+          name: '__Host-next-auth.csrf-token',
+          value: '',
+          httpOnly: true,
+          maxAge: -1,
+          path: '/',
+        })
+
+        response.cookies.set({
           name: 'token',
+          value: '',
+          httpOnly: true,
+          maxAge: -1,
+          path: '/',
+        })
+
+        response.cookies.set({
+          name: 'subscription',
           value: '',
           httpOnly: true,
           maxAge: -1,

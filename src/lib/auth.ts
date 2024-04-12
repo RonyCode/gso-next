@@ -21,11 +21,19 @@ export const confereLogado = async (payload: {
   email?: string
   senha?: string
   is_user_external?: number
+  subscriptions_user?: string
 }) => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_NEXT}/api/login`, {
+  const subscriptionsUser = cookies().get('subscription')?.value
+  subscriptionsUser
+    ? (payload.subscriptions_user = JSON.parse(subscriptionsUser))
+    : (payload.subscriptions_user = '')
+
+  const res = await fetch(`${process.env.NEXT_PUBLIC_NEXT_URL}/api/login`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(payload),
+    body: JSON.stringify({
+      ...payload,
+    }),
   })
 
   if (res.ok) {
@@ -69,7 +77,6 @@ export const authOptions: NextAuthOptions = {
         if (!payload.email || !payload.senha) {
           throw new Error('Email ou senha inválido! 🤯')
         }
-
         const user = await confereLogado(payload)
 
         if (user) {
