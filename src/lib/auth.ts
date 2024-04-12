@@ -36,7 +36,6 @@ export const confereLogado = async (payload: {
     }),
   })
 
-  console.log({ ...payload, subscription_user: subscriptionsUser })
   if (res.ok) {
     return await res.json()
   } else {
