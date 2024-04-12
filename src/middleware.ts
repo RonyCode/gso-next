@@ -137,6 +137,15 @@ export async function middleware(request: NextRequest) {
           maxAge: -1,
           path: '/',
         })
+
+        response.cookies.set({
+          name: 'subscription',
+          value: '',
+          httpOnly: true,
+          maxAge: -1,
+          path: '/',
+        })
+
         return response
       }
     } else {
