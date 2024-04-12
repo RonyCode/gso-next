@@ -81,7 +81,6 @@ const SigInForm = ({ className, ...props }: UserAuthFormProps) => {
               userVisibleOnly: true,
               applicationServerKey: data,
             })
-            console.log(data)
           }
           setCookie('subscription', JSON.stringify(subscriptionResult))
         })
