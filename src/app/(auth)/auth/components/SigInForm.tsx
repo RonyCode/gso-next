@@ -27,6 +27,8 @@ import { Icons } from '@/ui/icons'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 
+import { setCookie } from 'cookies-next'
+
 type UserAuthFormProps = React.HTMLAttributes<HTMLDivElement>
 
 const SigInForm = ({ className, ...props }: UserAuthFormProps) => {
@@ -37,7 +39,6 @@ const SigInForm = ({ className, ...props }: UserAuthFormProps) => {
   const handleSubmitLogin = (data: SignInSchema) => {
     startTransition(async () => {
       const result: ResultSignIn = await signInWithCredentials(data)
-
       if (!result.ok) {
         toast({
           variant: 'danger',
@@ -62,7 +63,28 @@ const SigInForm = ({ className, ...props }: UserAuthFormProps) => {
     })
   }
 
-  const handleClikLogin = async () => {}
+  const handleClikLogin = async () => {
+    if (typeof navigator !== 'undefined' && 'serviceWorker' in navigator) {
+      navigator.serviceWorker
+        .register('/service-worker/index.js')
+        .then(async (serviceWorker) => {
+          let subscriptionResult =
+            await serviceWorker.pushManager.getSubscription()
+          if (!subscriptionResult) {
+            const publicKey = await fetch(
+              `${process.env.NEXT_PUBLIC_NEXT_URL}/api/notification/public-key`,
+            )
+
+            const { data } = await publicKey.json()
+            subscriptionResult = await serviceWorker.pushManager.subscribe({
+              userVisibleOnly: true,
+              applicationServerKey: data,
+            })
+          }
+          setCookie('subscription', JSON.stringify(subscriptionResult))
+        })
+    }
+  }
 
   const form = useForm<SignInSchema>({
     resolver: zodResolver(SignInSchema),
