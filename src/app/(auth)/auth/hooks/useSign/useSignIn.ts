@@ -9,6 +9,7 @@ export const useSignIn = () => {
     try {
       await signIn('google', {
         callbackUrl: '/dashboard',
+        redirect: process.env.NODE_ENV !== 'development',
       })
     } catch (error) {
       // display error message to user
@@ -28,7 +29,7 @@ export const useSignIn = () => {
       email,
       senha,
       is_user_external: 0,
-      redirect: false,
+      redirect: process.env.NODE_ENV !== 'development',
     })
     return result as unknown as ResultSignIn
   }
