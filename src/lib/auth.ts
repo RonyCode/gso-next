@@ -33,7 +33,6 @@ export const confereLogado = async (payload: {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(payload),
   })
-  console.log(await res.json())
   if (res.ok) {
     return await res.json()
   } else {
