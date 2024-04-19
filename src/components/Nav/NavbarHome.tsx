@@ -166,17 +166,17 @@ export function NavbarHome({
                   </Avatar>
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent className="w-64" align="center" forceMount>
+              <DropdownMenuContent className="w-72" align="center" forceMount>
                 <DropdownMenuLabel className="font-normal">
-                  <div className="flex flex-col space-y-1">
-                    <p className="text-sm font-medium leading-none">
+                  <div className=" flex w-[85%] flex-col rounded-[8px] border border-primary/70 p-2">
+                    <p className="  text-sm font-medium leading-none ">
                       {session?.name}
                     </p>
-                    <p className="mr-2 pr-2 text-xs leading-none text-muted-foreground">
+                    <p className="text-xs leading-none text-muted-foreground">
                       {session.user.email}
                     </p>
                   </div>
-                  <div className="absolute right-2 top-2 ml-2 pl-2">
+                  <div className="absolute right-1 top-4">
                     {' '}
                     <ModeToggle />
                   </div>
