@@ -39,6 +39,7 @@ export function CardDefault({
   const pathname = usePathname()
   const arrayPathname = pathname?.split('/')
   arrayPathname?.shift()
+  console.log(arrayPathname)
   return (
     <Card
       className={cn(
@@ -57,15 +58,12 @@ export function CardDefault({
       <Breadcrumb>
         <BreadcrumbList>
           {arrayPathname?.map((item, index) => {
-            let test = ''
-            index == 0 ? (test = '') : (test = arrayPathname[index - 1])
-            console.log(item + '/ ' + test)
-            item = '/' + test
+            const link = item
             return (
               <BreadcrumbItem key={index}>
-                <BreadcrumbLink href={test}>{test}</BreadcrumbLink>
+                <BreadcrumbLink href={item}> {item}</BreadcrumbLink>
                 <BreadcrumbSeparator>
-                  <TbSlashes size={28} />
+                  <Slash size={28} />
                 </BreadcrumbSeparator>
               </BreadcrumbItem>
             )

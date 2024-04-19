@@ -1,19 +1,24 @@
 import React from 'react'
-import { Card } from '@/ui/card'
-import { CardsBanner } from '@/components/Cards/CardsBanner'
 import { CardDefault } from '@/components/Cards/CardDefault'
 import { MdAccountBox } from 'react-icons/md'
-import { LucideUserCheck } from 'lucide-react'
+import { EditProfileForm } from '@/app/(private)/profile/edit/component/EditProfileForm'
+import { getServerSession } from 'next-auth'
+import { authOptions } from '@/lib/auth'
+import { getAllStates } from '@/lib/getAllStates'
+import { GetUserById } from '@/lib/GetUserById'
 
 const ProfileUser = async () => {
+  const session = await getServerSession(authOptions)
+  const state = await getAllStates()
+  const user = await GetUserById(session!.id!)
   return (
     <>
       <CardDefault
-        title="Perfil"
-        description="Resumo dados usuário"
-        icon={<LucideUserCheck size={28} />}
+        title="Editar Perfil"
+        description="Atualize seus dados"
+        icon={<MdAccountBox size={28} />}
       >
-        <h1>TEst</h1>
+        <EditProfileForm user={user} states={state} />
       </CardDefault>
     </>
   )
