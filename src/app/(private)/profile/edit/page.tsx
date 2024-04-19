@@ -4,6 +4,8 @@ import { getAllStates } from '@/lib/getAllStates'
 import { GetUserById } from '@/lib/GetUserById'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth'
+import { CardDefault } from '@/components/Cards/CardDefault'
+import { MdAccountBox } from 'react-icons/md'
 
 const EditProfile = async () => {
   const session = await getServerSession(authOptions)
@@ -11,11 +13,13 @@ const EditProfile = async () => {
   const user = await GetUserById(session!.id!)
   return (
     <>
-      <MaxWidthWrapper className="pt-8 ">
-        <h1 className="mb-6 text-3xl">Editar perfil</h1>
-
+      <CardDefault
+        title="Editar Perfil"
+        description="Atualize seus dados"
+        icon={<MdAccountBox size={28} />}
+      >
         <EditProfileForm user={user} states={state} />
-      </MaxWidthWrapper>
+      </CardDefault>
     </>
   )
 }

@@ -31,11 +31,11 @@ export function Sidebar({ className, items }: SidebarNavProps) {
   const nameUser = GetFirstLettersNameUser()
   const windowDevice = GetWindowSize()
   return (
-    <div className={cn('relative pb-12', className)}>
+    <div className={cn('relative pb-12 text-foreground/70', className)}>
       <div className="  px-3 py-8">
         <div className="relative my-4 ml-auto mr-3 flex h-auto min-h-20 w-[86%] items-center overflow-hidden rounded-[8px]   border-r-[1px] border-primary   py-2  shadow-[3px_1px_8px_-4px_rgba(0,0,0,0.3)] shadow-foreground">
           <div>
-            <h1 className="ml-20 text-xl font-semibold tracking-tighter text-foreground">
+            <h1 className="ml-20 text-xl font-semibold tracking-tighter ">
               {session?.name}
             </h1>
             <p className="ml-20 text-sm tracking-tighter text-muted-foreground ">

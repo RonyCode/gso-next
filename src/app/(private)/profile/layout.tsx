@@ -80,12 +80,12 @@ export default function ProfileLayout({
 }) {
   return (
     <>
-      <div className="border-t">
-        <div className="bg-background px-4 lg:px-0">
+      <div className="min-h-screen border-t">
+        <div className="bg-background">
           <div className="grid grid-cols-1 lg:grid-cols-5">
             <Sidebar items={sidebarNavItems} className=" lg:block" />
             <div className="col-span-3 lg:col-span-4 lg:border-l">
-              <div className="min-h-screen  md:mt-24 lg:px-8 ">{children}</div>
+              <div>{children}</div>
             </div>
           </div>
         </div>

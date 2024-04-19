@@ -174,15 +174,9 @@ export const EditProfileForm = ({
 
   return (
     <>
-      <div className=" mb-48 ">
-        <div className="flex flex-col space-y-2 text-center">
-          <span className="mb-4 text-2xl font-semibold tracking-tight">
-            Preencha os campos
-          </span>
-        </div>
-
+      <div className="px-4 md:px-0">
         <div
-          className={cn(' grid place-items-center pt-4  lg:pt-12', className)}
+          className={cn(' grid w-full pt-4  lg:pt-12', className)}
           {...props}
         >
           <LoadingPage pending={pending} />

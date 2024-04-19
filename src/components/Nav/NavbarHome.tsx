@@ -79,7 +79,7 @@ export function NavbarHome({
       {...props}
       ref={myRef}
       className={
-        'fixed left-0 top-0 z-50 w-screen border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 ' +
+        'fixed left-0 top-0 z-50 w-screen border-b bg-background/95 text-foreground/70 backdrop-blur  supports-[backdrop-filter]:bg-background/60 dark:text-foreground/70 ' +
         `${
           !showNavBar &&
           ' text-[#e5e7eb]/60  dark:text-foreground/60 md:bg-background/10'
@@ -126,20 +126,12 @@ export function NavbarHome({
               >
                 <div className="flex items-center space-x-1 transition-colors hover:text-primary/80">
                   <label
-                    className={
-                      item.path === pathname
-                        ? 'text-primary/60 hover:text-primary/80'
-                        : ' hover:text-primary/80'
-                    }
+                    className={` hover:text-primary/80 ${item.path === pathname ? 'text-primary/60' : ''}`}
                   >
                     {item.icon}
                   </label>
                   <Link
-                    className={
-                      showNavBar
-                        ? ' text-foreground/60 hover:text-foreground/80 '
-                        : ' text-[#e5e7eb]/60 hover:text-[#e5e7eb]/80 '
-                    }
+                    className="text-foreground/60 hover:text-foreground/80 "
                     href={item.path}
                   >
                     {item.title}
