@@ -1,4 +1,4 @@
-const Settings = () => {
+const Notifications = () => {
   return (
     <>
       <div className="h-screen">
@@ -19,4 +19,4 @@ const Settings = () => {
     </>
   )
 }
-export default Settings
+export default Notifications

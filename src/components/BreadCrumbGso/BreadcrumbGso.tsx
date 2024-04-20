@@ -3,12 +3,14 @@ import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbList,
-  BreadcrumbPage,
   BreadcrumbSeparator,
 } from '@/ui/breadcrumb'
 import Link from 'next/link'
-import { Slash } from 'lucide-react'
 import { usePathname } from 'next/navigation'
+import React from 'react'
+
+import { LiaChevronRightSolid } from 'react-icons/lia'
+import { LuHome } from 'react-icons/lu'
 
 const BreadcrumbGso = () => {
   const pathname = usePathname()
@@ -18,8 +20,9 @@ const BreadcrumbGso = () => {
 
   return (
     <Breadcrumb>
-      <BreadcrumbList className="rounded-[8px] bg-secondary p-1 shadow-lg shadow-accent">
+      <BreadcrumbList className="rounded-b-[8px] border border-t-0  border-foreground/60 bg-secondary p-2">
         <BreadcrumbItem>
+          <LuHome />
           <Link href="/">Home</Link>
         </BreadcrumbItem>
 
@@ -37,7 +40,16 @@ const BreadcrumbGso = () => {
                   : ''
               }`}
             >
-              <Slash size={18} />
+              <ol>
+                <BreadcrumbSeparator
+                  className={`${
+                    arrayPathname[arrayPathname.length - 1] == item &&
+                    'text-primary'
+                  }`}
+                >
+                  <LiaChevronRightSolid />
+                </BreadcrumbSeparator>
+              </ol>
               <Link href={link}>
                 {item.charAt(0).toUpperCase() + item.slice(1)}
               </Link>

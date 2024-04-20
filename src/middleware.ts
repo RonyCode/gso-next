@@ -175,6 +175,6 @@ export const config = {
     '/private/:path*',
     '/about/:path*',
     '/contact/:path*',
-    '/profile/:path*',
+    '/conta/:path*',
   ],
 }

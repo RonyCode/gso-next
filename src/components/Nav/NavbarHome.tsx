@@ -183,7 +183,7 @@ export function NavbarHome({
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuGroup>
-                  <Link href={`/profile`}>
+                  <Link href={`/conta`}>
                     <DropdownMenuItem className="group-hover">
                       Minha Conta
                       <DropdownMenuShortcut className="hover:scale-125">
@@ -191,18 +191,23 @@ export function NavbarHome({
                       </DropdownMenuShortcut>
                     </DropdownMenuItem>
                   </Link>
-                  <DropdownMenuItem>
-                    Configuração
-                    <DropdownMenuShortcut>
-                      <LuSettings style={{ fontSize: '20px' }} />
-                    </DropdownMenuShortcut>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem>
-                    Suporte
-                    <DropdownMenuShortcut>
-                      <LuHeadphones style={{ fontSize: '20px' }} />
-                    </DropdownMenuShortcut>
-                  </DropdownMenuItem>{' '}
+                  <Link href={`/conta/escala`}>
+                    <DropdownMenuItem>
+                      Minha Escala
+                      <DropdownMenuShortcut>
+                        <LuSettings style={{ fontSize: '20px' }} />
+                      </DropdownMenuShortcut>
+                    </DropdownMenuItem>
+                  </Link>
+                  <Link href={`/suporte`}>
+                    <DropdownMenuItem>
+                      Suporte
+                      <DropdownMenuShortcut>
+                        <LuHeadphones style={{ fontSize: '20px' }} />
+                      </DropdownMenuShortcut>
+                    </DropdownMenuItem>{' '}
+                  </Link>
+
                   <DropdownMenuItem>
                     Ajuda
                     <DropdownMenuShortcut>

@@ -195,7 +195,7 @@ export const authOptions: NextAuthOptions = {
       return token
     },
 
-    async session({ session, token }) {
+    async session({ session, token, newSession, trigger }) {
       session.id = token?.id
       session.id_message = token?.id_message
       session.email = token?.email
@@ -208,6 +208,14 @@ export const authOptions: NextAuthOptions = {
       session.date_expires_token = token?.date_expires_token
       session.date_creation_token = token?.date_creation_token
       session.expires_at = token?.expires_at
+
+      if (trigger === 'update') {
+        // You can update the session in the database if it's not already updated.
+        // await adapter.updateUser(session.user.id, { name: newSession.name })
+
+        // Make sure the updated value is reflected on the client
+        session.name = newSession.name
+      }
 
       return session
     },

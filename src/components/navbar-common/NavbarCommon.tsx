@@ -14,23 +14,21 @@ function NavbarCommon() {
         <div className=" top-0 z-50 mb-10  flex-row self-end justify-self-start "></div>
         <div className="z-50 flex   w-full justify-center xl:relative ">
           <Link className="z-50 w-48 justify-self-center" href="/">
-            <Logo />
+            <Logo width={120} />
           </Link>
         </div>
         <div className="m-0 flex h-32 justify-end rounded-lg brightness-[0.8]">
-          {/* {user.email} */}
-
           <Image
             src={imgPm}
             alt="test"
             placeholder="blur"
             className="
-          animate-wiggle
           delay-[2000]
           mr-2
           h-32
           w-24
           skew-x-[20deg]
+          animate-wiggle
           rounded-lg
           object-cover
           object-top
@@ -44,11 +42,11 @@ function NavbarCommon() {
             alt="test"
             placeholder="blur"
             className="
-          animate-wiggle
           mr-2
           h-32
           w-24
           skew-x-[20deg]
+          animate-wiggle
           rounded-lg
           object-cover
           object-right-top
@@ -63,11 +61,11 @@ function NavbarCommon() {
             alt="test"
             placeholder="blur"
             className="
-          animate-wiggle
           mr-2
           h-32
           w-24
           skew-x-[20deg]
+          animate-wiggle
           object-cover
           object-bottom
           [--position-initial:15px]
@@ -80,11 +78,11 @@ function NavbarCommon() {
             alt="test"
             placeholder="blur"
             className="
-          animate-wiggle
           mr-2
           h-32
           w-24
           skew-x-[20deg]
+          animate-wiggle
           rounded-lg
           object-cover
           object-left-top

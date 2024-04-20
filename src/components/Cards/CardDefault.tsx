@@ -35,9 +35,7 @@ export function CardDefault({
       )}
       {...props}
     >
-      <CardHeader className="w-full">
-        <NavbarCommon />
-
+      <CardHeader className="mt-0 w-full rounded-[8px] rounded-b-none border border-b-0 border-foreground/60 md:mt-8">
         <CardTitle className="flex items-center gap-2 text-2xl">
           <i>{icon}</i>
           {title}

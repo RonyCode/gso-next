@@ -24,14 +24,10 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { cn } from '@/lib/utils'
 import { Input } from '@/ui/input'
-import { MyInputMask } from '@/components/ui/myInputMask'
+import { MyInputMask } from '@/ui/myInputMask'
 import { FaBirthdayCake } from 'react-icons/fa'
 import LoadingPage from '@/components/Loadings/LoadingPage'
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '@/components/ui/popover'
+import { Popover, PopoverContent, PopoverTrigger } from '@/ui/popover'
 import {
   Command,
   CommandEmpty,
@@ -44,11 +40,11 @@ import { Check, ChevronsUpDown } from 'lucide-react'
 import { getCep } from '@/lib/getCep'
 import { getAllCitiesByState } from '@/lib/getAllCitiesByState'
 import { toast } from '@/ui/use-toast'
-import { redirect } from 'next/navigation'
+import { redirect, useRouter } from 'next/navigation'
 import { cityStore } from '@/stores/Address/CityByStateStore'
 import { EditUserSchema } from '@/schemas/EditUserSchema'
 import moment from 'moment'
-import { AddressProps, UserType } from '../../../../../../types/index'
+import { AddressProps, UserType } from '../../../../../types/index'
 import { useSession } from 'next-auth/react'
 import { useMask } from '@/hooks/useMask'
 import { saveUserAction } from '@/app/actions/saveUserAction'
@@ -83,6 +79,8 @@ export const EditProfileForm = ({
   const [pending, startTransition] = useTransition()
   const { update } = useSession()
   const { maskCpfCnpj, maskPhone, maskZipCode } = useMask()
+  const router = useRouter()
+
   const defaultValues = {
     id: user?.id.toString() || '',
     nome: user?.account?.name || '',
@@ -124,10 +122,14 @@ export const EditProfileForm = ({
           title: 'Ok! Usuário Atualizado! 🤯 ',
           description: 'Tudo certo usuário atualizado',
         })
+
         await update({
+          ...user,
           name: user?.account?.name,
         })
-        redirect('/profile')
+        router.refresh()
+
+        redirect('/conta')
       }
     })
   }

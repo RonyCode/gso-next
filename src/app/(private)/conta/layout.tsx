@@ -9,37 +9,34 @@ import {
   LucideBellDot,
   LucideHome,
   LucideMapPinned,
-  LucideSquareUserRound,
   LucideUserRoundCog,
+  LucideUserCheck,
+  LucideCalendarDays,
 } from 'lucide-react'
 
 export const metadata: Metadata = {
   title: 'GSO | Perfil',
-  description: 'page of signUp users.',
+  description: 'pãgina da conta do usuário.',
 }
 
 const sidebarNavItems = [
   {
-    titleGroup: 'Perfil',
+    titleGroup: 'Minha Conta',
     group: [
       {
-        title: 'Perfil',
-        href: '/profile',
-        icon: <LucideSquareUserRound size={20} />,
+        title: 'Meus Dados',
+        href: '/conta',
+        icon: <LucideUserCheck size={20} />,
       },
       {
-        title: 'Editar Perfil',
-        href: '/profile/edit',
-        icon: <LucideUserRoundCog size={20} />,
+        title: 'Minha Escala',
+        href: '/conta/escala',
+        icon: <LucideCalendarDays size={20} />,
       },
-      {
-        title: 'Endereço',
-        href: '/profile/settings',
-        icon: <LucideMapPinned size={20} />,
-      },
+
       {
         title: 'Notificações',
-        href: '/examples/forms/notifications',
+        href: '/conta/notificacoes',
         icon: <LucideBellDot size={20} />,
       },
     ],
@@ -50,13 +47,13 @@ const sidebarNavItems = [
     group: [
       {
         title: 'Minha Unidade',
-        href: '/profile/minha-unidade',
+        href: '/conta/minha-unidade',
         icon: <LucideHome size={20} />,
       },
 
       {
         title: 'Dados Unidade',
-        href: '/profile/teste',
+        href: '/conta/teste',
         icon: <LucideBuilding2 size={20} />,
       },
       {
