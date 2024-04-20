@@ -60,7 +60,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="pt-BR" suppressHydrationWarning>
+    <html lang="pt-BR">
       <body
         className={cn(
           ' m-0 h-screen min-h-screen w-screen  overflow-x-hidden p-0 font-sans antialiased',
@@ -77,7 +77,9 @@ export default function RootLayout({
             <Providers>
               <NavbarHome />
               <main className="flex min-h-screen w-full  flex-col bg-gradient-to-t from-background to-secondary pt-[68px]">
-                <div className="w-full  flex-1 flex-grow">{children}</div>
+                <section className="w-full  flex-1 flex-grow">
+                  {children}
+                </section>
               </main>
               <footer className="relative bottom-0 z-50 h-48 border-t bg-background text-center text-sm leading-5 text-foreground ">
                 © 2024 Rcode Copyright. Todos os direitos reservados.

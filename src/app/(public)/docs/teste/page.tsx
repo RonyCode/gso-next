@@ -4,11 +4,9 @@ import { LuUser } from 'react-icons/lu'
 
 const Teste = () => {
   return (
-    <>
-      <CardDefault title="teste" description="teste" icon={<LuUser />}>
-        teste
-      </CardDefault>
-    </>
+    <CardDefault title="teste" description="teste" icon={<LuUser />}>
+      teste
+    </CardDefault>
   )
 }
 

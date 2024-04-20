@@ -1,5 +1,6 @@
 'use client'
 import { cn } from '@/lib/utils'
+
 import {
   Card,
   CardContent,
@@ -8,18 +9,8 @@ import {
   CardTitle,
 } from '@/components/ui/card'
 import { Separator } from '@/ui/separator'
-import {
-  Breadcrumb,
-  BreadcrumbLink,
-  BreadcrumbItem,
-  BreadcrumbList,
-  BreadcrumbSeparator,
-} from '@/ui/breadcrumb'
-import { Slash } from 'lucide-react'
-import { LuArrowBigRight } from 'react-icons/lu'
-import { GiBo } from 'react-icons/gi'
-import { TbSlashes } from 'react-icons/tb'
-import { usePathname } from 'next/navigation'
+import BreadcrumbGso from '@/components/BreadCrumbGso/BreadcrumbGso'
+import NavbarCommon from '@/components/navbar-common/NavbarCommon'
 
 type CardProps = {
   title: string
@@ -36,10 +27,6 @@ export function CardDefault({
   children,
   ...props
 }: CardProps) {
-  const pathname = usePathname()
-  const arrayPathname = pathname?.split('/')
-  arrayPathname?.shift()
-  console.log(arrayPathname)
   return (
     <Card
       className={cn(
@@ -49,27 +36,15 @@ export function CardDefault({
       {...props}
     >
       <CardHeader className="w-full">
+        <NavbarCommon />
+
         <CardTitle className="flex items-center gap-2 text-2xl">
           <i>{icon}</i>
           {title}
         </CardTitle>
         <CardDescription>{description}</CardDescription>
       </CardHeader>
-      <Breadcrumb>
-        <BreadcrumbList>
-          {arrayPathname?.map((item, index) => {
-            const link = item
-            return (
-              <BreadcrumbItem key={index}>
-                <BreadcrumbLink href={item}> {item}</BreadcrumbLink>
-                <BreadcrumbSeparator>
-                  <Slash size={28} />
-                </BreadcrumbSeparator>
-              </BreadcrumbItem>
-            )
-          })}
-        </BreadcrumbList>
-      </Breadcrumb>
+      <BreadcrumbGso />
       <Separator />
       <CardContent className="grid p-0">{children}</CardContent>
     </Card>

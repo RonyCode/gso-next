@@ -95,8 +95,21 @@ module.exports = {
           '0%': { opacity: 0 },
           '100%': { opacity: 1 },
         },
+        wiggle: {
+          from: {
+            // transform: 'translateX(var(--position-initial)) skew(20deg) ',
+
+            transform: 'translateX(var(--slide-distance)) skew(20deg)',
+          },
+          to: {
+            // transform: 'translateX(var(--slide-distance)) skew(20deg) ',
+
+            transform: 'translateX(var(--position-initial)) skew(20deg)',
+          },
+        },
       },
       animation: {
+        wiggle: 'wiggle 1.5s ease-in-out forwards',
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
         fadeIn: 'fadeIn .5s ease-in-out',
