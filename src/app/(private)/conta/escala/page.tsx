@@ -1,5 +1,6 @@
 import { CardDefault } from '@/components/Cards/CardDefault'
 import { LucideCalendarDays } from 'lucide-react'
+import CalendarGso from '@/components/CalendarGso/CalendarGso'
 
 const MinhaEscala = () => {
   return (
@@ -9,7 +10,7 @@ const MinhaEscala = () => {
         description="Horário e dias escalados para meu serviço"
         icon={<LucideCalendarDays />}
       >
-        minha escala
+        <CalendarGso />{' '}
       </CardDefault>
     </>
   )
