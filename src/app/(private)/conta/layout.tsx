@@ -8,8 +8,6 @@ import {
   LucideBuilding2,
   LucideBellDot,
   LucideHome,
-  LucideMapPinned,
-  LucideUserRoundCog,
   LucideUserCheck,
   LucideCalendarDays,
 } from 'lucide-react'

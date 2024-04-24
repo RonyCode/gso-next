@@ -1,0 +1,40 @@
+#seta {
+  stroke-linecap: round;
+  fill: var(--foreground);
+}
+
+#setaPath path {
+  animation: arrowRight  2s forwards;
+  transform-origin: left center;
+
+}
+
+#bar1, #bar2, #bar3, #bar4 {
+  animation: expandGraph  2s forwards;
+  transform-origin: bottom center;
+
+}
+
+
+
+svg:hover #setaPath path {
+  animation: arrowRight  2s infinite;
+}
+
+svg:hover #bar1, svg:hover #bar2, svg:hover #bar3, svg:hover #bar4 {
+  animation: expandGraph  2s infinite;
+}
+@keyframes arrowRight {
+  to {
+    transform: translate(5px, -3px);
+
+  }
+}
+
+@keyframes expandGraph {
+  to {
+    transform: scaleY(1.1);
+
+  }
+}
+

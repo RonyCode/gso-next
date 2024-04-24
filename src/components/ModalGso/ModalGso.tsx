@@ -1,20 +1,23 @@
 import { Button } from '@/components/ui/button'
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogDescription,
   DialogFooter,
   DialogHeader,
-  DialogOverlay,
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog'
 import { cn } from '@/lib/utils'
+import { Separator } from '@/ui/separator'
 
 type ModalProps = {
-  title: string
-  description: string
-  icon: React.ReactNode
+  title?: string
+  description?: string
+  icon?: React.ReactNode
+  iconButton?: React.ReactNode
+  nameButton: string
   children: React.ReactNode
 } & React.ComponentProps<typeof DialogContent>
 
@@ -22,6 +25,8 @@ export function ModalGso({
   title,
   description,
   icon,
+  iconButton,
+  nameButton,
   className,
   children,
   ...props
@@ -29,7 +34,10 @@ export function ModalGso({
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline">x</Button>
+        <Button variant="ghost">
+          <i>{iconButton}</i>
+          {nameButton}
+        </Button>
       </DialogTrigger>
       <DialogContent
         className={cn(
@@ -40,14 +48,18 @@ export function ModalGso({
       >
         <DialogHeader>
           <DialogTitle>
-            {icon}
-            {title}
+            <span className="flex items-center gap-2 ">
+              {icon} {title}{' '}
+            </span>
           </DialogTitle>
           <DialogDescription>{description}</DialogDescription>
+          <Separator />
         </DialogHeader>
-        <div className="grid gap-4 py-4">{children}</div>
+        <div className="grid w-full gap-4 py-4">{children}</div>
         <DialogFooter>
-          <Button type="submit">OK</Button>
+          <DialogClose>
+            <Button type="submit">OK</Button>
+          </DialogClose>
         </DialogFooter>
       </DialogContent>
     </Dialog>

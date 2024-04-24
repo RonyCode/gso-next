@@ -29,6 +29,27 @@ export interface Account {
   file: FileType | null
 }
 
+export type EventProps = {
+  day: number
+  month: number
+  year: number
+  title: string
+  description: string
+  time: string
+  group: string
+  company: string
+}
+
+export type EscalaProps = {
+  dayEvent: EventProps[]
+  dayName: string
+  year: number
+  month: number
+  dayWeek: number
+  dayShortName: string
+  day: number
+}
+
 export interface Address {
   address: string
   number: string

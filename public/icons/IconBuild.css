@@ -1,0 +1,43 @@
+#buildLeft {
+    animation: slideLeft 2s forwards;
+    -webkit-animation:slideLeft 2s forwards;
+    -o-animation: slideLeft 2s forwards;
+    stroke: none;
+    fill: none;
+    opacity: 0;
+
+}
+
+#build{
+    z-index: 111111;
+    transform-origin: center center;
+    fill-opacity: 3;
+
+}
+
+
+#buildRight{
+    -webkit-animation: slideRight 2s forwards;
+    -o-animation: slideRight 2s forwards;
+    animation: slideRight 2s forwards;
+    fill: none;
+    stroke: none;
+}
+
+svg:hover #buildLeft {
+    animation: slideLeft 2s infinite;
+}
+svg:hover #buildLeft {
+    animation: slideRight 2s infinite;
+}
+@keyframes slideLeft {
+    to {
+        transform: translateX(-33%);
+        opacity: 1;
+    }
+}
+@keyframes slideRight {
+    to {
+        transform: translateX(33%);
+    }
+}

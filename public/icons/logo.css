@@ -1,0 +1,27 @@
+svg:hover {
+    cursor: pointer;
+    transition: 1s;
+}
+
+svg:hover #letraG {
+    transform: translate(-290px, 0);
+    transition: 1s;
+
+    opacity: 0;
+
+}
+
+svg:hover #letraS {
+    transform: translate(-552px, 0);
+    opacity: 0;
+    transition: 1s;
+
+
+}
+
+svg:hover #letraO {
+    transform: translate(-813px, 0);
+    transition: 1s;
+    opacity: 0;
+
+}

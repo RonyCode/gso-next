@@ -35,7 +35,7 @@ const BreadcrumbGso = () => {
             <BreadcrumbItem
               key={index}
               className={`${
-                arrayPathname[arrayPathname.length - 1] == item
+                arrayPathname[arrayPathname.length - 1] === item
                   ? 'text-foreground'
                   : ''
               }`}
@@ -43,7 +43,7 @@ const BreadcrumbGso = () => {
               <ol>
                 <BreadcrumbSeparator
                   className={`${
-                    arrayPathname[arrayPathname.length - 1] == item &&
+                    arrayPathname[arrayPathname.length - 1] === item &&
                     'text-primary'
                   }`}
                 >

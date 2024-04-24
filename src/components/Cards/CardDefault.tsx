@@ -10,7 +10,6 @@ import {
 } from '@/components/ui/card'
 import { Separator } from '@/ui/separator'
 import BreadcrumbGso from '@/components/BreadCrumbGso/BreadcrumbGso'
-import NavbarCommon from '@/components/navbar-common/NavbarCommon'
 
 type CardProps = {
   title: string
@@ -30,13 +29,13 @@ export function CardDefault({
   return (
     <Card
       className={cn(
-        ' m-auto h-screen w-screen bg-background md:min-h-[70vh] md:w-[80vw] md:px-16',
+        '  m-auto min-h-screen w-screen bg-background md:min-h-screen md:w-[80vw] md:p-6',
         className,
       )}
       {...props}
     >
-      <CardHeader className="mt-0 w-full rounded-[8px] rounded-b-none border border-b-0 border-foreground/60 md:mt-8">
-        <CardTitle className="flex items-center gap-2 text-2xl">
+      <CardHeader className="mt-0 w-full rounded-[8px] rounded-b-none border border-b-0 border-foreground/60 ">
+        <CardTitle className="flex items-center gap-x-2 text-2xl">
           <i>{icon}</i>
           {title}
         </CardTitle>
@@ -44,7 +43,9 @@ export function CardDefault({
       </CardHeader>
       <BreadcrumbGso />
       <Separator />
-      <CardContent className="grid p-0">{children}</CardContent>
+      <CardContent className="mt-4 grid h-auto w-full rounded-[5px] border-foreground/60 p-0 md:border">
+        {children}
+      </CardContent>
     </Card>
   )
 }

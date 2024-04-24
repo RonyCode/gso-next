@@ -1,0 +1,36 @@
+#relogio{
+  fill: var(--foreground);
+}
+
+#ponteiroMaior {
+  animation: clockSpinnMin 1.5s forwards steps(60);
+  transform-origin: center center;
+
+}
+
+#ponteiroMenor {
+  transform-origin: center center;
+  animation: clockSpinnHour 1.5s forwards steps(60)
+}
+
+svg:hover #ponteiroMaior {
+  animation: clockSpinnMin 1.5s infinite steps(60);
+}
+
+svg:hover #ponteiroMenor {
+  animation: clockSpinnHour 1.5s infinite steps(60);
+}
+
+
+
+@keyframes clockSpinnMin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes clockSpinnHour {
+  to {
+    transform: rotate(25deg);
+  }
+}

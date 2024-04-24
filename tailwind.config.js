@@ -64,6 +64,9 @@ module.exports = {
         md: 'calc(var(--radius) - 2px)',
         sm: 'calc(var(--radius) - 4px)',
       },
+      transformOrigin: {
+        'top-left': '0% 25%',
+      },
 
       backgroundImage: {
         'login-bg-light': "url('/examples/authentication-light.png')",
@@ -91,29 +94,53 @@ module.exports = {
           from: { transform: 'translateX(100%)' },
           to: { transform: 'translateX(0)' },
         },
+
+        sliceCalendar: {
+          from: { transform: 'translateX(100%)' },
+          to: { transform: 'translateX(0)' },
+        },
+
         fadeIn: {
           '0%': { opacity: 0 },
           '100%': { opacity: 1 },
         },
         wiggle: {
           from: {
-            // transform: 'translateX(var(--position-initial)) skew(20deg) ',
-
             transform: 'translateX(var(--slide-distance)) skew(20deg)',
           },
           to: {
-            // transform: 'translateX(var(--slide-distance)) skew(20deg) ',
-
             transform: 'translateX(var(--position-initial)) skew(20deg)',
+          },
+        },
+
+        flipSirene: {
+          '50%': {
+            transform: 'rotateY(180deg)',
+          },
+        },
+
+        flipBrilho: {
+          '50%': {
+            transform: 'rotateX(180deg)',
+          },
+        },
+
+        calendarRotate: {
+          to: {
+            transform: 'translate(25%)',
           },
         },
       },
       animation: {
+        calendarRotate: 'calendarRotate 2s infinite',
+        flipSirene: 'flipSirene 2.5s forwards',
+        flipBrilho: 'flipBrilho 2.5s forwards',
         wiggle: 'wiggle 1.5s ease-in-out forwards',
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
         fadeIn: 'fadeIn .5s ease-in-out',
         sliceLogin: 'sliceLogin 1s  ease-in-out forwards ',
+        sliceCalendar: 'sliceCalendar 1.5s  ease-in-out alternate forwards ',
         sliceRegister: 'sliceRegister 1s ease-in-out forwards ',
       },
     },

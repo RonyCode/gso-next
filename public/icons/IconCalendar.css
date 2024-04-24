@@ -1,0 +1,18 @@
+#dias {
+  transform-origin: center center;
+  animation: rotateDias 2s forwards;
+}
+#calendario{
+  fill: var(--foreground);
+
+}
+
+svg:hover #dias {
+  animation: rotateDias 2s infinite;
+}
+@keyframes rotateDias {
+  to {
+    transform: translate(25%);
+
+  }
+}

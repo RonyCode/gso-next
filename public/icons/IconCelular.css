@@ -1,0 +1,32 @@
+#celular {
+  stroke-width: 1px;
+}
+
+#dedo1 {
+  animation: maoCelular .5s forwards;
+}
+
+#dedo2 {
+  animation: maoCelular 1s forwards;
+}
+
+#dedo3 {
+  animation: maoCelular 1.5s forwards;
+}
+
+#dedo4 {
+  animation: maoCelular 2s forwards;
+}
+
+
+svg:hover #dedo1, svg:hover #dedo2, svg:hover #dedo3, svg:hover #dedo4 {
+  animation: maoCelular 1.5s infinite;
+}
+
+
+@keyframes maoCelular {
+
+  to {
+    transform: translate(7%, -15px);
+  }
+}

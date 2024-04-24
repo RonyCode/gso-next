@@ -1,0 +1,47 @@
+#cog1 {
+  transform-origin: 28% 30%;
+  animation: cogSpinnRight 2s;
+  fill: var(--foreground);
+}
+
+#cog2 {
+  transform-origin: 56% 73%;
+  animation: cogSpinnLeft 2s;
+  fill: var(--foreground);
+}
+
+#cog3 {
+  transform-origin: 79% 36%;
+  animation: cogSpinnLeft 2s;
+  fill: var(--foreground);
+}
+
+svg:hover #cog1 {
+  animation: cogSpinnRight 2s infinite;
+}
+svg:hover #cog2 {
+  animation: cogSpinnLeft 2s infinite;
+}
+svg:hover #cog3 {
+  animation: cogSpinnLeft 2s infinite;
+}
+
+@keyframes cogSpinnRight {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+
+  }
+}
+
+@keyframes cogSpinnLeft {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+
+  }
+}

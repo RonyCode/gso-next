@@ -2,7 +2,6 @@
 import React, { useRef, useState } from 'react'
 import './FileUpload.css'
 import axios from 'axios'
-import { Button } from '@/ui/button'
 import { useSession } from 'next-auth/react'
 
 const FileUpload = () => {

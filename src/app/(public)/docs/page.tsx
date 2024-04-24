@@ -1,5 +1,4 @@
 'use client'
-import { useCallback, useEffect } from 'react'
 
 export default function Docs() {
   // const sendNotifications = () => {
