@@ -44,8 +44,9 @@ const ModulesGso = () => {
           icon={<IconCog width={58} />}
         />{' '}
         <CardModule
-          title="Instituição"
-          subtitle="Serviço de Instituição"
+          title="Organização"
+          subtitle="Serviço de sua Organizacão"
+          link="/servicos/organizacao"
           icon={<IconBuild width={54} />}
         />{' '}
       </div>

@@ -10,11 +10,14 @@ import {
 } from '@/components/ui/card'
 import { Separator } from '@/ui/separator'
 import BreadcrumbGso from '@/components/BreadCrumbGso/BreadcrumbGso'
+import Image from 'next/image'
+import React from 'react'
 
 type CardProps = {
   title: string
   description: string
   icon: React.ReactNode
+  image?: string
   children: React.ReactNode
 } & React.ComponentProps<typeof Card>
 
@@ -22,6 +25,7 @@ export function CardDefault({
   title,
   description,
   icon,
+  image,
   className,
   children,
   ...props
@@ -34,10 +38,24 @@ export function CardDefault({
       )}
       {...props}
     >
-      <CardHeader className="mt-0 w-full rounded-[8px] rounded-b-none border border-b-0 border-foreground/60 ">
+      <CardHeader className="relative mt-0 w-full rounded-[8px] rounded-b-none border border-b-0 border-foreground/60 ">
         <CardTitle className="flex items-center gap-x-2 text-2xl">
-          <i>{icon}</i>
-          {title}
+          <div className="flex items-center">
+            <i>{icon}</i>
+            {title}
+          </div>
+          <div className=" w-5/12 ">
+            {image && (
+              <Image
+                src={image}
+                fill
+                sizes="100"
+                priority={true}
+                alt="image banner"
+                className=" block "
+              />
+            )}
+          </div>
         </CardTitle>
         <CardDescription>{description}</CardDescription>
       </CardHeader>
