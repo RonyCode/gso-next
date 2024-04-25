@@ -4,8 +4,9 @@ import { EscalaProps, EventProps } from '../../../types/index'
 import { LucideArrowBigLeft, LucideArrowBigRight } from 'lucide-react'
 import { Button } from '@/ui/button'
 import { useState } from 'react'
-import DataTableGso from '@/components/DataTableGso/DataTableGso'
 import { Badge } from '@/ui/badge'
+import { DataTableEscala } from '@/components/DataTables/DataTableEscala/data-table-escala'
+import { columnsEscala } from '@/components/DataTables/DataTableEscala/columnsEscala'
 
 export const data = [
   {
@@ -199,7 +200,6 @@ const CalendarGso = ({ event }: { event: EventProps[] }) => {
     }
   }
   escalaObj.shift()
-
   const handlePrevious = () => {
     const lastDayWeek = escalaObj[escalaObj.length - 1].dayWeek
     const monthChanged = handleCountDaysInMonth(month - 1)
@@ -226,14 +226,23 @@ const CalendarGso = ({ event }: { event: EventProps[] }) => {
   const handleOpenModal = (event: EscalaProps) => {
     console.log(event)
   }
+  const eventsList: EventProps[] = []
+  escalaObj.forEach((item) => {
+    item.dayEvent.forEach((event) => {
+      eventsList.push(event)
+    })
+  })
 
   return (
     <>
-      <div className="mt-12 grid h-[80vh] w-full grid-cols-12 md:mt-0 ">
+      <div className="mt-12 grid h-[80vh] w-full grid-cols-12  md:mt-0 ">
         <div
-          className={`col-start-1  col-end-13  mt-12 w-full rounded-[5px] bg-secondary md:col-end-7 md:mt-0`}
+          className={`col-start-1  col-end-13  mt-12 h-[80vh] w-full overflow-scroll rounded-[5px] bg-background p-2 md:col-end-7 md:mt-0 md:overflow-auto`}
         >
-          <DataTableGso />
+          <div>
+            {/* <DataTableEscala columnsEscala={columnsEscala} data={eventsList} /> */}
+            <DataTableEscala data={eventsList as []} columns={columnsEscala} />
+          </div>
         </div>
 
         <div
@@ -311,7 +320,11 @@ const CalendarGso = ({ event }: { event: EventProps[] }) => {
                                   : itemEvent.group.charAt(0).toUpperCase() ===
                                       'D'
                                     ? 'border-yellow-400 text-yellow-400'
-                                    : ''
+                                    : itemEvent.group
+                                          .charAt(0)
+                                          .toUpperCase() === 'E'
+                                      ? 'border-[#9400d3] text-[#9400d3]'
+                                      : ''
                           }`}
                           variant="outline"
                         >
@@ -330,7 +343,11 @@ const CalendarGso = ({ event }: { event: EventProps[] }) => {
                                   : itemEvent.group.charAt(0).toUpperCase() ===
                                       'D'
                                     ? 'text-yellow-400'
-                                    : ''
+                                    : itemEvent.group
+                                          .charAt(0)
+                                          .toUpperCase() === 'E'
+                                      ? 'border-[#9400d3] text-[#9400d3]'
+                                      : ''
                           }`}
                         >
                           {itemEvent.group.charAt(0).toUpperCase()}

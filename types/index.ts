@@ -30,14 +30,20 @@ export interface Account {
 }
 
 export type EventProps = {
+  id: number
   day: number
   month: number
   year: number
+  unity: string
   title: string
   description: string
-  time: string
   group: string
+  type: string
+  status: string
   company: string
+  date: string
+  start: string
+  end: string
 }
 
 export type EscalaProps = {

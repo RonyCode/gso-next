@@ -11,6 +11,7 @@ import {
 } from '@/components/ui/dialog'
 import { cn } from '@/lib/utils'
 import { Separator } from '@/ui/separator'
+import React from 'react'
 
 type ModalProps = {
   title?: string
