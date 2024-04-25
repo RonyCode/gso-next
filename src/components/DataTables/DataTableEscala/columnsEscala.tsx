@@ -3,37 +3,41 @@
 import { ColumnDef } from '@tanstack/react-table'
 
 import { Badge } from '@/components/ui/badge'
-import { Checkbox } from '@/components/ui/checkbox'
+// import { Checkbox } from '@/components/ui/checkbox'
 
 import { labels, statuses, types, unities } from './data/data'
 import { Task } from './data/schema'
 import { DataTableColumnHeader } from './data-table-column-header'
 
 export const columnsEscala: ColumnDef<Task>[] = [
-  {
-    id: 'select',
-    header: ({ table }) => (
-      <Checkbox
-        checked={
-          table.getIsAllPageRowsSelected() ||
-          (table.getIsSomePageRowsSelected() && 'indeterminate')
-        }
-        onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
-        aria-label="Select all"
-        className="translate-y-[2px]"
-      />
-    ),
-    cell: ({ row }) => (
-      <Checkbox
-        checked={row.getIsSelected()}
-        onCheckedChange={(value) => row.toggleSelected(!!value)}
-        aria-label="Select row"
-        className="translate-y-[2px]"
-      />
-    ),
-    enableSorting: false,
-    enableHiding: false,
-  },
+  // {
+  //   id: 'select',
+  //   header: ({ table }) => {
+  //     return (
+  //       <Checkbox
+  //         checked={
+  //           table.getIsAllPageRowsSelected() ||
+  //           (table.getIsSomePageRowsSelected() && 'indeterminate')
+  //         }
+  //         onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
+  //         aria-label="Select all"
+  //         className="translate-y-[2px]"
+  //       />
+  //     )
+  //   },
+  //   cell: ({ row }) => {
+  //     return (
+  //       <Checkbox
+  //         checked={row.getIsSelected()}
+  //         onCheckedChange={(value) => row.toggleSelected(!!value)}
+  //         aria-label="Select row"
+  //         className="translate-y-[2px]"
+  //       />
+  //     )
+  //   },
+  //   enableSorting: false,
+  //   enableHiding: false,
+  // },
 
   {
     accessorKey: 'date',
@@ -94,7 +98,7 @@ export const columnsEscala: ColumnDef<Task>[] = [
       }
 
       return (
-        <div className="flex w-[150px] items-center">
+        <div className="flex w-[120px] items-center ">
           {status.icon && (
             <status.icon className="mr-2 h-4 w-4 text-muted-foreground" />
           )}
@@ -125,12 +129,31 @@ export const columnsEscala: ColumnDef<Task>[] = [
       }
 
       return (
-        <div className="flex items-center">
+        <div className="flex w-[200px] items-center">
           {unity.icon && (
             <unity.icon className="mr-2 h-4 w-4 text-muted-foreground" />
           )}
-          <span>{unity.label}</span>
-          {group && <Badge variant="outline">{group.label}</Badge>}
+          <span className="mr-2 text-muted-foreground">{unity.label}</span>
+          {group && (
+            <Badge
+              variant="outline"
+              className={` hidden  md:block ${
+                group.label.charAt(0).toUpperCase() === 'A'
+                  ? 'border-primary text-primary'
+                  : group.label.charAt(0).toUpperCase() === 'B'
+                    ? 'border-blue-500 text-blue-500'
+                    : group.label.charAt(0).toUpperCase() === 'C'
+                      ? 'border-green-600 text-green-600'
+                      : group.label.charAt(0).toUpperCase() === 'D'
+                        ? 'border-yellow-400 text-yellow-400'
+                        : group.label.charAt(0).toUpperCase() === 'E'
+                          ? 'border-[#9400d3] text-[#9400d3]'
+                          : ''
+              }`}
+            >
+              {group.label}
+            </Badge>
+          )}
         </div>
       )
     },
