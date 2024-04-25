@@ -229,7 +229,7 @@ export const docsConfig: DocsConfig = {
         },
         {
           title: 'Context Menu',
-          href: '/docs/components/context-menu',
+          href: '/docs/components/context-Menu',
           items: [],
         },
         {
@@ -249,7 +249,7 @@ export const docsConfig: DocsConfig = {
         },
         {
           title: 'Dropdown Menu',
-          href: '/docs/components/dropdown-menu',
+          href: '/docs/components/dropdown-Menu',
           items: [],
         },
         {
@@ -279,7 +279,7 @@ export const docsConfig: DocsConfig = {
         },
         {
           title: 'Navigation Menu',
-          href: '/docs/components/navigation-menu',
+          href: '/docs/components/navigation-Menu',
           items: [],
         },
         {

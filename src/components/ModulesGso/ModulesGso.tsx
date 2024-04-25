@@ -46,7 +46,7 @@ const ModulesGso = () => {
         <CardModule
           title="Instituição"
           subtitle="Serviço de Instituição"
-          icon={<IconBuild width={54} className="hover:animate-bounce" />}
+          icon={<IconBuild width={54} />}
         />{' '}
       </div>
     </>

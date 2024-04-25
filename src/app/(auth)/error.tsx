@@ -1,7 +1,7 @@
 'use client'
 import { useEffect } from 'react'
 
-import PageNotFound from '@/ui/PageNotFound'
+import PageNotFound from '@/components/Pages/PageNotFound'
 
 export default function Error({
   error,

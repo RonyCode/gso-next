@@ -7,7 +7,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/ui/card'
-import { ModeToggle } from '@/ui/ModeTogle'
+import { ModeToggle } from '@/components/Buttoms/ModeTogle'
 
 type PageCardProps = {
   title?: string

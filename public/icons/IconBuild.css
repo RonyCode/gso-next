@@ -1,43 +1,29 @@
-#buildLeft {
-    animation: slideLeft 2s forwards;
-    -webkit-animation:slideLeft 2s forwards;
-    -o-animation: slideLeft 2s forwards;
-    stroke: none;
-    fill: none;
-    opacity: 0;
+#empregadoDireita {
+    animation: fadeEmpregadoEsquerda 1500ms alternate-reverse;
+    -webkit-animation:fadeEmpregadoEsquerda 1500ms alternate-reverse;
+    -o-animation: fadeEmpregadoEsquerda 1500ms alternate-reverse;
+    opacity: 1;
 
 }
 
-#build{
-    z-index: 111111;
-    transform-origin: center center;
-    fill-opacity: 3;
+#empregadoEsquerda{
+    -webkit-animation: fadeEmpregadoDireita 3000ms alternate-reverse;
+    -o-animation: fadeEmpregadoDireita 3000ms alternate-reverse;
+    animation: fadeEmpregadoDireita 3000ms alternate-reverse;
+    opacity: 1;
 
 }
 
-
-#buildRight{
-    -webkit-animation: slideRight 2s forwards;
-    -o-animation: slideRight 2s forwards;
-    animation: slideRight 2s forwards;
-    fill: none;
-    stroke: none;
+#cardModule:hover #empregadoDireita {
+    animation: fadeEmpregadoEsquerda 1500ms infinite;
+}
+#cardModule:hover #empregadoEsquerda {
+    animation: fadeEmpregadoDireita 3000ms infinite;
 }
 
-svg:hover #buildLeft {
-    animation: slideLeft 2s infinite;
+@keyframes fadeEmpregadoEsquerda {
+    50% { opacity: 0; }
 }
-svg:hover #buildLeft {
-    animation: slideRight 2s infinite;
-}
-@keyframes slideLeft {
-    to {
-        transform: translateX(-33%);
-        opacity: 1;
-    }
-}
-@keyframes slideRight {
-    to {
-        transform: translateX(33%);
-    }
+@keyframes fadeEmpregadoDireita {
+    50% { opacity: 0; }
 }

@@ -16,13 +16,13 @@
   fill: var(--foreground);
 }
 
-svg:hover #cog1 {
+#cardModule:hover #cog1 {
   animation: cogSpinnRight 2s infinite;
 }
-svg:hover #cog2 {
+#cardModule:hover #cog2 {
   animation: cogSpinnLeft 2s infinite;
 }
-svg:hover #cog3 {
+#cardModule:hover #cog3 {
   animation: cogSpinnLeft 2s infinite;
 }
 

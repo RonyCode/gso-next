@@ -25,7 +25,7 @@ const PageNotFound = ({
         <div className="stars">
           <div className="custom-navbar">
             <div className="brand-logo">
-              <Link href="/">
+              <Link href="/public">
                 <Image
                   src="/images/logo.svg"
                   width="150"

@@ -14,13 +14,13 @@
     stroke: none;
 }
 
-svg:hover #domo {
+#cardModule:hover #domo {
     animation: flipSirene  2.5s infinite;
     transform-origin: center center;
 
 }
 
-svg:hover #riscos {
+#cardModule:hover #riscos {
     animation: flipBrilho 2.5s infinite;
     transform-origin: 0 25%;
     stroke: none;

@@ -23,7 +23,11 @@ export function CardModule({
   ...props
 }: CardProps) {
   return (
-    <Card className={cn('  h-full w-full', className)} {...props}>
+    <Card
+      id="cardModule"
+      className={cn('  h-full w-full', className)}
+      {...props}
+    >
       <Link href={`${link || '#'}  `}>
         <CardHeader className=" h-full w-full cursor-pointer rounded-[5px] border hover:border-primary/60 hover:bg-foreground/10">
           <div className="flex h-full w-full flex-col items-center justify-center p-0  xl:flex-row xl:justify-between">

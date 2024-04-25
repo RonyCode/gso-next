@@ -77,7 +77,7 @@ const CalendarGso = ({ event }: { event: EventProps[] }) => {
   ]
 
   const diasSemana = [
-    { nameDay: 'Domingo', shortNameDay: 'Dom' },
+    // { nameDay: 'Domingo', shortNameDay: 'Dom' },
     { nameDay: 'Segunda', shortNameDay: 'Seg' },
     { nameDay: 'Terça', shortNameDay: 'Ter' },
     { nameDay: 'Quarta', shortNameDay: 'Qua' },

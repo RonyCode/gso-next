@@ -5,7 +5,7 @@ import { signOut } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 
 import { deleteCookies } from '@/components/Buttoms/SignOutButton/LogoutAction'
-import ButtonNoTheme from '@/ui/ButtonNoTheme'
+import ButtonNoTheme from '@/components/Buttoms/ButtonNoTheme'
 import { LogOut } from 'lucide-react'
 
 const SignOutButton = () => {

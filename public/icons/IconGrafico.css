@@ -17,11 +17,11 @@
 
 
 
-svg:hover #setaPath path {
+#cardModule:hover #setaPath path {
   animation: arrowRight  2s infinite;
 }
 
-svg:hover #bar1, svg:hover #bar2, svg:hover #bar3, svg:hover #bar4 {
+#cardModule:hover #bar1, svg:hover #bar2, svg:hover #bar3, svg:hover #bar4 {
   animation: expandGraph  2s infinite;
 }
 @keyframes arrowRight {

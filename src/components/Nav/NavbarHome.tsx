@@ -27,7 +27,7 @@ import {
 } from '@/ui/dropdown-menu'
 import { Button } from '@/ui/button'
 import { Avatar, AvatarFallback, AvatarImage } from '@/ui/avatar'
-import { ModeToggle } from '@/ui/ModeTogle'
+import { ModeToggle } from '@/components/Buttoms/ModeTogle'
 import { deleteCookies } from '@/components/Buttoms/SignOutButton/LogoutAction'
 import { signOut, useSession } from 'next-auth/react'
 import { usePathname, useRouter } from 'next/navigation'

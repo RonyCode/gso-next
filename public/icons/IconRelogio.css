@@ -13,11 +13,11 @@
   animation: clockSpinnHour 1.5s forwards steps(60)
 }
 
-svg:hover #ponteiroMaior {
+#cardModule:hover #ponteiroMaior {
   animation: clockSpinnMin 1.5s infinite steps(60);
 }
 
-svg:hover #ponteiroMenor {
+#cardModule:hover #ponteiroMenor {
   animation: clockSpinnHour 1.5s infinite steps(60);
 }
 

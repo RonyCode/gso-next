@@ -19,7 +19,7 @@
 }
 
 
-svg:hover #dedo1, svg:hover #dedo2, svg:hover #dedo3, svg:hover #dedo4 {
+#cardModule:hover #dedo1, #cardModule:hover #dedo2, #cardModule:hover #dedo3, #cardModule:hover #dedo4 {
   animation: maoCelular 1.5s infinite;
 }
 

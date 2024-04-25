@@ -7,7 +7,7 @@
 
 }
 
-svg:hover #dias {
+#cardModule:hover #dias {
   animation: rotateDias 2s infinite;
 }
 @keyframes rotateDias {

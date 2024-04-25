@@ -5,6 +5,9 @@
 
 @layer base {
     :root {
+        --animateBuilderPeopleLeft: fadeEmpregadoEsquerda;
+        --animateBuilderPeopleRight: fadeEmpregadoDireita;
+        --teste: var(--animateBuilderPeopleRight);
         --slideCalendar: rotateDias;
         --background: 0 0% 100%;
         --foreground: 240 10% 3.9%;
@@ -50,7 +53,6 @@
         --ring: 346.8 77.2% 49.8%;
     }
 }
-
 
 @layer base {
     * {

@@ -1,6 +1,6 @@
-import MaxWidthWrapper from '@/components/Layout/MaxWidthWrapper'
+import MaxWidthWrapper from '@/components/Pages/MaxWidthWrapper'
 import { TokenVerify } from '@/functions/TokenVerify'
-import { CardWithLogo } from '@/ui/CardWithLogo'
+import { CardWithLogo } from '@/components/Cards/CardWithLogo'
 import { Metadata } from 'next'
 import { UserRegisterForm } from '@/app/(auth)/cadastro-usuario/[token]/components/UserRegisterForm'
 
