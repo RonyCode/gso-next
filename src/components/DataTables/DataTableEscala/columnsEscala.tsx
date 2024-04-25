@@ -137,7 +137,7 @@ export const columnsEscala: ColumnDef<Task>[] = [
           {group && (
             <Badge
               variant="outline"
-              className={` hidden  md:block ${
+              className={`${
                 group.label.charAt(0).toUpperCase() === 'A'
                   ? 'border-primary text-primary'
                   : group.label.charAt(0).toUpperCase() === 'B'
