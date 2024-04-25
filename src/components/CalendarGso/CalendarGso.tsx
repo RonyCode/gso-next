@@ -237,7 +237,7 @@ const CalendarGso = ({ event }: { event: EventProps[] }) => {
     <>
       <div className="mt-12 grid h-[80vh] w-full grid-cols-12  md:mt-0 ">
         <div
-          className={`col-start-1  col-end-13  mt-12 h-[80vh] w-full overflow-scroll rounded-[5px] bg-background p-2 md:col-end-7 md:mt-0 md:overflow-auto`}
+          className={`col-start-1  col-end-13  mt-12 h-[80vh] w-full rounded-[5px] bg-background p-2 md:col-end-7 md:mt-0`}
         >
           <div>
             {/* <DataTableEscala columnsEscala={columnsEscala} data={eventsList} /> */}
@@ -246,7 +246,7 @@ const CalendarGso = ({ event }: { event: EventProps[] }) => {
         </div>
 
         <div
-          className={`col-start-1  col-end-13 row-start-1 row-end-2 w-full place-content-center rounded-[5px] px-2 md:col-start-7 md:row-start-1`}
+          className={`col-start-1 col-end-13 row-start-1 row-end-2  w-full place-content-center rounded-[5px] px-2 md:col-start-7 md:row-start-1`}
         >
           <div className="border-b-none flex justify-between border border-foreground/10 p-2">
             <Button variant="default" onClick={handlePrevious}>
@@ -270,7 +270,7 @@ const CalendarGso = ({ event }: { event: EventProps[] }) => {
 
           <div
             className="
-            grid h-10 w-full  grid-cols-7 overflow-scroll  rounded-[3px] md:overflow-hidden"
+            grid h-10 w-full  grid-cols-7 rounded-[3px]"
           >
             {diasSemana.map((day, index) => (
               <div

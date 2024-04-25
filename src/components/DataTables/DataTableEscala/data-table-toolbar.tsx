@@ -20,37 +20,46 @@ export function DataTableToolbar<TData>({
   const isFiltered = table.getState().columnFilters.length > 0
 
   return (
-    <div className="flex items-center justify-between">
-      <div className="flex flex-1 items-center space-x-2">
-        <Input
-          placeholder="Filtrar escalas..."
-          value={(table.getColumn('date')?.getFilterValue() as string) ?? ''}
-          onChange={(event) =>
-            table.getColumn('date')?.setFilterValue(event.target.value)
-          }
-          className="h-8 w-[150px] lg:w-[250px]"
-        />
-        {table.getColumn('status') && (
-          <DataTableFacetedFilter
-            column={table.getColumn('status')}
-            title="Situação"
-            options={statuses}
-          />
-        )}
-        {table.getColumn('type') && (
-          <DataTableFacetedFilter
-            column={table.getColumn('type')}
-            title="Tipo"
-            options={types}
-          />
-        )}
-        {table.getColumn('unity') && (
-          <DataTableFacetedFilter
-            column={table.getColumn('unity')}
-            title="Unidades"
-            options={unities}
-          />
-        )}
+    <div className="gird w-full  grid-cols-2 gap-2  md:grid-cols-3">
+      <Input
+        placeholder="Filtrar escalas..."
+        value={(table.getColumn('date')?.getFilterValue() as string) ?? ''}
+        onChange={(event) =>
+          table.getColumn('date')?.setFilterValue(event.target.value)
+        }
+        className="h-8 w-full lg:w-[250px]"
+      />
+      <div className=" flex justify-between gap-1 pt-2">
+        <div>
+          {table.getColumn('status') && (
+            <DataTableFacetedFilter
+              column={table.getColumn('status')}
+              title="Situação"
+              options={statuses}
+            />
+          )}
+        </div>
+        <div>
+          {table.getColumn('type') && (
+            <DataTableFacetedFilter
+              column={table.getColumn('type')}
+              title="Tipo"
+              options={types}
+            />
+          )}
+        </div>
+        <div>
+          {table.getColumn('unity') && (
+            <DataTableFacetedFilter
+              column={table.getColumn('unity')}
+              title="Unidades"
+              options={unities}
+            />
+          )}
+        </div>
+        <DataTableViewOptions table={table} />
+      </div>
+      <div>
         {isFiltered && (
           <Button
             variant="ghost"
@@ -62,7 +71,6 @@ export function DataTableToolbar<TData>({
           </Button>
         )}
       </div>
-      <DataTableViewOptions table={table} />
     </div>
   )
 }
