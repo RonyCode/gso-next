@@ -18,6 +18,7 @@ type CardProps = {
   description: string
   icon: React.ReactNode
   image?: string
+  imageMobile?: string
   children: React.ReactNode
 } & React.ComponentProps<typeof Card>
 
@@ -26,6 +27,7 @@ export function CardDefault({
   description,
   icon,
   image,
+  imageMobile,
   className,
   children,
   ...props
@@ -33,35 +35,54 @@ export function CardDefault({
   return (
     <Card
       className={cn(
-        '  m-auto min-h-screen w-screen bg-background md:min-h-screen md:w-[80vw] md:p-6',
+        '  m-0 mx-auto min-h-screen w-screen bg-background p-0 md:min-h-[calc(100vh-4rem)] md:w-[80vw] md:p-6',
         className,
       )}
       {...props}
     >
-      <CardHeader className="relative mt-0 w-full rounded-[8px] rounded-b-none border border-b-0 border-foreground/60 ">
-        <CardTitle className="flex items-center gap-x-2 text-2xl">
-          <div className="flex items-center">
-            <i>{icon}</i>
-            {title}
-          </div>
-          <div className=" w-5/12 ">
-            {image && (
-              <Image
-                src={image}
-                fill
-                sizes="100"
-                priority={true}
-                alt="image banner"
-                className=" block "
-              />
-            )}
-          </div>
-        </CardTitle>
-        <CardDescription>{description}</CardDescription>
-      </CardHeader>
+      <div className=" grid  h-32 w-full grid-cols-12 rounded-[8px] rounded-b-none border border-b-0 border-foreground/30 p-0 ">
+        <div className=" col-start-1 col-end-7  text-xl md:col-start-1  md:col-end-4  md:text-2xl ">
+          <CardTitle>
+            <div className="flex flex-col items-start p-4 md:p-6 ">
+              <div className="flex  items-center space-x-1">
+                <i>{icon}</i>
+                <span>{title}</span>
+              </div>
+              <CardDescription>{description}</CardDescription>
+            </div>
+          </CardTitle>
+        </div>
+        <div className="relative hidden h-32 p-0 md:col-start-4 md:col-end-13 md:block ">
+          {image && (
+            <Image
+              src={image}
+              fill
+              sizes="100"
+              priority={true}
+              alt="image"
+              objectFit="cover"
+              className="block  rounded-[8px]  object-cover brightness-[80%]"
+            />
+          )}
+        </div>
+
+        <div className=" relative col-start-7 col-end-13 h-32 p-0 md:col-start-4 md:hidden ">
+          {imageMobile && (
+            <Image
+              src={imageMobile}
+              fill
+              sizes="100"
+              priority={true}
+              alt="image"
+              objectFit="contain"
+              className=" block rounded-[8px] brightness-[80%]"
+            />
+          )}
+        </div>
+      </div>
       <BreadcrumbGso />
       <Separator />
-      <CardContent className="mt-4 grid h-auto w-full rounded-[5px] border-foreground/60 p-0 md:border">
+      <CardContent className="mt-4 grid h-auto w-full rounded-[5px] p-0 md:min-h-[calc(100vh-18rem)] md:border md:border-foreground/30">
         {children}
       </CardContent>
     </Card>

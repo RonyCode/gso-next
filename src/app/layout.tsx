@@ -7,6 +7,7 @@ import LoadingPage from '@/components/Loadings/LoadingPage'
 import { NavbarHome } from '@/components/Nav/NavbarHome'
 import { cn } from '@/lib/utils'
 import { Metadata, Viewport } from 'next'
+import FooterLayout from '@/components/Footer/FooterLayout'
 
 const APP_NAME = 'GSO'
 const APP_DEFAULT_TITLE = 'My GSO PWA App'
@@ -77,13 +78,11 @@ export default function RootLayout({
             <Providers>
               <NavbarHome />
               <main className="flex min-h-screen w-full  flex-col bg-gradient-to-t from-background to-secondary pt-[68px]">
-                <section className="min-h-screen w-full flex-1 flex-grow">
+                <section className="min-h-screen w-full flex-1 flex-grow ">
                   {children}
                 </section>
               </main>
-              <footer className=" relative bottom-0 z-50 hidden h-48 border-t bg-background text-center text-sm leading-5 text-foreground md:block ">
-                © 2024 Rcode Copyright. Todos os direitos reservados.
-              </footer>
+              <FooterLayout />
             </Providers>{' '}
           </ThemeProvider>
         </Suspense>

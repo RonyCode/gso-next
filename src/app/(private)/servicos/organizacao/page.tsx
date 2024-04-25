@@ -1,5 +1,6 @@
 import { CardDefault } from '@/components/Cards/CardDefault'
 import { LucideBuilding2 } from 'lucide-react'
+import ModulesOrganizacao from '@/app/Modules/ModulesOrganizacao'
 
 const Organizacao = () => {
   return (
@@ -7,10 +8,11 @@ const Organizacao = () => {
       <CardDefault
         title="Organização Gestora"
         description="Serviço de Organização Gestora"
-        image="/images/logopmgo.png"
+        image="/images/bannerbm.jpg"
+        imageMobile="/images/cbmto.png"
         icon={<LucideBuilding2 size={28} />}
       >
-        <h1>TEste</h1>
+        <ModulesOrganizacao />
       </CardDefault>
     </>
   )

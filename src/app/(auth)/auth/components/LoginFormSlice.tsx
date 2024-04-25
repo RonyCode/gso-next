@@ -120,14 +120,14 @@ const LoginFormSlice = () => {
             <p className="px-8 text-center text-sm text-muted-foreground">
               Ao se cadastrar você concorda com nossos{' '}
               <Link
-                href="/terms"
+                href="/src/app/(auth)/terms"
                 className="underline underline-offset-4 hover:text-primary"
               >
                 Termos de Serviço
               </Link>{' '}
               e{' '}
               <Link
-                href="/privacy"
+                href="/src/app/(auth)/privacy"
                 className="underline underline-offset-4 hover:text-primary"
               >
                 Políticas de Privacidade

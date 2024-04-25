@@ -20,7 +20,7 @@ const BreadcrumbGso = () => {
 
   return (
     <Breadcrumb>
-      <BreadcrumbList className="rounded-b-[8px] border border-t-0  border-foreground/60 bg-secondary p-2">
+      <BreadcrumbList className="rounded-b-[8px] border border-t-0  border-foreground/30 bg-secondary p-2">
         <BreadcrumbItem>
           <LuHome />
           <Link href="/">Home</Link>
@@ -50,7 +50,7 @@ const BreadcrumbGso = () => {
                   <LiaChevronRightSolid />
                 </BreadcrumbSeparator>
               </ol>
-              <Link href={link}>
+              <Link href={link} className="text-sm font-light md:font-medium">
                 {item.charAt(0).toUpperCase() + item.slice(1)}
               </Link>
             </BreadcrumbItem>

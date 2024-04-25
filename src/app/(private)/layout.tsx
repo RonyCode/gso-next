@@ -5,5 +5,5 @@ export default function PrivateLayout({
 }: {
   children: React.ReactNode
 }) {
-  return <section>{children}</section>
+  return <section className="md:min-h-[calc(100vh-4rem)]">{children}</section>
 }

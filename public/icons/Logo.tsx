@@ -1,7 +1,20 @@
 import './logo.css'
-export default function Logo() {
+import * as React from 'react'
+import { cn } from '@/lib/utils'
+
+type SVGProps = {
+  width?: number
+} & React.SVGProps<SVGSVGElement> &
+  React.HTMLAttributes<HTMLDivElement>
+export default function Logo({ width, className, ...props }: SVGProps) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1077.9 295.8">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 1077.9 295.8"
+      width={width}
+      className={cn(' ', className)}
+      {...props}
+    >
       <g id="letras">
         <path
           id="letraG"
