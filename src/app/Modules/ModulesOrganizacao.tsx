@@ -1,5 +1,6 @@
 import { CardModule } from '@/components/Cards/CardModule'
 import IconBuild from '../../../public/icons/IconBuild'
+import { LucideBookOpenCheck } from 'lucide-react'
 
 const ModulesOrganizacao = () => {
   return (
@@ -11,6 +12,12 @@ const ModulesOrganizacao = () => {
             subtitle="Gerenciamento Unidades"
             link="/servicos/organizacao/unidades"
             icon={<IconBuild width={54} />}
+          />{' '}
+          <CardModule
+            title="Leis"
+            subtitle="Acervo de leis "
+            link="/servicos/organizacao/leis"
+            icon={<LucideBookOpenCheck size={54} />}
           />{' '}
         </div>
       </div>

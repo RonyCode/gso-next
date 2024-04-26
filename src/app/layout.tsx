@@ -10,7 +10,7 @@ import { Metadata, Viewport } from 'next'
 import FooterLayout from '@/components/Footer/FooterLayout'
 
 const APP_NAME = 'GSO'
-const APP_DEFAULT_TITLE = 'My GSO PWA App'
+const APP_DEFAULT_TITLE = 'GSO'
 const APP_TITLE_TEMPLATE = '%s'
 const APP_DESCRIPTION = 'Best PWA app in the world!'
 

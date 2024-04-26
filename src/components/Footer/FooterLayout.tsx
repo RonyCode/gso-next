@@ -6,16 +6,21 @@ import {
   LuTwitter,
 } from 'react-icons/lu'
 import Link from 'next/link'
-import Logo from '../../../public/icons/Logo'
+import { cn } from '@/lib/utils'
+import * as React from 'react'
 
-const FooterLayout = () => {
+type FooterLayoutProps = React.HTMLAttributes<HTMLDivElement>
+const FooterLayout = ({ className, ...props }: FooterLayoutProps) => {
   return (
-    <footer className="relative bg-secondary pb-6 pt-8">
+    <footer
+      className={cn('  relative bg-secondary pb-6 pt-8', className)}
+      {...props}
+    >
       <div className="container mx-auto px-4">
-        <div className="flex flex-wrap text-left lg:text-left">
+        <div className="hidden flex-wrap text-left md:flex lg:text-left">
           <div className="w-full px-4 lg:w-6/12">
             <h4 className="fonat-semibold text-3xl text-foreground">
-              <Logo width={120} /> Venha conhecer as melhores soluções!
+              Venha conhecer as melhores soluções!
             </h4>
             <h5 className="mb-2 mt-0 text-lg font-extralight text-foreground">
               Nos encontre em uma dessas plataformas, iremos responder no máximo
@@ -81,7 +86,7 @@ const FooterLayout = () => {
                   </li>
                   <li>
                     <a
-                      className="text-blueGray-600 block pb-2 text-sm font-semibold hover:text-primary/60"
+                      className="block pb-2 text-sm font-semibold text-foreground hover:text-primary/60"
                       href="https://www.github.com/creativetimofficial?ref=njs-profile"
                     >
                       Github
@@ -89,7 +94,7 @@ const FooterLayout = () => {
                   </li>
                   <li>
                     <a
-                      className="text-blueGray-600 block pb-2 text-sm font-semibold hover:text-primary/60"
+                      className="block pb-2 text-sm font-semibold text-foreground hover:text-primary/60"
                       href="#"
                     >
                       Nossas soluções
@@ -104,7 +109,7 @@ const FooterLayout = () => {
                 <ul className="list-unstyled">
                   <li>
                     <Link
-                      className="text-blueGray-600 block pb-2 text-sm font-semibold hover:text-primary/60"
+                      className="block pb-2 text-sm font-semibold text-foreground hover:text-primary/60"
                       href="/portifolio"
                     >
                       Portifólio
@@ -112,7 +117,7 @@ const FooterLayout = () => {
                   </li>
                   <li>
                     <Link
-                      className="text-blueGray-600 block pb-2 text-sm font-semibold hover:text-primary/60"
+                      className="block pb-2 text-sm font-semibold text-foreground hover:text-primary/60"
                       href="/terms"
                     >
                       Termos &amp; Condições
@@ -120,7 +125,7 @@ const FooterLayout = () => {
                   </li>
                   <li>
                     <Link
-                      className="text-blueGray-600 block pb-2 text-sm font-semibold hover:text-primary/60"
+                      className="block pb-2 text-sm font-semibold text-foreground hover:text-primary/60"
                       href="/privacy"
                     >
                       Políticas de privacidade
@@ -128,7 +133,7 @@ const FooterLayout = () => {
                   </li>
                   <li>
                     <Link
-                      className="text-blueGray-600 block pb-2 text-sm font-semibold hover:text-primary/60"
+                      className="block pb-2 text-sm font-semibold text-foreground hover:text-primary/60"
                       href="/contact"
                     >
                       Contato
@@ -139,7 +144,7 @@ const FooterLayout = () => {
             </div>
           </div>
         </div>
-        <hr className="border-blueGray-300 my-6" />
+        <hr className="my-6 hidden border-foreground/60 md:block" />
         <div className="flex flex-wrap items-center justify-center md:justify-between">
           <div className="mx-auto w-full px-4 text-center md:w-4/12">
             <div className="py-1 text-sm font-semibold text-foreground">
