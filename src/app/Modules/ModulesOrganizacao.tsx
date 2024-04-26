@@ -8,8 +8,8 @@ const ModulesOrganizacao = () => {
         <div className=" grid grid-cols-2 gap-4 p-8 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-5">
           <CardModule
             title="Unidades"
-            subtitle="gerenciamento unidades"
-            link="/servicos/organizacao"
+            subtitle="Gerenciamento Unidades"
+            link="/servicos/organizacao/unidades"
             icon={<IconBuild width={54} />}
           />{' '}
         </div>

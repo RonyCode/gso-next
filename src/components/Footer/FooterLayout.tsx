@@ -1,5 +1,3 @@
-import Logo from '../../../public/icons/Logo'
-import { Github } from 'lucide-react'
 import {
   LuFacebook,
   LuGithub,
@@ -8,6 +6,7 @@ import {
   LuTwitter,
 } from 'react-icons/lu'
 import Link from 'next/link'
+import Logo from '../../../public/icons/Logo'
 
 const FooterLayout = () => {
   return (
@@ -16,7 +15,7 @@ const FooterLayout = () => {
         <div className="flex flex-wrap text-left lg:text-left">
           <div className="w-full px-4 lg:w-6/12">
             <h4 className="fonat-semibold text-3xl text-foreground">
-              Venha conhecer as melhores soluções!
+              <Logo width={120} /> Venha conhecer as melhores soluções!
             </h4>
             <h5 className="mb-2 mt-0 text-lg font-extralight text-foreground">
               Nos encontre em uma dessas plataformas, iremos responder no máximo

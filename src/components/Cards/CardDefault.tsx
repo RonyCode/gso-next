@@ -5,7 +5,6 @@ import {
   Card,
   CardContent,
   CardDescription,
-  CardHeader,
   CardTitle,
 } from '@/components/ui/card'
 import { Separator } from '@/ui/separator'
@@ -60,7 +59,6 @@ export function CardDefault({
               sizes="100"
               priority={true}
               alt="image"
-              objectFit="cover"
               className="block  rounded-[8px]  object-cover brightness-[80%]"
             />
           )}
@@ -74,8 +72,7 @@ export function CardDefault({
               sizes="100"
               priority={true}
               alt="image"
-              objectFit="contain"
-              className=" block rounded-[8px] brightness-[80%]"
+              className=" block rounded-[8px] object-contain brightness-[80%]"
             />
           )}
         </div>
