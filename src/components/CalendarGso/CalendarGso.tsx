@@ -1,59 +1,20 @@
 'use client'
 
-import { EscalaProps, EventProps } from '../../../types/index'
-import { LucideArrowBigLeft, LucideArrowBigRight } from 'lucide-react'
+import { EventProps } from '../../../types/index'
+import {
+  LucideArrowBigLeft,
+  LucideArrowBigRight,
+  LucideGroup,
+} from 'lucide-react'
 import { Button } from '@/ui/button'
 import { useState } from 'react'
-import { Badge } from '@/ui/badge'
-import { DataTableEscala } from '@/components/DataTables/DataTableEscala/data-table-escala'
+import { DataTable } from '@/components/DataTables/data-table'
 import { columnsEscala } from '@/components/DataTables/DataTableEscala/columnsEscala'
-
-export const data = [
-  {
-    id: '728ed52f',
-    amount: 100,
-    status: 'pending',
-    email: 'm@example.com',
-  },
-  {
-    id: '728ed52f',
-    amount: 100,
-    status: 'pending',
-    email: 'm@example.com',
-  },
-  {
-    id: '728ed52f',
-    amount: 100,
-    status: 'pending',
-    email: 'm@example.com',
-  },
-  {
-    id: '728ed52f',
-    amount: 100,
-    status: 'pending',
-    email: 'b@example.com',
-  },
-  {
-    id: '728ed52f',
-    amount: 100,
-    status: 'pending',
-    email: 'm@example.com',
-  },
-  {
-    id: '728ed52f',
-    amount: 100,
-    status: 'pending',
-    email: 'd@example.com',
-  },
-  {
-    id: '728ed52f',
-    amount: 100,
-    status: 'pending',
-    email: 'a@example.com',
-  },
-
-  // ...
-]
+import { ModalGso } from '@/components/Modal/ModalGso/ModalGso'
+import CalendarGsoGrid from '@/components/CalendarGso/CalendarGsoGrid'
+import { Label } from '@/ui/label'
+import { CardListEscala } from '@/components/Cards/CardListEscala'
+import { GrGroup } from 'react-icons/gr'
 
 const CalendarGso = ({ event }: { event: EventProps[] }) => {
   const date = new Date()
@@ -77,7 +38,7 @@ const CalendarGso = ({ event }: { event: EventProps[] }) => {
   ]
 
   const diasSemana = [
-    // { nameDay: 'Domingo', shortNameDay: 'Dom' },
+    { nameDay: 'Domingo', shortNameDay: 'Dom' },
     { nameDay: 'Segunda', shortNameDay: 'Seg' },
     { nameDay: 'Terça', shortNameDay: 'Ter' },
     { nameDay: 'Quarta', shortNameDay: 'Qua' },
@@ -223,9 +184,6 @@ const CalendarGso = ({ event }: { event: EventProps[] }) => {
     setDayWeek(escalaObj[escalaObj.length - 1].dayWeek * -1)
   }
 
-  const handleOpenModal = (event: EscalaProps) => {
-    console.log(event)
-  }
   const eventsList: EventProps[] = []
   escalaObj.forEach((item) => {
     item.dayEvent.forEach((event) => {
@@ -236,15 +194,16 @@ const CalendarGso = ({ event }: { event: EventProps[] }) => {
   return (
     <>
       <div className="mt-12 grid h-[80vh] w-full grid-cols-12  md:mt-0 ">
+        {/* TABLE ESCALA */}
         <div
           className={`col-start-1  col-end-13  mt-12 h-[80vh] w-full rounded-[5px] bg-background p-2 md:col-end-7 md:mt-0`}
         >
           <div>
-            {/* <DataTableEscala columnsEscala={columnsEscala} data={eventsList} /> */}
-            <DataTableEscala data={eventsList as []} columns={columnsEscala} />
+            <DataTable data={eventsList as []} columns={columnsEscala} />
           </div>
         </div>
 
+        {/* HEADER GRID WEEK */}
         <div
           className={`col-start-1 col-end-13 row-start-1 row-end-2  w-full place-content-center rounded-[5px] px-2 md:col-start-7 md:row-start-1`}
         >
@@ -296,71 +255,40 @@ const CalendarGso = ({ event }: { event: EventProps[] }) => {
           >
             {' '}
             {escalaObj.map((day, index) => (
-              <div key={index}>
-                {day.day > 0 && (
-                  <div
-                    onClick={() => handleOpenModal(day)}
-                    className={`
-                    relative flex h-20 w-full cursor-pointer flex-col items-center justify-start  
-                    rounded-[3px] 
-                    border border-foreground/10 hover:border
-                    hover:border-primary/60 md:min-h-[100%]  ${day.day === date.getDate() && day.month === date.getMonth() ? 'border-primary/60 ' : ''} `}
-                  >
-                    {day.dayEvent.map((itemEvent, index) => (
-                      <div key={index} className="m-0 self-start p-0 text-sm">
-                        <Badge
-                          className={` hidden  md:block ${
-                            itemEvent.group.charAt(0).toUpperCase() === 'A'
-                              ? 'border-primary text-primary'
-                              : itemEvent.group.charAt(0).toUpperCase() === 'B'
-                                ? 'border-blue-500 text-blue-500'
-                                : itemEvent.group.charAt(0).toUpperCase() ===
-                                    'C'
-                                  ? 'border-green-600 text-green-600'
-                                  : itemEvent.group.charAt(0).toUpperCase() ===
-                                      'D'
-                                    ? 'border-yellow-400 text-yellow-400'
-                                    : itemEvent.group
-                                          .charAt(0)
-                                          .toUpperCase() === 'E'
-                                      ? 'border-[#9400d3] text-[#9400d3]'
-                                      : ''
-                          }`}
-                          variant="outline"
-                        >
-                          {itemEvent.group}
-                        </Badge>
-                        <p
-                          className={` block text-lg md:hidden 
-                          ${
-                            itemEvent.group.charAt(0).toUpperCase() === 'A'
-                              ? 'text-primary'
-                              : itemEvent.group.charAt(0).toUpperCase() === 'B'
-                                ? 'text-blue-500'
-                                : itemEvent.group.charAt(0).toUpperCase() ===
-                                    'C'
-                                  ? 'text-green-600'
-                                  : itemEvent.group.charAt(0).toUpperCase() ===
-                                      'D'
-                                    ? 'text-yellow-400'
-                                    : itemEvent.group
-                                          .charAt(0)
-                                          .toUpperCase() === 'E'
-                                      ? 'border-[#9400d3] text-[#9400d3]'
-                                      : ''
-                          }`}
-                        >
-                          {itemEvent.group.charAt(0).toUpperCase()}
-                        </p>
-                      </div>
-                    ))}
-
-                    <div className="absolute bottom-0 right-0 p-0 text-2xl font-thin text-muted-foreground md:text-4xl ">
-                      <p className=" m-2">{day.day}</p>
-                    </div>
+              // MODAL TRIGGER
+              <ModalGso
+                className=" overflow-auto md:h-[80vh] md:w-[80vw]"
+                key={index}
+                title="Detalhes Escala"
+                description="Dados da Escala"
+                childrenButton={
+                  <div key={index}>
+                    {day.day > 0 && (
+                      // GRID CALENDAR
+                      <CalendarGsoGrid
+                        index={index}
+                        day={day.day}
+                        dayEvent={day.dayEvent}
+                        dayName={day.dayName}
+                        year={day.year}
+                        month={day.month}
+                        dayWeek={day.dayWeek}
+                      />
+                    )}
                   </div>
-                )}
-              </div>
+                }
+              >
+                <div className="p-6">
+                  {day.dayEvent.map((itemEvent, indexEvent) => (
+                    <CardListEscala
+                      key={indexEvent}
+                      itemEvent={itemEvent}
+                      icon={<GrGroup />}
+                      link="/servicos/escala"
+                    />
+                  ))}
+                </div>
+              </ModalGso>
             ))}
           </div>
         </div>

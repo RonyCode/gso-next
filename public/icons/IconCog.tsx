@@ -1,12 +1,20 @@
 import './IconCog.css'
+import * as React from 'react'
+import { cn } from '@/lib/utils'
 
-export default function IconCog({ width }: { width?: number }) {
+type SVGProps = {
+  width?: number
+} & React.SVGProps<SVGSVGElement> &
+  React.HTMLAttributes<HTMLDivElement>
+export default function IconCog({ width, className, ...props }: SVGProps) {
   return (
     <svg
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 16 16"
       width={width}
+      className={cn(' ', className)}
+      {...props}
     >
       <title>application</title>
       <path

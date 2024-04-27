@@ -11,6 +11,7 @@ import {
   LuMenu,
   LuMessagesSquare,
   LuSettings,
+  LuSiren,
   LuUser,
 } from 'react-icons/lu'
 import React, { ReactElement, useEffect, useRef, useState } from 'react'
@@ -36,7 +37,7 @@ import NotificationUser from '@/components/Notification/notificationUser'
 import LoadingPage from '@/components/Loadings/LoadingPage'
 import { GetFirstLettersNameUser } from '@/functions/GetFirstLettersNameUser'
 
-export function NavbarHome({
+export function NavbarMain({
   className,
   ...props
 }: React.HTMLAttributes<HTMLElement>) {
@@ -71,7 +72,11 @@ export function NavbarHome({
   const menus: MenuTypes[] = [
     { title: 'Serviços', icon: <LuComponent />, path: '/servicos' },
     { title: 'Contato', icon: <LuContact />, path: '/contact' },
-    { title: 'Sobre nos', icon: <LuMessagesSquare />, path: '/about' },
+    {
+      title: 'Ocorrências',
+      icon: <LuSiren />,
+      path: '/servicos/ocorrencias',
+    },
   ]
 
   return (

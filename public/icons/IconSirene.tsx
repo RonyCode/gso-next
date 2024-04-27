@@ -1,6 +1,11 @@
 import './IconSirene.css'
-
-export default function IconSirene({ width }: { width?: number }) {
+import * as React from 'react'
+import { cn } from '@/lib/utils'
+type SVGProps = {
+  width?: number
+} & React.SVGProps<SVGSVGElement> &
+  React.HTMLAttributes<HTMLDivElement>
+export default function IconSirene({ width, className, ...props }: SVGProps) {
   return (
     <svg
       id="sirene"
@@ -8,6 +13,8 @@ export default function IconSirene({ width }: { width?: number }) {
       data-name="Camada 1"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 655.7 547.1"
+      className={cn(' ', className)}
+      {...props}
     >
       <path d="M585,546.8c2.3,.4,5.4-.6,7.5-1,3.5-.7,6.2-1,9.6-2.3,3.5-1.3,6.5-4.1,9.4-6.5,9.4-7.6,19.1-18.7,24.5-31.3-.4-1.6,.9-3.2,1.1-4.9,1.8-20.2,3.1-39.4-.2-58.9-4.8-28.4-29.3-53-61.7-50.3h0c-3.1,.2-6.3-.3-9.4,0-1.7,.2-3.1,.2-4.1,0h-120.5c-21.6,0-43.2,0-64.7,0-.7,0-1.4,0-2,0h-35.8c-1.1,.2-2.4,.2-4.1,0h-13.7c-1.3,0-2.4,0-3.3,0h-35.1c-.6,0-1.2,0-2,0-36,0-72,0-108.1,0H98c-7.1,0-12.6,.4-18,0-31.8-2.4-55.4,23.3-60.1,47.8-3.7,19.3-3.7,38.9-.3,58.2,5,28.5,29.8,49.4,61,49.4,165.5-.7,331.1-.3,496.7-.3s5.2,0,7.7,0Zm-504.5-28.5c-19.4,0-31-8.7-33.7-27.4-2.2-15.2-2.6-30.8,.5-46,3.2-16.1,15.7-25.5,32.1-25.5h495.8c18.4,0,31.1,9.6,33.8,27.8,2.2,15.2,2.5,30.8-.5,46h0c-3.2,16.3-14.8,25.1-31.4,25.1H80.5Z" />
 

@@ -1,6 +1,6 @@
 import { CardDefault } from '@/components/Cards/CardDefault'
 import { LucideMenuSquare } from 'lucide-react'
-import ModulesMain from '@/app/Modules/ModulesMain'
+import ModulesServices from '@/app/(private)/servicos/module/ModulesServices'
 
 import { Metadata } from 'next'
 import React from 'react'
@@ -14,10 +14,12 @@ const Servicos = () => {
     <>
       <CardDefault
         title="Módulos"
-        description="Serviços disponíveis para o usuario"
+        description="Serviços para o usuario"
+        image="/images/bannerModule.png"
+        imageMobile="/images/bannerModule.png"
         icon={<LucideMenuSquare size={28} />}
       >
-        <ModulesMain />
+        <ModulesServices />
       </CardDefault>
     </>
   )

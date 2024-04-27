@@ -34,7 +34,7 @@ export const CardsBanner = ({ className, ...props }: CardProps) => {
     <>
       <Card className={cn(' w-full md:w-[380px]', className)} {...props}>
         <CardHeader>
-          <CardTitle>Notiicações</CardTitle>
+          <CardTitle>Notificações</CardTitle>
           <CardDescription>
             Você tem {notifications.length} notificações novas
           </CardDescription>

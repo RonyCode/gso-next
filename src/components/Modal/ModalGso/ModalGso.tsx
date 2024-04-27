@@ -12,15 +12,7 @@ import {
 import { cn } from '@/lib/utils'
 import { Separator } from '@/ui/separator'
 import React from 'react'
-
-type ModalProps = {
-  title?: string
-  description?: string
-  icon?: React.ReactNode
-  iconButton?: React.ReactNode
-  nameButton: string
-  children: React.ReactNode
-} & React.ComponentProps<typeof DialogContent>
+import { ModalProps } from '../../../../types/index'
 
 export function ModalGso({
   title,
@@ -28,25 +20,23 @@ export function ModalGso({
   icon,
   iconButton,
   nameButton,
+  open,
   className,
   children,
+  childrenButton,
   ...props
 }: ModalProps) {
   return (
-    <Dialog>
+    <Dialog open={open}>
       <DialogTrigger asChild>
-        <Button variant="ghost">
-          <i>{iconButton}</i>
-          {nameButton}
-        </Button>
-      </DialogTrigger>
-      <DialogContent
-        className={cn(
-          ' m-auto h-screen w-screen bg-background md:min-h-[70vh] md:w-[80vw] md:px-16',
-          className,
+        {childrenButton || (
+          <Button variant="ghost">
+            <i>{iconButton}</i>
+            {nameButton}
+          </Button>
         )}
-        {...props}
-      >
+      </DialogTrigger>
+      <DialogContent className={cn(' h-full w-full', className)} {...props}>
         <DialogHeader>
           <DialogTitle>
             <span className="flex items-center gap-2 ">

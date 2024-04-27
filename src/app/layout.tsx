@@ -4,10 +4,11 @@ import { ThemeProvider } from '@/providers/ThemeProvider/ThemeProvider'
 import { fontSans } from '@/lib/fonts'
 import { Suspense } from 'react'
 import LoadingPage from '@/components/Loadings/LoadingPage'
-import { NavbarHome } from '@/components/Nav/NavbarHome'
+import { NavbarMain } from '@/components/Nav/NavbarMain'
 import { cn } from '@/lib/utils'
 import { Metadata, Viewport } from 'next'
-import FooterLayout from '@/components/Footer/FooterLayout'
+import FooterHomePage from '@/components/Footer/FooterHomePage'
+import FooterNormal from '@/components/Footer/FooterNormal'
 
 const APP_NAME = 'GSO'
 const APP_DEFAULT_TITLE = 'GSO'
@@ -76,13 +77,12 @@ export default function RootLayout({
             disableTransitionOnChange
           >
             <Providers>
-              <NavbarHome />
+              <NavbarMain />
               <main className="flex min-h-screen w-full  flex-col bg-gradient-to-t from-background to-secondary pt-[68px]">
                 <section className="min-h-screen w-full flex-1 flex-grow ">
                   {children}
                 </section>
               </main>
-              <FooterLayout />
             </Providers>{' '}
           </ThemeProvider>
         </Suspense>

@@ -1,6 +1,6 @@
 import { CardDefault } from '@/components/Cards/CardDefault'
 import { LucideBuilding2 } from 'lucide-react'
-import ModulesOrganizacao from '@/app/Modules/ModulesOrganizacao'
+import ModulesOrganizacao from '@/app/(private)/servicos/organizacao/module/ModulesOrganizacao'
 
 const Organizacao = () => {
   return (

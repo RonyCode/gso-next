@@ -1,3 +1,7 @@
+import FooterHomePage from '@/components/Footer/FooterHomePage'
+import React from 'react'
+import FooterNormal from '@/components/Footer/FooterNormal'
+
 export default function AuthLayout({
   children,
 }: {

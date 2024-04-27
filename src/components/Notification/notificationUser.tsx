@@ -42,7 +42,7 @@ const NotificationUser = () => {
                   </div>
                 )
               }
-              <LuBell className=" h-8 w-8 lg:h-9 lg:w-9" />
+              <LuBell size={24} />
             </div>
           </Button>
         </DropdownMenuTrigger>

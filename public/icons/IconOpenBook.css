@@ -1,0 +1,123 @@
+#page1 {
+    opacity: 1;
+    animation: showPage 400ms alternate-reverse;
+}
+
+#page1, #page2, #page3, #page4, #page5, #page6 {
+    fill: none !important;
+    stroke-width: 20px !important;
+}
+
+#page2 {
+    opacity: 1;
+    animation: showPage 800ms alternate-reverse;
+
+}
+
+#page3 {
+    opacity: 1;
+    animation: showPage 1200ms alternate-reverse;
+
+}
+
+#page5 {
+    opacity: 1;
+    animation: showPage 1600ms alternate-reverse;
+
+}
+
+#cardModule:hover #page1 {
+    animation: showPageHover 1600ms 400ms infinite;
+}
+
+#cardModule:hover #page2 {
+    animation: showPageHover 1600ms 800ms infinite;
+
+}
+
+#cardModule:hover #page3 {
+    animation: showPageHover 1600ms 1200ms infinite;
+}
+
+#cardModule:hover #page5 {
+    animation: showPageHover 1600ms 1600ms infinite;
+}
+
+
+@keyframes showPageHover {
+
+    50% {
+        opacity: 0;
+        translate: clamp(35px, -35px, 35px)
+    }
+
+}
+
+@keyframes showPage {
+    50% {
+        opacity: 0;
+        translate: clamp(35px, -35px, 35px)
+    }
+
+}
+
+
+/*#page1 {*/
+/*    -webkit-animation: steam1 4s ease-out infinite;*/
+/*    animation: steam1 4s ease-out infinite;*/
+/*}*/
+
+/*#page3 {*/
+/*    -webkit-animation: steam1 4s ease-out 1s infinite;*/
+/*    animation: steam1 4s ease-out 1s infinite;*/
+/*}*/
+
+
+/*#page2 {*/
+/*    -webkit-animation: steam2 4s ease-out 0.5s infinite;*/
+/*    animation: steam2 4s ease-out 0.5s infinite;*/
+/*}*/
+
+/*#page5 {*/
+/*    -webkit-animation: steam2 4s ease-out 1.5s infinite;*/
+/*    animation: steam2 4s ease-out 1.5s infinite;*/
+/*}*/
+
+
+@-webkit-keyframes steam1 {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes steam1 {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+
+@-webkit-keyframes steam2 {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes steam2 {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+

@@ -1,12 +1,12 @@
-import IconGrafico from '../../../public/icons/IconGrafico'
-import IconSirene from '../../../public/icons/IconSirene'
-import IconCalendar from '../../../public/icons/IconCalendar'
-import IconCelular from '../../../public/icons/IconCelular'
-import IconRelogio from '../../../public/icons/IconRelogio'
-import IconCog from '../../../public/icons/IconCog'
+import IconGrafico from '../../../../../public/icons/IconGrafico'
+import IconSirene from '../../../../../public/icons/IconSirene'
+import IconCalendar from '../../../../../public/icons/IconCalendar'
+import IconCelular from '../../../../../public/icons/IconCelular'
+import IconRelogio from '../../../../../public/icons/IconRelogio'
+import IconCog from '../../../../../public/icons/IconCog'
 import { CardModule } from '@/components/Cards/CardModule'
-import IconBuild from '../../../public/icons/IconBuild'
-const ModulesMain = () => {
+import IconBuild from '../../../../../public/icons/IconBuild'
+const ModulesServices = () => {
   return (
     <>
       <div>
@@ -22,6 +22,7 @@ const ModulesMain = () => {
           <CardModule
             title="Ocorrências"
             subtitle="Ocorrências"
+            link="/servicos/ocorrencias"
             icon={<IconSirene width={58} />}
           />{' '}
           <CardModule
@@ -55,4 +56,4 @@ const ModulesMain = () => {
     </>
   )
 }
-export default ModulesMain
+export default ModulesServices

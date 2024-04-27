@@ -1,6 +1,13 @@
 import './IconCelular.css'
+import * as React from 'react'
+import { cn } from '@/lib/utils'
 
-export default function IconCelular({ width }: { width?: number }) {
+type SVGProps = {
+  width?: number
+} & React.SVGProps<SVGSVGElement> &
+  React.HTMLAttributes<HTMLDivElement>
+
+export default function IconCelular({ width, className, ...props }: SVGProps) {
   return (
     <svg
       width={width}
@@ -8,6 +15,8 @@ export default function IconCelular({ width }: { width?: number }) {
       data-name="Camada 1"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 800.7 577.5"
+      className={cn(' ', className)}
+      {...props}
     >
       <path d="M603.7,577.5H314.1c-22,0-39.9-17.9-39.9-39.9V39.9c0-22,17.9-39.9,39.9-39.9h289.6c22,0,39.9,17.9,39.9,39.9v497.7c0,22-17.9,39.9-39.9,39.9h0ZM314.1,30c-5.5,0-9.9,4.5-9.9,9.9v497.7c0,5.5,4.5,9.9,9.9,9.9h289.6c5.5,0,9.9-4.5,9.9-9.9V39.9c0-5.5-4.5-9.9-9.9-9.9,0,0-289.6,0-289.6,0Z" />
       <rect x="299.5" y="497.7" width="318.9" height="30" />

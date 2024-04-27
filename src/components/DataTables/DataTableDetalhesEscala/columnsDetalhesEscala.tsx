@@ -3,41 +3,42 @@
 import { ColumnDef } from '@tanstack/react-table'
 
 import { Badge } from '@/components/ui/badge'
-// import { Checkbox } from '@/components/ui/checkbox'
+import { Checkbox } from '@/components/ui/checkbox'
 
 import { labels, statuses, types, unities } from './data/data'
 import { Task } from './data/schema'
 import { DataTableColumnHeader } from '../data-table-column-header'
+import { DataTableRowActions } from '@/components/DataTables/DataTableDetalhesEscala/data-table-row-actions'
 
-export const columnsEscala: ColumnDef<Task>[] = [
-  // {
-  //   id: 'select',
-  //   header: ({ table }) => {
-  //     return (
-  //       <Checkbox
-  //         checked={
-  //           table.getIsAllPageRowsSelected() ||
-  //           (table.getIsSomePageRowsSelected() && 'indeterminate')
-  //         }
-  //         onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
-  //         aria-label="Select all"
-  //         className="translate-y-[2px]"
-  //       />
-  //     )
-  //   },
-  //   cell: ({ row }) => {
-  //     return (
-  //       <Checkbox
-  //         checked={row.getIsSelected()}
-  //         onCheckedChange={(value) => row.toggleSelected(!!value)}
-  //         aria-label="Select row"
-  //         className="translate-y-[2px]"
-  //       />
-  //     )
-  //   },
-  //   enableSorting: false,
-  //   enableHiding: false,
-  // },
+export const columnsDetalhesEscala: ColumnDef<Task>[] = [
+  {
+    id: 'select',
+    header: ({ table }) => {
+      return (
+        <Checkbox
+          checked={
+            table.getIsAllPageRowsSelected() ||
+            (table.getIsSomePageRowsSelected() && 'indeterminate')
+          }
+          onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
+          aria-label="Select all"
+          className="translate-y-[2px]"
+        />
+      )
+    },
+    cell: ({ row }) => {
+      return (
+        <Checkbox
+          checked={row.getIsSelected()}
+          onCheckedChange={(value) => row.toggleSelected(!!value)}
+          aria-label="Select row"
+          className="translate-y-[2px]"
+        />
+      )
+    },
+    enableSorting: false,
+    enableHiding: false,
+  },
 
   {
     accessorKey: 'date',
@@ -161,8 +162,8 @@ export const columnsEscala: ColumnDef<Task>[] = [
       return value.includes(row.getValue(id))
     },
   },
-  // {
-  //   id: 'actions',
-  //   cell: ({ row }) => <DataTableRowActions row={row} />,
-  // },
+  {
+    id: 'actions',
+    cell: ({ row }) => <DataTableRowActions row={row} />,
+  },
 ]

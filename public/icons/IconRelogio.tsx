@@ -1,6 +1,13 @@
 import './IconRelogio.css'
+import * as React from 'react'
+import { cn } from '@/lib/utils'
 
-export default function IconRelogio({ width }: { width?: number }) {
+type SVGProps = {
+  width?: number
+} & React.SVGProps<SVGSVGElement> &
+  React.HTMLAttributes<HTMLDivElement>
+
+export default function IconRelogio({ width, className, ...props }: SVGProps) {
   return (
     <svg
       id="relogio"
@@ -8,6 +15,8 @@ export default function IconRelogio({ width }: { width?: number }) {
       data-name="Camada 1"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 670.3 681.4"
+      className={cn(' ', className)}
+      {...props}
     >
       <path d="M335.1,0C150.1,0,0,152.6,0,340.7s150.1,340.7,335.1,340.7,335.1-152.6,335.1-340.7S520.2,0,335.1,0Zm0,636c-160.4,0-290.5-132.2-290.5-295.3S174.7,45.4,335.1,45.4s290.5,132.2,290.5,295.3-130,295.3-290.5,295.3Z" />
       <rect

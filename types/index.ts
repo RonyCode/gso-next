@@ -2,6 +2,8 @@
 import type { Session, User, DefaultSession } from 'next-auth'
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import NextAuth from 'next-auth'
+import React from 'react'
+import { DialogContent } from '@/ui/dialog'
 
 export interface UserAuth {
   email: string
@@ -9,6 +11,18 @@ export interface UserAuth {
   isUserExternal: number
   dateCriation: string
 }
+
+export type ModalProps = {
+  title?: string
+  description?: string
+  icon?: React.ReactNode
+  iconButton?: React.ReactNode
+  nameButton?: string
+  open?: boolean
+  children?: React.ReactNode
+  childrenButton?: React.ReactNode
+} & React.ComponentProps<typeof DialogContent> &
+  React.HTMLAttributes<HTMLDivElement>
 
 export interface FileType {
   file: ((false | File) & (false | File | undefined)) | null
