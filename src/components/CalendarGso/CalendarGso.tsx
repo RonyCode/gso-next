@@ -1,18 +1,13 @@
 'use client'
 
 import { EventProps } from '../../../types/index'
-import {
-  LucideArrowBigLeft,
-  LucideArrowBigRight,
-  LucideGroup,
-} from 'lucide-react'
+import { LucideArrowBigLeft, LucideArrowBigRight } from 'lucide-react'
 import { Button } from '@/ui/button'
 import { useState } from 'react'
 import { DataTable } from '@/components/DataTables/data-table'
 import { columnsEscala } from '@/components/DataTables/DataTableEscala/columnsEscala'
 import { ModalGso } from '@/components/Modal/ModalGso/ModalGso'
 import CalendarGsoGrid from '@/components/CalendarGso/CalendarGsoGrid'
-import { Label } from '@/ui/label'
 import { CardListEscala } from '@/components/Cards/CardListEscala'
 import { GrGroup } from 'react-icons/gr'
 

@@ -9,7 +9,6 @@ import {
   LuHelpCircle,
   LuLogOut,
   LuMenu,
-  LuMessagesSquare,
   LuSettings,
   LuSiren,
   LuUser,

@@ -7,8 +7,6 @@ import LoadingPage from '@/components/Loadings/LoadingPage'
 import { NavbarMain } from '@/components/Nav/NavbarMain'
 import { cn } from '@/lib/utils'
 import { Metadata, Viewport } from 'next'
-import FooterHomePage from '@/components/Footer/FooterHomePage'
-import FooterNormal from '@/components/Footer/FooterNormal'
 
 const APP_NAME = 'GSO'
 const APP_DEFAULT_TITLE = 'GSO'
