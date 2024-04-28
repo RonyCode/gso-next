@@ -10,10 +10,12 @@ import { cn } from '@/lib/utils'
 import React from 'react'
 import Link from 'next/link'
 import { EventProps } from '../../../types/index'
+import { Separator } from '@/ui/separator'
+import { LucideBookText, LucideCaptions, LucideTextQuote } from 'lucide-react'
+import { ModalGso } from '@/components/Modal/ModalGso/ModalGso'
 
 type CardProps = {
   itemEvent: EventProps
-  link?: string
   children?: React.ReactNode
   icon?: React.ReactNode
 } & React.ComponentProps<typeof Card>
@@ -21,64 +23,50 @@ type CardProps = {
 export const CardListEscala = ({
   itemEvent,
   icon,
-  link,
   className,
   ...props
 }: CardProps) => {
   return (
     <>
-      {link ? (
-        <Link href={link}>
-          <Card className={cn(' mb-4 w-full ', className)} {...props}>
-            <CardHeader>
-              <CardTitle>
-                <div className="flex items-center gap-2">
-                  <div>{icon}</div>
-                  <div> Equipe - {itemEvent.title.toUpperCase()}</div>
-                </div>
-                <div>{itemEvent.date}</div>
-              </CardTitle>
-              <CardDescription>{itemEvent.description}</CardDescription>
-            </CardHeader>
-            <CardContent className="grid gap-4">
-              <div>
-                <ul>
-                  <li>{itemEvent.status}</li>
-                  <li>{itemEvent.company}</li>
-                  <li>{itemEvent.start}</li>
-                </ul>
-              </div>
-
-              {/* {children} */}
-            </CardContent>
-            <CardFooter></CardFooter>
-          </Card>
-        </Link>
-      ) : (
-        <Card className={cn(' w-full ', className)} {...props}>
-          <CardHeader>
-            <CardTitle>
+      <Card className={cn('  mb-3 w-full ', className)} {...props}>
+        <CardHeader className="justify-center p-2 md:p-3">
+          <CardTitle>
+            <div className="relative flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <div>{icon}</div>
-                <div> {itemEvent.title}</div>
+                <div> Equipe - {itemEvent.group.toUpperCase()}</div>
               </div>
-            </CardTitle>
-            <CardDescription>{itemEvent.description}</CardDescription>
-          </CardHeader>
-          <CardContent className="grid gap-4">
-            <div>
-              <ul>
-                <li>{itemEvent.status}</li>
-                <li>{itemEvent.company}</li>
-                <li>{itemEvent.start}</li>
-              </ul>
+              <div className="absolute right-2 top-[50%]">
+                <div>
+                  {itemEvent.date} - {itemEvent.start}
+                </div>
+              </div>
             </div>
+          </CardTitle>
+          <CardDescription className="flex flex-row items-center gap-2">
+            <LucideCaptions size={18} />
+            {itemEvent.title}
+          </CardDescription>
+        </CardHeader>
+        <Separator />
+        <CardContent className="mx-3 grid grid-cols-5 rounded-[8px] px-4 md:mx-4 ">
+          <div>{itemEvent.description}</div>
+          <div>{itemEvent.unity}</div>
+          <div>{itemEvent.status}</div>
+          <div>{itemEvent.company}</div>
+          <ModalGso nameButton="Membros" className="h-[300px] w-[450px] p-0">
+            {itemEvent.members?.map((item, index) => (
+              <ul key={index}>
+                <li>{item.name}</li>
+                <li>{item.function}</li>
+                <li>{item.email}</li>
+              </ul>
+            ))}
+          </ModalGso>
 
-            {/* {children} */}
-          </CardContent>
-          <CardFooter></CardFooter>
-        </Card>
-      )}
+          {/* {children} */}
+        </CardContent>
+      </Card>
     </>
   )
 }

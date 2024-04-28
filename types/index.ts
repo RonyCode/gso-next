@@ -42,6 +42,17 @@ export interface Account {
   birthday: string
   file: FileType | null
 }
+export type Member = {
+  id: number
+  name: string
+  email: string
+  image: string
+  role: string
+  status: string
+  company: string
+  date: string
+  function: string
+}
 
 export type EventProps = {
   id: number
@@ -52,6 +63,7 @@ export type EventProps = {
   title: string
   description: string
   group: string
+  members: Member[] | null
   type: string
   status: string
   company: string

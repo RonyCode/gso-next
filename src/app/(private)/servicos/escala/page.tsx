@@ -1,7 +1,7 @@
 import { CardDefault } from '@/components/Cards/CardDefault'
 import CalendarGso from '@/components/CalendarGso/CalendarGso'
 import { LucideCalendarDays } from 'lucide-react'
-import { EventProps } from '../../../../../types/index'
+import { EventProps, Member } from '../../../../../types/index'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -20,6 +20,13 @@ const Escala = () => {
       title: 'teste 1',
       description: 'teste description 1',
       group: 'Alfa',
+      members:
+        ([
+          { name: 'user 1', email: 'user1@mail', function: 'motorista' },
+          { name: 'user 2', email: 'user2@mail', function: 'componente' },
+          { name: 'user 3', email: 'user3@mail', function: 'componente' },
+        ] as Member[]) || null,
+
       type: 'normal',
       status: 'publicado',
       company: 'Palmas',
@@ -37,6 +44,12 @@ const Escala = () => {
       description: 'teste description 2',
       type: 'normal',
       group: 'Bravo',
+      members:
+        ([
+          { name: 'user 4', email: 'user1@mail', function: 'motorista' },
+          { name: 'user 5', email: 'user2@mail', function: 'componente' },
+          { name: 'user 6', email: 'user3@mail', function: 'componente' },
+        ] as Member[]) || null,
       status: 'publicado',
       company: 'Palmas',
       date: '03/03/2024',
@@ -54,6 +67,12 @@ const Escala = () => {
       description: 'teste description 2',
       type: 'normal',
       group: 'Bravo',
+      members:
+        ([
+          { name: 'user 1', email: 'user1@mail', function: 'motorista' },
+          { name: 'user 2', email: 'user2@mail', function: 'componente' },
+          { name: 'user 3', email: 'user3@mail', function: 'componente' },
+        ] as Member[]) || null,
       status: 'publicado',
       company: 'Palmas',
       date: '03/03/2024',
@@ -70,6 +89,12 @@ const Escala = () => {
       description: 'teste description 2',
       type: 'normal',
       group: 'Delta',
+      members:
+        ([
+          { name: 'user 1', email: 'user1@mail', function: 'motorista' },
+          { name: 'user 2', email: 'user2@mail', function: 'componente' },
+          { name: 'user 3', email: 'user3@mail', function: 'componente' },
+        ] as Member[]) || null,
       status: 'publicado',
       company: 'Palmas',
       date: '03/03/2024',
@@ -86,6 +111,12 @@ const Escala = () => {
       description: 'teste description 3',
       type: 'normal',
       group: 'Charlie',
+      members:
+        ([
+          { name: 'user 1', email: 'user1@mail', function: 'motorista' },
+          { name: 'user 2', email: 'user2@mail', function: 'componente' },
+          { name: 'user 3', email: 'user3@mail', function: 'componente' },
+        ] as Member[]) || null,
       status: 'publicado',
       company: 'Palmas',
       date: '18/03/2024',
@@ -103,6 +134,12 @@ const Escala = () => {
       description: 'teste description 3',
       type: 'normal',
       group: 'Bravo',
+      members:
+        ([
+          { name: 'user 1', email: 'user1@mail', function: 'motorista' },
+          { name: 'user 2', email: 'user2@mail', function: 'componente' },
+          { name: 'user 3', email: 'user3@mail', function: 'componente' },
+        ] as Member[]) || null,
       status: 'publicado',
       company: 'Palmas',
       date: '18/03/2024',
@@ -119,6 +156,12 @@ const Escala = () => {
       description: 'teste description 1',
       type: 'normal',
       group: 'Alfa',
+      members:
+        ([
+          { name: 'user 1', email: 'user1@mail', function: 'motorista' },
+          { name: 'user 2', email: 'user2@mail', function: 'componente' },
+          { name: 'user 3', email: 'user3@mail', function: 'componente' },
+        ] as Member[]) || null,
       status: 'publicado',
       company: 'Palmas',
       date: '29/03/2024',
@@ -135,6 +178,12 @@ const Escala = () => {
       description: 'teste description 2',
       type: 'normal',
       group: 'Alfa',
+      members:
+        ([
+          { name: 'user 1', email: 'user1@mail', function: 'motorista' },
+          { name: 'user 2', email: 'user2@mail', function: 'componente' },
+          { name: 'user 3', email: 'user3@mail', function: 'componente' },
+        ] as Member[]) || null,
       status: 'publicado',
       company: 'Palmas',
       date: '13/03/2024',
@@ -151,6 +200,12 @@ const Escala = () => {
       description: 'teste description 3',
       type: 'normal',
       group: 'Delta',
+      members:
+        ([
+          { name: 'user 1', email: 'user1@mail', function: 'motorista' },
+          { name: 'user 2', email: 'user2@mail', function: 'componente' },
+          { name: 'user 3', email: 'user3@mail', function: 'componente' },
+        ] as Member[]) || null,
       status: 'publicado',
       company: 'Palmas',
       date: '07/03/2024',
@@ -167,6 +222,12 @@ const Escala = () => {
       description: 'teste description 2',
       type: 'normal',
       group: 'Bravo',
+      members:
+        ([
+          { name: 'user 1', email: 'user1@mail', function: 'motorista' },
+          { name: 'user 2', email: 'user2@mail', function: 'componente' },
+          { name: 'user 3', email: 'user3@mail', function: 'componente' },
+        ] as Member[]) || null,
       status: 'publicado',
       company: 'Palmas',
       date: '23/03/2024',
@@ -183,6 +244,12 @@ const Escala = () => {
       description: 'teste description 3',
       type: 'normal',
       group: 'Charlie',
+      members:
+        ([
+          { name: 'user 1', email: 'user1@mail', function: 'motorista' },
+          { name: 'user 2', email: 'user2@mail', function: 'componente' },
+          { name: 'user 3', email: 'user3@mail', function: 'componente' },
+        ] as Member[]) || null,
       status: 'publicado',
       company: 'Palmas',
       date: '01/03/2024',
@@ -199,6 +266,12 @@ const Escala = () => {
       description: 'teste description 1',
       type: 'extra',
       group: 'Extra',
+      members:
+        ([
+          { name: 'user 1', email: 'user1@mail', function: 'motorista' },
+          { name: 'user 2', email: 'user2@mail', function: 'componente' },
+          { name: 'user 3', email: 'user3@mail', function: 'componente' },
+        ] as Member[]) || null,
       status: 'publicado',
       company: 'Palmas',
       date: '15/03/2024',
@@ -215,6 +288,12 @@ const Escala = () => {
       description: 'teste description 2',
       type: 'extra',
       group: 'Extra',
+      members:
+        ([
+          { name: 'user 1', email: 'user1@mail', function: 'motorista' },
+          { name: 'user 2', email: 'user2@mail', function: 'componente' },
+          { name: 'user 3', email: 'user3@mail', function: 'componente' },
+        ] as Member[]) || null,
       status: 'publicado',
       company: 'Palmas',
       date: '01/03/2024',
@@ -231,6 +310,12 @@ const Escala = () => {
       description: 'teste description 3',
       type: 'extra',
       group: 'Extra',
+      members:
+        ([
+          { name: 'user 1', email: 'user1@mail', function: 'motorista' },
+          { name: 'user 2', email: 'user2@mail', function: 'componente' },
+          { name: 'user 3', email: 'user3@mail', function: 'componente' },
+        ] as Member[]) || null,
       status: 'aguardando',
       company: 'Palmas',
       date: '14/03/2024',
@@ -247,6 +332,12 @@ const Escala = () => {
       description: 'teste description 3',
       type: 'extra',
       group: 'Extra',
+      members:
+        ([
+          { name: 'user 1', email: 'user1@mail', function: 'motorista' },
+          { name: 'user 2', email: 'user2@mail', function: 'componente' },
+          { name: 'user 3', email: 'user3@mail', function: 'componente' },
+        ] as Member[]) || null,
       status: 'cancelado',
       company: 'Palmas',
       date: '14/03/2024',
@@ -263,6 +354,12 @@ const Escala = () => {
       description: 'teste description 1',
       type: 'extra',
       group: 'Extra',
+      members:
+        ([
+          { name: 'user 1', email: 'user1@mail', function: 'motorista' },
+          { name: 'user 2', email: 'user2@mail', function: 'componente' },
+          { name: 'user 3', email: 'user3@mail', function: 'componente' },
+        ] as Member[]) || null,
       status: 'aguardando',
       company: 'Palmas',
       date: '22/03/2024',
@@ -279,6 +376,12 @@ const Escala = () => {
       description: 'teste description 2',
       type: 'extra',
       group: 'Extra',
+      members:
+        ([
+          { name: 'user 1', email: 'user1@mail', function: 'motorista' },
+          { name: 'user 2', email: 'user2@mail', function: 'componente' },
+          { name: 'user 3', email: 'user3@mail', function: 'componente' },
+        ] as Member[]) || null,
       status: 'cancelado',
       company: 'Palmas',
       date: '26/03/2024',
@@ -294,6 +397,12 @@ const Escala = () => {
       title: 'teste 3',
       description: 'teste description 3',
       group: 'Extra',
+      members:
+        ([
+          { name: 'user 1', email: 'user1@mail', function: 'motorista' },
+          { name: 'user 2', email: 'user2@mail', function: 'componente' },
+          { name: 'user 3', email: 'user3@mail', function: 'componente' },
+        ] as Member[]) || null,
       type: 'extra',
       status: 'aguardando',
       company: 'Palmas',
