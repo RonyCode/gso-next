@@ -151,6 +151,8 @@ export function NavbarMain({
               state ? ' flex flex-col-reverse items-stretch gap-2' : ' md:flex'
             }`}
           >
+            <ModeToggle className="mr-2" />
+
             <React.Suspense fallback={<LoadingPage pending={true} />}>
               <NotificationUser />
             </React.Suspense>
@@ -172,18 +174,13 @@ export function NavbarMain({
               </DropdownMenuTrigger>
               <DropdownMenuContent className="w-72" align="center" forceMount>
                 <DropdownMenuLabel className="font-normal">
-                  <div className=" flex w-[85%] flex-col rounded-[8px] border border-primary/70 p-2">
-                    <p className="  text-sm font-medium leading-none ">
-                      {session?.name}
-                    </p>
-                    <p className="text-xs leading-none text-muted-foreground">
+                  <div className=" flex h-14 w-full flex-col items-start justify-center rounded-[8px] border border-primary/70 p-2">
+                    <p className="text-lg leading-none">{session?.name}</p>
+                    <p className=" leading-none text-muted-foreground">
                       {session.user.email}
                     </p>
                   </div>
-                  <div className="absolute right-1 top-4">
-                    {' '}
-                    <ModeToggle />
-                  </div>
+                  <div className="absolute right-1 top-4"> </div>
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuGroup>

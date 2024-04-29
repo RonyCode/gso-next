@@ -22,9 +22,24 @@ const Escala = () => {
       group: 'Alfa',
       members:
         ([
-          { name: 'user 1', email: 'user1@mail', function: 'motorista' },
-          { name: 'user 2', email: 'user2@mail', function: 'componente' },
-          { name: 'user 3', email: 'user3@mail', function: 'componente' },
+          {
+            name: 'user 1',
+            email: 'user1@mail',
+            function: 'motorista',
+            image: '/images/user1.jpg',
+          },
+          {
+            name: 'user 2',
+            email: 'user2@mail',
+            function: 'componente',
+            image: '/images/user2.jpg',
+          },
+          {
+            name: 'user 3',
+            email: 'user3@mail',
+            function: 'componente',
+            image: '/images/user3.webp',
+          },
         ] as Member[]) || null,
 
       type: 'normal',
@@ -46,9 +61,24 @@ const Escala = () => {
       group: 'Bravo',
       members:
         ([
-          { name: 'user 4', email: 'user1@mail', function: 'motorista' },
-          { name: 'user 5', email: 'user2@mail', function: 'componente' },
-          { name: 'user 6', email: 'user3@mail', function: 'componente' },
+          {
+            name: 'user 1',
+            email: 'user1@mail',
+            function: 'motorista',
+            image: '/images/user1.jpg',
+          },
+          {
+            name: 'user 2',
+            email: 'user2@mail',
+            function: 'componente',
+            image: '/images/user2.jpg',
+          },
+          {
+            name: 'user 3',
+            email: 'user3@mail',
+            function: 'componente',
+            image: '/images/user3.webp',
+          },
         ] as Member[]) || null,
       status: 'publicado',
       company: 'Palmas',
@@ -69,9 +99,24 @@ const Escala = () => {
       group: 'Bravo',
       members:
         ([
-          { name: 'user 1', email: 'user1@mail', function: 'motorista' },
-          { name: 'user 2', email: 'user2@mail', function: 'componente' },
-          { name: 'user 3', email: 'user3@mail', function: 'componente' },
+          {
+            name: 'user 1',
+            email: 'user1@mail',
+            function: 'motorista',
+            image: '/images/user1.jpg',
+          },
+          {
+            name: 'user 2',
+            email: 'user2@mail',
+            function: 'componente',
+            image: '/images/user2.jpg',
+          },
+          {
+            name: 'user 3',
+            email: 'user3@mail',
+            function: 'componente',
+            image: '/images/user3.webp',
+          },
         ] as Member[]) || null,
       status: 'publicado',
       company: 'Palmas',
@@ -91,9 +136,24 @@ const Escala = () => {
       group: 'Delta',
       members:
         ([
-          { name: 'user 1', email: 'user1@mail', function: 'motorista' },
-          { name: 'user 2', email: 'user2@mail', function: 'componente' },
-          { name: 'user 3', email: 'user3@mail', function: 'componente' },
+          {
+            name: 'CB Nepomuceno',
+            email: 'user1@mail',
+            function: 'motorista',
+            image: '/images/user.jpg',
+          },
+          {
+            name: 'SGT Anderson',
+            email: 'user2@mail',
+            function: 'componente',
+            image: '/images/user.jpg',
+          },
+          {
+            name: 'SGT Athus',
+            email: 'user3@mail',
+            function: 'componente',
+            image: '/images/user3.webp',
+          },
         ] as Member[]) || null,
       status: 'publicado',
       company: 'Palmas',
@@ -113,9 +173,24 @@ const Escala = () => {
       group: 'Charlie',
       members:
         ([
-          { name: 'user 1', email: 'user1@mail', function: 'motorista' },
-          { name: 'user 2', email: 'user2@mail', function: 'componente' },
-          { name: 'user 3', email: 'user3@mail', function: 'componente' },
+          {
+            name: 'user 1',
+            email: 'user1@mail',
+            function: 'motorista',
+            image: '/images/user1.jpg',
+          },
+          {
+            name: 'user 2',
+            email: 'user2@mail',
+            function: 'componente',
+            image: '/images/user2.jpg',
+          },
+          {
+            name: 'user 3',
+            email: 'user3@mail',
+            function: 'componente',
+            image: '/images/user3.webp',
+          },
         ] as Member[]) || null,
       status: 'publicado',
       company: 'Palmas',
@@ -136,9 +211,24 @@ const Escala = () => {
       group: 'Bravo',
       members:
         ([
-          { name: 'user 1', email: 'user1@mail', function: 'motorista' },
-          { name: 'user 2', email: 'user2@mail', function: 'componente' },
-          { name: 'user 3', email: 'user3@mail', function: 'componente' },
+          {
+            name: 'user 1',
+            email: 'user1@mail',
+            function: 'motorista',
+            image: '/images/user1.jpg',
+          },
+          {
+            name: 'user 2',
+            email: 'user2@mail',
+            function: 'componente',
+            image: '/images/user2.jpg',
+          },
+          {
+            name: 'user 3',
+            email: 'user3@mail',
+            function: 'componente',
+            image: '/images/user3.webp',
+          },
         ] as Member[]) || null,
       status: 'publicado',
       company: 'Palmas',
@@ -158,9 +248,24 @@ const Escala = () => {
       group: 'Alfa',
       members:
         ([
-          { name: 'user 1', email: 'user1@mail', function: 'motorista' },
-          { name: 'user 2', email: 'user2@mail', function: 'componente' },
-          { name: 'user 3', email: 'user3@mail', function: 'componente' },
+          {
+            name: 'user 1',
+            email: 'user1@mail',
+            function: 'motorista',
+            image: '/images/user1.jpg',
+          },
+          {
+            name: 'user 2',
+            email: 'user2@mail',
+            function: 'componente',
+            image: '/images/user2.jpg',
+          },
+          {
+            name: 'user 3',
+            email: 'user3@mail',
+            function: 'componente',
+            image: '/images/user3.webp',
+          },
         ] as Member[]) || null,
       status: 'publicado',
       company: 'Palmas',
@@ -180,9 +285,24 @@ const Escala = () => {
       group: 'Alfa',
       members:
         ([
-          { name: 'user 1', email: 'user1@mail', function: 'motorista' },
-          { name: 'user 2', email: 'user2@mail', function: 'componente' },
-          { name: 'user 3', email: 'user3@mail', function: 'componente' },
+          {
+            name: 'user 1',
+            email: 'user1@mail',
+            function: 'motorista',
+            image: '/images/user1.jpg',
+          },
+          {
+            name: 'user 2',
+            email: 'user2@mail',
+            function: 'componente',
+            image: '/images/user2.jpg',
+          },
+          {
+            name: 'user 3',
+            email: 'user3@mail',
+            function: 'componente',
+            image: '/images/user3.webp',
+          },
         ] as Member[]) || null,
       status: 'publicado',
       company: 'Palmas',
@@ -202,9 +322,24 @@ const Escala = () => {
       group: 'Delta',
       members:
         ([
-          { name: 'user 1', email: 'user1@mail', function: 'motorista' },
-          { name: 'user 2', email: 'user2@mail', function: 'componente' },
-          { name: 'user 3', email: 'user3@mail', function: 'componente' },
+          {
+            name: 'user 1',
+            email: 'user1@mail',
+            function: 'motorista',
+            image: '/images/user1.jpg',
+          },
+          {
+            name: 'user 2',
+            email: 'user2@mail',
+            function: 'componente',
+            image: '/images/user2.jpg',
+          },
+          {
+            name: 'user 3',
+            email: 'user3@mail',
+            function: 'componente',
+            image: '/images/user3.webp',
+          },
         ] as Member[]) || null,
       status: 'publicado',
       company: 'Palmas',
@@ -224,9 +359,24 @@ const Escala = () => {
       group: 'Bravo',
       members:
         ([
-          { name: 'user 1', email: 'user1@mail', function: 'motorista' },
-          { name: 'user 2', email: 'user2@mail', function: 'componente' },
-          { name: 'user 3', email: 'user3@mail', function: 'componente' },
+          {
+            name: 'user 1',
+            email: 'user1@mail',
+            function: 'motorista',
+            image: '/images/user1.jpg',
+          },
+          {
+            name: 'user 2',
+            email: 'user2@mail',
+            function: 'componente',
+            image: '/images/user2.jpg',
+          },
+          {
+            name: 'user 3',
+            email: 'user3@mail',
+            function: 'componente',
+            image: '/images/user3.webp',
+          },
         ] as Member[]) || null,
       status: 'publicado',
       company: 'Palmas',
@@ -246,9 +396,24 @@ const Escala = () => {
       group: 'Charlie',
       members:
         ([
-          { name: 'user 1', email: 'user1@mail', function: 'motorista' },
-          { name: 'user 2', email: 'user2@mail', function: 'componente' },
-          { name: 'user 3', email: 'user3@mail', function: 'componente' },
+          {
+            name: 'user 1',
+            email: 'user1@mail',
+            function: 'motorista',
+            image: '/images/user1.jpg',
+          },
+          {
+            name: 'user 2',
+            email: 'user2@mail',
+            function: 'componente',
+            image: '/images/user2.jpg',
+          },
+          {
+            name: 'user 3',
+            email: 'user3@mail',
+            function: 'componente',
+            image: '/images/user3.webp',
+          },
         ] as Member[]) || null,
       status: 'publicado',
       company: 'Palmas',
@@ -268,9 +433,24 @@ const Escala = () => {
       group: 'Extra',
       members:
         ([
-          { name: 'user 1', email: 'user1@mail', function: 'motorista' },
-          { name: 'user 2', email: 'user2@mail', function: 'componente' },
-          { name: 'user 3', email: 'user3@mail', function: 'componente' },
+          {
+            name: 'user 1',
+            email: 'user1@mail',
+            function: 'motorista',
+            image: '/images/user1.jpg',
+          },
+          {
+            name: 'user 2',
+            email: 'user2@mail',
+            function: 'componente',
+            image: '/images/user2.jpg',
+          },
+          {
+            name: 'user 3',
+            email: 'user3@mail',
+            function: 'componente',
+            image: '/images/user3.webp',
+          },
         ] as Member[]) || null,
       status: 'publicado',
       company: 'Palmas',
@@ -290,9 +470,24 @@ const Escala = () => {
       group: 'Extra',
       members:
         ([
-          { name: 'user 1', email: 'user1@mail', function: 'motorista' },
-          { name: 'user 2', email: 'user2@mail', function: 'componente' },
-          { name: 'user 3', email: 'user3@mail', function: 'componente' },
+          {
+            name: 'user 1',
+            email: 'user1@mail',
+            function: 'motorista',
+            image: '/images/user1.jpg',
+          },
+          {
+            name: 'user 2',
+            email: 'user2@mail',
+            function: 'componente',
+            image: '/images/user2.jpg',
+          },
+          {
+            name: 'user 3',
+            email: 'user3@mail',
+            function: 'componente',
+            image: '/images/user3.webp',
+          },
         ] as Member[]) || null,
       status: 'publicado',
       company: 'Palmas',
@@ -312,9 +507,24 @@ const Escala = () => {
       group: 'Extra',
       members:
         ([
-          { name: 'user 1', email: 'user1@mail', function: 'motorista' },
-          { name: 'user 2', email: 'user2@mail', function: 'componente' },
-          { name: 'user 3', email: 'user3@mail', function: 'componente' },
+          {
+            name: 'user 1',
+            email: 'user1@mail',
+            function: 'motorista',
+            image: '/images/user1.jpg',
+          },
+          {
+            name: 'user 2',
+            email: 'user2@mail',
+            function: 'componente',
+            image: '/images/user2.jpg',
+          },
+          {
+            name: 'user 3',
+            email: 'user3@mail',
+            function: 'componente',
+            image: '/images/user3.webp',
+          },
         ] as Member[]) || null,
       status: 'aguardando',
       company: 'Palmas',
@@ -334,9 +544,24 @@ const Escala = () => {
       group: 'Extra',
       members:
         ([
-          { name: 'user 1', email: 'user1@mail', function: 'motorista' },
-          { name: 'user 2', email: 'user2@mail', function: 'componente' },
-          { name: 'user 3', email: 'user3@mail', function: 'componente' },
+          {
+            name: 'user 1',
+            email: 'user1@mail',
+            function: 'motorista',
+            image: '/images/user1.jpg',
+          },
+          {
+            name: 'user 2',
+            email: 'user2@mail',
+            function: 'componente',
+            image: '/images/user2.jpg',
+          },
+          {
+            name: 'user 3',
+            email: 'user3@mail',
+            function: 'componente',
+            image: '/images/user3.webp',
+          },
         ] as Member[]) || null,
       status: 'cancelado',
       company: 'Palmas',
@@ -356,9 +581,24 @@ const Escala = () => {
       group: 'Extra',
       members:
         ([
-          { name: 'user 1', email: 'user1@mail', function: 'motorista' },
-          { name: 'user 2', email: 'user2@mail', function: 'componente' },
-          { name: 'user 3', email: 'user3@mail', function: 'componente' },
+          {
+            name: 'user 1',
+            email: 'user1@mail',
+            function: 'motorista',
+            image: '/images/user1.jpg',
+          },
+          {
+            name: 'user 2',
+            email: 'user2@mail',
+            function: 'componente',
+            image: '/images/user2.jpg',
+          },
+          {
+            name: 'user 3',
+            email: 'user3@mail',
+            function: 'componente',
+            image: '/images/user3.webp',
+          },
         ] as Member[]) || null,
       status: 'aguardando',
       company: 'Palmas',
@@ -378,9 +618,24 @@ const Escala = () => {
       group: 'Extra',
       members:
         ([
-          { name: 'user 1', email: 'user1@mail', function: 'motorista' },
-          { name: 'user 2', email: 'user2@mail', function: 'componente' },
-          { name: 'user 3', email: 'user3@mail', function: 'componente' },
+          {
+            name: 'user 1',
+            email: 'user1@mail',
+            function: 'motorista',
+            image: '/images/user1.jpg',
+          },
+          {
+            name: 'user 2',
+            email: 'user2@mail',
+            function: 'componente',
+            image: '/images/user2.jpg',
+          },
+          {
+            name: 'user 3',
+            email: 'user3@mail',
+            function: 'componente',
+            image: '/images/user3.webp',
+          },
         ] as Member[]) || null,
       status: 'cancelado',
       company: 'Palmas',
@@ -399,9 +654,24 @@ const Escala = () => {
       group: 'Extra',
       members:
         ([
-          { name: 'user 1', email: 'user1@mail', function: 'motorista' },
-          { name: 'user 2', email: 'user2@mail', function: 'componente' },
-          { name: 'user 3', email: 'user3@mail', function: 'componente' },
+          {
+            name: 'user 1',
+            email: 'user1@mail',
+            function: 'motorista',
+            image: '/images/user1.jpg',
+          },
+          {
+            name: 'user 2',
+            email: 'user2@mail',
+            function: 'componente',
+            image: '/images/user2.jpg',
+          },
+          {
+            name: 'user 3',
+            email: 'user3@mail',
+            function: 'componente',
+            image: '/images/user3.webp',
+          },
         ] as Member[]) || null,
       type: 'extra',
       status: 'aguardando',

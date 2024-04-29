@@ -2,69 +2,176 @@ import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from '@/ui/card'
 import { cn } from '@/lib/utils'
 import React from 'react'
-import Link from 'next/link'
 import { EventProps } from '../../../types/index'
 import { Separator } from '@/ui/separator'
-import { LucideBookText, LucideCaptions, LucideTextQuote } from 'lucide-react'
-import { ModalGso } from '@/components/Modal/ModalGso/ModalGso'
+import { Avatar, AvatarFallback, AvatarImage } from '@radix-ui/react-avatar'
+import {
+  SelectItem,
+  SelectContent,
+  SelectTrigger,
+  SelectValue,
+  Select,
+} from '@/ui/select'
+import { LucideCalendarDays, LucideUser } from 'lucide-react'
+import { GrGroup } from 'react-icons/gr'
+import { MdOutlineMapsHomeWork } from 'react-icons/md'
+import { Label } from '@/ui/label'
+import { RiPoliceCarLine } from 'react-icons/ri'
 
 type CardProps = {
   itemEvent: EventProps
   children?: React.ReactNode
-  icon?: React.ReactNode
 } & React.ComponentProps<typeof Card>
 
 export const CardListEscala = ({
   itemEvent,
-  icon,
   className,
   ...props
 }: CardProps) => {
   return (
     <>
-      <Card className={cn('  mb-3 w-full ', className)} {...props}>
+      <Card className={cn(className)} {...props}>
         <CardHeader className="justify-center p-2 md:p-3">
-          <CardTitle>
-            <div className="relative flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <div>{icon}</div>
-                <div> Equipe - {itemEvent.group.toUpperCase()}</div>
-              </div>
-              <div className="absolute right-2 top-[50%]">
-                <div>
-                  {itemEvent.date} - {itemEvent.start}
-                </div>
-              </div>
-            </div>
-          </CardTitle>
-          <CardDescription className="flex flex-row items-center gap-2">
-            <LucideCaptions size={18} />
-            {itemEvent.title}
-          </CardDescription>
+          <div className="flex justify-between">
+            <CardTitle className="flex items-center gap-2">
+              <i>
+                <GrGroup size={20} />
+              </i>
+              <h4 className="text-xl font-bold">Equipe - {itemEvent.group}</h4>
+            </CardTitle>
+            <span className="flex items-center gap-2">
+              <i>
+                <LucideCalendarDays size={20} />
+              </i>
+              <h4 className="text-xl font-bold">{itemEvent.date}</h4>
+            </span>
+          </div>
         </CardHeader>
         <Separator />
-        <CardContent className="mx-3 grid grid-cols-5 rounded-[8px] px-4 md:mx-4 ">
-          <div>{itemEvent.description}</div>
-          <div>{itemEvent.unity}</div>
-          <div>{itemEvent.status}</div>
-          <div>{itemEvent.company}</div>
-          <ModalGso nameButton="Membros" className="h-[300px] w-[450px] p-0">
-            {itemEvent.members?.map((item, index) => (
-              <ul key={index}>
-                <li>{item.name}</li>
-                <li>{item.function}</li>
-                <li>{item.email}</li>
-              </ul>
-            ))}
-          </ModalGso>
+        <CardContent>
+          <div className=" ' grid  grid-cols-1 md:grid-cols-4 ">
+            <div className="border border-foreground">
+              <div className="flex items-center gap-2 text-sm font-medium">
+                <i>
+                  <MdOutlineMapsHomeWork />
+                </i>
+                <Label> Organização</Label>
+              </div>
+              <p className="text-sm font-medium">{itemEvent.company}</p>
+              <div className="flex items-center gap-2 text-sm font-medium">
+                <i>
+                  <MdOutlineMapsHomeWork />
+                </i>
+                <Label> Unidade</Label>
+              </div>
+              <p className="text-sm font-medium">{itemEvent.unity}</p>
+            </div>
 
-          {/* {children} */}
+            <div className="border border-foreground">
+              <div className="flex items-center gap-2 text-sm font-medium">
+                <i>
+                  <MdOutlineMapsHomeWork />
+                </i>
+                <Label> Organização</Label>
+              </div>
+              <p className="text-sm font-medium">{itemEvent.company}</p>
+              <div className="flex items-center gap-2 text-sm font-medium">
+                <i>
+                  <MdOutlineMapsHomeWork />
+                </i>
+                <Label> Unidade</Label>
+              </div>
+              <p className="text-sm font-medium">{itemEvent.unity}</p>
+            </div>
+
+            <div className="border border-foreground">
+              <div className="mx-2 flex justify-between">
+                <h4 className="text-sm font-medium">Membros</h4>
+                <h4 className="text-sm font-medium">Função</h4>
+              </div>
+              <div className="grid gap-2">
+                {itemEvent.members?.map((item, index) => (
+                  <div
+                    className="flex items-center justify-between space-x-4"
+                    key={index}
+                  >
+                    <div className="flex items-center space-x-4">
+                      <Avatar className="flex h-14 w-14  items-center justify-center rounded-full shadow-sm shadow-foreground">
+                        <AvatarImage
+                          className="aspect-square rounded-full object-cover"
+                          src={item.image}
+                        />
+                        <AvatarFallback>
+                          {<LucideUser size={36} />}
+                        </AvatarFallback>
+                      </Avatar>
+                      <div>
+                        <p className="text-sm font-medium leading-none">
+                          {item.name}
+                        </p>
+                        <p className="text-sm text-muted-foreground">
+                          {item.email}
+                        </p>
+                      </div>
+                    </div>
+                    <Select defaultValue="edit">
+                      <SelectTrigger className="ml-auto w-[110px]">
+                        <SelectValue placeholder="Selecione" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="edit">{item.function}</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="border border-foreground">
+              <div className="mx-2 flex justify-between">
+                <h4 className="text-sm font-medium">Viaturas</h4>
+                <h4 className="text-sm font-medium">Préfixo</h4>
+              </div>
+              <div className="grid gap-3">
+                {itemEvent.members?.map((item, index) => (
+                  <div
+                    className="flex items-center justify-between space-x-4"
+                    key={index}
+                  >
+                    <div className="flex items-center space-x-4">
+                      <Avatar className="flex h-14 w-14  items-center justify-center rounded-full shadow-sm shadow-foreground">
+                        <AvatarImage
+                          className="aspect-square rounded-full object-cover"
+                          src={item.image}
+                        />
+                        <AvatarFallback>
+                          {<RiPoliceCarLine size={36} />}
+                        </AvatarFallback>
+                      </Avatar>
+                      <div>
+                        <p className="text-sm font-medium leading-none">
+                          {item.name}
+                        </p>
+                      </div>
+                    </div>
+                    <Select defaultValue="edit">
+                      <SelectTrigger className="ml-auto w-[110px]">
+                        <SelectValue placeholder="Selecione" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="edit">{item.function}</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
         </CardContent>
       </Card>
     </>

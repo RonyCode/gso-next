@@ -11,13 +11,16 @@ import {
   DropdownMenuTrigger,
 } from '@/ui/dropdown-menu'
 import { LuMoon, LuSun } from 'react-icons/lu'
+import { cn } from '@/lib/utils'
 
-export function ModeToggle() {
+type ModeTogleProps = React.HTMLAttributes<HTMLButtonElement>
+
+export function ModeToggle({ className, ...props }: ModeTogleProps) {
   const { setTheme } = useTheme()
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild>
+      <DropdownMenuTrigger asChild className={cn(' ', className)} {...props}>
         <Button variant="outline" size="icon">
           <LuSun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 text-muted-foreground transition-all dark:-rotate-90 dark:scale-0" />
           <LuMoon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 text-muted-foreground transition-all dark:rotate-0 dark:scale-100" />

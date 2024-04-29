@@ -1,5 +1,5 @@
 import CalendarGso from '@/components/CalendarGso/CalendarGso'
-import { EventProps } from '../../../../../types/index'
+import { EventProps, Member } from '../../../../../types/index'
 
 const MinhaEscala = () => {
   const event: EventProps[] = [
@@ -18,7 +18,37 @@ const MinhaEscala = () => {
       date: '14/03/2024',
       start: '07:00',
       end: '19:00',
+      members: [
+        {
+          id: 1,
+          name: 'user 1',
+          email: 'user1@mail',
+          function: 'motorista',
+          status: 'ativo',
+          company: 'Palmas',
+          image: '/images/user1.jpg',
+        },
+        {
+          id: 2,
+          name: 'user 2',
+          email: 'user2@mail',
+          function: 'motorista',
+          status: 'ativo',
+          company: 'Palmas',
+          image: '/images/user2.jpg',
+        },
+        {
+          id: 1,
+          name: 'user 3',
+          email: 'user3@mail',
+          function: 'motorista',
+          status: 'ativo',
+          company: 'Palmas',
+          image: '/images/user3.webp',
+        },
+      ] as Member[],
     },
+
     {
       id: 3,
       day: 22,
@@ -34,6 +64,35 @@ const MinhaEscala = () => {
       date: '22/03/2024',
       start: '07:00',
       end: '19:00',
+      members: [
+        {
+          id: 1,
+          name: 'user 1',
+          email: 'user1@mail',
+          function: 'motorista',
+          status: 'ativo',
+          company: 'Palmas',
+          image: '/images/user1.jpg',
+        },
+        {
+          id: 2,
+          name: 'user 2',
+          email: 'user2@mail',
+          function: 'motorista',
+          status: 'ativo',
+          company: 'Palmas',
+          image: '/images/user1.jpg',
+        },
+        {
+          id: 1,
+          name: 'user 3',
+          email: 'user3@mail',
+          function: 'motorista',
+          status: 'ativo',
+          company: 'Palmas',
+          image: '/images/user1.jpg',
+        },
+      ] as Member[],
     },
     {
       id: 3,
@@ -50,6 +109,35 @@ const MinhaEscala = () => {
       date: '26/03/2024',
       start: '07:00',
       end: '19:00',
+      members: [
+        {
+          id: 1,
+          name: 'user 1',
+          email: 'user1@mail',
+          function: 'motorista',
+          status: 'ativo',
+          company: 'Palmas',
+          image: '/images/user1.jpg',
+        },
+        {
+          id: 2,
+          name: 'user 2',
+          email: 'user2@mail',
+          function: 'motorista',
+          status: 'ativo',
+          company: 'Palmas',
+          image: '/images/user1.jpg',
+        },
+        {
+          id: 1,
+          name: 'user 3',
+          email: 'user3@mail',
+          function: 'motorista',
+          status: 'ativo',
+          company: 'Palmas',
+          image: '/images/user1.jpg',
+        },
+      ] as Member[],
     },
   ]
   return (

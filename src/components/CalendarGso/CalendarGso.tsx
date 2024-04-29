@@ -252,7 +252,7 @@ const CalendarGso = ({ event }: { event: EventProps[] }) => {
             {escalaObj.map((day, index) => (
               // MODAL TRIGGER
               <ModalGso
-                className=" overflow-auto px-4 md:h-[80vh] md:w-[80vw]"
+                className="overflow-auto px-4 md:h-[80vh] md:w-[80vw] "
                 key={index}
                 title="Detalhes Escala"
                 description="Dados da Escala"
@@ -273,13 +273,15 @@ const CalendarGso = ({ event }: { event: EventProps[] }) => {
                   </div>
                 }
               >
-                {day.dayEvent.map((itemEvent, indexEvent) => (
-                  <CardListEscala
-                    key={indexEvent}
-                    itemEvent={itemEvent}
-                    icon={<GrGroup />}
-                  />
-                ))}
+                <div className="flex h-full w-full flex-col ">
+                  {day.dayEvent.map((itemEvent, indexEvent) => (
+                    <CardListEscala
+                      key={indexEvent}
+                      itemEvent={itemEvent}
+                      className="my-2 border border-foreground/30"
+                    />
+                  ))}
+                </div>
               </ModalGso>
             ))}
           </div>
