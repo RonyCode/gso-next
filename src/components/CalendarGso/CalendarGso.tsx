@@ -263,10 +263,7 @@ const CalendarGso = ({ event }: { event: EventProps[] }) => {
                         index={index}
                         day={day.day}
                         dayEvent={day.dayEvent}
-                        dayName={day.dayName}
-                        year={day.year}
                         month={day.month}
-                        dayWeek={day.dayWeek}
                         className="p-1"
                       />
                     )}

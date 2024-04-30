@@ -15,8 +15,8 @@ const Servicos = () => {
       <CardDefault
         title="Módulos"
         description="Serviços para o usuario"
-        image="/images/bannerModule.png"
-        imageMobile="/images/bannerModule.png"
+        image="/images/servico3.jpeg"
+        imageMobile="/images/servicos2.jpg"
         icon={<LucideMenuSquare size={28} />}
       >
         <ModulesServices />

@@ -37,26 +37,26 @@ export const CardListEscala = ({
               <i>
                 <GrGroup size={20} />
               </i>
-              <h4 className="text-md font-bold md:text-xl">
+              <div className="text-md font-bold md:text-xl">
                 {itemEvent.group}
-              </h4>
+              </div>
             </CardTitle>
             <span className="flex items-center gap-1">
               <i>
                 <LucideClock size={20} />
               </i>
-              <h4 className="text-md font-bold md:text-xl">
+              <div className="text-md font-bold md:text-xl">
                 {' '}
                 {itemEvent.start}
-              </h4>
+              </div>
 
               <i>
                 <LucideCalendarDays size={20} />
               </i>
-              <h4 className="text-md font-bold md:text-xl">
+              <div className="text-md font-bold md:text-xl">
                 {' '}
                 {itemEvent.date}
-              </h4>
+              </div>
             </span>
           </div>
         </CardHeader>

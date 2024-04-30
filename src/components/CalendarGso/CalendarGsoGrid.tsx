@@ -5,11 +5,7 @@ import { EventProps } from '../../../types/index'
 
 type CalendarGsoGridProps = {
   dayEvent?: EventProps[]
-  dayName?: string
-  year?: number
   month?: number
-  dayWeek?: number
-  dayShortName?: string
   day?: number
   index?: number
 } & React.HTMLAttributes<HTMLDivElement>
@@ -37,9 +33,9 @@ const CalendarGsoGrid = ({
           {...props}
         >
           {dayEvent?.map((itemEvent, indexEvent) => (
-            <div key={indexEvent} className="m-0 self-start p-0 text-sm">
+            <div key={indexEvent} className="m-0 self-start pb-1 text-sm ">
               <Badge
-                className={` hidden  md:block ${
+                className={` hidden  md:block  ${
                   itemEvent.group.charAt(0).toUpperCase() === 'A'
                     ? 'border-primary text-primary'
                     : itemEvent.group.charAt(0).toUpperCase() === 'B'

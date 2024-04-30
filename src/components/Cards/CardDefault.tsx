@@ -59,7 +59,7 @@ export function CardDefault({
               sizes="100"
               priority={true}
               alt="image"
-              className="block  rounded-[8px]  object-cover brightness-[80%]"
+              className="block  rounded-[8px]  object-cover object-center brightness-[80%]"
             />
           )}
         </div>
@@ -72,7 +72,7 @@ export function CardDefault({
               sizes="100"
               priority={true}
               alt="image"
-              className=" block rounded-[8px] object-contain brightness-[80%]"
+              className=" block rounded-[8px] object-cover brightness-[80%]"
             />
           )}
         </div>
