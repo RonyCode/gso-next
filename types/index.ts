@@ -70,6 +70,7 @@ export type EventProps = {
   description: string
   group: string
   cars: CarsUnity[] | null
+  imgUnity: string
   type: string
   status: string
   company: string

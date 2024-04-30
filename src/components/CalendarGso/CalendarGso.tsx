@@ -9,7 +9,6 @@ import { columnsEscala } from '@/components/DataTables/DataTableEscala/columnsEs
 import { ModalGso } from '@/components/Modal/ModalGso/ModalGso'
 import CalendarGsoGrid from '@/components/CalendarGso/CalendarGsoGrid'
 import { CardListEscala } from '@/components/Cards/CardListEscala'
-import { GrGroup } from 'react-icons/gr'
 
 const CalendarGso = ({ event }: { event: EventProps[] }) => {
   const date = new Date()

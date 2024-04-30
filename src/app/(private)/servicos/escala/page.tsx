@@ -20,6 +20,7 @@ const Escala = () => {
       title: 'teste 1',
       description: 'teste description 1',
       group: 'Alfa',
+      imgUnity: '/images/imgUnity.jpeg',
       cars:
         ([
           {
@@ -118,6 +119,7 @@ const Escala = () => {
       description: 'teste description 2',
       type: 'normal',
       group: 'Bravo',
+      imgUnity: '/images/imgUnity.jpeg',
       cars:
         ([
           {
@@ -127,6 +129,13 @@ const Escala = () => {
               ([
                 {
                   name: 'CB ANDERSON',
+                  email: 'user1@mail',
+                  function: 'motorista',
+                  imageMember: '/images/user1.jpg',
+                },
+
+                {
+                  name: 'SGT B.MORAES',
                   email: 'user1@mail',
                   function: 'motorista',
                   imageMember: '/images/user1.jpg',
@@ -205,7 +214,6 @@ const Escala = () => {
       start: '19:00',
       end: '07:00',
     },
-
     {
       id: 3,
       day: 3,
@@ -216,6 +224,8 @@ const Escala = () => {
       description: 'teste description 2',
       type: 'normal',
       group: 'Bravo',
+      imgUnity: '/images/imgUnity.jpeg',
+
       cars:
         ([
           {
@@ -313,6 +323,7 @@ const Escala = () => {
       description: 'teste description 2',
       type: 'normal',
       group: 'Delta',
+      imgUnity: '/images/imgUnity.jpeg',
       cars:
         ([
           {
@@ -410,6 +421,8 @@ const Escala = () => {
       description: 'teste description 3',
       type: 'normal',
       group: 'Charlie',
+      imgUnity: '/images/imgUnity.jpeg',
+
       cars:
         ([
           {
@@ -508,6 +521,8 @@ const Escala = () => {
       description: 'teste description 3',
       type: 'normal',
       group: 'Bravo',
+      imgUnity: '/images/imgUnity.jpeg',
+
       cars:
         ([
           {
@@ -605,6 +620,8 @@ const Escala = () => {
       description: 'teste description 1',
       type: 'normal',
       group: 'Alfa',
+      imgUnity: '/images/imgUnity.jpeg',
+
       cars:
         ([
           {
@@ -702,6 +719,8 @@ const Escala = () => {
       description: 'teste description 2',
       type: 'normal',
       group: 'Alfa',
+      imgUnity: '/images/imgUnity.jpeg',
+
       cars:
         ([
           {
@@ -799,6 +818,8 @@ const Escala = () => {
       description: 'teste description 3',
       type: 'normal',
       group: 'Delta',
+      imgUnity: '/images/imgUnity.jpeg',
+
       cars:
         ([
           {
@@ -896,6 +917,8 @@ const Escala = () => {
       description: 'teste description 2',
       type: 'normal',
       group: 'Bravo',
+      imgUnity: '/images/imgUnity.jpeg',
+
       cars:
         ([
           {
@@ -993,6 +1016,8 @@ const Escala = () => {
       description: 'teste description 3',
       type: 'normal',
       group: 'Charlie',
+      imgUnity: '/images/imgUnity.jpeg',
+
       cars:
         ([
           {
@@ -1090,6 +1115,8 @@ const Escala = () => {
       description: 'teste description 1',
       type: 'extra',
       group: 'Extra',
+      imgUnity: '/images/imgUnity.jpeg',
+
       cars:
         ([
           {
@@ -1187,6 +1214,8 @@ const Escala = () => {
       description: 'teste description 2',
       type: 'extra',
       group: 'Extra',
+      imgUnity: '/images/imgUnity.jpeg',
+
       cars:
         ([
           {
@@ -1284,6 +1313,8 @@ const Escala = () => {
       description: 'teste description 3',
       type: 'extra',
       group: 'Extra',
+      imgUnity: '/images/imgUnity.jpeg',
+
       cars:
         ([
           {
@@ -1381,6 +1412,8 @@ const Escala = () => {
       description: 'teste description 3',
       type: 'extra',
       group: 'Extra',
+      imgUnity: '/images/imgUnity.jpeg',
+
       cars:
         ([
           {
@@ -1478,6 +1511,8 @@ const Escala = () => {
       description: 'teste description 1',
       type: 'extra',
       group: 'Extra',
+      imgUnity: '/images/imgUnity.jpeg',
+
       cars:
         ([
           {
@@ -1575,6 +1610,8 @@ const Escala = () => {
       description: 'teste description 2',
       type: 'extra',
       group: 'Extra',
+      imgUnity: '/images/imgUnity.jpeg',
+
       cars:
         ([
           {
@@ -1671,6 +1708,8 @@ const Escala = () => {
       title: 'teste 3',
       description: 'teste description 3',
       group: 'Extra',
+      imgUnity: '/images/imgUnity.jpeg',
+
       cars:
         ([
           {

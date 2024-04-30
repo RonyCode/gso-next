@@ -16,6 +16,7 @@ import { GrGroup } from 'react-icons/gr'
 import { MdOutlineMapsHomeWork } from 'react-icons/md'
 import { Label } from '@/ui/label'
 import { RiPoliceCarLine } from 'react-icons/ri'
+import { BsBuildingCheck } from 'react-icons/bs'
 
 type CardProps = {
   itemEvent: EventProps
@@ -62,9 +63,9 @@ export const CardListEscala = ({
         <Separator />
         <CardContent>
           <div className=" grid grid-cols-1  md:grid-cols-12 ">
-            <div className=" col-start-1 col-end-4  gap-2 ">
-              <div className="item-center flex flex-col justify-center  text-sm font-medium">
-                <div className="none flex items-center gap-2 rounded-[5px] border  border-primary/60  md:border-0 md:border-b  ">
+            <div className="col-start-1 col-end-4   row-start-1 row-end-2 ">
+              <div className="item-center flex  flex-col justify-center  pb-3 text-sm font-medium">
+                <div className=" flex items-center gap-2 rounded-[8px] border  border-primary/60  p-3 md:border-0 md:border-b  ">
                   <div>
                     <Avatar
                       className="
@@ -73,10 +74,10 @@ export const CardListEscala = ({
                     >
                       <AvatarImage
                         className="aspect-square rounded-full object-cover"
-                        src={itemEvent.date}
+                        src={itemEvent.imgUnity}
                       />
                       <AvatarFallback>
-                        {<RiPoliceCarLine size={36} />}
+                        {<BsBuildingCheck size={36} />}
                       </AvatarFallback>
                     </Avatar>
                   </div>
@@ -92,51 +93,54 @@ export const CardListEscala = ({
                     </SelectContent>
                   </Select>
                 </div>
-
-                <div className="flex  items-center gap-1 ">
-                  <i>
-                    <MdOutlineMapsHomeWork />
-                  </i>
-                  <Label> Cidade</Label>
-                </div>
-                <p className="text-sm font-medium">{itemEvent.company}</p>
               </div>
 
-              <div className="item-start flex flex-col justify-center  text-sm font-medium">
-                <div className="flex  items-center gap-1 ">
-                  <i>
-                    <MdOutlineMapsHomeWork />
-                  </i>
-                  <Label> Tipo</Label>
+              <div className="grid  w-full grid-cols-2 gap-4  p-3">
+                <div className="item-start flex flex-col justify-center  text-sm font-medium">
+                  <div className="flex  items-center gap-1 ">
+                    <i>
+                      <MdOutlineMapsHomeWork />
+                    </i>
+                    <Label> Cidade</Label>
+                  </div>
+                  <p className="text-sm font-medium">{itemEvent.company}</p>
                 </div>
-                <p className="text-sm font-medium">{itemEvent.type}</p>
-              </div>
-              <div className="item-start flex flex-col justify-center  text-sm font-medium">
-                <div className="flex  items-center gap-1 ">
-                  <i>
-                    <MdOutlineMapsHomeWork />
-                  </i>
-                  <Label> Status</Label>
+                <div className="item-start flex flex-col justify-center  text-sm font-medium">
+                  <div className="flex  items-center gap-1 ">
+                    <i>
+                      <MdOutlineMapsHomeWork />
+                    </i>
+                    <Label> Tipo</Label>
+                  </div>
+                  <p className="text-sm font-medium">{itemEvent.type}</p>
                 </div>
-                <p className="text-sm font-medium">{itemEvent.status}</p>
-              </div>
-              <div className="item-start flex flex-col justify-center  text-sm font-medium">
-                <div className="flex  items-center  gap-1">
-                  <i>
-                    <MdOutlineMapsHomeWork />
-                  </i>
-                  <Label> Companhia</Label>
+                <div className="item-start flex flex-col justify-center  text-sm font-medium">
+                  <div className="flex  items-center gap-1 ">
+                    <i>
+                      <MdOutlineMapsHomeWork />
+                    </i>
+                    <Label> Status</Label>
+                  </div>
+                  <p className="text-sm font-medium">{itemEvent.status}</p>
                 </div>
-                <p className="text-sm font-medium">{itemEvent.unity}</p>
-              </div>
-              <div className="item-start flex flex-col justify-center  text-sm font-medium">
-                <div className="flex  items-center  gap-1">
-                  <i>
-                    <MdOutlineMapsHomeWork />
-                  </i>
-                  <Label> Cidade</Label>
+                <div className="item-start flex flex-col justify-center  text-sm font-medium">
+                  <div className="flex  items-center  gap-1">
+                    <i>
+                      <MdOutlineMapsHomeWork />
+                    </i>
+                    <Label> Companhia</Label>
+                  </div>
+                  <p className="text-sm font-medium">{itemEvent.unity}</p>
                 </div>
-                <p className="text-sm font-medium">{itemEvent.company}</p>
+                <div className="item-start flex flex-col justify-center  text-sm font-medium">
+                  <div className="flex  items-center  gap-1">
+                    <i>
+                      <MdOutlineMapsHomeWork />
+                    </i>
+                    <Label> Cidade</Label>
+                  </div>
+                  <p className="text-sm font-medium">{itemEvent.company}</p>
+                </div>
               </div>
             </div>
 
@@ -146,7 +150,7 @@ export const CardListEscala = ({
                   key={index}
                   className="col-span-3 border-l border-foreground/10"
                 >
-                  <div className="flex items-center gap-2 rounded-[5px] border  border-primary/60  p-3 md:border-0 md:border-b  ">
+                  <div className="flex items-center gap-2 rounded-[8px] border  border-primary/60  p-3 md:border-0 md:border-b  ">
                     <div>
                       <Avatar
                         className="
@@ -179,7 +183,7 @@ export const CardListEscala = ({
                     <div key={index} className="flex items-center gap-2 p-2">
                       <Avatar
                         className="flex h-10 w-10 items-center justify-center  rounded-full shadow-sm shadow-foreground transition-all
-                       duration-300 hover:scale-[200%] md:h-12 md:w-12"
+                        duration-300 hover:scale-[200%] md:h-12 md:w-12"
                       >
                         <AvatarImage
                           className="aspect-square rounded-full object-cover"
