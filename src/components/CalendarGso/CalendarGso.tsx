@@ -268,6 +268,7 @@ const CalendarGso = ({ event }: { event: EventProps[] }) => {
                         year={day.year}
                         month={day.month}
                         dayWeek={day.dayWeek}
+                        className="p-1"
                       />
                     )}
                   </div>

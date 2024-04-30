@@ -46,12 +46,18 @@ export type Member = {
   id: number
   name: string
   email: string
-  image: string
+  imageMember: string
   role: string
   status: string
   company: string
   date: string
   function: string
+}
+
+export type CarsUnity = {
+  nameCar: string
+  members: Member[]
+  imageCar: string
 }
 
 export type EventProps = {
@@ -63,7 +69,7 @@ export type EventProps = {
   title: string
   description: string
   group: string
-  members: Member[] | null
+  cars: CarsUnity[] | null
   type: string
   status: string
   company: string
