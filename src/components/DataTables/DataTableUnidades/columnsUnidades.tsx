@@ -1,14 +1,12 @@
 'use client'
 
 import { ColumnDef } from '@tanstack/react-table'
-import { statuses, unities } from './data/data'
 import { DataTableColumnHeader } from '../data-table-column-header'
 import { Checkbox } from '@/ui/checkbox'
 import { Avatar, AvatarFallback, AvatarImage } from '@radix-ui/react-avatar'
 import React from 'react'
 import { LucideBuilding2, LucidePhone, LucideUser } from 'lucide-react'
 import { Unidade } from '../../../../types/index'
-import { ro } from '@faker-js/faker'
 
 export const columnsUnidades: ColumnDef<Unidade>[] = [
   {
@@ -107,6 +105,63 @@ export const columnsUnidades: ColumnDef<Unidade>[] = [
         <div className="flex w-[200px] items-center">
           <span className="mr-2 text-muted-foreground">
             {row.getValue('id')}
+          </span>
+        </div>
+      )
+    },
+    filterFn: (row, id, value) => {
+      return value.includes(row.getValue(id))
+    },
+  },
+
+  {
+    accessorKey: 'unity',
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Numero Unidade" />
+    ),
+    cell: ({ row }) => {
+      return (
+        <div className="flex w-[200px] items-center">
+          <span className="mr-2 text-muted-foreground">
+            {row.getValue('unity')}
+          </span>
+        </div>
+      )
+    },
+    filterFn: (row, id, value) => {
+      return value.includes(row.getValue(id))
+    },
+  },
+
+  {
+    accessorKey: 'status',
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Status" />
+    ),
+    cell: ({ row }) => {
+      return (
+        <div className="flex w-[200px] items-center">
+          <span className="mr-2 text-muted-foreground">
+            {row.getValue('status')}
+          </span>
+        </div>
+      )
+    },
+    filterFn: (row, id, value) => {
+      return value.includes(row.getValue(id))
+    },
+  },
+
+  {
+    accessorKey: 'date',
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Date" />
+    ),
+    cell: ({ row }) => {
+      return (
+        <div className="flex w-[200px] items-center">
+          <span className="mr-2 text-muted-foreground">
+            {row.getValue('date')}
           </span>
         </div>
       )
