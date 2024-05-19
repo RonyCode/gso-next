@@ -1,9 +1,6 @@
 'use client'
 
 import { ColumnDef } from '@tanstack/react-table'
-
-// import { Checkbox } from '@/components/ui/checkbox'
-
 import { statuses, unities } from './data/data'
 import { DataTableColumnHeader } from '../data-table-column-header'
 import { Checkbox } from '@/ui/checkbox'
@@ -11,6 +8,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@radix-ui/react-avatar'
 import React from 'react'
 import { LucideBuilding2, LucidePhone, LucideUser } from 'lucide-react'
 import { Unidade } from '../../../../types/index'
+import { ro } from '@faker-js/faker'
 
 export const columnsUnidades: ColumnDef<Unidade>[] = [
   {
@@ -85,20 +83,9 @@ export const columnsUnidades: ColumnDef<Unidade>[] = [
       <DataTableColumnHeader column={column} title="Tipo" />
     ),
     cell: ({ row }) => {
-      const status = statuses.find(
-        (status) => status.value === row.getValue('type'),
-      )
-
-      if (!status) {
-        return null
-      }
-
       return (
         <div className="flex w-[120px] items-center ">
-          {status.icon && (
-            <status.icon className="mr-2 h-4 w-4 text-muted-foreground" />
-          )}
-          <span>{status.label}</span>
+          {row.getValue('type')}
         </div>
       )
     },
@@ -116,18 +103,11 @@ export const columnsUnidades: ColumnDef<Unidade>[] = [
       <DataTableColumnHeader column={column} title="Unidade" />
     ),
     cell: ({ row }) => {
-      const unity = unities.find((unity) => unity.value === row.getValue('id'))
-
-      if (!unity) {
-        return null
-      }
-
       return (
         <div className="flex w-[200px] items-center">
-          {unity.icon && (
-            <unity.icon className="mr-2 h-4 w-4 text-muted-foreground" />
-          )}
-          <span className="mr-2 text-muted-foreground">{unity.label}</span>
+          <span className="mr-2 text-muted-foreground">
+            {row.getValue('id')}
+          </span>
         </div>
       )
     },
