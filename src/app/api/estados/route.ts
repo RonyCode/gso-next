@@ -1,21 +1,21 @@
 import { NextResponse } from 'next/server'
 
 export async function GET() {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_GSO}/services/estados`,
-    {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    },
-  )
-  if (!res.ok) {
-    return NextResponse.json(
-      { message: res.statusText },
-      { status: res.status },
-    )
-  }
-  const data = await res.json()
-  return NextResponse.json(data)
+  // const res = await fetch(
+  //   `${process.env.NEXT_PUBLIC_API_GSO}/services/estados`,
+  //   {
+  //     method: 'GET',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //   },
+  // )
+  // if (!res.ok) {
+  //   return NextResponse.json(
+  //     { message: res.statusText },
+  //     { status: res.status },
+  //   )
+  // }
+  // const data = await res.json()
+  return NextResponse.json('data')
 }
