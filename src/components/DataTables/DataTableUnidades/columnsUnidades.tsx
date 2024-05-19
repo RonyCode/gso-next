@@ -7,7 +7,6 @@ import { Avatar, AvatarFallback, AvatarImage } from '@radix-ui/react-avatar'
 import React from 'react'
 import { LucideBuilding2, LucidePhone, LucideUser } from 'lucide-react'
 import { Unidade } from '../../../../types/index'
-import { DataTableRowActions } from '@/components/DataTables/DataTableUnidades/data-table-row-actions'
 
 export const columnsUnidades: ColumnDef<Unidade>[] = [
   {
