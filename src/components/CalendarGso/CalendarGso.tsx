@@ -10,11 +10,17 @@ import { ModalGso } from '@/components/Modal/ModalGso/ModalGso'
 import CalendarGsoGrid from '@/components/CalendarGso/CalendarGsoGrid'
 import { CardListEscala } from '@/components/Cards/CardListEscala'
 
+type DaysMonthProps = {
+  dias: number
+  diference: number
+}
+
 const CalendarGso = ({ event }: { event: EventProps[] }) => {
   const date = new Date()
   const [month, setMonth] = useState(date.getMonth())
   const [year, setYear] = useState(date.getFullYear())
   const [dayWeek, setDayWeek] = useState(date.getDay())
+  useState(0)
 
   const monthName = [
     { monthName: 'Janeiro', number: 0 },
@@ -56,33 +62,39 @@ const CalendarGso = ({ event }: { event: EventProps[] }) => {
 
     if (numberMonth === -1) numberMonth = 11
     // Dias do mês com ano bissexto
-    if (numberMonth === 1) {
-      if (year % 4 === 0 && lastDigiteYear !== '00') {
-        return 29
-      } else {
-        return 28
-      }
-    }
 
-    // Dias dos mês com 30 dias
-    if (
-      numberMonth === 3 ||
-      numberMonth === 5 ||
-      numberMonth === 8 ||
-      numberMonth === 10
-    ) {
-      return 30
-    }
-    if (
-      numberMonth === 0 ||
-      numberMonth === 2 ||
-      numberMonth === 4 ||
-      numberMonth === 6 ||
-      numberMonth === 7 ||
-      numberMonth === 9 ||
-      numberMonth === 11
-    ) {
-      return 31
+    switch (numberMonth) {
+      case 0: {
+        return { dias: 31, diference: 0 } as DaysMonthProps
+      }
+
+      case 1: {
+        if (year % 4 === 0 && lastDigiteYear !== '00') {
+          return { dias: 29, diference: 3 } as DaysMonthProps
+        } else {
+          return { dias: 28, diference: 4 } as DaysMonthProps
+        }
+      }
+      case 2:
+        return { dias: 31, diference: 2 } as DaysMonthProps
+      case 3:
+        return { dias: 30, diference: 0 } as DaysMonthProps
+      case 4:
+        return { dias: 31, diference: 2 } as DaysMonthProps
+      case 5:
+        return { dias: 30, diference: 5 } as DaysMonthProps
+      case 6:
+        return { dias: 31, diference: 0 } as DaysMonthProps
+      case 7:
+        return { dias: 31, diference: 3 } as DaysMonthProps
+      case 8:
+        return { dias: 30, diference: 6 } as DaysMonthProps
+      case 9:
+        return { dias: 31, diference: 1 } as DaysMonthProps
+      case 10:
+        return { dias: 30, diference: 3 } as DaysMonthProps
+      case 11:
+        return { dias: 31, diference: 6 } as DaysMonthProps
     }
   }
 
@@ -104,11 +116,14 @@ const CalendarGso = ({ event }: { event: EventProps[] }) => {
   }
 
   const daysCalculate =
-    dayWeek === date.getDay() ? daysInMonth : daysInMonth! + Math.abs(dayWeek)
+    dayWeek === date.getDay()
+      ? daysInMonth!.dias! + daysInMonth!.diference
+      : daysInMonth!.dias! + Math.abs(dayWeek)
   for (let i = 0; i <= daysCalculate!; i++) {
     if (i % 7) {
       escalaObj.push({
-        day: dayWeek === date.getDay() ? i : dayWeek + i,
+        day:
+          dayWeek === date.getDay() ? i - daysInMonth!.diference : dayWeek + i,
         dayWeek: i % 7,
         dayShortName:
           i % 7 === 1
@@ -138,27 +153,39 @@ const CalendarGso = ({ event }: { event: EventProps[] }) => {
                     : i % 7 === 6
                       ? 'Sábado'
                       : '',
-        dayEvent: handleEventDay(i, month, year, event),
+        dayEvent: handleEventDay(
+          dayWeek === date.getDay() ? i - daysInMonth!.diference : dayWeek + i,
+          month,
+          year,
+          event,
+        ),
         year,
         month,
       })
     } else {
       escalaObj.push({
-        day: dayWeek === date.getDay() ? i : i + dayWeek,
+        day:
+          dayWeek === date.getDay() ? i - daysInMonth!.diference : i + dayWeek,
         dayWeek: 0,
         dayShortName: 'Dom',
         dayName: 'Domingo',
-        dayEvent: handleEventDay(i, month, year, event),
+        dayEvent: handleEventDay(
+          dayWeek === date.getDay() ? i - daysInMonth!.diference : dayWeek + i,
+          month,
+          year,
+          event,
+        ),
         year,
         month,
       })
     }
   }
   escalaObj.shift()
+
   const handlePrevious = () => {
     const lastDayWeek = escalaObj[escalaObj.length - 1].dayWeek
     const monthChanged = handleCountDaysInMonth(month - 1)
-    const diffDayInMounts = daysInMonth! - monthChanged!
+    const diffDayInMounts = daysInMonth!.dias! - monthChanged!.dias!
     const newDayWeek = Math.abs(diffDayInMounts) + lastDayWeek
     setDayWeek(newDayWeek * -1 - 1)
     if (month === 0) {
@@ -223,20 +250,20 @@ const CalendarGso = ({ event }: { event: EventProps[] }) => {
 
           <div
             className="
-            grid h-10 w-full  grid-cols-7 rounded-[3px]"
+            grid h-10 w-full grid-cols-7 place-content-center rounded-[3px]"
           >
             {diasSemana.map((day, index) => (
               <div
                 key={index}
-                className="  w-full cursor-pointer flex-col
-                items-center justify-center rounded-[3px]
-                border border-foreground/10 hover:border
+                className="  w-full cursor-pointer flex-col items-center
+                justify-center rounded-[3px] border border-foreground/10
+                p-2 text-center hover:border
                 hover:border-primary/60  md:flex lg:h-full"
               >
                 <span className="hidden sm:block md:block lg:block xl:block">
                   {day.nameDay}
                 </span>
-                <span className="block sm:hidden md:hidden lg:hidden xl:hidden">
+                <span className="block text-center sm:hidden md:hidden lg:hidden xl:hidden">
                   {day.shortNameDay}
                 </span>
               </div>
@@ -260,11 +287,11 @@ const CalendarGso = ({ event }: { event: EventProps[] }) => {
                     {day.day > 0 && (
                       // GRID CALENDAR
                       <CalendarGsoGrid
-                        index={index}
+                        index={index - daysInMonth!.dias!}
                         day={day.day}
                         dayEvent={day.dayEvent}
                         month={day.month}
-                        className="p-1"
+                        className="h-24 w-full"
                       />
                     )}
                   </div>

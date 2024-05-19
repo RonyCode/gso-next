@@ -24,7 +24,7 @@ const CalendarGsoGrid = ({
       {day! > 0 && (
         <div
           className={cn(
-            `  relative flex h-20 w-full cursor-pointer flex-col items-center justify-start  
+            `  relative flex min-h-full w-full cursor-pointer flex-col items-center justify-start  
                               rounded-[3px] 
                               border border-foreground/10 hover:border
                               hover:border-primary/60 md:min-h-[100%]  ${day === date.getDate() && month === date.getMonth() ? 'border-primary/60 ' : ''} `,

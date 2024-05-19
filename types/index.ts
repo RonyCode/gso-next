@@ -114,6 +114,26 @@ export interface TokenUser {
   dateExpires: number
 }
 
+export interface Unidade {
+  idCorporation: string
+  idCompany: string
+  name: string
+  cnpj: string
+  image: string
+  address: Address
+  dateCreation: string
+  phone: string
+  type: number
+  director: number
+  manager: number
+  managerCompany: number
+  directorCompany: number
+}
+
+export interface Companies {
+  companies: Unidade[]
+}
+
 export interface UserType {
   userAuth: UserAuth | null
   account: Account | null

@@ -6,7 +6,10 @@ type FooterLayoutProps = React.HTMLAttributes<HTMLDivElement>
 const FooterHomePage = ({ className, ...props }: FooterLayoutProps) => {
   return (
     <footer
-      className={cn('  relative bg-secondary pb-6 pt-8', className)}
+      className={cn(
+        ' fixed bottom-0 bg-secondary p-1 md:relative md:pb-6 md:pt-8',
+        className,
+      )}
       {...props}
     >
       <div className="container mx-auto px-4">

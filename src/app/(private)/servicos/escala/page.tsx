@@ -1752,6 +1752,8 @@ const Escala = () => {
       <CardDefault
         title="Escalas"
         description="Serviço de escala"
+        image="/images/schedule.jpg"
+        imageMobile="/images/escalas.jpg"
         icon={<LucideCalendarDays size={28} />}
       >
         <CalendarGso event={event} />

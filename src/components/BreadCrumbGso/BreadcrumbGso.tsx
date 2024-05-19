@@ -21,9 +21,11 @@ const BreadcrumbGso = () => {
   return (
     <Breadcrumb>
       <BreadcrumbList className="rounded-b-[8px] border border-t-0  border-foreground/30 bg-secondary p-2">
-        <BreadcrumbItem>
-          <LuHome />
-          <Link href="/">Home</Link>
+        <BreadcrumbItem className="hover:text-foreground">
+          <Link href="/">
+            {' '}
+            <LuHome />
+          </Link>
         </BreadcrumbItem>
 
         {arrayPathname?.map((item, index) => {
@@ -34,7 +36,7 @@ const BreadcrumbGso = () => {
           return (
             <BreadcrumbItem
               key={index}
-              className={`${
+              className={`hover:text-foreground ${
                 arrayPathname[arrayPathname.length - 1] === item
                   ? 'text-foreground'
                   : ''
