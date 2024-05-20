@@ -11,8 +11,6 @@ import {
   LucideHotel,
   LucideLandmark,
   LucideLandPlot,
-  LucideStar,
-  LucideThumbsUp,
 } from 'lucide-react'
 
 export const labels = [
@@ -85,24 +83,24 @@ export const priorities = [
 export const types = [
   {
     label: 'UNIDADE',
-    value: 1,
+    value: '1',
     icon: LucideHome,
   },
   {
     label: 'BATALHÃO',
-    value: 2,
+    value: '2',
     icon: LucideHotel,
   },
 
   {
     label: 'COMANDO',
-    value: 3,
+    value: '3',
     icon: LucideLandmark,
   },
 
   {
     label: 'INDEPENDENTE',
-    value: 4,
+    value: '4',
     icon: LucideLandPlot,
   },
 ]

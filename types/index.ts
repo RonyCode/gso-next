@@ -68,6 +68,9 @@ export type Member = {
   status: number
   entry_date: string
   excluded: number
+  email: string
+  function: string
+  imageMember: string
 }
 
 export type Car = {
@@ -99,7 +102,7 @@ export type EventProps = {
   title: string
   description: string
   group: string
-  cars: Car[] | null
+  cars: CarsUnity[] | null
   imgUnity: string
   type: string
   status: string

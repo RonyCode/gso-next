@@ -159,7 +159,7 @@ export const CardListEscala = ({
                       >
                         <AvatarImage
                           className="aspect-square rounded-full object-cover"
-                          src={item!.image}
+                          src={item!.imageCar}
                         />
                         <AvatarFallback>
                           {<RiPoliceCarLine size={36} />}

@@ -1,10 +1,9 @@
 'use client'
 
 import { ColumnDef } from '@tanstack/react-table'
-import { Checkbox } from '@/ui/checkbox'
 import { Avatar, AvatarFallback, AvatarImage } from '@radix-ui/react-avatar'
 import React from 'react'
-import { LucideBuilding2, LucidePhone, LucideUser } from 'lucide-react'
+import { LucideBuilding2, LucidePhone } from 'lucide-react'
 import { Member, Unidade } from '../../../../types/index'
 import { DataTableColumnHeader } from '@/components/DataTables/DataTableUnidades/data-table-column-header'
 import { types } from '@/components/DataTables/DataTableUnidades/data/data'
