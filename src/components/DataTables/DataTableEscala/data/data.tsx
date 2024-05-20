@@ -75,6 +75,7 @@ export const priorities = [
     icon: ArrowUpIcon,
   },
 ]
+
 export const types = [
   {
     label: 'Extra',

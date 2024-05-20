@@ -42,18 +42,48 @@ export interface Account {
   birthday: string
   file: FileType | null
 }
+export type Schedule = {
+  id: number
+  id_company: number
+  id_member_creator: number
+  date: string
+  hour_start: string
+  hour_finish: string
+  team: number
+  situation: number
+  type: number
+  status: number
+  date_creation: string
+  obs: string
+  excluded: number
+}
 export type Member = {
   id: number
+  id_company: number
+  id_car: number
+  id_schedule: number
+  id_function: number
   name: string
-  email: string
-  imageMember: string
-  role: string
-  status: string
-  company: string
-  date: string
-  function: string
+  competence: string
+  status: number
+  entry_date: string
+  excluded: number
 }
 
+export type Car = {
+  id: number
+  id_company: number
+  prefix: number
+  model: number
+  color: number
+  image: number
+  plate: number
+  local: number
+  type: number
+  condition_car: number
+  status: number
+  excluded: number
+}
 export type CarsUnity = {
   nameCar: string
   members: Member[]
@@ -69,7 +99,7 @@ export type EventProps = {
   title: string
   description: string
   group: string
-  cars: CarsUnity[] | null
+  cars: Car[] | null
   imgUnity: string
   type: string
   status: string
@@ -124,10 +154,14 @@ export interface Unidade {
   dateCreation: string
   phone: string
   type: number
-  director: number
-  manager: number
-  managerCompany: number
-  directorCompany: number
+  director: Member
+  manager: Member
+  managerCompany: Unidade
+  directorCompany: Unidade
+  companyMembers: Member[]
+  companyCars: Car[]
+  companySchedules: Schedule[]
+  companyMaterials: []
 }
 
 export interface Companies {

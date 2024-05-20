@@ -6,7 +6,14 @@ import {
   CrossCircledIcon,
   StopwatchIcon,
 } from '@radix-ui/react-icons'
-import { LucideHotel, LucideStar, LucideThumbsUp } from 'lucide-react'
+import {
+  LucideHome,
+  LucideHotel,
+  LucideLandmark,
+  LucideLandPlot,
+  LucideStar,
+  LucideThumbsUp,
+} from 'lucide-react'
 
 export const labels = [
   {
@@ -77,14 +84,26 @@ export const priorities = [
 ]
 export const types = [
   {
-    label: 'Extra',
-    value: 'extra',
-    icon: LucideStar,
+    label: 'UNIDADE',
+    value: 1,
+    icon: LucideHome,
   },
   {
-    label: 'Normal',
-    value: 'normal',
-    icon: LucideThumbsUp,
+    label: 'BATALHÃO',
+    value: 2,
+    icon: LucideHotel,
+  },
+
+  {
+    label: 'COMANDO',
+    value: 3,
+    icon: LucideLandmark,
+  },
+
+  {
+    label: 'INDEPENDENTE',
+    value: 4,
+    icon: LucideLandPlot,
   },
 ]
 

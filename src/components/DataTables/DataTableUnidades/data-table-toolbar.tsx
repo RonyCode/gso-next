@@ -5,10 +5,14 @@ import { Table } from '@tanstack/react-table'
 
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { DataTableViewOptions } from '../data-table-view-options'
 
-import { statuses, types, unities } from './data/data'
-import { DataTableFacetedFilter } from '../data-table-faceted-filter'
+import { DataTableFacetedFilter } from '@/components/DataTables/DataTableUnidades/data-table-faceted-filter'
+import { DataTableViewOptions } from '@/components/DataTables/DataTableUnidades/data-table-view-options'
+import {
+  statuses,
+  types,
+  unities,
+} from '@/components/DataTables/DataTableUnidades/data/data'
 
 interface DataTableToolbarProps<TData> {
   table: Table<TData>
@@ -22,7 +26,7 @@ export function DataTableToolbar<TData>({
   return (
     <div className="gird w-full  grid-cols-2 gap-2  md:grid-cols-3">
       <Input
-        placeholder="Filtrar escalas..."
+        placeholder="Filtrar unidades..."
         value={(table.getColumn('name')?.getFilterValue() as string) ?? ''}
         onChange={(event) =>
           table.getColumn('name')?.setFilterValue(event.target.value)

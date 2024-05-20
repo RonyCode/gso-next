@@ -7,8 +7,8 @@ import { Checkbox } from '@/components/ui/checkbox'
 
 import { labels, statuses, types, unities } from './data/data'
 import { Task } from './data/schema'
-import { DataTableColumnHeader } from '../data-table-column-header'
 import { DataTableRowActions } from '@/components/DataTables/DataTableDetalhesEscala/data-table-row-actions'
+import { DataTableColumnHeader } from '@/components/DataTables/DataTableDetalhesEscala/data-table-column-header'
 
 export const columnsDetalhesEscala: ColumnDef<Task>[] = [
   {

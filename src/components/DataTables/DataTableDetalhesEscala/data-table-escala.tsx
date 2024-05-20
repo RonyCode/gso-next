@@ -26,14 +26,14 @@ import {
 } from '@/ui/table'
 
 import { DataTablePagination } from './data-table-pagination'
-import { DataTableToolbar } from './DataTableEscala/data-table-toolbar'
+import { DataTableToolbar } from '@/components/DataTables/DataTableDetalhesEscala/data-table-toolbar'
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
   data: TData[]
 }
 
-export function DataTable<TData, TValue>({
+export function DataTableEscala<TData, TValue>({
   columns,
   data,
 }: DataTableProps<TData, TValue>) {

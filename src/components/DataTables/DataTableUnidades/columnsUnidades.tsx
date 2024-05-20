@@ -1,42 +1,46 @@
 'use client'
 
 import { ColumnDef } from '@tanstack/react-table'
-import { DataTableColumnHeader } from '../data-table-column-header'
 import { Checkbox } from '@/ui/checkbox'
 import { Avatar, AvatarFallback, AvatarImage } from '@radix-ui/react-avatar'
 import React from 'react'
 import { LucideBuilding2, LucidePhone, LucideUser } from 'lucide-react'
-import { Unidade } from '../../../../types/index'
+import { Member, Unidade } from '../../../../types/index'
+import { DataTableColumnHeader } from '@/components/DataTables/DataTableUnidades/data-table-column-header'
+import { types } from '@/components/DataTables/DataTableUnidades/data/data'
+import { FaRegAddressCard } from 'react-icons/fa'
+import { formatCpfCnpj } from '@/functions/formatCpfCnpj'
+import { DataTableRowActions } from '@/components/DataTables/DataTableUnidades/data-table-row-actions'
 
 export const columnsUnidades: ColumnDef<Unidade>[] = [
-  {
-    id: 'select',
-    header: ({ table }) => {
-      return (
-        <Checkbox
-          checked={
-            table.getIsAllPageRowsSelected() ||
-            (table.getIsSomePageRowsSelected() && 'indeterminate')
-          }
-          onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
-          aria-label="Select all"
-          className="translate-y-[2px]"
-        />
-      )
-    },
-    cell: ({ row }) => {
-      return (
-        <Checkbox
-          checked={row.getIsSelected()}
-          onCheckedChange={(value) => row.toggleSelected(!!value)}
-          aria-label="Select row"
-          className="translate-y-[2px]"
-        />
-      )
-    },
-    enableSorting: false,
-    enableHiding: false,
-  },
+  // {
+  //   id: 'select',
+  //   header: ({ table }) => {
+  //     return (
+  //       <Checkbox
+  //         checked={
+  //           table.getIsAllPageRowsSelected() ||
+  //           (table.getIsSomePageRowsSelected() && 'indeterminate')
+  //         }
+  //         onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
+  //         aria-label="Select all"
+  //         className="translate-y-[2px]"
+  //       />
+  //     )
+  //   },
+  //   cell: ({ row }) => {
+  //     return (
+  //       <Checkbox
+  //         checked={row.getIsSelected()}
+  //         onCheckedChange={(value) => row.toggleSelected(!!value)}
+  //         aria-label="Select row"
+  //         className="translate-y-[2px]"
+  //       />
+  //     )
+  //   },
+  //   enableSorting: false,
+  //   enableHiding: false,
+  // },
 
   {
     accessorKey: 'name',
@@ -45,7 +49,7 @@ export const columnsUnidades: ColumnDef<Unidade>[] = [
     ),
     cell: ({ row }) => {
       return (
-        <div className="flex items-center space-x-2">
+        <div className="flex w-64 items-center space-x-2 text-[0.9rem] text-muted-foreground">
           <Avatar
             className="flex h-10 w-10 items-center justify-center  rounded-full shadow-sm shadow-foreground transition-all
                         duration-300 hover:scale-[200%] md:h-20 md:w-20"
@@ -58,9 +62,17 @@ export const columnsUnidades: ColumnDef<Unidade>[] = [
           </Avatar>
           <div className="flex flex-col justify-center">
             <div>
-              <span className="flex items-center p-1">
+              <span className="flex items-center  p-1">
                 {' '}
-                <LucideUser size={16} className="mr-2" /> {row.getValue('name')}
+                <LucideBuilding2 size={16} className="mr-2" />{' '}
+                {row.getValue('name')}
+              </span>
+            </div>
+            <div>
+              {' '}
+              <span className="flex items-center  p-1">
+                <FaRegAddressCard size={16} className="mr-2" />{' '}
+                {formatCpfCnpj(row.original.cnpj)}
               </span>
             </div>
             <div>
@@ -81,30 +93,32 @@ export const columnsUnidades: ColumnDef<Unidade>[] = [
       <DataTableColumnHeader column={column} title="Tipo" />
     ),
     cell: ({ row }) => {
+      const type = types.find((type) => type.value === row.getValue('type'))
+      if (!type) {
+        return null
+      }
       return (
-        <div className="flex w-[120px] items-center ">
-          {row.getValue('type')}
+        <div className="flex w-full items-center text-[0.9rem] text-muted-foreground ">
+          {type.label}
         </div>
       )
     },
     filterFn: (row, id, value) => {
       return value.includes(row.getValue(id))
     },
-    // cell: ({ row }) => <div className="w-[40px]">{row.getValue('end')}</div>,
-    // enableSorting: true,
-    // enableHiding: true,
   },
 
   {
-    accessorKey: 'id',
+    accessorKey: 'director',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Unidade" />
+      <DataTableColumnHeader column={column} title="Comandante / Diretor" />
     ),
     cell: ({ row }) => {
+      const $director: Member = row.getValue('director')
       return (
-        <div className="flex w-[200px] items-center">
+        <div className="flex w-full items-center">
           <span className="mr-2 text-muted-foreground">
-            {row.getValue('id')}
+            {$director.competence} - {$director?.name}
           </span>
         </div>
       )
@@ -115,15 +129,17 @@ export const columnsUnidades: ColumnDef<Unidade>[] = [
   },
 
   {
-    accessorKey: 'unity',
+    accessorKey: 'manager',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Numero Unidade" />
+      <DataTableColumnHeader column={column} title="Subcomandante / Gerente" />
     ),
     cell: ({ row }) => {
+      const $manager: Member = row.getValue('manager')
+
       return (
-        <div className="flex w-[200px] items-center">
+        <div className="flex w-full items-center">
           <span className="mr-2 text-muted-foreground">
-            {row.getValue('unity')}
+            {$manager.competence} - {$manager?.name || 'N/A'}
           </span>
         </div>
       )
@@ -134,15 +150,17 @@ export const columnsUnidades: ColumnDef<Unidade>[] = [
   },
 
   {
-    accessorKey: 'status',
+    accessorKey: 'manager_company',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Status" />
+      <DataTableColumnHeader column={column} title="BBM / Uni.Gerente" />
     ),
     cell: ({ row }) => {
+      const $unidadeGerente: Unidade = row.getValue('manager_company')
+
       return (
-        <div className="flex w-[200px] items-center">
+        <div className="flex w-full items-center">
           <span className="mr-2 text-muted-foreground">
-            {row.getValue('status')}
+            {$unidadeGerente?.name ?? 'N/A'}
           </span>
         </div>
       )
@@ -153,15 +171,17 @@ export const columnsUnidades: ColumnDef<Unidade>[] = [
   },
 
   {
-    accessorKey: 'date',
+    accessorKey: 'director_company',
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Date" />
     ),
     cell: ({ row }) => {
+      const $unidadeDirector: Unidade = row.getValue('director_company')
+
       return (
         <div className="flex w-[200px] items-center">
           <span className="mr-2 text-muted-foreground">
-            {row.getValue('date')}
+            {$unidadeDirector?.name ?? 'N/A'}
           </span>
         </div>
       )
@@ -171,8 +191,8 @@ export const columnsUnidades: ColumnDef<Unidade>[] = [
     },
   },
 
-  // {
-  //   id: 'actions',
-  //   cell: ({ row }) => <DataTableRowActions row={row} />,
-  // },
+  {
+    id: 'actions',
+    cell: ({ row }) => <DataTableRowActions row={row} />,
+  },
 ]

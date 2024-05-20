@@ -4,11 +4,11 @@ import { EventProps } from '../../../types/index'
 import { LucideArrowBigLeft, LucideArrowBigRight } from 'lucide-react'
 import { Button } from '@/ui/button'
 import { useState } from 'react'
-import { DataTable } from '@/components/DataTables/data-table'
 import { columnsEscala } from '@/components/DataTables/DataTableEscala/columnsEscala'
 import { ModalGso } from '@/components/Modal/ModalGso/ModalGso'
 import CalendarGsoGrid from '@/components/CalendarGso/CalendarGsoGrid'
 import { CardListEscala } from '@/components/Cards/CardListEscala'
+import { DataTableEscala } from '@/components/DataTables/DataTableEscala/data-table-escala'
 
 type DaysMonthProps = {
   dias: number
@@ -220,7 +220,7 @@ const CalendarGso = ({ event }: { event: EventProps[] }) => {
           className={`col-start-1  col-end-13  mt-12 h-[80vh] w-full rounded-[5px] bg-background p-2 md:col-end-7 md:mt-0`}
         >
           <div>
-            <DataTable data={eventsList as []} columns={columnsEscala} />
+            <DataTableEscala data={eventsList as []} columns={columnsEscala} />
           </div>
         </div>
 

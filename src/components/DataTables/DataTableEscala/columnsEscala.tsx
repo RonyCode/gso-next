@@ -7,7 +7,7 @@ import { Badge } from '@/components/ui/badge'
 
 import { labels, statuses, types, unities } from './data/data'
 import { Task } from './data/schema'
-import { DataTableColumnHeader } from '../data-table-column-header'
+import { DataTableColumnHeader } from '@/components/DataTables/DataTableEscala/data-table-column-header'
 
 export const columnsEscala: ColumnDef<Task>[] = [
   // {
