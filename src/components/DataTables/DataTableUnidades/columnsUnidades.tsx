@@ -10,6 +10,7 @@ import { types } from '@/components/DataTables/DataTableUnidades/data/data'
 import { FaRegAddressCard } from 'react-icons/fa'
 import { formatCpfCnpj } from '@/functions/formatCpfCnpj'
 import { DataTableRowActions } from '@/components/DataTables/DataTableUnidades/data-table-row-actions'
+import { Badge } from '@/ui/badge'
 
 export const columnsUnidades: ColumnDef<Unidade>[] = [
   // {
@@ -44,102 +45,75 @@ export const columnsUnidades: ColumnDef<Unidade>[] = [
   {
     accessorKey: 'name',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Nome" />
+      <DataTableColumnHeader column={column} title="Dados Unidade" />
     ),
     cell: ({ row }) => {
       return (
-        <div className="flex w-64 items-center space-x-2 text-[0.9rem] text-muted-foreground">
-          <Avatar
-            className="flex h-10 w-10 items-center justify-center  rounded-full shadow-sm shadow-foreground transition-all
+        <>
+          <div className="flex w-64 items-center space-x-2 text-[0.9rem] text-muted-foreground">
+            <Avatar
+              className="flex h-10 w-10 items-center justify-center  rounded-full shadow-sm shadow-foreground transition-all
                         duration-300 hover:scale-[200%] md:h-20 md:w-20"
-          >
-            <AvatarImage
-              className="aspect-square rounded-full object-cover"
-              src={row.original.image}
-            />
-            <AvatarFallback>{<LucideBuilding2 size={36} />}</AvatarFallback>
-          </Avatar>
-          <div className="flex flex-col justify-center">
-            <div>
-              <span className="flex items-center  p-1">
+            >
+              <AvatarImage
+                className="aspect-square rounded-full object-cover"
+                src={row.original.image}
+              />
+              <AvatarFallback>{<LucideBuilding2 size={36} />}</AvatarFallback>
+            </Avatar>
+            <div className="flex flex-col justify-center">
+              <div>
+                <div className="flex items-center  p-1">
+                  {' '}
+                  <LucideBuilding2 size={16} className="mr-2" />{' '}
+                  {row.getValue('name')}
+                </div>
+              </div>
+              <div>
                 {' '}
-                <LucideBuilding2 size={16} className="mr-2" />{' '}
-                {row.getValue('name')}
-              </span>
-            </div>
-            <div>
-              {' '}
-              <span className="flex items-center  p-1">
-                <FaRegAddressCard size={16} className="mr-2" />{' '}
-                {formatCpfCnpj(row.original.cnpj)}
-              </span>
-            </div>
-            <div>
-              {' '}
-              <span className="flex items-center p-1">
-                <LucidePhone size={16} className="mr-2" /> {row.original.phone}
-              </span>
+                <div className="flex items-center  p-1">
+                  <FaRegAddressCard size={16} className="mr-2" />{' '}
+                  {formatCpfCnpj(row.original.cnpj)}
+                </div>
+              </div>
+              <div>
+                {' '}
+                <div className="flex items-center p-1">
+                  <LucidePhone size={16} className="mr-2" />{' '}
+                  {row.original.phone}
+                </div>
+              </div>
             </div>
           </div>
-        </div>
+        </>
       )
-    },
-  },
-
-  {
-    accessorKey: 'type',
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Tipo" />
-    ),
-    cell: ({ row }) => {
-      const type = types.find((type) => type.value === row.getValue('type'))
-      if (!type) {
-        return null
-      }
-      return (
-        <div className="flex w-full items-center text-[0.9rem] text-muted-foreground ">
-          {type.label}
-        </div>
-      )
-    },
-    filterFn: (row, id, value) => {
-      return value.includes(row.getValue(id))
     },
   },
 
   {
     accessorKey: 'director',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Comandante / Diretor" />
+      <DataTableColumnHeader column={column} title="Gestores" />
     ),
     cell: ({ row }) => {
       const $director: Member = row.getValue('director')
-      return (
-        <div className="flex w-full items-center">
-          <span className="mr-2 text-muted-foreground">
-            {$director.competence} - {$director?.name}
-          </span>
-        </div>
-      )
-    },
-    filterFn: (row, id, value) => {
-      return value.includes(row.getValue(id))
-    },
-  },
-
-  {
-    accessorKey: 'manager',
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Subcomandante / Gerente" />
-    ),
-    cell: ({ row }) => {
-      const $manager: Member = row.getValue('manager')
+      const $manager: Member = row.original.manager
 
       return (
         <div className="flex w-full items-center">
-          <span className="mr-2 text-muted-foreground">
-            {$manager.competence} - {$manager?.name || 'N/A'}
-          </span>
+          <div className="mr-2 flex flex-col space-y-1 text-muted-foreground">
+            <span>
+              {$director.competence} - {$director?.name} -{' '}
+              <Badge variant="secondary">CMD</Badge>
+            </span>
+
+            {$manager?.name && (
+              <span>
+                {$manager.competence} - {$manager?.name}{' '}
+                <Badge variant="secondary">SUB CMD</Badge>
+              </span>
+            )}
+          </div>
         </div>
       )
     },
@@ -151,16 +125,16 @@ export const columnsUnidades: ColumnDef<Unidade>[] = [
   {
     accessorKey: 'manager_company',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="BBM / Uni.Gerente" />
+      <DataTableColumnHeader column={column} title="Unidade Gestora" />
     ),
     cell: ({ row }) => {
       const $unidadeGerente: Unidade = row.getValue('manager_company')
 
       return (
         <div className="flex w-full items-center">
-          <span className="mr-2 text-muted-foreground">
+          <div className="mr-2 text-muted-foreground">
             {$unidadeGerente?.name ?? 'N/A'}
-          </span>
+          </div>
         </div>
       )
     },
@@ -170,28 +144,35 @@ export const columnsUnidades: ColumnDef<Unidade>[] = [
   },
 
   {
-    accessorKey: 'director_company',
+    accessorKey: 'type',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Date" />
+      <DataTableColumnHeader column={column} title="Tipo" />
     ),
     cell: ({ row }) => {
-      const $unidadeDirector: Unidade = row.getValue('director_company')
-
+      const type = types.find(
+        (type) => type.value === row.getValue('type')?.toString(),
+      )
+      if (!type) {
+        return null
+      }
       return (
-        <div className="flex w-[200px] items-center">
-          <span className="mr-2 text-muted-foreground">
-            {$unidadeDirector?.name ?? 'N/A'}
-          </span>
-        </div>
+        <Badge
+          variant="secondary"
+          className="flex w-full items-center justify-center"
+        >
+          {type.label}
+        </Badge>
       )
     },
     filterFn: (row, id, value) => {
       return value.includes(row.getValue(id))
     },
   },
-
   {
     id: 'actions',
     cell: ({ row }) => <DataTableRowActions row={row} />,
+    filterFn: (row, id, value) => {
+      return value.includes(row.getValue(id))
+    },
   },
 ]

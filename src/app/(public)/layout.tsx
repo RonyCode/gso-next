@@ -9,10 +9,8 @@ export default function PublicLayout({
 }) {
   return (
     <>
-      <div>
-        {children}
-        <FooterLayout />
-      </div>
+      {children}
+      <FooterLayout />
     </>
   )
 }

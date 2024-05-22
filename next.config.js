@@ -17,6 +17,16 @@ const nextConfig = {
     },
   },
   reactStrictMode: true,
+  // experimental: {
+  //   turbo: {
+  //     rules: {
+  //       '*.svg': {
+  //         loaders: ['@ducanh2912/next-pwa'],
+  //         as: '*.js',
+  //       },
+  //     },
+  //   },
+  // },
   images: {
     remotePatterns: [
       {

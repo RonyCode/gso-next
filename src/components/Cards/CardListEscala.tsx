@@ -17,6 +17,7 @@ import { MdOutlineMapsHomeWork } from 'react-icons/md'
 import { Label } from '@/ui/label'
 import { RiPoliceCarLine } from 'react-icons/ri'
 import { BsBuildingCheck } from 'react-icons/bs'
+import { Badge } from '@/ui/badge'
 
 type CardProps = {
   itemEvent: EventProps
@@ -34,11 +35,29 @@ export const CardListEscala = ({
         <CardHeader className="justify-center p-2 md:p-3">
           <div className="m-0 flex justify-evenly p-0 md:justify-between">
             <CardTitle className="flex items-center gap-1">
-              <i>
-                <GrGroup size={20} />
-              </i>
               <div className="text-md font-bold md:text-xl">
-                {itemEvent.group}
+                <Badge
+                  className={` block  ${
+                    itemEvent.group?.charAt(0).toUpperCase() === 'A'
+                      ? 'border-primary text-primary'
+                      : itemEvent.group?.charAt(0).toUpperCase() === 'B'
+                        ? 'border-blue-500 text-blue-500'
+                        : itemEvent.group?.charAt(0).toUpperCase() === 'C'
+                          ? 'border-green-600 text-green-600'
+                          : itemEvent.group?.charAt(0).toUpperCase() === 'D'
+                            ? 'border-yellow-400 text-yellow-400'
+                            : itemEvent.group?.charAt(0).toUpperCase() === 'E'
+                              ? 'border-[#9400d3] text-[#9400d3]'
+                              : ''
+                  }`}
+                  variant="outline"
+                >
+                  <span className="p flex items-center gap-1 md:p-1 md:text-[14px]">
+                    {' '}
+                    <GrGroup />
+                    <p>{itemEvent.group}</p>
+                  </span>
+                </Badge>{' '}
               </div>
             </CardTitle>
             <span className="flex items-center gap-1">

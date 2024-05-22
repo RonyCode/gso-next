@@ -8,9 +8,9 @@ export default function PrivateLayout({
   children: React.ReactNode
 }) {
   return (
-    <section>
+    <>
       {children}
       <FooterNormal />
-    </section>
+    </>
   )
 }

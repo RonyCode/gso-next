@@ -8,11 +8,7 @@ import { Input } from '@/components/ui/input'
 
 import { DataTableFacetedFilter } from '@/components/DataTables/DataTableUnidades/data-table-faceted-filter'
 import { DataTableViewOptions } from '@/components/DataTables/DataTableUnidades/data-table-view-options'
-import {
-  statuses,
-  types,
-  unities,
-} from '@/components/DataTables/DataTableUnidades/data/data'
+import { types } from '@/components/DataTables/DataTableUnidades/data/data'
 
 interface DataTableToolbarProps<TData> {
   table: Table<TData>
@@ -35,29 +31,11 @@ export function DataTableToolbar<TData>({
       />
       <div className=" flex justify-between gap-1 pt-2">
         <div>
-          {table.getColumn('status') && (
-            <DataTableFacetedFilter
-              column={table.getColumn('status')}
-              title="Situação"
-              options={statuses}
-            />
-          )}
-        </div>
-        <div>
           {table.getColumn('type') && (
             <DataTableFacetedFilter
               column={table.getColumn('type')}
               title="Tipo"
               options={types}
-            />
-          )}
-        </div>
-        <div>
-          {table.getColumn('id') && (
-            <DataTableFacetedFilter
-              column={table.getColumn('id')}
-              title="Unidades"
-              options={unities}
             />
           )}
         </div>

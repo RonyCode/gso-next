@@ -149,22 +149,31 @@ export interface TokenUser {
 
 export interface Unidade {
   idCorporation: string
+  id_corporation: number
   idCompany: string
+  id_company: number
   name: string
   cnpj: string
   image: string
   address: Address
   dateCreation: string
+  date_creation: string
   phone: string
   type: number
   director: Member
   manager: Member
   managerCompany: Unidade
+  manager_company: Unidade
   directorCompany: Unidade
+  director_company: Unidade
   companyMembers: Member[]
+  company_members: Member[]
   companyCars: Car[]
+  company_cars: Car[]
   companySchedules: Schedule[]
+  company_schedules: Schedule[]
   companyMaterials: []
+  company_materials: []
 }
 
 export interface Companies {

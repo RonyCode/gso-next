@@ -6,7 +6,7 @@ export async function GET(request: Request) {
   const idCompany = searchParams.get('id-company')
 
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_GSO}/api/corporation/companies?id-corporation=${idCorporation}&id-company=${idCompany}`,
+    `${process.env.NEXT_PUBLIC_API_GSO}/api/corporation/company?id-corporation=${idCorporation}&id-company=${idCompany}`,
     {
       method: 'GET',
       headers: {
@@ -20,6 +20,6 @@ export async function GET(request: Request) {
       { status: res.status },
     )
   }
-  const data = await res.json()
-  return NextResponse.json(data)
+  const { companies } = await res.json()
+  return NextResponse.json(companies)
 }

@@ -13,6 +13,7 @@ import { cn } from '@/lib/utils'
 import { Separator } from '@/ui/separator'
 import React from 'react'
 import { ModalProps } from '../../../../types/index'
+import { Badge } from '@/ui/badge'
 
 export function ModalGso({
   title,

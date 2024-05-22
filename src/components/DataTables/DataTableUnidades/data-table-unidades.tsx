@@ -66,7 +66,6 @@ export function DataTableUnidades<TData, TValue>({
     getFacetedRowModel: getFacetedRowModel(),
     getFacetedUniqueValues: getFacetedUniqueValues(),
   })
-
   return (
     <div className="w-full space-y-4">
       <DataTableToolbar table={table} />

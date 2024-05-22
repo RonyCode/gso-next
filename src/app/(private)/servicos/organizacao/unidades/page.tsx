@@ -1,8 +1,8 @@
 import { CardDefault } from '@/components/Cards/CardDefault'
 import { LucideBuilding } from 'lucide-react'
 import { getAllUnidades } from '@/lib/GetAllUnidades'
-import { columnsUnidades } from '@/components/DataTables/DataTableUnidades/columnsUnidades'
 import { DataTableUnidades } from '@/components/DataTables/DataTableUnidades/data-table-unidades'
+import { columnsUnidades } from '@/components/DataTables/DataTableUnidades/columnsUnidades'
 
 const Unidades = async () => {
   const { companies } = await getAllUnidades('15')
@@ -14,7 +14,6 @@ const Unidades = async () => {
         image="/images/bannerbm.jpg"
         icon={<LucideBuilding />}
       >
-        {/* <CardListUnidade itemUnidade={itensUnidades} /> */}
         <DataTableUnidades data={companies as []} columns={columnsUnidades} />
       </CardDefault>
     </>

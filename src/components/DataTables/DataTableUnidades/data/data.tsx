@@ -1,7 +1,4 @@
 import {
-  ArrowDownIcon,
-  ArrowRightIcon,
-  ArrowUpIcon,
   CheckCircledIcon,
   CrossCircledIcon,
   StopwatchIcon,
@@ -63,23 +60,6 @@ export const statuses = [
   },
 ]
 
-export const priorities = [
-  {
-    label: 'Low',
-    value: 'low',
-    icon: ArrowDownIcon,
-  },
-  {
-    label: 'Medium',
-    value: 'medium',
-    icon: ArrowRightIcon,
-  },
-  {
-    label: 'High',
-    value: 'high',
-    icon: ArrowUpIcon,
-  },
-]
 export const types = [
   {
     label: 'UNIDADE',

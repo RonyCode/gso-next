@@ -76,11 +76,11 @@ export default function RootLayout({
           >
             <Providers>
               <NavbarMain />
-              <main className="flex min-h-screen w-full  flex-col bg-gradient-to-t from-background to-secondary pt-[68px]">
-                <section className="min-h-screen w-full flex-1 flex-grow ">
+              <div className="flex min-h-screen w-full  flex-col bg-gradient-to-t from-background to-secondary pt-[68px]">
+                <div className="min-h-screen w-full flex-1 flex-grow ">
                   {children}
-                </section>
-              </main>
+                </div>
+              </div>
             </Providers>{' '}
           </ThemeProvider>
         </Suspense>
