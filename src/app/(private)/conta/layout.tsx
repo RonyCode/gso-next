@@ -72,7 +72,7 @@ export default function ProfileLayout({
   children,
 }: {
   children: React.ReactNode
-}) {
+}): JSX.Element {
   return (
     <>
       <div className="min-h-screen border-t">

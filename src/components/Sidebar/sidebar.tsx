@@ -1,30 +1,31 @@
 'use client'
 
-import { cn } from '@/lib/utils'
-import { Button, buttonVariants } from '@/ui/button'
-import Link from 'next/link'
-import React, { ReactNode } from 'react'
-import { usePathname } from 'next/navigation'
-import { Avatar, AvatarFallback, AvatarImage } from '@/ui/avatar'
 import { useSession } from 'next-auth/react'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+import React, { type ReactNode } from 'react'
+import { LuList } from 'react-icons/lu'
+
 import { EditPhoto } from '@/components/EditPhoto/EditPhoto'
 import { GetFirstLettersNameUser } from '@/functions/GetFirstLettersNameUser'
-import { LuList } from 'react-icons/lu'
-import { Dialog, DialogClose, DialogContent, DialogTrigger } from '@/ui/dialog'
 import { GetWindowSize } from '@/functions/GetWindowSize'
+import { cn } from '@/lib/utils'
+import { Avatar, AvatarFallback, AvatarImage } from '@/ui/avatar'
+import { Button, buttonVariants } from '@/ui/button'
+import { Dialog, DialogClose, DialogContent, DialogTrigger } from '@/ui/dialog'
 
 interface SidebarNavProps extends React.HTMLAttributes<HTMLElement> {
-  items: {
+  items: Array<{
     titleGroup?: string
-    group: {
+    group: Array<{
       title: string
       href: string
       icon: ReactNode
-    }[]
-  }[]
+    }>
+  }>
 }
 
-export function Sidebar({ className, items }: SidebarNavProps) {
+export function Sidebar({ className, items }: SidebarNavProps): JSX.Element {
   const pathname = usePathname()
   const { data: session } = useSession()
   const image = session?.image
@@ -47,7 +48,7 @@ export function Sidebar({ className, items }: SidebarNavProps) {
           <Dialog>
             <DialogTrigger asChild>
               <AvatarImage
-                src={image || '/images/avatar.svg'}
+                src={image !== null ? image : '/images/avatar.svg'}
                 alt="@shadcn"
                 className="cursor-pointer object-contain"
               />
@@ -55,7 +56,7 @@ export function Sidebar({ className, items }: SidebarNavProps) {
             <DialogContent className={cn('min-w-[50vw]', className)}>
               {
                 <img
-                  src={image || '/images/avatar.svg'}
+                  src={image !== null ? image : '/images/avatar.svg'}
                   alt="Selecione um arquivo"
                   className="m-auto h-[80vh] object-contain"
                 />

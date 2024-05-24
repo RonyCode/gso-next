@@ -82,23 +82,25 @@ export const EditProfileForm = ({
   const { maskCpfCnpj, maskPhone, maskZipCode } = useMask()
   const router = useRouter()
 
-  const defaultValues = {
-    id: user?.id.toString() !== '' || '',
-    nome: user?.account?.name != null || '',
-    image: user?.account?.image != null || '',
-    email: user?.userAuth?.email != null || '',
-    cpf: maskCpfCnpj(user?.account?.cpf) !== '' || '',
-    data_nascimento:
-      moment(user?.account?.birthday).format('DD/MM/yyyy') !== '' || '',
-    telefone: maskPhone(user?.account?.phone) !== '' || '',
-    cep: maskZipCode(user?.address?.zipCode) !== '' || '',
-    endereco: user?.address?.address != null || '',
-    complemento: user?.address?.complement != null || '',
-    sigla: user?.address?.shortName != null || '',
-    numero: user?.address?.number != null || '',
-    bairro: user?.address?.district != null || '',
-    estado: user?.address?.shortName != null || '',
-    cidade: user?.address?.city != null || '',
+  let defaultValues = {}
+  if (user?.account?.name !== 'user-external') {
+    defaultValues = {
+      id: user?.id.toString(),
+      nome: user?.account?.name,
+      image: user?.account?.image,
+      email: user?.userAuth?.email,
+      cpf: maskCpfCnpj(user?.account?.cpf),
+      data_nascimento: moment(user?.account?.birthday).format('DD/MM/yyyy'),
+      telefone: maskPhone(user?.account?.phone),
+      cep: maskZipCode(user?.address?.zipCode),
+      endereco: user?.address?.address,
+      complemento: user?.address?.complement,
+      sigla: user?.address?.shortName,
+      numero: user?.address?.number,
+      bairro: user?.address?.district,
+      estado: user?.address?.shortName,
+      cidade: user?.address?.city,
+    }
   }
 
   const form = useForm<EditUserSchema>({

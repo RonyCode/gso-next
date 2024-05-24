@@ -1,6 +1,8 @@
 'use client'
+import { signOut, useSession } from 'next-auth/react'
 import Link from 'next/link'
-
+import { usePathname, useRouter } from 'next/navigation'
+import React, { type ReactElement, useEffect, useRef, useState } from 'react'
 import {
   LuComponent,
   LuContact,
@@ -13,8 +15,17 @@ import {
   LuSiren,
   LuUser,
 } from 'react-icons/lu'
-import React, { ReactElement, useEffect, useRef, useState } from 'react'
+
 import Logo from '../../../public/images/Logo'
+
+import { ModeToggle } from '@/components/Buttoms/ModeTogle'
+import { deleteCookies } from '@/components/Buttoms/SignOutButton/LogoutAction'
+import LoadingPage from '@/components/Loadings/LoadingPage'
+import NotificationUser from '@/components/Notification/notificationUser'
+import { GetFirstLettersNameUser } from '@/functions/GetFirstLettersNameUser'
+import { cn } from '@/lib/utils'
+import { Avatar, AvatarFallback, AvatarImage } from '@/ui/avatar'
+import { Button } from '@/ui/button'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -25,21 +36,60 @@ import {
   DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from '@/ui/dropdown-menu'
-import { Button } from '@/ui/button'
-import { Avatar, AvatarFallback, AvatarImage } from '@/ui/avatar'
-import { ModeToggle } from '@/components/Buttoms/ModeTogle'
-import { deleteCookies } from '@/components/Buttoms/SignOutButton/LogoutAction'
-import { signOut, useSession } from 'next-auth/react'
-import { usePathname, useRouter } from 'next/navigation'
-import { cn } from '@/lib/utils'
-import NotificationUser from '@/components/Notification/notificationUser'
-import LoadingPage from '@/components/Loadings/LoadingPage'
-import { GetFirstLettersNameUser } from '@/functions/GetFirstLettersNameUser'
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from '@/ui/navigation-menu'
+
+const components: Array<{ title: string; href: string; description: string }> =
+  [
+    {
+      title: 'Escala',
+      href: '/servicos/escala',
+      description: 'Serviço de escala dos membros de cada unidade',
+    },
+    {
+      title: 'Ocorrência',
+      href: '/servicos/ocorrencias',
+      description: 'Serviço de ocorrência.',
+    },
+    {
+      title: 'Estatísticas',
+      href: '/servicos/#',
+      description: 'Serviço para obter estatísticas do sistema.',
+    },
+    {
+      title: 'Aplicativo',
+      href: '/servicos/#',
+      description: 'Visually or semantically separates content.',
+    },
+    {
+      title: 'Historico',
+      href: '/servicos/#',
+      description: 'Busque a ocorrência mais recente através do histórico .',
+    },
+    {
+      title: 'Área do Gestor',
+      href: '/servicos/#',
+      description:
+        'Serviço para gerenciar o sistema de unidades, escalas e afins.',
+    },
+    {
+      title: 'Organização',
+      href: '/servicos/organizacao',
+      description: 'Serviço para gerenciar o organização.',
+    },
+  ]
 
 export function NavbarMain({
+  // eslint-disable-next-line react/prop-types
   className,
   ...props
-}: React.HTMLAttributes<HTMLElement>) {
+}: React.HTMLAttributes<HTMLElement>): JSX.Element {
   const { data: session } = useSession()
   const [state, setState] = useState(false)
   const [showNavBar, setShowNavBar] = useState(false)
@@ -57,7 +107,7 @@ export function NavbarMain({
     })
   }, [showNavBar])
 
-  const handleClick = async () => {
+  const handleClick = async (): Promise<void> => {
     deleteCookies()
     await signOut({
       redirect: false,
@@ -65,7 +115,11 @@ export function NavbarMain({
     router.push('/')
   }
 
-  type MenuTypes = { title: string; icon: ReactElement; path: string }
+  interface MenuTypes {
+    title: string
+    icon: ReactElement
+    path: string
+  }
   const pathname = usePathname()
 
   const menus: MenuTypes[] = [
@@ -92,11 +146,13 @@ export function NavbarMain({
     >
       <div
         className={`fixed h-screen  w-screen ${state ? 'block ' : 'hidden '}`}
-        onClick={() => setState(false)}
+        onClick={() => {
+          setState(false)
+        }}
       ></div>
       <nav
         className={cn(
-          'relative mx-auto flex items-center justify-between px-4 md:container lg:py-0',
+          `${state ? 'p-4' : 'px-4'} relative mx-auto flex items-center justify-between  md:container lg:py-0`,
           className,
         )}
       >
@@ -107,7 +163,9 @@ export function NavbarMain({
           <div className={`md:hidden  ${state ? 'hidden  ' : 'block '}`}>
             <button
               className="  top-0 rounded-md p-3 outline-none focus:border focus:border-gray-400 "
-              onClick={() => setState(!state)}
+              onClick={() => {
+                setState(!state)
+              }}
             >
               <LuMenu />
             </button>
@@ -122,37 +180,63 @@ export function NavbarMain({
           <Link href="/" className=" flex w-screen justify-center  md:hidden">
             <Logo width={100} />
           </Link>
-          <ul className="  space-y-4  md:flex  md:items-center md:justify-center md:space-x-6 md:space-y-0  ">
+          <ul className="  md:flex  md:items-center md:justify-center md:space-x-6 md:space-y-0  ">
             {menus.map((item, idx) => (
               <li
                 key={idx}
                 className="text-[#e5e7eb]/60 transition-colors hover:text-[#e5e7eb]/80"
               >
                 <div className="flex items-center space-x-1 transition-colors hover:text-primary/80">
-                  <label
-                    className={` hover:text-primary/80 ${item.path === pathname ? 'text-primary/60' : ''}`}
-                  >
-                    {item.icon}
-                  </label>
-                  <Link
-                    className="text-foreground/60 hover:text-foreground/80 "
-                    href={item.path}
-                  >
-                    {item.title}
-                  </Link>
+                  <NavigationMenu className=" m-0  p-0">
+                    <NavigationMenuList className=" m-0  p-0">
+                      <NavigationMenuItem className=" m-0  p-0">
+                        <NavigationMenuTrigger className="text-md m-0 gap-1 space-x-0 bg-transparent p-0 outline-none hover:bg-transparent focus:bg-transparent md:flex ">
+                          <Link
+                            className="flex  items-center justify-center gap-1 text-foreground/60 hover:text-foreground/80 md:space-x-6 md:space-y-0 "
+                            href={item.path}
+                          >
+                            <label
+                              className={` hover:text-primary/80 ${item.path === pathname ? 'text-primary/60' : ''}`}
+                            >
+                              {item.icon}
+                            </label>{' '}
+                            {item.title}
+                          </Link>
+                        </NavigationMenuTrigger>
+
+                        <NavigationMenuContent>
+                          {item.title === 'Serviços' && (
+                            <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
+                              {components.map((component) => (
+                                <ListItem
+                                  key={component.title}
+                                  title={component.title}
+                                  href={component.href}
+                                >
+                                  {component.description}
+                                </ListItem>
+                              ))}
+                            </ul>
+                          )}
+                        </NavigationMenuContent>
+                      </NavigationMenuItem>
+                    </NavigationMenuList>
+                  </NavigationMenu>
                 </div>
               </li>
             ))}
           </ul>
         </div>
-        {session?.user ? (
+        <ModeToggle
+          className={`absolute  right-6  md:relative ${state ? 'absolute bottom-3' : 'relative right-28 md:right-4 '}`}
+        />
+
+        {session?.user != null ? (
           <div
-            className={`absolute right-3  flex items-center justify-center  ${
+            className={`absolute right-3 flex  items-center justify-center md:relative  ${
               state ? ' flex flex-col-reverse items-stretch gap-2' : ' md:flex'
             }`}
           >
-            <ModeToggle className="mr-2" />
-
             <React.Suspense fallback={<LoadingPage pending={true} />}>
               <NotificationUser />
             </React.Suspense>
@@ -164,7 +248,11 @@ export function NavbarMain({
                 >
                   <Avatar className="h-10 w-10 lg:h-12 lg:w-12">
                     <AvatarImage
-                      src={session?.image || '/images/avatar.svg'}
+                      src={
+                        session?.image !== null
+                          ? session?.image
+                          : '/images/avatar.svg'
+                      }
                       alt="@shadcn"
                       style={{ objectFit: 'contain' }}
                     />
@@ -218,6 +306,7 @@ export function NavbarMain({
                 </DropdownMenuGroup>
                 <DropdownMenuSeparator />
 
+                {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
                 <DropdownMenuItem onClick={handleClick}>
                   Sair
                   <DropdownMenuShortcut>
@@ -228,7 +317,7 @@ export function NavbarMain({
             </DropdownMenu>
           </div>
         ) : (
-          <p className={'absolute right-5 ' + `${state && 'hidden'}`}>
+          <p className={' right-5 ' + `${state && 'hidden'}`}>
             <Link
               href="/auth"
               className="flex items-center space-x-1  text-[#e5e7eb]/60 hover:text-primary/80"
@@ -244,3 +333,29 @@ export function NavbarMain({
     </header>
   )
 }
+const ListItem = React.forwardRef<
+  React.ElementRef<'a'>,
+  React.ComponentPropsWithoutRef<'a'>
+  // eslint-disable-next-line react/prop-types
+>(({ className, title, children, ...props }, ref) => {
+  return (
+    <li>
+      <NavigationMenuLink asChild>
+        <a
+          ref={ref}
+          className={cn(
+            'block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground',
+            className,
+          )}
+          {...props}
+        >
+          <div className="text-sm font-medium leading-none">{title}</div>
+          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+            {children}
+          </p>
+        </a>
+      </NavigationMenuLink>
+    </li>
+  )
+})
+ListItem.displayName = 'ListItem'

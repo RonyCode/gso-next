@@ -52,12 +52,12 @@ export async function CardDefault({
           <CardTitle>
             <div className="flex flex-col items-start p-3 md:p-6 ">
               <div className="mb-2  flex items-center gap-1">
-                <i>{icon}</i>
+                <span>{icon}</span>
                 <span>{title}</span>
               </div>
               <CardDescription>
                 <div className="flex  items-center gap-1  ">
-                  <span>{iconDescription}</span>
+                  <div>{iconDescription}</div>
                   {description}
                 </div>
               </CardDescription>

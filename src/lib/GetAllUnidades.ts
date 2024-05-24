@@ -1,5 +1,6 @@
+import { type Companies } from '../../types'
+
 import { fetchWrapper } from '@/functions/fetch'
-import { Companies } from '../../types'
 
 export const getAllUnidades = async (idCorporation: string) => {
   return await fetchWrapper<Companies>(
@@ -8,6 +9,9 @@ export const getAllUnidades = async (idCorporation: string) => {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
+      },
+      next: {
+        revalidate: 10,
       },
     },
   )

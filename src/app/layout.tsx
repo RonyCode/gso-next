@@ -1,12 +1,13 @@
 import '../../styles/globals.css'
-import { Providers } from '@/providers'
-import { ThemeProvider } from '@/providers/ThemeProvider/ThemeProvider'
-import { fontSans } from '@/lib/fonts'
+import { type Metadata, type Viewport } from 'next'
 import { Suspense } from 'react'
+
 import LoadingPage from '@/components/Loadings/LoadingPage'
 import { NavbarMain } from '@/components/Nav/NavbarMain'
+import { fontSans } from '@/lib/fonts'
 import { cn } from '@/lib/utils'
-import { Metadata, Viewport } from 'next'
+import { Providers } from '@/providers'
+import { ThemeProvider } from '@/providers/ThemeProvider/ThemeProvider'
 
 const APP_NAME = 'GSO'
 const APP_DEFAULT_TITLE = 'GSO'
@@ -58,9 +59,9 @@ export default function RootLayout({
   children,
 }: {
   children: React.ReactNode
-}) {
+}): JSX.Element {
   return (
-    <html lang="pt-BR">
+    <html lang="pt-BR" suppressHydrationWarning={true}>
       <body
         className={cn(
           ' m-0 h-screen min-h-screen w-screen  overflow-x-hidden p-0 font-sans antialiased',

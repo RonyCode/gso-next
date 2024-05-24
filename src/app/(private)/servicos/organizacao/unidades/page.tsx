@@ -1,3 +1,4 @@
+import { revalidatePath } from 'next/cache'
 import React from 'react'
 import { LuBuilding } from 'react-icons/lu'
 
@@ -8,6 +9,7 @@ import { getAllUnidades } from '@/lib/GetAllUnidades'
 
 const Unidades = async () => {
   const { companies } = await getAllUnidades('15')
+  revalidatePath('/')
   return (
     <>
       <CardDefault

@@ -1,5 +1,16 @@
 'use client'
+import { type User } from 'next-auth'
+import { useSession } from 'next-auth/react'
+import Image from 'next/image'
+import { useRouter } from 'next/navigation'
 import React, { useEffect, useState, useTransition } from 'react'
+import { useForm } from 'react-hook-form'
+import { LuCamera, LuCheckCircle } from 'react-icons/lu'
+
+import LoadingPage from '@/components/Loadings/LoadingPage'
+import { cn } from '@/lib/utils'
+import { FileSchema } from '@/schemas/FileSchema'
+import { Button } from '@/ui/button'
 import {
   Dialog,
   DialogClose,
@@ -9,14 +20,6 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/ui/dialog'
-import { Button } from '@/ui/button'
-import { Input } from '@/ui/input'
-import { cn } from '@/lib/utils'
-import { LuCamera, LuCheckCircle } from 'react-icons/lu'
-import { useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { toast } from '@/ui/use-toast'
-import LoadingPage from '@/components/Loadings/LoadingPage'
 import {
   Form,
   FormControl,
@@ -25,25 +28,41 @@ import {
   FormLabel,
   FormMessage,
 } from '@/ui/form'
-import { FileSchema } from '@/schemas/FileSchema'
-import Image from 'next/image'
-import axios, { AxiosProgressEvent } from 'axios'
-import { useSession } from 'next-auth/react'
-import { User } from 'next-auth'
-import { useRouter } from 'next/navigation'
+import { Input } from '@/ui/input'
+import { toast } from '@/ui/use-toast'
+import { zodResolver } from '@hookform/resolvers/zod'
+import axios, { type AxiosProgressEvent } from 'axios'
 
 type EditPhotoProps = {
   className?: string
 } & React.ComponentProps<typeof Dialog>
 
-export const EditPhoto = ({ className, ...props }: EditPhotoProps) => {
+export const EditPhoto = ({
+  className,
+  ...props
+}: EditPhotoProps): JSX.Element => {
   const [pending, startTransition] = useTransition()
   const [previewUrl, setPreviewUrl] = useState<string | null>(null)
   const [file, setFile] = useState<File | null>(null)
   const [open, setOpen] = useState(false)
   const [percent, setPercent] = useState<number | null>(0)
   const { data: session, update } = useSession()
-  const [user, setUser] = useState<User>({} as User)
+  const [user, setUser] = useState<User>({
+    access_token: '',
+    date_creation_token: 0,
+    date_expires_token: 0,
+    email: '',
+    expires_at: 0,
+    id: '',
+    id_message: '',
+    image: '',
+    name: '',
+    nome: '',
+    picture: '',
+    refresh_token: '',
+    senha: '',
+    token: '',
+  })
   const router = useRouter()
 
   const form = useForm<FileSchema>({
@@ -59,7 +78,7 @@ export const EditPhoto = ({ className, ...props }: EditPhotoProps) => {
   const fileRef = form.register('file_image')
 
   // 2. Define a submit handler.
-  const handleSubmit = (data: FileSchema) => {
+  const handleSubmit = (data: FileSchema): void => {
     startTransition(async () => {
       const token = session?.token
 
@@ -102,27 +121,28 @@ export const EditPhoto = ({ className, ...props }: EditPhotoProps) => {
     })
   }
 
-  const onUploadProgress = (progressEvent: AxiosProgressEvent) => {
+  const onUploadProgress = (progressEvent: AxiosProgressEvent): void => {
     const { loaded, total } = progressEvent
-    const percent = Math.floor((loaded * 100) / total!)
+    if (total == null) return
+    const percent = Math.floor((loaded * 100) / total)
     setPercent(percent)
   }
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const file = e.target.files?.[0] ?? null
     setFile(file)
 
-    if (previewUrl) {
+    if (previewUrl != null) {
       URL.revokeObjectURL(previewUrl)
     }
-    if (file) {
+    if (file != null) {
       const url = URL.createObjectURL(file)
       setPreviewUrl(url)
     } else {
       setPreviewUrl(null)
     }
   }
-  const handleResetValues = () => {
+  const handleResetValues = (): void => {
     setFile(null)
     setPercent(0)
     setPreviewUrl(null)
@@ -130,7 +150,7 @@ export const EditPhoto = ({ className, ...props }: EditPhotoProps) => {
   }
 
   useEffect(() => {
-    if (session) {
+    if (session != null) {
       setUser(session.user as User)
     }
   }, [session])
@@ -139,7 +159,9 @@ export const EditPhoto = ({ className, ...props }: EditPhotoProps) => {
     <>
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
-          <LuCamera className="h-9 w-9 rounded-full border-2 border-foreground/50 bg-accent/50 p-1 text-foreground/50 backdrop-blur  hover:border-foreground hover:text-foreground " />
+          <div>
+            <LuCamera className="h-9 w-9 rounded-full border-2 border-foreground/50 bg-accent/50 p-1 text-foreground/50 backdrop-blur  hover:border-foreground hover:text-foreground " />
+          </div>
         </DialogTrigger>
         <DialogContent className={cn(' w-screen', className)} {...props}>
           <DialogHeader>
@@ -152,6 +174,7 @@ export const EditPhoto = ({ className, ...props }: EditPhotoProps) => {
             <LoadingPage pending={pending} />
             <Form {...form}>
               <form
+                /* eslint-disable-next-line @typescript-eslint/no-misused-promises */
                 onSubmit={form.handleSubmit(async (data) => {
                   handleSubmit(data)
                 })}
@@ -179,7 +202,7 @@ export const EditPhoto = ({ className, ...props }: EditPhotoProps) => {
                     )
                   }}
                 />
-                {previewUrl && file && (
+                {previewUrl != null && file != null && (
                   <div className="  mt-3 w-full rounded-2xl ">
                     {file.type.startsWith('image/') ? (
                       <Image
@@ -201,7 +224,7 @@ export const EditPhoto = ({ className, ...props }: EditPhotoProps) => {
                         className=" rounded-full bg-secondary   p-0.5 text-center text-xs font-medium leading-none text-foreground"
                         style={{ width: percent + '%' }}
                       >
-                        {percent! <= 100 && `${percent}%`}
+                        {percent != null && percent <= 100 && `${percent}%`}
                         <span className="absolute bottom-[100px] right-5 stroke-2  text-green-500">
                           {percent === 100 && <LuCheckCircle size={30} />}
                         </span>
@@ -215,7 +238,7 @@ export const EditPhoto = ({ className, ...props }: EditPhotoProps) => {
                       type="button"
                       onClick={handleResetValues}
                       className="float-end mt-4"
-                      disabled={pending || !file}
+                      disabled={pending || file == null}
                       variant="default"
                     >
                       Fechar
@@ -226,7 +249,7 @@ export const EditPhoto = ({ className, ...props }: EditPhotoProps) => {
                     type="submit"
                     variant="default"
                     className="float-end mt-4"
-                    disabled={pending || !file}
+                    disabled={pending || file == null}
                   >
                     Enviar Arquivo
                   </Button>
