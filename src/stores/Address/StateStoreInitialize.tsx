@@ -2,15 +2,15 @@
 
 import { useRef } from 'react'
 
-import { AddressProps } from '../../../types/index'
+import { type AddressProps } from '../../../types/index'
 
 import { stateStore } from '@/stores/Address/stateStore'
 
-type InitializeProps = {
+interface InitializeProps {
   states: AddressProps[]
 }
 
-const StateStoreInitialize = ({ states }: InitializeProps) => {
+const StateStoreInitialize = ({ states }: InitializeProps): null => {
   const initialize = useRef(false)
   if (!initialize.current) {
     stateStore.setState({ states })

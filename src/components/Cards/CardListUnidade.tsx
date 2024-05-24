@@ -1,14 +1,15 @@
-import { Card, CardContent, CardFooter } from '@/ui/card'
-import React from 'react'
-import { Unidade } from '../../../types/index'
-import {
-  File,
-  ListFilter,
-  MoreHorizontal,
-  PlusCircle,
-  Search,
-} from 'lucide-react'
 import Image from 'next/image'
+import React from 'react'
+import {
+  LuFile,
+  LuListFilter,
+  LuMoreHorizontal,
+  LuPlusCircle,
+  LuSearch,
+} from 'react-icons/lu'
+
+import { type Unidade } from '../../../types/index'
+
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import {
@@ -30,6 +31,7 @@ import {
   TableRow,
 } from '@/components/ui/table'
 import { Tabs, TabsContent } from '@/components/ui/tabs'
+import { Card, CardContent, CardFooter } from '@/ui/card'
 
 type CardProps = {
   itemUnidade: Unidade[]
@@ -49,7 +51,7 @@ export const CardListUnidade = ({
         <div className="flex flex-col sm:gap-4 sm:py-4 sm:pl-14">
           <header className="sticky top-0 z-30 flex h-14 items-center gap-4 border-b bg-background px-4 sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6">
             <div className="relative ml-auto flex-1 md:grow-0">
-              <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+              <LuSearch className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
               <Input
                 type="search"
                 placeholder="Search..."
@@ -64,7 +66,7 @@ export const CardListUnidade = ({
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
                       <Button variant="outline" size="sm" className="h-8 gap-1">
-                        <ListFilter className="h-3.5 w-3.5" />
+                        <LuListFilter className="h-3.5 w-3.5" />
                         <span className="sr-only sm:not-sr-only sm:whitespace-nowrap">
                           Filtros
                         </span>
@@ -83,13 +85,13 @@ export const CardListUnidade = ({
                     </DropdownMenuContent>
                   </DropdownMenu>
                   <Button size="sm" variant="outline" className="h-8 gap-1">
-                    <File className="h-3.5 w-3.5" />
+                    <LuFile className="h-3.5 w-3.5" />
                     <span className="sr-only sm:not-sr-only sm:whitespace-nowrap">
                       Export
                     </span>
                   </Button>
                   <Button size="sm" className="h-8 gap-1">
-                    <PlusCircle className="h-3.5 w-3.5" />
+                    <LuPlusCircle className="h-3.5 w-3.5" />
                     <span className="sr-only sm:not-sr-only sm:whitespace-nowrap">
                       Add Product
                     </span>
@@ -155,7 +157,7 @@ export const CardListUnidade = ({
                                   size="icon"
                                   variant="ghost"
                                 >
-                                  <MoreHorizontal className="h-4 w-4" />
+                                  <LuMoreHorizontal className="h-4 w-4" />
                                   <span className="sr-only">Toggle menu</span>
                                 </Button>
                               </DropdownMenuTrigger>
@@ -200,7 +202,7 @@ export const CardListUnidade = ({
                                   size="icon"
                                   variant="ghost"
                                 >
-                                  <MoreHorizontal className="h-4 w-4" />
+                                  <LuMoreHorizontal className="h-4 w-4" />
                                   <span className="sr-only">Toggle menu</span>
                                 </Button>
                               </DropdownMenuTrigger>
@@ -245,7 +247,7 @@ export const CardListUnidade = ({
                                   size="icon"
                                   variant="ghost"
                                 >
-                                  <MoreHorizontal className="h-4 w-4" />
+                                  <LuMoreHorizontal className="h-4 w-4" />
                                   <span className="sr-only">Toggle menu</span>
                                 </Button>
                               </DropdownMenuTrigger>
@@ -290,7 +292,7 @@ export const CardListUnidade = ({
                                   size="icon"
                                   variant="ghost"
                                 >
-                                  <MoreHorizontal className="h-4 w-4" />
+                                  <LuMoreHorizontal className="h-4 w-4" />
                                   <span className="sr-only">Toggle menu</span>
                                 </Button>
                               </DropdownMenuTrigger>
@@ -335,7 +337,7 @@ export const CardListUnidade = ({
                                   size="icon"
                                   variant="ghost"
                                 >
-                                  <MoreHorizontal className="h-4 w-4" />
+                                  <LuMoreHorizontal className="h-4 w-4" />
                                   <span className="sr-only">Toggle menu</span>
                                 </Button>
                               </DropdownMenuTrigger>
@@ -380,7 +382,7 @@ export const CardListUnidade = ({
                                   size="icon"
                                   variant="ghost"
                                 >
-                                  <MoreHorizontal className="h-4 w-4" />
+                                  <LuMoreHorizontal className="h-4 w-4" />
                                   <span className="sr-only">Toggle menu</span>
                                 </Button>
                               </DropdownMenuTrigger>

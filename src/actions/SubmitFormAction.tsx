@@ -1,7 +1,7 @@
 'use server'
 
-import { SignUpChema } from '@/schemas/SignUpChema'
+import { type SignUpChema } from '@/schemas/SignUpChema'
 
-export async function SubmitFormAction(data: SignUpChema) {
+export async function SubmitFormAction(data: SignUpChema): Promise<void> {
   console.log({ ...data })
 }

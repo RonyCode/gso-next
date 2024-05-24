@@ -1,12 +1,12 @@
 'use client'
-import React from 'react'
 
 import { signOut } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
+import React from 'react'
+import { LuLogOut } from 'react-icons/lu'
 
-import { deleteCookies } from '@/components/Buttoms/SignOutButton/LogoutAction'
 import ButtonNoTheme from '@/components/Buttoms/ButtonNoTheme'
-import { LogOut } from 'lucide-react'
+import { deleteCookies } from '@/components/Buttoms/SignOutButton/LogoutAction'
 
 const SignOutButton = () => {
   const router = useRouter()
@@ -22,7 +22,7 @@ const SignOutButton = () => {
     <>
       <div>
         <ButtonNoTheme onClick={handleClick}>
-          <LogOut
+          <LuLogOut
             size={32}
             className=" transition duration-0 ease-in-out hover:scale-110 hover:text-slate-300 hover:duration-300"
           />

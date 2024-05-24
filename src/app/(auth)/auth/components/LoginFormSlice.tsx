@@ -1,15 +1,17 @@
 'use client'
 
-import { SignUpForm } from '@/app/(auth)/auth/components/SignUpForm'
-import { Button, buttonVariants } from '@/ui/button'
-import { cn } from '@/lib/utils'
-import Logo from '../../../../../public/images/Logo'
 import Image from 'next/image'
 import Link from 'next/link'
-import SigInForm from '@/app/(auth)/auth/components/SigInForm'
 import React from 'react'
 
-const LoginFormSlice = () => {
+import Logo from '../../../../../public/images/Logo'
+
+import SigInForm from '@/app/(auth)/auth/components/SigInForm'
+import { SignUpForm } from '@/app/(auth)/auth/components/SignUpForm'
+import { cn } from '@/lib/utils'
+import { Button, buttonVariants } from '@/ui/button'
+
+const LoginFormSlice = (): JSX.Element => {
   const [sliceLogin, setSliceLoagin] = React.useState<string>(
     'animate-sliceRegister',
   )

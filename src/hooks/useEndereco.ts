@@ -1,13 +1,14 @@
+import { type AddressProps, type CepProps } from '../../types/index'
+
 import { fetchWrapper } from '@/functions/fetch'
-import { AddressProps, CepProps } from '../../types/index'
-import { toast } from '@/ui/use-toast'
-import { stateStore } from '@/stores/Address/stateStore'
 import { cityStore } from '@/stores/Address/CityByStateStore'
+import { stateStore } from '@/stores/Address/stateStore'
+import { toast } from '@/ui/use-toast'
 
 export const useEndereco = () => {
   const getCep = async (cep: string) => {
     try {
-      return fetchWrapper<CepProps>(
+      return await fetchWrapper<CepProps>(
         `${process.env.NEXT_PUBLIC_NEXT_URL}/api/cep?cep=${cep?.replace(
           /\D/g,
           '',

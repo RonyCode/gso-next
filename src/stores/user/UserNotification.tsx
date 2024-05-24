@@ -1,11 +1,12 @@
-import { UserNotification } from '../../../types/index'
+import { type UserNotification } from '../../../types/index'
+
 import { create } from 'zustand'
 
-type ActionsProps = {
+interface ActionsProps {
   add: (notification: UserNotification) => void
 }
 
-type UserNotificationStore = {
+interface UserNotificationStore {
   state: { notification: UserNotification }
   actions: ActionsProps
 }
@@ -26,12 +27,13 @@ export const useNotificationStore = create<UserNotificationStore>()((set) => {
       },
     },
     actions: {
-      add: (notification: UserNotification) =>
-        set((state) => ({
+      add: (notification: UserNotification) => {
+        set((state): { state: { notification: UserNotification } } => ({
           state: {
             notification: { ...state.state.notification, ...notification },
           },
-        })),
+        }))
+      },
     },
   }
 })

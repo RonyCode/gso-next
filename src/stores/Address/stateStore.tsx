@@ -1,11 +1,12 @@
-import { create } from 'zustand'
-import { AddressProps } from '../../../types/index'
+import { type AddressProps } from '../../../types/index'
 
-type ActionsProps = {
+import { create } from 'zustand'
+
+interface ActionsProps {
   add: (state: AddressProps) => void
 }
 
-type StateStore = {
+interface StateStore {
   states: AddressProps[]
   actions: ActionsProps
 }
@@ -15,10 +16,11 @@ export const stateStore = create<StateStore>()((set) => {
     states: [],
 
     actions: {
-      add: (item) =>
-        set((elem) => ({
+      add: (item) => {
+        set((elem): { states: AddressProps[] } => ({
           states: [...elem.states, item],
-        })),
+        }))
+      },
     },
   }
 })

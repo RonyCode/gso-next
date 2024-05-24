@@ -1,11 +1,19 @@
 'use server'
 
 import { revalidatePath } from 'next/cache'
+
 import { PreRegisterUserSchema } from '@/app/(auth)/auth/schemas/PreRegisterUserSchema'
+
+interface ReturnData {
+  email: string
+  status: 'success' | 'failure'
+  code: number
+  message: string
+}
 
 export const preRegisterUserServerActions = async (
   data: FormData | PreRegisterUserSchema,
-) => {
+): Promise<PreRegisterUserSchema> => {
   revalidatePath('/')
   try {
     if (data instanceof FormData) {
@@ -15,15 +23,25 @@ export const preRegisterUserServerActions = async (
       const result = PreRegisterUserSchema.safeParse(formData)
 
       if (result.success) {
-        return { email: result.data.email }
+        return {
+          email: result.data.email,
+          status: 'success',
+          code: 200,
+          message: 'sucess',
+        } satisfies ReturnData
       }
 
       if (!result.success) {
         console.log(result.error.message)
-        return { email: 'failed' }
+        return {
+          email: 'failed',
+          status: 'failure',
+          code: 400,
+          message: result.error.message,
+        } satisfies ReturnData
       }
     }
-    return data
+    return data as PreRegisterUserSchema
   } catch (error) {
     console.log(error)
     return JSON.parse(JSON.stringify(error))

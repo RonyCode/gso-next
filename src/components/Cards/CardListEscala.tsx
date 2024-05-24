@@ -1,9 +1,16 @@
-import { Card, CardContent, CardHeader, CardTitle } from '@/ui/card'
-import { cn } from '@/lib/utils'
 import React from 'react'
-import { EventProps } from '../../../types/index'
-import { Separator } from '@/ui/separator'
-import { Avatar, AvatarFallback, AvatarImage } from '@radix-ui/react-avatar'
+import { BsBuildingCheck } from 'react-icons/bs'
+import { GrGroup } from 'react-icons/gr'
+import { LuCalendarDays, LuClock, LuUser } from 'react-icons/lu'
+import { MdOutlineMapsHomeWork } from 'react-icons/md'
+import { RiPoliceCarLine } from 'react-icons/ri'
+
+import { type EventProps } from '../../../types/index'
+
+import { cn } from '@/lib/utils'
+import { Badge } from '@/ui/badge'
+import { Card, CardContent, CardHeader, CardTitle } from '@/ui/card'
+import { Label } from '@/ui/label'
 import {
   SelectItem,
   SelectContent,
@@ -11,13 +18,8 @@ import {
   SelectValue,
   Select,
 } from '@/ui/select'
-import { LucideCalendarDays, LucideClock, LucideUser } from 'lucide-react'
-import { GrGroup } from 'react-icons/gr'
-import { MdOutlineMapsHomeWork } from 'react-icons/md'
-import { Label } from '@/ui/label'
-import { RiPoliceCarLine } from 'react-icons/ri'
-import { BsBuildingCheck } from 'react-icons/bs'
-import { Badge } from '@/ui/badge'
+import { Separator } from '@/ui/separator'
+import { Avatar, AvatarFallback, AvatarImage } from '@radix-ui/react-avatar'
 
 type CardProps = {
   itemEvent: EventProps
@@ -62,7 +64,7 @@ export const CardListEscala = ({
             </CardTitle>
             <span className="flex items-center gap-1">
               <i>
-                <LucideClock size={20} />
+                <LuClock size={20} />
               </i>
               <div className="text-md font-bold md:text-xl">
                 {' '}
@@ -70,7 +72,7 @@ export const CardListEscala = ({
               </div>
 
               <i>
-                <LucideCalendarDays size={20} />
+                <LuCalendarDays size={20} />
               </i>
               <div className="text-md font-bold md:text-xl">
                 {' '}
@@ -178,7 +180,7 @@ export const CardListEscala = ({
                       >
                         <AvatarImage
                           className="aspect-square rounded-full object-cover"
-                          src={item!.imageCar}
+                          src={item.imageCar}
                         />
                         <AvatarFallback>
                           {<RiPoliceCarLine size={36} />}
@@ -208,9 +210,7 @@ export const CardListEscala = ({
                           className="aspect-square rounded-full object-cover"
                           src={itemMember.imageMember}
                         />
-                        <AvatarFallback>
-                          {<LucideUser size={36} />}
-                        </AvatarFallback>
+                        <AvatarFallback>{<LuUser size={36} />}</AvatarFallback>
                       </Avatar>
                       <div>
                         <p className="text-sm font-medium leading-none">

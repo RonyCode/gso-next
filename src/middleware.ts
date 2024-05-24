@@ -2,6 +2,7 @@ import type { NextRequest } from 'next/server'
 import { NextResponse } from 'next/server'
 
 // This function can be marked `async` if using `await` inside
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 export async function middleware(request: NextRequest) {
   const allowedOrigins =
     process.env.NODE_ENV === 'production'
@@ -27,20 +28,22 @@ export async function middleware(request: NextRequest) {
           `${process.env.NEXT_PUBLIC_NEXT_URL}`,
         ]
   const origin = request.headers.get('origin')
-  if (origin && !allowedOrigins.includes(origin)) {
+  if (origin != null && !allowedOrigins.includes(origin)) {
     return new NextResponse(null, {
       status: 400,
       statusText: 'Bad Request',
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-expect-error
       headers: {
         'Content-Type': 'text/plain',
-        'Access-Control-Allow-Origin': origin || '*',
+        'Access-Control-Allow-Origin': origin !== '' || '*',
       },
     })
   }
 
   const token = request.cookies.get('token')?.value
   const sessaoToken =
-    request.cookies.get('next-auth.session-token')?.value ||
+    request.cookies.get('next-auth.session-token')?.value ??
     request.cookies.get('__Secure-next-auth.session-token')?.value
   const refreshToken = request.cookies.get('refresh_token')?.value
   const regex = /[.!]/g
@@ -48,8 +51,8 @@ export async function middleware(request: NextRequest) {
   const response = NextResponse.next()
 
   // SE TEM NÃO TEM SESSION-TOKEN VERIFICA O TOKEN
-  if (!refreshToken && sessaoToken) {
-    if (token) {
+  if (refreshToken == null && sessaoToken != null) {
+    if (token != null) {
       // RENOVA OS TOKENS
       const resp = await fetch(
         `${process.env.NEXT_PUBLIC_API_GSO}/api/auth/refresh-token/${tokenPayload}`,
@@ -154,7 +157,7 @@ export async function middleware(request: NextRequest) {
   }
 
   // SE NÃO TEM O REFRESH-TOKEN PROTEGE TUDO
-  if (!sessaoToken) {
+  if (sessaoToken == null) {
     if (request.nextUrl.pathname === '/auth') {
       return response
     } else {
@@ -163,7 +166,7 @@ export async function middleware(request: NextRequest) {
   }
 
   // SE JÁ LOGADO IMPEDE PAGINA DE LOGIN
-  if (sessaoToken && request.nextUrl.pathname === '/auth') {
+  if (sessaoToken !== '' && request.nextUrl.pathname === '/auth') {
     return NextResponse.redirect(new URL('/', request.url))
   }
 }

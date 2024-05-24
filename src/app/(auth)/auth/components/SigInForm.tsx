@@ -1,10 +1,18 @@
 'use client'
 
+import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import * as React from 'react'
+import { useTransition } from 'react'
+import { useForm } from 'react-hook-form'
+import { FaSpinner } from 'react-icons/fa6'
+import { LuMail, LuSquareAsterisk } from 'react-icons/lu'
+
+import { type ResultSignIn } from '../../../../../types/index'
 
 import { useSignIn } from '@/app/(auth)/auth/hooks/useSign'
 import { SignInSchema } from '@/app/(auth)/auth/schemas/SignInSchema'
-import { Input } from '@/ui/input'
+import LoadingPage from '@/components/Loadings/LoadingPage'
 import { cn } from '@/lib/utils'
 import { Button } from '@/ui/button'
 import {
@@ -15,28 +23,22 @@ import {
   FormLabel,
   FormMessage,
 } from '@/ui/form'
-import { useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { toast } from '@/ui/use-toast'
-import { LuMail, LuSquareAsterisk } from 'react-icons/lu'
-import { ResultSignIn } from '../../../../../types/index'
-import { useTransition } from 'react'
-import LoadingPage from '@/components/Loadings/LoadingPage'
-import { FaSpinner } from 'react-icons/fa6'
 import { Icons } from '@/ui/icons'
-import Link from 'next/link'
-import { useRouter } from 'next/navigation'
-
+import { Input } from '@/ui/input'
+import { toast } from '@/ui/use-toast'
+import { zodResolver } from '@hookform/resolvers/zod'
 import { setCookie } from 'cookies-next'
 
-type UserAuthFormProps = React.HTMLAttributes<HTMLDivElement>
+type UserAuthFormProps = {
+  className?: Element
+} & React.HTMLAttributes<HTMLDivElement>
 
-const SigInForm = ({ className, ...props }: UserAuthFormProps) => {
+const SigInForm = ({ className, ...props }: UserAuthFormProps): JSX.Element => {
   const [pending, startTransition] = useTransition()
   const { signInWithGoogle, signInWithCredentials } = useSignIn()
   const router = useRouter()
 
-  const handleSubmitLogin = (data: SignInSchema) => {
+  const handleSubmitLogin = (data: SignInSchema): void => {
     startTransition(async () => {
       const result: ResultSignIn = await signInWithCredentials(data)
       if (!result.ok) {
@@ -57,20 +59,20 @@ const SigInForm = ({ className, ...props }: UserAuthFormProps) => {
     })
   }
 
-  const handleSubmitLoginWithGoogle = async () => {
-    startTransition(async () => {
+  const handleSubmitLoginWithGoogle = async (): Promise<void> => {
+    startTransition(async (): Promise<void> => {
       await signInWithGoogle()
     })
   }
 
-  const handleClikLogin = async () => {
+  const handleClikLogin = async (): Promise<void> => {
     if (typeof navigator !== 'undefined' && 'serviceWorker' in navigator) {
-      navigator.serviceWorker
+      void navigator.serviceWorker
         .register('/service-worker/index.js')
         .then(async (serviceWorker) => {
           let subscriptionResult =
             await serviceWorker.pushManager.getSubscription()
-          if (!subscriptionResult) {
+          if (subscriptionResult == null) {
             const publicKey = await fetch(
               `${process.env.NEXT_PUBLIC_NEXT_URL}/api/notification/public-key`,
             )
@@ -96,7 +98,9 @@ const SigInForm = ({ className, ...props }: UserAuthFormProps) => {
   })
   let countShow = true
 
-  const detectCapsLock = (keyEvent: React.KeyboardEvent<HTMLInputElement>) => {
+  const detectCapsLock = (
+    keyEvent: React.KeyboardEvent<HTMLInputElement>,
+  ): void => {
     if (/[A-Z]/.test(keyEvent.currentTarget.value)) {
       if (countShow) {
         countShow = false
@@ -125,7 +129,8 @@ const SigInForm = ({ className, ...props }: UserAuthFormProps) => {
         <div className={cn('grid gap-6', className)} {...props}>
           <Form {...form}>
             <form
-              onSubmit={form.handleSubmit((data) => {
+              /* eslint-disable-next-line @typescript-eslint/no-misused-promises */
+              onSubmit={form.handleSubmit((data): void => {
                 handleSubmitLogin(data)
               })}
               className="w-full space-y-4"
@@ -187,7 +192,7 @@ const SigInForm = ({ className, ...props }: UserAuthFormProps) => {
                 )}
               />
               <Button
-                onClick={handleClikLogin}
+                onClick={() => handleClikLogin}
                 disabled={pending}
                 className="w-full"
               >
@@ -215,6 +220,7 @@ const SigInForm = ({ className, ...props }: UserAuthFormProps) => {
             </div>
           </div>
           <Button
+            /* eslint-disable-next-line @typescript-eslint/no-misused-promises */
             onClick={handleSubmitLoginWithGoogle}
             variant="outline"
             disabled={pending}

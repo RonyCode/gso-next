@@ -1,16 +1,16 @@
 'use client'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+import React from 'react'
+import { LiaChevronRightSolid } from 'react-icons/lia'
+import { LuHome } from 'react-icons/lu'
+
 import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbList,
   BreadcrumbSeparator,
 } from '@/ui/breadcrumb'
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-import React from 'react'
-
-import { LiaChevronRightSolid } from 'react-icons/lia'
-import { LuHome } from 'react-icons/lu'
 
 const BreadcrumbGso = () => {
   const pathname = usePathname()
@@ -52,7 +52,10 @@ const BreadcrumbGso = () => {
                   <LiaChevronRightSolid />
                 </BreadcrumbSeparator>
               </ol>
-              <Link href={link} className="text-sm font-light md:font-medium">
+              <Link
+                href={link}
+                className="m-0 p-0 text-sm font-light md:font-medium"
+              >
                 {item.charAt(0).toUpperCase() + item.slice(1)}
               </Link>
             </BreadcrumbItem>

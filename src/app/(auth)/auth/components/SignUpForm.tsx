@@ -1,24 +1,27 @@
 'use client'
 
-import * as React from 'react'
-
-import { cn } from '@/lib/utils'
-import { Icons } from '@/ui/icons'
-import { Button } from '@/ui/button'
-import { Input } from '@/ui/input'
-import { Form, FormControl, FormField, FormItem, FormMessage } from '@/ui/form'
-import { useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { toast } from '@/ui/use-toast'
-import { useTransition } from 'react'
-import { preRegisterUserServerActions } from '@/app/(auth)/auth/actions/preRegisterUserServerAction'
 import { redirect } from 'next/navigation'
-import { PreRegisterUserSchema } from '@/app/(auth)/auth/schemas/PreRegisterUserSchema'
+import * as React from 'react'
+import { useTransition } from 'react'
+import { useForm } from 'react-hook-form'
+
+import { preRegisterUserServerActions } from '@/app/(auth)/auth/actions/preRegisterUserServerAction'
 import { usePreRegister } from '@/app/(auth)/auth/hooks/usePreRegister/usePreRegister'
+import { PreRegisterUserSchema } from '@/app/(auth)/auth/schemas/PreRegisterUserSchema'
+import { cn } from '@/lib/utils'
+import { Button } from '@/ui/button'
+import { Form, FormControl, FormField, FormItem, FormMessage } from '@/ui/form'
+import { Icons } from '@/ui/icons'
+import { Input } from '@/ui/input'
+import { toast } from '@/ui/use-toast'
+import { zodResolver } from '@hookform/resolvers/zod'
 
 type UserAuthFormProps = React.HTMLAttributes<HTMLDivElement>
 
-export function SignUpForm({ className, ...props }: UserAuthFormProps) {
+export function SignUpForm({
+  className,
+  ...props
+}: UserAuthFormProps): JSX.Element {
   const [pending, startTransition] = useTransition()
   const { preRegisterUser } = usePreRegister()
 
@@ -32,16 +35,16 @@ export function SignUpForm({ className, ...props }: UserAuthFormProps) {
 
   const handleSubmitPreCadastro = async (
     data: FormData | PreRegisterUserSchema,
-  ) => {
+  ): Promise<void> => {
     startTransition(async () => {
       const result = await preRegisterUserServerActions(data)
-      if (result?.email !== 'failed') {
+      if (result.email !== 'failed') {
         const emailSended = await preRegisterUser(result)
-        if (emailSended?.data) {
-          if (emailSended.code !== 400) {
+        if (emailSended!.data) {
+          if (emailSended!.code !== 400) {
             toast({
               title: 'Email enviado com sucesso! 😍',
-              description: emailSended.message,
+              description: emailSended!.message,
               variant: 'success',
             })
             redirect('/')

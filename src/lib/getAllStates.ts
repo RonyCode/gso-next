@@ -1,8 +1,9 @@
+import { type AddressProps } from '../../types'
+
 import { fetchWrapper } from '@/functions/fetch'
-import { AddressProps } from '../../types'
 import { stateStore } from '@/stores/Address/stateStore'
 
-export const getAllStates = async () => {
+export const getAllStates = async (): Promise<AddressProps[]> => {
   const res = await fetchWrapper<AddressProps[]>(
     `${process.env.NEXT_PUBLIC_NEXT_URL}/api/estados`,
     {

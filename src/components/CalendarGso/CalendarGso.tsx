@@ -1,16 +1,18 @@
 'use client'
 
-import { EventProps } from '../../../types/index'
-import { LucideArrowBigLeft, LucideArrowBigRight } from 'lucide-react'
-import { Button } from '@/ui/button'
 import { useState } from 'react'
-import { columnsEscala } from '@/components/DataTables/DataTableEscala/columnsEscala'
-import { ModalGso } from '@/components/Modal/ModalGso/ModalGso'
+import { LuArrowBigLeft, LuArrowBigRight } from 'react-icons/lu'
+
+import { type EventProps } from '../../../types/index'
+
 import CalendarGsoGrid from '@/components/CalendarGso/CalendarGsoGrid'
 import { CardListEscala } from '@/components/Cards/CardListEscala'
+import { columnsEscala } from '@/components/DataTables/DataTableEscala/columnsEscala'
 import { DataTableEscala } from '@/components/DataTables/DataTableEscala/data-table-escala'
+import { ModalGso } from '@/components/Modal/ModalGso/ModalGso'
+import { Button } from '@/ui/button'
 
-type DaysMonthProps = {
+interface DaysMonthProps {
   dias: number
   diference: number
 }
@@ -117,9 +119,9 @@ const CalendarGso = ({ event }: { event: EventProps[] }) => {
 
   const daysCalculate =
     dayWeek === date.getDay()
-      ? daysInMonth!.dias! + daysInMonth!.diference
-      : daysInMonth!.dias! + Math.abs(dayWeek)
-  for (let i = 0; i <= daysCalculate!; i++) {
+      ? daysInMonth!.dias + daysInMonth!.diference
+      : daysInMonth!.dias + Math.abs(dayWeek)
+  for (let i = 0; i <= daysCalculate; i++) {
     if (i % 7) {
       escalaObj.push({
         day:
@@ -185,7 +187,7 @@ const CalendarGso = ({ event }: { event: EventProps[] }) => {
   const handlePrevious = () => {
     const lastDayWeek = escalaObj[escalaObj.length - 1].dayWeek
     const monthChanged = handleCountDaysInMonth(month - 1)
-    const diffDayInMounts = daysInMonth!.dias! - monthChanged!.dias!
+    const diffDayInMounts = daysInMonth!.dias - monthChanged!.dias
     const newDayWeek = Math.abs(diffDayInMounts) + lastDayWeek
     setDayWeek(newDayWeek * -1 - 1)
     if (month === 0) {
@@ -232,7 +234,7 @@ const CalendarGso = ({ event }: { event: EventProps[] }) => {
             <Button variant="default" onClick={handlePrevious}>
               <span className="hidden   md:block">Anterior</span>
               <span>
-                <LucideArrowBigLeft className="md:hidden" />
+                <LuArrowBigLeft className="md:hidden" />
               </span>
             </Button>
             <span className="text-lg font-bold">
@@ -242,7 +244,7 @@ const CalendarGso = ({ event }: { event: EventProps[] }) => {
               <Button variant="default" onClick={handleNext}>
                 <span className="hidden md:block">Próximo</span>
                 <span>
-                  <LucideArrowBigRight className="md:hidden" />
+                  <LuArrowBigRight className="md:hidden" />
                 </span>
               </Button>
             </div>
@@ -287,7 +289,7 @@ const CalendarGso = ({ event }: { event: EventProps[] }) => {
                     {day.day > 0 && (
                       // GRID CALENDAR
                       <CalendarGsoGrid
-                        index={index - daysInMonth!.dias!}
+                        index={index - daysInMonth!.dias}
                         day={day.day}
                         dayEvent={day.dayEvent}
                         month={day.month}

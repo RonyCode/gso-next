@@ -1,16 +1,16 @@
 import '@/styles/globals.css'
+import { type Metadata } from 'next'
 import React from 'react'
-import { Sidebar } from '@/components/Sidebar/sidebar'
-
-import { Metadata } from 'next'
 import {
-  LucideUser,
-  LucideBuilding2,
-  LucideBellDot,
-  LucideHome,
-  LucideUserCheck,
-  LucideCalendarDays,
-} from 'lucide-react'
+  LuUser,
+  LuBuilding2,
+  LuBellDot,
+  LuHome,
+  LuUserCheck,
+  LuCalendarDays,
+} from 'react-icons/lu'
+
+import { Sidebar } from '@/components/Sidebar/sidebar'
 
 export const metadata: Metadata = {
   title: 'GSO | Perfil',
@@ -24,18 +24,18 @@ const sidebarNavItems = [
       {
         title: 'Meus Dados',
         href: '/conta',
-        icon: <LucideUserCheck size={20} />,
+        icon: <LuUserCheck size={20} />,
       },
       {
         title: 'Minha Escala',
         href: '/conta/escala',
-        icon: <LucideCalendarDays size={20} />,
+        icon: <LuCalendarDays size={20} />,
       },
 
       {
         title: 'Notificações',
         href: '/conta/notificacoes',
-        icon: <LucideBellDot size={20} />,
+        icon: <LuBellDot size={20} />,
       },
     ],
   },
@@ -46,23 +46,23 @@ const sidebarNavItems = [
       {
         title: 'Minha Unidade',
         href: '/conta/minha-unidade',
-        icon: <LucideHome size={20} />,
+        icon: <LuHome size={20} />,
       },
 
       {
         title: 'Dados Unidade',
         href: '/conta/teste',
-        icon: <LucideBuilding2 size={20} />,
+        icon: <LuBuilding2 size={20} />,
       },
       {
         title: 'Notifications',
         href: '/examples/forms/notifications',
-        icon: <LucideUser size={20} />,
+        icon: <LuUser size={20} />,
       },
       {
         title: 'Display',
         href: '/examples/forms/display',
-        icon: <LucideUser size={20} />,
+        icon: <LuUser size={20} />,
       },
     ],
   },

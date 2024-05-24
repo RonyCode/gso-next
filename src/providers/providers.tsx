@@ -1,13 +1,17 @@
 'use client'
+import NextTopLoader from 'nextjs-toploader'
 import React from 'react'
 
 import AuthProvider from '@/providers/AuthProviders/AuthProvider'
 import ToastProvider from '@/providers/ToastProvider/ToastProvider'
-import { Toaster } from '@/ui/toaster'
-import NextTopLoader from 'nextjs-toploader'
 import InitializeStores from '@/stores/initializeStores'
+import { Toaster } from '@/ui/toaster'
 
-export const Providers = ({ children }: { children: React.ReactNode }) => {
+export const Providers = ({
+  children,
+}: {
+  children: React.ReactNode
+}): JSX.Element => {
   return (
     <AuthProvider>
       <ToastProvider>

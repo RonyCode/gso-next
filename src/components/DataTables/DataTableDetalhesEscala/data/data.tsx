@@ -1,3 +1,5 @@
+import { LuHotel, LuStar, LuThumbsUp } from 'react-icons/lu'
+
 import {
   ArrowDownIcon,
   ArrowRightIcon,
@@ -6,7 +8,6 @@ import {
   CrossCircledIcon,
   StopwatchIcon,
 } from '@radix-ui/react-icons'
-import { LucideHotel, LucideStar, LucideThumbsUp } from 'lucide-react'
 
 export const labels = [
   {
@@ -79,12 +80,12 @@ export const types = [
   {
     label: 'Extra',
     value: 'extra',
-    icon: LucideStar,
+    icon: LuStar,
   },
   {
     label: 'Normal',
     value: 'normal',
-    icon: LucideThumbsUp,
+    icon: LuThumbsUp,
   },
 ]
 
@@ -92,52 +93,52 @@ export const unities = [
   {
     label: '1º CIA',
     value: '1',
-    icon: LucideHotel,
+    icon: LuHotel,
   },
 
   {
     label: '2º CIA',
     value: '2',
-    icon: LucideHotel,
+    icon: LuHotel,
   },
   {
     label: '3º CIA',
     value: '3',
-    icon: LucideHotel,
+    icon: LuHotel,
   },
   {
     label: '4º CIA',
     value: '4',
-    icon: LucideHotel,
+    icon: LuHotel,
   },
   {
     label: '5º CIA',
     value: '5',
-    icon: LucideHotel,
+    icon: LuHotel,
   },
   {
     label: '6º CIA',
     value: '6',
-    icon: LucideHotel,
+    icon: LuHotel,
   },
   {
     label: '7º CIA',
     value: '7',
-    icon: LucideHotel,
+    icon: LuHotel,
   },
   {
     label: '8º CIA',
     value: '8',
-    icon: LucideHotel,
+    icon: LuHotel,
   },
   {
     label: '9º CIA',
     value: '9',
-    icon: LucideHotel,
+    icon: LuHotel,
   },
   {
     label: '10º CIA',
     value: '10',
-    icon: LucideHotel,
+    icon: LuHotel,
   },
 ]

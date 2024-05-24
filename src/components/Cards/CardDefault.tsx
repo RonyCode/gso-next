@@ -19,6 +19,7 @@ type CardProps = {
   iconDescription?: React.ReactNode
   image?: string
   imageMobile?: string
+  className?: Element
   children: React.ReactNode
 } & React.ComponentProps<typeof Card>
 
@@ -34,8 +35,8 @@ export async function CardDefault({
   ...props
 }: CardProps): Promise<JSX.Element> {
   const [myBlurDataUrl, myBlurDataUrlMobile] = await Promise.all([
-    getBase64(image!),
-    getBase64(imageMobile!),
+    getBase64(image),
+    getBase64(imageMobile),
   ])
 
   return (
@@ -56,7 +57,7 @@ export async function CardDefault({
               </div>
               <CardDescription>
                 <div className="flex  items-center gap-1  ">
-                  <i>{iconDescription}</i>
+                  <span>{iconDescription}</span>
                   {description}
                 </div>
               </CardDescription>

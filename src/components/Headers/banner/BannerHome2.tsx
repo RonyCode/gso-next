@@ -1,5 +1,5 @@
 import React from 'react'
-import { ArrowRightToLine } from 'lucide-react'
+import { LuArrowRightToLine } from 'react-icons/lu'
 
 const BannerMain = () => {
   return (
@@ -34,7 +34,7 @@ const BannerMain = () => {
             "
               >
                 <span className="mr-1">saiba mais </span>
-                <ArrowRightToLine />
+                <LuArrowRightToLine />
               </a>
             </div>
           </div>
@@ -54,7 +54,7 @@ const BannerMain = () => {
             "
               >
                 <span className="mr-1">saiba mais </span>
-                <ArrowRightToLine />{' '}
+                <LuArrowRightToLine />{' '}
               </a>
             </div>
           </div>

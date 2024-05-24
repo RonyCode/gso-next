@@ -2,14 +2,14 @@
 
 import { useRef } from 'react'
 
-import { UserType } from '../../../types/index'
+import { type UserType } from '../../../types/index'
 import { userErrorRegisterStore } from './userErrorRegisterStore'
 
-type InitializeProps = {
+interface InitializeProps {
   userError: UserType
 }
 
-const UserStoreInitialize = ({ userError }: InitializeProps) => {
+const UserStoreInitialize = ({ userError }: InitializeProps): null => {
   const initialize = useRef(false)
   if (!initialize.current) {
     userErrorRegisterStore.getState().add(userError)

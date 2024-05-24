@@ -2,15 +2,14 @@
 
 import { useRef } from 'react'
 
-import { UserType } from '../../../types/index'
-
+import { type UserType } from '../../../types/index'
 import { useUserStore } from './userStore'
 
-type InitializeProps = {
+interface InitializeProps {
   user: UserType
 }
 
-const UserStoreInitialize = ({ user }: InitializeProps) => {
+const UserStoreInitialize = ({ user }: InitializeProps): null => {
   const initialize = useRef(false)
   if (!initialize.current) {
     useUserStore.setState({ state: { user } })

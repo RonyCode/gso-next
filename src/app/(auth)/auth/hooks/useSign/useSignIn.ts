@@ -1,10 +1,14 @@
 import { signIn } from 'next-auth/react'
 
-import { SignInSchema } from '@/app/(auth)/auth/schemas/SignInSchema'
-import { toast } from '@/ui/use-toast'
-import { ResultSignIn } from '../../../../../../types/index'
+import { type ResultSignIn } from '../../../../../../types/index'
 
-export const useSignIn = () => {
+import { type SignInSchema } from '@/app/(auth)/auth/schemas/SignInSchema'
+import { toast } from '@/ui/use-toast'
+
+export const useSignIn = (): {
+  signInWithCredentials: (data: SignInSchema) => Promise<ResultSignIn>
+  signInWithGoogle: () => Promise<void>
+} => {
   async function signInWithGoogle() {
     try {
       await signIn('google', {

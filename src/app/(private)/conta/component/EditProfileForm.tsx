@@ -1,6 +1,11 @@
 'use client'
 
+import { useSession } from 'next-auth/react'
+import { redirect, useRouter } from 'next/navigation'
 import * as React from 'react'
+import { useTransition } from 'react'
+import { useForm } from 'react-hook-form'
+import { FaBirthdayCake } from 'react-icons/fa'
 import {
   FaBuildingColumns,
   FaHashtag,
@@ -10,24 +15,20 @@ import {
   FaTreeCity,
   FaUser,
 } from 'react-icons/fa6'
+import { LuCheck, LuChevronsUpDown } from 'react-icons/lu'
 
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@/ui/form'
-import { Button, buttonVariants } from '@/ui/button'
-import { useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { cn } from '@/lib/utils'
-import { Input } from '@/ui/input'
+import { type AddressProps, type UserType } from '../../../../../types/index'
+
+import { saveUserAction } from '@/app/actions/saveUserAction'
 import { MyInputMask } from '@/components/Form/Input/myInputMask'
-import { FaBirthdayCake } from 'react-icons/fa'
 import LoadingPage from '@/components/Loadings/LoadingPage'
-import { Popover, PopoverContent, PopoverTrigger } from '@/ui/popover'
+import { useMask } from '@/hooks/useMask'
+import { getAllCitiesByState } from '@/lib/getAllCitiesByState'
+import { getCep } from '@/lib/getCep'
+import { cn } from '@/lib/utils'
+import { EditUserSchema } from '@/schemas/EditUserSchema'
+import { cityStore } from '@/stores/Address/CityByStateStore'
+import { Button, buttonVariants } from '@/ui/button'
 import {
   Command,
   CommandEmpty,
@@ -36,19 +37,19 @@ import {
   CommandItem,
   CommandList,
 } from '@/ui/command'
-import { Check, ChevronsUpDown } from 'lucide-react'
-import { getCep } from '@/lib/getCep'
-import { getAllCitiesByState } from '@/lib/getAllCitiesByState'
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@/ui/form'
+import { Input } from '@/ui/input'
+import { Popover, PopoverContent, PopoverTrigger } from '@/ui/popover'
 import { toast } from '@/ui/use-toast'
-import { redirect, useRouter } from 'next/navigation'
-import { cityStore } from '@/stores/Address/CityByStateStore'
-import { EditUserSchema } from '@/schemas/EditUserSchema'
+import { zodResolver } from '@hookform/resolvers/zod'
 import moment from 'moment'
-import { AddressProps, UserType } from '../../../../../types/index'
-import { useSession } from 'next-auth/react'
-import { useMask } from '@/hooks/useMask'
-import { saveUserAction } from '@/app/actions/saveUserAction'
-import { useTransition } from 'react'
 
 enum Fields {
   cep = 'cep',
@@ -65,7 +66,7 @@ enum Fields {
 }
 
 type UserRegisterFormProps = {
-  user: UserType | null
+  user: UserType
   states: AddressProps[] | null
   className?: string
 } & React.HTMLAttributes<HTMLDivElement>
@@ -75,28 +76,29 @@ export const EditProfileForm = ({
   states,
   className,
   ...props
-}: UserRegisterFormProps) => {
+}: UserRegisterFormProps): React.ReactElement => {
   const [pending, startTransition] = useTransition()
   const { update } = useSession()
   const { maskCpfCnpj, maskPhone, maskZipCode } = useMask()
   const router = useRouter()
 
   const defaultValues = {
-    id: user?.id.toString() || '',
-    nome: user?.account?.name || '',
-    image: user?.account?.image || '',
-    email: user?.userAuth?.email || '',
-    cpf: maskCpfCnpj(user?.account?.cpf) || '',
-    data_nascimento: moment(user?.account?.birthday).format('DD/MM/yyyy') || '',
-    telefone: maskPhone(user?.account?.phone) || '',
-    cep: maskZipCode(user?.address?.zipCode) || '',
-    endereco: user?.address?.address || '',
-    complemento: user?.address?.complement || '',
-    sigla: user?.address?.shortName || '',
-    numero: user?.address?.number || '',
-    bairro: user?.address?.district || '',
-    estado: user?.address?.shortName || 'DF',
-    cidade: user?.address?.city || '',
+    id: user?.id.toString() !== '' || '',
+    nome: user?.account?.name != null || '',
+    image: user?.account?.image != null || '',
+    email: user?.userAuth?.email != null || '',
+    cpf: maskCpfCnpj(user?.account?.cpf) !== '' || '',
+    data_nascimento:
+      moment(user?.account?.birthday).format('DD/MM/yyyy') !== '' || '',
+    telefone: maskPhone(user?.account?.phone) !== '' || '',
+    cep: maskZipCode(user?.address?.zipCode) !== '' || '',
+    endereco: user?.address?.address != null || '',
+    complemento: user?.address?.complement != null || '',
+    sigla: user?.address?.shortName != null || '',
+    numero: user?.address?.number != null || '',
+    bairro: user?.address?.district != null || '',
+    estado: user?.address?.shortName != null || '',
+    cidade: user?.address?.city != null || '',
   }
 
   const form = useForm<EditUserSchema>({
@@ -106,17 +108,17 @@ export const EditProfileForm = ({
     defaultValues: defaultValues as Partial<EditUserSchema>,
   })
 
-  const handleSubmit = (dataForm: EditUserSchema) => {
+  const handleSubmit = (dataForm: EditUserSchema): void => {
     startTransition(async () => {
       const { data, message } = await saveUserAction(dataForm)
-      if (!data?.id) {
+      if (data?.id == null) {
         toast({
           variant: 'danger',
           title: 'Erro ao cadastrar usuário! 🤯 ',
           description: message,
         })
       }
-      if (data?.id) {
+      if (data?.id != null) {
         toast({
           variant: 'success',
           title: 'Ok! Usuário Atualizado! 🤯 ',
@@ -134,11 +136,14 @@ export const EditProfileForm = ({
     })
   }
 
-  async function handleCity(value: string) {
+  async function handleCity(value: string): Promise<AddressProps[]> {
     return await getAllCitiesByState(value)
   }
 
-  const chageValueInput = async (field: Fields, newValue: string) => {
+  const chageValueInput = async (
+    field: Fields,
+    newValue: string,
+  ): Promise<void> => {
     form.setValue(field, newValue, {
       shouldDirty: true,
       shouldTouch: true,
@@ -150,7 +155,9 @@ export const EditProfileForm = ({
   let arrayCitiesByState: AddressProps[] = []
   arrayCitiesByState = cityStore().cities
 
-  const handleCep = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleCep = async (
+    e: React.ChangeEvent<HTMLInputElement>,
+  ): Promise<void> => {
     if (e?.target?.value.length >= 9) {
       startTransition(async () => {
         const { logradouro, localidade, uf, bairro } = await getCep(
@@ -161,7 +168,7 @@ export const EditProfileForm = ({
         await chageValueInput(Fields.cidade, localidade)
         await chageValueInput(Fields.bairro, bairro)
         await chageValueInput(Fields.estado, uf)
-        if (!localidade) {
+        if (localidade === '') {
           states = []
           arrayCitiesByState = []
           toast({
@@ -184,6 +191,7 @@ export const EditProfileForm = ({
           <LoadingPage pending={pending} />
           <Form {...form}>
             <form
+              /* eslint-disable-next-line @typescript-eslint/no-misused-promises */
               onSubmit={form.handleSubmit(async (data) => {
                 handleSubmit(data)
               })}
@@ -310,6 +318,7 @@ export const EditProfileForm = ({
                   control={form.control}
                   name="cep"
                   render={({ field }) => (
+                    // eslint-disable-next-line @typescript-eslint/no-misused-promises
                     <FormItem onChange={handleCep}>
                       <FormLabel
                         htmlFor="cep"
@@ -381,15 +390,15 @@ export const EditProfileForm = ({
                               role="combobox"
                               className={cn(
                                 'w-full justify-between',
-                                !field.value && 'text-muted-foreground',
+                                field.value === '' && 'text-muted-foreground',
                               )}
                             >
-                              {field.value
+                              {field.value !== ''
                                 ? states?.find(
                                     (state) => state.shortName === field.value,
                                   )?.state
                                 : 'Selecione um Estado'}
-                              <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                              <LuChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                             </Button>
                           </FormControl>
                         </PopoverTrigger>
@@ -405,12 +414,13 @@ export const EditProfileForm = ({
                                   <CommandItem
                                     value={state.state}
                                     key={index + 1}
-                                    onSelect={() => {
-                                      handleCity(state.shortName)
+                                    /* eslint-disable-next-line @typescript-eslint/no-misused-promises */
+                                    onSelect={async () => {
+                                      await handleCity(state.shortName)
                                       form.setValue('estado', state.shortName)
                                     }}
                                   >
-                                    <Check
+                                    <LuCheck
                                       className={cn(
                                         'mr-2 h-4 w-4',
                                         state?.shortName === field?.value
@@ -450,15 +460,15 @@ export const EditProfileForm = ({
                               role="combobox"
                               className={cn(
                                 'w-full justify-between',
-                                !field.value && 'text-muted-foreground',
+                                field.value === '' && 'text-muted-foreground',
                               )}
                             >
-                              {field.value
+                              {field.value !== ''
                                 ? arrayCitiesByState?.find(
                                     (city) => city.city === field.value,
                                   )?.city
                                 : 'Selecione uma Cidade'}
-                              <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                              <LuChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                             </Button>
                           </FormControl>
                         </PopoverTrigger>
@@ -478,7 +488,7 @@ export const EditProfileForm = ({
                                       form.setValue('cidade', city.city)
                                     }}
                                   >
-                                    <Check
+                                    <LuCheck
                                       className={cn(
                                         'mr-2 h-4 w-4',
                                         city.city === field.value

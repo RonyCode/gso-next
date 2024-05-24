@@ -1,7 +1,10 @@
 'use client'
 
+import { redirect } from 'next/navigation'
 import * as React from 'react'
 import { useTransition } from 'react'
+import { useForm } from 'react-hook-form'
+import { FaBirthdayCake } from 'react-icons/fa'
 import {
   FaBuildingColumns,
   FaEnvelope,
@@ -13,7 +16,33 @@ import {
   FaUser,
   FaUserLock,
 } from 'react-icons/fa6'
+import { LuCheck, LuChevronsUpDown } from 'react-icons/lu'
 
+import { type ResultUserRegistered } from '../../../../../../types'
+
+import { saveUserAction } from '@/app/actions/saveUserAction'
+import { MyInputMask } from '@/components/Form/Input/myInputMask'
+import LoadingPage from '@/components/Loadings/LoadingPage'
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@/components/ui/popover'
+import { getAllCitiesByState } from '@/lib/getAllCitiesByState'
+import { getAllStates } from '@/lib/getAllStates'
+import { getCep } from '@/lib/getCep'
+import { cn } from '@/lib/utils'
+import { RegisterUserSchema } from '@/schemas/RegisterUserSchema'
+import { cityStore } from '@/stores/Address/CityByStateStore'
+import { stateStore } from '@/stores/Address/stateStore'
+import { Button, buttonVariants } from '@/ui/button'
+import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+} from '@/ui/command'
 import {
   Form,
   FormControl,
@@ -22,37 +51,9 @@ import {
   FormLabel,
   FormMessage,
 } from '@/ui/form'
-import { Button, buttonVariants } from '@/ui/button'
-import { useForm } from 'react-hook-form'
-import { RegisterUserSchema } from '@/schemas/RegisterUserSchema'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { cn } from '@/lib/utils'
 import { Input } from '@/ui/input'
-import { MyInputMask } from '@/components/Form/Input/myInputMask'
-import { FaBirthdayCake } from 'react-icons/fa'
-import LoadingPage from '@/components/Loadings/LoadingPage'
-import { getAllStates } from '@/lib/getAllStates'
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '@/components/ui/popover'
-import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-} from '@/ui/command'
-import { Check, ChevronsUpDown } from 'lucide-react'
-import { getCep } from '@/lib/getCep'
-import { getAllCitiesByState } from '@/lib/getAllCitiesByState'
 import { toast } from '@/ui/use-toast'
-import { redirect } from 'next/navigation'
-import { stateStore } from '@/stores/Address/stateStore'
-import { cityStore } from '@/stores/Address/CityByStateStore'
-import { ResultUserRegistered } from '../../../../../../types'
-import { saveUserAction } from '@/app/actions/saveUserAction'
+import { zodResolver } from '@hookform/resolvers/zod'
 
 enum Fields {
   email = 'email',
@@ -468,7 +469,7 @@ export const UserRegisterForm = ({
                                     (state) => state.shortName === field.value,
                                   )?.state
                                 : 'Selecione um Estado'}
-                              <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                              <LuChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                             </Button>
                           </FormControl>
                         </PopoverTrigger>
@@ -486,7 +487,7 @@ export const UserRegisterForm = ({
                                     form.setValue('estado', state.shortName)
                                   }}
                                 >
-                                  <Check
+                                  <LuCheck
                                     className={cn(
                                       'mr-2 h-4 w-4',
                                       state.shortName === field.value
@@ -533,7 +534,7 @@ export const UserRegisterForm = ({
                                     (city) => city.city === field.value,
                                   )?.city
                                 : 'Selecione uma Cidade'}
-                              <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                              <LuChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                             </Button>
                           </FormControl>
                         </PopoverTrigger>
@@ -550,7 +551,7 @@ export const UserRegisterForm = ({
                                     form.setValue('cidade', city.city)
                                   }}
                                 >
-                                  <Check
+                                  <LuCheck
                                     className={cn(
                                       'mr-2 h-4 w-4',
                                       city.city === field.value

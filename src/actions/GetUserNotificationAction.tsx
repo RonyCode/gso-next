@@ -1,7 +1,9 @@
 'use server'
 
-import { UserNotification } from '../../types/index'
+import { type UserNotification } from '../../types/index'
 
-export async function getUserNotification(data: UserNotification) {
+export async function getUserNotification(
+  data: UserNotification,
+): Promise<void> {
   console.log({ ...data })
 }

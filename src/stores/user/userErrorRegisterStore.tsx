@@ -1,7 +1,8 @@
-import { UserType } from '../../../types/index'
+import { type UserType } from '../../../types/index'
+
 import { create } from 'zustand'
 
-type UserStore = {
+interface UserStore {
   user: UserType
   add: (user: UserType) => void
 }
@@ -61,6 +62,8 @@ export const userErrorRegisterStore = create<UserStore>()((set) => {
       excluded: 0,
       id: 0,
     },
-    add: (user: UserType) => set((state) => ({ ...state.user, user })),
+    add: (user: UserType): void => {
+      set((state) => ({ ...state.user, user }))
+    },
   }
 })

@@ -1,3 +1,9 @@
+import React from 'react'
+import { LuBellRing, LuCheck } from 'react-icons/lu'
+
+import { EditPhoto } from '@/components/EditPhoto/EditPhoto'
+import { cn } from '@/lib/utils'
+import { Button } from '@/ui/button'
 import {
   Card,
   CardContent,
@@ -6,12 +12,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/ui/card'
-import { cn } from '@/lib/utils'
-import { BellRing, Check } from 'lucide-react'
 import { Switch } from '@/ui/switch'
-import { Button } from '@/ui/button'
-import React from 'react'
-import { EditPhoto } from '@/components/EditPhoto/EditPhoto'
 
 type CardProps = React.ComponentProps<typeof Card>
 
@@ -41,7 +42,7 @@ export const CardsBanner = ({ className, ...props }: CardProps) => {
         </CardHeader>
         <CardContent className="grid gap-4">
           <div className=" flex items-center space-x-4 rounded-md border p-4">
-            <BellRing />
+            <LuBellRing />
             <div className="flex-1 space-y-1">
               <p className="text-sm font-medium leading-none">
                 Alerta de notificatções
@@ -75,7 +76,7 @@ export const CardsBanner = ({ className, ...props }: CardProps) => {
         </CardContent>
         <CardFooter>
           <Button className="w-full">
-            <Check className="mr-2 h-4 w-4" /> Marcar todas como lidas
+            <LuCheck className="mr-2 h-4 w-4" /> Marcar todas como lidas
           </Button>
         </CardFooter>
       </Card>

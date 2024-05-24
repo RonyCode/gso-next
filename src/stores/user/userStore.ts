@@ -1,11 +1,12 @@
-import { UserType } from '../../../types/index'
+import { type UserType } from '../../../types/index'
+
 import { create } from 'zustand'
 
-type ActionsProps = {
+interface ActionsProps {
   add: (user: UserType) => void
 }
 
-type UserProps = {
+interface UserProps {
   state: { user: UserType }
   actions: ActionsProps
 }
@@ -74,12 +75,13 @@ export const useUserStore = create<UserProps>()((set) => {
       },
     },
     actions: {
-      add: (user: UserType) =>
+      add: (user: UserType): void => {
         set((state) => ({
           state: {
             user: { ...state.state.user, ...user },
           },
-        })),
+        }))
+      },
     },
   }
 })

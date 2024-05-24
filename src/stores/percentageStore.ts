@@ -1,10 +1,10 @@
 import { create } from 'zustand'
 
-type ActionsProps = {
+interface ActionsProps {
   add: (percentage: number) => void
 }
 
-type UserProps = {
+interface UserProps {
   state: { percentage: number }
   actions: ActionsProps
 }
@@ -15,12 +15,13 @@ export const execPercentageStore = create<UserProps>()((set) => {
       percentage: 0,
     },
     actions: {
-      add: (percentage: number) =>
-        set((state) => ({
+      add: (percentage: number) => {
+        set((state): { state: { percentage: number } } => ({
           state: {
             percentage: (state.state.percentage = percentage),
           },
-        })),
+        }))
+      },
     },
   }
 })

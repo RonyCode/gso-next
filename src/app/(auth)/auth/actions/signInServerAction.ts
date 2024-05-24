@@ -1,5 +1,6 @@
 'use server'
-export const signInServerActions = async () => {
+
+export const signInServerActions = async (): Promise<void> => {
   // try {
   //   revalidatePath('/')
   //   if (payload instanceof FormData) {

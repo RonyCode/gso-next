@@ -74,6 +74,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.3.0",
+    "@next/eslint-plugin-next": "^14.2.3",
     "@types/inputmask": "^5.0.6",
     "@types/lodash.debounce": "^4.0.9",
     "@types/node": "20.12.12",

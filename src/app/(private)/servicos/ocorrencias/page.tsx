@@ -1,5 +1,6 @@
+import { LuSiren } from 'react-icons/lu'
+
 import { CardDefault } from '@/components/Cards/CardDefault'
-import { LucideSiren } from 'lucide-react'
 
 const Ocorrencias = () => {
   return (
@@ -10,7 +11,7 @@ const Ocorrencias = () => {
         image="/images/ocorrencias.png"
         imageMobile="/images/ocorrencias.png"
         className="w-screen"
-        icon={<LucideSiren size={28} />}
+        icon={<LuSiren size={28} />}
       >
         <h1>hello</h1>
       </CardDefault>

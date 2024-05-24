@@ -1,5 +1,6 @@
+import { LuBookOpenCheck } from 'react-icons/lu'
+
 import { CardDefault } from '@/components/Cards/CardDefault'
-import { LucideBookOpenCheck } from 'lucide-react'
 
 const Leis = () => {
   return (
@@ -7,7 +8,7 @@ const Leis = () => {
       <CardDefault
         title="Leis"
         description="Acervo de leis "
-        icon={<LucideBookOpenCheck size={28} />}
+        icon={<LuBookOpenCheck size={28} />}
       >
         <h1>Leis</h1>
       </CardDefault>

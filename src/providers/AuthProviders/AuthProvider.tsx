@@ -4,7 +4,7 @@ import { SessionProvider } from 'next-auth/react'
 interface ProviderProps {
   children: React.ReactNode
 }
-const AuthProvider = ({ children }: ProviderProps) => {
+const AuthProvider = ({ children }: ProviderProps): JSX.Element => {
   return (
     <>
       {' '}

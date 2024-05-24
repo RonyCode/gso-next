@@ -1,15 +1,16 @@
 'use client'
 
-import { useNotificationStore } from '@/stores/user/useNotificationStore'
-import { UserNotification } from '../../../types/index'
+import { type UserNotification } from '../../../types/index'
 
-type AppInitializerProps = {
+import { useNotificationStore } from '@/stores/user/useNotificationStore'
+
+interface AppInitializerProps {
   userNotification: UserNotification | null
 }
 
 export default function UserNotifcationStoreInitialize({
   userNotification,
-}: AppInitializerProps) {
+}: AppInitializerProps): null {
   useNotificationStore.setState({ state: { notification: userNotification } })
   return null
 }
