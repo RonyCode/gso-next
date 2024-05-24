@@ -1,7 +1,5 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { fontFamily } = require('tailwindcss/defaultTheme')
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const { theme } = require('tailwindcss/defaultTheme')
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -12,6 +10,7 @@ module.exports = {
     './app/**/*.{ts,tsx}',
     './src/**/*.{ts,tsx}',
   ],
+
   theme: {
     container: {
       center: true,

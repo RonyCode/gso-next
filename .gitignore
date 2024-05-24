@@ -43,3 +43,6 @@ next-env.d.ts
 sw.*
 workbox-*
 swe-worker-*
+!/.env.local
+
+!/.env.production

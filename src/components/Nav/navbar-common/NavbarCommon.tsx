@@ -23,7 +23,6 @@ function NavbarCommon() {
             alt="test"
             placeholder="blur"
             className="
-          delay-[2000]
           mr-2
           h-32
           w-24
