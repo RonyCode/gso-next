@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from 'next/server'
+import { type NextRequest, NextResponse } from 'next/server'
 
 export async function GET(
   request: NextRequest,
@@ -6,7 +6,7 @@ export async function GET(
 ) {
   const state = params.state
   const res: Response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_GSO}/services/cidades/${state}`,
+    `${process.env.NEXT_PUBLIC_API_GSO}/services/cities/${state}`,
   )
   if (!res.ok) {
     return NextResponse.json(
