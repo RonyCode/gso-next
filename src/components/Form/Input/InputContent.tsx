@@ -1,5 +1,6 @@
-import { forwardRef, InputHTMLAttributes, LegacyRef } from 'react'
-import { InputMaskProps } from '@react-input/mask'
+import { forwardRef, type InputHTMLAttributes, type LegacyRef } from 'react'
+
+import { type InputMaskProps } from '@react-input/mask'
 
 type InputProps = InputHTMLAttributes<HTMLInputElement> & {
   label?: string

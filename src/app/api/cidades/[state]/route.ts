@@ -3,7 +3,7 @@ import { type NextRequest, NextResponse } from 'next/server'
 export async function GET(
   request: NextRequest,
   { params }: { params: { state: string } },
-) {
+): Promise<NextResponse> {
   const state = params.state
   const res: Response = await fetch(
     `${process.env.NEXT_PUBLIC_API_GSO}/services/cities/${state}`,

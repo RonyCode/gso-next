@@ -5,6 +5,7 @@ import { cn } from '@/lib/utils'
 const Card = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
+  // eslint-disable-next-line react/prop-types
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
@@ -20,6 +21,7 @@ Card.displayName = 'Card'
 const CardHeader = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
+  // eslint-disable-next-line react/prop-types
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
@@ -32,6 +34,7 @@ CardHeader.displayName = 'CardHeader'
 const CardTitle = React.forwardRef<
   HTMLParagraphElement,
   React.HTMLAttributes<HTMLHeadingElement>
+  // eslint-disable-next-line react/prop-types
 >(({ className, ...props }, ref) => (
   <h3
     ref={ref}
@@ -44,6 +47,7 @@ CardTitle.displayName = 'CardTitle'
 const CardDescription = React.forwardRef<
   HTMLParagraphElement,
   React.HTMLAttributes<HTMLParagraphElement>
+  // eslint-disable-next-line react/prop-types
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
@@ -56,6 +60,7 @@ CardDescription.displayName = 'CardDescription'
 const CardContent = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
+  // eslint-disable-next-line react/prop-types
 >(({ className, ...props }, ref) => (
   <div ref={ref} className={cn('p-6 pt-0', className)} {...props} />
 ))
@@ -64,6 +69,7 @@ CardContent.displayName = 'CardContent'
 const CardFooter = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
+  // eslint-disable-next-line react/prop-types
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}

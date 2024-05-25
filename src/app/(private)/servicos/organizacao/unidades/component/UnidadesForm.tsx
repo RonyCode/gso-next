@@ -1,6 +1,10 @@
-import { Unidade } from '../../../../../../../types/index'
+import { type Unidade } from '../../../../../../../types/index'
 
-export const UnidadesForm = ({ unidades }: { unidades: Unidade }) => {
+export const UnidadesForm = ({
+  unidades,
+}: {
+  unidades: Unidade
+}): JSX.Element => {
   return (
     <>
       {unidades.image} - {unidades.name}

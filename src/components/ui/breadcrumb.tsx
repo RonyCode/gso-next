@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { type ReactElement } from 'react'
 import { LuChevronRight, LuMoreHorizontal } from 'react-icons/lu'
 
 import { cn } from '@/lib/utils'
@@ -15,6 +16,7 @@ Breadcrumb.displayName = 'Breadcrumb'
 const BreadcrumbList = React.forwardRef<
   HTMLOListElement,
   React.ComponentPropsWithoutRef<'ol'>
+  // eslint-disable-next-line react/prop-types
 >(({ className, ...props }, ref) => (
   <ol
     ref={ref}
@@ -30,6 +32,7 @@ BreadcrumbList.displayName = 'BreadcrumbList'
 const BreadcrumbItem = React.forwardRef<
   HTMLLIElement,
   React.ComponentPropsWithoutRef<'li'>
+  // eslint-disable-next-line react/prop-types
 >(({ className, ...props }, ref) => (
   <li
     ref={ref}
@@ -44,8 +47,9 @@ const BreadcrumbLink = React.forwardRef<
   React.ComponentPropsWithoutRef<'a'> & {
     asChild?: boolean
   }
+  // eslint-disable-next-line react/prop-types
 >(({ asChild, className, ...props }, ref) => {
-  const Comp = asChild ? Slot : 'a'
+  const Comp = asChild === true ? Slot : 'a'
 
   return (
     <Comp
@@ -60,6 +64,7 @@ BreadcrumbLink.displayName = 'BreadcrumbLink'
 const BreadcrumbPage = React.forwardRef<
   HTMLSpanElement,
   React.ComponentPropsWithoutRef<'span'>
+  // eslint-disable-next-line react/prop-types
 >(({ className, ...props }, ref) => (
   <span
     ref={ref}
@@ -74,9 +79,10 @@ BreadcrumbPage.displayName = 'BreadcrumbPage'
 
 const BreadcrumbSeparator = ({
   children,
+  // eslint-disable-next-line react/prop-types
   className,
   ...props
-}: React.ComponentProps<'li'>) => (
+}: React.ComponentProps<'li'>): ReactElement => (
   <li
     role="presentation"
     aria-hidden="true"
@@ -89,9 +95,10 @@ const BreadcrumbSeparator = ({
 BreadcrumbSeparator.displayName = 'BreadcrumbSeparator'
 
 const BreadcrumbEllipsis = ({
+  // eslint-disable-next-line react/prop-types
   className,
   ...props
-}: React.ComponentProps<'span'>) => (
+}: React.ComponentProps<'span'>): ReactElement => (
   <span
     role="presentation"
     aria-hidden="true"

@@ -1,8 +1,9 @@
 import { getServerSession } from 'next-auth'
+import { type ReactNode } from 'react'
 
 import { authOptions } from '@/lib/auth'
 
-const Users = async () => {
+const Users = async (): Promise<ReactNode> => {
   const session = await getServerSession(authOptions)
 
   return (

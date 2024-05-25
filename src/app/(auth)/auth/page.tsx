@@ -1,4 +1,4 @@
-import { Metadata } from 'next'
+import { type Metadata } from 'next'
 
 import LoginFormSlice from '@/app/(auth)/auth/components/LoginFormSlice'
 
@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 }
 
 export const runtime = 'edge'
-export default function Page() {
+export default function Page(): JSX.Element {
   return (
     <div className="w-screen lg:container">
       <LoginFormSlice />

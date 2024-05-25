@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { type ReactElement } from 'react'
 
 import { ModeToggle } from '@/components/Buttoms/ModeTogle'
 import {
@@ -21,14 +21,14 @@ const PageCard = ({
   icon: Icon,
   description,
   children,
-}: PageCardProps) => {
+}: PageCardProps): ReactElement => {
   return (
     <>
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center justify-between ">
             <span className="display inline-flex items-center gap-2 text-4xl font-bold ">
-              {Icon && <Icon size={20} />} {title}
+              {Icon !== undefined && <Icon size={20} />} {title}
             </span>
             <ModeToggle />
           </CardTitle>

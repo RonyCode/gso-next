@@ -1,12 +1,14 @@
-import IconGrafico from '../../../../../public/icons/IconGrafico'
-import IconSirene from '../../../../../public/icons/IconSirene'
+import IconBuild from '../../../../../public/icons/IconBuild'
 import IconCalendar from '../../../../../public/icons/IconCalendar'
 import IconCelular from '../../../../../public/icons/IconCelular'
-import IconRelogio from '../../../../../public/icons/IconRelogio'
 import IconCog from '../../../../../public/icons/IconCog'
+import IconGrafico from '../../../../../public/icons/IconGrafico'
+import IconRelogio from '../../../../../public/icons/IconRelogio'
+import IconSirene from '../../../../../public/icons/IconSirene'
+
 import { CardModule } from '@/components/Cards/CardModule'
-import IconBuild from '../../../../../public/icons/IconBuild'
-const ModulesServices = () => {
+
+const ModulesServices = (): JSX.Element => {
   return (
     <>
       <div>

@@ -7,7 +7,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
   const remaining: number = await limiter.removeTokens(1)
   const body: IRegisterUserSchema = await request.json()
 
-  if (!body)
+  if (body.cpf === '' || body.email === '' || body.senha === '')
     return NextResponse.json({ message: 'Erro parametros necessários' })
 
   if (remaining < 0) {

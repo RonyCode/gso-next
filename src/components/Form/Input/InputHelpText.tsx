@@ -2,9 +2,9 @@ interface InputLabelProps {
   text?: string
 }
 
-const InputHelpText = ({ text }: InputLabelProps) => {
+const InputHelpText = ({ text }: InputLabelProps): JSX.Element => {
   let hasError = false
-  if (text) hasError = text.length > 0
+  if (text != null) hasError = text.length > 0
 
   return (
     <>

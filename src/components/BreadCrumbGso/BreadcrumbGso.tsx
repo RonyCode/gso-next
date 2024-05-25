@@ -1,7 +1,7 @@
 'use client'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import React from 'react'
+import React, { type ReactElement } from 'react'
 import { LiaChevronRightSolid } from 'react-icons/lia'
 import { LuHome } from 'react-icons/lu'
 
@@ -12,7 +12,7 @@ import {
   BreadcrumbSeparator,
 } from '@/ui/breadcrumb'
 
-const BreadcrumbGso = () => {
+const BreadcrumbGso = (): ReactElement => {
   const pathname = usePathname()
   const arrayPathname = pathname?.split('/')
   arrayPathname?.shift()

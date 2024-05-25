@@ -1,5 +1,7 @@
 'use client'
 
+import * as React from 'react'
+
 import {
   Toast,
   ToastClose,
@@ -9,9 +11,8 @@ import {
   ToastViewport,
 } from '@/components/ui/toast'
 import { useToast } from '@/components/ui/use-toast'
-import * as React from 'react'
 
-export function Toaster() {
+export function Toaster(): JSX.Element {
   const { toasts } = useToast()
 
   return (
@@ -27,12 +28,14 @@ export function Toaster() {
         return (
           <Toast key={id} {...props} duration={3000}>
             <div className="grid gap-1">
-              {title && (
+              {title !== null && (
                 <ToastTitle
                   className={`      border-b border-[#1DA12A] ${
                     (variant === 'success' &&
+                      // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
                       'border-[#1DA12A] text-[#1DA12A]') ||
                     (variant === 'warning' &&
+                      // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
                       'border-[#F59E0B] text-[#F59E0B]') ||
                     (variant === 'danger' && 'border-[#EF4444] text-[#EF4444]')
                   } pb-2`}
@@ -40,7 +43,7 @@ export function Toaster() {
                   {title}
                 </ToastTitle>
               )}
-              {description && (
+              {description !== null && (
                 <div className="mt-2 flex w-[340px] items-center rounded-md  p-4 py-2">
                   <div className="inline-flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-green-100 text-green-500 dark:bg-green-800 dark:text-green-200">
                     {variant === 'success' && (

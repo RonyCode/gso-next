@@ -1,4 +1,6 @@
-const Terms = () => {
+import { type ReactNode } from 'react'
+
+const Terms = (): ReactNode => {
   return (
     <>
       <p>

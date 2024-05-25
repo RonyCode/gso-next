@@ -1,8 +1,9 @@
 'use server'
 
-import { IRegisterUserSchema } from '@/schemas/RegisterUserSchema'
+import { RegisterUserSchema } from '@/schemas/RegisterUserSchema'
 import { type ZodError } from 'zod'
 
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 export const registerUserServerActions = async (data: FormData) => {
   try {
     return RegisterUserSchema.parse(data)

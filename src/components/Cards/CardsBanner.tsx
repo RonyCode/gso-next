@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { type ReactElement } from 'react'
 import { LuBellRing, LuCheck } from 'react-icons/lu'
 
 import { EditPhoto } from '@/components/EditPhoto/EditPhoto'
@@ -16,7 +16,11 @@ import { Switch } from '@/ui/switch'
 
 type CardProps = React.ComponentProps<typeof Card>
 
-export const CardsBanner = ({ className, ...props }: CardProps) => {
+export const CardsBanner = ({
+  // eslint-disable-next-line react/prop-types
+  className,
+  ...props
+}: CardProps): ReactElement => {
   const notifications = [
     {
       title: 'Your call has been confirmed.',

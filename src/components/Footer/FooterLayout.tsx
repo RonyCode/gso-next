@@ -1,11 +1,13 @@
 'use client'
 
-import * as React from 'react'
-import FooterNormal from '@/components/Footer/FooterNormal'
 import { usePathname } from 'next/navigation'
-import FooterHomePage from '@/components/Footer/FooterHomePage'
+import * as React from 'react'
+import { type ReactElement } from 'react'
 
-const FooterLayout = () => {
+import FooterHomePage from '@/components/Footer/FooterHomePage'
+import FooterNormal from '@/components/Footer/FooterNormal'
+
+const FooterLayout = (): ReactElement => {
   const pathName = usePathname()
 
   return <>{pathName === '/' ? <FooterHomePage /> : <FooterNormal />}</>

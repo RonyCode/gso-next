@@ -1,3 +1,5 @@
+import { type ReactElement } from 'react'
+
 import { cn } from '@/lib/utils'
 import { Button } from '@/ui/button'
 import {
@@ -25,7 +27,7 @@ export function DataTableColumnHeader<TData, TValue>({
   column,
   title,
   className,
-}: DataTableColumnHeaderProps<TData, TValue>) {
+}: DataTableColumnHeaderProps<TData, TValue>): ReactElement {
   if (!column.getCanSort()) {
     return <div className={cn(className)}>{title}</div>
   }

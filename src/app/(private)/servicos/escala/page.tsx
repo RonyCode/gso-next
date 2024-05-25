@@ -1,5 +1,5 @@
 import { type Metadata } from 'next'
-import React from 'react'
+import React, { type ReactNode } from 'react'
 import { LuCalendarDays } from 'react-icons/lu'
 
 import {
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   description: 'Página de escalas do site GSO.',
 }
 
-const Escala = () => {
+const Escala = (): ReactNode => {
   const event: EventProps[] = [
     {
       id: 3,
@@ -28,87 +28,83 @@ const Escala = () => {
       description: 'teste description 1',
       group: 'Alfa',
       imgUnity: '/images/imgUnity.jpeg',
-      cars:
-        ([
-          {
-            nameCar: 'ABT-1234',
-            imageCar: '/images/img-vtr1.jpg',
-            members:
-              ([
-                {
-                  name: 'user 1',
-                  email: 'user1@mail',
-                  function: 'motorista',
-                  imageMember: '/images/user1.jpg',
-                },
+      cars: [
+        {
+          nameCar: 'ABT-1234',
+          imageCar: '/images/img-vtr1.jpg',
+          members: [
+            {
+              name: 'user 1',
+              email: 'user1@mail',
+              function: 'motorista',
+              imageMember: '/images/user1.jpg',
+            },
 
-                {
-                  name: 'user 2',
-                  email: 'user2@mail',
-                  function: 'componente',
-                  imageMember: '/images/user2.jpg',
-                },
-                {
-                  name: 'user 3',
-                  email: 'user3@mail',
-                  function: 'componente',
-                  imageMember: '/images/user3.webp',
-                },
-              ] as Member[]) || null,
-          },
-          {
-            nameCar: 'UR-4321',
-            imageCar: '/images/img-vtr2.jpg',
-            members:
-              ([
-                {
-                  name: 'user 15',
-                  email: 'user1@mail',
-                  function: 'motorista',
-                  imageMember: '/images/user1.jpg',
-                },
+            {
+              name: 'user 2',
+              email: 'user2@mail',
+              function: 'componente',
+              imageMember: '/images/user2.jpg',
+            },
+            {
+              name: 'user 3',
+              email: 'user3@mail',
+              function: 'componente',
+              imageMember: '/images/user3.webp',
+            },
+          ] as Member[],
+        },
+        {
+          nameCar: 'UR-4321',
+          imageCar: '/images/img-vtr2.jpg',
+          members: [
+            {
+              name: 'user 15',
+              email: 'user1@mail',
+              function: 'motorista',
+              imageMember: '/images/user1.jpg',
+            },
 
-                {
-                  name: 'user 21',
-                  email: 'user2@mail',
-                  function: 'componente',
-                  imageMember: '/images/user2.jpg',
-                },
-                {
-                  name: 'user 33',
-                  email: 'user3@mail',
-                  function: 'componente',
-                  imageMember: '/images/user3.webp',
-                },
-              ] as Member[]) || null,
-          },
-          {
-            nameCar: 'ESC-1544',
-            imageCar: '/images/img-vtr3.webp',
-            members:
-              ([
-                {
-                  name: 'user 1',
-                  email: 'user1@mail',
-                  function: 'motorista',
-                  imageMember: '/images/user1.jpg',
-                },
+            {
+              name: 'user 21',
+              email: 'user2@mail',
+              function: 'componente',
+              imageMember: '/images/user2.jpg',
+            },
+            {
+              name: 'user 33',
+              email: 'user3@mail',
+              function: 'componente',
+              imageMember: '/images/user3.webp',
+            },
+          ] as Member[],
+        },
+        {
+          nameCar: 'ESC-1544',
+          imageCar: '/images/img-vtr3.webp',
+          members: [
+            {
+              name: 'user 1',
+              email: 'user1@mail',
+              function: 'motorista',
+              imageMember: '/images/user1.jpg',
+            },
 
-                {
-                  name: 'user 2',
-                  email: 'user2@mail',
-                  function: 'componente',
-                  imageMember: '/images/user2.jpg',
-                },
-                {
-                  name: 'user 3',
-                  email: 'user3@mail',
-                  function: 'componente',
-                  imageMember: '/images/user3.webp',
-                },
-              ] as Member[]) || null,
-          },
-        ] as CarsUnity[]) || null,
+            {
+              name: 'user 2',
+              email: 'user2@mail',
+              function: 'componente',
+              imageMember: '/images/user2.jpg',
+            },
+            {
+              name: 'user 3',
+              email: 'user3@mail',
+              function: 'componente',
+              imageMember: '/images/user3.webp',
+            },
+          ] as Member[],
+        },
+      ] as CarsUnity[],
       type: 'normal',
       status: 'publicado',
       company: 'Palmas',
@@ -127,94 +123,90 @@ const Escala = () => {
       type: 'normal',
       group: 'Bravo',
       imgUnity: '/images/imgUnity.jpeg',
-      cars:
-        ([
-          {
-            nameCar: 'ABT-1234',
-            imageCar: '/images/img-vtr1.jpg',
-            members:
-              ([
-                {
-                  name: 'CB ANDERSON',
-                  email: 'user1@mail',
-                  function: 'motorista',
-                  imageMember: '/images/user1.jpg',
-                },
+      cars: [
+        {
+          nameCar: 'ABT-1234',
+          imageCar: '/images/img-vtr1.jpg',
+          members: [
+            {
+              name: 'CB ANDERSON',
+              email: 'user1@mail',
+              function: 'motorista',
+              imageMember: '/images/user1.jpg',
+            },
 
-                {
-                  name: 'SGT B.MORAES',
-                  email: 'user1@mail',
-                  function: 'motorista',
-                  imageMember: '/images/user1.jpg',
-                },
+            {
+              name: 'SGT B.MORAES',
+              email: 'user1@mail',
+              function: 'motorista',
+              imageMember: '/images/user1.jpg',
+            },
 
-                {
-                  name: 'CB ATHUS',
-                  email: 'user2@mail',
-                  function: 'componente',
-                  imageMember: '/images/user2.jpg',
-                },
-                {
-                  name: 'CB JHONATAN',
-                  email: 'user3@mail',
-                  function: 'componente',
-                  imageMember: '/images/user3.webp',
-                },
-              ] as Member[]) || null,
-          },
-          {
-            nameCar: 'UR-4321',
-            imageCar: '/images/img-vtr2.jpg',
-            members:
-              ([
-                {
-                  name: 'user 15',
-                  email: 'user1@mail',
-                  function: 'motorista',
-                  imageMember: '/images/user1.jpg',
-                },
+            {
+              name: 'CB ATHUS',
+              email: 'user2@mail',
+              function: 'componente',
+              imageMember: '/images/user2.jpg',
+            },
+            {
+              name: 'CB JHONATAN',
+              email: 'user3@mail',
+              function: 'componente',
+              imageMember: '/images/user3.webp',
+            },
+          ] as Member[],
+        },
+        {
+          nameCar: 'UR-4321',
+          imageCar: '/images/img-vtr2.jpg',
+          members: [
+            {
+              name: 'user 15',
+              email: 'user1@mail',
+              function: 'motorista',
+              imageMember: '/images/user1.jpg',
+            },
 
-                {
-                  name: 'user 21',
-                  email: 'user2@mail',
-                  function: 'componente',
-                  imageMember: '/images/user2.jpg',
-                },
-                {
-                  name: 'user 33',
-                  email: 'user3@mail',
-                  function: 'componente',
-                  imageMember: '/images/user3.webp',
-                },
-              ] as Member[]) || null,
-          },
-          {
-            nameCar: 'ESC-1544',
-            imageCar: '/images/img-vtr3.webp',
-            members:
-              ([
-                {
-                  name: 'user 1',
-                  email: 'user1@mail',
-                  function: 'motorista',
-                  imageMember: '/images/user1.jpg',
-                },
+            {
+              name: 'user 21',
+              email: 'user2@mail',
+              function: 'componente',
+              imageMember: '/images/user2.jpg',
+            },
+            {
+              name: 'user 33',
+              email: 'user3@mail',
+              function: 'componente',
+              imageMember: '/images/user3.webp',
+            },
+          ] as Member[],
+        },
+        {
+          nameCar: 'ESC-1544',
+          imageCar: '/images/img-vtr3.webp',
+          members: [
+            {
+              name: 'user 1',
+              email: 'user1@mail',
+              function: 'motorista',
+              imageMember: '/images/user1.jpg',
+            },
 
-                {
-                  name: 'user 2',
-                  email: 'user2@mail',
-                  function: 'componente',
-                  imageMember: '/images/user2.jpg',
-                },
-                {
-                  name: 'user 3',
-                  email: 'user3@mail',
-                  function: 'componente',
-                  imageMember: '/images/user3.webp',
-                },
-              ] as Member[]) || null,
-          },
-        ] as CarsUnity[]) || null,
+            {
+              name: 'user 2',
+              email: 'user2@mail',
+              function: 'componente',
+              imageMember: '/images/user2.jpg',
+            },
+            {
+              name: 'user 3',
+              email: 'user3@mail',
+              function: 'componente',
+              imageMember: '/images/user3.webp',
+            },
+          ] as Member[],
+        },
+      ] as CarsUnity[],
       status: 'publicado',
       company: 'Palmas',
       date: '03/03/2024',
@@ -233,87 +225,83 @@ const Escala = () => {
       group: 'Bravo',
       imgUnity: '/images/imgUnity.jpeg',
 
-      cars:
-        ([
-          {
-            nameCar: 'ABT-1234',
-            imageCar: '/images/img-vtr1.jpg',
-            members:
-              ([
-                {
-                  name: 'user 1',
-                  email: 'user1@mail',
-                  function: 'motorista',
-                  imageMember: '/images/user1.jpg',
-                },
+      cars: [
+        {
+          nameCar: 'ABT-1234',
+          imageCar: '/images/img-vtr1.jpg',
+          members: [
+            {
+              name: 'user 1',
+              email: 'user1@mail',
+              function: 'motorista',
+              imageMember: '/images/user1.jpg',
+            },
 
-                {
-                  name: 'user 2',
-                  email: 'user2@mail',
-                  function: 'componente',
-                  imageMember: '/images/user2.jpg',
-                },
-                {
-                  name: 'user 3',
-                  email: 'user3@mail',
-                  function: 'componente',
-                  imageMember: '/images/user3.webp',
-                },
-              ] as Member[]) || null,
-          },
-          {
-            nameCar: 'UR-4321',
-            imageCar: '/images/img-vtr2.jpg',
-            members:
-              ([
-                {
-                  name: 'user 15',
-                  email: 'user1@mail',
-                  function: 'motorista',
-                  imageMember: '/images/user1.jpg',
-                },
+            {
+              name: 'user 2',
+              email: 'user2@mail',
+              function: 'componente',
+              imageMember: '/images/user2.jpg',
+            },
+            {
+              name: 'user 3',
+              email: 'user3@mail',
+              function: 'componente',
+              imageMember: '/images/user3.webp',
+            },
+          ] as Member[],
+        },
+        {
+          nameCar: 'UR-4321',
+          imageCar: '/images/img-vtr2.jpg',
+          members: [
+            {
+              name: 'user 15',
+              email: 'user1@mail',
+              function: 'motorista',
+              imageMember: '/images/user1.jpg',
+            },
 
-                {
-                  name: 'user 21',
-                  email: 'user2@mail',
-                  function: 'componente',
-                  imageMember: '/images/user2.jpg',
-                },
-                {
-                  name: 'user 33',
-                  email: 'user3@mail',
-                  function: 'componente',
-                  imageMember: '/images/user3.webp',
-                },
-              ] as Member[]) || null,
-          },
-          {
-            nameCar: 'ESC-1544',
-            imageCar: '/images/img-vtr3.webp',
-            members:
-              ([
-                {
-                  name: 'user 1',
-                  email: 'user1@mail',
-                  function: 'motorista',
-                  imageMember: '/images/user1.jpg',
-                },
+            {
+              name: 'user 21',
+              email: 'user2@mail',
+              function: 'componente',
+              imageMember: '/images/user2.jpg',
+            },
+            {
+              name: 'user 33',
+              email: 'user3@mail',
+              function: 'componente',
+              imageMember: '/images/user3.webp',
+            },
+          ] as Member[],
+        },
+        {
+          nameCar: 'ESC-1544',
+          imageCar: '/images/img-vtr3.webp',
+          members: [
+            {
+              name: 'user 1',
+              email: 'user1@mail',
+              function: 'motorista',
+              imageMember: '/images/user1.jpg',
+            },
 
-                {
-                  name: 'user 2',
-                  email: 'user2@mail',
-                  function: 'componente',
-                  imageMember: '/images/user2.jpg',
-                },
-                {
-                  name: 'user 3',
-                  email: 'user3@mail',
-                  function: 'componente',
-                  imageMember: '/images/user3.webp',
-                },
-              ] as Member[]) || null,
-          },
-        ] as CarsUnity[]) || null,
+            {
+              name: 'user 2',
+              email: 'user2@mail',
+              function: 'componente',
+              imageMember: '/images/user2.jpg',
+            },
+            {
+              name: 'user 3',
+              email: 'user3@mail',
+              function: 'componente',
+              imageMember: '/images/user3.webp',
+            },
+          ] as Member[],
+        },
+      ] as CarsUnity[],
       status: 'publicado',
       company: 'Palmas',
       date: '03/03/2024',
@@ -331,87 +319,83 @@ const Escala = () => {
       type: 'normal',
       group: 'Delta',
       imgUnity: '/images/imgUnity.jpeg',
-      cars:
-        ([
-          {
-            nameCar: 'ABT-1234',
-            imageCar: '/images/img-vtr1.jpg',
-            members:
-              ([
-                {
-                  name: 'user 1',
-                  email: 'user1@mail',
-                  function: 'motorista',
-                  imageMember: '/images/user1.jpg',
-                },
+      cars: [
+        {
+          nameCar: 'ABT-1234',
+          imageCar: '/images/img-vtr1.jpg',
+          members: [
+            {
+              name: 'user 1',
+              email: 'user1@mail',
+              function: 'motorista',
+              imageMember: '/images/user1.jpg',
+            },
 
-                {
-                  name: 'user 2',
-                  email: 'user2@mail',
-                  function: 'componente',
-                  imageMember: '/images/user2.jpg',
-                },
-                {
-                  name: 'user 3',
-                  email: 'user3@mail',
-                  function: 'componente',
-                  imageMember: '/images/user3.webp',
-                },
-              ] as Member[]) || null,
-          },
-          {
-            nameCar: 'UR-4321',
-            imageCar: '/images/img-vtr2.jpg',
-            members:
-              ([
-                {
-                  name: 'user 15',
-                  email: 'user1@mail',
-                  function: 'motorista',
-                  imageMember: '/images/user1.jpg',
-                },
+            {
+              name: 'user 2',
+              email: 'user2@mail',
+              function: 'componente',
+              imageMember: '/images/user2.jpg',
+            },
+            {
+              name: 'user 3',
+              email: 'user3@mail',
+              function: 'componente',
+              imageMember: '/images/user3.webp',
+            },
+          ] as Member[],
+        },
+        {
+          nameCar: 'UR-4321',
+          imageCar: '/images/img-vtr2.jpg',
+          members: [
+            {
+              name: 'user 15',
+              email: 'user1@mail',
+              function: 'motorista',
+              imageMember: '/images/user1.jpg',
+            },
 
-                {
-                  name: 'user 21',
-                  email: 'user2@mail',
-                  function: 'componente',
-                  imageMember: '/images/user2.jpg',
-                },
-                {
-                  name: 'user 33',
-                  email: 'user3@mail',
-                  function: 'componente',
-                  imageMember: '/images/user3.webp',
-                },
-              ] as Member[]) || null,
-          },
-          {
-            nameCar: 'ESC-1544',
-            imageCar: '/images/img-vtr3.webp',
-            members:
-              ([
-                {
-                  name: 'user 1',
-                  email: 'user1@mail',
-                  function: 'motorista',
-                  imageMember: '/images/user1.jpg',
-                },
+            {
+              name: 'user 21',
+              email: 'user2@mail',
+              function: 'componente',
+              imageMember: '/images/user2.jpg',
+            },
+            {
+              name: 'user 33',
+              email: 'user3@mail',
+              function: 'componente',
+              imageMember: '/images/user3.webp',
+            },
+          ] as Member[],
+        },
+        {
+          nameCar: 'ESC-1544',
+          imageCar: '/images/img-vtr3.webp',
+          members: [
+            {
+              name: 'user 1',
+              email: 'user1@mail',
+              function: 'motorista',
+              imageMember: '/images/user1.jpg',
+            },
 
-                {
-                  name: 'user 2',
-                  email: 'user2@mail',
-                  function: 'componente',
-                  imageMember: '/images/user2.jpg',
-                },
-                {
-                  name: 'user 3',
-                  email: 'user3@mail',
-                  function: 'componente',
-                  imageMember: '/images/user3.webp',
-                },
-              ] as Member[]) || null,
-          },
-        ] as CarsUnity[]) || null,
+            {
+              name: 'user 2',
+              email: 'user2@mail',
+              function: 'componente',
+              imageMember: '/images/user2.jpg',
+            },
+            {
+              name: 'user 3',
+              email: 'user3@mail',
+              function: 'componente',
+              imageMember: '/images/user3.webp',
+            },
+          ] as Member[],
+        },
+      ] as CarsUnity[],
       status: 'publicado',
       company: 'Palmas',
       date: '03/03/2024',
@@ -430,87 +414,83 @@ const Escala = () => {
       group: 'Charlie',
       imgUnity: '/images/imgUnity.jpeg',
 
-      cars:
-        ([
-          {
-            nameCar: 'ABT-1234',
-            imageCar: '/images/img-vtr1.jpg',
-            members:
-              ([
-                {
-                  name: 'user 1',
-                  email: 'user1@mail',
-                  function: 'motorista',
-                  imageMember: '/images/user1.jpg',
-                },
+      cars: [
+        {
+          nameCar: 'ABT-1234',
+          imageCar: '/images/img-vtr1.jpg',
+          members: [
+            {
+              name: 'user 1',
+              email: 'user1@mail',
+              function: 'motorista',
+              imageMember: '/images/user1.jpg',
+            },
 
-                {
-                  name: 'user 2',
-                  email: 'user2@mail',
-                  function: 'componente',
-                  imageMember: '/images/user2.jpg',
-                },
-                {
-                  name: 'user 3',
-                  email: 'user3@mail',
-                  function: 'componente',
-                  imageMember: '/images/user3.webp',
-                },
-              ] as Member[]) || null,
-          },
-          {
-            nameCar: 'UR-4321',
-            imageCar: '/images/img-vtr2.jpg',
-            members:
-              ([
-                {
-                  name: 'user 15',
-                  email: 'user1@mail',
-                  function: 'motorista',
-                  imageMember: '/images/user1.jpg',
-                },
+            {
+              name: 'user 2',
+              email: 'user2@mail',
+              function: 'componente',
+              imageMember: '/images/user2.jpg',
+            },
+            {
+              name: 'user 3',
+              email: 'user3@mail',
+              function: 'componente',
+              imageMember: '/images/user3.webp',
+            },
+          ] as Member[],
+        },
+        {
+          nameCar: 'UR-4321',
+          imageCar: '/images/img-vtr2.jpg',
+          members: [
+            {
+              name: 'user 15',
+              email: 'user1@mail',
+              function: 'motorista',
+              imageMember: '/images/user1.jpg',
+            },
 
-                {
-                  name: 'user 21',
-                  email: 'user2@mail',
-                  function: 'componente',
-                  imageMember: '/images/user2.jpg',
-                },
-                {
-                  name: 'user 33',
-                  email: 'user3@mail',
-                  function: 'componente',
-                  imageMember: '/images/user3.webp',
-                },
-              ] as Member[]) || null,
-          },
-          {
-            nameCar: 'ESC-1544',
-            imageCar: '/images/img-vtr3.webp',
-            members:
-              ([
-                {
-                  name: 'user 1',
-                  email: 'user1@mail',
-                  function: 'motorista',
-                  imageMember: '/images/user1.jpg',
-                },
+            {
+              name: 'user 21',
+              email: 'user2@mail',
+              function: 'componente',
+              imageMember: '/images/user2.jpg',
+            },
+            {
+              name: 'user 33',
+              email: 'user3@mail',
+              function: 'componente',
+              imageMember: '/images/user3.webp',
+            },
+          ] as Member[],
+        },
+        {
+          nameCar: 'ESC-1544',
+          imageCar: '/images/img-vtr3.webp',
+          members: [
+            {
+              name: 'user 1',
+              email: 'user1@mail',
+              function: 'motorista',
+              imageMember: '/images/user1.jpg',
+            },
 
-                {
-                  name: 'user 2',
-                  email: 'user2@mail',
-                  function: 'componente',
-                  imageMember: '/images/user2.jpg',
-                },
-                {
-                  name: 'user 3',
-                  email: 'user3@mail',
-                  function: 'componente',
-                  imageMember: '/images/user3.webp',
-                },
-              ] as Member[]) || null,
-          },
-        ] as CarsUnity[]) || null,
+            {
+              name: 'user 2',
+              email: 'user2@mail',
+              function: 'componente',
+              imageMember: '/images/user2.jpg',
+            },
+            {
+              name: 'user 3',
+              email: 'user3@mail',
+              function: 'componente',
+              imageMember: '/images/user3.webp',
+            },
+          ] as Member[],
+        },
+      ] as CarsUnity[],
       status: 'publicado',
       company: 'Palmas',
       date: '18/03/2024',
@@ -530,87 +510,83 @@ const Escala = () => {
       group: 'Bravo',
       imgUnity: '/images/imgUnity.jpeg',
 
-      cars:
-        ([
-          {
-            nameCar: 'ABT-1234',
-            imageCar: '/images/img-vtr1.jpg',
-            members:
-              ([
-                {
-                  name: 'user 1',
-                  email: 'user1@mail',
-                  function: 'motorista',
-                  imageMember: '/images/user1.jpg',
-                },
+      cars: [
+        {
+          nameCar: 'ABT-1234',
+          imageCar: '/images/img-vtr1.jpg',
+          members: [
+            {
+              name: 'user 1',
+              email: 'user1@mail',
+              function: 'motorista',
+              imageMember: '/images/user1.jpg',
+            },
 
-                {
-                  name: 'user 2',
-                  email: 'user2@mail',
-                  function: 'componente',
-                  imageMember: '/images/user2.jpg',
-                },
-                {
-                  name: 'user 3',
-                  email: 'user3@mail',
-                  function: 'componente',
-                  imageMember: '/images/user3.webp',
-                },
-              ] as Member[]) || null,
-          },
-          {
-            nameCar: 'UR-4321',
-            imageCar: '/images/img-vtr2.jpg',
-            members:
-              ([
-                {
-                  name: 'user 15',
-                  email: 'user1@mail',
-                  function: 'motorista',
-                  imageMember: '/images/user1.jpg',
-                },
+            {
+              name: 'user 2',
+              email: 'user2@mail',
+              function: 'componente',
+              imageMember: '/images/user2.jpg',
+            },
+            {
+              name: 'user 3',
+              email: 'user3@mail',
+              function: 'componente',
+              imageMember: '/images/user3.webp',
+            },
+          ] as Member[],
+        },
+        {
+          nameCar: 'UR-4321',
+          imageCar: '/images/img-vtr2.jpg',
+          members: [
+            {
+              name: 'user 15',
+              email: 'user1@mail',
+              function: 'motorista',
+              imageMember: '/images/user1.jpg',
+            },
 
-                {
-                  name: 'user 21',
-                  email: 'user2@mail',
-                  function: 'componente',
-                  imageMember: '/images/user2.jpg',
-                },
-                {
-                  name: 'user 33',
-                  email: 'user3@mail',
-                  function: 'componente',
-                  imageMember: '/images/user3.webp',
-                },
-              ] as Member[]) || null,
-          },
-          {
-            nameCar: 'ESC-1544',
-            imageCar: '/images/img-vtr3.webp',
-            members:
-              ([
-                {
-                  name: 'user 1',
-                  email: 'user1@mail',
-                  function: 'motorista',
-                  imageMember: '/images/user1.jpg',
-                },
+            {
+              name: 'user 21',
+              email: 'user2@mail',
+              function: 'componente',
+              imageMember: '/images/user2.jpg',
+            },
+            {
+              name: 'user 33',
+              email: 'user3@mail',
+              function: 'componente',
+              imageMember: '/images/user3.webp',
+            },
+          ] as Member[],
+        },
+        {
+          nameCar: 'ESC-1544',
+          imageCar: '/images/img-vtr3.webp',
+          members: [
+            {
+              name: 'user 1',
+              email: 'user1@mail',
+              function: 'motorista',
+              imageMember: '/images/user1.jpg',
+            },
 
-                {
-                  name: 'user 2',
-                  email: 'user2@mail',
-                  function: 'componente',
-                  imageMember: '/images/user2.jpg',
-                },
-                {
-                  name: 'user 3',
-                  email: 'user3@mail',
-                  function: 'componente',
-                  imageMember: '/images/user3.webp',
-                },
-              ] as Member[]) || null,
-          },
-        ] as CarsUnity[]) || null,
+            {
+              name: 'user 2',
+              email: 'user2@mail',
+              function: 'componente',
+              imageMember: '/images/user2.jpg',
+            },
+            {
+              name: 'user 3',
+              email: 'user3@mail',
+              function: 'componente',
+              imageMember: '/images/user3.webp',
+            },
+          ] as Member[],
+        },
+      ] as CarsUnity[],
       status: 'publicado',
       company: 'Palmas',
       date: '18/03/2024',
@@ -629,87 +605,83 @@ const Escala = () => {
       group: 'Alfa',
       imgUnity: '/images/imgUnity.jpeg',
 
-      cars:
-        ([
-          {
-            nameCar: 'ABT-1234',
-            imageCar: '/images/img-vtr1.jpg',
-            members:
-              ([
-                {
-                  name: 'user 1',
-                  email: 'user1@mail',
-                  function: 'motorista',
-                  imageMember: '/images/user1.jpg',
-                },
+      cars: [
+        {
+          nameCar: 'ABT-1234',
+          imageCar: '/images/img-vtr1.jpg',
+          members: [
+            {
+              name: 'user 1',
+              email: 'user1@mail',
+              function: 'motorista',
+              imageMember: '/images/user1.jpg',
+            },
 
-                {
-                  name: 'user 2',
-                  email: 'user2@mail',
-                  function: 'componente',
-                  imageMember: '/images/user2.jpg',
-                },
-                {
-                  name: 'user 3',
-                  email: 'user3@mail',
-                  function: 'componente',
-                  imageMember: '/images/user3.webp',
-                },
-              ] as Member[]) || null,
-          },
-          {
-            nameCar: 'UR-4321',
-            imageCar: '/images/img-vtr2.jpg',
-            members:
-              ([
-                {
-                  name: 'user 15',
-                  email: 'user1@mail',
-                  function: 'motorista',
-                  imageMember: '/images/user1.jpg',
-                },
+            {
+              name: 'user 2',
+              email: 'user2@mail',
+              function: 'componente',
+              imageMember: '/images/user2.jpg',
+            },
+            {
+              name: 'user 3',
+              email: 'user3@mail',
+              function: 'componente',
+              imageMember: '/images/user3.webp',
+            },
+          ] as Member[],
+        },
+        {
+          nameCar: 'UR-4321',
+          imageCar: '/images/img-vtr2.jpg',
+          members: [
+            {
+              name: 'user 15',
+              email: 'user1@mail',
+              function: 'motorista',
+              imageMember: '/images/user1.jpg',
+            },
 
-                {
-                  name: 'user 21',
-                  email: 'user2@mail',
-                  function: 'componente',
-                  imageMember: '/images/user2.jpg',
-                },
-                {
-                  name: 'user 33',
-                  email: 'user3@mail',
-                  function: 'componente',
-                  imageMember: '/images/user3.webp',
-                },
-              ] as Member[]) || null,
-          },
-          {
-            nameCar: 'ESC-1544',
-            imageCar: '/images/img-vtr3.webp',
-            members:
-              ([
-                {
-                  name: 'user 1',
-                  email: 'user1@mail',
-                  function: 'motorista',
-                  imageMember: '/images/user1.jpg',
-                },
+            {
+              name: 'user 21',
+              email: 'user2@mail',
+              function: 'componente',
+              imageMember: '/images/user2.jpg',
+            },
+            {
+              name: 'user 33',
+              email: 'user3@mail',
+              function: 'componente',
+              imageMember: '/images/user3.webp',
+            },
+          ] as Member[],
+        },
+        {
+          nameCar: 'ESC-1544',
+          imageCar: '/images/img-vtr3.webp',
+          members: [
+            {
+              name: 'user 1',
+              email: 'user1@mail',
+              function: 'motorista',
+              imageMember: '/images/user1.jpg',
+            },
 
-                {
-                  name: 'user 2',
-                  email: 'user2@mail',
-                  function: 'componente',
-                  imageMember: '/images/user2.jpg',
-                },
-                {
-                  name: 'user 3',
-                  email: 'user3@mail',
-                  function: 'componente',
-                  imageMember: '/images/user3.webp',
-                },
-              ] as Member[]) || null,
-          },
-        ] as CarsUnity[]) || null,
+            {
+              name: 'user 2',
+              email: 'user2@mail',
+              function: 'componente',
+              imageMember: '/images/user2.jpg',
+            },
+            {
+              name: 'user 3',
+              email: 'user3@mail',
+              function: 'componente',
+              imageMember: '/images/user3.webp',
+            },
+          ] as Member[],
+        },
+      ] as CarsUnity[],
       status: 'publicado',
       company: 'Palmas',
       date: '29/03/2024',
@@ -728,87 +700,83 @@ const Escala = () => {
       group: 'Alfa',
       imgUnity: '/images/imgUnity.jpeg',
 
-      cars:
-        ([
-          {
-            nameCar: 'ABT-1234',
-            imageCar: '/images/img-vtr1.jpg',
-            members:
-              ([
-                {
-                  name: 'user 1',
-                  email: 'user1@mail',
-                  function: 'motorista',
-                  imageMember: '/images/user1.jpg',
-                },
+      cars: [
+        {
+          nameCar: 'ABT-1234',
+          imageCar: '/images/img-vtr1.jpg',
+          members: [
+            {
+              name: 'user 1',
+              email: 'user1@mail',
+              function: 'motorista',
+              imageMember: '/images/user1.jpg',
+            },
 
-                {
-                  name: 'user 2',
-                  email: 'user2@mail',
-                  function: 'componente',
-                  imageMember: '/images/user2.jpg',
-                },
-                {
-                  name: 'user 3',
-                  email: 'user3@mail',
-                  function: 'componente',
-                  imageMember: '/images/user3.webp',
-                },
-              ] as Member[]) || null,
-          },
-          {
-            nameCar: 'UR-4321',
-            imageCar: '/images/img-vtr2.jpg',
-            members:
-              ([
-                {
-                  name: 'user 15',
-                  email: 'user1@mail',
-                  function: 'motorista',
-                  imageMember: '/images/user1.jpg',
-                },
+            {
+              name: 'user 2',
+              email: 'user2@mail',
+              function: 'componente',
+              imageMember: '/images/user2.jpg',
+            },
+            {
+              name: 'user 3',
+              email: 'user3@mail',
+              function: 'componente',
+              imageMember: '/images/user3.webp',
+            },
+          ] as Member[],
+        },
+        {
+          nameCar: 'UR-4321',
+          imageCar: '/images/img-vtr2.jpg',
+          members: [
+            {
+              name: 'user 15',
+              email: 'user1@mail',
+              function: 'motorista',
+              imageMember: '/images/user1.jpg',
+            },
 
-                {
-                  name: 'user 21',
-                  email: 'user2@mail',
-                  function: 'componente',
-                  imageMember: '/images/user2.jpg',
-                },
-                {
-                  name: 'user 33',
-                  email: 'user3@mail',
-                  function: 'componente',
-                  imageMember: '/images/user3.webp',
-                },
-              ] as Member[]) || null,
-          },
-          {
-            nameCar: 'ESC-1544',
-            imageCar: '/images/img-vtr3.webp',
-            members:
-              ([
-                {
-                  name: 'user 1',
-                  email: 'user1@mail',
-                  function: 'motorista',
-                  imageMember: '/images/user1.jpg',
-                },
+            {
+              name: 'user 21',
+              email: 'user2@mail',
+              function: 'componente',
+              imageMember: '/images/user2.jpg',
+            },
+            {
+              name: 'user 33',
+              email: 'user3@mail',
+              function: 'componente',
+              imageMember: '/images/user3.webp',
+            },
+          ] as Member[],
+        },
+        {
+          nameCar: 'ESC-1544',
+          imageCar: '/images/img-vtr3.webp',
+          members: [
+            {
+              name: 'user 1',
+              email: 'user1@mail',
+              function: 'motorista',
+              imageMember: '/images/user1.jpg',
+            },
 
-                {
-                  name: 'user 2',
-                  email: 'user2@mail',
-                  function: 'componente',
-                  imageMember: '/images/user2.jpg',
-                },
-                {
-                  name: 'user 3',
-                  email: 'user3@mail',
-                  function: 'componente',
-                  imageMember: '/images/user3.webp',
-                },
-              ] as Member[]) || null,
-          },
-        ] as CarsUnity[]) || null,
+            {
+              name: 'user 2',
+              email: 'user2@mail',
+              function: 'componente',
+              imageMember: '/images/user2.jpg',
+            },
+            {
+              name: 'user 3',
+              email: 'user3@mail',
+              function: 'componente',
+              imageMember: '/images/user3.webp',
+            },
+          ] as Member[],
+        },
+      ] as CarsUnity[],
       status: 'publicado',
       company: 'Palmas',
       date: '13/03/2024',
@@ -827,87 +795,83 @@ const Escala = () => {
       group: 'Delta',
       imgUnity: '/images/imgUnity.jpeg',
 
-      cars:
-        ([
-          {
-            nameCar: 'ABT-1234',
-            imageCar: '/images/img-vtr1.jpg',
-            members:
-              ([
-                {
-                  name: 'user 1',
-                  email: 'user1@mail',
-                  function: 'motorista',
-                  imageMember: '/images/user1.jpg',
-                },
+      cars: [
+        {
+          nameCar: 'ABT-1234',
+          imageCar: '/images/img-vtr1.jpg',
+          members: [
+            {
+              name: 'user 1',
+              email: 'user1@mail',
+              function: 'motorista',
+              imageMember: '/images/user1.jpg',
+            },
 
-                {
-                  name: 'user 2',
-                  email: 'user2@mail',
-                  function: 'componente',
-                  imageMember: '/images/user2.jpg',
-                },
-                {
-                  name: 'user 3',
-                  email: 'user3@mail',
-                  function: 'componente',
-                  imageMember: '/images/user3.webp',
-                },
-              ] as Member[]) || null,
-          },
-          {
-            nameCar: 'UR-4321',
-            imageCar: '/images/img-vtr2.jpg',
-            members:
-              ([
-                {
-                  name: 'user 15',
-                  email: 'user1@mail',
-                  function: 'motorista',
-                  imageMember: '/images/user1.jpg',
-                },
+            {
+              name: 'user 2',
+              email: 'user2@mail',
+              function: 'componente',
+              imageMember: '/images/user2.jpg',
+            },
+            {
+              name: 'user 3',
+              email: 'user3@mail',
+              function: 'componente',
+              imageMember: '/images/user3.webp',
+            },
+          ] as Member[],
+        },
+        {
+          nameCar: 'UR-4321',
+          imageCar: '/images/img-vtr2.jpg',
+          members: [
+            {
+              name: 'user 15',
+              email: 'user1@mail',
+              function: 'motorista',
+              imageMember: '/images/user1.jpg',
+            },
 
-                {
-                  name: 'user 21',
-                  email: 'user2@mail',
-                  function: 'componente',
-                  imageMember: '/images/user2.jpg',
-                },
-                {
-                  name: 'user 33',
-                  email: 'user3@mail',
-                  function: 'componente',
-                  imageMember: '/images/user3.webp',
-                },
-              ] as Member[]) || null,
-          },
-          {
-            nameCar: 'ESC-1544',
-            imageCar: '/images/img-vtr3.webp',
-            members:
-              ([
-                {
-                  name: 'user 1',
-                  email: 'user1@mail',
-                  function: 'motorista',
-                  imageMember: '/images/user1.jpg',
-                },
+            {
+              name: 'user 21',
+              email: 'user2@mail',
+              function: 'componente',
+              imageMember: '/images/user2.jpg',
+            },
+            {
+              name: 'user 33',
+              email: 'user3@mail',
+              function: 'componente',
+              imageMember: '/images/user3.webp',
+            },
+          ] as Member[],
+        },
+        {
+          nameCar: 'ESC-1544',
+          imageCar: '/images/img-vtr3.webp',
+          members: [
+            {
+              name: 'user 1',
+              email: 'user1@mail',
+              function: 'motorista',
+              imageMember: '/images/user1.jpg',
+            },
 
-                {
-                  name: 'user 2',
-                  email: 'user2@mail',
-                  function: 'componente',
-                  imageMember: '/images/user2.jpg',
-                },
-                {
-                  name: 'user 3',
-                  email: 'user3@mail',
-                  function: 'componente',
-                  imageMember: '/images/user3.webp',
-                },
-              ] as Member[]) || null,
-          },
-        ] as CarsUnity[]) || null,
+            {
+              name: 'user 2',
+              email: 'user2@mail',
+              function: 'componente',
+              imageMember: '/images/user2.jpg',
+            },
+            {
+              name: 'user 3',
+              email: 'user3@mail',
+              function: 'componente',
+              imageMember: '/images/user3.webp',
+            },
+          ] as Member[],
+        },
+      ] as CarsUnity[],
       status: 'publicado',
       company: 'Palmas',
       date: '07/03/2024',
@@ -926,87 +890,83 @@ const Escala = () => {
       group: 'Bravo',
       imgUnity: '/images/imgUnity.jpeg',
 
-      cars:
-        ([
-          {
-            nameCar: 'ABT-1234',
-            imageCar: '/images/img-vtr1.jpg',
-            members:
-              ([
-                {
-                  name: 'user 1',
-                  email: 'user1@mail',
-                  function: 'motorista',
-                  imageMember: '/images/user1.jpg',
-                },
+      cars: [
+        {
+          nameCar: 'ABT-1234',
+          imageCar: '/images/img-vtr1.jpg',
+          members: [
+            {
+              name: 'user 1',
+              email: 'user1@mail',
+              function: 'motorista',
+              imageMember: '/images/user1.jpg',
+            },
 
-                {
-                  name: 'user 2',
-                  email: 'user2@mail',
-                  function: 'componente',
-                  imageMember: '/images/user2.jpg',
-                },
-                {
-                  name: 'user 3',
-                  email: 'user3@mail',
-                  function: 'componente',
-                  imageMember: '/images/user3.webp',
-                },
-              ] as Member[]) || null,
-          },
-          {
-            nameCar: 'UR-4321',
-            imageCar: '/images/img-vtr2.jpg',
-            members:
-              ([
-                {
-                  name: 'user 15',
-                  email: 'user1@mail',
-                  function: 'motorista',
-                  imageMember: '/images/user1.jpg',
-                },
+            {
+              name: 'user 2',
+              email: 'user2@mail',
+              function: 'componente',
+              imageMember: '/images/user2.jpg',
+            },
+            {
+              name: 'user 3',
+              email: 'user3@mail',
+              function: 'componente',
+              imageMember: '/images/user3.webp',
+            },
+          ] as Member[],
+        },
+        {
+          nameCar: 'UR-4321',
+          imageCar: '/images/img-vtr2.jpg',
+          members: [
+            {
+              name: 'user 15',
+              email: 'user1@mail',
+              function: 'motorista',
+              imageMember: '/images/user1.jpg',
+            },
 
-                {
-                  name: 'user 21',
-                  email: 'user2@mail',
-                  function: 'componente',
-                  imageMember: '/images/user2.jpg',
-                },
-                {
-                  name: 'user 33',
-                  email: 'user3@mail',
-                  function: 'componente',
-                  imageMember: '/images/user3.webp',
-                },
-              ] as Member[]) || null,
-          },
-          {
-            nameCar: 'ESC-1544',
-            imageCar: '/images/img-vtr3.webp',
-            members:
-              ([
-                {
-                  name: 'user 1',
-                  email: 'user1@mail',
-                  function: 'motorista',
-                  imageMember: '/images/user1.jpg',
-                },
+            {
+              name: 'user 21',
+              email: 'user2@mail',
+              function: 'componente',
+              imageMember: '/images/user2.jpg',
+            },
+            {
+              name: 'user 33',
+              email: 'user3@mail',
+              function: 'componente',
+              imageMember: '/images/user3.webp',
+            },
+          ] as Member[],
+        },
+        {
+          nameCar: 'ESC-1544',
+          imageCar: '/images/img-vtr3.webp',
+          members: [
+            {
+              name: 'user 1',
+              email: 'user1@mail',
+              function: 'motorista',
+              imageMember: '/images/user1.jpg',
+            },
 
-                {
-                  name: 'user 2',
-                  email: 'user2@mail',
-                  function: 'componente',
-                  imageMember: '/images/user2.jpg',
-                },
-                {
-                  name: 'user 3',
-                  email: 'user3@mail',
-                  function: 'componente',
-                  imageMember: '/images/user3.webp',
-                },
-              ] as Member[]) || null,
-          },
-        ] as CarsUnity[]) || null,
+            {
+              name: 'user 2',
+              email: 'user2@mail',
+              function: 'componente',
+              imageMember: '/images/user2.jpg',
+            },
+            {
+              name: 'user 3',
+              email: 'user3@mail',
+              function: 'componente',
+              imageMember: '/images/user3.webp',
+            },
+          ] as Member[],
+        },
+      ] as CarsUnity[],
       status: 'publicado',
       company: 'Palmas',
       date: '23/03/2024',
@@ -1025,87 +985,83 @@ const Escala = () => {
       group: 'Charlie',
       imgUnity: '/images/imgUnity.jpeg',
 
-      cars:
-        ([
-          {
-            nameCar: 'ABT-1234',
-            imageCar: '/images/img-vtr1.jpg',
-            members:
-              ([
-                {
-                  name: 'user 1',
-                  email: 'user1@mail',
-                  function: 'motorista',
-                  imageMember: '/images/user1.jpg',
-                },
+      cars: [
+        {
+          nameCar: 'ABT-1234',
+          imageCar: '/images/img-vtr1.jpg',
+          members: [
+            {
+              name: 'user 1',
+              email: 'user1@mail',
+              function: 'motorista',
+              imageMember: '/images/user1.jpg',
+            },
 
-                {
-                  name: 'user 2',
-                  email: 'user2@mail',
-                  function: 'componente',
-                  imageMember: '/images/user2.jpg',
-                },
-                {
-                  name: 'user 3',
-                  email: 'user3@mail',
-                  function: 'componente',
-                  imageMember: '/images/user3.webp',
-                },
-              ] as Member[]) || null,
-          },
-          {
-            nameCar: 'UR-4321',
-            imageCar: '/images/img-vtr2.jpg',
-            members:
-              ([
-                {
-                  name: 'user 15',
-                  email: 'user1@mail',
-                  function: 'motorista',
-                  imageMember: '/images/user1.jpg',
-                },
+            {
+              name: 'user 2',
+              email: 'user2@mail',
+              function: 'componente',
+              imageMember: '/images/user2.jpg',
+            },
+            {
+              name: 'user 3',
+              email: 'user3@mail',
+              function: 'componente',
+              imageMember: '/images/user3.webp',
+            },
+          ] as Member[],
+        },
+        {
+          nameCar: 'UR-4321',
+          imageCar: '/images/img-vtr2.jpg',
+          members: [
+            {
+              name: 'user 15',
+              email: 'user1@mail',
+              function: 'motorista',
+              imageMember: '/images/user1.jpg',
+            },
 
-                {
-                  name: 'user 21',
-                  email: 'user2@mail',
-                  function: 'componente',
-                  imageMember: '/images/user2.jpg',
-                },
-                {
-                  name: 'user 33',
-                  email: 'user3@mail',
-                  function: 'componente',
-                  imageMember: '/images/user3.webp',
-                },
-              ] as Member[]) || null,
-          },
-          {
-            nameCar: 'ESC-1544',
-            imageCar: '/images/img-vtr3.webp',
-            members:
-              ([
-                {
-                  name: 'user 1',
-                  email: 'user1@mail',
-                  function: 'motorista',
-                  imageMember: '/images/user1.jpg',
-                },
+            {
+              name: 'user 21',
+              email: 'user2@mail',
+              function: 'componente',
+              imageMember: '/images/user2.jpg',
+            },
+            {
+              name: 'user 33',
+              email: 'user3@mail',
+              function: 'componente',
+              imageMember: '/images/user3.webp',
+            },
+          ] as Member[],
+        },
+        {
+          nameCar: 'ESC-1544',
+          imageCar: '/images/img-vtr3.webp',
+          members: [
+            {
+              name: 'user 1',
+              email: 'user1@mail',
+              function: 'motorista',
+              imageMember: '/images/user1.jpg',
+            },
 
-                {
-                  name: 'user 2',
-                  email: 'user2@mail',
-                  function: 'componente',
-                  imageMember: '/images/user2.jpg',
-                },
-                {
-                  name: 'user 3',
-                  email: 'user3@mail',
-                  function: 'componente',
-                  imageMember: '/images/user3.webp',
-                },
-              ] as Member[]) || null,
-          },
-        ] as CarsUnity[]) || null,
+            {
+              name: 'user 2',
+              email: 'user2@mail',
+              function: 'componente',
+              imageMember: '/images/user2.jpg',
+            },
+            {
+              name: 'user 3',
+              email: 'user3@mail',
+              function: 'componente',
+              imageMember: '/images/user3.webp',
+            },
+          ] as Member[],
+        },
+      ] as CarsUnity[],
       status: 'publicado',
       company: 'Palmas',
       date: '01/03/2024',
@@ -1124,87 +1080,83 @@ const Escala = () => {
       group: 'Extra',
       imgUnity: '/images/imgUnity.jpeg',
 
-      cars:
-        ([
-          {
-            nameCar: 'ABT-1234',
-            imageCar: '/images/img-vtr1.jpg',
-            members:
-              ([
-                {
-                  name: 'user 1',
-                  email: 'user1@mail',
-                  function: 'motorista',
-                  imageMember: '/images/user1.jpg',
-                },
+      cars: [
+        {
+          nameCar: 'ABT-1234',
+          imageCar: '/images/img-vtr1.jpg',
+          members: [
+            {
+              name: 'user 1',
+              email: 'user1@mail',
+              function: 'motorista',
+              imageMember: '/images/user1.jpg',
+            },
 
-                {
-                  name: 'user 2',
-                  email: 'user2@mail',
-                  function: 'componente',
-                  imageMember: '/images/user2.jpg',
-                },
-                {
-                  name: 'user 3',
-                  email: 'user3@mail',
-                  function: 'componente',
-                  imageMember: '/images/user3.webp',
-                },
-              ] as Member[]) || null,
-          },
-          {
-            nameCar: 'UR-4321',
-            imageCar: '/images/img-vtr2.jpg',
-            members:
-              ([
-                {
-                  name: 'user 15',
-                  email: 'user1@mail',
-                  function: 'motorista',
-                  imageMember: '/images/user1.jpg',
-                },
+            {
+              name: 'user 2',
+              email: 'user2@mail',
+              function: 'componente',
+              imageMember: '/images/user2.jpg',
+            },
+            {
+              name: 'user 3',
+              email: 'user3@mail',
+              function: 'componente',
+              imageMember: '/images/user3.webp',
+            },
+          ] as Member[],
+        },
+        {
+          nameCar: 'UR-4321',
+          imageCar: '/images/img-vtr2.jpg',
+          members: [
+            {
+              name: 'user 15',
+              email: 'user1@mail',
+              function: 'motorista',
+              imageMember: '/images/user1.jpg',
+            },
 
-                {
-                  name: 'user 21',
-                  email: 'user2@mail',
-                  function: 'componente',
-                  imageMember: '/images/user2.jpg',
-                },
-                {
-                  name: 'user 33',
-                  email: 'user3@mail',
-                  function: 'componente',
-                  imageMember: '/images/user3.webp',
-                },
-              ] as Member[]) || null,
-          },
-          {
-            nameCar: 'ESC-1544',
-            imageCar: '/images/img-vtr3.webp',
-            members:
-              ([
-                {
-                  name: 'user 1',
-                  email: 'user1@mail',
-                  function: 'motorista',
-                  imageMember: '/images/user1.jpg',
-                },
+            {
+              name: 'user 21',
+              email: 'user2@mail',
+              function: 'componente',
+              imageMember: '/images/user2.jpg',
+            },
+            {
+              name: 'user 33',
+              email: 'user3@mail',
+              function: 'componente',
+              imageMember: '/images/user3.webp',
+            },
+          ] as Member[],
+        },
+        {
+          nameCar: 'ESC-1544',
+          imageCar: '/images/img-vtr3.webp',
+          members: [
+            {
+              name: 'user 1',
+              email: 'user1@mail',
+              function: 'motorista',
+              imageMember: '/images/user1.jpg',
+            },
 
-                {
-                  name: 'user 2',
-                  email: 'user2@mail',
-                  function: 'componente',
-                  imageMember: '/images/user2.jpg',
-                },
-                {
-                  name: 'user 3',
-                  email: 'user3@mail',
-                  function: 'componente',
-                  imageMember: '/images/user3.webp',
-                },
-              ] as Member[]) || null,
-          },
-        ] as CarsUnity[]) || null,
+            {
+              name: 'user 2',
+              email: 'user2@mail',
+              function: 'componente',
+              imageMember: '/images/user2.jpg',
+            },
+            {
+              name: 'user 3',
+              email: 'user3@mail',
+              function: 'componente',
+              imageMember: '/images/user3.webp',
+            },
+          ] as Member[],
+        },
+      ] as CarsUnity[],
       status: 'publicado',
       company: 'Palmas',
       date: '15/03/2024',
@@ -1223,87 +1175,83 @@ const Escala = () => {
       group: 'Extra',
       imgUnity: '/images/imgUnity.jpeg',
 
-      cars:
-        ([
-          {
-            nameCar: 'ABT-1234',
-            imageCar: '/images/img-vtr1.jpg',
-            members:
-              ([
-                {
-                  name: 'user 1',
-                  email: 'user1@mail',
-                  function: 'motorista',
-                  imageMember: '/images/user1.jpg',
-                },
+      cars: [
+        {
+          nameCar: 'ABT-1234',
+          imageCar: '/images/img-vtr1.jpg',
+          members: [
+            {
+              name: 'user 1',
+              email: 'user1@mail',
+              function: 'motorista',
+              imageMember: '/images/user1.jpg',
+            },
 
-                {
-                  name: 'user 2',
-                  email: 'user2@mail',
-                  function: 'componente',
-                  imageMember: '/images/user2.jpg',
-                },
-                {
-                  name: 'user 3',
-                  email: 'user3@mail',
-                  function: 'componente',
-                  imageMember: '/images/user3.webp',
-                },
-              ] as Member[]) || null,
-          },
-          {
-            nameCar: 'UR-4321',
-            imageCar: '/images/img-vtr2.jpg',
-            members:
-              ([
-                {
-                  name: 'user 15',
-                  email: 'user1@mail',
-                  function: 'motorista',
-                  imageMember: '/images/user1.jpg',
-                },
+            {
+              name: 'user 2',
+              email: 'user2@mail',
+              function: 'componente',
+              imageMember: '/images/user2.jpg',
+            },
+            {
+              name: 'user 3',
+              email: 'user3@mail',
+              function: 'componente',
+              imageMember: '/images/user3.webp',
+            },
+          ] as Member[],
+        },
+        {
+          nameCar: 'UR-4321',
+          imageCar: '/images/img-vtr2.jpg',
+          members: [
+            {
+              name: 'user 15',
+              email: 'user1@mail',
+              function: 'motorista',
+              imageMember: '/images/user1.jpg',
+            },
 
-                {
-                  name: 'user 21',
-                  email: 'user2@mail',
-                  function: 'componente',
-                  imageMember: '/images/user2.jpg',
-                },
-                {
-                  name: 'user 33',
-                  email: 'user3@mail',
-                  function: 'componente',
-                  imageMember: '/images/user3.webp',
-                },
-              ] as Member[]) || null,
-          },
-          {
-            nameCar: 'ESC-1544',
-            imageCar: '/images/img-vtr3.webp',
-            members:
-              ([
-                {
-                  name: 'user 1',
-                  email: 'user1@mail',
-                  function: 'motorista',
-                  imageMember: '/images/user1.jpg',
-                },
+            {
+              name: 'user 21',
+              email: 'user2@mail',
+              function: 'componente',
+              imageMember: '/images/user2.jpg',
+            },
+            {
+              name: 'user 33',
+              email: 'user3@mail',
+              function: 'componente',
+              imageMember: '/images/user3.webp',
+            },
+          ] as Member[],
+        },
+        {
+          nameCar: 'ESC-1544',
+          imageCar: '/images/img-vtr3.webp',
+          members: [
+            {
+              name: 'user 1',
+              email: 'user1@mail',
+              function: 'motorista',
+              imageMember: '/images/user1.jpg',
+            },
 
-                {
-                  name: 'user 2',
-                  email: 'user2@mail',
-                  function: 'componente',
-                  imageMember: '/images/user2.jpg',
-                },
-                {
-                  name: 'user 3',
-                  email: 'user3@mail',
-                  function: 'componente',
-                  imageMember: '/images/user3.webp',
-                },
-              ] as Member[]) || null,
-          },
-        ] as CarsUnity[]) || null,
+            {
+              name: 'user 2',
+              email: 'user2@mail',
+              function: 'componente',
+              imageMember: '/images/user2.jpg',
+            },
+            {
+              name: 'user 3',
+              email: 'user3@mail',
+              function: 'componente',
+              imageMember: '/images/user3.webp',
+            },
+          ] as Member[],
+        },
+      ] as CarsUnity[],
       status: 'publicado',
       company: 'Palmas',
       date: '01/03/2024',
@@ -1322,87 +1270,83 @@ const Escala = () => {
       group: 'Extra',
       imgUnity: '/images/imgUnity.jpeg',
 
-      cars:
-        ([
-          {
-            nameCar: 'ABT-1234',
-            imageCar: '/images/img-vtr1.jpg',
-            members:
-              ([
-                {
-                  name: 'user 1',
-                  email: 'user1@mail',
-                  function: 'motorista',
-                  imageMember: '/images/user1.jpg',
-                },
+      cars: [
+        {
+          nameCar: 'ABT-1234',
+          imageCar: '/images/img-vtr1.jpg',
+          members: [
+            {
+              name: 'user 1',
+              email: 'user1@mail',
+              function: 'motorista',
+              imageMember: '/images/user1.jpg',
+            },
 
-                {
-                  name: 'user 2',
-                  email: 'user2@mail',
-                  function: 'componente',
-                  imageMember: '/images/user2.jpg',
-                },
-                {
-                  name: 'user 3',
-                  email: 'user3@mail',
-                  function: 'componente',
-                  imageMember: '/images/user3.webp',
-                },
-              ] as Member[]) || null,
-          },
-          {
-            nameCar: 'UR-4321',
-            imageCar: '/images/img-vtr2.jpg',
-            members:
-              ([
-                {
-                  name: 'user 15',
-                  email: 'user1@mail',
-                  function: 'motorista',
-                  imageMember: '/images/user1.jpg',
-                },
+            {
+              name: 'user 2',
+              email: 'user2@mail',
+              function: 'componente',
+              imageMember: '/images/user2.jpg',
+            },
+            {
+              name: 'user 3',
+              email: 'user3@mail',
+              function: 'componente',
+              imageMember: '/images/user3.webp',
+            },
+          ] as Member[],
+        },
+        {
+          nameCar: 'UR-4321',
+          imageCar: '/images/img-vtr2.jpg',
+          members: [
+            {
+              name: 'user 15',
+              email: 'user1@mail',
+              function: 'motorista',
+              imageMember: '/images/user1.jpg',
+            },
 
-                {
-                  name: 'user 21',
-                  email: 'user2@mail',
-                  function: 'componente',
-                  imageMember: '/images/user2.jpg',
-                },
-                {
-                  name: 'user 33',
-                  email: 'user3@mail',
-                  function: 'componente',
-                  imageMember: '/images/user3.webp',
-                },
-              ] as Member[]) || null,
-          },
-          {
-            nameCar: 'ESC-1544',
-            imageCar: '/images/img-vtr3.webp',
-            members:
-              ([
-                {
-                  name: 'user 1',
-                  email: 'user1@mail',
-                  function: 'motorista',
-                  imageMember: '/images/user1.jpg',
-                },
+            {
+              name: 'user 21',
+              email: 'user2@mail',
+              function: 'componente',
+              imageMember: '/images/user2.jpg',
+            },
+            {
+              name: 'user 33',
+              email: 'user3@mail',
+              function: 'componente',
+              imageMember: '/images/user3.webp',
+            },
+          ] as Member[],
+        },
+        {
+          nameCar: 'ESC-1544',
+          imageCar: '/images/img-vtr3.webp',
+          members: [
+            {
+              name: 'user 1',
+              email: 'user1@mail',
+              function: 'motorista',
+              imageMember: '/images/user1.jpg',
+            },
 
-                {
-                  name: 'user 2',
-                  email: 'user2@mail',
-                  function: 'componente',
-                  imageMember: '/images/user2.jpg',
-                },
-                {
-                  name: 'user 3',
-                  email: 'user3@mail',
-                  function: 'componente',
-                  imageMember: '/images/user3.webp',
-                },
-              ] as Member[]) || null,
-          },
-        ] as CarsUnity[]) || null,
+            {
+              name: 'user 2',
+              email: 'user2@mail',
+              function: 'componente',
+              imageMember: '/images/user2.jpg',
+            },
+            {
+              name: 'user 3',
+              email: 'user3@mail',
+              function: 'componente',
+              imageMember: '/images/user3.webp',
+            },
+          ] as Member[],
+        },
+      ] as CarsUnity[],
       status: 'aguardando',
       company: 'Palmas',
       date: '14/03/2024',
@@ -1421,87 +1365,83 @@ const Escala = () => {
       group: 'Extra',
       imgUnity: '/images/imgUnity.jpeg',
 
-      cars:
-        ([
-          {
-            nameCar: 'ABT-1234',
-            imageCar: '/images/img-vtr1.jpg',
-            members:
-              ([
-                {
-                  name: 'user 1',
-                  email: 'user1@mail',
-                  function: 'motorista',
-                  imageMember: '/images/user1.jpg',
-                },
+      cars: [
+        {
+          nameCar: 'ABT-1234',
+          imageCar: '/images/img-vtr1.jpg',
+          members: [
+            {
+              name: 'user 1',
+              email: 'user1@mail',
+              function: 'motorista',
+              imageMember: '/images/user1.jpg',
+            },
 
-                {
-                  name: 'user 2',
-                  email: 'user2@mail',
-                  function: 'componente',
-                  imageMember: '/images/user2.jpg',
-                },
-                {
-                  name: 'user 3',
-                  email: 'user3@mail',
-                  function: 'componente',
-                  imageMember: '/images/user3.webp',
-                },
-              ] as Member[]) || null,
-          },
-          {
-            nameCar: 'UR-4321',
-            imageCar: '/images/img-vtr2.jpg',
-            members:
-              ([
-                {
-                  name: 'user 15',
-                  email: 'user1@mail',
-                  function: 'motorista',
-                  imageMember: '/images/user1.jpg',
-                },
+            {
+              name: 'user 2',
+              email: 'user2@mail',
+              function: 'componente',
+              imageMember: '/images/user2.jpg',
+            },
+            {
+              name: 'user 3',
+              email: 'user3@mail',
+              function: 'componente',
+              imageMember: '/images/user3.webp',
+            },
+          ] as Member[],
+        },
+        {
+          nameCar: 'UR-4321',
+          imageCar: '/images/img-vtr2.jpg',
+          members: [
+            {
+              name: 'user 15',
+              email: 'user1@mail',
+              function: 'motorista',
+              imageMember: '/images/user1.jpg',
+            },
 
-                {
-                  name: 'user 21',
-                  email: 'user2@mail',
-                  function: 'componente',
-                  imageMember: '/images/user2.jpg',
-                },
-                {
-                  name: 'user 33',
-                  email: 'user3@mail',
-                  function: 'componente',
-                  imageMember: '/images/user3.webp',
-                },
-              ] as Member[]) || null,
-          },
-          {
-            nameCar: 'ESC-1544',
-            imageCar: '/images/img-vtr3.webp',
-            members:
-              ([
-                {
-                  name: 'user 1',
-                  email: 'user1@mail',
-                  function: 'motorista',
-                  imageMember: '/images/user1.jpg',
-                },
+            {
+              name: 'user 21',
+              email: 'user2@mail',
+              function: 'componente',
+              imageMember: '/images/user2.jpg',
+            },
+            {
+              name: 'user 33',
+              email: 'user3@mail',
+              function: 'componente',
+              imageMember: '/images/user3.webp',
+            },
+          ] as Member[],
+        },
+        {
+          nameCar: 'ESC-1544',
+          imageCar: '/images/img-vtr3.webp',
+          members: [
+            {
+              name: 'user 1',
+              email: 'user1@mail',
+              function: 'motorista',
+              imageMember: '/images/user1.jpg',
+            },
 
-                {
-                  name: 'user 2',
-                  email: 'user2@mail',
-                  function: 'componente',
-                  imageMember: '/images/user2.jpg',
-                },
-                {
-                  name: 'user 3',
-                  email: 'user3@mail',
-                  function: 'componente',
-                  imageMember: '/images/user3.webp',
-                },
-              ] as Member[]) || null,
-          },
-        ] as CarsUnity[]) || null,
+            {
+              name: 'user 2',
+              email: 'user2@mail',
+              function: 'componente',
+              imageMember: '/images/user2.jpg',
+            },
+            {
+              name: 'user 3',
+              email: 'user3@mail',
+              function: 'componente',
+              imageMember: '/images/user3.webp',
+            },
+          ] as Member[],
+        },
+      ] as CarsUnity[],
       status: 'cancelado',
       company: 'Palmas',
       date: '14/03/2024',
@@ -1520,87 +1460,83 @@ const Escala = () => {
       group: 'Extra',
       imgUnity: '/images/imgUnity.jpeg',
 
-      cars:
-        ([
-          {
-            nameCar: 'ABT-1234',
-            imageCar: '/images/img-vtr1.jpg',
-            members:
-              ([
-                {
-                  name: 'user 1',
-                  email: 'user1@mail',
-                  function: 'motorista',
-                  imageMember: '/images/user1.jpg',
-                },
+      cars: [
+        {
+          nameCar: 'ABT-1234',
+          imageCar: '/images/img-vtr1.jpg',
+          members: [
+            {
+              name: 'user 1',
+              email: 'user1@mail',
+              function: 'motorista',
+              imageMember: '/images/user1.jpg',
+            },
 
-                {
-                  name: 'user 2',
-                  email: 'user2@mail',
-                  function: 'componente',
-                  imageMember: '/images/user2.jpg',
-                },
-                {
-                  name: 'user 3',
-                  email: 'user3@mail',
-                  function: 'componente',
-                  imageMember: '/images/user3.webp',
-                },
-              ] as Member[]) || null,
-          },
-          {
-            nameCar: 'UR-4321',
-            imageCar: '/images/img-vtr2.jpg',
-            members:
-              ([
-                {
-                  name: 'user 15',
-                  email: 'user1@mail',
-                  function: 'motorista',
-                  imageMember: '/images/user1.jpg',
-                },
+            {
+              name: 'user 2',
+              email: 'user2@mail',
+              function: 'componente',
+              imageMember: '/images/user2.jpg',
+            },
+            {
+              name: 'user 3',
+              email: 'user3@mail',
+              function: 'componente',
+              imageMember: '/images/user3.webp',
+            },
+          ] as Member[],
+        },
+        {
+          nameCar: 'UR-4321',
+          imageCar: '/images/img-vtr2.jpg',
+          members: [
+            {
+              name: 'user 15',
+              email: 'user1@mail',
+              function: 'motorista',
+              imageMember: '/images/user1.jpg',
+            },
 
-                {
-                  name: 'user 21',
-                  email: 'user2@mail',
-                  function: 'componente',
-                  imageMember: '/images/user2.jpg',
-                },
-                {
-                  name: 'user 33',
-                  email: 'user3@mail',
-                  function: 'componente',
-                  imageMember: '/images/user3.webp',
-                },
-              ] as Member[]) || null,
-          },
-          {
-            nameCar: 'ESC-1544',
-            imageCar: '/images/img-vtr3.webp',
-            members:
-              ([
-                {
-                  name: 'user 1',
-                  email: 'user1@mail',
-                  function: 'motorista',
-                  imageMember: '/images/user1.jpg',
-                },
+            {
+              name: 'user 21',
+              email: 'user2@mail',
+              function: 'componente',
+              imageMember: '/images/user2.jpg',
+            },
+            {
+              name: 'user 33',
+              email: 'user3@mail',
+              function: 'componente',
+              imageMember: '/images/user3.webp',
+            },
+          ] as Member[],
+        },
+        {
+          nameCar: 'ESC-1544',
+          imageCar: '/images/img-vtr3.webp',
+          members: [
+            {
+              name: 'user 1',
+              email: 'user1@mail',
+              function: 'motorista',
+              imageMember: '/images/user1.jpg',
+            },
 
-                {
-                  name: 'user 2',
-                  email: 'user2@mail',
-                  function: 'componente',
-                  imageMember: '/images/user2.jpg',
-                },
-                {
-                  name: 'user 3',
-                  email: 'user3@mail',
-                  function: 'componente',
-                  imageMember: '/images/user3.webp',
-                },
-              ] as Member[]) || null,
-          },
-        ] as CarsUnity[]) || null,
+            {
+              name: 'user 2',
+              email: 'user2@mail',
+              function: 'componente',
+              imageMember: '/images/user2.jpg',
+            },
+            {
+              name: 'user 3',
+              email: 'user3@mail',
+              function: 'componente',
+              imageMember: '/images/user3.webp',
+            },
+          ] as Member[],
+        },
+      ] as CarsUnity[],
       status: 'aguardando',
       company: 'Palmas',
       date: '22/03/2024',
@@ -1619,87 +1555,83 @@ const Escala = () => {
       group: 'Extra',
       imgUnity: '/images/imgUnity.jpeg',
 
-      cars:
-        ([
-          {
-            nameCar: 'ABT-1234',
-            imageCar: '/images/img-vtr1.jpg',
-            members:
-              ([
-                {
-                  name: 'user 1',
-                  email: 'user1@mail',
-                  function: 'motorista',
-                  imageMember: '/images/user1.jpg',
-                },
+      cars: [
+        {
+          nameCar: 'ABT-1234',
+          imageCar: '/images/img-vtr1.jpg',
+          members: [
+            {
+              name: 'user 1',
+              email: 'user1@mail',
+              function: 'motorista',
+              imageMember: '/images/user1.jpg',
+            },
 
-                {
-                  name: 'user 2',
-                  email: 'user2@mail',
-                  function: 'componente',
-                  imageMember: '/images/user2.jpg',
-                },
-                {
-                  name: 'user 3',
-                  email: 'user3@mail',
-                  function: 'componente',
-                  imageMember: '/images/user3.webp',
-                },
-              ] as Member[]) || null,
-          },
-          {
-            nameCar: 'UR-4321',
-            imageCar: '/images/img-vtr2.jpg',
-            members:
-              ([
-                {
-                  name: 'user 15',
-                  email: 'user1@mail',
-                  function: 'motorista',
-                  imageMember: '/images/user1.jpg',
-                },
+            {
+              name: 'user 2',
+              email: 'user2@mail',
+              function: 'componente',
+              imageMember: '/images/user2.jpg',
+            },
+            {
+              name: 'user 3',
+              email: 'user3@mail',
+              function: 'componente',
+              imageMember: '/images/user3.webp',
+            },
+          ] as Member[],
+        },
+        {
+          nameCar: 'UR-4321',
+          imageCar: '/images/img-vtr2.jpg',
+          members: [
+            {
+              name: 'user 15',
+              email: 'user1@mail',
+              function: 'motorista',
+              imageMember: '/images/user1.jpg',
+            },
 
-                {
-                  name: 'user 21',
-                  email: 'user2@mail',
-                  function: 'componente',
-                  imageMember: '/images/user2.jpg',
-                },
-                {
-                  name: 'user 33',
-                  email: 'user3@mail',
-                  function: 'componente',
-                  imageMember: '/images/user3.webp',
-                },
-              ] as Member[]) || null,
-          },
-          {
-            nameCar: 'ESC-1544',
-            imageCar: '/images/img-vtr3.webp',
-            members:
-              ([
-                {
-                  name: 'user 1',
-                  email: 'user1@mail',
-                  function: 'motorista',
-                  imageMember: '/images/user1.jpg',
-                },
+            {
+              name: 'user 21',
+              email: 'user2@mail',
+              function: 'componente',
+              imageMember: '/images/user2.jpg',
+            },
+            {
+              name: 'user 33',
+              email: 'user3@mail',
+              function: 'componente',
+              imageMember: '/images/user3.webp',
+            },
+          ] as Member[],
+        },
+        {
+          nameCar: 'ESC-1544',
+          imageCar: '/images/img-vtr3.webp',
+          members: [
+            {
+              name: 'user 1',
+              email: 'user1@mail',
+              function: 'motorista',
+              imageMember: '/images/user1.jpg',
+            },
 
-                {
-                  name: 'user 2',
-                  email: 'user2@mail',
-                  function: 'componente',
-                  imageMember: '/images/user2.jpg',
-                },
-                {
-                  name: 'user 3',
-                  email: 'user3@mail',
-                  function: 'componente',
-                  imageMember: '/images/user3.webp',
-                },
-              ] as Member[]) || null,
-          },
-        ] as CarsUnity[]) || null,
+            {
+              name: 'user 2',
+              email: 'user2@mail',
+              function: 'componente',
+              imageMember: '/images/user2.jpg',
+            },
+            {
+              name: 'user 3',
+              email: 'user3@mail',
+              function: 'componente',
+              imageMember: '/images/user3.webp',
+            },
+          ] as Member[],
+        },
+      ] as CarsUnity[],
       status: 'cancelado',
       company: 'Palmas',
       date: '26/03/2024',
@@ -1717,35 +1649,33 @@ const Escala = () => {
       group: 'Extra',
       imgUnity: '/images/imgUnity.jpeg',
 
-      cars:
-        ([
-          {
-            nameCar: 'ABC-1234',
-            imageCar: '/images/img-vtr1.jpg',
-            members:
-              ([
-                {
-                  name: 'user 1',
-                  email: 'user1@mail',
-                  function: 'motorista',
-                  imageMember: '/images/user1.jpg',
-                },
+      cars: [
+        {
+          nameCar: 'ABC-1234',
+          imageCar: '/images/img-vtr1.jpg',
+          members: [
+            {
+              name: 'user 1',
+              email: 'user1@mail',
+              function: 'motorista',
+              imageMember: '/images/user1.jpg',
+            },
 
-                {
-                  name: 'user 2',
-                  email: 'user2@mail',
-                  function: 'componente',
-                  imageMember: '/images/user2.jpg',
-                },
-                {
-                  name: 'user 3',
-                  email: 'user3@mail',
-                  function: 'componente',
-                  imageMember: '/images/user3.webp',
-                },
-              ] as Member[]) || null,
-          },
-        ] as CarsUnity[]) || null,
+            {
+              name: 'user 2',
+              email: 'user2@mail',
+              function: 'componente',
+              imageMember: '/images/user2.jpg',
+            },
+            {
+              name: 'user 3',
+              email: 'user3@mail',
+              function: 'componente',
+              imageMember: '/images/user3.webp',
+            },
+          ] as Member[],
+        },
+      ] as CarsUnity[],
       type: 'extra',
       status: 'aguardando',
       company: 'Palmas',

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { type ReactElement } from 'react'
 
 import { type ModalProps } from '../../../../types/index'
 
@@ -27,7 +27,7 @@ export function ModalGso({
   children,
   childrenButton,
   ...props
-}: ModalProps) {
+}: ModalProps): ReactElement {
   return (
     <Dialog open={open}>
       <DialogTrigger asChild>

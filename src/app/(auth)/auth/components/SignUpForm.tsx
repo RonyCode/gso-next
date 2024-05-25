@@ -17,7 +17,9 @@ import { Icons } from '@/ui/icons'
 import { Input } from '@/ui/input'
 import { toast } from '@/ui/use-toast'
 import { zodResolver } from '@hookform/resolvers/zod'
-type UserAuthFormProps = React.HTMLAttributes<HTMLDivElement>
+type UserAuthFormProps = {
+  className?: string
+} & React.HTMLAttributes<HTMLDivElement>
 
 export function SignUpForm({
   className,

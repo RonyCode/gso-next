@@ -1,6 +1,9 @@
 import * as React from 'react'
+import { type ReactElement } from 'react'
 
 import Logo from '../../../public/images/Logo'
+
+import { cn } from '@/lib/utils'
 import {
   Card,
   CardContent,
@@ -9,10 +12,10 @@ import {
   CardHeader,
   CardTitle,
 } from '@/ui/card'
-import { cn } from '@/lib/utils'
 
 type CardProps = React.ComponentProps<typeof Card> & {
   title?: string
+  className?: string
   description?: string
 }
 export const CardWithLogo = ({
@@ -21,7 +24,7 @@ export const CardWithLogo = ({
   description,
   children,
   ...props
-}: CardProps) => {
+}: CardProps): ReactElement => {
   return (
     <>
       <Card

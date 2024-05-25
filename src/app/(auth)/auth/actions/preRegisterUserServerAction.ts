@@ -2,7 +2,10 @@
 
 import { revalidatePath } from 'next/cache'
 
-import { type IPreRegisterUserSchema } from '@/app/(auth)/auth/schemas/IPreRegisterUserSchema'
+import {
+  type IPreRegisterUserSchema,
+  PreRegisterUserSchema,
+} from '@/app/(auth)/auth/schemas/IPreRegisterUserSchema'
 
 interface ReturnData {
   email: string
@@ -13,12 +16,7 @@ interface ReturnData {
 
 export const preRegisterUserServerActions = async (
   data: FormData | IPreRegisterUserSchema,
-): Promise<{
-  code: number
-  message: string
-  email: string
-  status: string
-}> => {
+): Promise<IPreRegisterUserSchema> => {
   revalidatePath('/')
   try {
     if (data instanceof FormData) {

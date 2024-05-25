@@ -20,7 +20,9 @@ export const columnsDetalhesEscala: Array<ColumnDef<Task>> = [
             (table.getIsSomePageRowsSelected() && 'indeterminate')
           }
           onCheckedChange={(value) => {
-            table.toggleAllPageRowsSelected(!!value)
+            if (value === true) {
+              table.toggleAllPageRowsSelected(value)
+            }
           }}
           aria-label="Select all"
           className="translate-y-[2px]"
@@ -32,7 +34,9 @@ export const columnsDetalhesEscala: Array<ColumnDef<Task>> = [
         <Checkbox
           checked={row.getIsSelected()}
           onCheckedChange={(value) => {
-            row.toggleSelected(!!value)
+            if (value === true) {
+              row.toggleSelected(value)
+            }
           }}
           aria-label="Select row"
           className="translate-y-[2px]"
@@ -56,7 +60,7 @@ export const columnsDetalhesEscala: Array<ColumnDef<Task>> = [
           <span className="max-w-96 truncate font-medium">
             {row.getValue('date')}
           </span>
-          {label && <Badge variant="outline">{label.label}</Badge>}
+          {label != null && <Badge variant="outline">{label.label}</Badge>}
         </div>
       )
     },
@@ -69,15 +73,14 @@ export const columnsDetalhesEscala: Array<ColumnDef<Task>> = [
     cell: ({ row }) => {
       const type = types.find((type) => type.value === row.getValue('type'))
 
-      if (!type) {
+      if (type == null) {
         return null
       }
 
       return (
         <div className="flex items-center">
-          {type.icon && (
-            <type.icon className="mr-2 h-4 w-4 text-muted-foreground" />
-          )}
+          <type.icon className="mr-2 h-4 w-4 text-muted-foreground" />
+
           <span>{type.label}</span>
         </div>
       )
@@ -97,15 +100,14 @@ export const columnsDetalhesEscala: Array<ColumnDef<Task>> = [
         (status) => status.value === row.getValue('status'),
       )
 
-      if (!status) {
+      if (status == null) {
         return null
       }
 
       return (
         <div className="flex w-[120px] items-center ">
-          {status.icon && (
-            <status.icon className="mr-2 h-4 w-4 text-muted-foreground" />
-          )}
+          <status.icon className="mr-2 h-4 w-4 text-muted-foreground" />
+
           <span>{status.label}</span>
         </div>
       )
@@ -128,17 +130,16 @@ export const columnsDetalhesEscala: Array<ColumnDef<Task>> = [
       )
       const group = labels.find((label) => label.value === row.original.group)
 
-      if (!unity) {
+      if (unity == null) {
         return null
       }
 
       return (
         <div className="flex w-[200px] items-center">
-          {unity.icon && (
-            <unity.icon className="mr-2 h-4 w-4 text-muted-foreground" />
-          )}
+          <unity.icon className="mr-2 h-4 w-4 text-muted-foreground" />
+
           <span className="mr-2 text-muted-foreground">{unity.label}</span>
-          {group && (
+          {group != null && (
             <Badge
               variant="outline"
               className={`${

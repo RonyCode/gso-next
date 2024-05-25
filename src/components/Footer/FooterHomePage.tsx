@@ -1,3 +1,5 @@
+import Link from 'next/link'
+import * as React from 'react'
 import {
   LuFacebook,
   LuGithub,
@@ -5,12 +7,16 @@ import {
   LuLinkedin,
   LuTwitter,
 } from 'react-icons/lu'
-import Link from 'next/link'
-import { cn } from '@/lib/utils'
-import * as React from 'react'
 
-type FooterLayoutProps = React.HTMLAttributes<HTMLDivElement>
-const FooterHomePage = ({ className, ...props }: FooterLayoutProps) => {
+import { cn } from '@/lib/utils'
+
+type FooterLayoutProps = {
+  className?: string
+} & React.HTMLAttributes<HTMLDivElement>
+const FooterHomePage = ({
+  className,
+  ...props
+}: FooterLayoutProps): JSX.Element => {
   return (
     <footer
       className={cn('  relative bg-secondary pb-6 pt-8', className)}
@@ -118,7 +124,7 @@ const FooterHomePage = ({ className, ...props }: FooterLayoutProps) => {
                   <li>
                     <Link
                       className="block pb-2 text-sm font-semibold text-foreground hover:text-primary/60"
-                      href="/terms"
+                      href="/src/app/(public)/terms/page.tsx"
                     >
                       Termos &amp; Condições
                     </Link>
@@ -126,7 +132,7 @@ const FooterHomePage = ({ className, ...props }: FooterLayoutProps) => {
                   <li>
                     <Link
                       className="block pb-2 text-sm font-semibold text-foreground hover:text-primary/60"
-                      href="/privacy"
+                      href="/src/app/(public)/privacy/page.tsx"
                     >
                       Políticas de privacidade
                     </Link>

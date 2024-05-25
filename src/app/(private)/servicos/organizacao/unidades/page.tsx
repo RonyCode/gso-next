@@ -7,7 +7,7 @@ import { columnsUnidades } from '@/components/DataTables/DataTableUnidades/colum
 import { DataTableUnidades } from '@/components/DataTables/DataTableUnidades/data-table-unidades'
 import { getAllUnidades } from '@/lib/GetAllUnidades'
 
-const Unidades = async () => {
+const Unidades = async (): Promise<JSX.Element> => {
   const { companies } = await getAllUnidades('15')
   revalidatePath('/')
   return (

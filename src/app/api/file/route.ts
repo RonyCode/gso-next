@@ -3,7 +3,7 @@ import { type NextRequest, NextResponse } from 'next/server'
 import { execPercentageStore } from '@/stores/percentageStore'
 import axios, { type AxiosProgressEvent } from 'axios'
 
-const onUploadProgress = (progressEvent: AxiosProgressEvent) => {
+const onUploadProgress = (progressEvent: AxiosProgressEvent): void => {
   const { loaded, total } = progressEvent
   let percent = 0
   if (total != null) {

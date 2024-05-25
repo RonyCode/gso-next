@@ -5,6 +5,8 @@ import { InputMask } from '@react-input/mask'
 
 export type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
   mask?: string
+  className?: string
+  type?: string
 }
 
 const MyInputMask = React.forwardRef<HTMLInputElement, InputProps>(

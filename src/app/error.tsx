@@ -10,7 +10,7 @@ export default function Error({
 }: {
   error: Error
   reset: () => void
-}) {
+}): JSX.Element {
   useEffect(() => {
     // Log the error to an error reporting service
     console.error(error)

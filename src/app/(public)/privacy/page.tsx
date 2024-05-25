@@ -1,4 +1,6 @@
-const Privacy = () => {
+import { type ReactNode } from 'react'
+
+const Privacy = (): ReactNode => {
   return (
     <>
       <p>

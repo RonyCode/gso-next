@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import React from 'react'
+import React, { type ReactElement } from 'react'
 import { LuBellRing, LuCheck } from 'react-icons/lu'
 
 import { type NotificationMessage } from '../../../types/index'
@@ -21,13 +21,14 @@ import { Switch } from '@/ui/switch'
 
 type NotificationProps = {
   notifications: NotificationMessage[] | null | undefined
+  className?: string
 } & React.ComponentProps<typeof Card>
 
 export const NotificationCard = ({
   notifications,
   className,
   ...props
-}: NotificationProps) => {
+}: NotificationProps): ReactElement => {
   const router = useRouter()
 
   return (
@@ -97,7 +98,7 @@ export const NotificationCard = ({
             ))}
           </div>
         </CardContent>
-        {notifications && notifications?.length > 0 && (
+        {notifications != null && notifications?.length > 0 && (
           <CardFooter>
             <Button
               onClick={() => {

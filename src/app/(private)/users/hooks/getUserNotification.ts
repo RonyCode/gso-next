@@ -2,7 +2,13 @@ import { type UserNotification } from '../../../../../types/index'
 
 import { fetchWrapper } from '@/functions/fetch'
 
-export const userNotification = () => {
+export const userNotification = (): {
+  getNotificationUser: (
+    queueName: string,
+    exchangeName: string,
+    idNessage: string | null | undefined,
+  ) => Promise<UserNotification>
+} => {
   async function getNotificationUser(
     queueName: string,
     exchangeName: string,

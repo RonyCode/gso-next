@@ -1,3 +1,5 @@
+import { type ReactElement } from 'react'
+
 import { Button } from '@/ui/button'
 import {
   Select,
@@ -20,7 +22,7 @@ interface DataTablePaginationProps<TData> {
 
 export function DataTablePagination<TData>({
   table,
-}: DataTablePaginationProps<TData>) {
+}: DataTablePaginationProps<TData>): ReactElement {
   return (
     <div className="flex  items-center  justify-center pb-4 md:justify-between md:px-2">
       <div className="hidden flex-1 text-sm text-muted-foreground md:block">

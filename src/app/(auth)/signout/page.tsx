@@ -1,3 +1,4 @@
+import SignOutButtonDefault from '@/components/Buttoms/SignOutButton/SignOutButtonDefault'
 import {
   AlertDialog,
   AlertDialogContent,
@@ -6,9 +7,8 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from '@/ui/alert-dialog'
-import SignOutButtonDefault from '@/components/Buttoms/SignOutButton/SignOutButtonDefault'
 
-const SignOut = () => {
+const SignOut = (): JSX.Element => {
   return (
     <>
       <AlertDialog open={true}>

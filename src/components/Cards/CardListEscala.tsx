@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { type ReactElement } from 'react'
 import { BsBuildingCheck } from 'react-icons/bs'
 import { GrGroup } from 'react-icons/gr'
 import { LuCalendarDays, LuClock, LuUser } from 'react-icons/lu'
@@ -24,13 +24,14 @@ import { Avatar, AvatarFallback, AvatarImage } from '@radix-ui/react-avatar'
 type CardProps = {
   itemEvent: EventProps
   children?: React.ReactNode
+  className?: string
 } & React.ComponentProps<typeof Card>
 
 export const CardListEscala = ({
   itemEvent,
   className,
   ...props
-}: CardProps) => {
+}: CardProps): ReactElement => {
   return (
     <>
       <Card className={cn(className)} {...props}>

@@ -1,6 +1,7 @@
 'use client'
 
 import * as React from 'react'
+import { type ReactElement } from 'react'
 
 import { cn } from '@/lib/utils'
 import * as SheetPrimitive from '@radix-ui/react-dialog'
@@ -79,7 +80,7 @@ const SheetHeader = ({
   // eslint-disable-next-line react/prop-types
   className,
   ...props
-}: React.HTMLAttributes<HTMLDivElement>) => (
+}: React.HTMLAttributes<HTMLDivElement>): ReactElement => (
   <div
     className={cn(
       'flex flex-col space-y-2 text-center sm:text-left',
@@ -94,7 +95,7 @@ const SheetFooter = ({
   // eslint-disable-next-line react/prop-types
   className,
   ...props
-}: React.HTMLAttributes<HTMLDivElement>) => (
+}: React.HTMLAttributes<HTMLDivElement>): ReactElement => (
   <div
     className={cn(
       'flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2',

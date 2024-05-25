@@ -1,9 +1,16 @@
 import Link from 'next/link'
-import { cn } from '@/lib/utils'
 import * as React from 'react'
+import { type ReactElement } from 'react'
 
-type FooterLayoutProps = React.HTMLAttributes<HTMLDivElement>
-const FooterHomePage = ({ className, ...props }: FooterLayoutProps) => {
+import { cn } from '@/lib/utils'
+
+type FooterLayoutProps = {
+  className?: string
+} & React.HTMLAttributes<HTMLDivElement>
+const FooterHomePage = ({
+  className,
+  ...props
+}: FooterLayoutProps): ReactElement => {
   return (
     <footer
       className={cn(

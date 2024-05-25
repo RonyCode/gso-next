@@ -1,5 +1,7 @@
 'use client'
 
+import { type ReactElement } from 'react'
+
 import { statuses, types, unities } from './data/data'
 
 import { DataTableFacetedFilter } from '@/components/DataTables/DataTableDetalhesEscala/data-table-faceted-filter'
@@ -15,7 +17,7 @@ interface DataTableToolbarProps<TData> {
 
 export function DataTableToolbar<TData>({
   table,
-}: DataTableToolbarProps<TData>) {
+}: DataTableToolbarProps<TData>): ReactElement {
   const isFiltered = table.getState().columnFilters.length > 0
 
   return (
@@ -30,7 +32,7 @@ export function DataTableToolbar<TData>({
       />
       <div className=" flex justify-between gap-1 pt-2">
         <div>
-          {table.getColumn('status') && (
+          {table.getColumn('status') != null && (
             <DataTableFacetedFilter
               column={table.getColumn('status')}
               title="Situação"
@@ -39,7 +41,7 @@ export function DataTableToolbar<TData>({
           )}
         </div>
         <div>
-          {table.getColumn('type') && (
+          {table.getColumn('type') != null && (
             <DataTableFacetedFilter
               column={table.getColumn('type')}
               title="Tipo"
@@ -48,7 +50,7 @@ export function DataTableToolbar<TData>({
           )}
         </div>
         <div>
-          {table.getColumn('unity') && (
+          {table.getColumn('unity') != null && (
             <DataTableFacetedFilter
               column={table.getColumn('unity')}
               title="Unidades"

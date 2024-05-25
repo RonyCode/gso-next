@@ -1,10 +1,11 @@
 'use client'
 import * as React from 'react'
-import { ButtonHTMLAttributes, FC } from 'react'
+import { type ButtonHTMLAttributes, type FC } from 'react'
 import { FaSpinner } from 'react-icons/fa6'
 
-import { cva, VariantProps } from 'class-variance-authority'
 import { cn } from '@/lib/utils'
+import { cva, type VariantProps } from 'class-variance-authority'
+
 const buttonVariants = cva(
   'active:scale-95 inline-flex items-center justify-center rounded-md text-sm font-bold transition-color ' +
     'focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 disabled:opacity-50 ' +
@@ -56,7 +57,9 @@ const ButtonNoTheme: FC<ButtonProps> = ({
       disabled={isLoading}
       {...props}
     >
-      {isLoading ? <FaSpinner className="mr-2 h-4 w-4 animate-spin" /> : null}
+      {isLoading === true ? (
+        <FaSpinner className="mr-2 h-4 w-4 animate-spin" />
+      ) : null}
       {children}
     </button>
   )

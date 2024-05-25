@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { type ReactElement } from 'react'
 
 import {
   Card,
@@ -22,7 +23,7 @@ export function CardModule({
   link,
   className,
   ...props
-}: CardProps) {
+}: CardProps): ReactElement {
   return (
     <Card
       id="cardModule"

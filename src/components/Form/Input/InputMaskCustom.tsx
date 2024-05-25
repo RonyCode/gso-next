@@ -1,8 +1,13 @@
 'use client'
 
-import { ElementType, forwardRef, InputHTMLAttributes, LegacyRef } from 'react'
+import {
+  type ElementType,
+  forwardRef,
+  type InputHTMLAttributes,
+  type LegacyRef,
+} from 'react'
 
-import { InputMask, InputMaskProps } from '@react-input/mask'
+import { InputMask, type InputMaskProps } from '@react-input/mask'
 import { twMerge } from 'tailwind-merge'
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {

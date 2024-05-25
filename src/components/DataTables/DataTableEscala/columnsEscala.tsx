@@ -132,7 +132,7 @@ export const columnsEscala: Array<ColumnDef<Task>> = [
             <unity.icon className="mr-2 h-4 w-4 text-muted-foreground" />
           )}
           <span className="mr-2 text-muted-foreground">{unity.label}</span>
-          {group && (
+          {group != null && (
             <Badge
               variant="outline"
               className={`${

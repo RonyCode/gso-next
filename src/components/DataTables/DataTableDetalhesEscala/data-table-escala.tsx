@@ -1,6 +1,7 @@
 'use client'
 
 import * as React from 'react'
+import { type ReactElement } from 'react'
 
 import { DataTablePagination } from './data-table-pagination'
 
@@ -36,7 +37,7 @@ interface DataTableProps<TData, TValue> {
 export function DataTableEscala<TData, TValue>({
   columns,
   data,
-}: DataTableProps<TData, TValue>) {
+}: DataTableProps<TData, TValue>): ReactElement {
   const [rowSelection, setRowSelection] = React.useState({})
   const [columnVisibility, setColumnVisibility] =
     React.useState<VisibilityState>({})
@@ -91,7 +92,7 @@ export function DataTableEscala<TData, TValue>({
             ))}
           </TableHeader>
           <TableBody>
-            {table.getRowModel().rows?.length ? (
+            {table.getRowModel().rows?.length !== 0 ? (
               table.getRowModel().rows.map((row) => (
                 <TableRow
                   key={row.id}

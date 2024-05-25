@@ -1,11 +1,11 @@
 'use client'
+import { useSession } from 'next-auth/react'
 import React, { useRef, useState } from 'react'
-
 import './FileUpload.css'
+
 import axios from 'axios'
 
-import { useSession } from 'next-auth/react'
-
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 const FileUpload = () => {
   const inputRef = useRef()
 
@@ -14,6 +14,7 @@ const FileUpload = () => {
   const [uploadStatus, setUploadStatus] = useState('select')
   const { data: session } = useSession()
 
+  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   const handleFileChange = ({ target }) => {
     if (Boolean(target.files) && target.files.length > 0) {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
@@ -21,17 +22,18 @@ const FileUpload = () => {
     }
   }
 
+  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   const onChooseFile = () => {
     inputRef.current.click()
   }
-
+  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   const clearFileInput = () => {
     inputRef.current.value = ''
     setSelectedFile(null)
     setProgress(0)
     setUploadStatus('select')
   }
-
+  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   const handleUpload = async () => {
     if (uploadStatus === 'done') {
       clearFileInput()
@@ -78,13 +80,13 @@ const FileUpload = () => {
         style={{ display: 'none' }}
       />
 
-      {/* Button to trigger the file input dialog */}
+      {/* eslint-disable-next-line @typescript-eslint/strict-boolean-expressions */}
       {!selectedFile && (
         <button className="file-btn" onClick={onChooseFile}>
           <span className="material-symbols-outlined">upload</span> Upload File
         </button>
       )}
-
+      {/* eslint-disable-next-line @typescript-eslint/strict-boolean-expressions */}
       {selectedFile && (
         <>
           <div className="file-card">

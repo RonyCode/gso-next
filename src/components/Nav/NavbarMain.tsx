@@ -17,7 +17,10 @@ import {
 } from 'react-icons/lu'
 
 import Logo from '../../../public/images/Logo'
-import type { UserNotification } from '../../../types/index'
+import {
+  type NotificationMessage,
+  type UserNotification,
+} from '../../../types/index'
 
 import { ModeToggle } from '@/components/Buttoms/ModeTogle'
 import { deleteCookies } from '@/components/Buttoms/SignOutButton/LogoutAction'
@@ -95,7 +98,15 @@ export function NavbarMain({
   const { data: session } = useSession()
   const [state, setState] = useState(false)
   const [showNavBar, setShowNavBar] = useState(false)
-  const [notification, setNotification] = useState({} as UserNotification)
+  const [notification, setNotification] = useState({
+    messages: [] as NotificationMessage[],
+    id: '',
+    title: '',
+    type: '',
+    qtd: 0,
+    status: '',
+    code: 0,
+  } satisfies UserNotification)
   const router = useRouter()
   const myRef = useRef(null)
   const nameUser = GetFirstLettersNameUser()

@@ -55,11 +55,12 @@ export const authOptions: NextAuthOptions = {
     }),
 
     CredentialsProvider({
-      name: '',
-      type: 'credentials',
-      id: '',
       credentials: {
-        email: { label: 'Email', type: 'text' },
+        email: {
+          label: 'Email',
+          type: 'text',
+          placeholder: 'exemplo@email.com',
+        },
         senha: { label: 'Senha', type: 'password' },
         is_user_external: { label: 'User Externo', type: 'text' },
       },
@@ -74,6 +75,7 @@ export const authOptions: NextAuthOptions = {
         if (payload.email == null || payload.senha == null) {
           throw new Error('Email ou senha inválido! 🤯')
         }
+
         const user = await confereLogado(payload)
 
         if (user != null) {

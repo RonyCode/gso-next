@@ -4,7 +4,12 @@ import { fetchWrapper } from '@/functions/fetch'
 import { type IRegisterUserSchema } from '@/schemas/RegisterUserSchema'
 import { z } from 'zod'
 
-export const useRegister = () => {
+export const useRegister = (): {
+  registerUser: (
+    data: IRegisterUserSchema,
+  ) => Promise<z.ZodError | Error | undefined>
+} => {
+  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   const registerUser = async (data: IRegisterUserSchema) => {
     try {
       const { email, senha, nome, confirmaSenha, telefone } = data

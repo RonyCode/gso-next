@@ -1,8 +1,12 @@
 import { useForm } from 'react-hook-form'
 
-import { type IRegisterUserSchema } from '@/schemas/RegisterUserSchema'
+import {
+  type IRegisterUserSchema,
+  RegisterUserSchema,
+} from '@/schemas/RegisterUserSchema'
 import { zodResolver } from '@hookform/resolvers/zod'
 
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 export const useFormRegister = () => {
   const {
     register,

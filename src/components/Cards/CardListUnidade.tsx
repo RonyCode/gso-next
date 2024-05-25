@@ -42,9 +42,7 @@ export const CardListUnidade = ({
   itemUnidade,
   // className,
   // ...props
-}: CardProps) => {
-  console.log(itemUnidade)
-
+}: CardProps): JSX.Element => {
   return (
     <>
       <div className="flex min-h-screen w-full flex-col bg-muted/40">

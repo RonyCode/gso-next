@@ -1,8 +1,9 @@
-import { CardModule } from '@/components/Cards/CardModule'
 import IconBuild from '../../../../../../public/icons/IconBuild'
 import IconOpenBook from '../../../../../../public/icons/IconOpenBook'
 
-const ModulesOrganizacao = () => {
+import { CardModule } from '@/components/Cards/CardModule'
+
+const ModulesOrganizacao = (): JSX.Element => {
   return (
     <>
       <div>

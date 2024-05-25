@@ -1,8 +1,9 @@
-import { CardDefault } from '@/components/Cards/CardDefault'
-import React from 'react'
+import React, { type ReactNode } from 'react'
 import { LuUser } from 'react-icons/lu'
 
-const Teste = () => {
+import { CardDefault } from '@/components/Cards/CardDefault'
+
+const Teste = (): ReactNode => {
   return (
     <CardDefault title="teste" description="teste" icon={<LuUser />}>
       teste

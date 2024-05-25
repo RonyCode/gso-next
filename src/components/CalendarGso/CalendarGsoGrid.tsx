@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { type ReactElement } from 'react'
 
 import { type EventProps } from '../../../types/index'
 
@@ -10,6 +11,7 @@ type CalendarGsoGridProps = {
   month?: number
   day?: number
   index?: number
+  className?: string
 } & React.HTMLAttributes<HTMLDivElement>
 
 const CalendarGsoGrid = ({
@@ -18,7 +20,7 @@ const CalendarGsoGrid = ({
   day,
   className,
   ...props
-}: CalendarGsoGridProps) => {
+}: CalendarGsoGridProps): ReactElement => {
   const date = new Date()
 
   return (

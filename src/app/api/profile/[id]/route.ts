@@ -1,9 +1,9 @@
-import { NextRequest, NextResponse } from 'next/server'
+import { type NextRequest, NextResponse } from 'next/server'
 
 export async function GET(
   request: NextRequest,
   { params }: { params: { id: string } },
-) {
+): Promise<NextResponse> {
   const id = params.id
   const token = request.headers.get('Authorization')
 

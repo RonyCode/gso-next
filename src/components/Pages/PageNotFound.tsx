@@ -3,7 +3,7 @@ import './page-not-foun.css'
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { useEffect } from 'react'
+import { type ReactElement, useEffect } from 'react'
 
 import { Button } from '@/ui/button'
 
@@ -13,7 +13,7 @@ const PageNotFound = ({
 }: {
   error: Error
   reset: () => void
-}) => {
+}): ReactElement => {
   useEffect(() => {
     // Log the error to an error reporting service
     console.error(error)

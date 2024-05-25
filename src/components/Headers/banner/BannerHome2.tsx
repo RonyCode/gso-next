@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { type ReactElement } from 'react'
 import { LuArrowRightToLine } from 'react-icons/lu'
 
-const BannerMain = () => {
+const BannerMain = (): ReactElement => {
   return (
     <header className="h-screen w-full">
       <div

@@ -1,4 +1,6 @@
-const Notifications = () => {
+import { type ReactNode } from 'react'
+
+const Notifications = (): ReactNode => {
   return (
     <>
       <div className="h-screen">

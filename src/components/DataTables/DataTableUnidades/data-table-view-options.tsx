@@ -1,5 +1,7 @@
 'use client'
 
+import { type ReactElement } from 'react'
+
 import { Button } from '@/ui/button'
 import {
   DropdownMenu,
@@ -18,7 +20,7 @@ interface DataTableViewOptionsProps<TData> {
 
 export function DataTableViewOptions<TData>({
   table,
-}: DataTableViewOptionsProps<TData>) {
+}: DataTableViewOptionsProps<TData>): ReactElement {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>

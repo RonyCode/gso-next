@@ -1,8 +1,9 @@
+import { type ReactNode } from 'react'
 import { LuBookOpenCheck } from 'react-icons/lu'
 
 import { CardDefault } from '@/components/Cards/CardDefault'
 
-const Leis = () => {
+const Leis = (): ReactNode => {
   return (
     <>
       <CardDefault

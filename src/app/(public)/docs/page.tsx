@@ -1,6 +1,6 @@
 'use client'
 
-export default function Docs() {
+export default function Docs(): JSX.Element {
   // const sendNotifications = () => {
   //   if (
   //     'Notification' in window &&

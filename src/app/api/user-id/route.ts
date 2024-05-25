@@ -1,11 +1,11 @@
 import { NextResponse } from 'next/server'
 
-export async function GET(request: Request) {
+export async function GET(request: Request): Promise<NextResponse> {
   const token = request.headers.get('Authorization')
   const { searchParams } = new URL(request.url)
   const id = searchParams.get('id')
 
-  if (id) {
+  if (id != null) {
     const res: Response = await fetch(
       `${process.env.NEXT_PUBLIC_API_GSO}/api/user/user-id/${id}`,
       {

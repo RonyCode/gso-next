@@ -1,5 +1,5 @@
 import { type Metadata } from 'next'
-import React from 'react'
+import React, { type ReactNode } from 'react'
 import { LuMenuSquare } from 'react-icons/lu'
 
 import ModulesServices from '@/app/(private)/servicos/module/ModulesServices'
@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   description: 'Página de escalas do site GSO.',
 }
 
-const Servicos = () => {
+const Servicos = (): ReactNode => {
   return (
     <>
       <CardDefault

@@ -1,14 +1,16 @@
 'use client'
 
 import * as React from 'react'
-import { Drawer as DrawerPrimitive } from 'vaul'
+import { type ReactElement } from 'react'
 
 import { cn } from '@/lib/utils'
+import { Drawer as DrawerPrimitive } from 'vaul'
 
 const Drawer = ({
+  // eslint-disable-next-line react/prop-types
   shouldScaleBackground = true,
   ...props
-}: React.ComponentProps<typeof DrawerPrimitive.Root>) => (
+}: React.ComponentProps<typeof DrawerPrimitive.Root>): ReactElement => (
   <DrawerPrimitive.Root
     shouldScaleBackground={shouldScaleBackground}
     {...props}
@@ -25,6 +27,7 @@ const DrawerClose = DrawerPrimitive.Close
 const DrawerOverlay = React.forwardRef<
   React.ElementRef<typeof DrawerPrimitive.Overlay>,
   React.ComponentPropsWithoutRef<typeof DrawerPrimitive.Overlay>
+  // eslint-disable-next-line react/prop-types
 >(({ className, ...props }, ref) => (
   <DrawerPrimitive.Overlay
     ref={ref}
@@ -38,6 +41,7 @@ DrawerOverlay.displayName = DrawerPrimitive.Overlay.displayName
 const DrawerContent = React.forwardRef<
   React.ElementRef<typeof DrawerPrimitive.Content>,
   React.ComponentPropsWithoutRef<typeof DrawerPrimitive.Content>
+  // eslint-disable-next-line react/prop-types
 >(({ className, children, ...props }, ref) => (
   <DrawerPortal>
     <DrawerOverlay />
@@ -57,9 +61,10 @@ const DrawerContent = React.forwardRef<
 DrawerContent.displayName = 'DrawerContent'
 
 const DrawerHeader = ({
+  // eslint-disable-next-line react/prop-types
   className,
   ...props
-}: React.HTMLAttributes<HTMLDivElement>) => (
+}: React.HTMLAttributes<HTMLDivElement>): ReactElement => (
   <div
     className={cn('grid gap-1.5 p-4 text-center sm:text-left', className)}
     {...props}
@@ -68,9 +73,10 @@ const DrawerHeader = ({
 DrawerHeader.displayName = 'DrawerHeader'
 
 const DrawerFooter = ({
+  // eslint-disable-next-line react/prop-types
   className,
   ...props
-}: React.HTMLAttributes<HTMLDivElement>) => (
+}: React.HTMLAttributes<HTMLDivElement>): ReactElement => (
   <div
     className={cn('mt-auto flex flex-col gap-2 p-4', className)}
     {...props}
@@ -81,6 +87,7 @@ DrawerFooter.displayName = 'DrawerFooter'
 const DrawerTitle = React.forwardRef<
   React.ElementRef<typeof DrawerPrimitive.Title>,
   React.ComponentPropsWithoutRef<typeof DrawerPrimitive.Title>
+  // eslint-disable-next-line react/prop-types
 >(({ className, ...props }, ref) => (
   <DrawerPrimitive.Title
     ref={ref}
@@ -96,6 +103,7 @@ DrawerTitle.displayName = DrawerPrimitive.Title.displayName
 const DrawerDescription = React.forwardRef<
   React.ElementRef<typeof DrawerPrimitive.Description>,
   React.ComponentPropsWithoutRef<typeof DrawerPrimitive.Description>
+  // eslint-disable-next-line react/prop-types
 >(({ className, ...props }, ref) => (
   <DrawerPrimitive.Description
     ref={ref}

@@ -108,7 +108,7 @@ export const columnsUnidades: Array<ColumnDef<Unidade>> = [
               <Badge variant="secondary">CMD</Badge>
             </span>
 
-            {$manager?.name && (
+            {$manager?.name !== '' && (
               <span>
                 {$manager.competence} - {$manager?.name}{' '}
                 <Badge variant="secondary">SUB CMD</Badge>
@@ -153,7 +153,7 @@ export const columnsUnidades: Array<ColumnDef<Unidade>> = [
       const type = types.find(
         (type) => type.value === row.getValue('type')?.toString(),
       )
-      if (!type) {
+      if (type == null) {
         return null
       }
       return (

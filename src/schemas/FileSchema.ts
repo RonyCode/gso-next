@@ -7,6 +7,7 @@ export const FileSchema = z.object({
     .custom<FileList>()
     .transform((file) => file?.length > 0 && file.item(0))
     .refine(
+      // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
       (file) => !file || (!!file && file?.size <= MAX_SIZE_MB * 1024 * 1024),
       {
         message: `O arquivo de imagem tem que ter no máximo ${MAX_SIZE_MB}MB.`,
@@ -14,7 +15,9 @@ export const FileSchema = z.object({
     )
     .refine(
       (file) =>
+        // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
         !file ||
+        // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
         (!!file && file.type === 'image/png') ||
         file.type === 'image/jpg' ||
         file.type === 'image/jpeg' ||
@@ -31,12 +34,14 @@ export const FileSchema = z.object({
     .custom<FileList>()
     .transform((file) => file?.length > 0 && file.item(0))
     .refine(
+      // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
       (file) => !file || (!!file && file?.size <= MAX_SIZE_MB * 1024 * 1024),
       {
         message: `O arquivo de imagem tem que ter no máximo ${MAX_SIZE_MB}MB.`,
       },
     )
     .refine(
+      // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
       (file) => !file || (!!file && file?.type === 'application/pdf'),
 
       {

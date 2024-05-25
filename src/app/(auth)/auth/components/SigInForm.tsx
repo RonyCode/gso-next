@@ -11,7 +11,10 @@ import { LuMail, LuSquareAsterisk } from 'react-icons/lu'
 import { type ResultSignIn } from '../../../../../types/index'
 
 import { useSignIn } from '@/app/(auth)/auth/hooks/useSign'
-import { SignInSchema } from '@/app/(auth)/auth/schemas/SignInSchema'
+import {
+  type ISignInSchema,
+  SignInSchema,
+} from '@/app/(auth)/auth/schemas/SignInSchema'
 import LoadingPage from '@/components/Loadings/LoadingPage'
 import { cn } from '@/lib/utils'
 import { Button } from '@/ui/button'
@@ -38,7 +41,7 @@ const SigInForm = ({ className, ...props }: UserAuthFormProps): JSX.Element => {
   const { signInWithGoogle, signInWithCredentials } = useSignIn()
   const router = useRouter()
 
-  const handleSubmitLogin = (data: SignInSchema): void => {
+  const handleSubmitLogin = (data: ISignInSchema): void => {
     startTransition(async () => {
       const result: ResultSignIn = await signInWithCredentials(data)
       if (!result.ok) {
@@ -66,6 +69,7 @@ const SigInForm = ({ className, ...props }: UserAuthFormProps): JSX.Element => {
   }
 
   const handleClikLogin = async (): Promise<void> => {
+    console.log('teste')
     if (typeof navigator !== 'undefined' && 'serviceWorker' in navigator) {
       void navigator.serviceWorker
         .register('/service-worker/index.js')
@@ -88,7 +92,7 @@ const SigInForm = ({ className, ...props }: UserAuthFormProps): JSX.Element => {
     }
   }
 
-  const form = useForm<SignInSchema>({
+  const form = useForm<ISignInSchema>({
     resolver: zodResolver(SignInSchema),
     mode: 'all',
     defaultValues: {
@@ -130,7 +134,7 @@ const SigInForm = ({ className, ...props }: UserAuthFormProps): JSX.Element => {
           <Form {...form}>
             <form
               /* eslint-disable-next-line @typescript-eslint/no-misused-promises */
-              onSubmit={form.handleSubmit((data): void => {
+              onSubmit={form.handleSubmit(async (data): Promise<void> => {
                 handleSubmitLogin(data)
               })}
               className="w-full space-y-4"
@@ -192,9 +196,11 @@ const SigInForm = ({ className, ...props }: UserAuthFormProps): JSX.Element => {
                 )}
               />
               <Button
-                onClick={() => handleClikLogin}
+                /* eslint-disable-next-line @typescript-eslint/no-misused-promises */
+                onClick={handleClikLogin}
                 disabled={pending}
                 className="w-full"
+                type="submit"
               >
                 {pending && <FaSpinner className="mr-2 h-4 w-4 animate-spin" />}
                 Entrar

@@ -31,7 +31,7 @@ const FormField = <
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
 >({
   ...props
-}: ControllerProps<TFieldValues, TName>) => {
+}: ControllerProps<TFieldValues, TName>): React.ReactElement => {
   return (
     <FormFieldContext.Provider value={{ name: props.name }}>
       <Controller {...props} />
@@ -39,6 +39,7 @@ const FormField = <
   )
 }
 
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 const useFormField = () => {
   const fieldContext = React.useContext(FormFieldContext)
   const itemContext = React.useContext(FormItemContext)
@@ -46,7 +47,7 @@ const useFormField = () => {
 
   const fieldState = getFieldState(fieldContext.name, formState)
 
-  if (!fieldContext) {
+  if (itemContext == null) {
     throw new Error('useFormField should be used within <FormField>')
   }
 
@@ -73,6 +74,7 @@ const FormItemContext = React.createContext<FormItemContextValue>(
 const FormItem = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
+  // eslint-disable-next-line react/prop-types
 >(({ className, ...props }, ref) => {
   const id = React.useId()
 
@@ -87,13 +89,14 @@ FormItem.displayName = 'FormItem'
 const FormLabel = React.forwardRef<
   React.ElementRef<typeof LabelPrimitive.Root>,
   React.ComponentPropsWithoutRef<typeof LabelPrimitive.Root>
+  // eslint-disable-next-line react/prop-types
 >(({ className, ...props }, ref) => {
   const { error, formItemId } = useFormField()
 
   return (
     <Label
       ref={ref}
-      className={cn(error && 'text-destructive', className)}
+      className={cn(error != null && 'text-destructive', className)}
       htmlFor={formItemId}
       {...props}
     />
@@ -112,11 +115,11 @@ const FormControl = React.forwardRef<
       ref={ref}
       id={formItemId}
       aria-describedby={
-        !error
+        error == null
           ? `${formDescriptionId}`
           : `${formDescriptionId} ${formMessageId}`
       }
-      aria-invalid={!!error}
+      aria-invalid={!(error == null)}
       {...props}
     />
   )
@@ -126,6 +129,7 @@ FormControl.displayName = 'FormControl'
 const FormDescription = React.forwardRef<
   HTMLParagraphElement,
   React.HTMLAttributes<HTMLParagraphElement>
+  // eslint-disable-next-line react/prop-types
 >(({ className, ...props }, ref) => {
   const { formDescriptionId } = useFormField()
 
@@ -146,11 +150,12 @@ FormDescription.displayName = 'FormDescription'
 const FormMessage = React.forwardRef<
   HTMLParagraphElement,
   React.HTMLAttributes<HTMLParagraphElement>
+  // eslint-disable-next-line react/prop-types
 >(({ className, children, ...props }, ref) => {
   const { error, formMessageId } = useFormField()
-  const body = error ? String(error?.message) : children
+  const body = error != null ? String(error?.message) : children
 
-  if (!body) {
+  if (body == null) {
     return null
   }
 

@@ -2,14 +2,14 @@
 
 import { signOut } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
-import React from 'react'
+import React, { type ReactElement } from 'react'
 
 import { deleteCookies } from '@/components/Buttoms/SignOutButton/LogoutAction'
 import { Button } from '@/ui/button'
 
-const SignOutButtonDefault = () => {
+const SignOutButtonDefault = (): ReactElement => {
   const router = useRouter()
-  const handleClick = async () => {
+  const handleClick = async (): Promise<void> => {
     await deleteCookies()
     await signOut({
       redirect: false,

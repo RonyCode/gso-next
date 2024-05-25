@@ -9,6 +9,7 @@ import * as CheckboxPrimitive from '@radix-ui/react-checkbox'
 const Checkbox = React.forwardRef<
   React.ElementRef<typeof CheckboxPrimitive.Root>,
   React.ComponentPropsWithoutRef<typeof CheckboxPrimitive.Root>
+  // eslint-disable-next-line react/prop-types
 >(({ className, ...props }, ref) => (
   <CheckboxPrimitive.Root
     ref={ref}

@@ -2,14 +2,14 @@ import { signIn } from 'next-auth/react'
 
 import { type ResultSignIn } from '../../../../../../types/index'
 
-import { type SignInSchema } from '@/app/(auth)/auth/schemas/SignInSchema'
+import { type ISignInSchema } from '@/app/(auth)/auth/schemas/SignInSchema'
 import { toast } from '@/ui/use-toast'
 
 export const useSignIn = (): {
-  signInWithCredentials: (data: SignInSchema) => Promise<ResultSignIn>
+  signInWithCredentials: (data: ISignInSchema) => Promise<ResultSignIn>
   signInWithGoogle: () => Promise<void>
 } => {
-  async function signInWithGoogle() {
+  async function signInWithGoogle(): Promise<void> {
     try {
       await signIn('google', {
         callbackUrl: '/dashboard',
@@ -23,8 +23,10 @@ export const useSignIn = (): {
       })
     }
   }
-  const signInWithCredentials = async (data: SignInSchema) => {
-    if (!data) {
+  const signInWithCredentials = async (
+    data: ISignInSchema,
+  ): Promise<ResultSignIn> => {
+    if (data === null) {
       return {} as unknown as ResultSignIn
     }
     const { email, senha } = data

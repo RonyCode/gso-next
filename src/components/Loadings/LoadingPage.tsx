@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { type ReactElement } from 'react'
 
 import IconLoading from '../../../public/images/IconLoading'
 import Logo from '../../../public/images/Logo'
 
-const LoadingPage = ({ pending }: { pending: boolean }) => {
+const LoadingPage = ({ pending }: { pending: boolean }): ReactElement => {
   return (
     <>
       {pending ? (

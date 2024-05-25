@@ -59,6 +59,7 @@ const CalendarGso = ({ event }: { event: EventProps[] }): JSX.Element => {
       dayEvent: [] as EventProps[],
     },
   ]
+  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   const handleCountDaysInMonth = (numberMonth: number) => {
     const lastDigiteYear = year.toString().slice(-2)
 
