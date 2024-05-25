@@ -2,18 +2,19 @@
 
 import { revalidatePath } from 'next/cache'
 
-import { ResultUserRegistered } from '../../../types/index'
+import { type ResultUserRegistered } from '../../../types/index'
+
 import { fetchWrapper } from '@/functions/fetch'
-import { EditUserSchema } from '@/schemas/EditUserSchema'
-import { RegisterUserSchema } from '@/schemas/RegisterUserSchema'
+import { type IEditUserSchema } from '@/schemas/EditUserSchema'
+import { type IRegisterUserSchema } from '@/schemas/RegisterUserSchema'
 
 export async function saveUserAction(
-  formData?: EditUserSchema | RegisterUserSchema,
-) {
+  formData?: IEditUserSchema | IRegisterUserSchema,
+): Promise<ResultUserRegistered> {
   revalidatePath('/')
 
   try {
-    if (formData) {
+    if (formData != null) {
       return await fetchWrapper<ResultUserRegistered>(
         `${process.env.NEXT_PUBLIC_NEXT_URL}/api/cadastrar-usuario`,
         {

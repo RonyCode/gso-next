@@ -2,8 +2,9 @@
 import type { Session, User, DefaultSession } from 'next-auth'
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import NextAuth from 'next-auth'
-import React from 'react'
-import { DialogContent } from '@/ui/dialog'
+import type React from 'react'
+
+import { type DialogContent } from '@/ui/dialog'
 
 export interface UserAuth {
   email: string
@@ -42,7 +43,7 @@ export interface Account {
   birthday: string
   file: FileType | null
 }
-export type Schedule = {
+export interface Schedule {
   id: number
   id_company: number
   id_member_creator: number
@@ -57,7 +58,7 @@ export type Schedule = {
   obs: string
   excluded: number
 }
-export type Member = {
+export interface Member {
   id: number
   id_company: number
   id_car: number
@@ -73,7 +74,7 @@ export type Member = {
   imageMember: string
 }
 
-export type Car = {
+export interface Car {
   id: number
   id_company: number
   prefix: number
@@ -87,13 +88,13 @@ export type Car = {
   status: number
   excluded: number
 }
-export type CarsUnity = {
+export interface CarsUnity {
   nameCar: string
   members: Member[]
   imageCar: string
 }
 
-export type EventProps = {
+export interface EventProps {
   id: number
   day: number
   month: number
@@ -112,7 +113,7 @@ export type EventProps = {
   end: string
 }
 
-export type EscalaProps = {
+export interface EscalaProps {
   dayEvent: EventProps[]
   dayName: string
   year: number
@@ -268,7 +269,7 @@ export interface AddressProps {
   siafi: number
 }
 
-export type ResultSignIn = {
+export interface ResultSignIn {
   error: string
   ok: boolean
   status: number
@@ -284,14 +285,14 @@ export type ResultSignIn = {
   date_expires_token: number
 }
 
-export type ResultError = {
+export interface ResultError {
   error: string
   ok: boolean
   status: number
   data: null
 }
 
-export type DataUserRegistered = {
+export interface DataUserRegistered {
   id: number
   email: string
   nome: string
@@ -301,7 +302,7 @@ export type DataUserRegistered = {
   date_expires_token: number
 }
 
-export type ResponseUserSigned = {
+export interface ResponseUserSigned {
   data: boolean
   id: number
   id_account: number
@@ -316,7 +317,14 @@ export type ResponseUserSigned = {
   url?: string
 }
 
-export type ResultUserRegistered = {
+export interface ResponseFetchFailed {
+  data: boolean
+  status: string
+  code: number
+  message: string
+}
+
+export interface ResultUserRegistered {
   data: DataUserRegistered | null
   code: number
   status: string

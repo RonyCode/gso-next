@@ -8,7 +8,7 @@ interface ResponseType {
 }
 
 type ResponseProps = JWTPayload & ResponseType
-export const TokenVerify = async ($token: string) => {
+export const TokenVerify = async ($token: string): Promise<ResponseProps> => {
   try {
     const payload = decodeJwt($token) as ResponseProps
     const dateExpires = payload.exp

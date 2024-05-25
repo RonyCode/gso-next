@@ -2,7 +2,7 @@
 
 import { revalidatePath } from 'next/cache'
 
-import { PreRegisterUserSchema } from '@/app/(auth)/auth/schemas/PreRegisterUserSchema'
+import { type IPreRegisterUserSchema } from '@/app/(auth)/auth/schemas/IPreRegisterUserSchema'
 
 interface ReturnData {
   email: string
@@ -12,7 +12,7 @@ interface ReturnData {
 }
 
 export const preRegisterUserServerActions = async (
-  data: FormData | PreRegisterUserSchema,
+  data: FormData | IPreRegisterUserSchema,
 ): Promise<{
   code: number
   message: string
@@ -46,7 +46,7 @@ export const preRegisterUserServerActions = async (
         } satisfies ReturnData
       }
     }
-    return data as PreRegisterUserSchema
+    return data as IPreRegisterUserSchema
   } catch (error) {
     console.log(error)
     return JSON.parse(JSON.stringify(error))

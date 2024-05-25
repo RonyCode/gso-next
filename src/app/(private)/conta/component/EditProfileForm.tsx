@@ -26,7 +26,7 @@ import { useMask } from '@/hooks/useMask'
 import { getAllCitiesByState } from '@/lib/getAllCitiesByState'
 import { getCep } from '@/lib/getCep'
 import { cn } from '@/lib/utils'
-import { EditUserSchema } from '@/schemas/EditUserSchema'
+import { EditUserSchema, type IEditUserSchema } from '@/schemas/EditUserSchema'
 import { cityStore } from '@/stores/Address/CityByStateStore'
 import { Button, buttonVariants } from '@/ui/button'
 import {
@@ -103,14 +103,14 @@ export const EditProfileForm = ({
     }
   }
 
-  const form = useForm<EditUserSchema>({
+  const form = useForm<IEditUserSchema>({
     mode: 'all',
     criteriaMode: 'all',
     resolver: zodResolver(EditUserSchema),
-    defaultValues: defaultValues as Partial<EditUserSchema>,
+    defaultValues: defaultValues as Partial<IEditUserSchema>,
   })
 
-  const handleSubmit = (dataForm: EditUserSchema): void => {
+  const handleSubmit = (dataForm: IEditUserSchema): void => {
     startTransition(async () => {
       const { data, message } = await saveUserAction(dataForm)
       if (data?.id == null) {

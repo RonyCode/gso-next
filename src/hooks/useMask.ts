@@ -1,6 +1,10 @@
-export const useMask = () => {
-  const maskCpfCnpj = (value: string | undefined) => {
-    if (!value) return ''
+export const useMask = (): {
+  maskPhone: (value: string | undefined) => string
+  maskZipCode: (value: string | undefined) => string
+  maskCpfCnpj: (value: string | undefined) => string
+} => {
+  const maskCpfCnpj = (value: string | undefined): string => {
+    if (value == null) return ''
 
     if (value?.length <= 11) {
       // CPF
@@ -21,8 +25,8 @@ export const useMask = () => {
     }
   }
 
-  const maskPhone = (value: string | undefined) => {
-    if (!value) return ''
+  const maskPhone = (value: string | undefined): string => {
+    if (value == null) return ''
 
     return value
       .replace(/\D/g, '')
@@ -31,8 +35,8 @@ export const useMask = () => {
       .replace(/(-\d{4})(\d+?)/, '$1')
   }
 
-  const maskZipCode = (value: string | undefined) => {
-    if (!value) return ''
+  const maskZipCode = (value: string | undefined): string => {
+    if (value == null) return ''
     return value
       .replace(/\D/g, '')
       .replace(/^(\d{5})(\d{3})+?$/, '$1-$2')

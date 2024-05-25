@@ -113,7 +113,7 @@ export function NavbarMain({
         setNotification(response)
       },
     )
-  }, [session?.id_message, showNavBar])
+  }, [session, showNavBar])
 
   const handleClick = async (): Promise<void> => {
     await deleteCookies()

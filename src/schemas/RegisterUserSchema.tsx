@@ -16,7 +16,8 @@ export const RegisterUserSchema = z
       .max(14, { message: 'Cpf inválido' })
       .refine((cpf: string) => {
         cpf = cpf.replace(/\D+/g, '')
-        if (cpf.length !== 11 || !!cpf.match(/(\d)\1{10}/)) return false
+        if (cpf.length !== 11 || !(cpf.match(/(\d)\1{10}/) == null))
+          return false
         const cpfDigits = cpf.split('').map((el) => +el)
         const rest = (count: number): number => {
           return (
@@ -33,19 +34,11 @@ export const RegisterUserSchema = z
     endereco: z.string().min(3, {
       message: 'endereço inválido deve conter no mínimo 3 caracteres',
     }),
-    complemento: z.string() || null || undefined,
-    sigla: z.string().min(2, {
-      message: 'endereço inválido deve conter no mínimo 2 caracteres',
+    complemento: z.string().optional(),
+    sigla: z.string().optional(),
+    numero: z.string().min(1, {
+      message: 'número inválido deve conter no mínimo 1 caracteres',
     }),
-    numero:
-      z.string() ||
-      undefined ||
-      z
-        .number()
-        .min(1, {
-          message: 'número inválido deve conter no mínimo 1 caracteres',
-        })
-        .nullable(),
     cep: z.string().min(9, {
       message: 'Cep inválido',
     }),
@@ -68,7 +61,7 @@ export const RegisterUserSchema = z
       message: 'Data inválida',
     }),
     email: z.string().email({ message: 'Email inválido' }),
-    image: z.string().min(1, { message: 'Imagem inválido' }),
+    image: z.string().min(1, { message: 'Imagem inválido' }).optional(),
     senha: z
       .string()
       .min(8, {
@@ -80,9 +73,9 @@ export const RegisterUserSchema = z
           'Senha inválida deve conter no mínimo 8 caracteres com no mínimo uma letra',
       }),
   })
-  .refine(({ senha, confirmaSenha }) => senha === confirmaSenha, {
+  .refine((data) => data.senha === data.confirmaSenha, {
+    message: 'Passwords não confere',
     path: ['confirmaSenha'],
-    message: 'Senhas não conferem',
   })
 
-export type RegisterUserSchema = z.infer<typeof RegisterUserSchema>
+export type IRegisterUserSchema = z.infer<typeof RegisterUserSchema>

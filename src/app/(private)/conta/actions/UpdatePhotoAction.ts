@@ -3,10 +3,10 @@
 import { revalidatePath } from 'next/cache'
 import { cookies } from 'next/headers'
 
-import { type FileSchema } from '@/schemas/FileSchema'
+import { type IFileSchema } from '@/schemas/FileSchema'
 
 export async function UpdatePhotoAction(
-  payload: FileSchema,
+  payload: IFileSchema,
 ): Promise<Response> {
   revalidatePath('/')
   const token = cookies().get('token')?.value

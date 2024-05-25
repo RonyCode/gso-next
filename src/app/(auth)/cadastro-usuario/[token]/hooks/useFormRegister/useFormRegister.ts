@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form'
 
-import { RegisterUserSchema } from '@/schemas/RegisterUserSchema'
+import { type IRegisterUserSchema } from '@/schemas/RegisterUserSchema'
 import { zodResolver } from '@hookform/resolvers/zod'
 
 export const useFormRegister = () => {
@@ -10,7 +10,7 @@ export const useFormRegister = () => {
     setValue,
     clearErrors,
     formState: { errors, isValid, dirtyFields },
-  } = useForm<RegisterUserSchema>({
+  } = useForm<IRegisterUserSchema>({
     mode: 'all',
     criteriaMode: 'all',
     resolver: zodResolver(RegisterUserSchema),

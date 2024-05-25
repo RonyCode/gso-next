@@ -16,7 +16,8 @@ export const SignUpChema = z
       .max(14, { message: 'Cpf inválido' })
       .refine((cpf: string) => {
         cpf = cpf.replace(/\D+/g, '')
-        if (cpf.length !== 11 || !!cpf.match(/(\d)\1{10}/)) return false
+        if (cpf.length !== 11 || !(cpf.match(/(\d)\1{10}/) == null))
+          return false
         const cpfDigits = cpf.split('').map((el) => +el)
         const rest = (count: number): number => {
           return (
@@ -77,4 +78,4 @@ export const SignUpChema = z
     message: 'Senhas não conferem',
   })
 
-export type SignUpChema = z.infer<typeof SignUpChema>
+export type ISignUpChema = z.infer<typeof SignUpChema>

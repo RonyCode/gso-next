@@ -1,11 +1,11 @@
 import { toast } from 'react-toastify'
 
-import { RegisterUserSchema } from '@/schemas/RegisterUserSchema'
 import { fetchWrapper } from '@/functions/fetch'
+import { type IRegisterUserSchema } from '@/schemas/RegisterUserSchema'
 import { z } from 'zod'
 
 export const useRegister = () => {
-  const registerUser = async (data: RegisterUserSchema) => {
+  const registerUser = async (data: IRegisterUserSchema) => {
     try {
       const { email, senha, nome, confirmaSenha, telefone } = data
       await fetchWrapper(

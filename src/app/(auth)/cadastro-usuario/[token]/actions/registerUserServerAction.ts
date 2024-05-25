@@ -1,7 +1,7 @@
 'use server'
 
-import { RegisterUserSchema } from '@/schemas/RegisterUserSchema'
-import { ZodError } from 'zod'
+import { IRegisterUserSchema } from '@/schemas/RegisterUserSchema'
+import { type ZodError } from 'zod'
 
 export const registerUserServerActions = async (data: FormData) => {
   try {

@@ -34,7 +34,10 @@ import {
 import { getAllCitiesByState } from '@/lib/getAllCitiesByState'
 import { getCep } from '@/lib/getCep'
 import { cn } from '@/lib/utils'
-import { RegisterUserSchema } from '@/schemas/RegisterUserSchema'
+import {
+  type IRegisterUserSchema,
+  RegisterUserSchema,
+} from '@/schemas/RegisterUserSchema'
 import { cityStore } from '@/stores/Address/CityByStateStore'
 import { Button, buttonVariants } from '@/ui/button'
 import {
@@ -43,6 +46,7 @@ import {
   CommandGroup,
   CommandInput,
   CommandItem,
+  CommandList,
 } from '@/ui/command'
 import {
   Form,
@@ -83,24 +87,23 @@ export const UserRegisterForm = ({
   className,
   ...props
 }: UserRegisterFormProps): React.ReactElement => {
-  const form = useForm<RegisterUserSchema>({
+  const form = useForm<IRegisterUserSchema>({
     mode: 'all',
     criteriaMode: 'all',
     resolver: zodResolver(RegisterUserSchema),
     defaultValues: {
       nome: '',
-      email: params,
+      email: '',
       cpf: '',
       data_nascimento: '',
       telefone: '',
       cep: '',
       endereco: '',
-      complemento: '',
-      sigla: '',
       numero: '',
-      bairro: '',
-      cidade: '',
+      complemento: '',
       estado: '',
+      cidade: '',
+      bairro: '',
       senha: '',
       confirmaSenha: '',
     },
@@ -108,7 +111,8 @@ export const UserRegisterForm = ({
 
   const [pending, startTransition] = useTransition()
 
-  const handleSubmit = (formData: RegisterUserSchema): void => {
+  const handleSubmit = (formData: IRegisterUserSchema): void => {
+    console.log('teste')
     startTransition(async () => {
       const result: ResultUserRegistered = await saveUserAction(formData)
       if (result?.data?.id == null) {
@@ -172,7 +176,6 @@ export const UserRegisterForm = ({
       })
     }
   }
-
   return (
     <>
       <div className="  flex  h-full  flex-col ">
@@ -488,27 +491,29 @@ export const UserRegisterForm = ({
                             <CommandInput placeholder="Search language..." />
                             <CommandEmpty>Estado não encontrado.</CommandEmpty>
                             <CommandGroup>
-                              {states?.map((state) => (
-                                <CommandItem
-                                  value={state.shortName}
-                                  key={state.id}
-                                  /* eslint-disable-next-line @typescript-eslint/no-misused-promises */
-                                  onSelect={async () => {
-                                    await handleCity(state.shortName)
-                                    form.setValue('estado', state.shortName)
-                                  }}
-                                >
-                                  <LuCheck
-                                    className={cn(
-                                      'mr-2 h-4 w-4',
-                                      state.shortName === field.value
-                                        ? 'opacity-100'
-                                        : 'opacity-0',
-                                    )}
-                                  />
-                                  {state.state}
-                                </CommandItem>
-                              ))}
+                              <CommandList>
+                                {states?.map((state, index) => (
+                                  <CommandItem
+                                    value={state.shortName}
+                                    key={index}
+                                    /* eslint-disable-next-line @typescript-eslint/no-misused-promises */
+                                    onSelect={async () => {
+                                      await handleCity(state.shortName)
+                                      form.setValue('estado', state.shortName)
+                                    }}
+                                  >
+                                    <LuCheck
+                                      className={cn(
+                                        'mr-2 h-4 w-4',
+                                        state.shortName === field.value
+                                          ? 'opacity-100'
+                                          : 'opacity-0',
+                                      )}
+                                    />
+                                    {state.state}
+                                  </CommandItem>
+                                ))}
+                              </CommandList>
                             </CommandGroup>
                           </Command>
                         </PopoverContent>
@@ -554,25 +559,27 @@ export const UserRegisterForm = ({
                             <CommandInput placeholder="Procurando cidade..." />
                             <CommandEmpty>Cidade não encontrada.</CommandEmpty>
                             <CommandGroup>
-                              {arrayCitiesByState?.map((city) => (
-                                <CommandItem
-                                  value={city.city}
-                                  key={city.id}
-                                  onSelect={() => {
-                                    form.setValue('cidade', city.city)
-                                  }}
-                                >
-                                  <LuCheck
-                                    className={cn(
-                                      'mr-2 h-4 w-4',
-                                      city.city === field.value
-                                        ? 'opacity-100'
-                                        : 'opacity-0',
-                                    )}
-                                  />
-                                  {city.city}
-                                </CommandItem>
-                              ))}
+                              <CommandList>
+                                {arrayCitiesByState?.map((city, index) => (
+                                  <CommandItem
+                                    value={city.city}
+                                    key={index}
+                                    onSelect={() => {
+                                      form.setValue('cidade', city.city)
+                                    }}
+                                  >
+                                    <LuCheck
+                                      className={cn(
+                                        'mr-2 h-4 w-4',
+                                        city.city === field.value
+                                          ? 'opacity-100'
+                                          : 'opacity-0',
+                                      )}
+                                    />
+                                    {city.city}
+                                  </CommandItem>
+                                ))}
+                              </CommandList>
                             </CommandGroup>
                           </Command>
                         </PopoverContent>
@@ -643,10 +650,10 @@ export const UserRegisterForm = ({
                   render={({ field }) => (
                     <FormItem className="w-full">
                       <FormLabel
-                        htmlFor="senha"
+                        htmlFor="confirmaSenha"
                         className="flex items-center gap-1"
                       >
-                        <FaUserLock /> Senha
+                        <FaUserLock /> Repita senha
                       </FormLabel>{' '}
                       <FormControl>
                         <Input

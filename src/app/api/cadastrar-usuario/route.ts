@@ -1,11 +1,11 @@
-import { NextRequest, NextResponse } from 'next/server'
+import { type NextRequest, NextResponse } from 'next/server'
 
-import { RegisterUserSchema } from '@/schemas/RegisterUserSchema'
 import { limiter } from '@/app/api/config/limiter'
+import { type IRegisterUserSchema } from '@/schemas/RegisterUserSchema'
 
 export async function POST(request: NextRequest): Promise<NextResponse> {
   const remaining: number = await limiter.removeTokens(1)
-  const body: RegisterUserSchema = await request.json()
+  const body: IRegisterUserSchema = await request.json()
 
   if (!body)
     return NextResponse.json({ message: 'Erro parametros necessários' })

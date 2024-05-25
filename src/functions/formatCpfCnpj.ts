@@ -1,4 +1,4 @@
-export const formatCpfCnpj = (value: string) => {
+export const formatCpfCnpj = (value: string): string => {
   const cleanedValue = value.replace(/\D/g, '') // remove caracteres não numéricos
 
   if (cleanedValue.length <= 11) {

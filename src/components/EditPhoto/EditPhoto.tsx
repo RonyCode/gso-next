@@ -9,7 +9,7 @@ import { LuCamera, LuCheckCircle } from 'react-icons/lu'
 
 import LoadingPage from '@/components/Loadings/LoadingPage'
 import { cn } from '@/lib/utils'
-import { FileSchema } from '@/schemas/FileSchema'
+import { FileSchema, type IFileSchema } from '@/schemas/FileSchema'
 import { Button } from '@/ui/button'
 import {
   Dialog,
@@ -65,7 +65,7 @@ export const EditPhoto = ({
   })
   const router = useRouter()
 
-  const form = useForm<FileSchema>({
+  const form = useForm<IFileSchema>({
     mode: 'all',
     criteriaMode: 'all',
     resolver: zodResolver(FileSchema),
@@ -78,7 +78,7 @@ export const EditPhoto = ({
   const fileRef = form.register('file_image')
 
   // 2. Define a submit handler.
-  const handleSubmit = (data: FileSchema): void => {
+  const handleSubmit = (data: IFileSchema): void => {
     startTransition(async () => {
       const token = session?.token
 

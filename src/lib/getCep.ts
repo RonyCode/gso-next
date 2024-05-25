@@ -1,5 +1,6 @@
+import { type CepProps } from '../../types/index'
+
 import { fetchWrapper } from '@/functions/fetch'
-import { CepProps } from '../../types/index'
 
 export const getCep = async (cep: string): Promise<CepProps> => {
   return await fetchWrapper<CepProps>(
@@ -7,6 +8,7 @@ export const getCep = async (cep: string): Promise<CepProps> => {
       /\D/g,
       '',
     )}`,
+
     {
       method: 'GET',
       headers: {

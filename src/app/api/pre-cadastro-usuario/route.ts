@@ -1,9 +1,9 @@
-import { NextRequest, NextResponse } from 'next/server'
+import { type NextRequest, NextResponse } from 'next/server'
 
 export async function POST(request: NextRequest): Promise<NextResponse> {
   const { email } = await request.json()
 
-  if (!email)
+  if (email === null && email === '')
     return NextResponse.json({ message: 'Erro parâmetros necessários' })
 
   const res = await fetch(

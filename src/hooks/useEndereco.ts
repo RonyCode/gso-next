@@ -5,8 +5,12 @@ import { cityStore } from '@/stores/Address/CityByStateStore'
 import { stateStore } from '@/stores/Address/stateStore'
 import { toast } from '@/ui/use-toast'
 
-export const useEndereco = () => {
-  const getCep = async (cep: string) => {
+export const useEndereco = (): {
+  getCep: (cep: string) => Promise<CepProps>
+  getCidadeByState: (state: string) => Promise<AddressProps[]>
+  getEstados: () => Promise<AddressProps[]>
+} => {
+  const getCep = async (cep: string): Promise<CepProps> => {
     try {
       return await fetchWrapper<CepProps>(
         `${process.env.NEXT_PUBLIC_NEXT_URL}/api/cep?cep=${cep?.replace(
@@ -69,7 +73,7 @@ export const useEndereco = () => {
     return res
   }
 
-  const getCidadeByState = async (state: string) => {
+  const getCidadeByState = async (state: string): Promise<AddressProps[]> => {
     const res = await fetchWrapper<AddressProps[]>(
       `${process.env.NEXT_PUBLIC_NEXT_URL}/api/cidades/${state}`,
       {

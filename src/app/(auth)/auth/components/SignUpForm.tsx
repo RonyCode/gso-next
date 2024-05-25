@@ -1,5 +1,4 @@
 'use client'
-
 import { redirect } from 'next/navigation'
 import * as React from 'react'
 import { useTransition } from 'react'
@@ -7,7 +6,10 @@ import { useForm } from 'react-hook-form'
 
 import { preRegisterUserServerActions } from '@/app/(auth)/auth/actions/preRegisterUserServerAction'
 import { usePreRegister } from '@/app/(auth)/auth/hooks/usePreRegister/usePreRegister'
-import { PreRegisterUserSchema } from '@/app/(auth)/auth/schemas/PreRegisterUserSchema'
+import {
+  type IPreRegisterUserSchema,
+  PreRegisterUserSchema,
+} from '@/app/(auth)/auth/schemas/IPreRegisterUserSchema'
 import { cn } from '@/lib/utils'
 import { Button } from '@/ui/button'
 import { Form, FormControl, FormField, FormItem, FormMessage } from '@/ui/form'
@@ -15,7 +17,6 @@ import { Icons } from '@/ui/icons'
 import { Input } from '@/ui/input'
 import { toast } from '@/ui/use-toast'
 import { zodResolver } from '@hookform/resolvers/zod'
-
 type UserAuthFormProps = React.HTMLAttributes<HTMLDivElement>
 
 export function SignUpForm({
@@ -25,7 +26,7 @@ export function SignUpForm({
   const [pending, startTransition] = useTransition()
   const { preRegisterUser } = usePreRegister()
 
-  const form = useForm<PreRegisterUserSchema>({
+  const form = useForm<IPreRegisterUserSchema>({
     resolver: zodResolver(PreRegisterUserSchema),
     mode: 'all',
     defaultValues: {
@@ -33,9 +34,7 @@ export function SignUpForm({
     },
   })
 
-  const handleSubmitPreCadastro = async (
-    data: FormData | PreRegisterUserSchema,
-  ): Promise<void> => {
+  const handleSubmitPreCadastro = (data: IPreRegisterUserSchema): void => {
     startTransition(async () => {
       const result = await preRegisterUserServerActions(data)
       if (result.email !== 'failed') {
@@ -68,7 +67,7 @@ export function SignUpForm({
           <form
             /* eslint-disable-next-line @typescript-eslint/no-misused-promises */
             onSubmit={form.handleSubmit(async (data) => {
-              await handleSubmitPreCadastro(data)
+              handleSubmitPreCadastro(data)
             })}
             className="w-full "
           >

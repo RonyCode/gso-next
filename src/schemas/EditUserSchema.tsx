@@ -14,7 +14,7 @@ export const EditUserSchema = z.object({
     .max(14, { message: 'Cpf inválido' })
     .refine((cpf: string) => {
       cpf = cpf.replace(/\D+/g, '')
-      if (cpf.length !== 11 || !!cpf.match(/(\d)\1{10}/)) return false
+      if (cpf.length !== 11 || !(cpf.match(/(\d)\1{10}/) == null)) return false
       const cpfDigits = cpf.split('').map((el) => +el)
       const rest = (count: number): number => {
         return (
@@ -31,19 +31,17 @@ export const EditUserSchema = z.object({
   endereco: z.string().min(3, {
     message: 'endereço inválido deve conter no mínimo 3 caracteres',
   }),
-  complemento: z.string() || null || undefined,
+  complemento: z.string().optional(),
   sigla: z.string().min(2, {
     message: 'endereço inválido deve conter no mínimo 2 caracteres',
   }),
-  numero:
-    z.string() ||
-    undefined ||
-    z
-      .number()
-      .min(1, {
-        message: 'número inválido deve conter no mínimo 1 caracteres',
-      })
-      .nullable(),
+  numero: z
+    .string()
+    .min(1, {
+      message: 'número inválido deve conter no mínimo 1 caracteres',
+    })
+    .optional(),
+
   cep: z.string().min(9, {
     message: 'Cep inválido',
   }),
@@ -63,4 +61,4 @@ export const EditUserSchema = z.object({
   email: z.string().email({ message: 'Email inválido' }).nullable(),
 })
 
-export type EditUserSchema = z.infer<typeof EditUserSchema>
+export type IEditUserSchema = z.infer<typeof EditUserSchema>

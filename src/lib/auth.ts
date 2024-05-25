@@ -3,11 +3,11 @@ import CredentialsProvider from 'next-auth/providers/credentials'
 import GoogleProvider from 'next-auth/providers/google'
 import { cookies } from 'next/headers'
 
-function getGoogleCredentials() {
+function getGoogleCredentials(): { clientId: string; clientSecret: string } {
   const googleClientId = process.env.GOOGLE_CLIENT_ID
   const googleClientSecret = process.env.GOOGLE_CLIENT_SECRET
 
-  if (!googleClientId || !googleClientSecret) {
+  if (googleClientId == null || googleClientSecret == null) {
     throw new Error('Missing Google credentials')
   }
 
@@ -22,9 +22,10 @@ export const confereLogado = async (payload: {
   senha?: string
   is_user_external?: number
   subscription_user?: string
+  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 }) => {
   const subscriptionsUser = cookies().get('subscription')?.value
-  subscriptionsUser
+  subscriptionsUser != null
     ? (payload.subscription_user = JSON.parse(subscriptionsUser))
     : (payload.subscription_user = '')
 
@@ -54,12 +55,11 @@ export const authOptions: NextAuthOptions = {
     }),
 
     CredentialsProvider({
+      name: '',
+      type: 'credentials',
+      id: '',
       credentials: {
-        email: {
-          label: 'Email',
-          type: 'text',
-          placeholder: 'exemplo@email.com',
-        },
+        email: { label: 'Email', type: 'text' },
         senha: { label: 'Senha', type: 'password' },
         is_user_external: { label: 'User Externo', type: 'text' },
       },
@@ -71,12 +71,12 @@ export const authOptions: NextAuthOptions = {
           is_user_external: 0,
         }
 
-        if (!payload.email || !payload.senha) {
+        if (payload.email == null || payload.senha == null) {
           throw new Error('Email ou senha inválido! 🤯')
         }
         const user = await confereLogado(payload)
 
-        if (user) {
+        if (user != null) {
           return user
         } else {
           return null
@@ -105,7 +105,7 @@ export const authOptions: NextAuthOptions = {
 
   callbacks: {
     jwt: async function ({ token, user, account, trigger, session }) {
-      if (account && user) {
+      if (account != null && user != null) {
         if (account.provider === 'google') {
           const payload = {
             email: token?.email,
@@ -140,7 +140,7 @@ export const authOptions: NextAuthOptions = {
             id_message: userGoogle?.id_message,
             email: userGoogle?.email,
             name: userGoogle?.name,
-            image: userGoogle?.image || userGoogle?.picture,
+            image: Boolean(userGoogle?.image) || userGoogle?.picture,
             senha: userGoogle?.senha,
             token: userGoogle?.token,
             access_token: userGoogle?.token,
@@ -174,7 +174,7 @@ export const authOptions: NextAuthOptions = {
             id_message: user?.id_message,
             email: user?.email,
             name: user?.name,
-            image: user?.image || user?.picture,
+            image: user?.image !== '' || user?.picture,
             senha: user?.senha,
             token: user?.token,
             access_token: user?.token,
@@ -200,7 +200,7 @@ export const authOptions: NextAuthOptions = {
       session.id_message = token?.id_message
       session.email = token?.email
       session.name = token?.name
-      session.image = token?.image || token?.picture
+      session.image = token?.image !== '' ? token?.image : token?.picture
       session.senha = token?.senha
       session.token = token?.token
       session.access_token = token?.access_token

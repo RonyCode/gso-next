@@ -1,12 +1,22 @@
 import { toast } from 'react-toastify'
 
-import { PreRegisterUserSchema } from '@/app/(auth)/auth/schemas/PreRegisterUserSchema'
+import {
+  type ResponseFetchFailed,
+  type ResponseUserSigned,
+} from '../../../../../../types/index'
+
+import { type IPreRegisterUserSchema } from '@/app/(auth)/auth/schemas/IPreRegisterUserSchema'
 import { fetchWrapper } from '@/functions/fetch'
 import { z } from 'zod'
-import { ResponseUserSigned } from '../../../../../../types/index'
 
-export const usePreRegister = () => {
-  const preRegisterUser = async (data: PreRegisterUserSchema) => {
+export const usePreRegister = (): {
+  preRegisterUser: (
+    data: IPreRegisterUserSchema,
+  ) => Promise<ResponseUserSigned | ResponseFetchFailed | undefined>
+} => {
+  const preRegisterUser = async (
+    data: IPreRegisterUserSchema,
+  ): Promise<ResponseUserSigned | ResponseFetchFailed | undefined> => {
     const { email } = data
     try {
       return await fetchWrapper<ResponseUserSigned>(
@@ -26,7 +36,7 @@ export const usePreRegister = () => {
           status: 'failure',
           code: 400,
           message: error.message,
-        }
+        } satisfies ResponseFetchFailed
       }
       if (error instanceof Error) {
         return {
@@ -34,7 +44,7 @@ export const usePreRegister = () => {
           status: 'failure',
           code: 400,
           message: error.message,
-        }
+        } satisfies ResponseFetchFailed
       }
       toast.error('Something went wrong with your login.')
     }

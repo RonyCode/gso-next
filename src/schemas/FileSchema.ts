@@ -46,4 +46,4 @@ export const FileSchema = z.object({
     )
     .nullable(),
 })
-export type FileSchema = z.infer<typeof FileSchema>
+export type IFileSchema = z.infer<typeof FileSchema>
