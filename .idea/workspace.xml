@@ -4,90 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4467a1d6-73df-479e-9cc5-8e8cf1a18f4d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.editorconfig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gitattributes" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/gso-next.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/material_theme_project_new.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.eslintrc.json" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintrc.json" afterDir="false" />
+    <list default="true" id="4467a1d6-73df-479e-9cc5-8e8cf1a18f4d" name="Changes" comment="refatorando com eslint">
+      <change beforePath="$PROJECT_DIR$/.idea/material_theme_project_new.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/material_theme_project_new.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(auth)/auth/actions/preRegisterUserServerAction.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(auth)/auth/actions/preRegisterUserServerAction.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(auth)/auth/components/SignUpForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(auth)/auth/components/SignUpForm.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(auth)/auth/schemas/PreRegisterUserSchema.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(auth)/auth/schemas/PreRegisterUserSchema.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(auth)/cadastro-usuario/[token]/components/UserRegisterForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(auth)/cadastro-usuario/[token]/components/UserRegisterForm.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(auth)/cadastro-usuario/[token]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(auth)/cadastro-usuario/[token]/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(private)/conta/actions/UpdatePhotoAction.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/conta/actions/UpdatePhotoAction.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(private)/conta/escala/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/conta/escala/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(private)/servicos/ocorrencias/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/servicos/ocorrencias/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(private)/users/hooks/getUserNotification.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/users/hooks/getUserNotification.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(public)/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(public)/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/api/file/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/api/file/route.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/api/login/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/api/login/route.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/api/notification/public-key/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/api/notification/public-key/route.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/AllowCookies/AllowCookie.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AllowCookies/AllowCookie.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Buttoms/ModeTogle.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Buttoms/ModeTogle.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Buttoms/SignOutButton/LogoutAction.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Buttoms/SignOutButton/LogoutAction.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Buttoms/SignOutButton/SignOutButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Buttoms/SignOutButton/SignOutButton.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Buttoms/SignOutButton/SignOutButtonDefault.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Buttoms/SignOutButton/SignOutButtonDefault.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/CalendarGso/CalendarGso.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CalendarGso/CalendarGso.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/CalendarGso/CalendarGsoGrid.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CalendarGso/CalendarGsoGrid.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Cards/CardDefault.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Cards/CardDefault.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Cards/CardModule.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Cards/CardModule.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/DataTables/DataTableDetalhesEscala/columnsDetalhesEscala.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DataTables/DataTableDetalhesEscala/columnsDetalhesEscala.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/DataTables/DataTableDetalhesEscala/data-table-column-header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DataTables/DataTableDetalhesEscala/data-table-column-header.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/DataTables/DataTableDetalhesEscala/data-table-detalhes-toolbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DataTables/DataTableDetalhesEscala/data-table-detalhes-toolbar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/DataTables/DataTableDetalhesEscala/data-table-escala.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DataTables/DataTableDetalhesEscala/data-table-escala.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/DataTables/DataTableDetalhesEscala/data-table-faceted-filter.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DataTables/DataTableDetalhesEscala/data-table-faceted-filter.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/DataTables/DataTableDetalhesEscala/data-table-pagination.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DataTables/DataTableDetalhesEscala/data-table-pagination.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/DataTables/DataTableDetalhesEscala/data-table-toolbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DataTables/DataTableDetalhesEscala/data-table-toolbar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/DataTables/DataTableDetalhesEscala/data-table-view-options.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DataTables/DataTableDetalhesEscala/data-table-view-options.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/DataTables/DataTableEscala/columnsEscala.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DataTables/DataTableEscala/columnsEscala.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/DataTables/DataTableEscala/data-table-column-header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DataTables/DataTableEscala/data-table-column-header.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/DataTables/DataTableEscala/data-table-escala.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DataTables/DataTableEscala/data-table-escala.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/DataTables/DataTableEscala/data-table-faceted-filter.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DataTables/DataTableEscala/data-table-faceted-filter.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/DataTables/DataTableEscala/data-table-pagination.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DataTables/DataTableEscala/data-table-pagination.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/DataTables/DataTableEscala/data-table-row-actions.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DataTables/DataTableEscala/data-table-row-actions.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/DataTables/DataTableEscala/data-table-toolbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DataTables/DataTableEscala/data-table-toolbar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/DataTables/DataTableEscala/data-table-view-options.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DataTables/DataTableEscala/data-table-view-options.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/DataTables/DataTableEscala/data/schema.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DataTables/DataTableEscala/data/schema.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/DataTables/DataTableUnidades/data-table-column-header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DataTables/DataTableUnidades/data-table-column-header.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/DataTables/DataTableUnidades/data-table-faceted-filter.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DataTables/DataTableUnidades/data-table-faceted-filter.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/DataTables/DataTableUnidades/data-table-pagination.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DataTables/DataTableUnidades/data-table-pagination.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/DataTables/DataTableUnidades/data-table-toolbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DataTables/DataTableUnidades/data-table-toolbar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/DataTables/DataTableUnidades/data-table-unidades.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DataTables/DataTableUnidades/data-table-unidades.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/DataTables/DataTableUnidades/data-table-view-options.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DataTables/DataTableUnidades/data-table-view-options.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/FileUpload/FileUpload.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/FileUpload/FileUpload.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Menu/menu.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Menu/menu.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Modal/ModalGso/ModalGso.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Modal/ModalGso/ModalGso.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Nav/NavbarMain.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Nav/NavbarMain.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Notification/NotiicationCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Notification/NotiicationCard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Notification/notificationUser.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Notification/notificationUser.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Pages/MaxWidthWrapper.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Pages/MaxWidthWrapper.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Pages/PageCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Pages/PageCard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Pages/PageNotFound.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Pages/PageNotFound.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/carousel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/carousel.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/command.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/command.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/form.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/form.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/input.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/input.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/progress.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/progress.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/select.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/select.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/separator.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/separator.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/sheet.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/sheet.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/switch.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/switch.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/table.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/table.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/tabs.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/tabs.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/toast.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/toast.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/tooltip.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/tooltip.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/use-toast.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/use-toast.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/functions/GetNotificationUser.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/functions/GetNotificationUser.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/functions/GetWindowSize.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/functions/GetWindowSize.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/functions/TokenVerify.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/functions/TokenVerify.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hooks/useCep.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/useCep.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hooks/useEndereco.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/useEndereco.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/next.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/next.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -121,33 +43,33 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;dev&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.stylelint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
-    &quot;node.js.selected.package.stylelint&quot;: &quot;&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;actions.on.save&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/home/rony/web/gso-next/node_modules/typescript/lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "dart.analysis.tool.window.visible": "false",
+    "git-widget-placeholder": "dev",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.standard": "true",
+    "node.js.detected.package.stylelint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.standard": "",
+    "node.js.selected.package.stylelint": "",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "actions.on.save",
+    "ts.external.directory.path": "/home/rony/web/gso-next/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="ReactDesignerToolWindowState">
     <option name="myId2Visible">
       <map>
         <entry key="com.intellij.reactbuddy.reactComponents" value="false" />
         <entry key="com.intellij.reactbuddy.reactInspector" value="false" />
+        <entry key="com.intellij.reactbuddy.storybook" value="false" />
       </map>
     </option>
   </component>
@@ -166,8 +88,18 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1716599466691</updated>
-      <workItem from="1716599468684" duration="5255000" />
+      <workItem from="1716599468684" duration="5711000" />
+      <workItem from="1716605207831" duration="783000" />
     </task>
+    <task id="LOCAL-00001" summary="refatorando com eslint">
+      <option name="closed" value="true" />
+      <created>1716604854618</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1716604854618</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -180,5 +112,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="refatorando com eslint" />
+    <option name="LAST_COMMIT_MESSAGE" value="refatorando com eslint" />
   </component>
 </project>

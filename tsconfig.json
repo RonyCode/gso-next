@@ -49,10 +49,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "**/*.config.js",
-    ".eslintrc.json",
-    ".prettierrc",
-    "**/src/components/FileUpload/FileUpload.jsx",
+    "**/*.config.js"
   ],
   "exclude": [
     "node_modules"
