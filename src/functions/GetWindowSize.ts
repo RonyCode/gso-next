@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-export function GetWindowSize() {
+export function GetWindowSize(): { width: number; height: number } {
   // Initialize state with undefined width/height so server and client renders match
   // Learn more here: https://joshwcomeau.com/react/the-perils-of-rehydration/
   const [windowSize, setWindowSize] = useState({
@@ -11,11 +11,11 @@ export function GetWindowSize() {
   useEffect(() => {
     // only execute all the code below in client side
     // Handler to call on window resize
-    function handleResize() {
+    function handleResize(): void {
       // Set window width/height to state
       setWindowSize({
         width: window.innerWidth,
-        height: window!.innerHeight,
+        height: window.innerHeight,
       })
     }
 
@@ -26,7 +26,9 @@ export function GetWindowSize() {
     handleResize()
 
     // Remove event listener on cleanup
-    return () => window.removeEventListener('resize', handleResize)
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
   }, []) // Empty array ensures that effect is only run on mount
   return windowSize
 }

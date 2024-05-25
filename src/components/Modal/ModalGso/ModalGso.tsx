@@ -1,3 +1,8 @@
+import React from 'react'
+
+import { type ModalProps } from '../../../../types/index'
+
+import { cn } from '@/lib/utils'
 import { Button } from '@/ui/button'
 import {
   Dialog,
@@ -9,11 +14,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/ui/dialog'
-import { cn } from '@/lib/utils'
 import { Separator } from '@/ui/separator'
-import React from 'react'
-import { ModalProps } from '../../../../types/index'
-import { Badge } from '@/ui/badge'
 
 export function ModalGso({
   title,
@@ -30,7 +31,7 @@ export function ModalGso({
   return (
     <Dialog open={open}>
       <DialogTrigger asChild>
-        {childrenButton || (
+        {childrenButton ?? (
           <Button variant="ghost">
             <i>{iconButton}</i>
             {nameButton}

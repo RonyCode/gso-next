@@ -1,14 +1,12 @@
 'use client'
 
-import { Cross2Icon } from '@radix-ui/react-icons'
-import { Table } from '@tanstack/react-table'
-
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-
 import { DataTableFacetedFilter } from '@/components/DataTables/DataTableUnidades/data-table-faceted-filter'
 import { DataTableViewOptions } from '@/components/DataTables/DataTableUnidades/data-table-view-options'
 import { types } from '@/components/DataTables/DataTableUnidades/data/data'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { Cross2Icon } from '@radix-ui/react-icons'
+import { type Table } from '@tanstack/react-table'
 
 interface DataTableToolbarProps<TData> {
   table: Table<TData>
@@ -16,7 +14,7 @@ interface DataTableToolbarProps<TData> {
 
 export function DataTableToolbar<TData>({
   table,
-}: DataTableToolbarProps<TData>) {
+}: DataTableToolbarProps<TData>): React.ReactNode {
   const isFiltered = table.getState().columnFilters.length > 0
 
   return (
@@ -31,7 +29,7 @@ export function DataTableToolbar<TData>({
       />
       <div className=" flex justify-between gap-1 pt-2">
         <div>
-          {table.getColumn('type') && (
+          {table.getColumn('type') != null && (
             <DataTableFacetedFilter
               column={table.getColumn('type')}
               title="Tipo"
@@ -45,7 +43,9 @@ export function DataTableToolbar<TData>({
         {isFiltered && (
           <Button
             variant="ghost"
-            onClick={() => table.resetColumnFilters()}
+            onClick={() => {
+              table.resetColumnFilters()
+            }}
             className="h-8 px-2 lg:px-3"
           >
             Reset

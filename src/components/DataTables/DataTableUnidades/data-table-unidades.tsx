@@ -1,11 +1,23 @@
 'use client'
 
 import * as React from 'react'
+
+import { DataTablePagination } from './data-table-pagination'
+
+import { DataTableToolbar } from '@/components/DataTables/DataTableUnidades/data-table-toolbar'
 import {
-  ColumnDef,
-  ColumnFiltersState,
-  SortingState,
-  VisibilityState,
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/ui/table'
+import {
+  type ColumnDef,
+  type ColumnFiltersState,
+  type SortingState,
+  type VisibilityState,
   flexRender,
   getCoreRowModel,
   getFacetedRowModel,
@@ -16,27 +28,15 @@ import {
   useReactTable,
 } from '@tanstack/react-table'
 
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from '@/ui/table'
-
-import { DataTablePagination } from './data-table-pagination'
-import { DataTableToolbar } from '@/components/DataTables/DataTableUnidades/data-table-toolbar'
-
 interface DataTableProps<TData, TValue> {
-  columns: ColumnDef<TData, TValue>[]
+  columns: Array<ColumnDef<TData, TValue>>
   data: TData[]
 }
 
 export function DataTableUnidades<TData, TValue>({
   columns,
   data,
-}: DataTableProps<TData, TValue>) {
+}: DataTableProps<TData, TValue>): JSX.Element {
   const [rowSelection, setRowSelection] = React.useState({})
   const [columnVisibility, setColumnVisibility] =
     React.useState<VisibilityState>({})

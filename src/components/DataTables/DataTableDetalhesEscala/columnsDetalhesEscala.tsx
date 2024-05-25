@@ -1,16 +1,15 @@
 'use client'
 
-import { ColumnDef } from '@tanstack/react-table'
+import { labels, statuses, types, unities } from './data/data'
+import { type Task } from './data/schema'
 
+import { DataTableColumnHeader } from '@/components/DataTables/DataTableDetalhesEscala/data-table-column-header'
+import { DataTableRowActions } from '@/components/DataTables/DataTableDetalhesEscala/data-table-row-actions'
 import { Badge } from '@/components/ui/badge'
 import { Checkbox } from '@/components/ui/checkbox'
+import { type ColumnDef } from '@tanstack/react-table'
 
-import { labels, statuses, types, unities } from './data/data'
-import { Task } from './data/schema'
-import { DataTableRowActions } from '@/components/DataTables/DataTableDetalhesEscala/data-table-row-actions'
-import { DataTableColumnHeader } from '@/components/DataTables/DataTableDetalhesEscala/data-table-column-header'
-
-export const columnsDetalhesEscala: ColumnDef<Task>[] = [
+export const columnsDetalhesEscala: Array<ColumnDef<Task>> = [
   {
     id: 'select',
     header: ({ table }) => {
@@ -20,7 +19,9 @@ export const columnsDetalhesEscala: ColumnDef<Task>[] = [
             table.getIsAllPageRowsSelected() ||
             (table.getIsSomePageRowsSelected() && 'indeterminate')
           }
-          onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
+          onCheckedChange={(value) => {
+            table.toggleAllPageRowsSelected(!!value)
+          }}
           aria-label="Select all"
           className="translate-y-[2px]"
         />
@@ -30,7 +31,9 @@ export const columnsDetalhesEscala: ColumnDef<Task>[] = [
       return (
         <Checkbox
           checked={row.getIsSelected()}
-          onCheckedChange={(value) => row.toggleSelected(!!value)}
+          onCheckedChange={(value) => {
+            row.toggleSelected(!!value)
+          }}
           aria-label="Select row"
           className="translate-y-[2px]"
         />

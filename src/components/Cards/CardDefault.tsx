@@ -1,6 +1,5 @@
 import Image from 'next/image'
 import React from 'react'
-
 import BreadcrumbGso from '@/components/BreadCrumbGso/BreadcrumbGso'
 import {
   Card,
@@ -19,7 +18,7 @@ type CardProps = {
   iconDescription?: React.ReactNode
   image?: string
   imageMobile?: string
-  className?: Element
+  className?: React.HTMLAttributes<HTMLDivElement>
   children: React.ReactNode
 } & React.ComponentProps<typeof Card>
 

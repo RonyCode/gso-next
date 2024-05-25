@@ -2,16 +2,16 @@
 
 import { signOut } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
-import React from 'react'
+import React, { type ReactElement } from 'react'
 import { LuLogOut } from 'react-icons/lu'
 
 import ButtonNoTheme from '@/components/Buttoms/ButtonNoTheme'
 import { deleteCookies } from '@/components/Buttoms/SignOutButton/LogoutAction'
 
-const SignOutButton = () => {
+const SignOutButton = (): ReactElement => {
   const router = useRouter()
-  const handleClick = async () => {
-    deleteCookies()
+  const handleClick = async (): Promise<void> => {
+    await deleteCookies()
     await signOut({
       redirect: false,
     })
@@ -21,6 +21,7 @@ const SignOutButton = () => {
   return (
     <>
       <div>
+        {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
         <ButtonNoTheme onClick={handleClick}>
           <LuLogOut
             size={32}

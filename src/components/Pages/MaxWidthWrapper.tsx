@@ -1,6 +1,6 @@
 import { cn } from '@/lib/utils'
 
-type maxWidthWrapperTypes = {
+interface maxWidthWrapperTypes {
   children: React.ReactNode
   className?: string
 }

@@ -13,7 +13,12 @@ interface ReturnData {
 
 export const preRegisterUserServerActions = async (
   data: FormData | PreRegisterUserSchema,
-): Promise<PreRegisterUserSchema> => {
+): Promise<{
+  code: number
+  message: string
+  email: string
+  status: string
+}> => {
   revalidatePath('/')
   try {
     if (data instanceof FormData) {

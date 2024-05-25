@@ -1,12 +1,13 @@
+import { type UserNotification } from '../../types/index'
+
 import { fetchWrapper } from '@/functions/fetch'
-import { UserNotification } from '../../types/index'
 import { useNotificationStore } from '@/stores/user/useNotificationStore'
 
 export const GetUserNotification = async (
   queueName: string,
   exchangeName: string,
   idMessage: string | null | undefined,
-) => {
+): Promise<UserNotification> => {
   const notification = await fetchWrapper<UserNotification>(
     `${process.env.NEXT_PUBLIC_NEXT_URL}/api/message?namequeue=${queueName}&exchangename=${exchangeName}&routingkey=${idMessage}`,
     {
@@ -17,7 +18,7 @@ export const GetUserNotification = async (
     },
   )
 
-  if (notification.messages?.length && notification.code !== 400) {
+  if (notification.messages?.length !== 0 && notification.code !== 400) {
     useNotificationStore.getState().actions.add(notification)
     return notification
   } else {

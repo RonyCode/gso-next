@@ -1,11 +1,12 @@
-import { cn } from '@/lib/utils'
+import Link from 'next/link'
+
 import {
   Card,
   CardDescription,
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
-import Link from 'next/link'
+import { cn } from '@/lib/utils'
 
 type CardProps = {
   title: string
@@ -28,7 +29,7 @@ export function CardModule({
       className={cn('  h-28 w-full ', className)}
       {...props}
     >
-      <Link href={`${link || '#'}  `}>
+      <Link href={`${link ?? '#'}  `}>
         <CardHeader className=" h-full w-full cursor-pointer rounded-[5px] border  hover:border-primary/60 hover:bg-foreground/10">
           <div className="flex h-full w-full flex-col items-center justify-center p-0  xl:flex-row xl:justify-between">
             {/* <span className=" md h-2 w-2 translate-y-1 rounded-full bg-sky-500"></span> */}

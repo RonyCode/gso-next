@@ -40,17 +40,17 @@ export function SignUpForm({
       const result = await preRegisterUserServerActions(data)
       if (result.email !== 'failed') {
         const emailSended = await preRegisterUser(result)
-        if (emailSended!.data) {
-          if (emailSended!.code !== 400) {
+        if (emailSended?.data === true) {
+          if (emailSended?.code !== 400) {
             toast({
               title: 'Email enviado com sucesso! 😍',
-              description: emailSended!.message,
+              description: emailSended.message,
               variant: 'success',
             })
             redirect('/')
           }
         }
-        if (!emailSended?.data) {
+        if (emailSended?.data === false) {
           toast({
             title: 'Error ao enviar email',
             description: emailSended?.message,
@@ -66,6 +66,7 @@ export function SignUpForm({
       <div>
         <Form {...form}>
           <form
+            /* eslint-disable-next-line @typescript-eslint/no-misused-promises */
             onSubmit={form.handleSubmit(async (data) => {
               await handleSubmitPreCadastro(data)
             })}

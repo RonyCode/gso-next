@@ -1,8 +1,8 @@
 'use client'
-import React from 'react'
 
 import { signOut } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
+import React from 'react'
 
 import { deleteCookies } from '@/components/Buttoms/SignOutButton/LogoutAction'
 import { Button } from '@/ui/button'
@@ -10,7 +10,7 @@ import { Button } from '@/ui/button'
 const SignOutButtonDefault = () => {
   const router = useRouter()
   const handleClick = async () => {
-    deleteCookies()
+    await deleteCookies()
     await signOut({
       redirect: false,
     })
@@ -20,6 +20,7 @@ const SignOutButtonDefault = () => {
   return (
     <>
       <div>
+        {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
         <Button onClick={handleClick}>Ok</Button>
       </div>
     </>

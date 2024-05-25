@@ -1,4 +1,6 @@
 import React from 'react'
+
+import { ModeToggle } from '@/components/Buttoms/ModeTogle'
 import {
   Card,
   CardContent,
@@ -7,9 +9,8 @@ import {
   CardHeader,
   CardTitle,
 } from '@/ui/card'
-import { ModeToggle } from '@/components/Buttoms/ModeTogle'
 
-type PageCardProps = {
+interface PageCardProps {
   title?: string
   description?: string
   icon?: React.ElementType

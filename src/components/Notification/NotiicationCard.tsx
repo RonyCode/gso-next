@@ -56,6 +56,7 @@ export const NotificationCard = ({
               </p>
             </div>
             <Switch
+              /* eslint-disable-next-line @typescript-eslint/no-misused-promises */
               onClick={async () => await Notification.requestPermission()}
               checked={Notification.permission === 'granted'}
             />
@@ -67,6 +68,7 @@ export const NotificationCard = ({
                 key={indexNoti}
                 href={notification?.url}
                 className="-mx-1 my-1 h-px bg-muted "
+                /* eslint-disable-next-line @typescript-eslint/no-misused-promises */
                 onClick={async () => {
                   useNotificationStore
                     .getState()

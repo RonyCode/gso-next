@@ -1,14 +1,13 @@
 'use client'
 
-import { Cross2Icon } from '@radix-ui/react-icons'
-import { Table } from '@tanstack/react-table'
-
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-
 import { statuses, types, unities } from './data/data'
+
 import { DataTableFacetedFilter } from '@/components/DataTables/DataTableDetalhesEscala/data-table-faceted-filter'
 import { DataTableViewOptions } from '@/components/DataTables/DataTableDetalhesEscala/data-table-view-options'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { Cross2Icon } from '@radix-ui/react-icons'
+import { type Table } from '@tanstack/react-table'
 
 interface DataTableToolbarProps<TData> {
   table: Table<TData>
@@ -63,7 +62,9 @@ export function DataTableToolbar<TData>({
         {isFiltered && (
           <Button
             variant="ghost"
-            onClick={() => table.resetColumnFilters()}
+            onClick={() => {
+              table.resetColumnFilters()
+            }}
             className="h-8 px-2 lg:px-3"
           >
             Reset

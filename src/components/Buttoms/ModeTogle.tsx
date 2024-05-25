@@ -1,8 +1,11 @@
 'use client'
 
-import * as React from 'react'
 import { useTheme } from 'next-themes'
+import * as React from 'react'
+import { type ReactElement } from 'react'
+import { LuMoon, LuSun } from 'react-icons/lu'
 
+import { cn } from '@/lib/utils'
 import { Button } from '@/ui/button'
 import {
   DropdownMenu,
@@ -10,12 +13,15 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/ui/dropdown-menu'
-import { LuMoon, LuSun } from 'react-icons/lu'
-import { cn } from '@/lib/utils'
 
-type ModeTogleProps = React.HTMLAttributes<HTMLButtonElement>
+type ModeTogleProps = {
+  className?: React.HTMLAttributes<HTMLButtonElement>['className']
+} & React.HTMLAttributes<HTMLButtonElement>
 
-export function ModeToggle({ className, ...props }: ModeTogleProps) {
+export function ModeToggle({
+  className,
+  ...props
+}: ModeTogleProps): ReactElement {
   const { setTheme } = useTheme()
 
   return (
@@ -28,13 +34,25 @@ export function ModeToggle({ className, ...props }: ModeTogleProps) {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        <DropdownMenuItem onClick={() => setTheme('light')}>
+        <DropdownMenuItem
+          onClick={() => {
+            setTheme('light')
+          }}
+        >
           Light
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme('dark')}>
+        <DropdownMenuItem
+          onClick={() => {
+            setTheme('dark')
+          }}
+        >
           Dark
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme('system')}>
+        <DropdownMenuItem
+          onClick={() => {
+            setTheme('system')
+          }}
+        >
           System
         </DropdownMenuItem>
       </DropdownMenuContent>

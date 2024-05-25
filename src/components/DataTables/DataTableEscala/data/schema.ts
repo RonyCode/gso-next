@@ -11,6 +11,7 @@ export const taskSchema = z.object({
   day: z.number(),
   month: z.number(),
   year: z.number(),
+  name: z.number(),
   description: z.string(),
   group: z.string(),
   company: z.string(),

@@ -17,12 +17,14 @@ import {
 } from 'react-icons/lu'
 
 import Logo from '../../../public/images/Logo'
+import type { UserNotification } from '../../../types/index'
 
 import { ModeToggle } from '@/components/Buttoms/ModeTogle'
 import { deleteCookies } from '@/components/Buttoms/SignOutButton/LogoutAction'
 import LoadingPage from '@/components/Loadings/LoadingPage'
 import NotificationUser from '@/components/Notification/notificationUser'
 import { GetFirstLettersNameUser } from '@/functions/GetFirstLettersNameUser'
+import { GetUserNotification } from '@/functions/GetNotificationUser'
 import { cn } from '@/lib/utils'
 import { Avatar, AvatarFallback, AvatarImage } from '@/ui/avatar'
 import { Button } from '@/ui/button'
@@ -93,6 +95,7 @@ export function NavbarMain({
   const { data: session } = useSession()
   const [state, setState] = useState(false)
   const [showNavBar, setShowNavBar] = useState(false)
+  const [notification, setNotification] = useState({} as UserNotification)
   const router = useRouter()
   const myRef = useRef(null)
   const nameUser = GetFirstLettersNameUser()
@@ -105,10 +108,15 @@ export function NavbarMain({
         setShowNavBar(false)
       }
     })
-  }, [showNavBar])
+    void GetUserNotification('auth', 'user_logged', session?.id_message).then(
+      (response) => {
+        setNotification(response)
+      },
+    )
+  }, [session?.id_message, showNavBar])
 
   const handleClick = async (): Promise<void> => {
-    deleteCookies()
+    await deleteCookies()
     await signOut({
       redirect: false,
     })
@@ -238,7 +246,7 @@ export function NavbarMain({
             }`}
           >
             <React.Suspense fallback={<LoadingPage pending={true} />}>
-              <NotificationUser />
+              <NotificationUser notification={notification} />
             </React.Suspense>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>

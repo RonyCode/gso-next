@@ -1,9 +1,9 @@
 'use client'
 import './page-not-foun.css'
-import { useEffect } from 'react'
 
 import Image from 'next/image'
 import Link from 'next/link'
+import { useEffect } from 'react'
 
 import { Button } from '@/ui/button'
 
@@ -48,7 +48,13 @@ const PageNotFound = ({
               height="0"
               alt="image-404"
             />
-            <Button variant="default" size="default" onClick={() => reset()}>
+            <Button
+              variant="default"
+              size="default"
+              onClick={() => {
+                reset()
+              }}
+            >
               Tentar novamente
             </Button>
           </div>

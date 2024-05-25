@@ -1,15 +1,15 @@
 'use client'
 
-import { ColumnDef } from '@tanstack/react-table'
-
-import { Badge } from '@/components/ui/badge'
 // import { Checkbox } from '@/components/ui/checkbox'
 
 import { labels, statuses, types, unities } from './data/data'
-import { Task } from './data/schema'
-import { DataTableColumnHeader } from '@/components/DataTables/DataTableEscala/data-table-column-header'
+import { type Task } from './data/schema'
 
-export const columnsEscala: ColumnDef<Task>[] = [
+import { DataTableColumnHeader } from '@/components/DataTables/DataTableEscala/data-table-column-header'
+import { Badge } from '@/components/ui/badge'
+import { type ColumnDef } from '@tanstack/react-table'
+
+export const columnsEscala: Array<ColumnDef<Task>> = [
   // {
   //   id: 'select',
   //   header: ({ table }) => {
@@ -52,7 +52,7 @@ export const columnsEscala: ColumnDef<Task>[] = [
           <span className="max-w-96 truncate font-medium">
             {row.getValue('date')}
           </span>
-          {label && <Badge variant="outline">{label.label}</Badge>}
+          {label != null && <Badge variant="outline">{label.label}</Badge>}
         </div>
       )
     },
@@ -65,15 +65,13 @@ export const columnsEscala: ColumnDef<Task>[] = [
     cell: ({ row }) => {
       const type = types.find((type) => type.value === row.getValue('type'))
 
-      if (!type) {
+      if (type == null) {
         return null
       }
 
       return (
         <div className="flex items-center">
-          {type.icon && (
-            <type.icon className="mr-2 h-4 w-4 text-muted-foreground" />
-          )}
+          <type.icon className="mr-2 h-4 w-4 text-muted-foreground" />
           <span>{type.label}</span>
         </div>
       )
@@ -93,15 +91,14 @@ export const columnsEscala: ColumnDef<Task>[] = [
         (status) => status.value === row.getValue('status'),
       )
 
-      if (!status) {
+      if (status == null) {
         return null
       }
 
       return (
         <div className="flex w-[120px] items-center ">
-          {status.icon && (
-            <status.icon className="mr-2 h-4 w-4 text-muted-foreground" />
-          )}
+          <status.icon className="mr-2 h-4 w-4 text-muted-foreground" />
+
           <span>{status.label}</span>
         </div>
       )
@@ -124,12 +121,13 @@ export const columnsEscala: ColumnDef<Task>[] = [
       )
       const group = labels.find((label) => label.value === row.original.group)
 
-      if (!unity) {
+      if (unity == null) {
         return null
       }
 
       return (
         <div className="flex w-[200px] items-center">
+          {/* eslint-disable-next-line @typescript-eslint/strict-boolean-expressions */}
           {unity.icon && (
             <unity.icon className="mr-2 h-4 w-4 text-muted-foreground" />
           )}

@@ -1,11 +1,12 @@
+import { type CepProps } from '../../types/index'
+
 import { fetchWrapper } from '@/functions/fetch'
-import { CepProps } from '../../types/index'
 import { toast } from '@/ui/use-toast'
 
-export const useCep = () => {
-  const findCep = async (cep: string) => {
+export const useCep = (): { findCep: (cep: string) => Promise<CepProps> } => {
+  const findCep = async (cep: string): Promise<CepProps> => {
     try {
-      return fetchWrapper<CepProps>(
+      return await fetchWrapper<CepProps>(
         `${process.env.NEXT_PUBLIC_NEXT_URL}/api/cep?cep=${cep?.replace(
           /\D/g,
           '',
@@ -23,7 +24,32 @@ export const useCep = () => {
         title: 'Cep Incorreto! 🤯 ',
         description: 'Cep não encontrado',
       })
-      return {} as CepProps
+      return {
+        city: '',
+        cityId: '',
+        complement: '',
+        district: '',
+        cep: '',
+        logradouro: '',
+        complemento: '',
+        bairro: '',
+        localidade: '',
+        uf: '',
+        ibge: 0,
+        gia: '',
+        ddd: 0,
+        siafi: 0,
+        districtId: '',
+        ibgeId: '',
+        state: '',
+        stateShortname: '',
+        street: '',
+        zipcode: '',
+        code: 0,
+        error: false,
+        message: '',
+        unknown: '',
+      } satisfies CepProps
     }
   }
 

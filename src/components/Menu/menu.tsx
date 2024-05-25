@@ -15,7 +15,7 @@ import {
   MenubarTrigger,
 } from '@/ui/menubar'
 
-export function Menu() {
+export function Menu(): JSX.Element {
   return (
     <Menubar className="rounded-none border-b border-none px-2 lg:px-4">
       <MenubarMenu>

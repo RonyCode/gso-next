@@ -1,19 +1,19 @@
 import 'react-toastify/dist/ReactToastify.css'
 
+import { type Metadata } from 'next'
+import React from 'react'
+
+import { CardsBanner } from '@/components/Cards/CardsBanner'
 import BannerHome1 from '@/components/Headers/banner/BannerHome1'
 import BannerHome2 from '@/components/Headers/banner/BannerHome2'
-import { CardsBanner } from '@/components/Cards/CardsBanner'
 import MaxWidthWrapper from '@/components/Pages/MaxWidthWrapper'
-
-import { Metadata } from 'next'
-import React from 'react'
 
 export const metadata: Metadata = {
   title: 'GSO | Home',
   description: 'Authentication forms built using the components.',
 }
 
-export default async function Home() {
+export default async function Home(): Promise<JSX.Element> {
   return (
     <>
       <MaxWidthWrapper>

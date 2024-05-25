@@ -1,8 +1,9 @@
+import { type ReactNode } from 'react'
 import { LuSiren } from 'react-icons/lu'
 
 import { CardDefault } from '@/components/Cards/CardDefault'
 
-const Ocorrencias = () => {
+const Ocorrencias = (): ReactNode => {
   return (
     <>
       <CardDefault

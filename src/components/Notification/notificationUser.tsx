@@ -1,10 +1,10 @@
 'use client'
-import { useNotificationStore } from '@/stores/user/useNotificationStore'
-import { Button } from '@/ui/button'
 import { LuBell } from 'react-icons/lu'
-import { useSession } from 'next-auth/react'
-import { GetUserNotification } from '@/functions/GetNotificationUser'
+
+import type { UserNotification } from '../../../types/index'
+
 import { NotificationCard } from '@/components/Notification/NotiicationCard'
+import { Button } from '@/ui/button'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -13,10 +13,14 @@ import {
   DropdownMenuTrigger,
 } from '@/ui/dropdown-menu'
 
-const NotificationUser = () => {
-  const { data: session } = useSession()
+interface NotificationUserProps {
+  notification: UserNotification
+}
 
-  GetUserNotification('auth', 'user_logged', session?.id_message)
+const NotificationUser = ({
+  notification,
+}: NotificationUserProps): JSX.Element => {
+  // const { data: session } = useSession()
 
   return (
     <>
@@ -29,19 +33,11 @@ const NotificationUser = () => {
             className="relative mr-2 h-12 w-12  rounded-full border hover:border-foreground/20 md:block md:flex lg:h-14 lg:w-14"
           >
             <div className="relative flex w-14 items-center justify-center ">
-              {
-                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                // @ts-expect-error
-                useNotificationStore?.getState()?.state?.notification?.messages
-                  ?.length > 0 && (
-                  <div className="absolute -right-1 -top-2 flex h-4 w-4 items-center  justify-center rounded-full bg-primary text-sm text-foreground lg:h-5 lg:w-5">
-                    {
-                      useNotificationStore.getState()?.state?.notification
-                        ?.messages?.length
-                    }{' '}
-                  </div>
-                )
-              }
+              {notification?.messages?.length > 0 && (
+                <div className="absolute -right-1 -top-2 flex h-4 w-4 items-center  justify-center rounded-full bg-primary text-sm text-foreground lg:h-5 lg:w-5">
+                  {notification?.messages?.length}{' '}
+                </div>
+              )}
               <LuBell size={24} />
             </div>
           </Button>
@@ -53,11 +49,7 @@ const NotificationUser = () => {
         >
           <DropdownMenuGroup>
             <DropdownMenuItem className="h-full">
-              <NotificationCard
-                notifications={
-                  useNotificationStore.getState()?.state?.notification?.messages
-                }
-              />
+              <NotificationCard notifications={notification?.messages} />
             </DropdownMenuItem>
           </DropdownMenuGroup>
         </DropdownMenuContent>

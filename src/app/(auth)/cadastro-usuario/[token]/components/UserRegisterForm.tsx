@@ -18,7 +18,10 @@ import {
 } from 'react-icons/fa6'
 import { LuCheck, LuChevronsUpDown } from 'react-icons/lu'
 
-import { type ResultUserRegistered } from '../../../../../../types'
+import {
+  type AddressProps,
+  type ResultUserRegistered,
+} from '../../../../../../types'
 
 import { saveUserAction } from '@/app/actions/saveUserAction'
 import { MyInputMask } from '@/components/Form/Input/myInputMask'
@@ -29,12 +32,10 @@ import {
   PopoverTrigger,
 } from '@/components/ui/popover'
 import { getAllCitiesByState } from '@/lib/getAllCitiesByState'
-import { getAllStates } from '@/lib/getAllStates'
 import { getCep } from '@/lib/getCep'
 import { cn } from '@/lib/utils'
 import { RegisterUserSchema } from '@/schemas/RegisterUserSchema'
 import { cityStore } from '@/stores/Address/CityByStateStore'
-import { stateStore } from '@/stores/Address/stateStore'
 import { Button, buttonVariants } from '@/ui/button'
 import {
   Command,
@@ -69,17 +70,19 @@ enum Fields {
 
 type UserRegisterFormProps = React.HTMLAttributes<HTMLDivElement> & {
   params: string
+  states: AddressProps[] | null
 }
 
 // CHAMA O FETCH FORA DO COMPONENTE PARA NAO RE - RENDERIZAR LOOP INFINITO
 // INITIALIZE STATES
-getAllStates()
 
 export const UserRegisterForm = ({
   params,
+  states,
+  // eslint-disable-next-line react/prop-types
   className,
   ...props
-}: UserRegisterFormProps) => {
+}: UserRegisterFormProps): React.ReactElement => {
   const form = useForm<RegisterUserSchema>({
     mode: 'all',
     criteriaMode: 'all',
@@ -105,17 +108,17 @@ export const UserRegisterForm = ({
 
   const [pending, startTransition] = useTransition()
 
-  const handleSubmit = (formData: RegisterUserSchema) => {
+  const handleSubmit = (formData: RegisterUserSchema): void => {
     startTransition(async () => {
       const result: ResultUserRegistered = await saveUserAction(formData)
-      if (!result?.data?.id) {
+      if (result?.data?.id == null) {
         toast({
           variant: 'danger',
           title: 'Erro ao cadastrar usuário! 🤯 ',
           description: result?.message,
         })
       }
-      if (result?.data?.id) {
+      if (result?.data?.id != null) {
         toast({
           variant: 'success',
           title: 'Ok! Usuário Cadastrado! 🤯 ',
@@ -126,7 +129,10 @@ export const UserRegisterForm = ({
     })
   }
 
-  const chageValueInput = async (field: Fields, newValue: string) => {
+  const chageValueInput = async (
+    field: Fields,
+    newValue: string,
+  ): Promise<void> => {
     form.setValue(field, newValue, {
       shouldDirty: true,
       shouldTouch: true,
@@ -134,14 +140,16 @@ export const UserRegisterForm = ({
     if (field === Fields.estado) await handleCity(newValue)
     form.clearErrors(field)
   }
-  async function handleCity(value: string) {
+  async function handleCity(value: string): Promise<void> {
     await getAllCitiesByState(value)
   }
 
-  let states = stateStore().states
+  // let states = stateStore().states
   let arrayCitiesByState = cityStore().cities
 
-  const handleCep = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleCep = async (
+    e: React.ChangeEvent<HTMLInputElement>,
+  ): Promise<void> => {
     if (e?.target?.value.length >= 9) {
       startTransition(async () => {
         const { logradouro, localidade, uf, bairro } = await getCep(
@@ -152,7 +160,7 @@ export const UserRegisterForm = ({
         await chageValueInput(Fields.cidade, localidade)
         await chageValueInput(Fields.bairro, bairro)
         await chageValueInput(Fields.estado, uf)
-        if (!localidade) {
+        if (localidade === '') {
           states = []
           arrayCitiesByState = []
           toast({
@@ -184,6 +192,7 @@ export const UserRegisterForm = ({
           <LoadingPage pending={pending} />
           <Form {...form}>
             <form
+              /* eslint-disable-next-line @typescript-eslint/no-misused-promises */
               onSubmit={form.handleSubmit(async (data) => {
                 handleSubmit(data)
               })}
@@ -337,6 +346,7 @@ export const UserRegisterForm = ({
                   control={form.control}
                   name="cep"
                   render={({ field }) => (
+                    // eslint-disable-next-line @typescript-eslint/no-misused-promises
                     <FormItem onChange={handleCep}>
                       <FormLabel
                         htmlFor="cep"
@@ -461,11 +471,11 @@ export const UserRegisterForm = ({
                               role="combobox"
                               className={cn(
                                 'w-full justify-between',
-                                !field.value && 'text-muted-foreground',
+                                field.value === '' && 'text-muted-foreground',
                               )}
                             >
-                              {field.value
-                                ? states.find(
+                              {field.value !== ''
+                                ? states?.find(
                                     (state) => state.shortName === field.value,
                                   )?.state
                                 : 'Selecione um Estado'}
@@ -478,12 +488,13 @@ export const UserRegisterForm = ({
                             <CommandInput placeholder="Search language..." />
                             <CommandEmpty>Estado não encontrado.</CommandEmpty>
                             <CommandGroup>
-                              {states.map((state) => (
+                              {states?.map((state) => (
                                 <CommandItem
                                   value={state.shortName}
                                   key={state.id}
-                                  onSelect={() => {
-                                    handleCity(state.shortName)
+                                  /* eslint-disable-next-line @typescript-eslint/no-misused-promises */
+                                  onSelect={async () => {
+                                    await handleCity(state.shortName)
                                     form.setValue('estado', state.shortName)
                                   }}
                                 >
@@ -526,10 +537,10 @@ export const UserRegisterForm = ({
                               role="combobox"
                               className={cn(
                                 'w-full justify-between',
-                                !field.value && 'text-muted-foreground',
+                                field.value === '' && 'text-muted-foreground',
                               )}
                             >
-                              {field.value
+                              {field.value !== ''
                                 ? arrayCitiesByState?.find(
                                     (city) => city.city === field.value,
                                   )?.city

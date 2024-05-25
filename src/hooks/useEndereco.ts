@@ -27,10 +27,35 @@ export const useEndereco = () => {
         title: 'Cep Incorreto! 🤯 ',
         description: 'Cep não encontrado',
       })
-      return {} as CepProps
+      return {
+        city: '',
+        cityId: '',
+        complement: '',
+        district: '',
+        cep: '',
+        logradouro: '',
+        complemento: '',
+        bairro: '',
+        localidade: '',
+        uf: '',
+        ibge: 0,
+        gia: '',
+        ddd: 0,
+        siafi: 0,
+        districtId: '',
+        ibgeId: '',
+        state: '',
+        stateShortname: '',
+        street: '',
+        zipcode: '',
+        code: 0,
+        error: false,
+        message: '',
+        unknown: '',
+      } satisfies CepProps
     }
   }
-  const getEstados = async () => {
+  const getEstados = async (): Promise<AddressProps[]> => {
     const res = await fetchWrapper<AddressProps[]>(
       `${process.env.NEXT_PUBLIC_NEXT_URL}/api/estados`,
       {

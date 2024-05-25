@@ -1,17 +1,21 @@
-import { NextRequest, NextResponse } from 'next/server'
-import axios, { AxiosProgressEvent } from 'axios'
+import { type NextRequest, NextResponse } from 'next/server'
+
 import { execPercentageStore } from '@/stores/percentageStore'
+import axios, { type AxiosProgressEvent } from 'axios'
 
 const onUploadProgress = (progressEvent: AxiosProgressEvent) => {
   const { loaded, total } = progressEvent
-  const percent = Math.floor((loaded * 100) / total!)
+  let percent = 0
+  if (total != null) {
+    percent = Math.floor((loaded * 100) / total)
+  }
   execPercentageStore.getState().actions.add(percent)
   if (percent < 100) {
     console.log(`${loaded} bytes of ${total} bytes. ${percent}%`)
   }
 }
 
-export async function POST(request: NextRequest) {
+export async function POST(request: NextRequest): Promise<NextResponse> {
   const formData = await request.formData()
   const token = request.headers.get('Authorization')
 

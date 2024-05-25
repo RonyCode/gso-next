@@ -1,13 +1,13 @@
-import { NextRequest, NextResponse } from 'next/server'
+import { type NextRequest, NextResponse } from 'next/server'
 
-import { SignInSchema } from '@/app/(auth)/auth/schemas/SignInSchema'
+import { type SignInSchema } from '@/app/(auth)/auth/schemas/SignInSchema'
 
 export async function POST(request: NextRequest): Promise<NextResponse> {
   const origin: string | null = request.headers.get('origin')
   const body: SignInSchema = await request.json()
   const { email, senha, is_user_external: isUserExternal } = body
 
-  if (!email || !senha) {
+  if (email === '' || senha === '') {
     return NextResponse.json({ message: 'Erro parametros necessários' })
   }
 
@@ -15,7 +15,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': origin || '*',
+      'Access-Control-Allow-Origin': origin ?? '*',
     },
     body: JSON.stringify({
       email,

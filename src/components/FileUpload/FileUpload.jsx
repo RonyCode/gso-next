@@ -1,7 +1,9 @@
 'use client'
 import React, { useRef, useState } from 'react'
+
 import './FileUpload.css'
 import axios from 'axios'
+
 import { useSession } from 'next-auth/react'
 
 const FileUpload = () => {
@@ -12,9 +14,10 @@ const FileUpload = () => {
   const [uploadStatus, setUploadStatus] = useState('select')
   const { data: session } = useSession()
 
-  const handleFileChange = (event) => {
-    if (event.target.files && event.target.files.length > 0) {
-      setSelectedFile(event.target.files[0])
+  const handleFileChange = ({ target }) => {
+    if (Boolean(target.files) && target.files.length > 0) {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+      setSelectedFile(target.files[0])
     }
   }
 
@@ -118,6 +121,7 @@ const FileUpload = () => {
               )}
             </div>
           </div>
+          {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
           <button className="upload-btn z-50" onClick={handleUpload}>
             {uploadStatus === 'select' || uploadStatus === 'uploading'
               ? 'Upload'

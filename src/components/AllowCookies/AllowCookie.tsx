@@ -1,4 +1,8 @@
 'use client'
+import React, { type ReactElement, useState } from 'react'
+import { LuCookie } from 'react-icons/lu'
+
+import { Button } from '@/ui/button'
 import {
   Drawer,
   DrawerClose,
@@ -8,15 +12,12 @@ import {
   DrawerHeader,
   DrawerTitle,
 } from '@/ui/drawer'
-import { Button } from '@/ui/button'
-import React, { useState } from 'react'
-import { LuCookie } from 'react-icons/lu'
 
-export const AllowCookie = () => {
+export const AllowCookie = (): ReactElement => {
   const [show, setShow] = useState(true)
 
-  const handleClick = () => {
-    Notification.requestPermission()
+  const handleClick = (): void => {
+    void Notification.requestPermission()
 
     setShow(false)
   }

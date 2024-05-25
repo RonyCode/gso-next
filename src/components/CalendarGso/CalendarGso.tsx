@@ -17,7 +17,7 @@ interface DaysMonthProps {
   diference: number
 }
 
-const CalendarGso = ({ event }: { event: EventProps[] }) => {
+const CalendarGso = ({ event }: { event: EventProps[] }): JSX.Element => {
   const date = new Date()
   const [month, setMonth] = useState(date.getMonth())
   const [year, setYear] = useState(date.getFullYear())
@@ -67,36 +67,36 @@ const CalendarGso = ({ event }: { event: EventProps[] }) => {
 
     switch (numberMonth) {
       case 0: {
-        return { dias: 31, diference: 0 } as DaysMonthProps
+        return { dias: 31, diference: 0 } satisfies DaysMonthProps
       }
 
       case 1: {
         if (year % 4 === 0 && lastDigiteYear !== '00') {
-          return { dias: 29, diference: 3 } as DaysMonthProps
+          return { dias: 29, diference: 3 } satisfies DaysMonthProps
         } else {
-          return { dias: 28, diference: 4 } as DaysMonthProps
+          return { dias: 28, diference: 4 } satisfies DaysMonthProps
         }
       }
       case 2:
-        return { dias: 31, diference: 2 } as DaysMonthProps
+        return { dias: 31, diference: 2 } satisfies DaysMonthProps
       case 3:
-        return { dias: 30, diference: 0 } as DaysMonthProps
+        return { dias: 30, diference: 0 } satisfies DaysMonthProps
       case 4:
-        return { dias: 31, diference: 2 } as DaysMonthProps
+        return { dias: 31, diference: 2 } satisfies DaysMonthProps
       case 5:
-        return { dias: 30, diference: 5 } as DaysMonthProps
+        return { dias: 30, diference: 5 } satisfies DaysMonthProps
       case 6:
-        return { dias: 31, diference: 0 } as DaysMonthProps
+        return { dias: 31, diference: 0 } satisfies DaysMonthProps
       case 7:
-        return { dias: 31, diference: 3 } as DaysMonthProps
+        return { dias: 31, diference: 3 } satisfies DaysMonthProps
       case 8:
-        return { dias: 30, diference: 6 } as DaysMonthProps
+        return { dias: 30, diference: 6 } satisfies DaysMonthProps
       case 9:
-        return { dias: 31, diference: 1 } as DaysMonthProps
+        return { dias: 31, diference: 1 } satisfies DaysMonthProps
       case 10:
-        return { dias: 30, diference: 3 } as DaysMonthProps
+        return { dias: 30, diference: 3 } satisfies DaysMonthProps
       case 11:
-        return { dias: 31, diference: 6 } as DaysMonthProps
+        return { dias: 31, diference: 6 } satisfies DaysMonthProps
     }
   }
 
@@ -107,7 +107,7 @@ const CalendarGso = ({ event }: { event: EventProps[] }) => {
     month: number,
     year: number,
     event: EventProps[],
-  ) => {
+  ): EventProps[] => {
     return event.filter((itemEvento) => {
       return (
         itemEvento.day === day &&
@@ -117,77 +117,87 @@ const CalendarGso = ({ event }: { event: EventProps[] }) => {
     })
   }
 
-  const daysCalculate =
-    dayWeek === date.getDay()
-      ? daysInMonth!.dias + daysInMonth!.diference
-      : daysInMonth!.dias + Math.abs(dayWeek)
-  for (let i = 0; i <= daysCalculate; i++) {
-    if (i % 7) {
-      escalaObj.push({
-        day:
-          dayWeek === date.getDay() ? i - daysInMonth!.diference : dayWeek + i,
-        dayWeek: i % 7,
-        dayShortName:
-          i % 7 === 1
-            ? 'Seg'
-            : i % 7 === 2
-              ? 'Ter'
-              : i % 7 === 3
-                ? 'Qua'
-                : i % 7 === 4
-                  ? 'Qui'
-                  : i % 7 === 5
-                    ? 'Sex'
-                    : i % 7 === 6
-                      ? 'Sab'
-                      : '',
-        dayName:
-          i % 7 === 1
-            ? 'Segunda'
-            : i % 7 === 2
-              ? 'Terça'
-              : i % 7 === 3
-                ? 'Quarta'
-                : i % 7 === 4
-                  ? 'Quinta'
-                  : i % 7 === 5
-                    ? 'Sexta'
-                    : i % 7 === 6
-                      ? 'Sábado'
-                      : '',
-        dayEvent: handleEventDay(
-          dayWeek === date.getDay() ? i - daysInMonth!.diference : dayWeek + i,
-          month,
+  let daysCalculate = 0
+  if (daysInMonth?.dias != null) {
+    daysCalculate =
+      dayWeek === date.getDay()
+        ? daysInMonth.dias + daysInMonth.diference
+        : daysInMonth.dias + Math.abs(dayWeek)
+
+    for (let i = 0; i <= daysCalculate; i++) {
+      if (i % 7 !== 0) {
+        escalaObj.push({
+          day:
+            dayWeek === date.getDay()
+              ? i - daysInMonth?.diference
+              : dayWeek + i,
+          dayWeek: i % 7,
+          dayShortName:
+            i % 7 === 1
+              ? 'Seg'
+              : i % 7 === 2
+                ? 'Ter'
+                : i % 7 === 3
+                  ? 'Qua'
+                  : i % 7 === 4
+                    ? 'Qui'
+                    : i % 7 === 5
+                      ? 'Sex'
+                      : i % 7 === 6
+                        ? 'Sab'
+                        : '',
+          dayName:
+            i % 7 === 1
+              ? 'Segunda'
+              : i % 7 === 2
+                ? 'Terça'
+                : i % 7 === 3
+                  ? 'Quarta'
+                  : i % 7 === 4
+                    ? 'Quinta'
+                    : i % 7 === 5
+                      ? 'Sexta'
+                      : i % 7 === 6
+                        ? 'Sábado'
+                        : '',
+          dayEvent: handleEventDay(
+            dayWeek === date.getDay() ? i - daysInMonth.diference : dayWeek + i,
+            month,
+            year,
+            event,
+          ),
           year,
-          event,
-        ),
-        year,
-        month,
-      })
-    } else {
-      escalaObj.push({
-        day:
-          dayWeek === date.getDay() ? i - daysInMonth!.diference : i + dayWeek,
-        dayWeek: 0,
-        dayShortName: 'Dom',
-        dayName: 'Domingo',
-        dayEvent: handleEventDay(
-          dayWeek === date.getDay() ? i - daysInMonth!.diference : dayWeek + i,
           month,
+        })
+      } else {
+        escalaObj.push({
+          day:
+            dayWeek === date.getDay() ? i - daysInMonth.diference : i + dayWeek,
+          dayWeek: 0,
+          dayShortName: 'Dom',
+          dayName: 'Domingo',
+          dayEvent: handleEventDay(
+            dayWeek === date.getDay() ? i - daysInMonth.diference : dayWeek + i,
+            month,
+            year,
+            event,
+          ),
           year,
-          event,
-        ),
-        year,
-        month,
-      })
+          month,
+        })
+      }
     }
   }
   escalaObj.shift()
 
-  const handlePrevious = () => {
+  const handlePrevious = (): void => {
     const lastDayWeek = escalaObj[escalaObj.length - 1].dayWeek
     const monthChanged = handleCountDaysInMonth(month - 1)
-    const diffDayInMounts = daysInMonth!.dias - monthChanged!.dias
+    let diffDayInMounts = 0
+    if (daysInMonth?.dias != null && monthChanged?.dias != null) {
+      diffDayInMounts = daysInMonth.dias - monthChanged?.dias
+    }
+
     const newDayWeek = Math.abs(diffDayInMounts) + lastDayWeek
     setDayWeek(newDayWeek * -1 - 1)
     if (month === 0) {
@@ -197,7 +207,7 @@ const CalendarGso = ({ event }: { event: EventProps[] }) => {
       setMonth(month - 1)
     }
   }
-  const handleNext = () => {
+  const handleNext = (): void => {
     if (month === 11) {
       setMonth(0)
       setYear(year + 1)
@@ -289,7 +299,11 @@ const CalendarGso = ({ event }: { event: EventProps[] }) => {
                     {day.day > 0 && (
                       // GRID CALENDAR
                       <CalendarGsoGrid
-                        index={index - daysInMonth!.dias}
+                        index={
+                          daysInMonth?.dias != null
+                            ? index - daysInMonth.dias
+                            : index
+                        }
                         day={day.day}
                         dayEvent={day.dayEvent}
                         month={day.month}

@@ -3,7 +3,7 @@
 import { revalidatePath } from 'next/cache'
 import { cookies } from 'next/headers'
 
-export const deleteCookies = () => {
+export const deleteCookies = async (): Promise<void> => {
   cookies().set({
     name: 'next-auth.session-token',
     value: '',

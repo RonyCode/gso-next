@@ -1,7 +1,9 @@
 import * as React from 'react'
-import { Badge } from '@/ui/badge'
+
+import { type EventProps } from '../../../types/index'
+
 import { cn } from '@/lib/utils'
-import { EventProps } from '../../../types/index'
+import { Badge } from '@/ui/badge'
 
 type CalendarGsoGridProps = {
   dayEvent?: EventProps[]
@@ -21,7 +23,7 @@ const CalendarGsoGrid = ({
 
   return (
     <>
-      {day! > 0 && (
+      {day != null && day > 0 && (
         <div
           className={cn(
             `  relative flex min-h-full w-full cursor-pointer flex-col items-center justify-start  

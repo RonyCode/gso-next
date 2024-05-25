@@ -1,5 +1,10 @@
+import {
+  type CarsUnity,
+  type EventProps,
+  type Member,
+} from '../../../../../types/index'
+
 import CalendarGso from '@/components/CalendarGso/CalendarGso'
-import { CarsUnity, EventProps, Member } from '../../../../../types/index'
 
 const MinhaEscala = () => {
   const event: EventProps[] = [
