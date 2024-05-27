@@ -64,7 +64,7 @@ export async function CardDefault({
             </div>
           </CardTitle>
         </div>
-        <div className="relative hidden h-full cursor-pointer p-0 transition-all duration-700 ease-in-out hover:h-72 md:col-start-5 md:col-end-13 md:block ">
+        <div className="relative hidden h-full cursor-pointer p-0 transition-all duration-700 ease-in-out  md:col-start-5 md:col-end-13 md:block ">
           {image != null && (
             <Image
               src={image}
