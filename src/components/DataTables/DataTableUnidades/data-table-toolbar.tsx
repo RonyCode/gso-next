@@ -18,7 +18,7 @@ export function DataTableToolbar<TData>({
   const isFiltered = table.getState().columnFilters.length > 0
 
   return (
-    <div className="gird w-full  grid-cols-2 gap-2  md:grid-cols-3">
+    <div className="grid w-full  grid-cols-2 gap-2  md:grid-cols-3">
       <Input
         placeholder="Filtrar unidades..."
         value={(table.getColumn('name')?.getFilterValue() as string) ?? ''}

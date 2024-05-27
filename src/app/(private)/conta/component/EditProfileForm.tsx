@@ -85,7 +85,7 @@ export const EditProfileForm = ({
   let defaultValues = {}
   if (user?.account?.name !== 'user-external') {
     defaultValues = {
-      id: user?.id.toString(),
+      id: user?.id?.toString(),
       nome: user?.account?.name,
       image: user?.account?.image,
       email: user?.userAuth?.email,

@@ -15,6 +15,7 @@ export const SignInSchema = z.object({
     }),
   is_user_external: z.number().optional(),
   subscription: z.string().optional(),
+  subscription_user: z.string().optional(),
 })
 
 export type ISignInSchema = z.infer<typeof SignInSchema>

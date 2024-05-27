@@ -33,11 +33,11 @@ export function DataTableRowActions<TData>({
           <span className="sr-only">Open menu</span>
         </Button>
       </DropdownMenuTrigger>
-      <Link href={`/servicos/organizacao/unidades/${task.id}`}>
-        <DropdownMenuContent align="end" className="w-[160px]">
+      <DropdownMenuContent align="end" className="w-[160px]">
+        <Link href={`/servicos/organizacao/unidades/${task.id}`}>
           <DropdownMenuItem>Detalhes</DropdownMenuItem>
-        </DropdownMenuContent>
-      </Link>
+        </Link>
+      </DropdownMenuContent>
     </DropdownMenu>
   )
 }

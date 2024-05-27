@@ -156,7 +156,6 @@ export interface Unidade {
   name: string
   cnpj: string
   image: string
-  address: Address
   dateCreation: string
   date_creation: string
   phone: string
@@ -167,6 +166,7 @@ export interface Unidade {
   manager_company: Unidade
   directorCompany: Unidade
   director_company: Unidade
+  companyAddress: Address
   companyMembers: Member[]
   company_members: Member[]
   companyCars: Car[]

@@ -2,16 +2,6 @@
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  experimental: {
-    turbo: {
-      rules: {
-        '*.svg': {
-          loaders: ['@ducanh2912/next-pwa'],
-          as: '*.js',
-        },
-      },
-    },
-  },
   reactStrictMode: true,
   images: {
     remotePatterns: [

@@ -29,14 +29,12 @@ export const useNotificationStore = create<UserNotificationStore>()((set) => {
     },
     actions: {
       add: (notification: UserNotification) => {
-        set(
-          (state): UserNotificationStore => ({
-            ...state,
-            state: {
-              notification: { ...state.state.notification, ...notification },
-            },
-          }),
-        )
+        set((state) => ({
+          ...state,
+          state: {
+            notification: { ...state.state.notification, ...notification },
+          },
+        }))
       },
     },
   }

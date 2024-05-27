@@ -77,16 +77,12 @@ const SigInForm = ({ className, ...props }: UserAuthFormProps): JSX.Element => {
           let subscriptionResult =
             await serviceWorker.pushManager.getSubscription()
           if (subscriptionResult == null) {
-            const publicKey = await fetch(
-              `${process.env.NEXT_PUBLIC_NEXT_URL}/api/notification/public-key`,
-            )
-
-            const { data } = await publicKey.json()
             subscriptionResult = await serviceWorker.pushManager.subscribe({
               userVisibleOnly: true,
-              applicationServerKey: data,
+              applicationServerKey: process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY,
             })
           }
+          console.log(JSON.stringify(subscriptionResult))
           setCookie('subscription', JSON.stringify(subscriptionResult))
         })
     }

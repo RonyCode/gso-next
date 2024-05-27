@@ -48,7 +48,7 @@ export async function CardDefault({
       {...props}
     >
       <div className="grid h-32 w-full grid-cols-12 rounded-[8px] rounded-b-none border border-b-0 border-foreground/30 p-0 ">
-        <div className=" text-md col-start-1  col-end-7 md:col-start-1  md:col-end-4  md:text-2xl ">
+        <div className=" text-md col-start-1  col-end-7 md:col-start-1  md:col-end-5  md:text-xl ">
           <CardTitle>
             <div className="flex flex-col items-start p-3 md:p-6 ">
               <div className="mb-2  flex items-center gap-1">
@@ -64,7 +64,7 @@ export async function CardDefault({
             </div>
           </CardTitle>
         </div>
-        <div className="relative hidden h-32 cursor-pointer p-0 transition-all duration-700 ease-in-out hover:h-72 md:col-start-4 md:col-end-13 md:block ">
+        <div className="relative hidden h-full cursor-pointer p-0 transition-all duration-700 ease-in-out hover:h-72 md:col-start-5 md:col-end-13 md:block ">
           {image != null && (
             <Image
               src={image}
@@ -74,7 +74,7 @@ export async function CardDefault({
               blurDataURL={myBlurDataUrl}
               placeholder="blur"
               alt="image"
-              className="block  rounded-[8px]  object-cover object-center brightness-[80%]"
+              className="block  rounded-[5px]  object-cover object-center brightness-[80%]"
             />
           )}
         </div>

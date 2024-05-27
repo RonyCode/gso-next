@@ -17,15 +17,11 @@ import {
 } from 'react-icons/lu'
 
 import Logo from '../../../public/images/Logo'
-import {
-  type NotificationMessage,
-  type UserNotification,
-} from '../../../types/index'
 
 import { ModeToggle } from '@/components/Buttoms/ModeTogle'
 import { deleteCookies } from '@/components/Buttoms/SignOutButton/LogoutAction'
 import LoadingPage from '@/components/Loadings/LoadingPage'
-import NotificationUser from '@/components/Notification/notificationUser'
+import { NotificationCard } from '@/components/Notification/NotiicationCard'
 import { GetFirstLettersNameUser } from '@/functions/GetFirstLettersNameUser'
 import { GetUserNotification } from '@/functions/GetNotificationUser'
 import { cn } from '@/lib/utils'
@@ -98,18 +94,11 @@ export function NavbarMain({
   const { data: session } = useSession()
   const [state, setState] = useState(false)
   const [showNavBar, setShowNavBar] = useState(false)
-  const [notification, setNotification] = useState({
-    messages: [] as NotificationMessage[],
-    id: '',
-    title: '',
-    type: '',
-    qtd: 0,
-    status: '',
-    code: 0,
-  } satisfies UserNotification)
   const router = useRouter()
   const myRef = useRef(null)
   const nameUser = GetFirstLettersNameUser()
+
+  void GetUserNotification('auth', 'user_logged', session?.id_message)
 
   useEffect(() => {
     window.addEventListener('scroll', () => {
@@ -119,11 +108,6 @@ export function NavbarMain({
         setShowNavBar(false)
       }
     })
-    void GetUserNotification('auth', 'user_logged', session?.id_message).then(
-      (response) => {
-        setNotification(response)
-      },
-    )
   }, [session, showNavBar])
 
   const handleClick = async (): Promise<void> => {
@@ -257,13 +241,13 @@ export function NavbarMain({
             }`}
           >
             <React.Suspense fallback={<LoadingPage pending={true} />}>
-              <NotificationUser notification={notification} />
+              <NotificationCard />
             </React.Suspense>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button
                   variant="ghost"
-                  className="relative h-12 w-12 rounded-full border hover:border-foreground/20 lg:h-14 lg:w-14 "
+                  className="relative h-10 w-10 rounded-full border hover:border-foreground/20 lg:h-12 lg:w-12 "
                 >
                   <Avatar className="h-10 w-10 lg:h-12 lg:w-12">
                     <AvatarImage
