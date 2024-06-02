@@ -1,7 +1,7 @@
 import React from 'react'
 import { LuBuilding } from 'react-icons/lu'
 
-import ModulesUnidades from '@/app/(private)/servicos/organizacao/module/ModulesUnidades'
+import ModulesMinhaOrganizacao from '@/app/(private)/servicos/organizacao/module/ModulesMinhaOrganizacao'
 import { CardDefault } from '@/components/Cards/CardDefault'
 
 const Organizacao = async ({
@@ -12,12 +12,15 @@ const Organizacao = async ({
   return (
     <>
       <CardDefault
-        title="Unidades"
-        description="Unidades da minha organização"
+        title="Minha Organização"
+        description="Serviço de Organização Gestora"
         image="https://www.designi.com.br/images/preview/11149946-m.jpg"
         icon={<LuBuilding />}
       >
-        <ModulesUnidades idCorporation={params.id_corporation} />
+        {params.id_corporation !== null &&
+          params.id_corporation !== undefined && (
+            <ModulesMinhaOrganizacao idcorporation={params.id_corporation} />
+          )}
       </CardDefault>
     </>
   )
