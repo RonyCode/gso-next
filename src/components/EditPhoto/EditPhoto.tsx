@@ -48,20 +48,22 @@ export const EditPhoto = ({
   const [percent, setPercent] = useState<number | null>(0)
   const { data: session, update } = useSession()
   const [user, setUser] = useState<User>({
-    access_token: '',
-    date_creation_token: 0,
-    date_expires_token: 0,
-    email: '',
-    expires_at: 0,
     id: '',
     id_message: '',
-    image: '',
-    name: '',
+    id_corporation: '',
+    id_company: '',
     nome: '',
+    name: '',
+    email: '',
+    image: '',
     picture: '',
-    refresh_token: '',
     senha: '',
     token: '',
+    access_token: '',
+    refresh_token: '',
+    date_expires_token: 0,
+    date_creation_token: 0,
+    expires_at: 0,
   })
   const router = useRouter()
 

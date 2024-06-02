@@ -22,7 +22,9 @@ import { type AddressProps, type UserType } from '../../../../../types/index'
 import { saveUserAction } from '@/app/actions/saveUserAction'
 import { MyInputMask } from '@/components/Form/Input/myInputMask'
 import LoadingPage from '@/components/Loadings/LoadingPage'
-import { useMask } from '@/hooks/useMask'
+import { maskCpfCnpj } from '@/functions/masks/maskCpfCnpj'
+import { maskPhone } from '@/functions/masks/maskphone'
+import { maskZipcode } from '@/functions/masks/maskZipcode'
 import { getAllCitiesByState } from '@/lib/getAllCitiesByState'
 import { getCep } from '@/lib/getCep'
 import { cn } from '@/lib/utils'
@@ -79,7 +81,6 @@ export const EditProfileForm = ({
 }: UserRegisterFormProps): React.ReactElement => {
   const [pending, startTransition] = useTransition()
   const { update } = useSession()
-  const { maskCpfCnpj, maskPhone, maskZipCode } = useMask()
   const router = useRouter()
 
   let defaultValues = {}
@@ -92,7 +93,7 @@ export const EditProfileForm = ({
       cpf: maskCpfCnpj(user?.account?.cpf),
       data_nascimento: moment(user?.account?.birthday).format('DD/MM/yyyy'),
       telefone: maskPhone(user?.account?.phone),
-      cep: maskZipCode(user?.address?.zipCode),
+      cep: maskZipcode(user?.address?.zipCode),
       endereco: user?.address?.address,
       complemento: user?.address?.complement,
       sigla: user?.address?.shortName,
