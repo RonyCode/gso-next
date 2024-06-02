@@ -2,7 +2,7 @@ import { revalidatePath } from 'next/cache'
 import { LuBuilding } from 'react-icons/lu'
 import { MdOutlineSupervisorAccount } from 'react-icons/md'
 
-import UnidadesForm from '@/app/(private)/servicos/organizacao/unidades/component/UnidadesForm'
+import UnidadesForm from '@/app/(private)/servicos/organizacao/[id_corporation]/unidades/component/UnidadesForm'
 import { CardDefault } from '@/components/Cards/CardDefault'
 import { getAllStates } from '@/lib/getAllStates'
 import { getUnidadeById } from '@/lib/GetUnidadeById'

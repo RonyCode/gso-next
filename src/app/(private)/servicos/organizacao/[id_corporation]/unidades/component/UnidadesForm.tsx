@@ -1,61 +1,13 @@
 'use client'
 
-import Image from 'next/image'
-import { redirect } from 'next/navigation'
-import React, { useTransition } from 'react'
-import { useForm } from 'react-hook-form'
-import { FaBirthdayCake } from 'react-icons/fa'
-import {
-  FaBuildingColumns,
-  FaEnvelope,
-  FaHashtag,
-  FaMapLocationDot,
-  FaPhone,
-  FaSpinner,
-  FaTreeCity,
-  FaUser,
-  FaUserLock,
-} from 'react-icons/fa6'
-import { LiaUserCogSolid } from 'react-icons/lia'
-import {
-  LuBuilding,
-  LuBuilding2,
-  LuCheck,
-  LuChevronsUpDown,
-  LuClipboardEdit,
-  LuFile,
-  LuFolderEdit,
-  LuMail,
-  LuMailPlus,
-  LuMailX,
-  LuMessageSquarePlus,
-  LuPlusCircle,
-} from 'react-icons/lu'
-import {
-  MdOutlineManageAccounts,
-  MdOutlineSupervisorAccount,
-} from 'react-icons/md'
+import React from 'react'
 
 import {
   type AddressProps,
-  type ResultUserRegistered,
   type Unidade,
-} from '../../../../../../../types/index'
+} from '../../../../../../../../types/index'
 
-import TabUnidadeDetails from '@/app/(private)/servicos/organizacao/unidades/component/TabUnidadeDetails'
-import { saveUserAction } from '@/app/actions/saveUserAction'
-import { MyInputMask } from '@/components/Form/Input/myInputMask'
-import { formatCep } from '@/functions/formatCep'
-import { formatCpfCnpj } from '@/functions/formatCpfCnpj'
-import { getAllCitiesByState } from '@/lib/getAllCitiesByState'
-import { getCep } from '@/lib/getCep'
-import { cn } from '@/lib/utils'
-import {
-  type IRegisterUserSchema,
-  RegisterUserSchema,
-} from '@/schemas/RegisterUserSchema'
-import { cityStore } from '@/stores/Address/CityByStateStore'
-import { Button, buttonVariants } from '@/ui/button'
+import TabUnidadeDetails from '@/app/(private)/servicos/organizacao/[id_corporation]/unidades/component/TabUnidadeDetails'
 import {
   Card,
   CardContent,

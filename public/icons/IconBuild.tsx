@@ -1,18 +1,24 @@
 import './IconBuild.css'
-import { cn } from '@/lib/utils'
 import * as React from 'react'
+
+import { cn } from '@/lib/utils'
 
 type SVGProps = {
   width?: number
+  className?: string
 } & React.SVGProps<SVGSVGElement> &
   React.HTMLAttributes<HTMLDivElement>
 
-export default function IconBuild({ width, className, ...props }: SVGProps) {
+export default function IconBuild({
+  width,
+  className,
+  ...props
+}: SVGProps): JSX.Element {
   return (
     <svg
       version="1.0"
       xmlns="http://www.w3.org/2000/svg"
-      width={width || 512}
+      width={width ?? 512}
       viewBox="0 0 512.000000 482.000000"
       preserveAspectRatio="xMidYMid meet"
       className={cn(' ', className)}

@@ -57,7 +57,7 @@ const SigInForm = ({ className, ...props }: UserAuthFormProps): JSX.Element => {
           title: 'Bem vindo de volta! 😍',
           description: 'Login realizado com sucesso',
         })
-        router.push('/dashboard')
+        router.push('/servicos')
       }
     })
   }
@@ -68,8 +68,7 @@ const SigInForm = ({ className, ...props }: UserAuthFormProps): JSX.Element => {
     })
   }
 
-  const handleClikLogin = async (): Promise<void> => {
-    console.log('teste')
+  const handleClickLogin = async (): Promise<void> => {
     if (typeof navigator !== 'undefined' && 'serviceWorker' in navigator) {
       void navigator.serviceWorker
         .register('/service-worker/index.js')
@@ -193,7 +192,7 @@ const SigInForm = ({ className, ...props }: UserAuthFormProps): JSX.Element => {
               />
               <Button
                 /* eslint-disable-next-line @typescript-eslint/no-misused-promises */
-                onClick={handleClikLogin}
+                onClick={handleClickLogin}
                 disabled={pending}
                 className="w-full"
                 type="submit"

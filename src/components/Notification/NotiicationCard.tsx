@@ -68,8 +68,6 @@ export const NotificationCard = ({
         >
           <DropdownMenuGroup>
             <DropdownMenuItem className="h-full">
-              {/* <NotificationCard /> */}
-
               <Card
                 className={cn(' w-full md:w-[380px] ', className)}
                 {...props}

@@ -140,6 +140,8 @@ export const authOptions: NextAuthOptions = {
             ...token,
             id: userGoogle?.id,
             id_message: userGoogle?.id_message,
+            id_corporation: userGoogle?.id_corporation,
+            id_company: userGoogle?.id_company,
             email: userGoogle?.email,
             name: userGoogle?.name,
             image: Boolean(userGoogle?.image) || userGoogle?.picture,
@@ -174,6 +176,8 @@ export const authOptions: NextAuthOptions = {
             ...token,
             id: user?.id,
             id_message: user?.id_message,
+            id_corporation: user?.id_corporation,
+            id_company: user?.id_company,
             email: user?.email,
             name: user?.name,
             image: user?.image !== '' || user?.picture,
@@ -200,6 +204,8 @@ export const authOptions: NextAuthOptions = {
     async session({ session, token, newSession, trigger }) {
       session.id = token?.id
       session.id_message = token?.id_message
+      session.id_corporation = token?.id_corporation
+      session.id_company = token?.id_company
       session.email = token?.email
       session.name = token?.name
       session.image = token?.image !== '' ? token?.image : token?.picture

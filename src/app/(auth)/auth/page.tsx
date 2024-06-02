@@ -7,7 +7,6 @@ export const metadata: Metadata = {
   description: 'Authentication forms built using the components.',
 }
 
-export const runtime = 'edge'
 export default function Page(): JSX.Element {
   return (
     <div className="w-screen lg:container">

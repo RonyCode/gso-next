@@ -4,12 +4,12 @@ import React from 'react'
 import { FaRegAddressCard } from 'react-icons/fa'
 import { LuBuilding2, LuPhone } from 'react-icons/lu'
 
-import { type Member, type Unidade } from '../../../../types/index'
+import { type Unidade } from '../../../../types/index'
 
 import { DataTableColumnHeader } from '@/components/DataTables/DataTableUnidades/data-table-column-header'
 import { DataTableRowActions } from '@/components/DataTables/DataTableUnidades/data-table-row-actions'
 import { types } from '@/components/DataTables/DataTableUnidades/data/data'
-import { formatCpfCnpj } from '@/functions/formatCpfCnpj'
+import { maskCpfCnpj } from '@/functions/masks/maskCpfCnpj'
 import { Badge } from '@/ui/badge'
 import { Avatar, AvatarFallback, AvatarImage } from '@radix-ui/react-avatar'
 import { type ColumnDef } from '@tanstack/react-table'
@@ -75,7 +75,7 @@ export const columnsUnidades: Array<ColumnDef<Unidade>> = [
                 {' '}
                 <div className="flex items-center  p-1">
                   <FaRegAddressCard size={16} className="mr-2" />{' '}
-                  {formatCpfCnpj(row.original.cnpj)}
+                  {maskCpfCnpj(row.original.cnpj)}
                 </div>
               </div>
               <div>
@@ -97,14 +97,14 @@ export const columnsUnidades: Array<ColumnDef<Unidade>> = [
       <DataTableColumnHeader column={column} title="Gestores" />
     ),
     cell: ({ row }) => {
-      const $director: Member = row.getValue('director')
-      const $manager: Member = row.original.manager
+      const $director = row.original.director
+      const $manager = row.original.manager
 
       return (
         <div className="flex w-full items-center">
           <div className="mr-2 flex flex-col space-y-1 text-muted-foreground">
             <span>
-              {$director.competence} - {$director?.name} -{' '}
+              {$director?.competence} - {$director?.name} -{' '}
               <Badge variant="secondary">CMD</Badge>
             </span>
 

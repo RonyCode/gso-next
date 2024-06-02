@@ -1,4 +1,7 @@
-export const formatCpfCnpj = (value: string): string => {
+export const maskCpfCnpj = (
+  value: string | null | undefined,
+): string | null | undefined => {
+  if (value == null) return value
   const cleanedValue = value.replace(/\D/g, '') // remove caracteres não numéricos
 
   if (cleanedValue.length <= 11) {

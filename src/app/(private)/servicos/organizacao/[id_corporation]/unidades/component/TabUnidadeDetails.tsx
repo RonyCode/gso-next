@@ -1,3 +1,4 @@
+import { useSession } from 'next-auth/react'
 import Image from 'next/image'
 import { redirect } from 'next/navigation'
 import React, { useTransition } from 'react'
@@ -25,12 +26,13 @@ import type {
   AddressProps,
   ResultUserRegistered,
   Unidade,
-} from '../../../../../../../types/index'
+} from '../../../../../../../../types/index'
 
 import { saveUserAction } from '@/app/actions/saveUserAction'
 import { MyInputMask } from '@/components/Form/Input/myInputMask'
-import { formatCep } from '@/functions/formatCep'
-import { formatCpfCnpj } from '@/functions/formatCpfCnpj'
+import { maskCpfCnpj } from '@/functions/masks/maskCpfCnpj'
+import { maskPhone } from '@/functions/masks/maskphone'
+import { maskZipcode } from '@/functions/masks/maskZipcode'
 import { getAllCitiesByState } from '@/lib/getAllCitiesByState'
 import { getCep } from '@/lib/getCep'
 import { cn } from '@/lib/utils'
@@ -59,6 +61,12 @@ import {
 } from '@/ui/form'
 import { Input } from '@/ui/input'
 import { Popover, PopoverContent, PopoverTrigger } from '@/ui/popover'
+import {
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+  Tooltip,
+} from '@/ui/tooltip'
 import { toast } from '@/ui/use-toast'
 import { zodResolver } from '@hookform/resolvers/zod'
 
@@ -85,8 +93,10 @@ export const TabUnidadeDetails = ({
   // eslint-disable-next-line react/prop-types
   className,
   states,
-}: UserRegisterFormProps) => {
+}: UserRegisterFormProps): JSX.Element => {
   const [pending, startTransition] = useTransition()
+  const [disabled, setDisabled] = React.useState(true)
+  const { data: session } = useSession()
 
   const form = useForm<IRegisterUserSchema>({
     mode: 'all',
@@ -95,10 +105,10 @@ export const TabUnidadeDetails = ({
     defaultValues: {
       nome: unidades.name,
       email: unidades.director.competence + ' - ' + unidades.director.name,
-      cpf: formatCpfCnpj(unidades.cnpj),
+      cpf: maskCpfCnpj(unidades.cnpj) ?? '',
       data_nascimento: '',
-      telefone: unidades.phone,
-      cep: formatCep(unidades.companyAddress.zipCode),
+      telefone: maskPhone(unidades.phone) ?? '',
+      cep: maskZipcode(unidades.companyAddress.zipCode) ?? '',
       endereco: unidades.companyAddress.address,
       numero: unidades.companyAddress.number,
       complemento: unidades.companyAddress.complement,
@@ -182,12 +192,31 @@ export const TabUnidadeDetails = ({
             <h1 className="ml-4 mr-auto text-xl font-bold">Detalhes</h1>
 
             <div>
-              <Button size="sm" className="h-8 gap-1">
-                <LuFolderEdit className="h-3.5 w-3.5" />
-                <span className="sr-only sm:not-sr-only sm:whitespace-nowrap">
-                  Editar
-                </span>
-              </Button>
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger>
+                    <Button
+                      disabled={
+                        session?.id != null &&
+                        +session?.id === +unidades?.director?.id
+                      }
+                      size="sm"
+                      className="h-8 gap-1"
+                      onClick={() => {
+                        setDisabled(!disabled)
+                      }}
+                    >
+                      <LuFolderEdit className="h-3.5 w-3.5" />
+                      <span className="sr-only sm:not-sr-only sm:whitespace-nowrap">
+                        Editar
+                      </span>{' '}
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    Necessário ter privilégios para editar
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
             </div>
           </div>
         </div>
@@ -231,7 +260,7 @@ export const TabUnidadeDetails = ({
                             autoCapitalize="none"
                             autoComplete="nome"
                             autoCorrect="off"
-                            disabled={pending}
+                            disabled={disabled}
                           />
                         </FormControl>
                         <FormMessage />
@@ -258,7 +287,7 @@ export const TabUnidadeDetails = ({
                             autoCapitalize="none"
                             autoComplete="email"
                             autoCorrect="off"
-                            disabled={pending}
+                            disabled={disabled}
                           />
                         </FormControl>
                         <FormMessage />
@@ -286,7 +315,7 @@ export const TabUnidadeDetails = ({
                             autoCapitalize="none"
                             autoComplete="email"
                             autoCorrect="off"
-                            disabled={pending}
+                            disabled={disabled}
                           />
                         </FormControl>
                         <FormMessage />
@@ -321,7 +350,7 @@ export const TabUnidadeDetails = ({
                           autoCapitalize="none"
                           autoComplete="cpf"
                           autoCorrect="off"
-                          disabled={pending}
+                          disabled={disabled}
                         />
                       </FormControl>
                       <FormMessage />
@@ -348,7 +377,7 @@ export const TabUnidadeDetails = ({
                           autoCapitalize="none"
                           autoComplete="telefone"
                           autoCorrect="off"
-                          disabled={pending}
+                          disabled={disabled}
                         />
                       </FormControl>
                       <FormMessage />
@@ -378,7 +407,7 @@ export const TabUnidadeDetails = ({
                           autoCapitalize="none"
                           autoComplete="cep"
                           autoCorrect="off"
-                          disabled={pending}
+                          disabled={disabled}
                         />
                       </FormControl>
                       <FormMessage />
@@ -405,7 +434,7 @@ export const TabUnidadeDetails = ({
                           autoCapitalize="none"
                           autoComplete="endereco"
                           autoCorrect="off"
-                          disabled={pending}
+                          disabled={disabled}
                         />
                       </FormControl>
                       <FormMessage />
@@ -433,7 +462,7 @@ export const TabUnidadeDetails = ({
                           autoCapitalize="none"
                           autoComplete="numero"
                           autoCorrect="off"
-                          disabled={pending}
+                          disabled={disabled}
                         />
                       </FormControl>
                       <FormMessage />
@@ -458,7 +487,7 @@ export const TabUnidadeDetails = ({
                           id="complemento"
                           placeholder="Digite ponto de referência"
                           autoComplete="complemento"
-                          disabled={pending}
+                          disabled={disabled}
                         />
                       </FormControl>
                       <FormMessage />
@@ -506,6 +535,7 @@ export const TabUnidadeDetails = ({
                               <CommandList>
                                 {states?.map((state, index) => (
                                   <CommandItem
+                                    disabled={disabled}
                                     value={state.shortName}
                                     key={index}
                                     /* eslint-disable-next-line @typescript-eslint/no-misused-promises */
@@ -542,7 +572,7 @@ export const TabUnidadeDetails = ({
                     <FormItem className="flex w-full flex-col">
                       <FormLabel
                         htmlFor="cidade"
-                        className="flex items-center gap-1"
+                        className="flex items-center gap-1 text-muted-foreground"
                       >
                         <FaBuildingColumns /> Cidade
                       </FormLabel>{' '}
@@ -574,6 +604,7 @@ export const TabUnidadeDetails = ({
                               <CommandList>
                                 {arrayCitiesByState?.map((city, index) => (
                                   <CommandItem
+                                    disabled={disabled}
                                     value={city.city}
                                     key={index}
                                     onSelect={() => {
@@ -608,7 +639,7 @@ export const TabUnidadeDetails = ({
                     <FormItem className="w-full">
                       <FormLabel
                         htmlFor="bairro"
-                        className="flex items-center gap-1"
+                        className="flex items-center gap-1 text-muted-foreground"
                       >
                         <FaTreeCity /> Bairro
                       </FormLabel>
@@ -620,7 +651,7 @@ export const TabUnidadeDetails = ({
                           autoCapitalize="none"
                           autoComplete="bairro"
                           autoCorrect="off"
-                          disabled={pending}
+                          disabled={disabled}
                         />
                       </FormControl>
                       <FormMessage />
@@ -629,19 +660,21 @@ export const TabUnidadeDetails = ({
                 />
               </div>
               <div className="flex w-full flex-col  justify-center gap-2 md:flex-row">
-                <Button
-                  disabled={pending}
-                  className={cn(
-                    buttonVariants({ variant: 'default' }),
-                    ' w-full ',
-                  )}
-                  type="submit"
-                >
-                  {pending && (
-                    <FaSpinner className="mr-2 h-4 w-4 animate-spin" />
-                  )}
-                  Salvar
-                </Button>{' '}
+                {!disabled && (
+                  <Button
+                    disabled={pending}
+                    className={cn(
+                      buttonVariants({ variant: 'default' }),
+                      ' w-full ',
+                    )}
+                    type="submit"
+                  >
+                    {pending && (
+                      <FaSpinner className="mr-2 h-4 w-4 animate-spin" />
+                    )}
+                    Salvar
+                  </Button>
+                )}{' '}
               </div>
             </form>
           </Form>

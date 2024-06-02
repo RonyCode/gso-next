@@ -148,6 +148,22 @@ export interface TokenUser {
   dateExpires: number
 }
 
+export interface Corporation {
+  id: number
+  name: string
+  cnpj: string
+  phone: string
+  director: number
+  manager: number
+  image: string
+  address: string
+  number: null
+  zipcode: string
+  complement: string
+  district: string
+  city: string
+  state: string
+}
 export interface Unidade {
   idCorporation: string
   id_corporation: number
@@ -335,6 +351,8 @@ declare module 'next-auth' {
   interface Session {
     id?: string | null
     id_message?: string | null
+    id_corporation: string
+    id_company: string
     nome?: string | null
     name?: string | null
     email?: string | null
@@ -352,6 +370,8 @@ declare module 'next-auth' {
   interface User {
     id: string
     id_message: string
+    id_corporation: string
+    id_company: string
     nome: string
     name: string
     email: string
@@ -371,6 +391,8 @@ declare module 'next-auth/jwt' {
   interface JWT {
     id: string
     id_message: string
+    id_corporation: string
+    id_company: string
     nome: string
     name: string
     email: string

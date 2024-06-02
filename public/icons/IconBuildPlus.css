@@ -1,0 +1,37 @@
+#plus {
+    transform-origin: 760% 818%;
+    animation: spinPlus 2s ease-in-out;
+    -webkit-animation: spinPlus 2s ease-in-out;
+    -o-animation: spinPlus 2s ease-in-out;
+
+}
+
+
+#cardModule:hover #plus {
+    transform-origin: 760% 818%;
+    animation: spinPlus 2s infinite ease-in-out;
+}
+
+svg:hover #plus {
+    transform-origin: 760% 818%;
+    animation: spinPlus 2s infinite ease-in-out;
+}
+
+@keyframes spinPlus {
+    0% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.7);
+    }
+
+    70% {
+        transform: scale(1.1);
+        box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+    }
+
+    100% {
+        fill: #a40101;
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+    }
+
+}
