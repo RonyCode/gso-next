@@ -4,46 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4467a1d6-73df-479e-9cc5-8e8cf1a18f4d" name="Changes" comment="refatorando com eslint">
-      <change afterPath="$PROJECT_DIR$/public/icons/IconBuildPlus.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/icons/IconBuildPlus.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/icons/build2.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/icons/buildFinal.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/icons/edificio2.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/icons/plus.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/icons/predio.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/(private)/servicos/organizacao/[id_corporation]/page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/(private)/servicos/organizacao/module/ModulesUnidades.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/api/organizacao/route.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/functions/masks/maskZipcode.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/functions/masks/maskphone.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lib/GetAllOrganizacao.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/icons/IconBuild.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/public/icons/IconBuild.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(auth)/auth/components/SigInForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(auth)/auth/components/SigInForm.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(auth)/auth/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(auth)/auth/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(auth)/auth/schemas/SignInSchema.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(auth)/auth/schemas/SignInSchema.tsx" afterDir="false" />
+    <list default="true" id="4467a1d6-73df-479e-9cc5-8e8cf1a18f4d" name="Changes" comment="refatorando com organizações">
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources/cee89a81-5f5d-492e-b0e5-11dd16a43cfb.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources/cee89a81-5f5d-492e-b0e5-11dd16a43cfb/storage_v2/_src_/schema/information_schema.FNRwLQ.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources/cee89a81-5f5d-492e-b0e5-11dd16a43cfb/storage_v2/_src_/schema/mysql.osA4Bg.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources/cee89a81-5f5d-492e-b0e5-11dd16a43cfb/storage_v2/_src_/schema/performance_schema.kIw0nw.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources/cee89a81-5f5d-492e-b0e5-11dd16a43cfb/storage_v2/_src_/schema/sys.zb4BAA.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources/cee89a81-5f5d-492e-b0e5-11dd16a43cfb/storage_v2/_src_/schema/wsgsoHomologacao.5KDRnw.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/git_toolbox_prj.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jsLinters/eslint.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/prettier.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(private)/(dashboard)/dashboard/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(dashboard)/dashboard/page.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/(private)/conta/component/EditProfileForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/conta/component/EditProfileForm.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(private)/servicos/organizacao/module/ModulesOrganizacao.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/servicos/organizacao/module/ModulesOrganizacao.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(private)/servicos/organizacao/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/servicos/organizacao/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(private)/servicos/organizacao/unidades/[id]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/servicos/organizacao/[id_corporation]/unidades/[id]/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(private)/servicos/organizacao/unidades/component/TabUnidadeDetails.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/servicos/organizacao/[id_corporation]/unidades/component/TabUnidadeDetails.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(private)/servicos/organizacao/unidades/component/UnidadesForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/servicos/organizacao/[id_corporation]/unidades/component/UnidadesForm.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(private)/servicos/organizacao/unidades/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/servicos/organizacao/[id_corporation]/unidades/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(private)/servicos/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/servicos/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(public)/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(public)/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/api/estados/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/api/estados/route.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/DataTables/DataTableUnidades/columnsUnidades.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DataTables/DataTableUnidades/columnsUnidades.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/DataTables/DataTableUnidades/data-table-row-actions.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DataTables/DataTableUnidades/data-table-row-actions.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/EditPhoto/EditPhoto.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/EditPhoto/EditPhoto.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Notification/NotiicationCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Notification/NotiicationCard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/command.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/command.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/functions/formatCep.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/functions/formatCpfCnpj.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/functions/masks/maskCpfCnpj.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hooks/useMask.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/auth.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/auth.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/types/index.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -170,7 +145,7 @@
       <workItem from="1717115381043" duration="8694000" />
       <workItem from="1717160498993" duration="3019000" />
       <workItem from="1717189329383" duration="19648000" />
-      <workItem from="1717341121292" duration="2467000" />
+      <workItem from="1717341121292" duration="2786000" />
     </task>
     <task id="LOCAL-00001" summary="refatorando com eslint">
       <option name="closed" value="true" />
@@ -252,7 +227,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716854143248</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="refatorando com organizações">
+      <option name="closed" value="true" />
+      <created>1717343869824</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1717343869824</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -336,6 +319,7 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="refatorando com eslint" />
-    <option name="LAST_COMMIT_MESSAGE" value="refatorando com eslint" />
+    <MESSAGE value="refatorando com organizações" />
+    <option name="LAST_COMMIT_MESSAGE" value="refatorando com organizações" />
   </component>
 </project>
