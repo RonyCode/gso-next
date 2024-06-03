@@ -26,6 +26,12 @@
       "@/*": [
         "./src/*"
       ],
+      "@/img/*": [
+        "./public/images/*"
+      ],
+      "@/icons/*": [
+        "./public/icons/*"
+      ],
       "@/styles/*": [
         "./styles/*"
       ],
@@ -50,8 +56,8 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "**/*.config.js",
-    ".eslintrc.json",
-    ".prettierrc",
+    "**/*.eslintrc.json",
+    "**/*.prettierrc",
     "**/src/components/FileUpload/FileUpload.jsx",
   ],
   "exclude": [

@@ -2,6 +2,7 @@ import React from 'react'
 
 import IconBuild from '../../../../../../public/icons/IconBuild'
 import IconBuildPlus from '../../../../../../public/icons/IconBuildPlus'
+import IconPrivileges from '../../../../../../public/icons/IconPrivileges'
 import { type Corporation } from '../../../../../../types/index'
 
 import { CardModule } from '@/components/Cards/CardModule'
@@ -20,21 +21,21 @@ const ModulesOrganizacao = ({
               key={corporation.id}
               title={corporation.name}
               subtitle={corporation.city + ' - ' + corporation.phone}
-              link={`/servicos/organizacao/${corporation.id}`}
+              link={`/servicos/organizacao/${corporation.name}`}
               icon={<IconBuild width={54} />}
             />
           ))}
           <CardModule
-            title="Adicionar Organizações"
+            title="Add+ Organizações"
             subtitle="Unidades da minha organização"
             link={'/servicos/organizacao/save'}
             icon={<IconBuildPlus width={58} className="ml-1" />}
           />
           <CardModule
             title="Privilégios"
-            subtitle="Unidades da minha organização"
+            subtitle="Conceder privilégios"
             link={'/servicos/organizacao/save'}
-            icon={<IconBuild width={54} className="ml-1" />}
+            icon={<IconPrivileges width={87} />}
           />
         </div>
       </div>

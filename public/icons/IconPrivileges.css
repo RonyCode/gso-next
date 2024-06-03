@@ -1,0 +1,50 @@
+#starPrivileges {
+    animation: spinStart 2s ease-in-out;
+    transform-origin: 530% 553%;
+    -webkit-animation: spinStart 2s ease-in-out;
+    -o-animation: spinStart 2s ease-in-out;
+}
+
+#plusPrivileges {
+    transform-origin: 590% 670%;
+    animation: pulsePlus 2s ease-in-out;
+    -webkit-animation: pulsePlus 2s ease-in-out;
+    -o-animation: pulsePlus 2s ease-in-out;
+}
+
+
+svg:hover #starPrivileges, #cardModule:hover #starPrivileges {
+    transform-origin: 530% 553%;
+    animation: pulsePlus, spinStart 2s infinite ease-in-out;
+
+}
+
+svg:hover #plusPrivileges, #cardModule:hover #plusPrivileges {
+    transform-origin: 590% 690%;
+    animation: pulsePlus 2s infinite ease-in-out;
+}
+
+@keyframes spinStart {
+    to {
+        transform: rotate(140deg);
+    }
+}
+
+
+@keyframes pulsePlus {
+    0% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.7);
+    }
+
+    70% {
+        transform: scale(1.1);
+        box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+    }
+
+    100% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+    }
+
+}

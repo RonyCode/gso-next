@@ -1,3 +1,4 @@
+'use client'
 import { useSession } from 'next-auth/react'
 import Image from 'next/image'
 import { redirect } from 'next/navigation'
@@ -30,6 +31,7 @@ import type {
 
 import { saveUserAction } from '@/app/actions/saveUserAction'
 import { MyInputMask } from '@/components/Form/Input/myInputMask'
+import LoadingPage from '@/components/Loadings/LoadingPage'
 import { maskCpfCnpj } from '@/functions/masks/maskCpfCnpj'
 import { maskPhone } from '@/functions/masks/maskphone'
 import { maskZipcode } from '@/functions/masks/maskZipcode'
@@ -61,12 +63,6 @@ import {
 } from '@/ui/form'
 import { Input } from '@/ui/input'
 import { Popover, PopoverContent, PopoverTrigger } from '@/ui/popover'
-import {
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-  Tooltip,
-} from '@/ui/tooltip'
 import { toast } from '@/ui/use-toast'
 import { zodResolver } from '@hookform/resolvers/zod'
 
@@ -83,7 +79,7 @@ enum Fields {
 }
 
 type UserRegisterFormProps = React.HTMLAttributes<HTMLDivElement> & {
-  unidades: Unidade
+  unidades?: Unidade | null
   className?: string
   states: AddressProps[] | null
 }
@@ -103,25 +99,24 @@ export const TabUnidadeDetails = ({
     criteriaMode: 'all',
     resolver: zodResolver(RegisterUserSchema),
     defaultValues: {
-      nome: unidades.name,
-      email: unidades.director.competence + ' - ' + unidades.director.name,
-      cpf: maskCpfCnpj(unidades.cnpj) ?? '',
+      nome: '',
+      email: '',
+      cpf: '',
       data_nascimento: '',
-      telefone: maskPhone(unidades.phone) ?? '',
-      cep: maskZipcode(unidades.companyAddress.zipCode) ?? '',
-      endereco: unidades.companyAddress.address,
-      numero: unidades.companyAddress.number,
-      complemento: unidades.companyAddress.complement,
-      estado: unidades.companyAddress.shortName,
-      cidade: unidades.companyAddress.city,
-      bairro: unidades.companyAddress.district,
+      telefone: '',
+      cep: '',
+      endereco: '',
+      numero: '',
+      complemento: '',
+      estado: '',
+      cidade: '',
+      bairro: '',
       senha: '',
       confirmaSenha: '',
     },
   })
 
   const handleSubmit = (formData: IRegisterUserSchema): void => {
-    console.log('teste')
     startTransition(async () => {
       const result: ResultUserRegistered = await saveUserAction(formData)
       if (result?.data?.id == null) {
@@ -190,38 +185,11 @@ export const TabUnidadeDetails = ({
         <div className="flex items-center">
           <div className="flex w-full items-center justify-between gap-2 p-4 ">
             <h1 className="ml-4 mr-auto text-xl font-bold">Detalhes</h1>
-
-            <div>
-              <TooltipProvider>
-                <Tooltip>
-                  <TooltipTrigger>
-                    <Button
-                      disabled={
-                        session?.id != null &&
-                        +session?.id === +unidades?.director?.id
-                      }
-                      size="sm"
-                      className="h-8 gap-1"
-                      onClick={() => {
-                        setDisabled(!disabled)
-                      }}
-                    >
-                      <LuFolderEdit className="h-3.5 w-3.5" />
-                      <span className="sr-only sm:not-sr-only sm:whitespace-nowrap">
-                        Editar
-                      </span>{' '}
-                    </Button>
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    Necessário ter privilégios para editar
-                  </TooltipContent>
-                </Tooltip>
-              </TooltipProvider>
-            </div>
           </div>
         </div>
         <div className="p-6 md:px-28 md:py-10">
           <Form {...form}>
+            <LoadingPage pending={pending} />
             <form
               /* eslint-disable-next-line @typescript-eslint/no-misused-promises */
               onSubmit={form.handleSubmit(async (data) => {
@@ -232,7 +200,7 @@ export const TabUnidadeDetails = ({
               <div className="grid h-full w-full grid-cols-12 ">
                 <div className="col-start-1 col-end-6 mr-4   hidden h-60 justify-center md:flex">
                   <Image
-                    src={unidades.image}
+                    src={unidades?.image || ''}
                     width={500}
                     height={500}
                     quality={100}
