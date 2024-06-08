@@ -192,7 +192,6 @@ export const TabUnidadeDetails = ({
       type: 'INDENPEDENTE',
     },
   ]
-
   return (
     <>
       <Card x-chunk="dashboard-06-chunk-0">
@@ -227,9 +226,12 @@ export const TabUnidadeDetails = ({
             >
               <div className="grid h-full w-full grid-cols-12 ">
                 <div className="col-start-1 col-end-6 mr-4   hidden h-60 justify-center md:flex">
-                  <EditPhoto srcFile={unidade?.image} />
+                  <EditPhoto
+                    directoryFile={form.getValues('image')}
+                    updateFormExternal={form}
+                  />
                   <Image
-                    src={unidade?.image ?? ''}
+                    src={form.getValues('image') ?? ''}
                     width={500}
                     height={500}
                     quality={100}

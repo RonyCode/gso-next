@@ -5,9 +5,8 @@ import { LuCalendarDays, LuClock, LuUser } from 'react-icons/lu'
 import { MdOutlineMapsHomeWork } from 'react-icons/md'
 import { RiPoliceCarLine } from 'react-icons/ri'
 
-import { type EventProps } from '../../../types/index'
-
 import { cn } from '@/lib/utils'
+import { type EventProps } from '@/types/index'
 import { Badge } from '@/ui/badge'
 import { Card, CardContent, CardHeader, CardTitle } from '@/ui/card'
 import { Label } from '@/ui/label'

@@ -10,7 +10,7 @@ export const GetAllOrganizacao = async (): Promise<Corporation[]> => {
         'Content-Type': 'application/json',
       },
       next: {
-        revalidate: 10,
+        revalidate: 1,
       },
     },
   )

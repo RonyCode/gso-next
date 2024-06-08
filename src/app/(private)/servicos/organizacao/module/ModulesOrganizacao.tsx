@@ -18,7 +18,7 @@ const ModulesOrganizacao = ({
           {organizacao.map((corporation) => (
             <CardModule
               key={corporation.id}
-              title={corporation.name}
+              title={corporation.short_name_corp}
               subtitle={corporation.city + ' - ' + corporation.phone}
               link={`/servicos/organizacao/${corporation.id}`}
               icon={<IconBuild width={54} />}

@@ -93,13 +93,13 @@ export const EditProfileForm = ({
       cpf: maskCpfCnpj(user?.account?.cpf),
       data_nascimento: moment(user?.account?.birthday).format('DD/MM/yyyy'),
       telefone: maskPhone(user?.account?.phone),
-      cep: maskZipcode(user?.address?.zipCode),
+      cep: maskZipcode(user?.address?.zipcode),
       endereco: user?.address?.address,
       complemento: user?.address?.complement,
-      sigla: user?.address?.shortName,
+      sigla: user?.address?.short_name,
       numero: user?.address?.number,
       bairro: user?.address?.district,
-      estado: user?.address?.shortName,
+      estado: user?.address?.short_name,
       cidade: user?.address?.city,
     }
   }

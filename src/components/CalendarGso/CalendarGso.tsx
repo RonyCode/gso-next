@@ -3,13 +3,12 @@
 import { useState } from 'react'
 import { LuArrowBigLeft, LuArrowBigRight } from 'react-icons/lu'
 
-import { type EventProps } from '../../../types/index'
-
 import CalendarGsoGrid from '@/components/CalendarGso/CalendarGsoGrid'
 import { CardListEscala } from '@/components/Cards/CardListEscala'
 import { columnsEscala } from '@/components/DataTables/DataTableEscala/columnsEscala'
 import { DataTableEscala } from '@/components/DataTables/DataTableEscala/data-table-escala'
 import { ModalGso } from '@/components/Modal/ModalGso/ModalGso'
+import { type EventProps } from '@/types/index'
 import { Button } from '@/ui/button'
 
 interface DaysMonthProps {

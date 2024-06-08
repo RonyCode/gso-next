@@ -9,7 +9,7 @@ export async function GET(): Promise<NextResponse> {
         'Content-Type': 'application/json',
       },
       next: {
-        revalidate: 60 * 60 * 24 * 10,
+        revalidate: 1,
       },
     },
   )

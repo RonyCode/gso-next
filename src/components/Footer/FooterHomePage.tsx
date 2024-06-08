@@ -19,7 +19,7 @@ const FooterHomePage = ({
 }: FooterLayoutProps): JSX.Element => {
   return (
     <footer
-      className={cn('  relative bg-secondary pb-6 pt-8', className)}
+      className={cn('   bottom-0 bg-secondary pb-6 pt-8', className)}
       {...props}
     >
       <div className="container mx-auto px-4">

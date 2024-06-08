@@ -1,10 +1,8 @@
 'use client'
-import { type User } from 'next-auth'
-import { useSession } from 'next-auth/react'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
-import React, { useEffect, useState, useTransition } from 'react'
-import { useForm } from 'react-hook-form'
+import React, { useState, useTransition } from 'react'
+import { useForm, type UseFormReturn } from 'react-hook-form'
 import { LuCamera, LuCheckCircle } from 'react-icons/lu'
 
 import LoadingPage from '@/components/Loadings/LoadingPage'
@@ -35,12 +33,14 @@ import axios, { type AxiosProgressEvent } from 'axios'
 
 type EditPhotoProps = {
   className?: string
-  srcFile?: string
+  directoryFile?: string
+  updateFormExternal?: UseFormReturn
 } & React.ComponentProps<typeof Dialog>
 
 export const EditPhoto = ({
   className,
-  srcFile,
+  directoryFile,
+  updateFormExternal,
   ...props
 }: EditPhotoProps): JSX.Element => {
   const [pending, startTransition] = useTransition()
@@ -48,25 +48,6 @@ export const EditPhoto = ({
   const [file, setFile] = useState<File | null>(null)
   const [open, setOpen] = useState(false)
   const [percent, setPercent] = useState<number | null>(0)
-  const { data: session, update } = useSession()
-  const [user, setUser] = useState<User>({
-    id: '',
-    id_message: '',
-    id_corporation: '',
-    id_company: '',
-    nome: '',
-    name: '',
-    email: '',
-    image: '',
-    picture: '',
-    senha: '',
-    token: '',
-    access_token: '',
-    refresh_token: '',
-    date_expires_token: 0,
-    date_creation_token: 0,
-    expires_at: 0,
-  })
   const router = useRouter()
 
   const form = useForm<IFileSchema>({
@@ -81,19 +62,15 @@ export const EditPhoto = ({
 
   const fileRef = form.register('file_image')
 
-  // 2. Define a submit handler.
   const handleSubmit = (data: IFileSchema): void => {
     startTransition(async () => {
-      const token = session?.token
-
       const response = await axios.post(
         `${process.env.NEXT_PUBLIC_API_GSO}/services/upload`,
-        { file: data.file_image, srcfile: srcFile },
+        { file: data.file_image, directoryFile },
         {
           onUploadProgress,
           headers: {
             'Content-Type': 'multipart/form-data',
-            Authorization: `Bearer ${token}`,
           },
         },
       )
@@ -105,14 +82,10 @@ export const EditPhoto = ({
             'Foto de usuário não atualizada, verifique tamanho ou extensão de arquivo enviado',
         })
       }
-      if (response?.status === 202) {
-        await update({
-          ...user,
-          image:
-            process.env.NEXT_PUBLIC_API_GSO +
-            '/public/storage/image/' +
-            response.data.data,
-        })
+
+      updateFormExternal?.setValue('image', response.data.data)
+
+      if (response?.status === 200) {
         setOpen(false)
         handleResetValues()
         router.refresh()
@@ -146,18 +119,13 @@ export const EditPhoto = ({
       setPreviewUrl(null)
     }
   }
+
   const handleResetValues = (): void => {
     setFile(null)
     setPercent(0)
     setPreviewUrl(null)
     form.resetField('file_image')
   }
-
-  useEffect(() => {
-    if (session != null) {
-      setUser(session.user as User)
-    }
-  }, [session])
 
   return (
     <>
@@ -174,19 +142,13 @@ export const EditPhoto = ({
           <DialogHeader>
             <DialogTitle>Alterar imagem</DialogTitle>
             <DialogDescription>
-              Selecione uma foto que não seja maior que 2MB{' '}
+              Selecione um arquivo que não seja maior que 2MB{' '}
             </DialogDescription>
           </DialogHeader>
           <div className="grid gap-4 ">
             <LoadingPage pending={pending} />
             <Form {...form}>
-              <form
-                /* eslint-disable-next-line @typescript-eslint/no-misused-promises */
-                onSubmit={form.handleSubmit(async (data) => {
-                  handleSubmit(data)
-                })}
-                className="w-full"
-              >
+              <form className="w-full">
                 <FormField
                   control={form.control}
                   name="file_image"
@@ -253,7 +215,11 @@ export const EditPhoto = ({
                   </DialogClose>
                 ) : (
                   <Button
-                    type="submit"
+                    /* eslint-disable-next-line @typescript-eslint/no-misused-promises */
+                    onClick={form.handleSubmit(async (data) => {
+                      handleSubmit(data)
+                    })}
+                    type="button"
                     variant="default"
                     className="float-end mt-4"
                     disabled={pending || file == null}
