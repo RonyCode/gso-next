@@ -56,7 +56,7 @@ const BreadcrumbGso = (): ReactElement => {
                 href={link}
                 className="m-0 p-0 text-sm font-light md:font-medium"
               >
-                {item.charAt(0).toUpperCase() + item.slice(1)}
+                {item.charAt(0).toUpperCase() + item.slice(1).toLowerCase()}
               </Link>
             </BreadcrumbItem>
           )

@@ -2,8 +2,9 @@
 
 import { useRef } from 'react'
 
-import { type UserType } from '../../../types/index'
 import { useUserStore } from './userStore'
+
+import { type UserType } from '@/types/index'
 
 interface InitializeProps {
   user: UserType

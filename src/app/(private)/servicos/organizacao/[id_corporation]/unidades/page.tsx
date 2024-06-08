@@ -11,7 +11,7 @@ const Unidades = async ({
 }: {
   params: { id_corporation: string }
 }): Promise<JSX.Element> => {
-  const { companies } = await getAllUnidades(params.id_corporation)
+  const { data } = await getAllUnidades(params.id_corporation)
   return (
     <>
       <CardDefault
@@ -20,12 +20,9 @@ const Unidades = async ({
         image="https://www.designi.com.br/images/preview/11149946-m.jpg"
         icon={<LuBuilding />}
       >
-        {companies !== null && companies !== undefined && (
+        {data !== null && data !== undefined && (
           <div className=" grid flex-1 items-start p-6 ">
-            <DataTableUnidades
-              data={companies as []}
-              columns={columnsUnidades}
-            />
+            <DataTableUnidades data={data} columns={columnsUnidades} />
           </div>
         )}
       </CardDefault>

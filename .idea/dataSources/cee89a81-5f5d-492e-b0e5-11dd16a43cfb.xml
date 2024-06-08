@@ -1011,7 +1011,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
     <schema id="292" parent="1" name="wsgsoHomologacao">
-      <LastIntrospectionLocalTimestamp>2024-05-30.15:25:08</LastIntrospectionLocalTimestamp>
+      <LastIntrospectionLocalTimestamp>2024-06-04.15:02:35</LastIntrospectionLocalTimestamp>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
     <schema id="293" parent="1" name="intranet">
@@ -1291,7 +1291,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
     <column id="354" parent="303" name="id">
-      <AutoIncrement>25</AutoIncrement>
+      <AutoIncrement>26</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -1300,108 +1300,111 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <DasType>varchar(200)|0s</DasType>
       <Position>2</Position>
     </column>
-    <column id="356" parent="303" name="cnpj">
+    <column id="356" parent="303" name="short_name">
       <DasType>varchar(45)|0s</DasType>
       <Position>3</Position>
     </column>
-    <column id="357" parent="303" name="phone">
-      <DasType>varchar(20)|0s</DasType>
+    <column id="357" parent="303" name="cnpj">
+      <DasType>varchar(45)|0s</DasType>
       <Position>4</Position>
     </column>
-    <column id="358" parent="303" name="director">
-      <DasType>int|0s</DasType>
+    <column id="358" parent="303" name="phone">
+      <DasType>varchar(20)|0s</DasType>
       <Position>5</Position>
     </column>
-    <column id="359" parent="303" name="manager">
+    <column id="359" parent="303" name="director">
       <DasType>int|0s</DasType>
       <Position>6</Position>
     </column>
-    <column id="360" parent="303" name="image">
-      <DasType>text|0s</DasType>
+    <column id="360" parent="303" name="manager">
+      <DasType>int|0s</DasType>
       <Position>7</Position>
     </column>
-    <column id="361" parent="303" name="address">
-      <DasType>varchar(220)|0s</DasType>
-      <Hidden>1</Hidden>
+    <column id="361" parent="303" name="image">
+      <DasType>text|0s</DasType>
       <Position>8</Position>
     </column>
-    <column id="362" parent="303" name="number">
-      <DasType>varchar(45)|0s</DasType>
+    <column id="362" parent="303" name="address">
+      <DasType>varchar(220)|0s</DasType>
       <Position>9</Position>
     </column>
-    <column id="363" parent="303" name="zipcode">
+    <column id="363" parent="303" name="number">
       <DasType>varchar(45)|0s</DasType>
       <Position>10</Position>
     </column>
-    <column id="364" parent="303" name="complement">
-      <DasType>varchar(220)|0s</DasType>
+    <column id="364" parent="303" name="zipcode">
+      <DasType>varchar(45)|0s</DasType>
       <Position>11</Position>
     </column>
-    <column id="365" parent="303" name="district">
-      <DasType>varchar(200)|0s</DasType>
+    <column id="365" parent="303" name="complement">
+      <DasType>varchar(220)|0s</DasType>
       <Position>12</Position>
     </column>
-    <column id="366" parent="303" name="city">
+    <column id="366" parent="303" name="district">
       <DasType>varchar(200)|0s</DasType>
       <Position>13</Position>
     </column>
-    <column id="367" parent="303" name="state">
+    <column id="367" parent="303" name="city">
       <DasType>varchar(200)|0s</DasType>
       <Position>14</Position>
     </column>
-    <column id="368" parent="303" name="excluded">
-      <DasType>int|0s</DasType>
+    <column id="368" parent="303" name="state">
+      <DasType>varchar(200)|0s</DasType>
       <Position>15</Position>
     </column>
-    <index id="369" parent="303" name="PRIMARY">
+    <column id="369" parent="303" name="excluded">
+      <DasType>int|0s</DasType>
+      <Position>16</Position>
+    </column>
+    <index id="370" parent="303" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="370" parent="303" name="PRIMARY">
+    <key id="371" parent="303" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="371" parent="304" name="id">
-      <AutoIncrement>27</AutoIncrement>
+    <column id="372" parent="304" name="id">
+      <AutoIncrement>28</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="372" parent="304" name="state">
+    <column id="373" parent="304" name="state">
       <DasType>varchar(220)|0s</DasType>
       <Position>2</Position>
     </column>
-    <column id="373" parent="304" name="short_name">
+    <column id="374" parent="304" name="short_name">
       <DasType>varchar(2)|0s</DasType>
       <Position>3</Position>
     </column>
-    <index id="374" parent="304" name="PRIMARY">
+    <index id="375" parent="304" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="375" parent="304" name="PRIMARY">
+    <key id="376" parent="304" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="376" parent="305" name="id">
+    <column id="377" parent="305" name="id">
       <AutoIncrement>1</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="377" parent="305" name="description">
+    <column id="378" parent="305" name="description">
       <DasType>varchar(45)|0s</DasType>
       <Position>2</Position>
     </column>
-    <column id="378" parent="305" name="amount">
+    <column id="379" parent="305" name="amount">
       <DasType>varchar(45)|0s</DasType>
       <Position>3</Position>
     </column>
-    <column id="379" parent="305" name="status">
+    <column id="380" parent="305" name="status">
       <Comment>1=NEW
 2=USED
 3=DAMAGED
@@ -1409,108 +1412,108 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <DasType>int|0s</DasType>
       <Position>4</Position>
     </column>
-    <column id="380" parent="305" name="excluded">
+    <column id="381" parent="305" name="excluded">
       <DasType>int|0s</DasType>
       <Position>5</Position>
     </column>
-    <index id="381" parent="305" name="PRIMARY">
+    <index id="382" parent="305" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="382" parent="305" name="PRIMARY">
+    <key id="383" parent="305" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="383" parent="306" name="id">
-      <AutoIncrement>16</AutoIncrement>
+    <column id="384" parent="306" name="id">
+      <AutoIncrement>20</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="384" parent="306" name="id_company">
+    <column id="385" parent="306" name="id_company">
       <DasType>int|0s</DasType>
       <Position>2</Position>
     </column>
-    <column id="385" parent="306" name="id_car">
+    <column id="386" parent="306" name="id_car">
       <DasType>int|0s</DasType>
       <Position>3</Position>
     </column>
-    <column id="386" parent="306" name="id_schedule">
+    <column id="387" parent="306" name="id_schedule">
       <DasType>int|0s</DasType>
       <Position>4</Position>
     </column>
-    <column id="387" parent="306" name="id_function">
+    <column id="388" parent="306" name="id_function">
       <DasType>int|0s</DasType>
       <Position>5</Position>
     </column>
-    <column id="388" parent="306" name="id_user">
+    <column id="389" parent="306" name="id_user">
       <DasType>int|0s</DasType>
       <Position>6</Position>
     </column>
-    <column id="389" parent="306" name="competence">
+    <column id="390" parent="306" name="competence">
       <DasType>varchar(45)|0s</DasType>
       <Position>7</Position>
     </column>
-    <column id="390" parent="306" name="status">
+    <column id="391" parent="306" name="status">
       <DasType>int|0s</DasType>
       <Position>8</Position>
     </column>
-    <column id="391" parent="306" name="entry_date">
+    <column id="392" parent="306" name="entry_date">
       <DasType>datetime|0s</DasType>
       <Position>9</Position>
     </column>
-    <column id="392" parent="306" name="excluded">
+    <column id="393" parent="306" name="excluded">
       <DasType>int|0s</DasType>
       <DefaultExpression>0</DefaultExpression>
       <Position>10</Position>
     </column>
-    <index id="393" parent="306" name="PRIMARY">
+    <index id="394" parent="306" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="394" parent="306" name="cod_user_UNIQUE">
+    <index id="395" parent="306" name="cod_user_UNIQUE">
       <ColNames>id_user</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="395" parent="306" name="PRIMARY">
+    <key id="396" parent="306" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <key id="396" parent="306" name="cod_user_UNIQUE">
+    <key id="397" parent="306" name="cod_user_UNIQUE">
       <UnderlyingIndexName>cod_user_UNIQUE</UnderlyingIndexName>
     </key>
-    <column id="397" parent="307" name="id">
+    <column id="398" parent="307" name="id">
       <AutoIncrement>72</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="398" parent="307" name="id_company">
+    <column id="399" parent="307" name="id_company">
       <DasType>int|0s</DasType>
       <Position>2</Position>
     </column>
-    <column id="399" parent="307" name="id_member_creator">
+    <column id="400" parent="307" name="id_member_creator">
       <DasType>int|0s</DasType>
       <Position>3</Position>
     </column>
-    <column id="400" parent="307" name="date">
+    <column id="401" parent="307" name="date">
       <DasType>datetime|0s</DasType>
       <Position>4</Position>
     </column>
-    <column id="401" parent="307" name="hour_start">
+    <column id="402" parent="307" name="hour_start">
       <DasType>time|0s</DasType>
       <Position>5</Position>
     </column>
-    <column id="402" parent="307" name="hour_finish">
+    <column id="403" parent="307" name="hour_finish">
       <DasType>time|0s</DasType>
       <Position>6</Position>
     </column>
-    <column id="403" parent="307" name="team">
+    <column id="404" parent="307" name="team">
       <Comment>1=ALFA
 2=BRAVO
 3=CHARLIE
@@ -1518,259 +1521,259 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <DasType>int|0s</DasType>
       <Position>7</Position>
     </column>
-    <column id="404" parent="307" name="situation">
+    <column id="405" parent="307" name="situation">
       <DasType>int|0s</DasType>
       <Position>8</Position>
     </column>
-    <column id="405" parent="307" name="type">
+    <column id="406" parent="307" name="type">
       <Comment>1=NORMAL
 2=EXTRA</Comment>
       <DasType>int|0s</DasType>
       <Position>9</Position>
     </column>
-    <column id="406" parent="307" name="status">
+    <column id="407" parent="307" name="status">
       <Comment>1=PUBLISHED
 2=WAITING</Comment>
       <DasType>int|0s</DasType>
       <Position>10</Position>
     </column>
-    <column id="407" parent="307" name="date_creation">
+    <column id="408" parent="307" name="date_creation">
       <DasType>datetime|0s</DasType>
       <Position>11</Position>
     </column>
-    <column id="408" parent="307" name="obs">
+    <column id="409" parent="307" name="obs">
       <DasType>text|0s</DasType>
       <Position>12</Position>
     </column>
-    <column id="409" parent="307" name="excluded">
+    <column id="410" parent="307" name="excluded">
       <DasType>int|0s</DasType>
       <Position>13</Position>
     </column>
-    <index id="410" parent="307" name="PRIMARY">
+    <index id="411" parent="307" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="411" parent="307" name="PRIMARY">
+    <key id="412" parent="307" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="412" parent="308" name="id">
+    <column id="413" parent="308" name="id">
       <AutoIncrement>1</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="413" parent="308" name="id_user">
+    <column id="414" parent="308" name="id_user">
       <DasType>int|0s</DasType>
       <Position>2</Position>
     </column>
-    <column id="414" parent="308" name="token">
+    <column id="415" parent="308" name="token">
       <DasType>text|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="415" parent="308" name="refresh_token">
+    <column id="416" parent="308" name="refresh_token">
       <DasType>text|0s</DasType>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <column id="416" parent="308" name="date_criation">
+    <column id="417" parent="308" name="date_criation">
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>5</Position>
     </column>
-    <column id="417" parent="308" name="date_expires">
+    <column id="418" parent="308" name="date_expires">
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>6</Position>
     </column>
-    <column id="418" parent="308" name="excluded">
+    <column id="419" parent="308" name="excluded">
       <DasType>int|0s</DasType>
       <DefaultExpression>0</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>7</Position>
     </column>
-    <index id="419" parent="308" name="PRIMARY">
+    <index id="420" parent="308" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="420" parent="308" name="user_idx">
+    <index id="421" parent="308" name="user_idx">
       <ColNames>id_user</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="421" parent="308" name="PRIMARY">
+    <key id="422" parent="308" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="422" parent="309" name="id">
-      <AutoIncrement>3</AutoIncrement>
+    <column id="423" parent="309" name="id">
+      <AutoIncrement>15</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="423" parent="309" name="name">
+    <column id="424" parent="309" name="name">
       <DasType>varchar(220)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="424" parent="309" name="cpf">
+    <column id="425" parent="309" name="cpf">
       <DasType>varchar(220)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="425" parent="309" name="email">
+    <column id="426" parent="309" name="email">
       <DasType>varchar(200)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <column id="426" parent="309" name="birthday">
+    <column id="427" parent="309" name="birthday">
       <DasType>datetime|0s</DasType>
       <NotNull>1</NotNull>
       <Position>5</Position>
     </column>
-    <column id="427" parent="309" name="date_register_user">
+    <column id="428" parent="309" name="date_register_user">
       <DasType>datetime|0s</DasType>
       <NotNull>1</NotNull>
       <Position>6</Position>
     </column>
-    <column id="428" parent="309" name="is_user_external">
+    <column id="429" parent="309" name="is_user_external">
       <DasType>int|0s</DasType>
       <DefaultExpression>0</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>7</Position>
     </column>
-    <column id="429" parent="309" name="phone">
+    <column id="430" parent="309" name="phone">
       <DasType>varchar(20)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>8</Position>
     </column>
-    <column id="430" parent="309" name="password">
+    <column id="431" parent="309" name="password">
       <DasType>text|0s</DasType>
       <NotNull>1</NotNull>
       <Position>9</Position>
     </column>
-    <column id="431" parent="309" name="image">
+    <column id="432" parent="309" name="image">
       <Comment>
 </Comment>
       <DasType>text|0s</DasType>
       <Position>10</Position>
     </column>
-    <column id="432" parent="309" name="address">
+    <column id="433" parent="309" name="address">
       <DasType>varchar(200)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>11</Position>
     </column>
-    <column id="433" parent="309" name="number">
+    <column id="434" parent="309" name="number">
       <DasType>varchar(45)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>12</Position>
     </column>
-    <column id="434" parent="309" name="zipcode">
+    <column id="435" parent="309" name="zipcode">
       <DasType>varchar(45)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>13</Position>
     </column>
-    <column id="435" parent="309" name="complement">
+    <column id="436" parent="309" name="complement">
       <DasType>varchar(200)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>14</Position>
     </column>
-    <column id="436" parent="309" name="district">
+    <column id="437" parent="309" name="district">
       <DasType>varchar(200)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>15</Position>
     </column>
-    <column id="437" parent="309" name="city">
+    <column id="438" parent="309" name="city">
       <DasType>varchar(200)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>16</Position>
     </column>
-    <column id="438" parent="309" name="state">
+    <column id="439" parent="309" name="state">
       <DasType>varchar(200)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>17</Position>
     </column>
-    <column id="439" parent="309" name="state_shortname">
+    <column id="440" parent="309" name="state_shortname">
       <DasType>varchar(45)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>18</Position>
     </column>
-    <column id="440" parent="309" name="role">
+    <column id="441" parent="309" name="role">
       <DasType>varchar(45)|0s</DasType>
       <DefaultExpression>&apos;user&apos;</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>19</Position>
     </column>
-    <column id="441" parent="309" name="date_granted_role">
+    <column id="442" parent="309" name="date_granted_role">
       <DasType>datetime|0s</DasType>
       <NotNull>1</NotNull>
       <Position>20</Position>
     </column>
-    <column id="442" parent="309" name="date_expires_role">
+    <column id="443" parent="309" name="date_expires_role">
       <DasType>datetime|0s</DasType>
       <NotNull>1</NotNull>
       <Position>21</Position>
     </column>
-    <column id="443" parent="309" name="granted_by_iduser">
+    <column id="444" parent="309" name="granted_by_iduser">
       <DasType>int|0s</DasType>
       <DefaultExpression>0</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>22</Position>
     </column>
-    <column id="444" parent="309" name="token">
+    <column id="445" parent="309" name="token">
       <DasType>text|0s</DasType>
       <NotNull>1</NotNull>
       <Position>23</Position>
     </column>
-    <column id="445" parent="309" name="refresh_token">
+    <column id="446" parent="309" name="refresh_token">
       <DasType>text|0s</DasType>
       <NotNull>1</NotNull>
       <Position>24</Position>
     </column>
-    <column id="446" parent="309" name="date_criation_token">
+    <column id="447" parent="309" name="date_criation_token">
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>25</Position>
     </column>
-    <column id="447" parent="309" name="date_expires_token">
+    <column id="448" parent="309" name="date_expires_token">
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>26</Position>
     </column>
-    <column id="448" parent="309" name="excluded">
+    <column id="449" parent="309" name="excluded">
       <DasType>int|0s</DasType>
       <DefaultExpression>0</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>27</Position>
     </column>
-    <index id="449" parent="309" name="PRIMARY">
+    <index id="450" parent="309" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="450" parent="309" name="cpf_UNIQUE">
+    <index id="451" parent="309" name="cpf_UNIQUE">
       <ColNames>cpf</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="451" parent="309" name="email_UNIQUE">
+    <index id="452" parent="309" name="email_UNIQUE">
       <ColNames>email</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="452" parent="309" name="PRIMARY">
+    <key id="453" parent="309" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <key id="453" parent="309" name="cpf_UNIQUE">
+    <key id="454" parent="309" name="cpf_UNIQUE">
       <UnderlyingIndexName>cpf_UNIQUE</UnderlyingIndexName>
     </key>
-    <key id="454" parent="309" name="email_UNIQUE">
+    <key id="455" parent="309" name="email_UNIQUE">
       <UnderlyingIndexName>email_UNIQUE</UnderlyingIndexName>
     </key>
   </database-model>

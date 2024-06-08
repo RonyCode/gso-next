@@ -59,24 +59,24 @@ export const statuses = [
 export const types = [
   {
     label: 'UNIDADE',
-    value: '1',
+    value: 1,
     icon: LuHome,
   },
   {
     label: 'BATALHÃO',
-    value: '2',
+    value: 2,
     icon: LuHotel,
   },
 
   {
     label: 'COMANDO',
-    value: '3',
+    value: 3,
     icon: LuLandmark,
   },
 
   {
     label: 'INDEPENDENTE',
-    value: '4',
+    value: 4,
     icon: LuFlag,
   },
 ]

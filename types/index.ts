@@ -126,12 +126,12 @@ export interface EscalaProps {
 export interface Address {
   address: string
   number: string
-  zipCode: string
+  zipcode: string
   complement: string
   district: string
   city: string
   state: string
-  shortName: string
+  short_name: string
 }
 
 export interface Profile {
@@ -151,6 +151,7 @@ export interface TokenUser {
 export interface Corporation {
   id: number
   name: string
+  short_name_corp: string
   cnpj: string
   phone: string
   director: number
@@ -164,37 +165,28 @@ export interface Corporation {
   city: string
   state: string
 }
+export interface Unidades {
+  companies: Unidade[]
+}
 export interface Unidade {
-  idCorporation: string
+  id: number
   id_corporation: number
-  idCompany: string
   id_company: number
   name: string
   cnpj: string
   image: string
-  dateCreation: string
   date_creation: string
   phone: string
   type: number
   director: Member
   manager: Member
-  managerCompany: Unidade
   manager_company: Unidade
-  directorCompany: Unidade
   director_company: Unidade
   companyAddress: Address
   companyMembers: Member[]
-  company_members: Member[]
   companyCars: Car[]
-  company_cars: Car[]
   companySchedules: Schedule[]
-  company_schedules: Schedule[]
   companyMaterials: []
-  company_materials: []
-}
-
-export interface Companies {
-  companies: Unidade[]
 }
 
 export interface UserType {
@@ -301,11 +293,11 @@ export interface ResultSignIn {
   date_expires_token: number
 }
 
-export interface ResultError {
-  error: string
-  ok: boolean
-  status: number
-  data: null
+export interface ResponseApi<T> {
+  data: T
+  status: string
+  code: number
+  message: string
 }
 
 export interface DataUserRegistered {

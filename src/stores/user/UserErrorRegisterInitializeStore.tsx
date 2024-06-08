@@ -2,8 +2,9 @@
 
 import { useRef } from 'react'
 
-import { type UserType } from '../../../types/index'
 import { userErrorRegisterStore } from './userErrorRegisterStore'
+
+import { type UserType } from '@/types/index'
 
 interface InitializeProps {
   userError: UserType

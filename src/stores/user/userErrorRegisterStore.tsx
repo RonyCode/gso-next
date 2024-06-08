@@ -1,5 +1,4 @@
-import { type UserType } from '../../../types/index'
-
+import { type UserType } from '@/types/index'
 import { create } from 'zustand'
 
 interface UserStore {
@@ -7,7 +6,7 @@ interface UserStore {
   add: (user: UserType) => void
 }
 
-export const userErrorRegisterStore = create<UserStore>()((set) => {
+export const userErrorRegisterStore = create<UserStore>()((set): UserStore => {
   return {
     user: {
       nome: '',
@@ -34,12 +33,12 @@ export const userErrorRegisterStore = create<UserStore>()((set) => {
       address: {
         address: '',
         number: '',
-        zipCode: '',
+        zipcode: '',
         complement: '',
         district: '',
         city: '',
         state: '',
-        shortName: '',
+        short_name: '',
       },
       profile: {
         role: '',

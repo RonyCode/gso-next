@@ -5,9 +5,57 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4467a1d6-73df-479e-9cc5-8e8cf1a18f4d" name="Changes" comment="refatorando com organizações">
+      <change afterPath="$PROJECT_DIR$/public/icons/IconList.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/icons/IconList.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/icons/checklist.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/icons/checklist.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/icons/list.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/(private)/servicos/organizacao/[id_corporation]/unidades/saveUnidadeAction.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/api/cidades/route.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/functions/SearchArray.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/functions/masks/maskDateBr.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/functions/masks/maskDateMysql.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lib/GetAllCities.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/schemas/AddressSchema.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/schemas/MemberSchema.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/schemas/ScheduleSchema.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/schemas/UnidadeSchema.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env.local" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env.production" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/cee89a81-5f5d-492e-b0e5-11dd16a43cfb.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/cee89a81-5f5d-492e-b0e5-11dd16a43cfb.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/icons/IconPrivileges.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/public/icons/IconPrivileges.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/actions/GetUserNotificationAction.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/actions/GetUserNotificationAction.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(auth)/cadastro-usuario/[token]/components/UserRegisterForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(auth)/cadastro-usuario/[token]/components/UserRegisterForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(private)/servicos/organizacao/[id_corporation]/nova-unidade/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/servicos/organizacao/[id_corporation]/nova-unidade/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(private)/servicos/organizacao/[id_corporation]/unidades/[id]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/servicos/organizacao/[id_corporation]/unidades/[id]/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(private)/servicos/organizacao/[id_corporation]/unidades/component/TabUnidadeDetails.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/servicos/organizacao/[id_corporation]/unidades/component/TabUnidadeDetails.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(private)/servicos/organizacao/[id_corporation]/unidades/component/UnidadesForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/servicos/organizacao/[id_corporation]/unidades/component/UnidadesForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(private)/servicos/organizacao/[id_corporation]/unidades/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/servicos/organizacao/[id_corporation]/unidades/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(private)/servicos/organizacao/module/ModulesMinhaOrganizacao.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/servicos/organizacao/module/ModulesMinhaOrganizacao.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(private)/servicos/organizacao/module/ModulesOrganizacao.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/servicos/organizacao/module/ModulesOrganizacao.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(public)/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(public)/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/api/organizacao/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/api/organizacao/route.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/api/unidade/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/api/unidade/route.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/api/unidades/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/api/unidades/route.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/BreadCrumbGso/BreadcrumbGso.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/BreadCrumbGso/BreadcrumbGso.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/DataTables/DataTableUnidades/columnsUnidades.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DataTables/DataTableUnidades/columnsUnidades.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/DataTables/DataTableUnidades/data/data.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DataTables/DataTableUnidades/data/data.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/EditPhoto/EditPhoto.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/EditPhoto/EditPhoto.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/GetAllOrganizacao.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/GetAllOrganizacao.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/GetAllUnidades.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/GetAllUnidades.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/GetUnidadeById.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/GetUnidadeById.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/getAllStates.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/getAllStates.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/getCep.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/getCep.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/middleware.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/middleware.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/stores/user/UserErrorRegisterInitializeStore.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/stores/user/UserErrorRegisterInitializeStore.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/stores/user/UserNotification.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/stores/user/UserNotification.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/stores/user/useNotificationStore.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/stores/user/useNotificationStore.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/stores/user/userErrorRegisterStore.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/stores/user/userErrorRegisterStore.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/stores/user/userNotifcationStoreInitialize.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/stores/user/userNotifcationStoreInitialize.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/stores/user/userStore.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/stores/user/userStore.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/stores/user/userStoreInitialize.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/stores/user/userStoreInitialize.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/types/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/types/index.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,8 +65,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="TypeScript File" />
         <option value="TypeScript JSX File" />
+        <option value="TypeScript File" />
       </list>
     </option>
   </component>
@@ -60,7 +108,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;dev&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/rony/web/gso-next/public/icons&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/rony/web/gso-next/src/functions/masks&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.stylelint&quot;: &quot;true&quot;,
@@ -92,9 +140,10 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/functions/masks" />
+      <recent name="$PROJECT_DIR$/src/schemas" />
       <recent name="$PROJECT_DIR$/public/icons" />
       <recent name="$PROJECT_DIR$/src/app/(private)/servicos/organizacao/module" />
-      <recent name="$PROJECT_DIR$/src/functions/masks" />
       <recent name="$PROJECT_DIR$/src/functions" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -136,7 +185,22 @@
       <workItem from="1717189329383" duration="19648000" />
       <workItem from="1717341121292" duration="9848000" />
       <workItem from="1717351539805" duration="4303000" />
-      <workItem from="1717428315315" duration="3191000" />
+      <workItem from="1717428315315" duration="4171000" />
+      <workItem from="1717432535991" duration="3513000" />
+      <workItem from="1717504840511" duration="5935000" />
+      <workItem from="1717513155361" duration="10294000" />
+      <workItem from="1717531796684" duration="6549000" />
+      <workItem from="1717594204655" duration="4000" />
+      <workItem from="1717602327743" duration="1951000" />
+      <workItem from="1717620159523" duration="6310000" />
+      <workItem from="1717671005269" duration="6437000" />
+      <workItem from="1717680623473" duration="29000" />
+      <workItem from="1717687032070" duration="1690000" />
+      <workItem from="1717705312423" duration="7145000" />
+      <workItem from="1717722643704" duration="8177000" />
+      <workItem from="1717767578070" duration="11192000" />
+      <workItem from="1717788021419" duration="11386000" />
+      <workItem from="1717806661905" duration="1919000" />
     </task>
     <task id="LOCAL-00001" summary="refatorando com eslint">
       <option name="closed" value="true" />
@@ -266,7 +330,23 @@
       <option name="project" value="LOCAL" />
       <updated>1717431197064</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="refatorando com organizações">
+      <option name="closed" value="true" />
+      <created>1717431594620</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1717431594620</updated>
+    </task>
+    <task id="LOCAL-00018" summary="refatorando com organizações">
+      <option name="closed" value="true" />
+      <created>1717431601602</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1717431601602</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -305,7 +385,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="origin/dev" />
+                        <option value="dev" />
                       </list>
                     </value>
                   </entry>

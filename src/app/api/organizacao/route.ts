@@ -8,6 +8,9 @@ export async function GET(): Promise<NextResponse> {
       headers: {
         'Content-Type': 'application/json',
       },
+      next: {
+        revalidate: 60 * 60 * 24 * 10,
+      },
     },
   )
   if (!res.ok) {
@@ -16,6 +19,6 @@ export async function GET(): Promise<NextResponse> {
       { status: res.status },
     )
   }
-  const { companies } = await res.json()
-  return NextResponse.json(companies)
+  const { corporations } = await res.json()
+  return NextResponse.json(corporations)
 }

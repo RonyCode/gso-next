@@ -1,13 +1,8 @@
-'use client'
-
-import React from 'react'
-
-import {
-  type AddressProps,
-  type Unidade,
-} from '../../../../../../../../types/index'
+import React, { use } from 'react'
 
 import TabUnidadeDetails from '@/app/(private)/servicos/organizacao/[id_corporation]/unidades/component/TabUnidadeDetails'
+import { getAllStates } from '@/lib/getAllStates'
+import { getUnidadeById } from '@/lib/GetUnidadeById'
 import {
   Card,
   CardContent,
@@ -19,18 +14,17 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/ui/tabs'
 
 type UserRegisterFormProps = React.HTMLAttributes<HTMLDivElement> & {
-  unidades: Unidade
   className?: string
-  states: AddressProps[] | null
+  params: { id: string; id_corporation: string }
 }
 
 export const UnidadesForm = ({
-  unidades,
-  // eslint-disable-next-line react/prop-types
   className,
-  states,
+  params,
   ...props
 }: UserRegisterFormProps): JSX.Element => {
+  const { data } = use(getUnidadeById(params.id_corporation, params.id))
+  const states = use(getAllStates())
   return (
     <main className="grid flex-1 items-start">
       <Tabs defaultValue="dadosGerais">
@@ -43,7 +37,7 @@ export const UnidadesForm = ({
           </TabsList>
         </div>{' '}
         <TabsContent value="dadosGerais">
-          <TabUnidadeDetails unidades={unidades} states={states} />
+          <TabUnidadeDetails unidade={data} states={states} />
         </TabsContent>
         <TabsContent value="efetivo">
           <Card x-chunk="dashboard-06-chunk-0">

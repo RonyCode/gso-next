@@ -4,12 +4,11 @@ import React from 'react'
 import { FaRegAddressCard } from 'react-icons/fa'
 import { LuBuilding2, LuPhone } from 'react-icons/lu'
 
-import { type Unidade } from '../../../../types/index'
-
 import { DataTableColumnHeader } from '@/components/DataTables/DataTableUnidades/data-table-column-header'
 import { DataTableRowActions } from '@/components/DataTables/DataTableUnidades/data-table-row-actions'
 import { types } from '@/components/DataTables/DataTableUnidades/data/data'
 import { maskCpfCnpj } from '@/functions/masks/maskCpfCnpj'
+import { type Unidade } from '@/types/index'
 import { Badge } from '@/ui/badge'
 import { Avatar, AvatarFallback, AvatarImage } from '@radix-ui/react-avatar'
 import { type ColumnDef } from '@tanstack/react-table'
@@ -52,7 +51,7 @@ export const columnsUnidades: Array<ColumnDef<Unidade>> = [
     cell: ({ row }) => {
       return (
         <>
-          <div className="flex w-64 items-center space-x-2 text-[0.9rem] text-muted-foreground">
+          <div className="flex w-64 items-center space-x-2 text-[0.8500rem] text-muted-foreground">
             <Avatar
               className="flex h-10 w-10 items-center justify-center  rounded-full shadow-sm shadow-foreground transition-all
                         duration-300 hover:scale-[200%] md:h-20 md:w-20"
@@ -63,7 +62,7 @@ export const columnsUnidades: Array<ColumnDef<Unidade>> = [
               />
               <AvatarFallback>{<LuBuilding2 size={36} />}</AvatarFallback>
             </Avatar>
-            <div className="flex flex-col justify-center">
+            <div className="flex flex-col justify-center ">
               <div>
                 <div className="flex items-center  p-1">
                   {' '}
@@ -73,7 +72,7 @@ export const columnsUnidades: Array<ColumnDef<Unidade>> = [
               </div>
               <div>
                 {' '}
-                <div className="flex items-center  p-1">
+                <div className="flex items-center p-1 ">
                   <FaRegAddressCard size={16} className="mr-2" />{' '}
                   {maskCpfCnpj(row.original.cnpj)}
                 </div>
@@ -150,9 +149,7 @@ export const columnsUnidades: Array<ColumnDef<Unidade>> = [
       <DataTableColumnHeader column={column} title="Tipo" />
     ),
     cell: ({ row }) => {
-      const type = types.find(
-        (type) => type.value === row.getValue('type')?.toString(),
-      )
+      const type = types.find((type) => type.value === row.getValue('type'))
       if (type == null) {
         return null
       }

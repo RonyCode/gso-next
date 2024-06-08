@@ -25,7 +25,7 @@ export default function IconPrivileges({
       {...props}
     >
       <g
-        transform="translate(0.000000,800.000000) scale(0.100000,-0.100000)"
+        transform="translate(0.000000,800.000000) scale(0.1200000,-0.120000)"
         stroke="none"
       >
         <path

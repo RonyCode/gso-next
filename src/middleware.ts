@@ -152,7 +152,70 @@ export async function middleware(request: NextRequest) {
         return response
       }
     } else {
-      return NextResponse.redirect(new URL('/auth/logout', request.url))
+      response.cookies.set({
+        name: 'next-auth.session-token',
+        value: '',
+        httpOnly: true,
+        maxAge: -1,
+        path: '/',
+      })
+
+      response.cookies.set({
+        name: '__Secure-next-auth.session-token',
+        value: '',
+        httpOnly: true,
+        maxAge: -1,
+        path: '/',
+      })
+
+      response.cookies.set({
+        name: 'next-auth.callback-url',
+        value: '',
+        httpOnly: true,
+        maxAge: -1,
+        path: '/',
+      })
+
+      response.cookies.set({
+        name: '__Secure-next-auth.callback-url',
+        value: '',
+        httpOnly: true,
+        maxAge: -1,
+        path: '/',
+      })
+
+      response.cookies.set({
+        name: 'next-auth.csrf-token',
+        value: '',
+        httpOnly: true,
+        maxAge: -1,
+        path: '/',
+      })
+
+      response.cookies.set({
+        name: '__Host-next-auth.csrf-token',
+        value: '',
+        httpOnly: true,
+        maxAge: -1,
+        path: '/',
+      })
+
+      response.cookies.set({
+        name: 'token',
+        value: '',
+        httpOnly: true,
+        maxAge: -1,
+        path: '/',
+      })
+
+      response.cookies.set({
+        name: 'subscription',
+        value: '',
+        httpOnly: true,
+        maxAge: -1,
+        path: '/',
+      })
+      return response
     }
   }
 

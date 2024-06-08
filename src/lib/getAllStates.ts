@@ -1,7 +1,6 @@
-import { type AddressProps } from '../../types'
-
 import { fetchWrapper } from '@/functions/fetch'
 import { stateStore } from '@/stores/Address/stateStore'
+import { type AddressProps } from '@/types/index'
 
 export const getAllStates = async (): Promise<AddressProps[]> => {
   const res = await fetchWrapper<AddressProps[]>(

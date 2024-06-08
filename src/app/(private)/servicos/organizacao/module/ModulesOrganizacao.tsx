@@ -1,11 +1,10 @@
 import React from 'react'
 
-import IconBuild from '../../../../../../public/icons/IconBuild'
-import IconBuildPlus from '../../../../../../public/icons/IconBuildPlus'
-import IconPrivileges from '../../../../../../public/icons/IconPrivileges'
-import { type Corporation } from '../../../../../../types/index'
-
 import { CardModule } from '@/components/Cards/CardModule'
+import IconBuild from '@/icons/IconBuild'
+import IconBuildPlus from '@/icons/IconBuildPlus'
+import IconPrivileges from '@/icons/IconPrivileges'
+import { type Corporation } from '@/types/index'
 
 const ModulesOrganizacao = ({
   organizacao,
@@ -21,7 +20,7 @@ const ModulesOrganizacao = ({
               key={corporation.id}
               title={corporation.name}
               subtitle={corporation.city + ' - ' + corporation.phone}
-              link={`/servicos/organizacao/${corporation.name}`}
+              link={`/servicos/organizacao/${corporation.id}`}
               icon={<IconBuild width={54} />}
             />
           ))}
@@ -35,7 +34,7 @@ const ModulesOrganizacao = ({
             title="Privilégios"
             subtitle="Conceder privilégios"
             link={'/servicos/organizacao/save'}
-            icon={<IconPrivileges width={87} />}
+            icon={<IconPrivileges width={80} />}
           />
         </div>
       </div>

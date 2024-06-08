@@ -3,6 +3,7 @@ import React from 'react'
 import { CardModule } from '@/components/Cards/CardModule'
 import IconBuild from '@/icons/IconBuild'
 import IconBuildPlus from '@/icons/IconBuildPlus'
+import IconList from '@/icons/IconList'
 import IconOpenBook from '@/icons/IconOpenBook'
 import IconPrivileges from '@/icons/IconPrivileges'
 
@@ -31,13 +32,13 @@ const ModulesOrganizacao = ({
             title="Unidades"
             subtitle="Unidades da minha organização"
             link={`/servicos/organizacao/${idcorporation}/unidades`}
-            icon={<IconBuild width={54} className="ml-1" />}
+            icon={<IconList width={64} className="ml-1" />}
           />
           <CardModule
             title="Privilégios"
-            subtitle="Unidades da minha organização"
+            subtitle="Gerenciar privilégios"
             link={'/servicos/organizacao/save'}
-            icon={<IconPrivileges width={87} className="ml-1" />}
+            icon={<IconPrivileges width={80} className="ml-1" />}
           />
           <CardModule
             title="Leis"

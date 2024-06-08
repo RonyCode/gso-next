@@ -1,6 +1,5 @@
-import { type Corporation } from '../../types/index'
-
 import { fetchWrapper } from '@/functions/fetch'
+import { type Corporation } from '@/types/index'
 
 export const GetAllOrganizacao = async (): Promise<Corporation[]> => {
   return await fetchWrapper<Corporation[]>(
@@ -9,6 +8,9 @@ export const GetAllOrganizacao = async (): Promise<Corporation[]> => {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
+      },
+      next: {
+        revalidate: 10,
       },
     },
   )

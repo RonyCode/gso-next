@@ -32,6 +32,9 @@
       "@/icons/*": [
         "./public/icons/*"
       ],
+      "@/types/*": [
+        "./types/*"
+      ],
       "@/styles/*": [
         "./styles/*"
       ],

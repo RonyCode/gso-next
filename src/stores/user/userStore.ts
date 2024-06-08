@@ -11,7 +11,7 @@ interface UserProps {
   actions: ActionsProps
 }
 
-export const useUserStore = create<UserProps>()((set) => {
+export const useUserStore = create<UserProps>()((set): UserProps => {
   return {
     state: {
       user: {
@@ -41,12 +41,12 @@ export const useUserStore = create<UserProps>()((set) => {
         address: {
           address: '',
           number: '',
-          zipCode: '',
+          zipcode: '',
           complement: '',
           district: '',
           city: '',
           state: '',
-          shortName: '',
+          short_name: '',
         },
 
         profile: {

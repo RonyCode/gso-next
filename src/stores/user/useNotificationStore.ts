@@ -1,8 +1,4 @@
-import {
-  type NotificationMessage,
-  type UserNotification,
-} from '../../../types/index'
-
+import { type NotificationMessage, type UserNotification } from '@/types/index'
 import { create } from 'zustand'
 
 interface ActionsProps {

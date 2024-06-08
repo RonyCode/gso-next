@@ -1,48 +1,37 @@
 'use client'
-import { useSession } from 'next-auth/react'
 import Image from 'next/image'
-import { redirect } from 'next/navigation'
-import React, { useTransition } from 'react'
+import React, { useEffect, useTransition } from 'react'
 import { useForm } from 'react-hook-form'
 import {
-  FaBuildingColumns,
-  FaHashtag,
-  FaMapLocationDot,
-  FaPhone,
-  FaSpinner,
-  FaTreeCity,
-} from 'react-icons/fa6'
-import {
   LuBuilding2,
+  LuCalendarDays,
   LuCheck,
   LuChevronsUpDown,
-  LuFolderEdit,
+  LuClipboardEdit,
+  LuFlag,
+  LuGlobe2,
+  LuHash,
+  LuLandmark,
+  LuLoader2,
+  LuMapPin,
+  LuMousePointerClick,
+  LuPhone,
+  LuScrollText,
 } from 'react-icons/lu'
-import {
-  MdOutlineManageAccounts,
-  MdOutlineSupervisorAccount,
-} from 'react-icons/md'
 
-import type {
-  AddressProps,
-  ResultUserRegistered,
-  Unidade,
-} from '../../../../../../../../types/index'
-
-import { saveUserAction } from '@/app/actions/saveUserAction'
+import { EditPhoto } from '@/components/EditPhoto/EditPhoto'
 import { MyInputMask } from '@/components/Form/Input/myInputMask'
 import LoadingPage from '@/components/Loadings/LoadingPage'
 import { maskCpfCnpj } from '@/functions/masks/maskCpfCnpj'
+import { maskDateBr } from '@/functions/masks/maskDateBr'
 import { maskPhone } from '@/functions/masks/maskphone'
 import { maskZipcode } from '@/functions/masks/maskZipcode'
 import { getAllCitiesByState } from '@/lib/getAllCitiesByState'
 import { getCep } from '@/lib/getCep'
 import { cn } from '@/lib/utils'
-import {
-  type IRegisterUserSchema,
-  RegisterUserSchema,
-} from '@/schemas/RegisterUserSchema'
+import { type IUnidadeSchema, UnidadeSchema } from '@/schemas/UnidadeSchema'
 import { cityStore } from '@/stores/Address/CityByStateStore'
+import type { AddressProps, Unidade } from '@/types/index'
 import { Button, buttonVariants } from '@/ui/button'
 import { Card } from '@/ui/card'
 import {
@@ -67,91 +56,96 @@ import { toast } from '@/ui/use-toast'
 import { zodResolver } from '@hookform/resolvers/zod'
 
 enum Fields {
-  email = 'email',
-  cep = 'cep',
-  endereco = 'endereco',
-  sigla = 'sigla',
-  bairro = 'bairro',
-  cidade = 'cidade',
-  estado = 'estado',
-  senha = 'senha',
-  confirmaSenha = 'confirmaSenha',
+  address = 'address',
+  district = 'district',
+  city = 'city',
+  shortName = 'short_name',
 }
 
 type UserRegisterFormProps = React.HTMLAttributes<HTMLDivElement> & {
-  unidades?: Unidade | null
+  unidade?: Unidade | null
   className?: string
-  states: AddressProps[] | null
+  states?: AddressProps[] | null
+  params?: { id_corporation: string; id: string }
 }
 
 export const TabUnidadeDetails = ({
-  unidades,
-  // eslint-disable-next-line react/prop-types
+  unidade,
   className,
   states,
+  params,
 }: UserRegisterFormProps): JSX.Element => {
   const [pending, startTransition] = useTransition()
   const [disabled, setDisabled] = React.useState(true)
-  const { data: session } = useSession()
 
-  const form = useForm<IRegisterUserSchema>({
+  useEffect(() => {
+    startTransition(async () => {
+      if (unidade?.companyAddress?.short_name != null) {
+        await getAllCitiesByState(unidade?.companyAddress?.short_name)
+      }
+    })
+    if (unidade?.companyAddress?.short_name == null) setDisabled(false)
+  }, [unidade?.companyAddress?.short_name, disabled])
+
+  const form = useForm<Partial<IUnidadeSchema>>({
     mode: 'all',
     criteriaMode: 'all',
-    resolver: zodResolver(RegisterUserSchema),
+    resolver: zodResolver(UnidadeSchema),
     defaultValues: {
-      nome: '',
-      email: '',
-      cpf: '',
-      data_nascimento: '',
-      telefone: '',
-      cep: '',
-      endereco: '',
-      numero: '',
-      complemento: '',
-      estado: '',
-      cidade: '',
-      bairro: '',
-      senha: '',
-      confirmaSenha: '',
+      id: unidade?.id ?? null,
+      id_corporation: unidade?.id_corporation ?? null,
+      name: unidade?.name ?? '',
+      cnpj: maskCpfCnpj(unidade?.cnpj) ?? '',
+      phone: maskPhone(unidade?.phone) ?? '',
+      image: unidade?.image ?? '',
+      address: unidade?.companyAddress?.address ?? '',
+      number: unidade?.companyAddress?.number ?? '',
+      zipcode: maskZipcode(unidade?.companyAddress?.zipcode) ?? '',
+      complement: unidade?.companyAddress?.complement ?? '',
+      district: unidade?.companyAddress?.district ?? '',
+      city: unidade?.companyAddress?.city ?? '',
+      short_name: unidade?.companyAddress?.short_name ?? '',
+      date_creation: maskDateBr(unidade?.date_creation) ?? '',
+      type: unidade?.type ?? null,
     },
   })
 
-  const handleSubmit = (formData: IRegisterUserSchema): void => {
-    startTransition(async () => {
-      const result: ResultUserRegistered = await saveUserAction(formData)
-      if (result?.data?.id == null) {
-        toast({
-          variant: 'danger',
-          title: 'Erro ao cadastrar usuário! 🤯 ',
-          description: result?.message,
-        })
-      }
-      if (result?.data?.id != null) {
-        toast({
-          variant: 'success',
-          title: 'Ok! Usuário Cadastrado! 🤯 ',
-          description: 'Tudo certo usuário cadastrado',
-        })
-        redirect('/auth')
-      }
-    })
+  const handleSubmit = (formData: Partial<IUnidadeSchema>): void => {
+    console.log('teste', formData)
+    // startTransition(async () => {
+    //   const result = await saveUnidadeAction(idCorporation, formData)
+    //   if (result?.data?.id == null) {
+    //     toast({
+    //       variant: 'danger',
+    //       title: 'Erro ao cadastrar usuário! 🤯 ',
+    //       description: result?.message,
+    //     })
+    //   }
+    //   if (result?.data?.id != null) {
+    //     toast({
+    //       variant: 'success',
+    //       title: 'Ok! Usuário Cadastrado! 🤯 ',
+    //       description: 'Tudo certo usuário cadastrado',
+    //     })
+    //     redirect('/auth')
+    //   }
+    // })
   }
   const chageValueInput = async (
-    field: Fields,
+    field: Partial<Fields>,
     newValue: string,
   ): Promise<void> => {
     form.setValue(field, newValue, {
       shouldDirty: true,
       shouldTouch: true,
     })
-    if (field === Fields.estado) await handleCity(newValue)
+    if (field === Fields.shortName) await handleCity(newValue)
     form.clearErrors(field)
   }
   async function handleCity(value: string): Promise<void> {
     await getAllCitiesByState(value)
   }
 
-  // let states = stateStore().states
   let arrayCitiesByState = cityStore().cities
 
   const handleCep = async (
@@ -162,12 +156,8 @@ export const TabUnidadeDetails = ({
         const { logradouro, localidade, uf, bairro } = await getCep(
           e.target?.value,
         )
-        await chageValueInput(Fields.endereco, logradouro)
-        await chageValueInput(Fields.sigla, uf)
-        await chageValueInput(Fields.cidade, localidade)
-        await chageValueInput(Fields.bairro, bairro)
-        await chageValueInput(Fields.estado, uf)
-        if (localidade === '') {
+
+        if (localidade === '' || localidade === undefined) {
           states = []
           arrayCitiesByState = []
           toast({
@@ -175,19 +165,57 @@ export const TabUnidadeDetails = ({
             title: 'Cep Incorreto! 🤯 ',
             description: 'Cep não encontrado',
           })
+          return
         }
+        await chageValueInput(Fields.address, logradouro)
+        await chageValueInput(Fields.shortName, uf)
+        await chageValueInput(Fields.city, localidade)
+        await chageValueInput(Fields.district, bairro)
       })
     }
   }
+  const types = [
+    {
+      id: 1,
+      type: 'UNIDADE',
+    },
+    {
+      id: 2,
+      type: 'BATALHÃO',
+    },
+    {
+      id: 3,
+      type: 'COMANDO',
+    },
+    {
+      id: 4,
+      type: 'INDENPEDENTE',
+    },
+  ]
+
   return (
     <>
       <Card x-chunk="dashboard-06-chunk-0">
         <div className="flex items-center">
           <div className="flex w-full items-center justify-between gap-2 p-4 ">
             <h1 className="ml-4 mr-auto text-xl font-bold">Detalhes</h1>
+            {unidade?.id != null && (
+              <Button
+                onClick={() => {
+                  setDisabled(!disabled)
+                }}
+                disabled={pending}
+                className={cn(buttonVariants({ variant: 'outline' }), 'group ')}
+              >
+                <LuClipboardEdit
+                  className="text-foreground group-hover:text-muted-foreground"
+                  size={24}
+                />
+              </Button>
+            )}
           </div>
         </div>
-        <div className="p-6 md:px-28 md:py-10">
+        <div className="my-8 p-6 md:px-28 md:py-10">
           <Form {...form}>
             <LoadingPage pending={pending} />
             <form
@@ -199,8 +227,9 @@ export const TabUnidadeDetails = ({
             >
               <div className="grid h-full w-full grid-cols-12 ">
                 <div className="col-start-1 col-end-6 mr-4   hidden h-60 justify-center md:flex">
+                  <EditPhoto srcFile={unidade?.image} />
                   <Image
-                    src={unidades?.image || ''}
+                    src={unidade?.image ?? ''}
                     width={500}
                     height={500}
                     quality={100}
@@ -208,14 +237,15 @@ export const TabUnidadeDetails = ({
                     className=" rounded-[5px] object-cover"
                   />
                 </div>
+
                 <div className="col-start-1 col-end-13 flex h-full flex-col justify-evenly  md:col-start-6  ">
                   <FormField
                     control={form.control}
-                    name="nome"
+                    name="name"
                     render={({ field }) => (
                       <FormItem className="w-full">
                         <FormLabel
-                          htmlFor="nome"
+                          htmlFor="name"
                           className="flex items-center gap-1 text-muted-foreground"
                         >
                           <LuBuilding2 /> Unidade
@@ -223,37 +253,10 @@ export const TabUnidadeDetails = ({
                         <FormControl>
                           <Input
                             {...field}
-                            id="nome"
-                            placeholder="Digite seu nome"
+                            id="name"
+                            placeholder="Digite nome da unidade"
                             autoCapitalize="none"
-                            autoComplete="nome"
-                            autoCorrect="off"
-                            disabled={disabled}
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="email"
-                    render={({ field }) => (
-                      <FormItem className="w-full">
-                        <FormLabel
-                          htmlFor="email"
-                          className="flex items-center gap-1 text-muted-foreground"
-                        >
-                          <MdOutlineManageAccounts size={20} /> Comandante
-                        </FormLabel>
-                        <FormControl>
-                          <Input
-                            {...field}
-                            id="email"
-                            placeholder="Nome do Comandante"
-                            type="email"
-                            autoCapitalize="none"
-                            autoComplete="email"
+                            autoComplete="name"
                             autoCorrect="off"
                             disabled={disabled}
                           />
@@ -265,23 +268,94 @@ export const TabUnidadeDetails = ({
 
                   <FormField
                     control={form.control}
-                    name="email"
+                    name="type"
+                    render={({ field }) => (
+                      <FormItem className="flex w-full flex-col">
+                        <FormLabel
+                          htmlFor="director"
+                          className="flex items-center gap-1 text-muted-foreground"
+                        >
+                          <LuMousePointerClick /> Tipo
+                        </FormLabel>{' '}
+                        <Popover>
+                          <PopoverTrigger asChild>
+                            <FormControl>
+                              <Button
+                                variant="outline"
+                                role="combobox"
+                                className={cn(
+                                  'w-full justify-between',
+                                  disabled && 'text-muted-foreground',
+                                )}
+                              >
+                                {field.value !== null
+                                  ? types?.find(
+                                      (typeItem) => typeItem.id === field.value,
+                                    )?.type
+                                  : 'Selecione um membro'}
+                                <LuChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                              </Button>
+                            </FormControl>
+                          </PopoverTrigger>
+                          <PopoverContent className="w-[200px] p-0">
+                            <Command>
+                              <CommandInput placeholder="procurando tipo ..." />
+                              <CommandEmpty>Tipo não encontrado.</CommandEmpty>
+                              <CommandGroup>
+                                <CommandList>
+                                  {types?.map((typeItem, index) => (
+                                    <CommandItem
+                                      disabled={disabled}
+                                      value={String(typeItem.id)}
+                                      key={index}
+                                      onSelect={() => {
+                                        form.setValue('type', typeItem.id)
+                                      }}
+                                    >
+                                      <LuCheck
+                                        className={cn(
+                                          'mr-2 h-4 w-4',
+                                          typeItem.id === field.value
+                                            ? 'opacity-100'
+                                            : 'opacity-0',
+                                        )}
+                                      />
+                                      {typeItem.type}
+                                    </CommandItem>
+                                  ))}
+                                </CommandList>
+                              </CommandGroup>
+                            </Command>
+                          </PopoverContent>
+                        </Popover>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  <FormField
+                    control={form.control}
+                    name="date_creation"
                     render={({ field }) => (
                       <FormItem className="w-full">
                         <FormLabel
-                          htmlFor="email"
+                          htmlFor="date_creation"
                           className="flex items-center gap-1 text-muted-foreground"
                         >
-                          <MdOutlineSupervisorAccount size={20} /> SubComandante
+                          <LuCalendarDays /> Data de Fundação
                         </FormLabel>
                         <FormControl>
-                          <Input
+                          <MyInputMask
+                            className={cn(
+                              'flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50',
+                              className,
+                            )}
                             {...field}
-                            id="email"
-                            placeholder="Nome do SubComandante"
-                            type="email"
+                            id="date_creation"
+                            placeholder="00/00/0000"
+                            mask="__/__/____"
                             autoCapitalize="none"
-                            autoComplete="email"
+                            autoComplete="date_creation"
                             autoCorrect="off"
                             disabled={disabled}
                           />
@@ -296,14 +370,14 @@ export const TabUnidadeDetails = ({
               <div className="flex w-full flex-col  gap-2 md:flex-row">
                 <FormField
                   control={form.control}
-                  name="cpf"
+                  name="cnpj"
                   render={({ field }) => (
                     <FormItem className="w-full">
                       <FormLabel
-                        htmlFor="cpf"
+                        htmlFor="cnpj"
                         className="flex items-center gap-1 text-muted-foreground"
                       >
-                        <FaHashtag /> CNPJ
+                        <LuHash /> CNPJ
                       </FormLabel>
                       <FormControl>
                         <MyInputMask
@@ -312,11 +386,11 @@ export const TabUnidadeDetails = ({
                             className,
                           )}
                           {...field}
-                          id="cpf"
+                          id="cnpj"
                           placeholder="000.000.000-00"
-                          mask="___.___.___-__"
+                          mask="__.___.___/____-__"
                           autoCapitalize="none"
-                          autoComplete="cpf"
+                          autoComplete="cnpj"
                           autoCorrect="off"
                           disabled={disabled}
                         />
@@ -327,23 +401,23 @@ export const TabUnidadeDetails = ({
                 />
                 <FormField
                   control={form.control}
-                  name="telefone"
+                  name="phone"
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel
-                        htmlFor="telefone"
+                        htmlFor="phone"
                         className="flex items-center gap-1 text-muted-foreground"
                       >
-                        <FaPhone /> Telefone
+                        <LuPhone /> Telefone
                       </FormLabel>
                       <FormControl>
                         <MyInputMask
                           {...field}
-                          id="telefone"
+                          id="phone"
                           placeholder="(00) 00000-0000"
                           mask="(__) _____-____"
                           autoCapitalize="none"
-                          autoComplete="telefone"
+                          autoComplete="phone"
                           autoCorrect="off"
                           disabled={disabled}
                         />
@@ -356,24 +430,24 @@ export const TabUnidadeDetails = ({
               <div className="flex w-full flex-col  gap-2 md:flex-row">
                 <FormField
                   control={form.control}
-                  name="cep"
+                  name="zipcode"
                   render={({ field }) => (
                     // eslint-disable-next-line @typescript-eslint/no-misused-promises
                     <FormItem onChange={handleCep}>
                       <FormLabel
-                        htmlFor="cep"
+                        htmlFor="zipcode"
                         className="flex items-center gap-1 text-muted-foreground"
                       >
-                        <FaHashtag /> Cep
+                        <LuHash /> Cep
                       </FormLabel>
                       <FormControl>
                         <MyInputMask
                           {...field}
-                          id="cep"
+                          id="zipcode"
                           placeholder="00000-000"
                           mask="_____-___"
                           autoCapitalize="none"
-                          autoComplete="cep"
+                          autoComplete="zipcode"
                           autoCorrect="off"
                           disabled={disabled}
                         />
@@ -385,22 +459,22 @@ export const TabUnidadeDetails = ({
 
                 <FormField
                   control={form.control}
-                  name="endereco"
+                  name="address"
                   render={({ field }) => (
                     <FormItem className="w-full">
                       <FormLabel
-                        htmlFor="endereco"
+                        htmlFor="address"
                         className="flex items-center gap-1 text-muted-foreground"
                       >
-                        <FaMapLocationDot width={16} /> Endereco
+                        <LuMapPin /> Endereco
                       </FormLabel>
                       <FormControl>
                         <Input
                           {...field}
-                          id="endereco"
+                          id="address"
                           placeholder="Digite seu endereço"
                           autoCapitalize="none"
-                          autoComplete="endereco"
+                          autoComplete="address"
                           autoCorrect="off"
                           disabled={disabled}
                         />
@@ -413,22 +487,22 @@ export const TabUnidadeDetails = ({
               <div className="flex w-full flex-col  gap-2 md:flex-row">
                 <FormField
                   control={form.control}
-                  name="numero"
+                  name="number"
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel
-                        htmlFor="numero"
+                        htmlFor="number"
                         className="flex items-center gap-1 text-muted-foreground"
                       >
-                        <FaHashtag /> Numero
+                        <LuHash /> Numero
                       </FormLabel>
                       <FormControl>
                         <Input
                           {...field}
-                          id="numero"
+                          id="number"
                           placeholder="Digite o numero da casa"
                           autoCapitalize="none"
-                          autoComplete="numero"
+                          autoComplete="number"
                           autoCorrect="off"
                           disabled={disabled}
                         />
@@ -440,21 +514,21 @@ export const TabUnidadeDetails = ({
 
                 <FormField
                   control={form.control}
-                  name="complemento"
+                  name="complement"
                   render={({ field }) => (
                     <FormItem className="w-full">
                       <FormLabel
-                        htmlFor="complemento"
+                        htmlFor="complement"
                         className="flex items-center gap-1 text-muted-foreground"
                       >
-                        <FaHashtag /> Complemento
+                        <LuScrollText /> Complemento
                       </FormLabel>
                       <FormControl>
                         <Input
                           {...field}
-                          id="complemento"
+                          id="complement"
                           placeholder="Digite ponto de referência"
-                          autoComplete="complemento"
+                          autoComplete="complement"
                           disabled={disabled}
                         />
                       </FormControl>
@@ -466,14 +540,14 @@ export const TabUnidadeDetails = ({
               <div className="flex w-full flex-col  gap-2 md:flex-row">
                 <FormField
                   control={form.control}
-                  name="estado"
+                  name="short_name"
                   render={({ field }) => (
                     <FormItem className="flex w-full flex-col">
                       <FormLabel
-                        htmlFor="estado"
+                        htmlFor="short_name"
                         className="flex items-center gap-1 text-muted-foreground"
                       >
-                        <FaBuildingColumns /> Estado
+                        <LuLandmark /> Estado
                       </FormLabel>{' '}
                       <Popover>
                         <PopoverTrigger asChild>
@@ -483,10 +557,10 @@ export const TabUnidadeDetails = ({
                               role="combobox"
                               className={cn(
                                 'w-full justify-between',
-                                field.value === '' && 'text-muted-foreground',
+                                disabled && 'text-muted-foreground',
                               )}
                             >
-                              {field.value !== ''
+                              {field.value !== null
                                 ? states?.find(
                                     (state) => state.shortName === field.value,
                                   )?.state
@@ -509,7 +583,10 @@ export const TabUnidadeDetails = ({
                                     /* eslint-disable-next-line @typescript-eslint/no-misused-promises */
                                     onSelect={async () => {
                                       await handleCity(state.shortName)
-                                      form.setValue('estado', state.shortName)
+                                      form.setValue(
+                                        'short_name',
+                                        state.shortName,
+                                      )
                                     }}
                                   >
                                     <LuCheck
@@ -535,14 +612,14 @@ export const TabUnidadeDetails = ({
 
                 <FormField
                   control={form.control}
-                  name="cidade"
+                  name="city"
                   render={({ field }) => (
                     <FormItem className="flex w-full flex-col">
                       <FormLabel
-                        htmlFor="cidade"
+                        htmlFor="companyAddress.city"
                         className="flex items-center gap-1 text-muted-foreground"
                       >
-                        <FaBuildingColumns /> Cidade
+                        <LuGlobe2 /> Cidade
                       </FormLabel>{' '}
                       <Popover>
                         <PopoverTrigger asChild>
@@ -552,7 +629,8 @@ export const TabUnidadeDetails = ({
                               role="combobox"
                               className={cn(
                                 'w-full justify-between',
-                                field.value === '' && 'text-muted-foreground',
+
+                                disabled && 'text-muted-foreground',
                               )}
                             >
                               {field.value !== ''
@@ -576,7 +654,7 @@ export const TabUnidadeDetails = ({
                                     value={city.city}
                                     key={index}
                                     onSelect={() => {
-                                      form.setValue('cidade', city.city)
+                                      form.setValue('city', city.city)
                                     }}
                                   >
                                     <LuCheck
@@ -602,22 +680,22 @@ export const TabUnidadeDetails = ({
 
                 <FormField
                   control={form.control}
-                  name="bairro"
+                  name="district"
                   render={({ field }) => (
                     <FormItem className="w-full">
                       <FormLabel
-                        htmlFor="bairro"
+                        htmlFor="district"
                         className="flex items-center gap-1 text-muted-foreground"
                       >
-                        <FaTreeCity /> Bairro
+                        <LuFlag /> Bairro
                       </FormLabel>
                       <FormControl>
                         <Input
                           {...field}
-                          id="bairro"
-                          placeholder="bairro"
+                          id="district"
+                          placeholder="district"
                           autoCapitalize="none"
-                          autoComplete="bairro"
+                          autoComplete="district"
                           autoCorrect="off"
                           disabled={disabled}
                         />
@@ -627,18 +705,18 @@ export const TabUnidadeDetails = ({
                   )}
                 />
               </div>
-              <div className="flex w-full flex-col  justify-center gap-2 md:flex-row">
+              <div className="flex w-full flex-col  justify-end gap-2 md:flex-row">
                 {!disabled && (
                   <Button
                     disabled={pending}
                     className={cn(
                       buttonVariants({ variant: 'default' }),
-                      ' w-full ',
+                      ' w-full animate-fadeIn  md:w-1/3 ',
                     )}
                     type="submit"
                   >
                     {pending && (
-                      <FaSpinner className="mr-2 h-4 w-4 animate-spin" />
+                      <LuLoader2 className="mr-2 h-4 w-4 animate-spin" />
                     )}
                     Salvar
                   </Button>

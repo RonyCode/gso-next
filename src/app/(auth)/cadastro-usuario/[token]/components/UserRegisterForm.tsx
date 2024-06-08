@@ -18,11 +18,6 @@ import {
 } from 'react-icons/fa6'
 import { LuCheck, LuChevronsUpDown } from 'react-icons/lu'
 
-import {
-  type AddressProps,
-  type ResultUserRegistered,
-} from '../../../../../../types'
-
 import { saveUserAction } from '@/app/actions/saveUserAction'
 import { MyInputMask } from '@/components/Form/Input/myInputMask'
 import LoadingPage from '@/components/Loadings/LoadingPage'
@@ -39,6 +34,7 @@ import {
   RegisterUserSchema,
 } from '@/schemas/RegisterUserSchema'
 import { cityStore } from '@/stores/Address/CityByStateStore'
+import { type AddressProps, type ResultUserRegistered } from '@/types/index'
 import { Button, buttonVariants } from '@/ui/button'
 import {
   Command,

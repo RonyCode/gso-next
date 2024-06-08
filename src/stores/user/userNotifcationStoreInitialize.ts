@@ -1,8 +1,7 @@
 'use client'
 
-import { type UserNotification } from '../../../types/index'
-
 import { useNotificationStore } from '@/stores/user/useNotificationStore'
+import { type UserNotification } from '@/types/index'
 
 interface AppInitializerProps {
   userNotification: UserNotification | null

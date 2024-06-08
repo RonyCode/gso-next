@@ -35,10 +35,12 @@ import axios, { type AxiosProgressEvent } from 'axios'
 
 type EditPhotoProps = {
   className?: string
+  srcFile?: string
 } & React.ComponentProps<typeof Dialog>
 
 export const EditPhoto = ({
   className,
+  srcFile,
   ...props
 }: EditPhotoProps): JSX.Element => {
   const [pending, startTransition] = useTransition()
@@ -86,7 +88,7 @@ export const EditPhoto = ({
 
       const response = await axios.post(
         `${process.env.NEXT_PUBLIC_API_GSO}/services/upload`,
-        { file: data.file_image },
+        { file: data.file_image, srcfile: srcFile },
         {
           onUploadProgress,
           headers: {
@@ -165,7 +167,10 @@ export const EditPhoto = ({
             <LuCamera className="h-9 w-9 rounded-full border-2 border-foreground/50 bg-accent/50 p-1 text-foreground/50 backdrop-blur  hover:border-foreground hover:text-foreground " />
           </div>
         </DialogTrigger>
-        <DialogContent className={cn(' w-screen', className)} {...props}>
+        <DialogContent
+          className={cn(' w-full md:w-7/12', className)}
+          {...props}
+        >
           <DialogHeader>
             <DialogTitle>Alterar imagem</DialogTitle>
             <DialogDescription>
