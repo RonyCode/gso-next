@@ -83,11 +83,10 @@ export const EditPhoto = ({
         })
       }
 
-      updateFormExternal?.setValue('image', response.data.data)
-
       if (response?.status === 200) {
         setOpen(false)
         handleResetValues()
+        updateFormExternal?.setValue('image', response.data.data)
         router.refresh()
         toast({
           variant: 'success',
