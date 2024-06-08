@@ -74,7 +74,7 @@ export const EditPhoto = ({
           },
         },
       )
-      if (response?.status !== 202) {
+      if (response?.status !== 200) {
         toast({
           variant: 'danger',
           title: 'Algo deu errado! 🤯 ',
