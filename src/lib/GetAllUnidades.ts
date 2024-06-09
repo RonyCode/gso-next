@@ -11,6 +11,9 @@ export const getAllUnidades = async (
       headers: {
         'Content-Type': 'application/json',
       },
+      next: {
+        revalidate: 1,
+      },
     },
   )
 }

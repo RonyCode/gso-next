@@ -7,19 +7,50 @@ export const UnidadeSchema = z.object({
     .min(1, { message: 'id inválido' })
     .optional()
     .nullable(),
-  name: z.string().min(1, { message: 'id inválido' }).optional(),
-  cnpj: z.string().min(1, { message: 'id inválido' }).optional(),
-  phone: z.string().min(1, { message: 'id inválido' }).optional(),
-  image: z.string().min(1, { message: 'id inválido' }).optional(),
-  address: z.string().min(1, { message: 'id inválido' }).optional(),
-  number: z.string().min(1, { message: 'id inválido' }).optional(),
-  zipcode: z.string().min(1, { message: 'id inválido' }).optional(),
-  complement: z.string().min(1, { message: 'id inválido' }).optional(),
-  district: z.string().min(1, { message: 'id inválido' }).optional(),
-  city: z.string().min(1, { message: 'id inválido' }).optional(),
-  short_name: z.string().min(1, { message: 'id inválido' }).optional(),
-  date_creation: z.string().min(1, { message: 'id inválido' }).optional(),
-  type: z.number().min(1, { message: 'id inválido' }).optional().nullable(),
+  name: z
+    .string()
+    .min(1, { message: 'Nome inválido deve conter no mínimo 1 caracteres' })
+    .optional(),
+  cnpj: z.string().min(18, { message: 'CNPJ inválido' }).optional(),
+  phone: z.string().min(11, { message: 'Telefone inválido' }).optional(),
+  image: z.string().optional(),
+  address: z
+    .string()
+    .min(1, { message: 'Endereço inválido deve conter no mínimo 1 caracteres' })
+    .optional(),
+  number: z
+    .string()
+    .min(1, { message: 'Número inválido deve conter no mínimo 1 caracteres' })
+    .optional(),
+  zipcode: z
+    .string()
+    .min(9, { message: 'CEP inválido deve conter no mínimo 9 caracteres' })
+    .optional(),
+  complement: z.string().optional(),
+  district: z
+    .string()
+    .min(1, { message: 'Bairro inválido deve conter no mínimo 1 caracteres' })
+    .optional(),
+  city: z
+    .string()
+    .min(1, { message: 'Cidade inválida deve conter no mínimo 1 caracteres' })
+    .optional(),
+  short_name: z
+    .string()
+    .min(1, { message: 'Sigla inválida deve conter no mínimo 1 caracteres' })
+    .optional(),
+  date_creation: z.string().min(10, { message: 'Data inválida' }).optional(),
+  type: z
+    .number()
+    .min(1, { message: 'Tipo inválido deve conter no mínimo 1 caracteres' })
+    .optional()
+    .nullable(),
+
+  manager: z.number().optional().nullable(),
+  director: z.number().optional().nullable(),
+  manager_company: z.number().optional().nullable(),
+  director_company: z.number().optional().nullable(),
+  excluded: z.number().optional().nullable(),
 })
 
 export type IUnidadeSchema = z.infer<typeof UnidadeSchema>

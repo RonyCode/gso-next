@@ -68,13 +68,13 @@ export async function CardDefault({
           {image != null && (
             <Image
               src={image}
-              fill
-              sizes="100"
+              quality="100"
               priority={true}
+              fill
               blurDataURL={myBlurDataUrl}
               placeholder="blur"
               alt="image"
-              className="block  rounded-[5px]  object-cover object-center brightness-[80%]"
+              className="rounded-[5px]  object-cover  brightness-[80%]"
             />
           )}
         </div>

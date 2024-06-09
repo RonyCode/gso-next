@@ -1,5 +1,6 @@
 'use client'
 import Image from 'next/image'
+import { redirect } from 'next/navigation'
 import React, { useEffect, useTransition } from 'react'
 import { useForm } from 'react-hook-form'
 import {
@@ -19,6 +20,7 @@ import {
   LuScrollText,
 } from 'react-icons/lu'
 
+import { saveUnidadeAction } from '@/app/(private)/servicos/organizacao/[id_corporation]/unidades/saveUnidadeAction'
 import { EditPhoto } from '@/components/EditPhoto/EditPhoto'
 import { MyInputMask } from '@/components/Form/Input/myInputMask'
 import LoadingPage from '@/components/Loadings/LoadingPage'
@@ -93,7 +95,7 @@ export const TabUnidadeDetails = ({
     resolver: zodResolver(UnidadeSchema),
     defaultValues: {
       id: unidade?.id ?? null,
-      id_corporation: unidade?.id_corporation ?? null,
+      id_corporation: Number(params?.id_corporation) ?? null,
       name: unidade?.name ?? '',
       cnpj: maskCpfCnpj(unidade?.cnpj) ?? '',
       phone: maskPhone(unidade?.phone) ?? '',
@@ -107,29 +109,36 @@ export const TabUnidadeDetails = ({
       short_name: unidade?.companyAddress?.short_name ?? '',
       date_creation: maskDateBr(unidade?.date_creation) ?? '',
       type: unidade?.type ?? null,
+      manager: unidade?.manager.id ?? null,
+      director: unidade?.director.id ?? null,
+      manager_company: unidade?.manager_company.id ?? null,
+      director_company: unidade?.director_company.id ?? null,
+      excluded: 0,
     },
   })
 
   const handleSubmit = (formData: Partial<IUnidadeSchema>): void => {
-    console.log('teste', formData)
-    // startTransition(async () => {
-    //   const result = await saveUnidadeAction(idCorporation, formData)
-    //   if (result?.data?.id == null) {
-    //     toast({
-    //       variant: 'danger',
-    //       title: 'Erro ao cadastrar usuário! 🤯 ',
-    //       description: result?.message,
-    //     })
-    //   }
-    //   if (result?.data?.id != null) {
-    //     toast({
-    //       variant: 'success',
-    //       title: 'Ok! Usuário Cadastrado! 🤯 ',
-    //       description: 'Tudo certo usuário cadastrado',
-    //     })
-    //     redirect('/auth')
-    //   }
-    // })
+    startTransition(async () => {
+      const result = await saveUnidadeAction(formData)
+
+      console.log(result)
+
+      if (result?.code !== 202) {
+        toast({
+          variant: 'danger',
+          title: 'Erro ao cadastrar nova unidade! 🤯 ',
+          description: result?.message,
+        })
+      }
+      if (result?.code === 202) {
+        toast({
+          variant: 'success',
+          title: 'Ok! Unidade Cadastrada! 🤯 ',
+          description: 'Tudo certo unidade cadastrada',
+        })
+        redirect(`/servicos/organizacao/${params?.id_corporation}/unidades`)
+      }
+    })
   }
   const chageValueInput = async (
     field: Partial<Fields>,
@@ -142,6 +151,7 @@ export const TabUnidadeDetails = ({
     if (field === Fields.shortName) await handleCity(newValue)
     form.clearErrors(field)
   }
+
   async function handleCity(value: string): Promise<void> {
     await getAllCitiesByState(value)
   }
@@ -225,18 +235,21 @@ export const TabUnidadeDetails = ({
               className="w-full space-y-4"
             >
               <div className="grid h-full w-full grid-cols-12 ">
-                <div className="col-start-1 col-end-6 mr-4   hidden h-60 justify-center md:flex">
-                  <EditPhoto
-                    directoryFile={form.getValues('image')}
-                    updateFormExternal={form}
-                  />
+                <div className=" relative col-start-1 col-end-6   mr-4 hidden h-60 justify-center md:flex">
+                  <div className="absolute -left-3 -top-3">
+                    <EditPhoto
+                      disabled={disabled}
+                      directoryFile={form.getValues('image')}
+                      updateFormExternal={form}
+                    />
+                  </div>
                   <Image
                     src={form.getValues('image') ?? ''}
                     width={500}
                     height={500}
                     quality={100}
                     alt="imagem director"
-                    className=" rounded-[5px] object-cover"
+                    className="rounded-[5px] object-cover"
                   />
                 </div>
 
@@ -710,7 +723,7 @@ export const TabUnidadeDetails = ({
               <div className="flex w-full flex-col  justify-end gap-2 md:flex-row">
                 {!disabled && (
                   <Button
-                    disabled={pending}
+                    disabled={pending && !form.formState.isValid}
                     className={cn(
                       buttonVariants({ variant: 'default' }),
                       ' w-full animate-fadeIn  md:w-1/3 ',

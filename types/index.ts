@@ -187,6 +187,7 @@ export interface Unidade {
   companyCars: Car[]
   companySchedules: Schedule[]
   companyMaterials: []
+  excluded: number
 }
 
 export interface UserType {

@@ -1,4 +1,4 @@
-import { LuBuilding, LuLampDesk, LuPenTool } from 'react-icons/lu'
+import { LuBuilding } from 'react-icons/lu'
 import { MdOutlineSupervisorAccount } from 'react-icons/md'
 
 import UnidadesForm from '@/app/(private)/servicos/organizacao/[id_corporation]/unidades/component/UnidadesForm'
