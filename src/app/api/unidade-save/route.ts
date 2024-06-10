@@ -3,8 +3,9 @@ import { type NextRequest, NextResponse } from 'next/server'
 export async function POST(request: NextRequest): Promise<NextResponse> {
   const body = await request.json()
 
-  if (body.id_corporation === null || body.name === '')
+  if (body.id_corporation === null)
     return NextResponse.json({ message: 'Erro parametros necessários' })
+  console.log(body)
 
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_API_GSO}/api/corporation/company/save`,

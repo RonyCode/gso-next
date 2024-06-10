@@ -4,20 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4467a1d6-73df-479e-9cc5-8e8cf1a18f4d" name="Changes" comment="refatorando com organizações">
-      <change afterPath="$PROJECT_DIR$/src/app/api/unidade-save/route.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/cee89a81-5f5d-492e-b0e5-11dd16a43cfb.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/cee89a81-5f5d-492e-b0e5-11dd16a43cfb.xml" afterDir="false" />
+    <list default="true" id="4467a1d6-73df-479e-9cc5-8e8cf1a18f4d" name="Changes" comment="salvando company">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(private)/servicos/organizacao/[id_corporation]/unidades/[id]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/servicos/organizacao/[id_corporation]/unidades/[id]/page.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/(private)/servicos/organizacao/[id_corporation]/unidades/component/TabUnidadeDetails.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/servicos/organizacao/[id_corporation]/unidades/component/TabUnidadeDetails.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(private)/servicos/organizacao/[id_corporation]/unidades/saveUnidadeAction.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/servicos/organizacao/[id_corporation]/unidades/saveUnidadeAction.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(private)/servicos/organizacao/module/ModulesOrganizacao.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/servicos/organizacao/module/ModulesOrganizacao.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Cards/CardDefault.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Cards/CardDefault.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/EditPhoto/EditPhoto.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/EditPhoto/EditPhoto.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/GetAllUnidades.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/GetAllUnidades.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/schemas/UnidadeSchema.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/schemas/UnidadeSchema.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/types/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/api/unidade-save/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/api/unidade-save/route.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -165,7 +155,8 @@
       <workItem from="1717788021419" duration="11386000" />
       <workItem from="1717806661905" duration="2768000" />
       <workItem from="1717847207000" duration="11033000" />
-      <workItem from="1717958778918" duration="3966000" />
+      <workItem from="1717958778918" duration="5224000" />
+      <workItem from="1718017488563" duration="114000" />
     </task>
     <task id="LOCAL-00001" summary="refatorando com eslint">
       <option name="closed" value="true" />
@@ -311,7 +302,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717431601602</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="salvando company">
+      <option name="closed" value="true" />
+      <created>1717962889717</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1717962889717</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -396,6 +395,7 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="refatorando com eslint" />
     <MESSAGE value="refatorando com organizações" />
-    <option name="LAST_COMMIT_MESSAGE" value="refatorando com organizações" />
+    <MESSAGE value="salvando company" />
+    <option name="LAST_COMMIT_MESSAGE" value="salvando company" />
   </component>
 </project>

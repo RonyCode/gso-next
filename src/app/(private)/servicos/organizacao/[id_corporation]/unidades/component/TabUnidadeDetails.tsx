@@ -95,7 +95,8 @@ export const TabUnidadeDetails = ({
     resolver: zodResolver(UnidadeSchema),
     defaultValues: {
       id: unidade?.id ?? null,
-      id_corporation: Number(params?.id_corporation) ?? null,
+      id_corporation:
+        unidade?.id_corporation ?? Number(params?.id_corporation) ?? null,
       name: unidade?.name ?? '',
       cnpj: maskCpfCnpj(unidade?.cnpj) ?? '',
       phone: maskPhone(unidade?.phone) ?? '',
@@ -120,9 +121,6 @@ export const TabUnidadeDetails = ({
   const handleSubmit = (formData: Partial<IUnidadeSchema>): void => {
     startTransition(async () => {
       const result = await saveUnidadeAction(formData)
-
-      console.log(result)
-
       if (result?.code !== 202) {
         toast({
           variant: 'danger',
