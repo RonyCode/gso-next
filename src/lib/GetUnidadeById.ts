@@ -12,9 +12,7 @@ export const getUnidadeById = async (
       headers: {
         'Content-Type': 'application/json',
       },
-      next: {
-        revalidate: 1,
-      },
+      cache: 'no-store',
     },
   )
 }

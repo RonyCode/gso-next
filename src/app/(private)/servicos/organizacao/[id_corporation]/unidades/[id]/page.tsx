@@ -19,8 +19,16 @@ const Unidade = async ({
           description={
             'CMD : ' + data?.director.competence + ' - ' + data?.director.name
           }
-          image={data.image}
-          imageMobile={data.image}
+          image={
+            data.image != ''
+              ? data.image
+              : process.env.NEXT_PUBLIC_API_GSO + '/public/images/avatar.svg'
+          }
+          imageMobile={
+            data.image != ''
+              ? data.image
+              : process.env.NEXT_PUBLIC_API_GSO + '/public/images/avatar.svg'
+          }
           icon={<LuBuilding size={28} />}
           iconDescription={<MdOutlineSupervisorAccount size={18} />}
         >

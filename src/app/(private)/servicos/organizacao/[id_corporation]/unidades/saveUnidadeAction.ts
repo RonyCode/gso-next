@@ -20,13 +20,11 @@ export async function saveUnidadeAction(
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(formData),
-        next: {
-          revalidate: 1,
-        },
+        cache: 'no-store',
       },
     )
-
-    if (rest?.data?.id != null) {
+    console.log(rest)
+    if (rest?.code != 202) {
       return {
         data: {} as Partial<IUnidadeSchema>,
         status: 'failure',

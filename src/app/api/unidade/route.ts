@@ -19,9 +19,7 @@ export async function GET(request: Request): Promise<NextResponse> {
       headers: {
         'Content-Type': 'application/json',
       },
-      next: {
-        revalidate: 1,
-      },
+      cache: 'no-store',
     },
   )
 

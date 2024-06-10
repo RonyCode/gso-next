@@ -8,10 +8,9 @@ import { getAllUnidades } from '@/lib/GetAllUnidades'
 const NovaUnidade = async ({
   params,
 }: {
-  params: { id_corporation: string }
+  params: { id: string; id_corporation: string }
 }): Promise<JSX.Element> => {
   const states = await getAllStates()
-  const { data } = await getAllUnidades()
 
   return (
     <>
@@ -20,7 +19,7 @@ const NovaUnidade = async ({
         description={'Insira nova unidade de sua organização'}
         icon={<IconBuildPlus width={58} className="ml-1" />}
       >
-        <TabUnidadeDetails unidades={data} states={states} params={params} />
+        <TabUnidadeDetails states={states} params={params} />
       </CardDefault>
     </>
   )

@@ -8,6 +8,7 @@ import { DataTableColumnHeader } from '@/components/DataTables/DataTableUnidades
 import { DataTableRowActions } from '@/components/DataTables/DataTableUnidades/data-table-row-actions'
 import { types } from '@/components/DataTables/DataTableUnidades/data/data'
 import { maskCpfCnpj } from '@/functions/masks/maskCpfCnpj'
+import { maskPhone } from '@/functions/masks/maskphone'
 import { type Unidade } from '@/types/index'
 import { Badge } from '@/ui/badge'
 import { Avatar, AvatarFallback, AvatarImage } from '@radix-ui/react-avatar'
@@ -80,7 +81,8 @@ export const columnsUnidades: Array<ColumnDef<Unidade>> = [
               <div>
                 {' '}
                 <div className="flex items-center p-1">
-                  <LuPhone size={16} className="mr-2" /> {row.original.phone}
+                  <LuPhone size={16} className="mr-2" />{' '}
+                  {maskPhone(row.original.phone)}
                 </div>
               </div>
             </div>

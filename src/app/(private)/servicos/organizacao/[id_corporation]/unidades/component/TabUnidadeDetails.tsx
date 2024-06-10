@@ -1,6 +1,6 @@
 'use client'
 import Image from 'next/image'
-import { redirect } from 'next/navigation'
+import { redirect, useRouter } from 'next/navigation'
 import React, { useEffect, useTransition } from 'react'
 import { useForm } from 'react-hook-form'
 import {
@@ -79,6 +79,7 @@ export const TabUnidadeDetails = ({
 }: UserRegisterFormProps): JSX.Element => {
   const [pending, startTransition] = useTransition()
   const [disabled, setDisabled] = React.useState(true)
+  const router = useRouter()
 
   useEffect(() => {
     startTransition(async () => {
@@ -110,10 +111,10 @@ export const TabUnidadeDetails = ({
       short_name: unidade?.companyAddress?.short_name ?? '',
       date_creation: maskDateBr(unidade?.date_creation) ?? '',
       type: unidade?.type ?? null,
-      manager: unidade?.manager.id ?? null,
-      director: unidade?.director.id ?? null,
-      manager_company: unidade?.manager_company.id ?? null,
-      director_company: unidade?.director_company.id ?? null,
+      manager: unidade?.manager?.id ?? null,
+      director: unidade?.director?.id ?? null,
+      manager_company: unidade?.manager_company?.id ?? null,
+      director_company: unidade?.director_company?.id ?? null,
       excluded: 0,
     },
   })
@@ -124,17 +125,19 @@ export const TabUnidadeDetails = ({
       if (result?.code !== 202) {
         toast({
           variant: 'danger',
-          title: 'Erro ao cadastrar nova unidade! 🤯 ',
+          title: 'Erro ao salvar unidade! 🤯 ',
           description: result?.message,
         })
       }
       if (result?.code === 202) {
         toast({
           variant: 'success',
-          title: 'Ok! Unidade Cadastrada! 🤯 ',
-          description: 'Tudo certo unidade cadastrada',
+          title: 'Ok! Unidade salvar com sucesso! 🤯 ',
+          description: 'Tudo certo unidade salva',
         })
-        redirect(`/servicos/organizacao/${params?.id_corporation}/unidades`)
+        redirect(
+          `/servicos/organizacao/${params?.id_corporation ?? unidade?.id_corporation}/unidades`,
+        )
       }
     })
   }
