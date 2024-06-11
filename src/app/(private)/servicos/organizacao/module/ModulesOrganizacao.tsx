@@ -27,7 +27,7 @@ const ModulesOrganizacao = ({
           <CardModule
             title="Nova Organização"
             subtitle="Unidades da minha organização"
-            link={'/servicos/organizacao/save'}
+            link={'/servicos/organizacao/salvar'}
             icon={<IconBuildPlus width={58} className="ml-1" />}
           />
           <CardModule

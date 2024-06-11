@@ -1,6 +1,5 @@
 'use client'
 
-import { useRouter } from 'next/navigation'
 import * as React from 'react'
 
 import { DataTablePagination } from './data-table-pagination'

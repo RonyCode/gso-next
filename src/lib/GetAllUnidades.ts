@@ -11,7 +11,7 @@ export const getAllUnidades = async (
       headers: {
         'Content-Type': 'application/json',
       },
-      cache: 'no-store',
+      next: { tags: ['unidadesFetch'] },
     },
   )
 }

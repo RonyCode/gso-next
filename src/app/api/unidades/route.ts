@@ -16,7 +16,7 @@ export async function GET(request: Request): Promise<NextResponse> {
       headers: {
         'Content-Type': 'application/json',
       },
-      cache: 'no-store',
+      next: { tags: ['unidadesFetch'] },
     },
   )
   if (!res.ok) {

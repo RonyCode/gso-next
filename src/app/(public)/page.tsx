@@ -3,8 +3,6 @@ import 'react-toastify/dist/ReactToastify.css'
 import { type Metadata } from 'next'
 import React from 'react'
 
-import IconBuildPlus from '../../../public/icons/IconBuildPlus'
-
 import { CardsBanner } from '@/components/Cards/CardsBanner'
 import BannerHome1 from '@/components/Headers/banner/BannerHome1'
 import BannerHome2 from '@/components/Headers/banner/BannerHome2'

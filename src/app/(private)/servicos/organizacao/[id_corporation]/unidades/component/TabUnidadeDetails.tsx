@@ -18,12 +18,23 @@ import {
   LuMousePointerClick,
   LuPhone,
   LuScrollText,
+  LuTrash2,
 } from 'react-icons/lu'
 
 import { saveUnidadeAction } from '@/app/(private)/servicos/organizacao/[id_corporation]/unidades/saveUnidadeAction'
 import { EditPhoto } from '@/components/EditPhoto/EditPhoto'
 import { MyInputMask } from '@/components/Form/Input/myInputMask'
 import LoadingPage from '@/components/Loadings/LoadingPage'
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog'
 import { maskCpfCnpj } from '@/functions/masks/maskCpfCnpj'
 import { maskDateBr } from '@/functions/masks/maskDateBr'
 import { maskPhone } from '@/functions/masks/maskphone'
@@ -132,7 +143,7 @@ export const TabUnidadeDetails = ({
       if (result?.code === 202) {
         toast({
           variant: 'success',
-          title: 'Ok! Unidade salvar com sucesso! 🤯 ',
+          title: 'Ok! Unidade salva com sucesso! 🚀',
           description: 'Tudo certo unidade salva',
         })
         redirect(
@@ -141,6 +152,32 @@ export const TabUnidadeDetails = ({
       }
     })
   }
+  const handleDeleteAction = async (
+    formData: Partial<IUnidadeSchema>,
+  ): Promise<void> => {
+    formData.excluded = 1
+    startTransition(async () => {
+      const result = await saveUnidadeAction(formData)
+      if (result?.code !== 202) {
+        toast({
+          variant: 'danger',
+          title: 'Erro ao deletar unidade! 🤯 ',
+          description: result?.message,
+        })
+      }
+      if (result?.code === 202) {
+        toast({
+          variant: 'success',
+          title: 'Ok! Unidade deletada com sucesso! 🚀',
+          description: 'Tudo certo unidade deletada',
+        })
+        router.push(
+          `/servicos/organizacao/${params?.id_corporation ?? unidade?.id_corporation}/unidades`,
+        )
+      }
+    })
+  }
+
   const chageValueInput = async (
     field: Partial<Fields>,
     newValue: string,
@@ -210,18 +247,75 @@ export const TabUnidadeDetails = ({
           <div className="flex w-full items-center justify-between gap-2 p-4 ">
             <h1 className="ml-4 mr-auto text-xl font-bold">Detalhes</h1>
             {unidade?.id != null && (
-              <Button
-                onClick={() => {
-                  setDisabled(!disabled)
-                }}
-                disabled={pending}
-                className={cn(buttonVariants({ variant: 'outline' }), 'group ')}
-              >
-                <LuClipboardEdit
-                  className="text-foreground group-hover:text-muted-foreground"
-                  size={24}
-                />
-              </Button>
+              <div>
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <Button
+                      disabled={pending}
+                      className={cn(
+                        buttonVariants({ variant: 'outline' }),
+                        'group ',
+                      )}
+                    >
+                      <LuTrash2
+                        className="text-foreground group-hover:text-muted-foreground"
+                        size={24}
+                      />
+                    </Button>
+                  </DialogTrigger>
+                  <DialogContent className="sm:max-w-[425px]">
+                    <DialogHeader>
+                      <DialogTitle>Excluir Unidade</DialogTitle>
+                      <DialogDescription>
+                        Está ação precisa ser confirmada
+                      </DialogDescription>
+                    </DialogHeader>
+                    <div className="grid gap-4 py-4">
+                      <p>
+                        {' '}
+                        ATENÇÂO!!! Tem certeza que deseja excluir esta unidade
+                        de sua corporação?
+                      </p>
+                    </div>
+                    <DialogFooter>
+                      <DialogClose asChild>
+                        <div>
+                          <Button variant="secondary" type="button">
+                            Cancelar
+                          </Button>
+
+                          <Button
+                            className="ml-2"
+                            type="button"
+                            /* eslint-disable-next-line @typescript-eslint/no-misused-promises */
+                            onClick={form.handleSubmit(async (data) => {
+                              await handleDeleteAction(data)
+                            })}
+                          >
+                            Confirmar
+                          </Button>
+                        </div>
+                      </DialogClose>
+                    </DialogFooter>
+                  </DialogContent>
+                </Dialog>
+
+                <Button
+                  onClick={() => {
+                    setDisabled(!disabled)
+                  }}
+                  disabled={pending}
+                  className={cn(
+                    buttonVariants({ variant: 'outline' }),
+                    'group ',
+                  )}
+                >
+                  <LuClipboardEdit
+                    className="text-foreground group-hover:text-muted-foreground"
+                    size={24}
+                  />
+                </Button>
+              </div>
             )}
           </div>
         </div>

@@ -3,7 +3,6 @@ import IconBuildPlus from '../../../../../../../public/icons/IconBuildPlus'
 import TabUnidadeDetails from '@/app/(private)/servicos/organizacao/[id_corporation]/unidades/component/TabUnidadeDetails'
 import { CardDefault } from '@/components/Cards/CardDefault'
 import { getAllStates } from '@/lib/getAllStates'
-import { getAllUnidades } from '@/lib/GetAllUnidades'
 
 const NovaUnidade = async ({
   params,

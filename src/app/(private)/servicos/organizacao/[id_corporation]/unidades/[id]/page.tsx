@@ -20,12 +20,12 @@ const Unidade = async ({
             'CMD : ' + data?.director.competence + ' - ' + data?.director.name
           }
           image={
-            data.image != ''
+            data.image !== ''
               ? data.image
               : process.env.NEXT_PUBLIC_API_GSO + '/public/images/avatar.svg'
           }
           imageMobile={
-            data.image != ''
+            data.image !== ''
               ? data.image
               : process.env.NEXT_PUBLIC_API_GSO + '/public/images/avatar.svg'
           }
