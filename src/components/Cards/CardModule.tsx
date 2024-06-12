@@ -10,8 +10,8 @@ import {
 import { cn } from '@/lib/utils'
 
 type CardProps = {
-  title: string
-  subtitle: string
+  title?: string
+  subtitle?: string
   link?: string
   icon?: React.ReactNode
 } & React.ComponentProps<typeof Card>

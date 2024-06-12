@@ -1,9 +1,13 @@
 import { type ReactNode } from 'react'
 import { LuBuilding2 } from 'react-icons/lu'
 
-import { CardDefault } from '@/components/Cards/CardDefault'
+import OrganizacaoForm from './component/OrganizacaoForm'
 
-const salvarOrganizacao = (): ReactNode => {
+import { CardDefault } from '@/components/Cards/CardDefault'
+import { getAllStates } from '@/lib/getAllStates'
+
+const salvarOrganizacao = async (): Promise<ReactNode> => {
+  const states = await getAllStates()
   return (
     <>
       <CardDefault
@@ -11,7 +15,7 @@ const salvarOrganizacao = (): ReactNode => {
         description="Salvar/Atualizar Organização"
         icon={<LuBuilding2 size={28} />}
       >
-        teste
+        <OrganizacaoForm states={states} />
       </CardDefault>
     </>
   )

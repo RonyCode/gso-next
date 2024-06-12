@@ -13,9 +13,9 @@ import { cn } from '@/lib/utils'
 import { Separator } from '@/ui/separator'
 
 type CardProps = {
-  title: string
-  description: string
-  icon: React.ReactNode
+  title?: string
+  description?: string
+  icon?: React.ReactNode
   iconDescription?: React.ReactNode
   image?: string
   imageMobile?: string

@@ -5,7 +5,6 @@ import React, { useEffect, useTransition } from 'react'
 import { useForm } from 'react-hook-form'
 import {
   LuBuilding2,
-  LuCalendarDays,
   LuCheck,
   LuChevronsUpDown,
   LuClipboardEdit,
@@ -15,13 +14,12 @@ import {
   LuLandmark,
   LuLoader2,
   LuMapPin,
-  LuMousePointerClick,
   LuPhone,
   LuScrollText,
   LuTrash2,
 } from 'react-icons/lu'
 
-import { saveUnidadeAction } from '@/app/(private)/servicos/organizacao/actions/saveUnidadeAction'
+import { saveCorporationAction } from '@/app/(private)/servicos/organizacao/actions/saveCorporationAction'
 import { EditPhoto } from '@/components/EditPhoto/EditPhoto'
 import { MyInputMask } from '@/components/Form/Input/myInputMask'
 import LoadingPage from '@/components/Loadings/LoadingPage'
@@ -36,15 +34,17 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog'
 import { maskCpfCnpj } from '@/functions/masks/maskCpfCnpj'
-import { maskDateBr } from '@/functions/masks/maskDateBr'
 import { maskPhone } from '@/functions/masks/maskphone'
 import { maskZipcode } from '@/functions/masks/maskZipcode'
 import { getAllCitiesByState } from '@/lib/getAllCitiesByState'
 import { getCep } from '@/lib/getCep'
 import { cn } from '@/lib/utils'
-import { type IUnidadeSchema, UnidadeSchema } from '@/schemas/UnidadeSchema'
+import {
+  type IOrganizacaoSchema,
+  OrganizacaoSchema,
+} from '@/schemas/OrganizacaoSchema'
 import { cityStore } from '@/stores/Address/CityByStateStore'
-import type { AddressProps, Unidade } from '@/types/index'
+import type { AddressProps } from '@/types/index'
 import { Button, buttonVariants } from '@/ui/button'
 import { Card } from '@/ui/card'
 import {
@@ -76,17 +76,15 @@ enum Fields {
 }
 
 type UserRegisterFormProps = React.HTMLAttributes<HTMLDivElement> & {
-  unidade?: Unidade | null
+  organizacao?: IOrganizacaoSchema | null
   className?: string
   states?: AddressProps[] | null
-  params?: { id_corporation: string; id: string }
 }
 
-export const TabUnidadeDetails = ({
-  unidade,
+export const OrganizacaoForm = ({
+  organizacao,
   className,
   states,
-  params,
 }: UserRegisterFormProps): JSX.Element => {
   const [pending, startTransition] = useTransition()
   const [disabled, setDisabled] = React.useState(true)
@@ -94,86 +92,79 @@ export const TabUnidadeDetails = ({
 
   useEffect(() => {
     startTransition(async () => {
-      if (unidade?.companyAddress?.short_name != null) {
-        await getAllCitiesByState(unidade?.companyAddress?.short_name)
+      if (organizacao?.short_name != null) {
+        await getAllCitiesByState(organizacao?.short_name)
       }
     })
-    if (unidade?.companyAddress?.short_name == null) setDisabled(false)
-  }, [unidade?.companyAddress?.short_name, disabled])
+    if (organizacao?.short_name == null) setDisabled(false)
+  }, [organizacao?.short_name, disabled])
 
-  const form = useForm<Partial<IUnidadeSchema>>({
+  const form = useForm<Partial<IOrganizacaoSchema>>({
     mode: 'all',
     criteriaMode: 'all',
-    resolver: zodResolver(UnidadeSchema),
+    resolver: zodResolver(OrganizacaoSchema),
     defaultValues: {
-      id: unidade?.id ?? null,
-      id_corporation:
-        unidade?.id_corporation ?? Number(params?.id_corporation) ?? null,
-      name: unidade?.name ?? '',
-      cnpj: maskCpfCnpj(unidade?.cnpj) ?? '',
-      phone: maskPhone(unidade?.phone) ?? '',
-      image: unidade?.image ?? '',
-      address: unidade?.companyAddress?.address ?? '',
-      number: unidade?.companyAddress?.number ?? '',
-      zipcode: maskZipcode(unidade?.companyAddress?.zipcode) ?? '',
-      complement: unidade?.companyAddress?.complement ?? '',
-      district: unidade?.companyAddress?.district ?? '',
-      city: unidade?.companyAddress?.city ?? '',
-      short_name: unidade?.companyAddress?.short_name ?? '',
-      date_creation: maskDateBr(unidade?.date_creation) ?? '',
-      type: unidade?.type ?? null,
-      manager: unidade?.manager?.id ?? null,
-      director: unidade?.director?.id ?? null,
-      manager_company: unidade?.manager_company?.id ?? null,
-      director_company: unidade?.director_company?.id ?? null,
+      id: organizacao?.id ?? null,
+      name: organizacao?.name ?? '',
+      short_name_corp: organizacao?.short_name_corp ?? '',
+      cnpj: maskCpfCnpj(organizacao?.cnpj) ?? '',
+      phone: maskPhone(organizacao?.phone) ?? '',
+      image: organizacao?.image ?? '',
+      address: organizacao?.address ?? '',
+      number: organizacao?.number ?? '',
+      zipcode: maskZipcode(organizacao?.zipcode) ?? '',
+      complement: organizacao?.complement ?? '',
+      district: organizacao?.district ?? '',
+      city: organizacao?.city ?? '',
+      short_name: organizacao?.short_name ?? '',
       excluded: 0,
     },
   })
 
-  const handleSubmit = (formData: Partial<IUnidadeSchema>): void => {
+  const handleSubmit = (formData: Partial<IOrganizacaoSchema>): void => {
     startTransition(async () => {
-      const result = await saveUnidadeAction(formData)
+      const result = await saveCorporationAction(formData)
+      console.log(result)
       if (result?.code !== 202) {
         toast({
           variant: 'danger',
-          title: 'Erro ao salvar unidade! 🤯 ',
+          title: 'Erro ao salvar organização! 🤯 ',
           description: result?.message,
         })
       }
       if (result?.code === 202) {
         toast({
           variant: 'success',
-          title: 'Ok! Unidade salva com sucesso! 🚀',
-          description: 'Tudo certo unidade salva',
+          title: 'Ok! organização salva com sucesso! 🚀',
+          description: 'Tudo certo organização salva',
         })
-        redirect(
-          `/servicos/organizacao/${params?.id_corporation ?? unidade?.id_corporation}/unidades`,
-        )
+        redirect(`/servicos/organizacao`)
       }
     })
   }
   const handleDeleteAction = async (
-    formData: Partial<IUnidadeSchema>,
+    formData: Partial<IOrganizacaoSchema>,
   ): Promise<void> => {
     formData.excluded = 1
+
     startTransition(async () => {
-      const result = await saveUnidadeAction(formData)
+      const result = await saveCorporationAction(formData)
+      console.log(result)
+
       if (result?.code !== 202) {
         toast({
           variant: 'danger',
-          title: 'Erro ao deletar unidade! 🤯 ',
+          title: 'Erro ao deletar organização! 🤯 ',
           description: result?.message,
         })
       }
       if (result?.code === 202) {
         toast({
           variant: 'success',
-          title: 'Ok! Unidade deletada com sucesso! 🚀',
-          description: 'Tudo certo unidade deletada',
+          title: 'Ok! organização deletada com sucesso! 🚀',
+          description: 'Tudo certo organização deletada',
         })
-        router.push(
-          `/servicos/organizacao/${params?.id_corporation ?? unidade?.id_corporation}/unidades`,
-        )
+        router.push(`/servicos/organizacao`)
       }
     })
   }
@@ -222,31 +213,14 @@ export const TabUnidadeDetails = ({
       })
     }
   }
-  const types = [
-    {
-      id: 1,
-      type: 'UNIDADE',
-    },
-    {
-      id: 2,
-      type: 'BATALHÃO',
-    },
-    {
-      id: 3,
-      type: 'COMANDO',
-    },
-    {
-      id: 4,
-      type: 'INDENPEDENTE',
-    },
-  ]
+
   return (
     <>
       <Card x-chunk="dashboard-06-chunk-0">
         <div className="flex items-center">
           <div className="flex w-full items-center justify-between gap-2 p-4 ">
             <h1 className="ml-4 mr-auto text-xl font-bold">Detalhes</h1>
-            {unidade?.id != null && (
+            {organizacao?.id != null && (
               <div>
                 <Dialog>
                   <DialogTrigger asChild>
@@ -358,13 +332,13 @@ export const TabUnidadeDetails = ({
                           htmlFor="name"
                           className="flex items-center gap-1 text-muted-foreground"
                         >
-                          <LuBuilding2 /> Unidade
+                          <LuBuilding2 /> Organização
                         </FormLabel>
                         <FormControl>
                           <Input
                             {...field}
                             id="name"
-                            placeholder="Digite nome da unidade"
+                            placeholder="Digite nome da organização"
                             autoCapitalize="none"
                             autoComplete="name"
                             autoCorrect="off"
@@ -375,97 +349,24 @@ export const TabUnidadeDetails = ({
                       </FormItem>
                     )}
                   />
-
                   <FormField
                     control={form.control}
-                    name="type"
-                    render={({ field }) => (
-                      <FormItem className="flex w-full flex-col">
-                        <FormLabel
-                          htmlFor="director"
-                          className="flex items-center gap-1 text-muted-foreground"
-                        >
-                          <LuMousePointerClick /> Tipo
-                        </FormLabel>{' '}
-                        <Popover>
-                          <PopoverTrigger asChild>
-                            <FormControl>
-                              <Button
-                                variant="outline"
-                                role="combobox"
-                                className={cn(
-                                  'w-full justify-between',
-                                  disabled && 'text-muted-foreground',
-                                )}
-                              >
-                                {field.value !== null
-                                  ? types?.find(
-                                      (typeItem) => typeItem.id === field.value,
-                                    )?.type
-                                  : 'Selecione um membro'}
-                                <LuChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-                              </Button>
-                            </FormControl>
-                          </PopoverTrigger>
-                          <PopoverContent className="w-[200px] p-0">
-                            <Command>
-                              <CommandInput placeholder="procurando tipo ..." />
-                              <CommandEmpty>Tipo não encontrado.</CommandEmpty>
-                              <CommandGroup>
-                                <CommandList>
-                                  {types?.map((typeItem, index) => (
-                                    <CommandItem
-                                      disabled={disabled}
-                                      value={String(typeItem.id)}
-                                      key={index}
-                                      onSelect={() => {
-                                        form.setValue('type', typeItem.id)
-                                      }}
-                                    >
-                                      <LuCheck
-                                        className={cn(
-                                          'mr-2 h-4 w-4',
-                                          typeItem.id === field.value
-                                            ? 'opacity-100'
-                                            : 'opacity-0',
-                                        )}
-                                      />
-                                      {typeItem.type}
-                                    </CommandItem>
-                                  ))}
-                                </CommandList>
-                              </CommandGroup>
-                            </Command>
-                          </PopoverContent>
-                        </Popover>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-
-                  <FormField
-                    control={form.control}
-                    name="date_creation"
+                    name="short_name_corp"
                     render={({ field }) => (
                       <FormItem className="w-full">
                         <FormLabel
-                          htmlFor="date_creation"
+                          htmlFor="short_name_corp"
                           className="flex items-center gap-1 text-muted-foreground"
                         >
-                          <LuCalendarDays /> Data de Fundação
+                          <LuBuilding2 /> Sigla Organização
                         </FormLabel>
                         <FormControl>
-                          <MyInputMask
-                            className={cn(
-                              'flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50',
-                              className,
-                            )}
+                          <Input
                             {...field}
-                            id="date_creation"
-                            placeholder="00/00/0000"
-                            mask="__/__/____"
+                            id="short_name_corp"
+                            placeholder="Digite sigla da organização"
                             autoCapitalize="none"
-                            autoComplete="date_creation"
+                            autoComplete="short_name_corp"
                             autoCorrect="off"
                             disabled={disabled}
                           />
@@ -679,7 +580,7 @@ export const TabUnidadeDetails = ({
                             </Button>
                           </FormControl>
                         </PopoverTrigger>
-                        <PopoverContent className="w-[200px] p-0">
+                        <PopoverContent className="min-w-[200px] p-0">
                           <Command>
                             <CommandInput placeholder="Search language..." />
                             <CommandEmpty>Estado não encontrado.</CommandEmpty>
@@ -752,7 +653,7 @@ export const TabUnidadeDetails = ({
                             </Button>
                           </FormControl>
                         </PopoverTrigger>
-                        <PopoverContent className="w-[200px] p-0">
+                        <PopoverContent className="min-w-[200px] p-0">
                           <Command>
                             <CommandInput placeholder="Procurando cidade..." />
                             <CommandEmpty>Cidade não encontrada.</CommandEmpty>
@@ -803,7 +704,7 @@ export const TabUnidadeDetails = ({
                         <Input
                           {...field}
                           id="district"
-                          placeholder="district"
+                          placeholder="Digite seu bairro"
                           autoCapitalize="none"
                           autoComplete="district"
                           autoCorrect="off"
@@ -839,4 +740,4 @@ export const TabUnidadeDetails = ({
     </>
   )
 }
-export default TabUnidadeDetails
+export default OrganizacaoForm

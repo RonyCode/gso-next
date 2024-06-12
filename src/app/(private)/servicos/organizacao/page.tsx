@@ -3,11 +3,10 @@ import { LuBuilding2 } from 'react-icons/lu'
 
 import ModulesOrganizacao from '@/app/(private)/servicos/organizacao/module/ModulesOrganizacao'
 import { CardDefault } from '@/components/Cards/CardDefault'
-import { GetAllOrganizacao } from '@/lib/GetAllOrganizacao'
+import { getAllOrganizacoes } from '@/lib/GetAllOrganizacoes'
 
 const Organizacao = async (): Promise<ReactNode> => {
-  const organizacao = await GetAllOrganizacao()
-
+  const { data } = await getAllOrganizacoes()
   return (
     <>
       <CardDefault
@@ -17,7 +16,7 @@ const Organizacao = async (): Promise<ReactNode> => {
         imageMobile="https://www.designi.com.br/images/preview/11149946-m.jpg"
         icon={<LuBuilding2 size={28} />}
       >
-        <ModulesOrganizacao organizacao={organizacao} />
+        <ModulesOrganizacao organizacoes={data} />
       </CardDefault>
     </>
   )
