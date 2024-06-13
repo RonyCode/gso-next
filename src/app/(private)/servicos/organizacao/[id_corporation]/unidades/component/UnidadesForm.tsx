@@ -1,6 +1,7 @@
 import React, { use } from 'react'
 
 import TabUnidadeDetails from '@/app/(private)/servicos/organizacao/[id_corporation]/unidades/component/TabUnidadeDetails'
+import { ImageExist } from '@/functions/ImageExist'
 import { getAllStates } from '@/lib/getAllStates'
 import { getUnidadeById } from '@/lib/GetUnidadeById'
 import {
@@ -12,6 +13,7 @@ import {
   CardTitle,
 } from '@/ui/card'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/ui/tabs'
+import { existsSync } from 'node:fs'
 
 type UserRegisterFormProps = React.HTMLAttributes<HTMLDivElement> & {
   className?: string
@@ -25,6 +27,11 @@ export const UnidadesForm = ({
 }: UserRegisterFormProps): JSX.Element => {
   const { data } = use(getUnidadeById(params.id_corporation, params.id))
   const states = use(getAllStates())
+
+  const result = use(ImageExist(data.image))
+  if (result.status !== 200) {
+    data.image = process.env.NEXT_PUBLIC_API_GSO + '/public/images/img.png'
+  }
   return (
     <main className="grid flex-1 items-start">
       <Tabs defaultValue="dadosGerais">

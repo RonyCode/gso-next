@@ -1,7 +1,7 @@
 import { type NextRequest, NextResponse } from 'next/server'
 
 export async function GET(request: NextRequest): Promise<NextResponse> {
-  const res = await fetch('https://wsgso.000webhostapp.com/api/auth/estados', {
+  const res = await fetch('http://wsgso.localhost/services/states', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
