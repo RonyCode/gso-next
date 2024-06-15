@@ -8,7 +8,7 @@ import IconSirene from '../../../../../public/icons/IconSirene'
 
 import { CardModule } from '@/components/Cards/CardModule'
 
-const ModulesServices = (): JSX.Element => {
+const ModulesServices = async (): Promise<JSX.Element> => {
   return (
     <>
       <div>

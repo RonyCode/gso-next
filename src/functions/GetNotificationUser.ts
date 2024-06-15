@@ -1,7 +1,6 @@
-import { type UserNotification } from '../../types/index'
-
 import { fetchWrapper } from '@/functions/fetch'
 import { useNotificationStore } from '@/stores/user/useNotificationStore'
+import { type UserNotification } from '@/types/index'
 
 export const GetUserNotification = async (
   queueName: string,
@@ -17,7 +16,6 @@ export const GetUserNotification = async (
       },
     },
   )
-
   if (notification.messages?.length !== 0 && notification.code !== 400) {
     useNotificationStore.getState().actions.add(notification)
     return notification

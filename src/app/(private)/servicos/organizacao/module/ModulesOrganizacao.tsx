@@ -11,7 +11,6 @@ const ModulesOrganizacao = ({
 }: {
   organizacoes: IOrganizacaoSchema[]
 }): JSX.Element => {
-  console.log(organizacoes)
   return (
     <>
       <div>
@@ -27,14 +26,14 @@ const ModulesOrganizacao = ({
           ))}
           <CardModule
             title="Nova Organização"
-            subtitle="Unidades da minha organização"
+            subtitle="Adicionar nova organização"
             link={'/servicos/organizacao/salvar'}
             icon={<IconBuildPlus width={58} className="ml-1" />}
           />
           <CardModule
             title="Privilégios"
             subtitle="Conceder privilégios"
-            link={'/servicos/organizacao/save'}
+            link={'/servicos/organizacao/privilegios'}
             icon={<IconPrivileges width={80} />}
           />
         </div>

@@ -19,7 +19,7 @@ const ModulesOrganizacao = ({
           <CardModule
             title={'Minha Organização'}
             subtitle={'Visualizar detalhes'}
-            link={`/servicos/organizacao/${idcorporation}/minha-organizacao`}
+            link={`/servicos/organizacao/${idcorporation}/detalhes`}
             icon={<IconBuild width={54} />}
           />
           <CardModule

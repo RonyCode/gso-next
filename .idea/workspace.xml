@@ -5,17 +5,72 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4467a1d6-73df-479e-9cc5-8e8cf1a18f4d" name="Changes" comment="salvando deletando company">
-      <change afterPath="$PROJECT_DIR$/.yarnrc.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/functions/ImageExist.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/functions/IsValidUrl.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/(private)/servicos/organizacao/[id_corporation]/detalhes/page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/(private)/servicos/organizacao/[id_corporation]/unidades/[id]/carros/page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/(private)/servicos/organizacao/[id_corporation]/unidades/[id]/detalhes/page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/(private)/servicos/organizacao/[id_corporation]/unidades/[id]/membros/page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/(private)/servicos/organizacao/[id_corporation]/unidades/component/TabCarsDetails.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/(private)/servicos/organizacao/[id_corporation]/unidades/component/TabMembersDetails.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/DataTables/DataTableCars/columnsCars.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/DataTables/DataTableCars/data-table-cars.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/DataTables/DataTableCars/data-table-column-header.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/DataTables/DataTableCars/data-table-faceted-filter.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/DataTables/DataTableCars/data-table-pagination.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/DataTables/DataTableCars/data-table-row-actions.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/DataTables/DataTableCars/data-table-toolbar.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/DataTables/DataTableCars/data-table-view-options.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/DataTables/DataTableCars/data/data.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/DataTables/DataTableCars/data/schema.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/DataTables/DataTableMembers/columnsMembers.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/DataTables/DataTableMembers/data-table-column-header.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/DataTables/DataTableMembers/data-table-faceted-filter.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/DataTables/DataTableMembers/data-table-members.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/DataTables/DataTableMembers/data-table-pagination.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/DataTables/DataTableMembers/data-table-row-actions.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/DataTables/DataTableMembers/data-table-toolbar.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/DataTables/DataTableMembers/data-table-view-options.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/DataTables/DataTableMembers/data/data.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/DataTables/DataTableMembers/data/schema.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/stores/organizacoes/organizacaoStore.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/stores/organizacoes/organizacaoStoreinitialize.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/stores/unidades/unidadeStore.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(auth)/auth/components/SigInForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(auth)/auth/components/SigInForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(auth)/auth/hooks/useSign/useSignIn.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(auth)/auth/hooks/useSign/useSignIn.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(private)/conta/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/conta/layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(private)/servicos/module/ModulesServices.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/servicos/module/ModulesServices.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(private)/servicos/organizacao/[id_corporation]/minha-organizacao/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/servicos/organizacao/minha-organizacao/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(private)/servicos/organizacao/[id_corporation]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/servicos/organizacao/[id_corporation]/page.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/(private)/servicos/organizacao/[id_corporation]/unidades/[id]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/servicos/organizacao/[id_corporation]/unidades/[id]/page.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/(private)/servicos/organizacao/[id_corporation]/unidades/component/TabUnidadeDetails.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/servicos/organizacao/[id_corporation]/unidades/component/TabUnidadeDetails.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/(private)/servicos/organizacao/[id_corporation]/unidades/component/UnidadesForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/servicos/organizacao/[id_corporation]/unidades/component/UnidadesForm.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/api/estados/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/api/estados/route.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(private)/servicos/organizacao/[id_corporation]/unidades/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/servicos/organizacao/[id_corporation]/unidades/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(private)/servicos/organizacao/module/ModulesMinhaOrganizacao.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/servicos/organizacao/module/ModulesMinhaOrganizacao.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(private)/servicos/organizacao/module/ModulesOrganizacao.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/servicos/organizacao/module/ModulesOrganizacao.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(private)/servicos/organizacao/module/ModulesUnidades.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/servicos/organizacao/module/ModuleMinhaUnidade.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(private)/servicos/organizacao/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/servicos/organizacao/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(private)/servicos/organizacao/salvar/component/OrganizacaoForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/servicos/organizacao/salvar/component/OrganizacaoForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(private)/servicos/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/servicos/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/api/message/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/api/message/route.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/BreadCrumbGso/BreadcrumbGso.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/BreadCrumbGso/BreadcrumbGso.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Cards/CardModule.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Cards/CardModule.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/DataTables/DataTableUnidades/columnsUnidades.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DataTables/DataTableUnidades/columnsUnidades.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/DataTables/DataTableUnidades/data-table-row-actions.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DataTables/DataTableUnidades/data-table-row-actions.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Nav/NavbarMain.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Nav/NavbarMain.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/functions/GetNotificationUser.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/functions/GetNotificationUser.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/functions/ImageExist.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/functions/ImageExist.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/GetAllOrganizacoes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/GetAllOrganizacoes.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/GetAllUnidades.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/GetAllUnidades.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/middleware.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/middleware.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/schemas/MemberSchema.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/schemas/MemberSchema.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/schemas/OrganizacaoSchema.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/schemas/OrganizacaoSchema.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/schemas/UnidadeSchema.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/schemas/UnidadeSchema.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/stores/initializeStores.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/stores/initializeStores.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/stores/user/userStore.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/stores/user/userStore.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/types/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/types/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,8 +80,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="TypeScript JSX File" />
         <option value="TypeScript File" />
+        <option value="TypeScript JSX File" />
       </list>
     </option>
   </component>
@@ -68,7 +123,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;dev&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/rony/web/gso-next/src/app/(private)/servicos/organizacao/salvar&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/rony/web/gso-next/src/app/(private)/servicos/organizacao&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.stylelint&quot;: &quot;true&quot;,
@@ -100,13 +155,14 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/app/(private)/servicos/organizacao/salvar" />
-      <recent name="$PROJECT_DIR$/src/lib" />
-      <recent name="$PROJECT_DIR$/src/functions/masks" />
-      <recent name="$PROJECT_DIR$/src/schemas" />
-      <recent name="$PROJECT_DIR$/public/icons" />
+      <recent name="$PROJECT_DIR$/src/app/(private)/servicos/organizacao" />
+      <recent name="$PROJECT_DIR$/src/components/DataTables/DataTableCars" />
+      <recent name="$PROJECT_DIR$/src/components/DataTables" />
+      <recent name="$PROJECT_DIR$/src/app/(private)/servicos/organizacao/[id_corporation]/unidades/component" />
+      <recent name="$PROJECT_DIR$/src/app/(private)/servicos/organizacao/[id_corporation]/unidades/[id]" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/stores/unidades" />
       <recent name="$PROJECT_DIR$/src/app/(private)/servicos/organizacao" />
       <recent name="$PROJECT_DIR$/src/app/(private)/servicos/organizacao/[id_corporation]/unidades/actions" />
       <recent name="$PROJECT_DIR$/src/app/api/organizacoes" />
@@ -116,7 +172,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-WS-241.17011.90" />
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-WS-241.17890.13" />
       </set>
     </attachedChunks>
   </component>
@@ -173,7 +229,15 @@
       <workItem from="1718150555589" duration="7468000" />
       <workItem from="1718239583891" duration="5376000" />
       <workItem from="1718285391270" duration="3483000" />
-      <workItem from="1718290660265" duration="8291000" />
+      <workItem from="1718290660265" duration="8743000" />
+      <workItem from="1718314032538" duration="4888000" />
+      <workItem from="1718319230331" duration="3264000" />
+      <workItem from="1718385128675" duration="13574000" />
+      <workItem from="1718412184267" duration="9663000" />
+      <workItem from="1718449939178" duration="19491000" />
+      <workItem from="1718479691115" duration="85000" />
+      <workItem from="1718479791545" duration="20000" />
+      <workItem from="1718479996022" duration="6221000" />
     </task>
     <task id="LOCAL-00001" summary="refatorando com eslint">
       <option name="closed" value="true" />
@@ -359,7 +423,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718071912239</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="salvando deletando company">
+      <option name="closed" value="true" />
+      <created>1718300117210</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1718300117210</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

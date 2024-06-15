@@ -2,50 +2,45 @@ import React from 'react'
 
 import IconBuild from '../../../../../../public/icons/IconBuild'
 import IconBuildPlus from '../../../../../../public/icons/IconBuildPlus'
-import IconOpenBook from '../../../../../../public/icons/IconOpenBook'
 
 import { CardModule } from '@/components/Cards/CardModule'
 
-const ModulesUnidades = ({
+const ModuleMinhaUnidade = ({
   idCorporation,
+  idUnidade,
 }: {
   idCorporation: string
+  idUnidade: string
 }): JSX.Element => {
   return (
     <>
       <div className=" grid grid-cols-2 gap-4 p-8 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-5">
         <CardModule
-          title="Minha Organização"
-          subtitle="Detalhes da minha organização"
-          link={`/servicos/organizacao/${idCorporation}/unidades`}
+          title="Minha unidade"
+          subtitle="Detalhes da minha unidade"
+          link={`/servicos/organizacao/${idCorporation}/unidades/${idUnidade}/detalhes`}
           icon={<IconBuild width={54} className="ml-1" />}
         />
         <CardModule
-          title="Adicionar Unidade"
-          subtitle="Unidades da minha organização"
-          link={`/servicos/organizacao/${idCorporation}/unidades`}
+          title="Membros"
+          subtitle="Membros da minha unidade"
+          link={`/servicos/organizacao/${idCorporation}/unidades/${idUnidade}/membros`}
           icon={<IconBuildPlus width={58} className="ml-1" />}
         />
         <CardModule
-          title="Unidades"
+          title="Carros"
           subtitle="Unidades da minha organização"
-          link={`/servicos/organizacao/${idCorporation}/unidades`}
+          link={`/servicos/organizacao/${idCorporation}/unidades/${idUnidade}/carros`}
           icon={<IconBuild width={54} className="ml-1" />}
         />
         <CardModule
-          title="Unidades"
+          title="Escala"
           subtitle="Unidades da minha organização"
-          link={`/servicos/organizacao/${idCorporation}/unidades`}
+          link={`/servicos/organizacao/${idCorporation}/unidades/${idUnidade}`}
           icon={<IconBuild width={54} className="ml-1" />}
         />
-        <CardModule
-          title="Leis"
-          subtitle="Acervo de leis "
-          link="/servicos/organizacao/leis"
-          icon={<IconOpenBook width={80} className="stroke-foreground/60" />}
-        />{' '}
       </div>
     </>
   )
 }
-export default ModulesUnidades
+export default ModuleMinhaUnidade

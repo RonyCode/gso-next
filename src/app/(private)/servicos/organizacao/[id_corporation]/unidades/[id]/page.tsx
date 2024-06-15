@@ -1,8 +1,11 @@
+import React from 'react'
 import { LuBuilding } from 'react-icons/lu'
 import { MdOutlineSupervisorAccount } from 'react-icons/md'
 
 import UnidadesForm from '@/app/(private)/servicos/organizacao/[id_corporation]/unidades/component/UnidadesForm'
+import ModuleMinhaUnidade from '@/app/(private)/servicos/organizacao/module/ModuleMinhaUnidade'
 import { CardDefault } from '@/components/Cards/CardDefault'
+import { columnsUnidades } from '@/components/DataTables/DataTableUnidades/columnsUnidades'
 import { ImageExist } from '@/functions/ImageExist'
 import { getUnidadeById } from '@/lib/GetUnidadeById'
 
@@ -13,28 +16,31 @@ const Unidade = async ({
 }): Promise<JSX.Element> => {
   const { data } = await getUnidadeById(params.id_corporation, params.id)
 
-  const imgValided = await ImageExist(data.image)
-  if (imgValided.status !== 200) {
-    data.image = process.env.NEXT_PUBLIC_API_GSO + '/public/images/img.png'
+  const result = await ImageExist(data.image)
+  if (result.status === 200) {
+    console.log(data.image)
   }
   return (
     <div>
-      {
-        <CardDefault
-          title={data?.name + ' / ' + data?.companyAddress?.city}
-          description={
-            'CMD : ' + data?.director.competence + ' - ' + data?.director.name
-          }
-          image={data.image}
-          imageMobile={data.image}
-          icon={<LuBuilding size={28} />}
-          iconDescription={<MdOutlineSupervisorAccount size={18} />}
-        >
-          <div className=" grid flex-1 items-start p-6 ">
-            <UnidadesForm params={params} />
-          </div>
-        </CardDefault>
-      }
+      (
+      <CardDefault
+        title={data?.name + ' / ' + data?.companyAddress?.city}
+        description={
+          'CMD : ' + data?.director.competence + ' - ' + data?.director.name
+        }
+        image={data.image}
+        imageMobile={data.image}
+        icon={<LuBuilding size={28} />}
+        iconDescription={<MdOutlineSupervisorAccount size={18} />}
+      >
+        <div className="md:overflow-none overflow-scroll">
+          <UnidadesForm params={params} />
+        </div>
+        {/* <ModuleMinhaUnidade */}
+        {/*  idCorporation={params.id_corporation} */}
+        {/*  idUnidade={params.id} */}
+        {/* /> */}
+      </CardDefault>
     </div>
   )
 }

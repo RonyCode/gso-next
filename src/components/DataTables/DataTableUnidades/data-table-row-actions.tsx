@@ -10,6 +10,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
+import { UnidadeSchema } from '@/schemas/UnidadeSchema'
 import { DotsHorizontalIcon } from '@radix-ui/react-icons'
 import { type Row } from '@tanstack/react-table'
 
@@ -20,7 +21,7 @@ interface DataTableRowActionsProps<TData> {
 export function DataTableRowActions<TData>({
   row,
 }: DataTableRowActionsProps<TData>): ReactElement {
-  const task = taskSchema.parse(row.original)
+  const task = UnidadeSchema.parse(row.original)
 
   return (
     <DropdownMenu>

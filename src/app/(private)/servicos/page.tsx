@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   description: 'Página de escalas do site GSO.',
 }
 
-const Servicos = (): ReactNode => {
+const Servicos = async (): Promise<ReactNode> => {
   return (
     <>
       <CardDefault

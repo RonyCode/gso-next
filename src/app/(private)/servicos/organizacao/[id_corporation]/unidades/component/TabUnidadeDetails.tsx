@@ -75,9 +75,6 @@ enum Fields {
   shortName = 'short_name',
 }
 
-
-
-
 type UserRegisterFormProps = React.HTMLAttributes<HTMLDivElement> & {
   unidade?: Unidade | null
   className?: string
@@ -247,7 +244,7 @@ export const TabUnidadeDetails = ({
     <>
       <Card x-chunk="dashboard-06-chunk-0">
         <div className="flex items-center">
-          <div className="flex w-full items-center justify-between gap-2 p-4 ">
+          <div className="flex w-full items-center justify-between gap-4  space-y-2 p-6">
             <h1 className="ml-4 mr-auto text-xl font-bold">Detalhes</h1>
             {unidade?.id != null && (
               <div>
@@ -347,7 +344,7 @@ export const TabUnidadeDetails = ({
                     height={500}
                     quality={100}
                     alt="imagem director"
-                    className="rounded-[5px] object-cover"
+                    className="rounded-[5px] object-contain"
                   />
                 </div>
 

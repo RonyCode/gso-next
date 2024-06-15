@@ -9,12 +9,13 @@ import { DataTableRowActions } from '@/components/DataTables/DataTableUnidades/d
 import { types } from '@/components/DataTables/DataTableUnidades/data/data'
 import { maskCpfCnpj } from '@/functions/masks/maskCpfCnpj'
 import { maskPhone } from '@/functions/masks/maskphone'
+import { type IUnidadeSchema } from '@/schemas/UnidadeSchema'
 import { type Unidade } from '@/types/index'
 import { Badge } from '@/ui/badge'
 import { Avatar, AvatarFallback, AvatarImage } from '@radix-ui/react-avatar'
 import { type ColumnDef } from '@tanstack/react-table'
 
-export const columnsUnidades: Array<ColumnDef<Unidade>> = [
+export const columnsUnidades: Array<ColumnDef<IUnidadeSchema>> = [
   // {
   //   id: 'select',
   //   header: ({ table }) => {
@@ -98,20 +99,17 @@ export const columnsUnidades: Array<ColumnDef<Unidade>> = [
       <DataTableColumnHeader column={column} title="Gestores" />
     ),
     cell: ({ row }) => {
-      const $director = row.original.director
-      const $manager = row.original.manager
-
       return (
         <div className="flex w-full items-center">
           <div className="mr-2 flex flex-col space-y-1 text-muted-foreground">
             <span>
-              {$director?.competence} - {$director?.name} -{' '}
+              {row.original?.type} - {row.original?.name} -{' '}
               <Badge variant="secondary">CMD</Badge>
             </span>
 
-            {$manager?.name !== '' && (
+            {row.original?.name !== '' && (
               <span>
-                {$manager.competence} - {$manager?.name}{' '}
+                {row.original.type} - {row.original?.name}{' '}
                 <Badge variant="secondary">SUB CMD</Badge>
               </span>
             )}

@@ -1,5 +1,4 @@
-import { type UserType } from '../../../types/index'
-
+import { type UserType } from '@/types/index'
 import { create } from 'zustand'
 
 interface ActionsProps {

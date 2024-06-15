@@ -13,6 +13,7 @@ const MinhaOrganizacao = async ({
 }): Promise<ReactNode> => {
   const { data } = await getAllOrganizacoes()
   const state = await getAllStates()
+  // eslint-disable-next-line array-callback-return
   const organizacaoFound = data?.find((item) => {
     if (
       item.id !== undefined &&

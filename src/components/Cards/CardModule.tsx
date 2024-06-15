@@ -1,3 +1,5 @@
+'use client'
+import { useSession } from 'next-auth/react'
 import Link from 'next/link'
 import { type ReactElement } from 'react'
 
@@ -7,12 +9,13 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
+import { GetUserNotification } from '@/functions/GetNotificationUser'
 import { cn } from '@/lib/utils'
 
 type CardProps = {
   title?: string
   subtitle?: string
-  link?: string
+  link?: { pathname: string; query: { name: string } } | string
   icon?: React.ReactNode
 } & React.ComponentProps<typeof Card>
 
@@ -24,13 +27,18 @@ export function CardModule({
   className,
   ...props
 }: CardProps): ReactElement {
+  const { data: session } = useSession()
+  const handleGetMessage = (): void => {
+    void GetUserNotification('auth', 'user_logged', session?.id_message)
+  }
+
   return (
     <Card
       id="cardModule"
       className={cn('  h-28 w-full ', className)}
       {...props}
     >
-      <Link href={`${link ?? '#'}  `}>
+      <Link href={`${link ?? '#'}`} onClick={handleGetMessage}>
         <CardHeader className=" h-full w-full cursor-pointer space-y-1.5 rounded-[5px]  border p-3  hover:border-primary/60 hover:bg-foreground/10 ">
           <div className="flex h-full w-full flex-col items-center justify-center p-0  xl:flex-row xl:justify-between">
             {/* <span className=" md h-2 w-2 translate-y-1 rounded-full bg-sky-500"></span> */}

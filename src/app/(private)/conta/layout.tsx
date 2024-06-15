@@ -45,7 +45,7 @@ const sidebarNavItems = [
     group: [
       {
         title: 'Minha Unidade',
-        href: '/conta/minha-unidade',
+        href: '/conta/detalhes',
         icon: <LuHome size={20} />,
       },
 

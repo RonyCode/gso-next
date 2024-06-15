@@ -15,6 +15,13 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
     },
   )
 
+  if (!res.ok) {
+    return NextResponse.json(
+      { message: res.statusText },
+      { status: res.status },
+    )
+  }
+
   const data = await res.json()
   return NextResponse.json(data)
 }

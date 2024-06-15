@@ -8,15 +8,15 @@ import { useForm } from 'react-hook-form'
 import { FaSpinner } from 'react-icons/fa6'
 import { LuMail, LuSquareAsterisk } from 'react-icons/lu'
 
-import { type ResultSignIn } from '../../../../../types/index'
-
 import { useSignIn } from '@/app/(auth)/auth/hooks/useSign'
 import {
   type ISignInSchema,
   SignInSchema,
 } from '@/app/(auth)/auth/schemas/SignInSchema'
 import LoadingPage from '@/components/Loadings/LoadingPage'
+import { GetUserNotification } from '@/functions/GetNotificationUser'
 import { cn } from '@/lib/utils'
+import { type ResultSignIn } from '@/types/index'
 import { Button } from '@/ui/button'
 import {
   Form,
@@ -31,6 +31,7 @@ import { Input } from '@/ui/input'
 import { toast } from '@/ui/use-toast'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { setCookie } from 'cookies-next'
+import md5 from 'md5'
 
 type UserAuthFormProps = {
   className?: Element
@@ -52,6 +53,8 @@ const SigInForm = ({ className, ...props }: UserAuthFormProps): JSX.Element => {
         })
       }
       if (result.ok) {
+        const idMessage = md5(data.email)
+        void GetUserNotification('auth', 'user_logged', idMessage)
         toast({
           variant: 'success',
           title: 'Bem vindo de volta! 😍',

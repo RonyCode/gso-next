@@ -1,6 +1,10 @@
 import type { NextRequest } from 'next/server'
 import { NextResponse } from 'next/server'
 
+import { GetUserNotification } from '@/functions/GetNotificationUser'
+import { decodeJwt } from 'jose'
+import md5 from 'md5'
+
 // This function can be marked `async` if using `await` inside
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 export async function middleware(request: NextRequest) {
@@ -238,6 +242,7 @@ export const config = {
   matcher: [
     '/auth/:path*',
     '/dashboard/:path*',
+    '/servicos/:path*',
     '/private/:path*',
     '/about/:path*',
     '/contact/:path*',

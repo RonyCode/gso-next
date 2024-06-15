@@ -4,6 +4,7 @@ import type { Session, User, DefaultSession } from 'next-auth'
 import NextAuth from 'next-auth'
 import type React from 'react'
 
+import { type IMemberSchema } from '@/schemas/MemberSchema'
 import { type DialogContent } from '@/ui/dialog'
 
 export interface UserAuth {
@@ -77,11 +78,11 @@ export interface Member {
 export interface Car {
   id: number
   id_company: number
-  prefix: number
-  model: number
-  color: number
-  image: number
-  plate: number
+  prefix: string
+  model: string
+  color: string
+  image: string
+  plate: string
   local: number
   type: number
   condition_car: number
@@ -183,7 +184,7 @@ export interface Unidade {
   manager_company: Unidade
   director_company: Unidade
   companyAddress: Address
-  companyMembers: Member[]
+  companyMembers: IMemberSchema[]
   companyCars: Car[]
   companySchedules: Schedule[]
   companyMaterials: []

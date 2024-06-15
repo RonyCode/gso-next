@@ -1,6 +1,6 @@
 import { isValidUrl } from '@/functions/IsValidUrl'
 
-export async function ImageExist(url: string): Promise<Response> {
+export async function ImageExist(url: string | undefined): Promise<Response> {
   if (isValidUrl(url)) {
     return await fetch(url, {
       method: 'HEAD',

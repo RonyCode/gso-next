@@ -23,7 +23,6 @@ import { deleteCookies } from '@/components/Buttoms/SignOutButton/LogoutAction'
 import LoadingPage from '@/components/Loadings/LoadingPage'
 import { NotificationCard } from '@/components/Notification/NotiicationCard'
 import { GetFirstLettersNameUser } from '@/functions/GetFirstLettersNameUser'
-import { GetUserNotification } from '@/functions/GetNotificationUser'
 import { cn } from '@/lib/utils'
 import { Avatar, AvatarFallback, AvatarImage } from '@/ui/avatar'
 import { Button } from '@/ui/button'
@@ -98,8 +97,6 @@ export function NavbarMain({
   const myRef = useRef(null)
   const nameUser = GetFirstLettersNameUser()
 
-  void GetUserNotification('auth', 'user_logged', session?.id_message)
-
   useEffect(() => {
     window.addEventListener('scroll', () => {
       if (window.scrollY > 100) {
@@ -108,7 +105,7 @@ export function NavbarMain({
         setShowNavBar(false)
       }
     })
-  }, [session, showNavBar])
+  }, [session?.id_message])
 
   const handleClick = async (): Promise<void> => {
     await deleteCookies()

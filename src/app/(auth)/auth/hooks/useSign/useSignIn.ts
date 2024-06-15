@@ -1,8 +1,7 @@
 import { signIn } from 'next-auth/react'
 
-import { type ResultSignIn } from '../../../../../../types/index'
-
 import { type ISignInSchema } from '@/app/(auth)/auth/schemas/SignInSchema'
+import { type ResultSignIn } from '@/types/index'
 import { toast } from '@/ui/use-toast'
 
 export const useSignIn = (): {

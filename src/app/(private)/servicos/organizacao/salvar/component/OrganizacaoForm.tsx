@@ -124,7 +124,6 @@ export const OrganizacaoForm = ({
   const handleSubmit = (formData: Partial<IOrganizacaoSchema>): void => {
     startTransition(async () => {
       const result = await saveCorporationAction(formData)
-      console.log(result)
       if (result?.code !== 202) {
         toast({
           variant: 'danger',
@@ -149,8 +148,6 @@ export const OrganizacaoForm = ({
 
     startTransition(async () => {
       const result = await saveCorporationAction(formData)
-      console.log(result)
-
       if (result?.code !== 202) {
         toast({
           variant: 'danger',

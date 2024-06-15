@@ -1,19 +1,11 @@
 import React, { use } from 'react'
 
+import TabMembersDetails from '@/app/(private)/servicos/organizacao/[id_corporation]/unidades/component/TabMembersDetails'
 import TabUnidadeDetails from '@/app/(private)/servicos/organizacao/[id_corporation]/unidades/component/TabUnidadeDetails'
 import { ImageExist } from '@/functions/ImageExist'
 import { getAllStates } from '@/lib/getAllStates'
 import { getUnidadeById } from '@/lib/GetUnidadeById'
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@/ui/card'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/ui/tabs'
-import { existsSync } from 'node:fs'
 
 type UserRegisterFormProps = React.HTMLAttributes<HTMLDivElement> & {
   className?: string
@@ -33,9 +25,9 @@ export const UnidadesForm = ({
     data.image = process.env.NEXT_PUBLIC_API_GSO + '/public/images/img.png'
   }
   return (
-    <main className="grid flex-1 items-start">
+    <main className="grid flex-1 items-start md:p-4 ">
       <Tabs defaultValue="dadosGerais">
-        <div className="flex items-center">
+        <div className="absolute flex items-center justify-between md:relative ">
           <TabsList>
             <TabsTrigger value="dadosGerais">Dados gerais</TabsTrigger>
             <TabsTrigger value="efetivo">Efetivo</TabsTrigger>
@@ -43,57 +35,16 @@ export const UnidadesForm = ({
             <TabsTrigger value="listaEscala">Escalas</TabsTrigger>
           </TabsList>
         </div>{' '}
-        <TabsContent value="dadosGerais">
-          <TabUnidadeDetails unidade={data} states={states} />
-        </TabsContent>
-        <TabsContent value="efetivo">
-          <Card x-chunk="dashboard-06-chunk-0">
-            <CardHeader>
-              <CardTitle>Products</CardTitle>
-              <CardDescription>
-                Manage your products and view their sales performance.
-              </CardDescription>
-            </CardHeader>
-            <CardContent></CardContent>
-            <CardFooter>
-              <div className="text-xs text-muted-foreground">
-                Showing <strong>1-10</strong> of <strong>32</strong> products
-              </div>
-            </CardFooter>
-          </Card>
-        </TabsContent>
-        <TabsContent value="viaturas">
-          <Card x-chunk="dashboard-06-chunk-0">
-            <CardHeader>
-              <CardTitle>Products</CardTitle>
-              <CardDescription>
-                Manage your products and view their sales performance.
-              </CardDescription>
-            </CardHeader>
-            <CardContent></CardContent>
-            <CardFooter>
-              <div className="text-xs text-muted-foreground">
-                Showing <strong>1-10</strong> of <strong>32</strong> products
-              </div>
-            </CardFooter>
-          </Card>
-        </TabsContent>
-        <TabsContent value="listaEscala">
-          <Card x-chunk="dashboard-06-chunk-0">
-            <CardHeader>
-              <CardTitle>Products</CardTitle>
-              <CardDescription>
-                Manage your products and view their sales performance.
-              </CardDescription>
-            </CardHeader>
-            <CardContent></CardContent>
-            <CardFooter>
-              <div className="text-xs text-muted-foreground">
-                Showing <strong>1-10</strong> of <strong>32</strong> products
-              </div>
-            </CardFooter>
-          </Card>
-        </TabsContent>
+        <div className="mt-14 md:mt-0">
+          <TabsContent value="dadosGerais">
+            <TabUnidadeDetails unidade={data} states={states} />
+          </TabsContent>
+          <TabsContent value="efetivo">
+            <TabMembersDetails members={data.companyMembers} />
+          </TabsContent>
+          <TabsContent value="viaturas"></TabsContent>
+          <TabsContent value="listaEscala"></TabsContent>
+        </div>
       </Tabs>
     </main>
   )

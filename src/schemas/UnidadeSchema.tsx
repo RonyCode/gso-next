@@ -48,8 +48,8 @@ export const UnidadeSchema = z.object({
 
   manager: z.number().optional().nullable(),
   director: z.number().optional().nullable(),
-  manager_company: z.number().optional().nullable(),
-  director_company: z.number().optional().nullable(),
+  manager_company: z.object({}).optional().nullable(),
+  director_company: z.object({}).optional().nullable(),
   excluded: z.number().optional().nullable(),
 })
 

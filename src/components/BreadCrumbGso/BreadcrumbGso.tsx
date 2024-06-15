@@ -15,8 +15,10 @@ import {
 const BreadcrumbGso = (): ReactElement => {
   const pathname = usePathname()
   const arrayPathname = pathname?.split('/')
+
   arrayPathname?.shift()
   const arrayLink: string[] = []
+  let link = ''
 
   return (
     <Breadcrumb>
@@ -29,7 +31,6 @@ const BreadcrumbGso = (): ReactElement => {
         </BreadcrumbItem>
 
         {arrayPathname?.map((item, index) => {
-          let link: string = ''
           index === 0 ? arrayLink.push('/' + item) : arrayLink.push(item)
           link = arrayLink.join('/')
 
