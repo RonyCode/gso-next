@@ -28,7 +28,7 @@ const sidebarNavItems = [
       },
       {
         title: 'Minha Escala',
-        href: '/conta/escala',
+        href: '/conta/escalas',
         icon: <LuCalendarDays size={20} />,
       },
 

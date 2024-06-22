@@ -5,6 +5,7 @@ import NextAuth from 'next-auth'
 import type React from 'react'
 
 import { type IMemberSchema } from '@/schemas/MemberSchema'
+import { type IScheduleSchema } from '@/schemas/ScheduleSchema'
 import { type DialogContent } from '@/ui/dialog'
 
 export interface UserAuth {
@@ -186,7 +187,7 @@ export interface Unidade {
   companyAddress: Address
   companyMembers: IMemberSchema[]
   companyCars: Car[]
-  companySchedules: Schedule[]
+  companySchedules: IScheduleSchema[]
   companyMaterials: []
   excluded: number
 }
@@ -351,6 +352,7 @@ declare module 'next-auth' {
     name?: string | null
     email?: string | null
     image?: string | null
+    role?: string | null
     picture?: string | null
     senha?: string | null
     token?: string | null
@@ -369,6 +371,7 @@ declare module 'next-auth' {
     nome: string
     name: string
     email: string
+    role: string
     image: string
     picture: string
     senha: string
@@ -390,6 +393,7 @@ declare module 'next-auth/jwt' {
     nome: string
     name: string
     email: string
+    role: string
     image: string
     picture: string
     senha: string

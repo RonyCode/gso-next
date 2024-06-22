@@ -242,7 +242,7 @@ export const config = {
   matcher: [
     '/auth/:path*',
     '/dashboard/:path*',
-    '/servicos/:path*',
+    '/(modules)/:path*',
     '/private/:path*',
     '/about/:path*',
     '/contact/:path*',

@@ -7,12 +7,10 @@ export const AddressSchema = z.object({
   number: z.string().min(2, {
     message: 'endereço inválido deve conter no mínimo 3 caracteres',
   }),
-  zipcode: z.string().min(9, {
-    message: 'cep inválido deve conter no mínimo 9 caracteres',
+  zipcode: z.string().min(8, {
+    message: 'cep inválido deve conter no mínimo 8 caracteres',
   }),
-  complement: z.string().min(2, {
-    message: 'complemento  inválido deve conter no mínimo 3 caracteres',
-  }),
+  complement: z.string().optional(),
   district: z.string().min(2, {
     message: 'bairro inválido deve conter no mínimo 3 caracteres',
   }),
@@ -25,9 +23,12 @@ export const AddressSchema = z.object({
   short_name: z.string().min(2, {
     message: 'sigla estado inválido deve conter no mínimo 3 caracteres',
   }),
-  shortNameCorp: z.string().min(2, {
-    message: 'sigla estado inválido deve conter no mínimo 3 caracteres',
-  }),
+  shortNameCorp: z
+    .string()
+    .min(2, {
+      message: 'sigla estado inválido deve conter no mínimo 3 caracteres',
+    })
+    .optional(),
 })
 
 export type IAddressSchema = z.infer<typeof AddressSchema>

@@ -1,13 +1,14 @@
 import 'react-toastify/dist/ReactToastify.css'
 
 import { type Metadata } from 'next'
+import { getServerSession } from 'next-auth'
 import React from 'react'
 
 import { CardsBanner } from '@/components/Cards/CardsBanner'
 import BannerHome1 from '@/components/Headers/banner/BannerHome1'
 import BannerHome2 from '@/components/Headers/banner/BannerHome2'
 import MaxWidthWrapper from '@/components/Pages/MaxWidthWrapper'
-import IconList from '@/icons/IconList'
+import IconCar from '@/icons/IconCar'
 
 export const metadata: Metadata = {
   title: 'GSO | Home',
@@ -25,7 +26,10 @@ export default async function Home(): Promise<JSX.Element> {
           <BannerHome2 />
           <section className=" relative  min-h-screen bg-gradient-to-t from-background to-secondary ">
             <section className=" relative grid  min-h-screen w-full grid-cols-1  place-items-center md:grid-cols-2 ">
-              <IconList width={250} className="ml-1 fill-foreground/60" />
+              <IconCar
+                width={500}
+                className="ml-1 fill-foreground/60 stroke-foreground/60"
+              />
               <CardsBanner />
               <CardsBanner />
               <CardsBanner />

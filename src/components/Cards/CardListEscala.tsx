@@ -5,7 +5,9 @@ import { LuCalendarDays, LuClock, LuUser } from 'react-icons/lu'
 import { MdOutlineMapsHomeWork } from 'react-icons/md'
 import { RiPoliceCarLine } from 'react-icons/ri'
 
+import { maskDateBr } from '@/functions/masks/maskDateBr'
 import { cn } from '@/lib/utils'
+import { type IScheduleSchema } from '@/schemas/ScheduleSchema'
 import { type EventProps } from '@/types/index'
 import { Badge } from '@/ui/badge'
 import { Card, CardContent, CardHeader, CardTitle } from '@/ui/card'
@@ -21,7 +23,7 @@ import { Separator } from '@/ui/separator'
 import { Avatar, AvatarFallback, AvatarImage } from '@radix-ui/react-avatar'
 
 type CardProps = {
-  itemEvent: EventProps
+  itemEvent: IScheduleSchema
   children?: React.ReactNode
   className?: string
 } & React.ComponentProps<typeof Card>
@@ -37,27 +39,39 @@ export const CardListEscala = ({
         <CardHeader className="justify-center p-2 md:p-3">
           <div className="m-0 flex justify-evenly p-0 md:justify-between">
             <CardTitle className="flex items-center gap-1">
-              <div className="text-md font-bold md:text-xl">
+              <div className="text-md font-bold ">
                 <Badge
-                  className={` block  ${
-                    itemEvent.group?.charAt(0).toUpperCase() === 'A'
-                      ? 'border-primary text-primary'
-                      : itemEvent.group?.charAt(0).toUpperCase() === 'B'
-                        ? 'border-blue-500 text-blue-500'
-                        : itemEvent.group?.charAt(0).toUpperCase() === 'C'
-                          ? 'border-green-600 text-green-600'
-                          : itemEvent.group?.charAt(0).toUpperCase() === 'D'
-                            ? 'border-yellow-400 text-yellow-400'
-                            : itemEvent.group?.charAt(0).toUpperCase() === 'E'
-                              ? 'border-[#9400d3] text-[#9400d3]'
+                  className={` block ${
+                    itemEvent.team === 1
+                      ? 'border-primary text-primary/70'
+                      : itemEvent.team === 2
+                        ? 'border-blue-500 text-blue-500/70'
+                        : itemEvent.team === 3
+                          ? 'border-green-600 text-green-600/70'
+                          : itemEvent.team === 4
+                            ? 'border-yellow-400 text-yellow-400/70'
+                            : itemEvent.team === 5
+                              ? 'text-muted-[#9400d3] border-[#9400d3]/70'
                               : ''
                   }`}
                   variant="outline"
                 >
-                  <span className="p flex items-center gap-1 md:p-1 md:text-[14px]">
+                  <span className="flex items-center gap-1 ">
                     {' '}
                     <GrGroup />
-                    <p>{itemEvent.group}</p>
+                    <p>
+                      {itemEvent.team === 1
+                        ? 'ALFA'
+                        : itemEvent.team === 2
+                          ? 'BRAVO'
+                          : itemEvent.team === 3
+                            ? 'CHARLIE'
+                            : itemEvent.team === 4
+                              ? 'DELTA'
+                              : itemEvent.team === 5
+                                ? 'ECHO'
+                                : ''}
+                    </p>
                   </span>
                 </Badge>{' '}
               </div>
@@ -66,17 +80,17 @@ export const CardListEscala = ({
               <i>
                 <LuClock size={20} />
               </i>
-              <div className="text-md font-bold md:text-xl">
+              <div className="font-bold text-muted-foreground">
                 {' '}
-                {itemEvent.start}
+                {itemEvent.hour_start}
               </div>
 
               <i>
                 <LuCalendarDays size={20} />
               </i>
-              <div className="text-md font-bold md:text-xl">
+              <div className="font-bold text-muted-foreground">
                 {' '}
-                {itemEvent.date}
+                {maskDateBr(itemEvent.date)}
               </div>
             </span>
           </div>
@@ -95,7 +109,7 @@ export const CardListEscala = ({
                     >
                       <AvatarImage
                         className="aspect-square rounded-full object-cover"
-                        src={itemEvent.imgUnity}
+                        src={itemEvent.type}
                       />
                       <AvatarFallback>
                         {<BsBuildingCheck size={36} />}
@@ -110,7 +124,9 @@ export const CardListEscala = ({
                       <SelectValue placeholder="Selecione" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="edit">{itemEvent.unity}</SelectItem>
+                      <SelectItem value="edit">
+                        {itemEvent.id_company}
+                      </SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -124,7 +140,7 @@ export const CardListEscala = ({
                     </i>
                     <Label> Cidade</Label>
                   </div>
-                  <p className="text-sm font-medium">{itemEvent.company}</p>
+                  <p className="text-sm font-medium">{itemEvent.id_company}</p>
                 </div>
                 <div className="item-start flex flex-col justify-center  text-sm font-medium">
                   <div className="flex  items-center gap-1 ">

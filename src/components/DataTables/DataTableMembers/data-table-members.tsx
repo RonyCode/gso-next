@@ -6,6 +6,12 @@ import { DataTablePagination } from './data-table-pagination'
 
 import { DataTableToolbar } from '@/components/DataTables/DataTableUnidades/data-table-toolbar'
 import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@/components/ui/accordion'
+import {
   Table,
   TableBody,
   TableCell,
@@ -89,6 +95,7 @@ export function DataTableMembers<TData, TValue>({
               </TableRow>
             ))}
           </TableHeader>
+
           <TableBody>
             {table.getRowModel().rows?.length !== 0 ? (
               table.getRowModel().rows.map((row) => (

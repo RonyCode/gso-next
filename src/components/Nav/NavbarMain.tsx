@@ -2,7 +2,14 @@
 import { signOut, useSession } from 'next-auth/react'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
-import React, { type ReactElement, useEffect, useRef, useState } from 'react'
+import React, {
+  type ReactElement,
+  startTransition,
+  useEffect,
+  useRef,
+  useState,
+  useTransition,
+} from 'react'
 import {
   LuComponent,
   LuContact,
@@ -23,7 +30,9 @@ import { deleteCookies } from '@/components/Buttoms/SignOutButton/LogoutAction'
 import LoadingPage from '@/components/Loadings/LoadingPage'
 import { NotificationCard } from '@/components/Notification/NotiicationCard'
 import { GetFirstLettersNameUser } from '@/functions/GetFirstLettersNameUser'
+import { getAllOrganizacoes } from '@/lib/GetAllOrganizacoes'
 import { cn } from '@/lib/utils'
+import { type IOrganizacaoSchema } from '@/schemas/OrganizacaoSchema'
 import { Avatar, AvatarFallback, AvatarImage } from '@/ui/avatar'
 import { Button } from '@/ui/button'
 import {
@@ -45,57 +54,78 @@ import {
   NavigationMenuTrigger,
 } from '@/ui/navigation-menu'
 
-const components: Array<{ title: string; href: string; description: string }> =
-  [
-    {
-      title: 'Escala',
-      href: '/servicos/escala',
-      description: 'Serviço de escala dos membros de cada unidade',
-    },
-    {
-      title: 'Ocorrência',
-      href: '/servicos/ocorrencias',
-      description: 'Serviço de ocorrência.',
-    },
-    {
-      title: 'Estatísticas',
-      href: '/servicos/#',
-      description: 'Serviço para obter estatísticas do sistema.',
-    },
-    {
-      title: 'Aplicativo',
-      href: '/servicos/#',
-      description: 'Visually or semantically separates content.',
-    },
-    {
-      title: 'Historico',
-      href: '/servicos/#',
-      description: 'Busque a ocorrência mais recente através do histórico .',
-    },
-    {
-      title: 'Área do Gestor',
-      href: '/servicos/#',
-      description:
-        'Serviço para gerenciar o sistema de unidades, escalas e afins.',
-    },
-    {
-      title: 'Organização',
-      href: '/servicos/organizacao',
-      description: 'Serviço para gerenciar o organização.',
-    },
-  ]
-
 export function NavbarMain({
   // eslint-disable-next-line react/prop-types
   className,
   ...props
 }: React.HTMLAttributes<HTMLElement>): JSX.Element {
   const { data: session } = useSession()
+
   const [state, setState] = useState(false)
+  const [organizacaoFound, setOrganizacaoFound] = useState(
+    {} as IOrganizacaoSchema,
+  )
   const [showNavBar, setShowNavBar] = useState(false)
   const router = useRouter()
   const myRef = useRef(null)
   const nameUser = GetFirstLettersNameUser()
+
+  useEffect(() => {
+    startTransition(async () => {
+      const { data } = await getAllOrganizacoes()
+      // eslint-disable-next-line array-callback-return
+      data.forEach((item) => {
+        if (item.id?.toString() === session?.id_corporation?.toString()) {
+          setOrganizacaoFound(item)
+        }
+      })
+    })
+
+    // eslint-disable-next-line array-callback-return
+  }, [session?.id_corporation])
+
+  const components: Array<{
+    title: string
+    href: string
+    description: string
+  }> = [
+    {
+      title: 'Escala',
+      href: '/escalas',
+      description: 'Serviço de escalas dos membros de cada unidade',
+    },
+    {
+      title: 'Ocorrência',
+      href: '/(modules)/ocorrencias',
+      description: 'Serviço de ocorrência.',
+    },
+    {
+      title: 'Estatísticas',
+      href: '/(modules)/#',
+      description: 'Serviço para obter estatísticas do sistema.',
+    },
+    {
+      title: 'Aplicativo',
+      href: '/(modules)/#',
+      description: 'Visually or semantically separates content.',
+    },
+    {
+      title: 'Historico',
+      href: '/(modules)/#',
+      description: 'Busque a ocorrência mais recente através do histórico .',
+    },
+    {
+      title: 'Área do Gestor',
+      href: '/(modules)/#',
+      description:
+        'Serviço para gerenciar o sistema de unidades, escalas e afins.',
+    },
+    {
+      title: 'Organização',
+      href: `/${organizacaoFound?.short_name_corp?.toLowerCase()}-${session?.id_corporation}`,
+      description: 'Serviço para gerenciar o organização.',
+    },
+  ]
 
   useEffect(() => {
     window.addEventListener('scroll', () => {
@@ -123,12 +153,16 @@ export function NavbarMain({
   const pathname = usePathname()
 
   const menus: MenuTypes[] = [
-    { title: 'Serviços', icon: <LuComponent />, path: '/servicos' },
+    {
+      title: 'Serviços',
+      icon: <LuComponent />,
+      path: `/${organizacaoFound?.short_name_corp?.toLowerCase()}-${session?.id_corporation}`,
+    },
     { title: 'Contato', icon: <LuContact />, path: '/contact' },
     {
       title: 'Ocorrências',
       icon: <LuSiren />,
-      path: '/servicos/ocorrencias',
+      path: '/(modules)/ocorrencias',
     },
   ]
 
@@ -190,7 +224,7 @@ export function NavbarMain({
                   <NavigationMenu className=" m-0  p-0">
                     <NavigationMenuList className=" m-0  p-0">
                       <NavigationMenuItem className=" m-0  p-0">
-                        <NavigationMenuTrigger className="text-md m-0 gap-1 space-x-0 bg-transparent p-0 outline-none hover:bg-transparent focus:bg-transparent md:flex ">
+                        <NavigationMenuTrigger className="m-0 gap-1 space-x-0 bg-transparent p-0 text-sm outline-none hover:bg-transparent focus:bg-transparent md:flex ">
                           <Link
                             className="flex  items-center justify-center gap-1 text-foreground/60 hover:text-foreground/80 md:space-x-6 md:space-y-0 "
                             href={item.path}

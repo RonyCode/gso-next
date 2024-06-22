@@ -1,7 +1,6 @@
 'use client'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-import React, { type ReactElement } from 'react'
+import React, { type ReactElement, useEffect, useState } from 'react'
 import { LiaChevronRightSolid } from 'react-icons/lia'
 import { LuHome } from 'react-icons/lu'
 
@@ -13,10 +12,14 @@ import {
 } from '@/ui/breadcrumb'
 
 const BreadcrumbGso = (): ReactElement => {
-  const pathname = usePathname()
-  const arrayPathname = pathname?.split('/')
+  const [currentUrl, setCurrentUrl] = useState<string | null>(null)
+  useEffect(() => {
+    setCurrentUrl(window.location.href)
+  }, [])
+  const arrayPathname = currentUrl?.split('/')
 
-  arrayPathname?.shift()
+  arrayPathname?.splice(0, 3)
+
   const arrayLink: string[] = []
   let link = ''
 
@@ -30,15 +33,15 @@ const BreadcrumbGso = (): ReactElement => {
           </Link>
         </BreadcrumbItem>
 
-        {arrayPathname?.map((item, index) => {
-          index === 0 ? arrayLink.push('/' + item) : arrayLink.push(item)
+        {arrayPathname?.map((path, index) => {
+          index === 0 ? arrayLink.push('/' + path) : arrayLink.push(path)
           link = arrayLink.join('/')
-
+          // setCurrentUrl(link)
           return (
             <BreadcrumbItem
               key={index}
               className={`hover:text-foreground ${
-                arrayPathname[arrayPathname.length - 1] === item
+                arrayPathname[arrayPathname.length - 1] === path
                   ? 'text-foreground'
                   : ''
               }`}
@@ -46,7 +49,7 @@ const BreadcrumbGso = (): ReactElement => {
               <ol>
                 <BreadcrumbSeparator
                   className={`${
-                    arrayPathname[arrayPathname.length - 1] === item &&
+                    arrayPathname[arrayPathname.length - 1] === path &&
                     'text-primary'
                   }`}
                 >
@@ -55,9 +58,19 @@ const BreadcrumbGso = (): ReactElement => {
               </ol>
               <Link
                 href={link}
-                className="m-0 p-0 text-sm font-light md:font-medium"
+                className="m-0 p-0 text-[.812rem] font-medium md:text-[.750rem]"
               >
-                {item.charAt(0).toUpperCase() + item.slice(1).toLowerCase()}
+                {path.charAt(0).toUpperCase() +
+                  decodeURI(
+                    path
+                      .slice(1)
+                      .toLowerCase()
+                      .replace(/#.*$/, '')
+                      .replace(/\/&.*$/, '')
+                      .replace(/\?.*$/, '')
+                      .replace(/-.*$/, '')
+                      .split('/')[0],
+                  )}
               </Link>
             </BreadcrumbItem>
           )

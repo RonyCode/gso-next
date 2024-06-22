@@ -27,7 +27,7 @@ export function DataTableToolbar<TData>({
         }
         className="h-8 w-full lg:w-[250px]"
       />
-      <div className=" flex justify-between gap-1 pt-2">
+      <div className=" col-start-3 flex justify-between gap-1 pt-2">
         <div>
           {table.getColumn('type') != null && (
             <DataTableFacetedFilter

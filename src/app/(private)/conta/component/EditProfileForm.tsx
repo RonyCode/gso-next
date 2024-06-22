@@ -5,7 +5,6 @@ import { redirect, useRouter } from 'next/navigation'
 import * as React from 'react'
 import { useTransition } from 'react'
 import { useForm } from 'react-hook-form'
-import { FaBirthdayCake } from 'react-icons/fa'
 import {
   FaBuildingColumns,
   FaHashtag,
@@ -16,8 +15,6 @@ import {
   FaUser,
 } from 'react-icons/fa6'
 import { LuCheck, LuChevronsUpDown } from 'react-icons/lu'
-
-import { type AddressProps, type UserType } from '../../../../../types/index'
 
 import { saveUserAction } from '@/app/actions/saveUserAction'
 import { MyInputMask } from '@/components/Form/Input/myInputMask'
@@ -30,7 +27,9 @@ import { getCep } from '@/lib/getCep'
 import { cn } from '@/lib/utils'
 import { EditUserSchema, type IEditUserSchema } from '@/schemas/EditUserSchema'
 import { cityStore } from '@/stores/Address/CityByStateStore'
+import { type AddressProps, type UserType } from '@/types/index'
 import { Button, buttonVariants } from '@/ui/button'
+import { Calendar } from '@/ui/calendar'
 import {
   Command,
   CommandEmpty,
@@ -51,6 +50,8 @@ import { Input } from '@/ui/input'
 import { Popover, PopoverContent, PopoverTrigger } from '@/ui/popover'
 import { toast } from '@/ui/use-toast'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { CalendarIcon } from '@radix-ui/react-icons'
+import { format } from 'date-fns'
 import moment from 'moment'
 
 enum Fields {
@@ -183,14 +184,13 @@ export const EditProfileForm = ({
       })
     }
   }
+  console.log(form.getValues())
+  console.log(form.formState.errors)
 
   return (
     <>
       <div className="px-4 md:px-0">
-        <div
-          className={cn(' grid w-full pt-4  lg:pt-12', className)}
-          {...props}
-        >
+        <div className={cn(' grid w-full p-4  lg:pt-12', className)} {...props}>
           <LoadingPage pending={pending} />
           <Form {...form}>
             <form
@@ -260,34 +260,78 @@ export const EditProfileForm = ({
                     </FormItem>
                   )}
                 />
+
                 <FormField
                   control={form.control}
                   name="data_nascimento"
                   render={({ field }) => (
-                    <FormItem>
-                      <FormLabel
-                        htmlFor="data_nascimento"
-                        className="flex items-center gap-1"
-                      >
-                        <FaBirthdayCake />
-                        Nascimento
-                      </FormLabel>
-                      <FormControl>
-                        <MyInputMask
-                          {...field}
-                          id="data_nascimento"
-                          placeholder="00/00/0000"
-                          mask="__/__/____"
-                          autoCapitalize="none"
-                          autoComplete="data_nascimento"
-                          autoCorrect="off"
-                          disabled={pending}
-                        />
-                      </FormControl>
+                    <FormItem className="flex flex-col">
+                      <FormLabel>Data de nascimento</FormLabel>
+                      <Popover>
+                        <PopoverTrigger asChild>
+                          <FormControl>
+                            <Button
+                              variant={'outline'}
+                              className={cn(
+                                'min-w-[240px] pl-3 text-left font-normal',
+                                field.value.toString() === '' &&
+                                  'text-muted-foreground',
+                              )}
+                            >
+                              {field.value.toString() !== '' ? (
+                                format(field.value, 'dd/MM/yyyy')
+                              ) : (
+                                <span>Selecione uma data</span>
+                              )}
+                              <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                            </Button>
+                          </FormControl>
+                        </PopoverTrigger>
+                        <PopoverContent className="w-auto p-0" align="start">
+                          <Calendar
+                            mode="single"
+                            selected={field.value}
+                            onSelect={field.onChange}
+                            disabled={(date) =>
+                              date > new Date() || date < new Date('1900-01-01')
+                            }
+                            initialFocus
+                          />
+                        </PopoverContent>
+                      </Popover>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
+
+                {/* <FormField */}
+                {/*  control={form.control} */}
+                {/*  name="data_nascimento" */}
+                {/*  render={({ field }) => ( */}
+                {/*    <FormItem> */}
+                {/*      <FormLabel */}
+                {/*        htmlFor="data_nascimento" */}
+                {/*        className="flex items-center gap-1" */}
+                {/*      > */}
+                {/*        <FaBirthdayCake /> */}
+                {/*        Nascimento */}
+                {/*      </FormLabel> */}
+                {/*      <FormControl> */}
+                {/*        <MyInputMask */}
+                {/*          {...field} */}
+                {/*          id="data_nascimento" */}
+                {/*          placeholder="00/00/0000" */}
+                {/*          mask="__/__/____" */}
+                {/*          autoCapitalize="none" */}
+                {/*          autoComplete="data_nascimento" */}
+                {/*          autoCorrect="off" */}
+                {/*          disabled={pending} */}
+                {/*        /> */}
+                {/*      </FormControl> */}
+                {/*      <FormMessage /> */}
+                {/*    </FormItem> */}
+                {/*  )} */}
+                {/* /> */}
                 <FormField
                   control={form.control}
                   name="telefone"

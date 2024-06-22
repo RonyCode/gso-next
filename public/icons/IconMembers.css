@@ -1,0 +1,30 @@
+#membro-esquerda {
+    animation: sliceCentro 2s ease-in-out forwards ;
+    -webkit-animation: sliceCentro 2s ease-in-out forwards ;
+    -o-animation: sliceCentro 2s ease-in-out forwards ;
+    transform: translateX(-100%);
+}
+
+
+#membro-direita {
+    animation: sliceCentro 2s  ease-in-out forwards ;
+    -webkit-animation: sliceCentro 2s ease-in-out forwards ;
+    -o-animation: sliceCentro 2s ease-in-out forwards ;
+    transform: translateX(200%);
+}
+
+
+
+svg:hover #membro-direita, svg:hover #membro-esquerda, #cardModule:hover #membro-direita, #cardModule:hover #membro-esquerda {
+    animation: sliceCentro 2.5s  linear infinite;
+}
+
+@keyframes sliceCentro {
+    50% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(0%);
+    }
+}
+

@@ -8,12 +8,13 @@ import { DataTableColumnHeader } from '@/components/DataTables/DataTableUnidades
 import { DataTableRowActions } from '@/components/DataTables/DataTableUnidades/data-table-row-actions'
 import { types } from '@/components/DataTables/DataTableUnidades/data/data'
 import { maskPhone } from '@/functions/masks/maskphone'
+import { type ICarSchema } from '@/schemas/CarsSchema'
 import { type Car } from '@/types/index'
 import { Badge } from '@/ui/badge'
 import { Avatar, AvatarFallback, AvatarImage } from '@radix-ui/react-avatar'
 import { type ColumnDef } from '@tanstack/react-table'
 
-export const columnsCars: Array<ColumnDef<Car>> = [
+export const columnsCars: Array<ColumnDef<ICarSchema>> = [
   // {
   //   id: 'select',
   //   header: ({ table }) => {

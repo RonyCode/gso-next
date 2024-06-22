@@ -1,6 +1,9 @@
 'use client'
 
-import { type ReactElement } from 'react'
+import Link from 'next/link'
+import { useParams } from 'next/navigation'
+import React, { type ReactElement } from 'react'
+import { LuPlusCircle } from 'react-icons/lu'
 
 import { Button } from '@/ui/button'
 import {
@@ -21,38 +24,44 @@ interface DataTableViewOptionsProps<TData> {
 export function DataTableViewOptions<TData>({
   table,
 }: DataTableViewOptionsProps<TData>): ReactElement {
+  const {
+    sigla,
+    name_unidade: nameUnidade,
+  }: { sigla: string; name_unidade: string } = useParams()
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button variant="outline" size="sm" className="ml-auto  h-8 lg:flex">
-          <MixerHorizontalIcon className="mr-2 h-4 w-4" />
-          Visualizar
-        </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="w-[150px]">
-        <DropdownMenuLabel>colunas </DropdownMenuLabel>
-        <DropdownMenuSeparator />
-        {table
-          .getAllColumns()
-          .filter(
-            (column) =>
-              typeof column.accessorFn !== 'undefined' && column.getCanHide(),
-          )
-          .map((column) => {
-            return (
-              <DropdownMenuCheckboxItem
-                key={column.id}
-                className="capitalize"
-                checked={column.getIsVisible()}
-                onCheckedChange={(value) => {
-                  column.toggleVisibility(value)
-                }}
-              >
-                {column.id}
-              </DropdownMenuCheckboxItem>
+    <>
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <Button variant="outline" size="sm" className="  h-8 lg:flex">
+            <MixerHorizontalIcon className="mr-2 h-4 w-4" />
+            Visualizar
+          </Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent align="end" className="w-[150px]">
+          <DropdownMenuLabel>colunas </DropdownMenuLabel>
+          <DropdownMenuSeparator />
+          {table
+            .getAllColumns()
+            .filter(
+              (column) =>
+                typeof column.accessorFn !== 'undefined' && column.getCanHide(),
             )
-          })}
-      </DropdownMenuContent>
-    </DropdownMenu>
+            .map((column) => {
+              return (
+                <DropdownMenuCheckboxItem
+                  key={column.id}
+                  className="capitalize"
+                  checked={column.getIsVisible()}
+                  onCheckedChange={(value) => {
+                    column.toggleVisibility(value)
+                  }}
+                >
+                  {column.id}
+                </DropdownMenuCheckboxItem>
+              )
+            })}
+        </DropdownMenuContent>
+      </DropdownMenu>
+    </>
   )
 }

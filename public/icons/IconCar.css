@@ -1,0 +1,51 @@
+#roda-esquerda {
+    transform-origin: 220% 434%;
+    animation: spinWheel 1.5s ;
+    -webkit-animation: spinWheel 1.5s ;
+    -o-animation: spinWheel 1.5s ;
+    animation-name: spinWheel;
+    animation-duration: 1000ms;
+    animation-iteration-count: 2;
+    animation-timing-function: linear;
+    fill: #a40101;
+    width: 150px;
+}
+#car{
+}
+#roda-direita {
+    transform-origin: 744% 434%;
+    animation: spinWheel 1.5s ;
+    -webkit-animation: spinWheel 1.5s ;
+    -o-animation: spinWheel 1.5s ;
+    animation-name: spinWheel;
+    animation-duration: 1000ms;
+    animation-iteration-count: 2;
+    animation-timing-function: linear;
+    fill: #a40101;
+}
+
+
+
+#cardModule:hover #roda-esquerda, #cardModule:hover #roda-direita {
+    animation: spinWheel 1.5s infinite;
+}
+
+svg:hover #roda-esquerda, svg:hover #roda-direita {
+    animation-name: spinWheel;
+    animation-duration: 1000ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+
+
+}
+
+
+@keyframes spinWheel {
+    from {
+        transform:rotate(0deg);
+    }
+    to {
+        transform:rotate(360deg);
+    }
+
+}

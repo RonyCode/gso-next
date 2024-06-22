@@ -1,3 +1,7 @@
+import { AddressSchema } from '@/schemas/AddressSchema'
+import { CarSchema } from '@/schemas/CarsSchema'
+import { MemberSchema } from '@/schemas/MemberSchema'
+import { ScheduleSchema } from '@/schemas/ScheduleSchema'
 import { z } from 'zod'
 
 export const UnidadeSchema = z.object({
@@ -7,6 +11,7 @@ export const UnidadeSchema = z.object({
     .min(1, { message: 'id inválido' })
     .optional()
     .nullable(),
+  short_name_corp: z.string().optional(),
   name: z
     .string()
     .min(1, { message: 'Nome inválido deve conter no mínimo 1 caracteres' })
@@ -45,11 +50,14 @@ export const UnidadeSchema = z.object({
     .min(1, { message: 'Tipo inválido deve conter no mínimo 1 caracteres' })
     .optional()
     .nullable(),
-
+  companySchedules: z.array(ScheduleSchema).optional(),
+  companyAddress: AddressSchema.optional(),
+  companyMembers: z.array(MemberSchema).optional(),
+  companyCars: z.array(CarSchema).optional(),
   manager: z.number().optional().nullable(),
   director: z.number().optional().nullable(),
-  manager_company: z.object({}).optional().nullable(),
-  director_company: z.object({}).optional().nullable(),
+  manager_company: z.number().optional().nullable(),
+  director_company: z.number().optional().nullable(),
   excluded: z.number().optional().nullable(),
 })
 

@@ -10,6 +10,12 @@ import { types } from '@/components/DataTables/DataTableUnidades/data/data'
 import { maskPhone } from '@/functions/masks/maskphone'
 import { type IMemberSchema } from '@/schemas/MemberSchema'
 import { type Unidade } from '@/types/index'
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@/ui/accordion'
 import { Badge } from '@/ui/badge'
 import { Avatar, AvatarFallback, AvatarImage } from '@radix-ui/react-avatar'
 import { type ColumnDef } from '@tanstack/react-table'
@@ -47,7 +53,7 @@ export const columnsMembers: Array<ColumnDef<IMemberSchema>> = [
   {
     accessorKey: 'name',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Dados Unidade" />
+      <DataTableColumnHeader column={column} title="Dados Membro" />
     ),
     cell: ({ row }) => {
       return (
@@ -59,7 +65,7 @@ export const columnsMembers: Array<ColumnDef<IMemberSchema>> = [
             >
               <AvatarImage
                 className="aspect-square rounded-full object-cover"
-                src={row.getValue('imageMember')}
+                src={`${process.env.NEXT_PUBLIC_API_GSO + '/public/storage/' + row.original?.image}`}
               />
               <AvatarFallback>{<LuBuilding2 size={36} />}</AvatarFallback>
             </Avatar>
@@ -75,14 +81,14 @@ export const columnsMembers: Array<ColumnDef<IMemberSchema>> = [
                 {' '}
                 <div className="flex items-center p-1 ">
                   <FaRegAddressCard size={16} className="mr-2" />{' '}
-                  {row.getValue('id')}
+                  {row.original?.email}
                 </div>
               </div>
               <div>
                 {' '}
                 <div className="flex items-center p-1">
                   <LuPhone size={16} className="mr-2" />{' '}
-                  {maskPhone(row.getValue('phone'))}
+                  {maskPhone(row.original?.phone)}
                 </div>
               </div>
             </div>

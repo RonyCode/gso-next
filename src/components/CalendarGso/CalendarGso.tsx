@@ -8,7 +8,7 @@ import { CardListEscala } from '@/components/Cards/CardListEscala'
 import { columnsEscala } from '@/components/DataTables/DataTableEscala/columnsEscala'
 import { DataTableEscala } from '@/components/DataTables/DataTableEscala/data-table-escala'
 import { ModalGso } from '@/components/Modal/ModalGso/ModalGso'
-import { type EventProps } from '@/types/index'
+import { type IScheduleSchema } from '@/schemas/ScheduleSchema'
 import { Button } from '@/ui/button'
 
 interface DaysMonthProps {
@@ -16,7 +16,7 @@ interface DaysMonthProps {
   diference: number
 }
 
-const CalendarGso = ({ event }: { event: EventProps[] }): JSX.Element => {
+const CalendarGso = ({ event }: { event: IScheduleSchema[] }): JSX.Element => {
   const date = new Date()
   const [month, setMonth] = useState(date.getMonth())
   const [year, setYear] = useState(date.getFullYear())
@@ -55,7 +55,7 @@ const CalendarGso = ({ event }: { event: EventProps[] }): JSX.Element => {
       year,
       month,
       dayName: '',
-      dayEvent: [] as EventProps[],
+      dayEvent: [] as IScheduleSchema[],
     },
   ]
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
@@ -106,13 +106,13 @@ const CalendarGso = ({ event }: { event: EventProps[] }): JSX.Element => {
     day: number,
     month: number,
     year: number,
-    event: EventProps[],
-  ): EventProps[] => {
+    event: IScheduleSchema[],
+  ): IScheduleSchema[] => {
     return event.filter((itemEvento) => {
       return (
-        itemEvento.day === day &&
-        itemEvento.month === month &&
-        itemEvento.year === year
+        new Date(itemEvento.date_creation).getDate() === day &&
+        new Date(itemEvento.date_creation).getMonth() === month &&
+        new Date(itemEvento.date_creation).getFullYear() === year
       )
     })
   }
@@ -217,7 +217,7 @@ const CalendarGso = ({ event }: { event: EventProps[] }): JSX.Element => {
     setDayWeek(escalaObj[escalaObj.length - 1].dayWeek * -1)
   }
 
-  const eventsList: EventProps[] = []
+  const eventsList: IScheduleSchema[] = []
   escalaObj.forEach((item) => {
     item.dayEvent.forEach((event) => {
       eventsList.push(event)
@@ -226,13 +226,13 @@ const CalendarGso = ({ event }: { event: EventProps[] }): JSX.Element => {
 
   return (
     <>
-      <div className="mt-12 grid h-[80vh] w-full grid-cols-12  md:mt-0 ">
+      <div className="grid h-full w-full grid-cols-12  md:mt-0 ">
         {/* TABLE ESCALA */}
         <div
-          className={`col-start-1  col-end-13  mt-12 h-[80vh] w-full rounded-[5px] bg-background p-2 md:col-end-7 md:mt-0`}
+          className={`col-start-1  col-end-13 mt-32  h-full w-full rounded-[5px] bg-background p-2 md:col-end-7 md:mt-0`}
         >
-          <div>
-            <DataTableEscala data={eventsList as []} columns={columnsEscala} />
+          <div className="h-full w-full overflow-scroll">
+            <DataTableEscala data={eventsList} columns={columnsEscala} />
           </div>
         </div>
 

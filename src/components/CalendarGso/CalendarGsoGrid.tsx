@@ -1,13 +1,12 @@
 import * as React from 'react'
 import { type ReactElement } from 'react'
 
-import { type EventProps } from '../../../types/index'
-
 import { cn } from '@/lib/utils'
+import { type IScheduleSchema } from '@/schemas/ScheduleSchema'
 import { Badge } from '@/ui/badge'
 
 type CalendarGsoGridProps = {
-  dayEvent?: EventProps[]
+  dayEvent?: IScheduleSchema[]
   month?: number
   day?: number
   index?: number
@@ -37,47 +36,33 @@ const CalendarGsoGrid = ({
           {...props}
         >
           {dayEvent?.map((itemEvent, indexEvent) => (
-            <div key={indexEvent} className="m-0 self-start pb-1 text-sm ">
+            <div key={indexEvent} className="m-0 self-start px-1 pt-1 ">
               <Badge
-                className={` hidden  md:block  ${
-                  itemEvent.group.charAt(0).toUpperCase() === 'A'
-                    ? 'border-primary text-primary'
-                    : itemEvent.group.charAt(0).toUpperCase() === 'B'
-                      ? 'border-blue-500 text-blue-500'
-                      : itemEvent.group.charAt(0).toUpperCase() === 'C'
-                        ? 'border-green-600 text-green-600'
-                        : itemEvent.group.charAt(0).toUpperCase() === 'D'
-                          ? 'border-yellow-400 text-yellow-400'
-                          : itemEvent.group.charAt(0).toUpperCase() === 'E'
-                            ? 'border-[#9400d3] text-[#9400d3]'
-                            : ''
+                className={` text-[.5rem] md:block md:text-[.625rem] ${
+                  itemEvent.team === 1
+                    ? 'border-primary/85 text-primary/85'
+                    : itemEvent.team === 2
+                      ? 'border-blue-500/85 text-blue-500/85'
+                      : itemEvent.team === 3
+                        ? 'border-yellow-400/85 text-yellow-400/85'
+                        : itemEvent.team === 4
+                          ? 'border-[#9400d3]/85 text-[#9400d3]/85'
+                          : ''
                 }`}
                 variant="outline"
               >
-                {itemEvent.group}
+                {itemEvent.team === 1
+                  ? 'ALFA'
+                  : itemEvent.team === 2
+                    ? 'BRAVO'
+                    : itemEvent.team === 3
+                      ? 'DELTA'
+                      : itemEvent.team === 4
+                        ? 'EXTRA'
+                        : itemEvent.team === 5
+                          ? 'DIA'
+                          : ''}
               </Badge>
-              <p
-                className={` block text-lg md:hidden 
-                          ${
-                            itemEvent.group.charAt(0).toUpperCase() === 'A'
-                              ? 'text-primary'
-                              : itemEvent.group.charAt(0).toUpperCase() === 'B'
-                                ? 'text-blue-500'
-                                : itemEvent.group.charAt(0).toUpperCase() ===
-                                    'C'
-                                  ? 'text-green-600'
-                                  : itemEvent.group.charAt(0).toUpperCase() ===
-                                      'D'
-                                    ? 'text-yellow-400'
-                                    : itemEvent.group
-                                          .charAt(0)
-                                          .toUpperCase() === 'E'
-                                      ? 'border-[#9400d3] text-[#9400d3]'
-                                      : ''
-                          }`}
-              >
-                {itemEvent.group.charAt(0).toUpperCase()}
-              </p>
             </div>
           ))}
 

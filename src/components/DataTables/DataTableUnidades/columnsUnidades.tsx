@@ -1,5 +1,6 @@
 'use client'
 
+import { useParams } from 'next/navigation'
 import React from 'react'
 import { FaRegAddressCard } from 'react-icons/fa'
 import { LuBuilding2, LuPhone } from 'react-icons/lu'
@@ -166,9 +167,12 @@ export const columnsUnidades: Array<ColumnDef<IUnidadeSchema>> = [
       return value.includes(row.getValue(id))
     },
   },
+
   {
     id: 'actions',
-    cell: ({ row }) => <DataTableRowActions row={row} />,
+    cell: ({ row }) => {
+      return <DataTableRowActions row={row} />
+    },
     filterFn: (row, id, value) => {
       return value.includes(row.getValue(id))
     },

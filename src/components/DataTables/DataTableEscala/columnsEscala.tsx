@@ -3,13 +3,13 @@
 // import { Checkbox } from '@/components/ui/checkbox'
 
 import { labels, statuses, types, unities } from './data/data'
-import { type Task } from './data/schema'
 
 import { DataTableColumnHeader } from '@/components/DataTables/DataTableEscala/data-table-column-header'
 import { Badge } from '@/components/ui/badge'
+import { type IScheduleSchema } from '@/schemas/ScheduleSchema'
 import { type ColumnDef } from '@tanstack/react-table'
 
-export const columnsEscala: Array<ColumnDef<Task>> = [
+export const columnsEscala: Array<ColumnDef<IScheduleSchema>> = [
   // {
   //   id: 'select',
   //   header: ({ table }) => {
@@ -45,7 +45,7 @@ export const columnsEscala: Array<ColumnDef<Task>> = [
       <DataTableColumnHeader column={column} title="Data" />
     ),
     cell: ({ row }) => {
-      const label = labels.find((label) => label.value === row.original.start)
+      const label = labels.find((label) => label.value === row.original.date)
 
       return (
         <div className="flex space-x-2 ">
@@ -119,7 +119,9 @@ export const columnsEscala: Array<ColumnDef<Task>> = [
       const unity = unities.find(
         (unity) => unity.value === row.getValue('unity'),
       )
-      const group = labels.find((label) => label.value === row.original.group)
+      const group = labels.find(
+        (label) => label.value === row.original.team.toString(),
+      )
 
       if (unity == null) {
         return null

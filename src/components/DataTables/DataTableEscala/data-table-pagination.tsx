@@ -24,12 +24,12 @@ export function DataTablePagination<TData>({
   table,
 }: DataTablePaginationProps<TData>): ReactElement {
   return (
-    <div className="flex  items-center  justify-center pb-4 md:justify-between md:px-2">
-      <div className="hidden flex-1 text-sm text-muted-foreground md:block">
+    <div className="flex  items-center  justify-center pb-4 md:justify-around md:px-2">
+      <div className=" flex-1 text-sm text-muted-foreground md:block">
         {table.getFilteredSelectedRowModel().rows.length} de{' '}
         {table.getFilteredRowModel().rows.length} itens(s).
       </div>
-      <div className="flex items-center space-x-12 lg:space-x-8">
+      <div className="flex items-center">
         <div className="flex items-center space-x-2">
           <p className="hidden text-sm font-medium lg:block">itens / pág</p>
           <Select

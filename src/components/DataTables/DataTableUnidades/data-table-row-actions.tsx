@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import { type ReactElement } from 'react'
-
-import { taskSchema } from './data/schema'
+import { LuEye } from 'react-icons/lu'
 
 import { Button } from '@/components/ui/button'
 import {
@@ -22,7 +21,6 @@ export function DataTableRowActions<TData>({
   row,
 }: DataTableRowActionsProps<TData>): ReactElement {
   const task = UnidadeSchema.parse(row.original)
-
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -36,9 +34,13 @@ export function DataTableRowActions<TData>({
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-[160px]">
         <Link
-          href={`/servicos/organizacao/${task.id_corporation}/unidades/${task.id}`}
+          href={`/${task?.short_name_corp?.toLowerCase()}-${task?.id_corporation}/unidades/${task.name?.toLowerCase() + '-' + task.id}`}
         >
-          <DropdownMenuItem>Detalhes</DropdownMenuItem>
+          <DropdownMenuItem>
+            {' '}
+            <LuEye size={18} className="mr-1" />
+            Detalhes
+          </DropdownMenuItem>
         </Link>
       </DropdownMenuContent>
     </DropdownMenu>

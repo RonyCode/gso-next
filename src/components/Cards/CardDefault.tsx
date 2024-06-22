@@ -71,6 +71,7 @@ export async function CardDefault({
               quality="100"
               priority={true}
               fill
+              sizes={'100'}
               blurDataURL={myBlurDataUrl}
               placeholder="blur"
               alt="image"

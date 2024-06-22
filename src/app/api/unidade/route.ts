@@ -19,7 +19,7 @@ export async function GET(request: Request): Promise<NextResponse> {
       headers: {
         'Content-Type': 'application/json',
       },
-      cache: 'no-store',
+      next: { revalidate: 1, tags: ['unidadesFetch'] },
     },
   )
 
