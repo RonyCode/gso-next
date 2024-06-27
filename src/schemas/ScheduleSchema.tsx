@@ -1,4 +1,5 @@
 import { CarSchema } from '@/schemas/CarsSchema'
+import { MemberSchema } from '@/schemas/MemberSchema'
 import { z } from 'zod'
 
 export const ScheduleSchema = z.object({
@@ -43,7 +44,9 @@ export const ScheduleSchema = z.object({
     .max(400, {
       message: 'obs inválido deve conter no máximo 400 caracteres',
     }),
-  cars: z.array(CarSchema),
+  cars: z
+    .array(z.object({ car: CarSchema, members: z.array(MemberSchema) }))
+    .optional(),
   excluded: z.number().min(1, {
     message: 'id inválido deve conter no mínimo 1 caracteres',
   }),

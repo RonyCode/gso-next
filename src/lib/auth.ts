@@ -143,6 +143,7 @@ export const authOptions: NextAuthOptions = {
             id_corporation: userGoogle?.id_corporation,
             id_company: userGoogle?.id_company,
             role: userGoogle?.role,
+            short_name_corp: userGoogle?.short_name_corp,
             email: userGoogle?.email,
             name: userGoogle?.name,
             image: Boolean(userGoogle?.image) || userGoogle?.picture,
@@ -181,6 +182,7 @@ export const authOptions: NextAuthOptions = {
             id_company: user?.id_company,
             email: user?.email,
             role: user?.role,
+            short_name_corp: user?.short_name_corp,
             name: user?.name,
             image: user?.image !== '' || user?.picture,
             senha: user?.senha,
@@ -210,6 +212,7 @@ export const authOptions: NextAuthOptions = {
       session.id_company = token?.id_company
       session.email = token?.email
       session.role = token?.role
+      session.short_name_corp = token?.short_name_corp
       session.name = token?.name
       session.image = token?.image !== '' ? token?.image : token?.picture
       session.senha = token?.senha

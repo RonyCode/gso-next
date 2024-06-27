@@ -37,12 +37,12 @@ type CardProps = {
   className?: string
 } & React.ComponentProps<typeof Card>
 
-export const CardListEscala = async ({
+export const CardListEscala = ({
   itemEvent,
   unidade,
   className,
   ...props
-}: CardProps): Promise<ReactElement> => {
+}: CardProps): ReactElement => {
   return (
     <>
       <Card className={cn(className)} {...props}>
@@ -115,7 +115,7 @@ export const CardListEscala = async ({
                   <div>
                     <Avatar
                       className="
-                      flex h-10 w-10  items-center justify-center rounded-full
+                      flex h-14 w-14  items-center justify-center rounded-full
                       shadow-sm shadow-foreground transition-all duration-300 hover:scale-[200%] "
                     >
                       <AvatarImage
@@ -191,98 +191,90 @@ export const CardListEscala = async ({
                 </div>
               </div>
             </div>
-            <div className="grid grid-cols-1 md:col-start-4 md:col-end-13 md:grid-cols-9 ">
-              {unidade?.companySchedules?.map((itemSchedule, index) => (
-                <div key={index}>
-                  {itemSchedule?.schedule?.cars > 0 && (
-                    <div>{itemSchedule?.schedule?.cars[0]?.model}</div>
-                  )}
-                  <div>
-                    {itemSchedule?.schedule?.cars?.map(
-                      (carSchedule, inderxCa) => (
-                        <div
-                          key={inderxCa}
-                          className="mb-3 flex items-center justify-between  gap-2  rounded-[8px] border border-primary/60 p-1  md:border-0 md:border-b "
-                        >
-                          <Avatar
-                            className="
-                                flex h-10 w-10  items-center justify-center rounded-full
+            {unidade?.companySchedules?.map((itemSchedule, index) => (
+              <div key={index} className="col-span-5 ">
+                {itemSchedule?.cars?.map((carSchedule, inderxCa) => (
+                  <div
+                    key={inderxCa}
+                    className=" flex w-full items-center justify-between gap-2 rounded-[8px] border  border-primary/60  p-1 md:border-0 md:border-b "
+                  >
+                    <Avatar
+                      className="
+                                flex h-14 w-14  items-center justify-center rounded-full
                                 shadow-sm shadow-foreground transition-all duration-300 hover:scale-[200%] "
-                          >
-                            <AvatarImage
-                              className="aspect-square rounded-full object-cover"
-                              src={carSchedule?.image}
-                            />
-                            <AvatarFallback>
-                              {<RiPoliceCarLine size={36} />}
-                            </AvatarFallback>
-                          </Avatar>
-                          <div>
-                            <p className="text-sm font-medium leading-none">
-                              {carSchedule?.model}{' '}
-                            </p>
-                          </div>
-                          <Select defaultValue="edit">
-                            <SelectTrigger className="ml-auto w-[110px]">
-                              <SelectValue placeholder="Selecione" />
-                            </SelectTrigger>
-                            <SelectContent>
-                              <SelectItem value="edit">
-                                {carSchedule?.plate}
-                              </SelectItem>
-                            </SelectContent>
-                          </Select>
+                    >
+                      <AvatarImage
+                        className="aspect-square rounded-full object-cover"
+                        src={carSchedule?.car?.image}
+                      />
+                      <AvatarFallback>
+                        {<RiPoliceCarLine size={36} />}
+                      </AvatarFallback>
+                    </Avatar>
+                    {/* <div> */}
+                    {/*  <p className="text-sm font-medium leading-none"> */}
+                    {/*    {carSchedule?.car?.prefix}{' '} */}
+                    {/*  </p> */}
+                    {/* </div> */}
+                    {/* <Select defaultValue="edit"> */}
+                    {/*  <SelectTrigger className="ml-auto w-[110px]"> */}
+                    {/*    <SelectValue placeholder="Selecione" /> */}
+                    {/*  </SelectTrigger> */}
+                    {/*  <SelectContent> */}
+                    {/*    <SelectItem value="edit"> */}
+                    {/*      {carSchedule?.car?.plate} */}
+                    {/*    </SelectItem> */}
+                    {/*  </SelectContent> */}
+                    {/* </Select> */}
 
-                          {carSchedule?.members?.map(
-                            (carMembers, indexMember) => (
-                              <div
-                                key={indexMember}
-                                className="flex items-center justify-center gap-1"
-                              >
-                                <Avatar
-                                  className="flex h-8 w-8 items-center justify-center  rounded-full shadow-sm shadow-foreground transition-all
-                                  duration-300 hover:scale-[200%] md:h-10 md:w-10"
-                                >
-                                  <AvatarImage
-                                    className="aspect-square rounded-full object-cover"
-                                    src={
-                                      carMembers?.image ??
-                                      process.env.NEXT_PUBLIC_API_GSO +
-                                        '/public/images/img.png'
-                                    }
-                                  />
-                                  <AvatarFallback>
-                                    {<LuUser size={36} />}
-                                  </AvatarFallback>
-                                </Avatar>
-                                <div>
-                                  <p className="text-sm font-medium leading-none">
-                                    {carMembers?.name}
-                                  </p>
-                                  <p className="text-sm text-muted-foreground">
-                                    {carMembers?.email}
-                                  </p>
-                                </div>
-                                <Select defaultValue="edit">
-                                  <SelectTrigger className="ml-auto w-[110px]">
-                                    <SelectValue placeholder="Selecione" />
-                                  </SelectTrigger>
-                                  <SelectContent>
-                                    <SelectItem value="edit">
-                                      {carMembers?.id_function}
-                                    </SelectItem>
-                                  </SelectContent>
-                                </Select>
-                              </div>
-                            ),
-                          )}
-                        </div>
-                      ),
-                    )}
+                    {/* {carSchedule?.members?.map( */}
+                    {/*  (carMembers, indexMember) => ( */}
+                    {/*    <div */}
+                    {/*      key={indexMember} */}
+                    {/*      className="flex items-center justify-center gap-1" */}
+                    {/*    > */}
+                    {/*      {carMembers?.name} */}
+                    {/*      <Avatar */}
+                    {/*        className="flex h-8 w-8 items-center justify-center  rounded-full shadow-sm shadow-foreground transition-all */}
+                    {/*          duration-300 hover:scale-[200%] md:h-10 md:w-10" */}
+                    {/*      > */}
+                    {/*        <AvatarImage */}
+                    {/*          className="aspect-square rounded-full object-cover" */}
+                    {/*          src={ */}
+                    {/*            carMembers?.image ?? */}
+                    {/*            process.env.NEXT_PUBLIC_API_GSO + */}
+                    {/*              '/public/images/img.png' */}
+                    {/*          } */}
+                    {/*        /> */}
+                    {/*        <AvatarFallback> */}
+                    {/*          {<LuUser size={36} />} */}
+                    {/*        </AvatarFallback> */}
+                    {/*      </Avatar> */}
+                    {/*      <div> */}
+                    {/*        <p className="text-sm font-medium leading-none"> */}
+                    {/*          {carMembers?.name} */}
+                    {/*        </p> */}
+                    {/*        <p className="text-sm text-muted-foreground"> */}
+                    {/*          {carMembers?.email} */}
+                    {/*        </p> */}
+                    {/*      </div> */}
+                    {/*      <Select defaultValue="edit"> */}
+                    {/*        <SelectTrigger className="ml-auto w-[110px]"> */}
+                    {/*          <SelectValue placeholder="Selecione" /> */}
+                    {/*        </SelectTrigger> */}
+                    {/*        <SelectContent> */}
+                    {/*          <SelectItem value="edit"> */}
+                    {/*            {carMembers?.id_function} */}
+                    {/*          </SelectItem> */}
+                    {/*        </SelectContent> */}
+                    {/*      </Select> */}
+                    {/*    </div> */}
+                    {/*  ), */}
+                    {/* )} */}
                   </div>
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
+            ))}
           </div>
         </CardContent>
       </Card>

@@ -1,5 +1,6 @@
 'use client'
 
+import { useSession } from 'next-auth/react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import * as React from 'react'
@@ -44,7 +45,7 @@ const SigInForm = ({ className, ...props }: UserAuthFormProps): JSX.Element => {
 
   const handleSubmitLogin = (data: ISignInSchema): void => {
     startTransition(async () => {
-      const result: ResultSignIn = await signInWithCredentials(data)
+      const result = await signInWithCredentials(data)
       if (!result.ok) {
         toast({
           variant: 'danger',
@@ -60,7 +61,7 @@ const SigInForm = ({ className, ...props }: UserAuthFormProps): JSX.Element => {
           title: 'Bem vindo de volta! 😍',
           description: 'Login realizado com sucesso',
         })
-        router.push('/servicos')
+        router.push(`/`)
       }
     })
   }

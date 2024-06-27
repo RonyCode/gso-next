@@ -11,7 +11,7 @@ export const useSignIn = (): {
   async function signInWithGoogle(): Promise<void> {
     try {
       await signIn('google', {
-        callbackUrl: '/dashboard',
+        callbackUrl: '/',
       })
     } catch (error) {
       // display error message to user

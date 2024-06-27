@@ -1,3 +1,5 @@
+import { getServerSession } from 'next-auth'
+import { useSession } from 'next-auth/react'
 import Link from 'next/link'
 import { type ReactElement } from 'react'
 import { LuEye } from 'react-icons/lu'
@@ -9,6 +11,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
+import { authOptions } from '@/lib/auth'
 import { UnidadeSchema } from '@/schemas/UnidadeSchema'
 import { DotsHorizontalIcon } from '@radix-ui/react-icons'
 import { type Row } from '@tanstack/react-table'
@@ -21,6 +24,7 @@ export function DataTableRowActions<TData>({
   row,
 }: DataTableRowActionsProps<TData>): ReactElement {
   const task = UnidadeSchema.parse(row.original)
+  const { data: session } = useSession()
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -34,7 +38,7 @@ export function DataTableRowActions<TData>({
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-[160px]">
         <Link
-          href={`/${task?.short_name_corp?.toLowerCase()}-${task?.id_corporation}/unidades/${task.name?.toLowerCase() + '-' + task.id}`}
+          href={`/${session?.short_name_corp?.toLowerCase()}-${session?.id_corporation}/unidades/${task.name?.toLowerCase() + '-' + task.id}`}
         >
           <DropdownMenuItem>
             {' '}

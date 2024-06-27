@@ -224,7 +224,7 @@ export function NavbarMain({
                   <NavigationMenu className=" m-0  p-0">
                     <NavigationMenuList className=" m-0  p-0">
                       <NavigationMenuItem className=" m-0  p-0">
-                        <NavigationMenuTrigger className="m-0 gap-1 space-x-0 bg-transparent p-0 text-sm outline-none hover:bg-transparent focus:bg-transparent md:flex ">
+                        <NavigationMenuTrigger className="m-0 gap-1 space-x-0 bg-transparent p-0 outline-none hover:bg-transparent focus:bg-transparent md:flex md:text-sm ">
                           <Link
                             className="flex  items-center justify-center gap-1 text-foreground/60 hover:text-foreground/80 md:space-x-6 md:space-y-0 "
                             href={item.path}

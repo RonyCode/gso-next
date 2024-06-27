@@ -184,8 +184,6 @@ export const EditProfileForm = ({
       })
     }
   }
-  console.log(form.getValues())
-  console.log(form.formState.errors)
 
   return (
     <>

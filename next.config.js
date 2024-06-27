@@ -43,8 +43,8 @@ module.exports = (phase) => {
   const withPWA = require('@ducanh2912/next-pwa').default({
     dest: 'public',
     customWorkerSrc: 'service-worker',
-    disable: false,
-    // disable: process.env.NODE_ENV === 'development',
+    // disable: false,
+    disable: process.env.NODE_ENV === 'development',
     cacheOnFrontEndNavigation: true,
     aggressiveFrontEndNavCaching: true,
     reloadOnOnline: true,
@@ -55,6 +55,4 @@ module.exports = (phase) => {
     },
   })
   return withPWA(nextConfig)
-  // }
-  // return nextConfig
 }

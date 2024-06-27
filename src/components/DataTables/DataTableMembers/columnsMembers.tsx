@@ -10,12 +10,6 @@ import { types } from '@/components/DataTables/DataTableUnidades/data/data'
 import { maskPhone } from '@/functions/masks/maskphone'
 import { type IMemberSchema } from '@/schemas/MemberSchema'
 import { type Unidade } from '@/types/index'
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from '@/ui/accordion'
 import { Badge } from '@/ui/badge'
 import { Avatar, AvatarFallback, AvatarImage } from '@radix-ui/react-avatar'
 import { type ColumnDef } from '@tanstack/react-table'

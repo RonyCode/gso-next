@@ -18,7 +18,6 @@ const Unidade = async ({
 
   const result = await ImageExist(data.image)
   if (result.status === 200) {
-    console.log(data.image)
   }
   return (
     <div>

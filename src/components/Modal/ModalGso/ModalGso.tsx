@@ -30,14 +30,7 @@ export function ModalGso({
 }: ModalProps): ReactElement {
   return (
     <Dialog open={open}>
-      <DialogTrigger asChild>
-        {childrenButton ?? (
-          <Button variant="ghost">
-            <i>{iconButton}</i>
-            {nameButton}
-          </Button>
-        )}
-      </DialogTrigger>
+      <DialogTrigger>{childrenButton}</DialogTrigger>
       <DialogContent className={cn(' h-full w-full', className)} {...props}>
         <DialogHeader>
           <DialogTitle>
@@ -50,7 +43,7 @@ export function ModalGso({
         </DialogHeader>
         <div className="grid w-full gap-4 py-4">{children}</div>
         <DialogFooter>
-          <DialogClose>
+          <DialogClose asChild>
             <Button type="submit">OK</Button>
           </DialogClose>
         </DialogFooter>

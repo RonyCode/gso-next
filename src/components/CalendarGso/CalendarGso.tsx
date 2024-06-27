@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { Suspense, useState } from 'react'
 import { LuArrowBigLeft, LuArrowBigRight } from 'react-icons/lu'
 
 import CalendarGsoGrid from '@/components/CalendarGso/CalendarGsoGrid'
@@ -178,14 +178,6 @@ const CalendarGso = ({ unidade }: { unidade: IUnidadeSchema }): JSX.Element => {
           year,
           month,
         })
-        console.log(
-          handleEventDay(
-            dayWeek === date.getDay() ? i - daysInMonth.diference : dayWeek + i,
-            month,
-            year,
-            unidade,
-          ),
-        )
       } else {
         escalaObj.push({
           day:
@@ -314,7 +306,6 @@ const CalendarGso = ({ unidade }: { unidade: IUnidadeSchema }): JSX.Element => {
                 childrenButton={
                   <div key={index}>
                     {day.day > 0 && (
-                      // GRID CALENDAR
                       <CalendarGsoGrid
                         index={
                           daysInMonth?.dias != null

@@ -5,17 +5,32 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4467a1d6-73df-479e-9cc5-8e8cf1a18f4d" name="Changes" comment="salvando deletando company">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/[sigla]/unidades/[name_unidade]/membros/[membro]/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/cee89a81-5f5d-492e-b0e5-11dd16a43cfb.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/cee89a81-5f5d-492e-b0e5-11dd16a43cfb.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/[sigla]/organizacao/module/ModuleMinhaUnidade.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/[sigla]/organizacao/module/ModuleMinhaUnidade.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/[sigla]/unidades/[name_unidade]/escalas/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/[sigla]/unidades/[name_unidade]/escalas/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/next.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/next.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(auth)/auth/components/SigInForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(auth)/auth/components/SigInForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(auth)/auth/hooks/useSign/useSignIn.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(auth)/auth/hooks/useSign/useSignIn.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(auth)/auth/schemas/SignInSchema.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(auth)/auth/schemas/SignInSchema.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/[sigla]/minha-organizacao/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/[sigla]/minha-organizacao/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/[sigla]/organizacao/[id_corporation]/unidades/[id]/carros/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/[sigla]/organizacao/[id_corporation]/unidades/[id]/carros/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/[sigla]/organizacao/[id_corporation]/unidades/[id]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/[sigla]/organizacao/[id_corporation]/unidades/[id]/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/[sigla]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/[sigla]/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/[sigla]/unidades/[name_unidade]/membros/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/[sigla]/unidades/[name_unidade]/membros/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/[sigla]/unidades/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/[sigla]/unidades/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(private)/conta/component/EditProfileForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/conta/component/EditProfileForm.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/CalendarGso/CalendarGso.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CalendarGso/CalendarGso.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/CalendarGso/CalendarGsoGrid.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CalendarGso/CalendarGsoGrid.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Cards/CardListEscala.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Cards/CardListEscala.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/DataTables/DataTableEscala/columnsEscala.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DataTables/DataTableEscala/columnsEscala.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/schemas/CarsSchema.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/schemas/CarsSchema.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/DataTables/DataTableMembers/columnsMembers.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DataTables/DataTableMembers/columnsMembers.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/DataTables/DataTableUnidades/data-table-row-actions.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DataTables/DataTableUnidades/data-table-row-actions.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Modal/ModalGso/ModalGso.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Modal/ModalGso/ModalGso.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Nav/NavbarMain.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Nav/NavbarMain.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/auth.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/auth.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/schemas/FileSchema.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/schemas/FileSchema.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/schemas/ScheduleSchema.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/schemas/ScheduleSchema.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/schemas/SignUpChema.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/schemas/SignUpChema.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/schemas/UnidadeSchema.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/schemas/UnidadeSchema.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/types/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/types/index.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,7 +96,7 @@
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/home/rony/web/gso-next/node_modules/prettier&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
     &quot;ts.external.directory.path&quot;: &quot;/home/rony/web/gso-next/node_modules/typescript/lib&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
@@ -109,11 +124,11 @@
       <recent name="$PROJECT_DIR$/src/app/(private)/servicos/unidades" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/app/(private)/(modules)/[sigla]/unidades" />
       <recent name="$PROJECT_DIR$/src/app/(private)/(modules)/[sigla]" />
       <recent name="$PROJECT_DIR$/src/app/(private)/servicos/[sigla]/unidades" />
       <recent name="$PROJECT_DIR$/src/app/(private)/servicos/[sigla]" />
       <recent name="$PROJECT_DIR$/src/app/(private)/servicos/[sigla]/[name_unidade]/unidades" />
-      <recent name="$PROJECT_DIR$/src/app/(private)/servicos/[sigla]/unidades/[name_unidade]" />
     </key>
   </component>
   <component name="SharedIndexes">
@@ -211,6 +226,8 @@
       <workItem from="1719404981456" duration="132000" />
       <workItem from="1719405154822" duration="611000" />
       <workItem from="1719405884265" duration="16475000" />
+      <workItem from="1719485599268" duration="54000" />
+      <workItem from="1719485677279" duration="13371000" />
     </task>
     <task id="LOCAL-00001" summary="refatorando com eslint">
       <option name="closed" value="true" />

@@ -20,7 +20,7 @@ const MinhaOrganizacao = async ({
       item.id !== null &&
       params?.sigla !== undefined
     ) {
-      return item.id.toString() === params.sigla.split('-')[1].toString()
+      return item.id?.toString() === params.sigla?.split('-')[1]?.toString()
     }
   })
   return (

@@ -21,7 +21,6 @@ const CarsUnidade = async ({
   if (imgValided.status !== 200) {
     data.image = process.env.NEXT_PUBLIC_API_GSO + '/public/images/img.png'
   }
-  console.log(data.companyCars)
   return (
     <div>
       {

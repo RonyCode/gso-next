@@ -19,6 +19,7 @@ const Unidades = async ({
   params: { sigla: string; name_unidade: string }
 }): Promise<ReactNode> => {
   const { data } = await getAllUnidades(String(params?.sigla?.split('-')[1]))
+  console.log(data)
   return (
     <>
       <CardDefault

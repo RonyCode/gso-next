@@ -292,6 +292,7 @@ export interface ResultSignIn {
   name: string
   token: string
   refresh_token: string
+  short_name_corp: string
   date_creation_token: number
   date_expires_token: number
 }
@@ -348,6 +349,7 @@ declare module 'next-auth' {
     id_message?: string | null
     id_corporation: string
     id_company: string
+    short_name_corp: string
     nome?: string | null
     name?: string | null
     email?: string | null
@@ -372,6 +374,7 @@ declare module 'next-auth' {
     name: string
     email: string
     role: string
+    short_name_corp: string
     image: string
     picture: string
     senha: string
@@ -390,6 +393,7 @@ declare module 'next-auth/jwt' {
     id_message: string
     id_corporation: string
     id_company: string
+    short_name_corp: string
     nome: string
     name: string
     email: string

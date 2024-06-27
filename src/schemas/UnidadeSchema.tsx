@@ -55,7 +55,14 @@ export const UnidadeSchema = z.object({
       z
         .object({
           schedule: ScheduleSchema,
-          cars: z.array(CarSchema).optional(),
+          cars: z
+            .array(
+              z.object({
+                car: CarSchema,
+                members: z.array(MemberSchema),
+              }),
+            )
+            .optional(),
         })
         .optional(),
     )
