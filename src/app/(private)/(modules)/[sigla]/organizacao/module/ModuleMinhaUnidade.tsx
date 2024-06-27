@@ -25,20 +25,20 @@ const ModuleMinhaUnidade = ({
           icon={<IconBuild width={54} className="ml-1" />}
         />
         <CardModule
-          title="Membros"
+          title="Efetivo"
           subtitle="Membros da minha unidade"
           link={`/${params?.sigla?.toLowerCase()}/unidades/${params?.name_unidade?.toLowerCase()}/membros`}
           icon={<IconMembers width={50} className="ml-1" />}
         />
         <CardModule
           title="Carros"
-          subtitle="Unidades da minha organização"
+          subtitle="Carros da minha unidade"
           link={`/${params?.sigla?.toLowerCase()}/unidades/${params?.name_unidade?.toLowerCase()}/carros`}
           icon={<IconCarFrontal width={64} className="ml-1" />}
         />
         <CardModule
           title="Escalas"
-          subtitle="Unidades da minha organização"
+          subtitle="Escalas da minha unidade"
           link={`/${params?.sigla?.toLowerCase()}/unidades/${params?.name_unidade?.toLowerCase()}/escalas`}
           icon={<IconList width={64} className="ml-1" />}
         />

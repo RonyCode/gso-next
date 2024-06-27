@@ -8,7 +8,9 @@ import { CardListEscala } from '@/components/Cards/CardListEscala'
 import { columnsEscala } from '@/components/DataTables/DataTableEscala/columnsEscala'
 import { DataTableEscala } from '@/components/DataTables/DataTableEscala/data-table-escala'
 import { ModalGso } from '@/components/Modal/ModalGso/ModalGso'
-import { type IScheduleSchema } from '@/schemas/ScheduleSchema'
+import { type IScheduleSchema, ScheduleSchema } from '@/schemas/ScheduleSchema'
+import { type IUnidadeSchema, UnidadeSchema } from '@/schemas/UnidadeSchema'
+import { type EventProps } from '@/types/index'
 import { Button } from '@/ui/button'
 
 interface DaysMonthProps {
@@ -16,13 +18,12 @@ interface DaysMonthProps {
   diference: number
 }
 
-const CalendarGso = ({ event }: { event: IScheduleSchema[] }): JSX.Element => {
+const CalendarGso = ({ unidade }: { unidade: IUnidadeSchema }): JSX.Element => {
   const date = new Date()
   const [month, setMonth] = useState(date.getMonth())
   const [year, setYear] = useState(date.getFullYear())
   const [dayWeek, setDayWeek] = useState(date.getDay())
   useState(0)
-
   const monthName = [
     { monthName: 'Janeiro', number: 0 },
     { monthName: 'Fevereiro', number: 1 },
@@ -47,6 +48,7 @@ const CalendarGso = ({ event }: { event: IScheduleSchema[] }): JSX.Element => {
     { nameDay: 'Sexta', shortNameDay: 'Sex' },
     { nameDay: 'Sábado', shortNameDay: 'Sáb' },
   ]
+
   const escalaObj = [
     {
       day: 0,
@@ -106,15 +108,22 @@ const CalendarGso = ({ event }: { event: IScheduleSchema[] }): JSX.Element => {
     day: number,
     month: number,
     year: number,
-    event: IScheduleSchema[],
+    event?: IUnidadeSchema,
   ): IScheduleSchema[] => {
-    return event.filter((itemEvento) => {
-      return (
-        new Date(itemEvento.date_creation).getDate() === day &&
-        new Date(itemEvento.date_creation).getMonth() === month &&
-        new Date(itemEvento.date_creation).getFullYear() === year
-      )
+    if (event == null) return []
+    const result: IScheduleSchema[] = []
+    event?.companySchedules?.forEach((itemEvento) => {
+      if (itemEvento?.schedule?.date_creation !== null && itemEvento != null) {
+        if (
+          new Date(itemEvento?.schedule?.date_creation).getDate() === day &&
+          new Date(itemEvento?.schedule?.date_creation).getMonth() === month &&
+          new Date(itemEvento?.schedule?.date_creation).getFullYear() === year
+        ) {
+          result.push(itemEvento?.schedule)
+        }
+      }
     })
+    return result
   }
 
   let daysCalculate = 0
@@ -164,11 +173,19 @@ const CalendarGso = ({ event }: { event: IScheduleSchema[] }): JSX.Element => {
             dayWeek === date.getDay() ? i - daysInMonth.diference : dayWeek + i,
             month,
             year,
-            event,
+            unidade,
           ),
           year,
           month,
         })
+        console.log(
+          handleEventDay(
+            dayWeek === date.getDay() ? i - daysInMonth.diference : dayWeek + i,
+            month,
+            year,
+            unidade,
+          ),
+        )
       } else {
         escalaObj.push({
           day:
@@ -180,7 +197,7 @@ const CalendarGso = ({ event }: { event: IScheduleSchema[] }): JSX.Element => {
             dayWeek === date.getDay() ? i - daysInMonth.diference : dayWeek + i,
             month,
             year,
-            event,
+            unidade,
           ),
           year,
           month,
@@ -219,7 +236,7 @@ const CalendarGso = ({ event }: { event: IScheduleSchema[] }): JSX.Element => {
 
   const eventsList: IScheduleSchema[] = []
   escalaObj.forEach((item) => {
-    item.dayEvent.forEach((event) => {
+    item?.dayEvent?.forEach((event) => {
       eventsList.push(event)
     })
   })
@@ -305,8 +322,9 @@ const CalendarGso = ({ event }: { event: IScheduleSchema[] }): JSX.Element => {
                             : index
                         }
                         day={day.day}
-                        dayEvent={day.dayEvent}
+                        dayEvent={day?.dayEvent}
                         month={day.month}
+                        year={day.year}
                         className="h-24 w-full"
                       />
                     )}
@@ -314,9 +332,10 @@ const CalendarGso = ({ event }: { event: IScheduleSchema[] }): JSX.Element => {
                 }
               >
                 <div className="flex h-full w-full flex-col ">
-                  {day.dayEvent.map((itemEvent, indexEvent) => (
+                  {day?.dayEvent?.map((itemEvent, indexEvent) => (
                     <CardListEscala
                       key={indexEvent}
+                      unidade={unidade}
                       itemEvent={itemEvent}
                       className="my-2 border border-foreground/30"
                     />

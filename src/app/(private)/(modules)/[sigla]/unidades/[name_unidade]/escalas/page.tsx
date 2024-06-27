@@ -33,7 +33,7 @@ const EscalasUnidade = async ({
           iconDescription={<MdOutlineSupervisorAccount size={18} />}
         >
           <div>
-            <CalendarGso event={data.companySchedules} />
+            {data.companySchedules != null && <CalendarGso unidade={data} />}
           </div>
         </CardDefault>
       }

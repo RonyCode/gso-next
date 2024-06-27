@@ -120,7 +120,7 @@ export const columnsEscala: Array<ColumnDef<IScheduleSchema>> = [
         (unity) => unity.value === row.getValue('unity'),
       )
       const group = labels.find(
-        (label) => label.value === row.original.team.toString(),
+        (label) => label.value === row.original?.team?.toString(),
       )
 
       if (unity == null) {

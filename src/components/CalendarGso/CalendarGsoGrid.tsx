@@ -9,6 +9,7 @@ type CalendarGsoGridProps = {
   dayEvent?: IScheduleSchema[]
   month?: number
   day?: number
+  year?: number
   index?: number
   className?: string
 } & React.HTMLAttributes<HTMLDivElement>
@@ -17,11 +18,11 @@ const CalendarGsoGrid = ({
   dayEvent,
   month,
   day,
+  year,
   className,
   ...props
 }: CalendarGsoGridProps): ReactElement => {
   const date = new Date()
-
   return (
     <>
       {day != null && day > 0 && (
@@ -30,7 +31,14 @@ const CalendarGsoGrid = ({
             `  relative flex min-h-full w-full cursor-pointer flex-col items-center justify-start  
                               rounded-[3px] 
                               border border-foreground/10 hover:border
-                              hover:border-primary/60 md:min-h-[100%]  ${day === date.getDate() && month === date.getMonth() ? 'border-primary/60 ' : ''} `,
+                              hover:border-primary/60 md:min-h-[100%]  
+                              ${
+                                day === date.getDate() &&
+                                month === date.getMonth() &&
+                                year === date.getFullYear()
+                                  ? 'border-primary/60 '
+                                  : ''
+                              } `,
             className,
           )}
           {...props}
@@ -38,7 +46,7 @@ const CalendarGsoGrid = ({
           {dayEvent?.map((itemEvent, indexEvent) => (
             <div key={indexEvent} className="m-0 self-start px-1 pt-1 ">
               <Badge
-                className={` text-[.5rem] md:block md:text-[.625rem] ${
+                className={`  px-[6px] text-[.5rem] md:block md:text-[.625rem] ${
                   itemEvent.team === 1
                     ? 'border-primary/85 text-primary/85'
                     : itemEvent.team === 2
@@ -56,12 +64,10 @@ const CalendarGsoGrid = ({
                   : itemEvent.team === 2
                     ? 'BRAVO'
                     : itemEvent.team === 3
-                      ? 'DELTA'
+                      ? 'CHARLIE'
                       : itemEvent.team === 4
                         ? 'EXTRA'
-                        : itemEvent.team === 5
-                          ? 'DIA'
-                          : ''}
+                        : ''}
               </Badge>
             </div>
           ))}

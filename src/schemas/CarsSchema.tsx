@@ -1,3 +1,4 @@
+import { MemberSchema } from '@/schemas/MemberSchema'
 import { z } from 'zod'
 
 export const CarSchema = z.object({
@@ -12,6 +13,7 @@ export const CarSchema = z.object({
   type: z.string().min(1, { message: 'id inválido' }),
   condition_car: z.string().min(1, { message: 'id inválido' }),
   status: z.string().min(1, { message: 'id inválido' }),
+  members: z.array(MemberSchema).optional(),
   excluded: z.number().min(1, { message: 'id inválido' }),
 })
 

@@ -50,7 +50,16 @@ export const UnidadeSchema = z.object({
     .min(1, { message: 'Tipo inválido deve conter no mínimo 1 caracteres' })
     .optional()
     .nullable(),
-  companySchedules: z.array(ScheduleSchema).optional(),
+  companySchedules: z
+    .array(
+      z
+        .object({
+          schedule: ScheduleSchema,
+          cars: z.array(CarSchema).optional(),
+        })
+        .optional(),
+    )
+    .optional(),
   companyAddress: AddressSchema.optional(),
   companyMembers: z.array(MemberSchema).optional(),
   companyCars: z.array(CarSchema).optional(),

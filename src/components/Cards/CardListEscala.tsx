@@ -1,16 +1,20 @@
+import { getServerSession } from 'next-auth'
 import React, { type ReactElement } from 'react'
+import { useForm } from 'react-hook-form'
 import { BsBuildingCheck } from 'react-icons/bs'
 import { GrGroup } from 'react-icons/gr'
 import { LuCalendarDays, LuClock, LuUser } from 'react-icons/lu'
 import { MdOutlineMapsHomeWork } from 'react-icons/md'
 import { RiPoliceCarLine } from 'react-icons/ri'
+import { toast } from 'react-toastify'
 
-import { maskDateBr } from '@/functions/masks/maskDateBr'
 import { cn } from '@/lib/utils'
 import { type IScheduleSchema } from '@/schemas/ScheduleSchema'
-import { type EventProps } from '@/types/index'
+import { type IUnidadeSchema } from '@/schemas/UnidadeSchema'
 import { Badge } from '@/ui/badge'
+import { Button } from '@/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/ui/card'
+import { Form, FormControl, FormField, FormItem, FormLabel } from '@/ui/form'
 import { Label } from '@/ui/label'
 import {
   SelectItem,
@@ -20,39 +24,43 @@ import {
   Select,
 } from '@/ui/select'
 import { Separator } from '@/ui/separator'
+import { zodResolver } from '@hookform/resolvers/zod'
 import { Avatar, AvatarFallback, AvatarImage } from '@radix-ui/react-avatar'
+import { format } from 'date-fns'
+import { ptBR } from 'date-fns/locale/pt-BR'
+import { z } from 'zod'
 
 type CardProps = {
   itemEvent: IScheduleSchema
+  unidade?: IUnidadeSchema
   children?: React.ReactNode
   className?: string
 } & React.ComponentProps<typeof Card>
 
-export const CardListEscala = ({
+export const CardListEscala = async ({
   itemEvent,
+  unidade,
   className,
   ...props
-}: CardProps): ReactElement => {
+}: CardProps): Promise<ReactElement> => {
   return (
     <>
       <Card className={cn(className)} {...props}>
         <CardHeader className="justify-center p-2 md:p-3">
           <div className="m-0 flex justify-evenly p-0 md:justify-between">
-            <CardTitle className="flex items-center gap-1">
+            <CardTitle className="flex w-full items-center justify-between gap-1">
               <div className="text-md font-bold ">
                 <Badge
                   className={` block ${
                     itemEvent.team === 1
-                      ? 'border-primary text-primary/70'
+                      ? 'border-primary/85 text-primary/85'
                       : itemEvent.team === 2
-                        ? 'border-blue-500 text-blue-500/70'
+                        ? 'border-blue-500/85 text-blue-500/85'
                         : itemEvent.team === 3
-                          ? 'border-green-600 text-green-600/70'
+                          ? 'border-yellow-400/85 text-yellow-400/85'
                           : itemEvent.team === 4
-                            ? 'border-yellow-400 text-yellow-400/70'
-                            : itemEvent.team === 5
-                              ? 'text-muted-[#9400d3] border-[#9400d3]/70'
-                              : ''
+                            ? 'border-[#9400d3]/85 text-[#9400d3]/85'
+                            : ''
                   }`}
                   variant="outline"
                 >
@@ -67,32 +75,35 @@ export const CardListEscala = ({
                           : itemEvent.team === 3
                             ? 'CHARLIE'
                             : itemEvent.team === 4
-                              ? 'DELTA'
-                              : itemEvent.team === 5
-                                ? 'ECHO'
-                                : ''}
+                              ? 'EXTRA'
+                              : ''}
                     </p>
                   </span>
                 </Badge>{' '}
               </div>
+              <span className="flex items-center gap-1">
+                <i>
+                  <LuCalendarDays />
+                </i>
+                <div className="font-bold text-muted-foreground">
+                  {' '}
+                  {format(itemEvent?.date_creation, 'eeeeee', {
+                    locale: ptBR,
+                  }) +
+                    '  | ' +
+                    format(itemEvent?.date_creation, 'dd/MM', { locale: ptBR })}
+                </div>
+              </span>
+              <span className="flex items-center gap-1">
+                <i>
+                  <LuClock />
+                </i>
+                <div className="font-bold text-muted-foreground">
+                  {' '}
+                  {itemEvent?.hour_start.split(':').slice(0, 2).join(':')}
+                </div>
+              </span>
             </CardTitle>
-            <span className="flex items-center gap-1">
-              <i>
-                <LuClock size={20} />
-              </i>
-              <div className="font-bold text-muted-foreground">
-                {' '}
-                {itemEvent.hour_start}
-              </div>
-
-              <i>
-                <LuCalendarDays size={20} />
-              </i>
-              <div className="font-bold text-muted-foreground">
-                {' '}
-                {maskDateBr(itemEvent.date)}
-              </div>
-            </span>
           </div>
         </CardHeader>
         <Separator />
@@ -100,16 +111,16 @@ export const CardListEscala = ({
           <div className=" grid grid-cols-1  md:grid-cols-12 ">
             <div className="col-start-1 col-end-4   row-start-1 row-end-2 ">
               <div className="item-center flex  flex-col justify-center  pb-3 text-sm font-medium">
-                <div className=" flex items-center gap-2 rounded-[8px] border  border-primary/60  p-3 md:border-0 md:border-b  ">
+                <div className=" flex items-center gap-2 rounded-[8px] border  border-primary/60  p-1 md:border-0 md:border-b  ">
                   <div>
                     <Avatar
                       className="
-                      flex h-12 w-12  items-center justify-center rounded-full
+                      flex h-10 w-10  items-center justify-center rounded-full
                       shadow-sm shadow-foreground transition-all duration-300 hover:scale-[200%] "
                     >
                       <AvatarImage
                         className="aspect-square rounded-full object-cover"
-                        src={itemEvent.type}
+                        src={unidade?.image}
                       />
                       <AvatarFallback>
                         {<BsBuildingCheck size={36} />}
@@ -124,9 +135,7 @@ export const CardListEscala = ({
                       <SelectValue placeholder="Selecione" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="edit">
-                        {itemEvent.id_company}
-                      </SelectItem>
+                      <SelectItem value="edit">{unidade?.name}</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -138,9 +147,9 @@ export const CardListEscala = ({
                     <i>
                       <MdOutlineMapsHomeWork />
                     </i>
-                    <Label> Cidade</Label>
+                    <Label> id unidade</Label>
                   </div>
-                  <p className="text-sm font-medium">{itemEvent.id_company}</p>
+                  <p className="text-sm font-medium">{unidade?.id}</p>
                 </div>
                 <div className="item-start flex flex-col justify-center  text-sm font-medium">
                   <div className="flex  items-center gap-1 ">
@@ -149,16 +158,16 @@ export const CardListEscala = ({
                     </i>
                     <Label> Tipo</Label>
                   </div>
-                  <p className="text-sm font-medium">{itemEvent.type}</p>
+                  <p className="text-sm font-medium">{unidade?.type}</p>
                 </div>
                 <div className="item-start flex flex-col justify-center  text-sm font-medium">
                   <div className="flex  items-center gap-1 ">
                     <i>
                       <MdOutlineMapsHomeWork />
                     </i>
-                    <Label> Status</Label>
+                    <Label> id schedule</Label>
                   </div>
-                  <p className="text-sm font-medium">{itemEvent.status}</p>
+                  <p className="text-sm font-medium">{itemEvent?.id}</p>
                 </div>
                 <div className="item-start flex flex-col justify-center  text-sm font-medium">
                   <div className="flex  items-center  gap-1">
@@ -167,7 +176,7 @@ export const CardListEscala = ({
                     </i>
                     <Label> Companhia</Label>
                   </div>
-                  <p className="text-sm font-medium">{itemEvent.unity}</p>
+                  <p className="text-sm font-medium">{unidade?.name}</p>
                 </div>
                 <div className="item-start flex flex-col justify-center  text-sm font-medium">
                   <div className="flex  items-center  gap-1">
@@ -176,78 +185,101 @@ export const CardListEscala = ({
                     </i>
                     <Label> Cidade</Label>
                   </div>
-                  <p className="text-sm font-medium">{itemEvent.company}</p>
+                  <p className="text-sm font-medium">
+                    {unidade?.companyAddress?.city}
+                  </p>
                 </div>
               </div>
             </div>
-
             <div className="grid grid-cols-1 md:col-start-4 md:col-end-13 md:grid-cols-9 ">
-              {itemEvent.cars?.map((item, index) => (
-                <div
-                  key={index}
-                  className="col-span-3 border-l border-foreground/10"
-                >
-                  <div className="flex items-center gap-2 rounded-[8px] border  border-primary/60  p-3 md:border-0 md:border-b  ">
-                    <div>
-                      <Avatar
-                        className="
-                      flex h-12 w-12  items-center justify-center rounded-full
-                      shadow-sm shadow-foreground transition-all duration-300 hover:scale-[200%] "
-                      >
-                        <AvatarImage
-                          className="aspect-square rounded-full object-cover"
-                          src={item.imageCar}
-                        />
-                        <AvatarFallback>
-                          {<RiPoliceCarLine size={36} />}
-                        </AvatarFallback>
-                      </Avatar>
-                    </div>
-                    <div>
-                      <p className="text-sm font-medium leading-none">VTR </p>
-                    </div>
-                    <Select defaultValue="edit">
-                      <SelectTrigger className="ml-auto w-[110px]">
-                        <SelectValue placeholder="Selecione" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="edit">{item.nameCar}</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
+              {unidade?.companySchedules?.map((itemSchedule, index) => (
+                <div key={index}>
+                  {itemSchedule?.schedule?.cars > 0 && (
+                    <div>{itemSchedule?.schedule?.cars[0]?.model}</div>
+                  )}
+                  <div>
+                    {itemSchedule?.schedule?.cars?.map(
+                      (carSchedule, inderxCa) => (
+                        <div
+                          key={inderxCa}
+                          className="mb-3 flex items-center justify-between  gap-2  rounded-[8px] border border-primary/60 p-1  md:border-0 md:border-b "
+                        >
+                          <Avatar
+                            className="
+                                flex h-10 w-10  items-center justify-center rounded-full
+                                shadow-sm shadow-foreground transition-all duration-300 hover:scale-[200%] "
+                          >
+                            <AvatarImage
+                              className="aspect-square rounded-full object-cover"
+                              src={carSchedule?.image}
+                            />
+                            <AvatarFallback>
+                              {<RiPoliceCarLine size={36} />}
+                            </AvatarFallback>
+                          </Avatar>
+                          <div>
+                            <p className="text-sm font-medium leading-none">
+                              {carSchedule?.model}{' '}
+                            </p>
+                          </div>
+                          <Select defaultValue="edit">
+                            <SelectTrigger className="ml-auto w-[110px]">
+                              <SelectValue placeholder="Selecione" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="edit">
+                                {carSchedule?.plate}
+                              </SelectItem>
+                            </SelectContent>
+                          </Select>
 
-                  {item.members.map((itemMember, index) => (
-                    <div key={index} className="flex items-center gap-2 p-2">
-                      <Avatar
-                        className="flex h-10 w-10 items-center justify-center  rounded-full shadow-sm shadow-foreground transition-all
-                        duration-300 hover:scale-[200%] md:h-12 md:w-12"
-                      >
-                        <AvatarImage
-                          className="aspect-square rounded-full object-cover"
-                          src={itemMember.imageMember}
-                        />
-                        <AvatarFallback>{<LuUser size={36} />}</AvatarFallback>
-                      </Avatar>
-                      <div>
-                        <p className="text-sm font-medium leading-none">
-                          {itemMember.name}
-                        </p>
-                        <p className="text-sm text-muted-foreground">
-                          {itemMember.email}
-                        </p>
-                      </div>
-                      <Select defaultValue="edit">
-                        <SelectTrigger className="ml-auto w-[110px]">
-                          <SelectValue placeholder="Selecione" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="edit">
-                            {itemMember.function}
-                          </SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-                  ))}
+                          {carSchedule?.members?.map(
+                            (carMembers, indexMember) => (
+                              <div
+                                key={indexMember}
+                                className="flex items-center justify-center gap-1"
+                              >
+                                <Avatar
+                                  className="flex h-8 w-8 items-center justify-center  rounded-full shadow-sm shadow-foreground transition-all
+                                  duration-300 hover:scale-[200%] md:h-10 md:w-10"
+                                >
+                                  <AvatarImage
+                                    className="aspect-square rounded-full object-cover"
+                                    src={
+                                      carMembers?.image ??
+                                      process.env.NEXT_PUBLIC_API_GSO +
+                                        '/public/images/img.png'
+                                    }
+                                  />
+                                  <AvatarFallback>
+                                    {<LuUser size={36} />}
+                                  </AvatarFallback>
+                                </Avatar>
+                                <div>
+                                  <p className="text-sm font-medium leading-none">
+                                    {carMembers?.name}
+                                  </p>
+                                  <p className="text-sm text-muted-foreground">
+                                    {carMembers?.email}
+                                  </p>
+                                </div>
+                                <Select defaultValue="edit">
+                                  <SelectTrigger className="ml-auto w-[110px]">
+                                    <SelectValue placeholder="Selecione" />
+                                  </SelectTrigger>
+                                  <SelectContent>
+                                    <SelectItem value="edit">
+                                      {carMembers?.id_function}
+                                    </SelectItem>
+                                  </SelectContent>
+                                </Select>
+                              </div>
+                            ),
+                          )}
+                        </div>
+                      ),
+                    )}
+                  </div>
                 </div>
               ))}
             </div>
