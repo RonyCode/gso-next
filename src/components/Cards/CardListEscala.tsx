@@ -122,12 +122,7 @@ export const CardListEscala = ({
               <div key={index}>
                 {schedule?.schedule?.id === itemEvent?.id && (
                   <div>
-                    <div className="flex items-center">
-                      <LuCalendarDays />
-                      <span className="pb-2 text-2xl font-bold">
-                        Criado por
-                      </span>
-                    </div>
+                    <Label className="text-lg font-bold">Criado por</Label>
                     <Select>
                       <SelectTrigger className="w-3/12 text-lg font-bold">
                         <SelectValue
