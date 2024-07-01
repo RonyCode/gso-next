@@ -241,6 +241,7 @@ export async function middleware(request: NextRequest) {
 export const config = {
   matcher: [
     '/auth/:path*',
+    '/:sigla/',
     '/dashboard/:path*',
     '/(modules)/:path*',
     '/private/:path*',

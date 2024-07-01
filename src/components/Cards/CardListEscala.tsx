@@ -1,9 +1,18 @@
 import React, { type ReactElement } from 'react'
 import { BsBuildingCheck } from 'react-icons/bs'
 import { GrGroup } from 'react-icons/gr'
-import { LuCalendarDays, LuClock } from 'react-icons/lu'
+import {
+  LuBuilding2,
+  LuCalendarDays,
+  LuCar,
+  LuClock,
+  LuPhone,
+  LuUser,
+} from 'react-icons/lu'
 import { MdOutlineMapsHomeWork } from 'react-icons/md'
 import { RiPoliceCarLine } from 'react-icons/ri'
+
+import { Input } from '../ui/input'
 
 import { cn } from '@/lib/utils'
 import { type IScheduleSchema } from '@/schemas/ScheduleSchema'
@@ -108,26 +117,120 @@ export const CardListEscala = ({
         </CardHeader>
         <Separator />
         <CardContent>
-          {unidade?.companySchedules?.map((schedule, index) => (
-            <div key={index}>
-              {schedule?.schedule?.id === itemEvent?.id && (
-                <div>
-                  <div>Comunicação</div>
+          <div>
+            {unidade?.companySchedules?.map((schedule, index) => (
+              <div key={index}>
+                {schedule?.schedule?.id === itemEvent?.id && (
+                  <div>
+                    <div>{schedule?.schedule?.date_creation}</div>
+                    <div>{schedule?.schedule?.situation}</div>
+                    <div>{schedule?.schedule?.status}</div>
+                    <div>{schedule?.schedule?.id_company}</div>
+                    <div>{schedule?.schedule?.id_member_creator}</div>
+                    <Select>
+                      <SelectTrigger className="w-[180px]">
+                        <SelectValue
+                          placeholder={
+                            unidade?.companyMembers?.find(
+                              (member) =>
+                                member?.id?.toString() ===
+                                schedule?.schedule?.id_member_creator?.toString(),
+                            )?.name
+                          }
+                        />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem
+                          value={schedule?.schedule?.id_member_creator}
+                        >
+                          {
+                            unidade?.companyMembers?.find(
+                              (member) =>
+                                member?.id?.toString() ===
+                                schedule?.schedule?.id_member_creator?.toString(),
+                            )?.name
+                          }
+                        </SelectItem>
+                      </SelectContent>
+                    </Select>
+                    {unidade?.companyMembers?.map(
+                      (memberUnidade, indexMember) => (
+                        <div key={indexMember}>
+                          {memberUnidade?.id_schedule?.toString() ===
+                            itemEvent?.id?.toString() &&
+                            memberUnidade?.id_function === 5 && (
+                              <div className="py-4">
+                                <div className="flex items-center gap-2">
+                                  <LuPhone />
+                                  <span className="pb-2 text-2xl font-bold">
+                                    Comunicação
+                                  </span>
+                                </div>
+                                <div className="flex items-center gap-2">
+                                  <LuUser />
+                                  <span>
+                                    {' '}
+                                    {memberUnidade?.competence} -{' '}
+                                    {memberUnidade?.name}
+                                  </span>
+                                </div>
+                              </div>
+                            )}
+                        </div>
+                      ),
+                    )}
+                    <Separator />
+                    <h1 className="flex items-center gap-2 text-2xl font-bold">
+                      <LuCar />
+                      <span>Viaturas</span>
+                    </h1>
+                    <div className="grid grid-cols-1 text-foreground/60 md:grid-cols-12">
+                      {schedule?.cars?.map((car, indexCar) => (
+                        <div
+                          key={indexCar}
+                          className="col-span-4 space-y-2  border-r border-primary/60 p-2 "
+                        >
+                          <div className="flex items-center  justify-between gap-2 border-b border-primary/60 p-2">
+                            <Avatar
+                              className="flex h-14 w-14 items-center justify-center  rounded-full
+                        duration-300 hover:scale-[200%]"
+                            >
+                              <AvatarImage
+                                className="aspect-square rounded-full object-cover"
+                                src={car?.car?.image}
+                              />
+                              <AvatarFallback>
+                                {<LuCar size={36} />}
+                              </AvatarFallback>
+                            </Avatar>
 
-                  <div className="grid grid-cols-12">
-                    {schedule?.cars?.map((car, indexCar) => (
-                      <div key={indexCar} className="col-span-3">
-                        {car?.car?.prefix}
-                        {car.members.map((member, indexMember) => (
-                          <div key={indexMember}>{member?.name}</div>
-                        ))}
-                      </div>
-                    ))}
+                            <Input
+                              value={car?.car?.prefix}
+                              className="w-9/12"
+                            />
+                          </div>
+
+                          {car.members.map((member, indexMember) => (
+                            <div key={indexMember}>
+                              <div className="flex items-center gap-2">
+                                <LuUser />
+                                <Input
+                                  value={
+                                    member?.competence + ' - ' + member?.name
+                                  }
+                                />
+                                <span></span>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      ))}
+                    </div>
                   </div>
-                </div>
-              )}
-            </div>
-          ))}
+                )}
+              </div>
+            ))}
+          </div>
         </CardContent>
       </Card>
     </>

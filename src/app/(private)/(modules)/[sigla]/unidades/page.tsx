@@ -2,7 +2,6 @@ import { type Metadata } from 'next'
 import React, { type ReactNode } from 'react'
 import { LuMenuSquare } from 'react-icons/lu'
 
-import SelectCompanyModule from '@/app/(private)/(modules)/[sigla]/components/SelectCompanyModule'
 import { CardDefault } from '@/components/Cards/CardDefault'
 import { columnsUnidades } from '@/components/DataTables/DataTableUnidades/columnsUnidades'
 import { DataTableUnidades } from '@/components/DataTables/DataTableUnidades/data-table-unidades'
@@ -19,7 +18,6 @@ const Unidades = async ({
   params: { sigla: string; name_unidade: string }
 }): Promise<ReactNode> => {
   const { data } = await getAllUnidades(String(params?.sigla?.split('-')[1]))
-  console.log(data)
   return (
     <>
       <CardDefault
