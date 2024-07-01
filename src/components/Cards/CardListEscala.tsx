@@ -122,13 +122,14 @@ export const CardListEscala = ({
               <div key={index}>
                 {schedule?.schedule?.id === itemEvent?.id && (
                   <div>
-                    <div>{schedule?.schedule?.date_creation}</div>
-                    <div>{schedule?.schedule?.situation}</div>
-                    <div>{schedule?.schedule?.status}</div>
-                    <div>{schedule?.schedule?.id_company}</div>
-                    <div>{schedule?.schedule?.id_member_creator}</div>
+                    <div className="flex items-center">
+                      <LuCalendarDays />
+                      <span className="pb-2 text-2xl font-bold">
+                        Criado por
+                      </span>
+                    </div>
                     <Select>
-                      <SelectTrigger className="w-[180px]">
+                      <SelectTrigger className="w-3/12 text-lg font-bold">
                         <SelectValue
                           placeholder={
                             unidade?.companyMembers?.find(
@@ -153,6 +154,7 @@ export const CardListEscala = ({
                         </SelectItem>
                       </SelectContent>
                     </Select>
+
                     {unidade?.companyMembers?.map(
                       (memberUnidade, indexMember) => (
                         <div key={indexMember}>
