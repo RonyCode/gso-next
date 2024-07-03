@@ -108,7 +108,7 @@ export const CardListEscala = ({
               <div key={index}>
                 {schedule?.schedule?.id === itemEvent?.id && (
                   <div>
-                    <div className="grid grid-cols-1 gap-2  md:grid-cols-12">
+                    <div className="grid grid-cols-1 gap-2  overflow-hidden md:grid-cols-12 ">
                       <div className="col-span-6">
                         <div className="flex items-center gap-2">
                           <LuCalendarCheck />
@@ -144,7 +144,10 @@ export const CardListEscala = ({
                                         memberUnidade?.name}
                                     </Button>
                                   </div>
-                                  <Badge className="ml-2" variant="secondary">
+                                  <Badge
+                                    className="ml-2 hidden md:block"
+                                    variant="secondary"
+                                  >
                                     {memberUnidade?.short_name_function?.replace(
                                       ' ',
                                       ' / ',
@@ -191,7 +194,7 @@ export const CardListEscala = ({
                                         </Button>
                                       </div>
                                       <Badge
-                                        className="ml-2"
+                                        className="ml-2 hidden md:block"
                                         variant="secondary"
                                       >
                                         {memberUnidade?.short_name_function?.replace(
@@ -235,7 +238,7 @@ export const CardListEscala = ({
                               <Button variant="outline">
                                 {car?.car?.model}
                               </Button>
-                              <span className="rounded-[5px] border border-muted-foreground/60 p-1">
+                              <span className="rounded-[5px] border border-muted-foreground/60 p-1 text-sm">
                                 {car?.car?.plate}
                               </span>
                             </div>
