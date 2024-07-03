@@ -8,6 +8,7 @@ import { DataTableColumnHeader } from '@/components/DataTables/DataTableEscala/d
 import { Badge } from '@/components/ui/badge'
 import { type IScheduleSchema } from '@/schemas/ScheduleSchema'
 import { type ColumnDef } from '@tanstack/react-table'
+import { format } from 'date-fns'
 
 export const columnsEscala: Array<ColumnDef<IScheduleSchema>> = [
   // {
@@ -40,17 +41,19 @@ export const columnsEscala: Array<ColumnDef<IScheduleSchema>> = [
   // },
 
   {
-    accessorKey: 'date',
+    accessorKey: 'date_creation',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Data" />
+      <DataTableColumnHeader column={column} title="Data Criação" />
     ),
     cell: ({ row }) => {
-      const label = labels.find((label) => label.value === row.original.date)
+      const label = labels.find(
+        (label) => label.value === row.original.date_creation,
+      )
 
       return (
         <div className="flex space-x-2 ">
           <span className="max-w-96 truncate font-medium">
-            {row.getValue('date')}
+            {format(row.getValue('date_creation'), 'dd/MM/yyyy')}
           </span>
           {label != null && <Badge variant="outline">{label.label}</Badge>}
         </div>

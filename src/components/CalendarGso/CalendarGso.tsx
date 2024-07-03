@@ -1,6 +1,6 @@
 'use client'
 
-import { Suspense, useState } from 'react'
+import { useState } from 'react'
 import { LuArrowBigLeft, LuArrowBigRight } from 'react-icons/lu'
 
 import CalendarGsoGrid from '@/components/CalendarGso/CalendarGsoGrid'
@@ -8,9 +8,9 @@ import { CardListEscala } from '@/components/Cards/CardListEscala'
 import { columnsEscala } from '@/components/DataTables/DataTableEscala/columnsEscala'
 import { DataTableEscala } from '@/components/DataTables/DataTableEscala/data-table-escala'
 import { ModalGso } from '@/components/Modal/ModalGso/ModalGso'
-import { type IScheduleSchema, ScheduleSchema } from '@/schemas/ScheduleSchema'
-import { type IUnidadeSchema, UnidadeSchema } from '@/schemas/UnidadeSchema'
-import { type EventProps } from '@/types/index'
+import { type IScheduleSchema } from '@/schemas/ScheduleSchema'
+import { type IUnidadeSchema } from '@/schemas/UnidadeSchema'
+import { type FunctionsMembers } from '@/types/index'
 import { Button } from '@/ui/button'
 
 interface DaysMonthProps {
@@ -18,7 +18,13 @@ interface DaysMonthProps {
   diference: number
 }
 
-const CalendarGso = ({ unidade }: { unidade: IUnidadeSchema }): JSX.Element => {
+const CalendarGso = ({
+  unidade,
+  functions,
+}: {
+  unidade: IUnidadeSchema
+  functions?: FunctionsMembers[]
+}): JSX.Element => {
   const date = new Date()
   const [month, setMonth] = useState(date.getMonth())
   const [year, setYear] = useState(date.getFullYear())
@@ -327,6 +333,7 @@ const CalendarGso = ({ unidade }: { unidade: IUnidadeSchema }): JSX.Element => {
                     <CardListEscala
                       key={indexEvent}
                       unidade={unidade}
+                      functions={functions}
                       itemEvent={itemEvent}
                       className="my-2 border border-foreground/30"
                     />

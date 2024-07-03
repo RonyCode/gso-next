@@ -5,6 +5,7 @@ import { MdOutlineSupervisorAccount } from 'react-icons/md'
 import CalendarGso from '@/components/CalendarGso/CalendarGso'
 import { CardDefault } from '@/components/Cards/CardDefault'
 import { ImageExist } from '@/functions/ImageExist'
+import { getAllFunctions } from '@/lib/GetAllFunctions'
 import { getUnidadeById } from '@/lib/GetUnidadeById'
 
 const EscalasUnidade = async ({
@@ -21,6 +22,9 @@ const EscalasUnidade = async ({
   if (imgValided.status !== 200) {
     data.image = process.env.NEXT_PUBLIC_API_GSO + '/public/images/img.png'
   }
+
+  const functions = await getAllFunctions()
+
   return (
     <div>
       {
@@ -33,7 +37,9 @@ const EscalasUnidade = async ({
           iconDescription={<MdOutlineSupervisorAccount size={18} />}
         >
           <div>
-            {data.companySchedules != null && <CalendarGso unidade={data} />}
+            {data.companySchedules != null && (
+              <CalendarGso unidade={data} functions={functions?.data} />
+            )}
           </div>
         </CardDefault>
       }

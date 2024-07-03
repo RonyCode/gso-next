@@ -96,6 +96,14 @@ export interface CarsUnity {
   imageCar: string
 }
 
+export interface FunctionsMembers {
+  id: number
+  name: string
+  short_name: string
+  description: string
+  excluded: number
+}
+
 export interface EventProps {
   id: number
   day: number

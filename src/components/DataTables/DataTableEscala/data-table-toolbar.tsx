@@ -22,9 +22,11 @@ export function DataTableToolbar<TData>({
     <div className="gird w-full  grid-cols-2 gap-2  md:grid-cols-3">
       <Input
         placeholder="Filtrar escalas..."
-        value={(table.getColumn('date')?.getFilterValue() as string) ?? ''}
+        value={
+          (table.getColumn('date_creation')?.getFilterValue() as string) ?? ''
+        }
         onChange={(event) =>
-          table.getColumn('date')?.setFilterValue(event.target.value)
+          table.getColumn('date_creation')?.setFilterValue(event.target.value)
         }
         className="h-8 w-full lg:w-[250px]"
       />
