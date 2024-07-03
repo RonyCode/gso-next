@@ -1,10 +1,12 @@
 import React, { type ReactElement } from 'react'
 import { GrGroup } from 'react-icons/gr'
 import {
+  LuCalendarCheck,
   LuCalendarDays,
   LuCar,
   LuClipboardCheck,
   LuClock,
+  LuMegaphone,
   LuPhone,
   LuUser,
 } from 'react-icons/lu'
@@ -16,15 +18,6 @@ import { type FunctionsMembers } from '@/types/index'
 import { Badge } from '@/ui/badge'
 import { Button } from '@/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/ui/card'
-import { Input } from '@/ui/input'
-import { Label } from '@/ui/label'
-import {
-  SelectItem,
-  SelectContent,
-  SelectTrigger,
-  SelectValue,
-  Select,
-} from '@/ui/select'
 import { Separator } from '@/ui/separator'
 import { Avatar, AvatarFallback, AvatarImage } from '@radix-ui/react-avatar'
 import { format } from 'date-fns'
@@ -111,65 +104,101 @@ export const CardListEscala = ({
         <Separator />
         <CardContent>
           <div>
-            <div className="flex items-center gap-2  py-4 text-lg font-bold">
-              <LuClipboardCheck />
-              <h1>Detalhes</h1>
-            </div>
             {unidade?.companySchedules?.map((schedule, index) => (
               <div key={index}>
                 {schedule?.schedule?.id === itemEvent?.id && (
                   <div>
-                    <div className="grid grid-cols-1 gap-2 text-foreground/60 md:grid-cols-12">
-                      <div className="col-span-4 border border-green-50">
-                        <Label className="text-lg font-bold">Criado por</Label>
-                        <Select>
-                          <SelectTrigger className="w-full text-lg font-bold">
-                            <SelectValue
-                              placeholder={
-                                unidade?.companyMembers?.find(
-                                  (member) =>
-                                    member?.id?.toString() ===
-                                    schedule?.schedule?.id_member_creator?.toString(),
-                                )?.name
-                              }
-                            />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem
-                              value={schedule?.schedule?.id_member_creator}
-                            >
-                              {
-                                unidade?.companyMembers?.find(
-                                  (member) =>
-                                    member?.id?.toString() ===
-                                    schedule?.schedule?.id_member_creator?.toString(),
-                                )?.name
-                              }
-                            </SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </div>
-                      <div className="col-span-4 border border-green-50">
+                    <div className="grid grid-cols-1 gap-2  md:grid-cols-12">
+                      <div className="col-span-6">
+                        <div className="flex items-center gap-2">
+                          <LuCalendarCheck />
+                          <h1 className="text-lg font-bold">Criado por</h1>
+                        </div>
                         {unidade?.companyMembers?.map(
                           (memberUnidade, indexMember) => (
                             <div key={indexMember}>
+                              {memberUnidade?.id_function === 9 && (
+                                <div className="flex items-center justify-between px-2 py-1.5">
+                                  <div className="flex items-center">
+                                    <Avatar
+                                      className="flex h-12 w-12 items-center justify-center  rounded-full
+                                          duration-300 hover:scale-[200%]"
+                                    >
+                                      <AvatarImage
+                                        className="aspect-square rounded-full object-cover"
+                                        src={
+                                          memberUnidade?.image ??
+                                          process.env.NEXT_PUBLIC_API_GSO +
+                                            '/public/images/img.png'
+                                        }
+                                      />
+                                      <AvatarFallback>
+                                        {<LuUser size={36} />}
+                                      </AvatarFallback>
+                                    </Avatar>
+
+                                    <Button variant="outline">
+                                      {<LuUser className="mr-1" />}
+                                      {memberUnidade?.competence +
+                                        ' ' +
+                                        memberUnidade?.name}
+                                    </Button>
+                                  </div>
+                                  <Badge className="ml-2" variant="secondary">
+                                    {memberUnidade?.short_name_function?.replace(
+                                      ' ',
+                                      ' / ',
+                                    )}
+                                  </Badge>
+                                </div>
+                              )}
+
                               {memberUnidade?.id_schedule?.toString() ===
                                 itemEvent?.id?.toString() &&
-                                memberUnidade?.id_function === 5 && (
-                                  <div className="py-4">
+                                memberUnidade?.id_function === 6 && (
+                                  <div>
                                     <div className="flex items-center gap-2">
                                       <LuPhone />
-                                      <h1 className="pb-2 text-lg font-bold">
+                                      <h1 className="text-lg font-bold">
                                         Comunicação
                                       </h1>
                                     </div>
-                                    <div className="flex items-center gap-2">
-                                      <LuUser />
-                                      <span>
-                                        {memberUnidade?.competence +
-                                          ' ' +
-                                          memberUnidade?.name}
-                                      </span>
+
+                                    <div className="flex items-center justify-between px-2 py-1.5">
+                                      <div className="flex items-center">
+                                        <Avatar
+                                          className="flex h-12 w-12 items-center justify-center  rounded-full
+                                          duration-300 hover:scale-[200%]"
+                                        >
+                                          <AvatarImage
+                                            className="aspect-square rounded-full object-cover"
+                                            src={
+                                              memberUnidade?.image ??
+                                              process.env.NEXT_PUBLIC_API_GSO +
+                                                '/public/images/img.png'
+                                            }
+                                          />
+                                          <AvatarFallback>
+                                            {<LuUser size={36} />}
+                                          </AvatarFallback>
+                                        </Avatar>
+
+                                        <Button variant="outline">
+                                          {<LuUser className="mr-1" />}
+                                          {memberUnidade?.competence +
+                                            ' ' +
+                                            memberUnidade?.name}
+                                        </Button>
+                                      </div>
+                                      <Badge
+                                        className="ml-2"
+                                        variant="secondary"
+                                      >
+                                        {memberUnidade?.short_name_function?.replace(
+                                          ' ',
+                                          ' / ',
+                                        )}
+                                      </Badge>
                                     </div>
                                   </div>
                                 )}
@@ -183,27 +212,34 @@ export const CardListEscala = ({
                       <LuCar />
                       <h1>Viaturas</h1>
                     </div>
-                    <div className="grid grid-cols-1 gap-2 text-foreground/60 md:grid-cols-12">
+                    <div className="grid grid-cols-1 gap-2  md:grid-cols-12">
                       {schedule?.cars?.map((car, indexCar) => (
                         <div
                           key={indexCar}
                           className={`col-span-6  rounded-[5px] border border-primary/60 p-2`}
                         >
-                          <div className="flex items-center justify-between  border-b border-primary/60 p-2">
-                            <Avatar
-                              className="flex h-12 w-12 items-center justify-center  rounded-full
+                          <div className="flex items-center justify-between  border-b border-primary/60 py-1.5">
+                            <div className="flex items-center gap-2">
+                              <Avatar
+                                className="flex h-12 w-12 items-center justify-center  rounded-full
                                           duration-300 hover:scale-[200%]"
-                            >
-                              <AvatarImage
-                                className="aspect-square rounded-full object-cover"
-                                src={car?.car?.image}
-                              />
-                              <AvatarFallback>
-                                {<LuCar size={36} />}
-                              </AvatarFallback>
-                            </Avatar>
-
-                            <Button size="sm" variant="outline">
+                              >
+                                <AvatarImage
+                                  className="aspect-square rounded-full object-cover"
+                                  src={car?.car?.image}
+                                />
+                                <AvatarFallback>
+                                  {<LuCar size={36} />}
+                                </AvatarFallback>
+                              </Avatar>
+                              <Button variant="outline">
+                                {car?.car?.model}
+                              </Button>
+                              <span className="rounded-[5px] border border-muted-foreground/60 p-1">
+                                {car?.car?.plate}
+                              </span>
+                            </div>
+                            <Button variant="default">
                               {car?.car?.prefix}
                             </Button>
                           </div>
@@ -211,7 +247,7 @@ export const CardListEscala = ({
                             {car.members.map((member, indexMember) => (
                               <div key={indexMember} className="py-1">
                                 <div className="flex w-full items-center justify-between text-sm">
-                                  <div className="flex items-center gap-1">
+                                  <div className="flex items-center gap-2">
                                     <Avatar
                                       className="flex  w-10 items-center justify-center  rounded-full
                                           duration-300 hover:scale-[200%]"
@@ -228,23 +264,18 @@ export const CardListEscala = ({
                                         {<LuUser size={36} />}
                                       </AvatarFallback>
                                     </Avatar>
-                                    <Button size="sm" variant="outline">
+                                    <Button variant="outline">
                                       <LuUser className="mr-1" />
                                       {member?.competence + ' ' + member?.name}
                                     </Button>{' '}
                                   </div>
-                                  <div>
-                                    {functions?.map((func, indexFuncs) => (
-                                      <div key={indexFuncs}>
-                                        {func?.id !== null &&
-                                          func?.id === member?.id_function && (
-                                            <Badge className="p-[.5rem ] text-[.650rem]">
-                                              {func?.short_name}
-                                            </Badge>
-                                          )}
-                                      </div>
-                                    ))}
-                                  </div>
+
+                                  <Badge
+                                    className="xl:p-[.5rem ] xl:text-[.650rem]"
+                                    variant="secondary"
+                                  >
+                                    {member?.short_name_function}
+                                  </Badge>
                                 </div>
                               </div>
                             ))}
