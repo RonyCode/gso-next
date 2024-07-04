@@ -28,10 +28,10 @@ const CalendarGsoGrid = ({
       {day != null && day > 0 && (
         <div
           className={cn(
-            `  relative flex min-h-full w-full cursor-pointer flex-col items-center justify-start  
+            `  relative flex h-full w-full cursor-pointer flex-col items-center justify-start  
                               rounded-[3px] 
                               border border-foreground/10 hover:border
-                              hover:border-primary/60 md:min-h-[100%]  
+                              hover:border-primary/60 md:min-h-full  
                               ${
                                 day === date.getDate() &&
                                 month === date.getMonth() &&
@@ -54,8 +54,10 @@ const CalendarGsoGrid = ({
                       : itemEvent.team === 3
                         ? 'border-yellow-400/85 text-yellow-400/85'
                         : itemEvent.team === 4
-                          ? 'border-[#9400d3]/85 text-[#9400d3]/85'
-                          : ''
+                          ? 'border-green-500/85 text-green-500/85'
+                          : itemEvent.team === 5
+                            ? 'border-[#9400d3]/85 text-[#9400d3]/85'
+                            : ''
                 }`}
                 variant="outline"
               >
@@ -66,8 +68,10 @@ const CalendarGsoGrid = ({
                     : itemEvent.team === 3
                       ? 'CHARLIE'
                       : itemEvent.team === 4
-                        ? 'EXTRA'
-                        : ''}
+                        ? 'DELTA'
+                        : itemEvent.team === 5
+                          ? 'EXTRA'
+                          : ''}
               </Badge>
             </div>
           ))}

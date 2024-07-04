@@ -1,8 +1,7 @@
 import React, { type ReactElement } from 'react'
 
-import { type ModalProps } from '../../../../types/index'
-
 import { cn } from '@/lib/utils'
+import { type ModalProps } from '@/types/index'
 import { Button } from '@/ui/button'
 import {
   Dialog,
@@ -30,7 +29,9 @@ export function ModalGso({
 }: ModalProps): ReactElement {
   return (
     <Dialog open={open}>
-      <DialogTrigger>{childrenButton}</DialogTrigger>
+      <DialogTrigger>
+        <div className="h-full w-full">{childrenButton}</div>
+      </DialogTrigger>
       <DialogContent className={cn(' h-full w-full', className)} {...props}>
         <DialogHeader>
           <DialogTitle>
@@ -41,7 +42,7 @@ export function ModalGso({
           <DialogDescription>{description}</DialogDescription>
           <Separator />
         </DialogHeader>
-        <div className="grid w-full gap-4 py-4">{children}</div>
+        {children}
         <DialogFooter>
           <DialogClose asChild>
             <Button type="submit">OK</Button>

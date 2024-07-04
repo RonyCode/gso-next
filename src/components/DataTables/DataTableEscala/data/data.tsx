@@ -11,49 +11,40 @@ import {
 
 export const labels = [
   {
-    value: 'Alfa',
-    label: 'Alfa',
+    value: 1,
+    label: 'ALFA',
   },
   {
-    value: '07:00',
-    label: '07:00',
+    value: 2,
+    label: 'BRAVO',
   },
   {
-    value: '19:00',
-    label: '19:00',
+    value: 3,
+    label: 'CHARLIE',
   },
   {
-    value: 'Bravo',
-    label: 'Bravo',
+    value: 4,
+    label: 'DELTA',
   },
   {
-    value: 'Charlie',
-    label: 'Charlie',
-  },
-  {
-    value: 'Delta',
-    label: 'Delta',
-  },
-
-  {
-    value: 'Extra',
-    label: 'Extra',
+    value: 5,
+    label: 'EXTRA',
   },
 ]
 
 export const statuses = [
   {
-    value: 'aguardando',
-    label: 'Aguardando',
+    value: 1,
+    label: 'Publicado',
     icon: StopwatchIcon,
   },
   {
-    value: 'publicado',
-    label: 'Publicado',
+    value: 2,
+    label: 'Aguardando',
     icon: CheckCircledIcon,
   },
   {
-    value: 'cancelado',
+    value: 3,
     label: 'Cancelado',
     icon: CrossCircledIcon,
   },
@@ -80,12 +71,12 @@ export const priorities = [
 export const types = [
   {
     label: 'Extra',
-    value: 'extra',
+    value: 2,
     icon: LuStar,
   },
   {
     label: 'Normal',
-    value: 'normal',
+    value: 1,
     icon: LuThumbsUp,
   },
 ]

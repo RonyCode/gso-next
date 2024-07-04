@@ -3,13 +3,13 @@ import { MemberSchema } from '@/schemas/MemberSchema'
 import { z } from 'zod'
 
 export const ScheduleSchema = z.object({
-  id: z.string().min(1, {
+  id: z.number().min(1, {
     message: 'id inválido deve conter no mínimo 1 caracteres',
   }),
-  id_company: z.string().min(1, {
+  id_company: z.number().min(1, {
     message: 'id_company inválido deve conter no mínimo 1 caracteres',
   }),
-  id_member_creator: z.string().min(1, {
+  id_member_creator: z.number().min(1, {
     message: 'id_member_creator inválido deve conter no mínimo 1 caracteres',
   }),
   date: z.string().min(10, {
@@ -47,9 +47,7 @@ export const ScheduleSchema = z.object({
   cars: z
     .array(z.object({ car: CarSchema, members: z.array(MemberSchema) }))
     .optional(),
-  excluded: z.number().min(1, {
-    message: 'id inválido deve conter no mínimo 1 caracteres',
-  }),
+  excluded: z.number().optional(),
 })
 
 export type IScheduleSchema = z.infer<typeof ScheduleSchema>

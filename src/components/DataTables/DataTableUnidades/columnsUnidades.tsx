@@ -1,6 +1,5 @@
 'use client'
 
-import { useParams } from 'next/navigation'
 import React from 'react'
 import { FaRegAddressCard } from 'react-icons/fa'
 import { LuBuilding2, LuPhone } from 'react-icons/lu'
@@ -17,35 +16,6 @@ import { Avatar, AvatarFallback, AvatarImage } from '@radix-ui/react-avatar'
 import { type ColumnDef } from '@tanstack/react-table'
 
 export const columnsUnidades: Array<ColumnDef<IUnidadeSchema>> = [
-  // {
-  //   id: 'select',
-  //   header: ({ table }) => {
-  //     return (
-  //       <Checkbox
-  //         checked={
-  //           table.getIsAllPageRowsSelected() ||
-  //           (table.getIsSomePageRowsSelected() && 'indeterminate')
-  //         }
-  //         onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
-  //         aria-label="Select all"
-  //         className="translate-y-[2px]"
-  //       />
-  //     )
-  //   },
-  //   cell: ({ row }) => {
-  //     return (
-  //       <Checkbox
-  //         checked={row.getIsSelected()}
-  //         onCheckedChange={(value) => row.toggleSelected(!!value)}
-  //         aria-label="Select row"
-  //         className="translate-y-[2px]"
-  //       />
-  //     )
-  //   },
-  //   enableSorting: false,
-  //   enableHiding: false,
-  // },
-
   {
     accessorKey: 'name',
     header: ({ column }) => (
@@ -57,7 +27,7 @@ export const columnsUnidades: Array<ColumnDef<IUnidadeSchema>> = [
           <div className="flex w-64 items-center space-x-2 text-[0.8500rem] text-muted-foreground">
             <Avatar
               className="flex h-10 w-10 items-center justify-center  rounded-full shadow-sm shadow-foreground transition-all
-                        duration-300 hover:scale-[200%] md:h-20 md:w-20"
+                        duration-300 hover:scale-[200%] md:h-14 md:w-14"
             >
               <AvatarImage
                 className="aspect-square rounded-full object-cover"
@@ -75,14 +45,14 @@ export const columnsUnidades: Array<ColumnDef<IUnidadeSchema>> = [
               </div>
               <div>
                 {' '}
-                <div className="flex items-center p-1 ">
+                <div className="flex items-center  ">
                   <FaRegAddressCard size={16} className="mr-2" />{' '}
                   {maskCpfCnpj(row.original.cnpj)}
                 </div>
               </div>
               <div>
                 {' '}
-                <div className="flex items-center p-1">
+                <div className="flex items-center">
                   <LuPhone size={16} className="mr-2" />{' '}
                   {maskPhone(row.original.phone)}
                 </div>

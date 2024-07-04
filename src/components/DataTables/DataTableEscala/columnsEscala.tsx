@@ -2,13 +2,14 @@
 
 // import { Checkbox } from '@/components/ui/checkbox'
 
-import { labels, statuses, types, unities } from './data/data'
+import { labels, statuses, types } from './data/data'
 
 import { DataTableColumnHeader } from '@/components/DataTables/DataTableEscala/data-table-column-header'
+import { DataTableRowActions } from '@/components/DataTables/DataTableEscala/data-table-row-actions'
 import { Badge } from '@/components/ui/badge'
 import { type IScheduleSchema } from '@/schemas/ScheduleSchema'
 import { type ColumnDef } from '@tanstack/react-table'
-import { format } from 'date-fns'
+import moment from 'moment'
 
 export const columnsEscala: Array<ColumnDef<IScheduleSchema>> = [
   // {
@@ -41,46 +42,69 @@ export const columnsEscala: Array<ColumnDef<IScheduleSchema>> = [
   // },
 
   {
-    accessorKey: 'date_creation',
+    accessorKey: 'id_company',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Data Criação" />
+      <DataTableColumnHeader column={column} title="Unidade" />
     ),
     cell: ({ row }) => {
-      const label = labels.find(
-        (label) => label.value === row.original.date_creation,
-      )
-
       return (
         <div className="flex space-x-2 ">
           <span className="max-w-96 truncate font-medium">
-            {format(row.getValue('date_creation'), 'dd/MM/yyyy')}
+            {row.getValue('id_company')}
           </span>
-          {label != null && <Badge variant="outline">{label.label}</Badge>}
         </div>
       )
     },
   },
   {
-    accessorKey: 'type',
+    accessorKey: 'date_creation',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Tipo" />
+      <DataTableColumnHeader column={column} title="Data Inicio" />
     ),
     cell: ({ row }) => {
-      const type = types.find((type) => type.value === row.getValue('type'))
-
-      if (type == null) {
-        return null
-      }
+      const hour = row?.original?.hour_start.split(':').slice(0, 1).join(':')
 
       return (
-        <div className="flex items-center">
-          <type.icon className="mr-2 h-4 w-4 text-muted-foreground" />
-          <span>{type.label}</span>
+        <div className="flex space-x-2 ">
+          <span className="max-w-96 truncate font-medium">
+            {moment(row.getValue('date_creation'))
+              .set({
+                hour: +hour ?? 0,
+                minute: 0,
+                second: 0,
+                millisecond: 0,
+              })
+              .format('DD/MM/yyyy HH:mm')}
+          </span>
         </div>
       )
     },
-    filterFn: (row, id, value) => {
-      return value.includes(row.getValue(id))
+  },
+
+  {
+    accessorKey: 'date_creation',
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Data Fim" />
+    ),
+    cell: ({ row }) => {
+      const hour = row?.original?.hour_start.split(':').slice(0, 1).join(':')
+      const qtdHour = row?.original?.type === 2 ? 12 : 24
+
+      return (
+        <div className="flex space-x-2 ">
+          <span className="max-w-96 truncate font-medium">
+            {moment(row.getValue('date_creation'))
+              .set({
+                hour: +hour ?? 0,
+                minute: 0,
+                second: 0,
+                millisecond: 0,
+              })
+              .add(qtdHour, 'hours')
+              .format('DD/MM/yyyy HH:mm')}
+          </span>
+        </div>
+      )
     },
   },
 
@@ -91,7 +115,8 @@ export const columnsEscala: Array<ColumnDef<IScheduleSchema>> = [
     ),
     cell: ({ row }) => {
       const status = statuses.find(
-        (status) => status.value === row.getValue('status'),
+        (status) =>
+          status.value.toString() === row?.getValue('status')?.toString(),
       )
 
       if (status == null) {
@@ -113,50 +138,67 @@ export const columnsEscala: Array<ColumnDef<IScheduleSchema>> = [
     // enableSorting: true,
     // enableHiding: true,
   },
+
   {
-    accessorKey: 'unity',
+    accessorKey: 'type',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Unidade" />
+      <DataTableColumnHeader column={column} title="Tipo" />
     ),
     cell: ({ row }) => {
-      const unity = unities.find(
-        (unity) => unity.value === row.getValue('unity'),
-      )
-      const group = labels.find(
-        (label) => label.value === row.original?.team?.toString(),
+      const type = types.find(
+        (status) =>
+          status.value.toString() === row?.getValue('type')?.toString(),
       )
 
-      if (unity == null) {
+      if (type == null) {
         return null
       }
 
       return (
+        <div className="flex w-[120px] items-center ">
+          <type.icon className="mr-2 h-4 w-4 text-muted-foreground" />
+
+          <span>{type.label}</span>
+        </div>
+      )
+    },
+    filterFn: (row, id, value) => {
+      return value.includes(row.getValue(id))
+    },
+    // cell: ({ row }) => <div className="w-[40px]">{row.getValue('end')}</div>,
+    // enableSorting: true,
+    // enableHiding: true,
+  },
+  {
+    accessorKey: 'team',
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Equipe" />
+    ),
+    cell: ({ row }) => {
+      const group = labels.find(
+        (label) => label?.value?.toString() === row.original?.team?.toString(),
+      )
+
+      return (
         <div className="flex w-[200px] items-center">
-          {/* eslint-disable-next-line @typescript-eslint/strict-boolean-expressions */}
-          {unity.icon && (
-            <unity.icon className="mr-2 h-4 w-4 text-muted-foreground" />
-          )}
-          <span className="mr-2 text-muted-foreground">{unity.label}</span>
-          {group != null && (
-            <Badge
-              variant="outline"
-              className={`${
-                group.label.charAt(0).toUpperCase() === 'A'
-                  ? 'border-primary text-primary'
-                  : group.label.charAt(0).toUpperCase() === 'B'
-                    ? 'border-blue-500 text-blue-500'
-                    : group.label.charAt(0).toUpperCase() === 'C'
-                      ? 'border-green-600 text-green-600'
-                      : group.label.charAt(0).toUpperCase() === 'D'
-                        ? 'border-yellow-400 text-yellow-400'
-                        : group.label.charAt(0).toUpperCase() === 'E'
-                          ? 'border-[#9400d3] text-[#9400d3]'
-                          : ''
-              }`}
-            >
-              {group.label}
-            </Badge>
-          )}
+          <Badge
+            variant="outline"
+            className={` scale-[90%]  ${
+              group?.value === 1
+                ? 'border-primary/85 text-primary/85'
+                : group?.value === 2
+                  ? 'border-blue-500/85 text-blue-500/85'
+                  : group?.value === 3
+                    ? 'border-yellow-400/85 text-yellow-400/85'
+                    : group?.value === 4
+                      ? 'border-green-500/85 text-green-500/85'
+                      : group?.value === 5
+                        ? 'border-[#9400d3]/85 text-[#9400d3]/85'
+                        : ''
+            }`}
+          >
+            {group?.label}
+          </Badge>
         </div>
       )
     },
@@ -164,8 +206,8 @@ export const columnsEscala: Array<ColumnDef<IScheduleSchema>> = [
       return value.includes(row.getValue(id))
     },
   },
-  // {
-  //   id: 'actions',
-  //   cell: ({ row }) => <DataTableRowActions row={row} />,
-  // },
+  {
+    id: 'actions',
+    cell: ({ row }) => <DataTableRowActions row={row} />,
+  },
 ]

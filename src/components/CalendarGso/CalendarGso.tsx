@@ -253,7 +253,7 @@ const CalendarGso = ({
 
         {/* HEADER GRID WEEK */}
         <div
-          className={`col-start-1 col-end-13 row-start-1 row-end-2  w-full place-content-center rounded-[5px] px-2 md:col-start-7 md:row-start-1`}
+          className={`col-start-1 col-end-13 row-start-1 row-end-2  w-full place-content-start rounded-[5px] px-2 md:col-start-7 md:row-start-1`}
         >
           <div className="border-b-none flex justify-between border border-foreground/10 p-2">
             <Button variant="default" onClick={handlePrevious}>
@@ -287,10 +287,8 @@ const CalendarGso = ({
                 p-2 text-center hover:border
                 hover:border-primary/60  md:flex lg:h-full"
               >
-                <span className="hidden sm:block md:block lg:block xl:block">
-                  {day.nameDay}
-                </span>
-                <span className="block text-center sm:hidden md:hidden lg:hidden xl:hidden">
+                <span className="hidden xl:block">{day.nameDay}</span>
+                <span className="block text-center sm:block md:block lg:block xl:hidden">
                   {day.shortNameDay}
                 </span>
               </div>
@@ -299,19 +297,17 @@ const CalendarGso = ({
 
           <div
             className="
-            grid h-full w-full grid-cols-7 overflow-scroll rounded-[3px]  md:h-[85%] md:overflow-hidden"
+             grid grid-cols-7 overflow-scroll  rounded-[3px] md:h-[85%] md:overflow-hidden"
           >
-            {' '}
             {escalaObj.map((day, index) => (
               // MODAL TRIGGER
-              <ModalGso
-                className="overflow-auto px-4 md:h-[80vh] md:w-[80vw] "
-                key={index}
-                title="Detalhes Escala"
-                description="Dados da Escala"
-                childrenButton={
-                  <div key={index}>
-                    {day.day > 0 && (
+              <div key={index}>
+                {day?.day > 0 && (
+                  <ModalGso
+                    className="overflow-auto px-4 md:h-[80vh] md:w-[80vw] "
+                    title="Detalhes Escala"
+                    description="Dados da Escala"
+                    childrenButton={
                       <CalendarGsoGrid
                         index={
                           daysInMonth?.dias != null
@@ -322,24 +318,24 @@ const CalendarGso = ({
                         dayEvent={day?.dayEvent}
                         month={day.month}
                         year={day.year}
-                        className="h-24 w-full"
+                        className="h-28 w-14 sm:w-24 md:w-12 lg:w-14 xl:h-32 xl:w-20 2xl:h-36 2xl:w-24"
                       />
-                    )}
-                  </div>
-                }
-              >
-                <div className="flex h-full w-full flex-col ">
-                  {day?.dayEvent?.map((itemEvent, indexEvent) => (
-                    <CardListEscala
-                      key={indexEvent}
-                      unidade={unidade}
-                      functions={functions}
-                      itemEvent={itemEvent}
-                      className="my-2 border border-foreground/30"
-                    />
-                  ))}
-                </div>
-              </ModalGso>
+                    }
+                  >
+                    <div className="flex h-full w-full flex-col ">
+                      {day?.dayEvent?.map((itemEvent, indexEvent) => (
+                        <CardListEscala
+                          key={indexEvent}
+                          unidade={unidade}
+                          functions={functions}
+                          itemEvent={itemEvent}
+                          className="my-2 border border-foreground/30"
+                        />
+                      ))}
+                    </div>
+                  </ModalGso>
+                )}
+              </div>
             ))}
           </div>
         </div>

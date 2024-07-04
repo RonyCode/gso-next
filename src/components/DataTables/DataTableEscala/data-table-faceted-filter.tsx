@@ -22,7 +22,7 @@ interface DataTableFacetedFilterProps<TData, TValue> {
   title?: string
   options: Array<{
     label: string
-    value: string
+    value: number
     icon?: React.ComponentType<{ className?: string }>
   }>
 }
@@ -33,7 +33,7 @@ export function DataTableFacetedFilter<TData, TValue>({
   options,
 }: DataTableFacetedFilterProps<TData, TValue>): React.ReactNode {
   const facets = column?.getFacetedUniqueValues()
-  const selectedValues = new Set(column?.getFilterValue() as string[])
+  const selectedValues = new Set(column?.getFilterValue() as number[])
 
   return (
     <Popover>
@@ -60,7 +60,7 @@ export function DataTableFacetedFilter<TData, TValue>({
                   </Badge>
                 ) : (
                   options
-                    .filter((option) => selectedValues.has(option.value))
+                    .filter((option) => selectedValues.has(+option.value))
                     .map((option) => (
                       <Badge
                         variant="secondary"
@@ -83,15 +83,15 @@ export function DataTableFacetedFilter<TData, TValue>({
             <CommandEmpty>Sem resultados.</CommandEmpty>
             <CommandGroup>
               {options.map((option) => {
-                const isSelected = selectedValues.has(option.value)
+                const isSelected = selectedValues.has(+option.value)
                 return (
                   <CommandItem
                     key={option.value}
                     onSelect={() => {
                       if (isSelected) {
-                        selectedValues.delete(option.value)
+                        selectedValues.delete(+option.value)
                       } else {
-                        selectedValues.add(option.value)
+                        selectedValues.add(+option.value)
                       }
                       const filterValues = Array.from(selectedValues)
                       column?.setFilterValue(
@@ -130,7 +130,7 @@ export function DataTableFacetedFilter<TData, TValue>({
                     onSelect={() => column?.setFilterValue(undefined)}
                     className="justify-center text-center"
                   >
-                    Limpar filtrons
+                    Limpar filtros
                   </CommandItem>
                 </CommandGroup>
               </>
