@@ -42,21 +42,6 @@ export const columnsEscala: Array<ColumnDef<IScheduleSchema>> = [
   // },
 
   {
-    accessorKey: 'id_company',
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Unidade" />
-    ),
-    cell: ({ row }) => {
-      return (
-        <div className="flex space-x-2 ">
-          <span className="max-w-96 truncate font-medium">
-            {row.getValue('id_company')}
-          </span>
-        </div>
-      )
-    },
-  },
-  {
     accessorKey: 'date_creation',
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Data Inicio" />
@@ -65,7 +50,7 @@ export const columnsEscala: Array<ColumnDef<IScheduleSchema>> = [
       const hour = row?.original?.hour_start.split(':').slice(0, 1).join(':')
 
       return (
-        <div className="flex space-x-2 ">
+        <div className="flex space-x-2 text-[.8rem] ">
           <span className="max-w-96 truncate font-medium">
             {moment(row.getValue('date_creation'))
               .set({
@@ -91,7 +76,7 @@ export const columnsEscala: Array<ColumnDef<IScheduleSchema>> = [
       const qtdHour = row?.original?.type === 2 ? 12 : 24
 
       return (
-        <div className="flex space-x-2 ">
+        <div className="flex space-x-2 text-[.8rem] ">
           <span className="max-w-96 truncate font-medium">
             {moment(row.getValue('date_creation'))
               .set({
@@ -134,40 +119,6 @@ export const columnsEscala: Array<ColumnDef<IScheduleSchema>> = [
     filterFn: (row, id, value) => {
       return value.includes(row.getValue(id))
     },
-    // cell: ({ row }) => <div className="w-[40px]">{row.getValue('end')}</div>,
-    // enableSorting: true,
-    // enableHiding: true,
-  },
-
-  {
-    accessorKey: 'type',
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Tipo" />
-    ),
-    cell: ({ row }) => {
-      const type = types.find(
-        (status) =>
-          status.value.toString() === row?.getValue('type')?.toString(),
-      )
-
-      if (type == null) {
-        return null
-      }
-
-      return (
-        <div className="flex w-[120px] items-center ">
-          <type.icon className="mr-2 h-4 w-4 text-muted-foreground" />
-
-          <span>{type.label}</span>
-        </div>
-      )
-    },
-    filterFn: (row, id, value) => {
-      return value.includes(row.getValue(id))
-    },
-    // cell: ({ row }) => <div className="w-[40px]">{row.getValue('end')}</div>,
-    // enableSorting: true,
-    // enableHiding: true,
   },
   {
     accessorKey: 'team',
@@ -180,7 +131,7 @@ export const columnsEscala: Array<ColumnDef<IScheduleSchema>> = [
       )
 
       return (
-        <div className="flex w-[200px] items-center">
+        <div className="flex w-full items-center">
           <Badge
             variant="outline"
             className={` scale-[90%]  ${

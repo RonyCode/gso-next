@@ -253,7 +253,7 @@ const CalendarGso = ({
 
         {/* HEADER GRID WEEK */}
         <div
-          className={`col-start-1 col-end-13 row-start-1 row-end-2  w-full place-content-start rounded-[5px] px-2 md:col-start-7 md:row-start-1`}
+          className={`col-start-1 col-end-13 row-end-2  w-full place-content-start rounded-[5px] px-2 md:col-start-7 md:row-start-1`}
         >
           <div className="border-b-none flex justify-between border border-foreground/10 p-2">
             <Button variant="default" onClick={handlePrevious}>
@@ -318,7 +318,7 @@ const CalendarGso = ({
                         dayEvent={day?.dayEvent}
                         month={day.month}
                         year={day.year}
-                        className="h-28 w-14 sm:w-24 md:w-12 lg:w-14 xl:h-32 xl:w-20 2xl:h-36 2xl:w-24"
+                        className="h-28 w-14 sm:w-24 md:w-12 lg:w-14 xl:h-32 xl:w-[86px] 2xl:h-36 2xl:w-[98px]"
                       />
                     }
                   >
@@ -329,7 +329,7 @@ const CalendarGso = ({
                           unidade={unidade}
                           functions={functions}
                           itemEvent={itemEvent}
-                          className="my-2 border border-foreground/30"
+                          className=" border border-foreground/30"
                         />
                       ))}
                     </div>

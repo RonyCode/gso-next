@@ -6,19 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="4467a1d6-73df-479e-9cc5-8e8cf1a18f4d" name="Changes" comment="terminando modal escala">
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/cee89a81-5f5d-492e-b0e5-11dd16a43cfb.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/cee89a81-5f5d-492e-b0e5-11dd16a43cfb.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/CalendarGso/CalendarGso.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CalendarGso/CalendarGso.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/CalendarGso/CalendarGsoGrid.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CalendarGso/CalendarGsoGrid.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Cards/CardListEscala.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Cards/CardListEscala.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/DataTables/DataTableEscala/columnsEscala.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DataTables/DataTableEscala/columnsEscala.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/DataTables/DataTableEscala/data-table-faceted-filter.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DataTables/DataTableEscala/data-table-faceted-filter.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/DataTables/DataTableEscala/data-table-row-actions.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DataTables/DataTableEscala/data-table-row-actions.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/DataTables/DataTableEscala/data-table-toolbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DataTables/DataTableEscala/data-table-toolbar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/DataTables/DataTableEscala/data/data.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DataTables/DataTableEscala/data/data.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/DataTables/DataTableUnidades/columnsUnidades.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DataTables/DataTableUnidades/columnsUnidades.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Modal/ModalGso/ModalGso.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Modal/ModalGso/ModalGso.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/schemas/ScheduleSchema.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/schemas/ScheduleSchema.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/DataTables/DataTableEscala/data-table-pagination.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DataTables/DataTableEscala/data-table-pagination.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -223,7 +214,8 @@
       <workItem from="1719952095326" duration="1919000" />
       <workItem from="1719966983723" duration="6849000" />
       <workItem from="1720043178436" duration="3861000" />
-      <workItem from="1720090737647" duration="24562000" />
+      <workItem from="1720090737647" duration="24664000" />
+      <workItem from="1720138893323" duration="3019000" />
     </task>
     <task id="LOCAL-00001" summary="refatorando com eslint">
       <option name="closed" value="true" />
@@ -441,7 +433,15 @@
       <option name="project" value="LOCAL" />
       <updated>1719974031795</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="terminando modal escala">
+      <option name="closed" value="true" />
+      <created>1720115565371</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1720115565371</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
