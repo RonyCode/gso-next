@@ -1,12 +1,15 @@
 import { type NextRequest, NextResponse } from 'next/server'
 
 export async function GET(request: NextRequest): Promise<NextResponse> {
-  const res = await fetch('http://wsgso.localhost/services/states', {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_GSO}/services/states`,
+    {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
     },
-  })
+  )
   if (!res.ok) {
     return NextResponse.json(
       { message: res.statusText },

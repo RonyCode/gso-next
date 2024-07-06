@@ -276,6 +276,7 @@ export interface AddressProps {
   city: string
   name: string
   shortName: string
+  short_name: string
   cep: string
   logradouro: string
   complemento: string

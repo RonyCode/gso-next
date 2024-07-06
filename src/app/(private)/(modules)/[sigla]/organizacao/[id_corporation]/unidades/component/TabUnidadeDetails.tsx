@@ -94,12 +94,12 @@ export const TabUnidadeDetails = ({
 
   useEffect(() => {
     startTransition(async () => {
-      if (unidade?.short_name != null) {
-        await getAllCitiesByState(unidade?.short_name)
+      if (unidade?.companyAddress?.short_name != null) {
+        await getAllCitiesByState(unidade?.companyAddress?.short_name)
       }
     })
-    if (unidade?.short_name == null) setDisabled(false)
-  }, [unidade?.short_name, disabled])
+    if (unidade?.companyAddress?.short_name == null) setDisabled(false)
+  }, [unidade?.companyAddress?.short_name, disabled])
 
   const form = useForm<IUnidadeSchema>({
     mode: 'all',
@@ -114,13 +114,13 @@ export const TabUnidadeDetails = ({
       cnpj: maskCpfCnpj(unidade?.cnpj) ?? '',
       phone: maskPhone(unidade?.phone) ?? '',
       image: unidade?.image ?? '',
-      address: unidade?.address ?? '',
-      number: unidade?.number ?? '',
-      zipcode: maskZipcode(unidade?.zipcode) ?? '',
-      complement: unidade?.complement ?? '',
-      district: unidade?.district ?? '',
-      city: unidade?.city ?? '',
-      short_name: unidade?.short_name ?? '',
+      address: unidade?.companyAddress?.address ?? '',
+      number: unidade?.companyAddress?.number ?? '',
+      zipcode: maskZipcode(unidade?.companyAddress?.zipcode) ?? '',
+      complement: unidade?.companyAddress?.complement ?? '',
+      district: unidade?.companyAddress?.district ?? '',
+      city: unidade?.companyAddress?.city ?? '',
+      short_name: unidade?.companyAddress?.short_name ?? '',
       date_creation: maskDateBr(unidade?.date_creation) ?? '',
       type: unidade?.type ?? null,
       manager: unidade?.manager ?? null,
@@ -148,7 +148,7 @@ export const TabUnidadeDetails = ({
           description: 'Tudo certo unidade salva',
         })
         redirect(
-          `/servicos/${params?.sigla.toLowerCase()}/${params?.name_unidade.toLowerCase()}`,
+          `/${params?.sigla.toLowerCase()}/unidades/${params?.name_unidade.toLowerCase()}`,
         )
       }
     })
@@ -173,7 +173,7 @@ export const TabUnidadeDetails = ({
           description: 'Tudo certo unidade deletada',
         })
         router.push(
-          `/servicos/${params?.sigla.toLowerCase()}/${params?.name_unidade.toLowerCase()}`,
+          `/${params?.sigla.toLowerCase()}/unidades/${params?.name_unidade.toLowerCase()}`,
         )
       }
     })
@@ -681,7 +681,7 @@ export const TabUnidadeDetails = ({
                             >
                               {field.value !== null
                                 ? states?.find(
-                                    (state) => state.shortName === field.value,
+                                    (state) => state.short_name === field.value,
                                   )?.state
                                 : 'Selecione um Estado'}
                               <LuChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
@@ -690,28 +690,28 @@ export const TabUnidadeDetails = ({
                         </PopoverTrigger>
                         <PopoverContent className="w-[200px] p-0">
                           <Command>
-                            <CommandInput placeholder="Search language..." />
+                            <CommandInput placeholder="Procurando Estados..." />
                             <CommandEmpty>Estado não encontrado.</CommandEmpty>
                             <CommandGroup>
                               <CommandList>
                                 {states?.map((state, index) => (
                                   <CommandItem
                                     disabled={disabled}
-                                    value={state.shortName}
+                                    value={state.short_name}
                                     key={index}
                                     /* eslint-disable-next-line @typescript-eslint/no-misused-promises */
                                     onSelect={async () => {
-                                      await handleCity(state.shortName)
+                                      await handleCity(state?.short_name)
                                       form.setValue(
                                         'short_name',
-                                        state.shortName,
+                                        state?.short_name,
                                       )
                                     }}
                                   >
                                     <LuCheck
                                       className={cn(
                                         'mr-2 h-4 w-4',
-                                        state.shortName === field.value
+                                        state.short_name === field.value
                                           ? 'opacity-100'
                                           : 'opacity-0',
                                       )}

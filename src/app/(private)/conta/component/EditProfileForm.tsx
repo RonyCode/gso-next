@@ -439,7 +439,7 @@ export const EditProfileForm = ({
                             >
                               {field.value !== ''
                                 ? states?.find(
-                                    (state) => state.shortName === field.value,
+                                    (state) => state.short_name === field.value,
                                   )?.state
                                 : 'Selecione um Estado'}
                               <LuChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
@@ -456,18 +456,18 @@ export const EditProfileForm = ({
                               <CommandGroup>
                                 {states?.map((state, index) => (
                                   <CommandItem
-                                    value={state.state}
+                                    value={state.short_name}
                                     key={index + 1}
                                     /* eslint-disable-next-line @typescript-eslint/no-misused-promises */
                                     onSelect={async () => {
-                                      await handleCity(state.shortName)
-                                      form.setValue('estado', state.shortName)
+                                      await handleCity(state.short_name)
+                                      form.setValue('estado', state.short_name)
                                     }}
                                   >
                                     <LuCheck
                                       className={cn(
                                         'mr-2 h-4 w-4',
-                                        state?.shortName === field?.value
+                                        state?.short_name === field?.value
                                           ? 'opacity-100'
                                           : 'opacity-0',
                                       )}
