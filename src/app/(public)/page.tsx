@@ -1,7 +1,6 @@
 import 'react-toastify/dist/ReactToastify.css'
 
 import { type Metadata } from 'next'
-import { getServerSession } from 'next-auth'
 import React from 'react'
 
 import { CardsBanner } from '@/components/Cards/CardsBanner'

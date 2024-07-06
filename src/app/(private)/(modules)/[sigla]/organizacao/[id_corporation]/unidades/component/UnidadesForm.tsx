@@ -1,7 +1,8 @@
 import React, { use } from 'react'
 
-import TabMembersDetails from '@/app/(private)/(modules)/organizacao/[id_corporation]/unidades/component/TabMembersDetails'
-import TabUnidadeDetails from '@/app/(private)/(modules)/organizacao/[id_corporation]/unidades/component/TabUnidadeDetails'
+import TabUnidadeDetails from './TabUnidadeDetails'
+
+import TabMembersDetails from '@/app/(private)/(modules)/[sigla]/organizacao/[id_corporation]/unidades/component/TabMembersDetails'
 import { ImageExist } from '@/functions/ImageExist'
 import { getAllStates } from '@/lib/getAllStates'
 import { getUnidadeById } from '@/lib/GetUnidadeById'

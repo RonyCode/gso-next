@@ -2,7 +2,7 @@
 
 // import { Checkbox } from '@/components/ui/checkbox'
 
-import { labels, statuses, types } from './data/data'
+import { labels, statuses } from './data/data'
 
 import { DataTableColumnHeader } from '@/components/DataTables/DataTableEscala/data-table-column-header'
 import { DataTableRowActions } from '@/components/DataTables/DataTableEscala/data-table-row-actions'

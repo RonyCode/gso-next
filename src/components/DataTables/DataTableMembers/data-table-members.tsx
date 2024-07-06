@@ -6,12 +6,6 @@ import { DataTablePagination } from './data-table-pagination'
 
 import { DataTableToolbar } from '@/components/DataTables/DataTableUnidades/data-table-toolbar'
 import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from '@/components/ui/accordion'
-import {
   Table,
   TableBody,
   TableCell,

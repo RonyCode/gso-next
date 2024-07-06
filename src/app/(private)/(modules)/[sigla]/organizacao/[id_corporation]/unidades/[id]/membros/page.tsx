@@ -2,7 +2,7 @@ import React from 'react'
 import { LuBuilding } from 'react-icons/lu'
 import { MdOutlineSupervisorAccount } from 'react-icons/md'
 
-import TabMembersDetails from '@/app/(private)/(modules)/organizacao/[id_corporation]/unidades/component/TabMembersDetails'
+import TabMembersDetails from '@/app/(private)/(modules)/[sigla]/organizacao/[id_corporation]/unidades/component/TabMembersDetails'
 import { CardDefault } from '@/components/Cards/CardDefault'
 import { ImageExist } from '@/functions/ImageExist'
 import { getUnidadeById } from '@/lib/GetUnidadeById'
@@ -10,9 +10,12 @@ import { getUnidadeById } from '@/lib/GetUnidadeById'
 const MembrosUnidade = async ({
   params,
 }: {
-  params: { id: string; id_corporation: string }
+  params: { sigla: string; name_unidade: string }
 }): Promise<JSX.Element> => {
-  const { data } = await getUnidadeById(params.id_corporation, params.id)
+  const { data } = await getUnidadeById(
+    params?.sigla?.split('-')[1],
+    params?.name_unidade?.split('-')[1],
+  )
 
   const imgValided = await ImageExist(data.image)
   if (imgValided.status !== 200) {
@@ -23,9 +26,7 @@ const MembrosUnidade = async ({
       {
         <CardDefault
           title={data?.name + ' / ' + data?.companyAddress?.city}
-          description={
-            'CMD : ' + data?.director.competence + ' - ' + data?.director.name
-          }
+          description={'CMD '}
           image={data.image}
           imageMobile={data.image}
           icon={<LuBuilding size={28} />}

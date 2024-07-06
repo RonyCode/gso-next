@@ -18,6 +18,7 @@ const Unidades = async ({
   params: { sigla: string; name_unidade: string }
 }): Promise<ReactNode> => {
   const { data } = await getAllUnidades(String(params?.sigla?.split('-')[1]))
+  console.log(data)
   return (
     <>
       <CardDefault
@@ -29,7 +30,9 @@ const Unidades = async ({
       >
         {/* <SelectCompanyModule unidades={data} params={params} /> */}
         <div className="overflow-scroll p-6 lg:overflow-hidden">
-          <DataTableUnidades data={data} columns={columnsUnidades} />
+          {data !== null && data !== undefined && (
+            <DataTableUnidades data={data} columns={columnsUnidades} />
+          )}
         </div>
       </CardDefault>
     </>

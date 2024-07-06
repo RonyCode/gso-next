@@ -306,7 +306,6 @@ const CalendarGso = ({
                   <ModalGso
                     className="overflow-auto px-4 md:h-[80vh] md:w-[80vw] "
                     title="Detalhes Escala"
-                    description="Dados da Escala"
                     childrenButton={
                       <CalendarGsoGrid
                         index={

@@ -2,7 +2,6 @@ import React from 'react'
 import { LuBuilding } from 'react-icons/lu'
 import { MdOutlineSupervisorAccount } from 'react-icons/md'
 
-import TabUnidadeDetails from '@/app/(private)/(modules)/[sigla]/organizacao/[id_corporation]/unidades/component/TabUnidadeDetails'
 import ModuleMinhaUnidade from '@/app/(private)/(modules)/[sigla]/organizacao/module/ModuleMinhaUnidade'
 import { CardDefault } from '@/components/Cards/CardDefault'
 import { ImageExist } from '@/functions/ImageExist'
@@ -22,6 +21,7 @@ const MinhaUnidade = async ({
     data.image = process.env.NEXT_PUBLIC_API_GSO + '/public/images/img.png'
   }
 
+  // eslint-disable-next-line array-callback-return
   const diretor = data?.companyMembers?.find((member) => {
     if (member?.id === data?.director) {
       return member

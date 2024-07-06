@@ -1,10 +1,6 @@
 import type { NextRequest } from 'next/server'
 import { NextResponse } from 'next/server'
 
-import { GetUserNotification } from '@/functions/GetNotificationUser'
-import { decodeJwt } from 'jose'
-import md5 from 'md5'
-
 // This function can be marked `async` if using `await` inside
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 export async function middleware(request: NextRequest) {
@@ -12,6 +8,7 @@ export async function middleware(request: NextRequest) {
     process.env.NODE_ENV === 'production'
       ? [
           'https://servicodados.ibge.gov.br/api/v1/localidades/estados',
+          'https://viacep.com.br',
           `${process.env.NEXT_PUBLIC_API_GSO}`,
           `${process.env.NEXT_PUBLIC_API_NEXT}`,
           `${process.env.NEXT_PUBLIC_NEXT_URL}`,
@@ -24,6 +21,7 @@ export async function middleware(request: NextRequest) {
           'http://localhost:3000/services/estados',
           'http://localhost:3000/services/cidades/',
           'https://gso-dev.vercel.app/',
+          'https://viacep.com.br',
           'http://localhost:3000/api/auth/callback/credentials',
           'https://wsgso.000webhostapp.com/api/auth/estados',
           'http://localhost:3000/api/pre-cadastro-usuario',

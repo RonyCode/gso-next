@@ -2,8 +2,6 @@ import React from 'react'
 import { LuBuilding } from 'react-icons/lu'
 import { MdOutlineSupervisorAccount } from 'react-icons/md'
 
-import TabEscalasDetails from '@/app/(private)/(modules)/organizacao/[id_corporation]/unidades/component/TabEscalasDetails'
-import TabMembersDetails from '@/app/(private)/(modules)/organizacao/[id_corporation]/unidades/component/TabMembersDetails'
 import CalendarGso from '@/components/CalendarGso/CalendarGso'
 import { CardDefault } from '@/components/Cards/CardDefault'
 import { ImageExist } from '@/functions/ImageExist'
@@ -25,16 +23,14 @@ const EscalasUnidade = async ({
       {
         <CardDefault
           title={data?.name + ' / ' + data?.companyAddress?.city}
-          description={
-            'CMD : ' + data?.director.competence + ' - ' + data?.director.name
-          }
+          description={'CMD'}
           image={data.image}
           imageMobile={data.image}
           icon={<LuBuilding size={28} />}
           iconDescription={<MdOutlineSupervisorAccount size={18} />}
         >
           <div>
-            <CalendarGso event={data.companySchedules} />
+            <CalendarGso unidade={data} />
           </div>
         </CardDefault>
       }

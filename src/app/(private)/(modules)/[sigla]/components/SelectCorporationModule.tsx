@@ -77,7 +77,7 @@ export const SelectCompanyModule = ({
         `/servicos/${organizacaoFound?.short_name_corp.toLowerCase()}-${session?.id_corporation}`,
       )
     }
-  }, [organizacoes, session?.id_corporation, session?.role])
+  }, [disable, organizacoes, session?.id_corporation, session?.role])
 
   const handleSubmit = (formData: ISelectCorporationModuleSchema): void => {
     startTransition(() => {

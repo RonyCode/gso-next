@@ -1,4 +1,3 @@
-import { getServerSession } from 'next-auth'
 import { useSession } from 'next-auth/react'
 import Link from 'next/link'
 import { type ReactElement } from 'react'
@@ -11,7 +10,6 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
-import { authOptions } from '@/lib/auth'
 import { UnidadeSchema } from '@/schemas/UnidadeSchema'
 import { DotsHorizontalIcon } from '@radix-ui/react-icons'
 import { type Row } from '@tanstack/react-table'

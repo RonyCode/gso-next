@@ -104,7 +104,7 @@ export const OrganizacaoForm = ({
     criteriaMode: 'all',
     resolver: zodResolver(OrganizacaoSchema),
     defaultValues: {
-      id: organizacao?.id ?? null,
+      id: organizacao?.id ?? undefined,
       name: organizacao?.name ?? '',
       short_name_corp: organizacao?.short_name_corp ?? '',
       cnpj: maskCpfCnpj(organizacao?.cnpj) ?? '',

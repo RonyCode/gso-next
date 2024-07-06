@@ -2,31 +2,26 @@ import React from 'react'
 import { LuBuilding } from 'react-icons/lu'
 import { MdOutlineSupervisorAccount } from 'react-icons/md'
 
-import UnidadesForm from '@/app/(private)/(modules)/organizacao/[id_corporation]/unidades/component/UnidadesForm'
-import ModuleMinhaUnidade from '@/app/(private)/(modules)/organizacao/module/ModuleMinhaUnidade'
+import ModuleMinhaUnidade from '@/app/(private)/(modules)/[sigla]/organizacao/module/ModuleMinhaUnidade'
 import { CardDefault } from '@/components/Cards/CardDefault'
-import { columnsUnidades } from '@/components/DataTables/DataTableUnidades/columnsUnidades'
-import { ImageExist } from '@/functions/ImageExist'
 import { getUnidadeById } from '@/lib/GetUnidadeById'
 
 const Unidade = async ({
   params,
 }: {
-  params: { id: string; id_corporation: string }
+  params: { sigla: string; name_unidade: string }
 }): Promise<JSX.Element> => {
-  const { data } = await getUnidadeById(params.id_corporation, params.id)
+  const { data } = await getUnidadeById(
+    params?.sigla?.split('-')[1],
+    params?.name_unidade?.split('-')[1],
+  )
 
-  const result = await ImageExist(data.image)
-  if (result.status === 200) {
-  }
   return (
     <div>
       (
       <CardDefault
         title={data?.name + ' / ' + data?.companyAddress?.city}
-        description={
-          'CMD : ' + data?.director.competence + ' - ' + data?.director.name
-        }
+        description={'CMD '}
         image={data.image}
         imageMobile={data.image}
         icon={<LuBuilding size={28} />}
@@ -35,10 +30,7 @@ const Unidade = async ({
         {/* <div className="md:overflow-none overflow-scroll"> */}
         {/*  <UnidadesForm params={params} /> */}
         {/* </div> */}
-        <ModuleMinhaUnidade
-          idCorporation={params.id_corporation}
-          idUnidade={params.id}
-        />
+        <ModuleMinhaUnidade params={params} />
       </CardDefault>
     </div>
   )

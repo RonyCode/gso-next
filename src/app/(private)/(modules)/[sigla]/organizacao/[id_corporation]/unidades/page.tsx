@@ -1,9 +1,6 @@
 import React from 'react'
 import { LuBuilding } from 'react-icons/lu'
 
-import ModuleMinhaUnidade from '../../module/ModuleMinhaUnidade'
-
-import UnidadesForm from '@/app/(private)/(modules)/organizacao/[id_corporation]/unidades/component/UnidadesForm'
 import { CardDefault } from '@/components/Cards/CardDefault'
 import { columnsUnidades } from '@/components/DataTables/DataTableUnidades/columnsUnidades'
 import { DataTableUnidades } from '@/components/DataTables/DataTableUnidades/data-table-unidades'

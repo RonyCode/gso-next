@@ -1,9 +1,6 @@
 'use client'
 
-import Link from 'next/link'
-import { useParams } from 'next/navigation'
 import React, { type ReactElement } from 'react'
-import { LuPlusCircle } from 'react-icons/lu'
 
 import { Button } from '@/ui/button'
 import {
@@ -24,10 +21,6 @@ interface DataTableViewOptionsProps<TData> {
 export function DataTableViewOptions<TData>({
   table,
 }: DataTableViewOptionsProps<TData>): ReactElement {
-  const {
-    sigla,
-    name_unidade: nameUnidade,
-  }: { sigla: string; name_unidade: string } = useParams()
   return (
     <>
       <DropdownMenu>

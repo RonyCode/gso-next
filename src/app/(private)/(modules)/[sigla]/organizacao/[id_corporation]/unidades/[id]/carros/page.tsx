@@ -2,10 +2,8 @@ import React from 'react'
 import { LuBuilding } from 'react-icons/lu'
 import { MdOutlineSupervisorAccount } from 'react-icons/md'
 
-import TabCarsDetails from '@/app/(private)/(modules)/organizacao/[id_corporation]/unidades/component/TabCarsDetails'
-import TabMembersDetails from '@/app/(private)/(modules)/organizacao/[id_corporation]/unidades/component/TabMembersDetails'
-import TabUnidadeDetails from '@/app/(private)/(modules)/organizacao/[id_corporation]/unidades/component/TabUnidadeDetails'
-import ModuleMinhaUnidade from '@/app/(private)/(modules)/organizacao/module/ModuleMinhaUnidade'
+import TabCarsDetails from '../../component/TabCarsDetails'
+
 import { CardDefault } from '@/components/Cards/CardDefault'
 import { ImageExist } from '@/functions/ImageExist'
 import { getUnidadeById } from '@/lib/GetUnidadeById'
@@ -26,9 +24,7 @@ const CarsUnidade = async ({
       {
         <CardDefault
           title={data?.name + ' / ' + data?.companyAddress?.city}
-          description={
-            'CMD : ' + data?.director.competence + ' - ' + data?.director.name
-          }
+          description={'CMD'}
           image={data.image}
           imageMobile={data.image}
           icon={<LuBuilding size={28} />}

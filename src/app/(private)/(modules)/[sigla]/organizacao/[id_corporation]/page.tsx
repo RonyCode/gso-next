@@ -8,7 +8,7 @@ import { getAllOrganizacoes } from '@/lib/GetAllOrganizacoes'
 const Organizacao = async ({
   params,
 }: {
-  params: { id_corporation: string }
+  params: { sigla: string }
 }): Promise<JSX.Element> => {
   const { data } = await getAllOrganizacoes()
   // eslint-disable-next-line array-callback-return
@@ -16,9 +16,9 @@ const Organizacao = async ({
     if (
       item.id !== undefined &&
       item.id !== null &&
-      params.id_corporation !== undefined
+      params.sigla !== undefined
     ) {
-      return item.id.toString() === params.id_corporation
+      return item.id.toString() === params.sigla.split('-')[1]?.toString()
     }
   })
 
@@ -31,10 +31,9 @@ const Organizacao = async ({
         imageMobile={organizacaoFound?.image}
         icon={<LuBuilding />}
       >
-        {params.id_corporation !== null &&
-          params.id_corporation !== undefined && (
-            <ModulesMinhaOrganizacao idcorporation={params.id_corporation} />
-          )}
+        {params.sigla !== null && params.sigla !== undefined && (
+          <ModulesMinhaOrganizacao params={params} />
+        )}
       </CardDefault>
     </>
   )

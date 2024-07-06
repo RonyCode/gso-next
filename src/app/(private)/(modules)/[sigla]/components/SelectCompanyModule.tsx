@@ -1,21 +1,17 @@
 'use client'
 import { useSession } from 'next-auth/react'
-import React, { useEffect, useTransition } from 'react'
+import React, { useTransition } from 'react'
 import { useForm } from 'react-hook-form'
 import { LuCheck, LuChevronsUpDown, LuLandmark } from 'react-icons/lu'
 
 import ModuleMinhaUnidade from '@/app/(private)/(modules)/[sigla]/organizacao/module/ModuleMinhaUnidade'
 import LoadingPage from '@/components/Loadings/LoadingPage'
-import { getAllUnidades } from '@/lib/GetAllUnidades'
-import { getUnidadeById } from '@/lib/GetUnidadeById'
 import { cn } from '@/lib/utils'
-import { type IOrganizacaoSchema } from '@/schemas/OrganizacaoSchema'
 import {
   type ISelectCorporationModuleSchema,
   SelectCorporationModuleSchema,
 } from '@/schemas/SelectCorpoationModuleSchema'
 import { type IUnidadeSchema } from '@/schemas/UnidadeSchema'
-import { unidadeStore } from '@/stores/unidades/unidadeStore'
 import { Button } from '@/ui/button'
 import { Card } from '@/ui/card'
 import {
@@ -35,7 +31,6 @@ import {
   FormMessage,
 } from '@/ui/form'
 import { Popover, PopoverContent, PopoverTrigger } from '@/ui/popover'
-import { toast } from '@/ui/use-toast'
 import { zodResolver } from '@hookform/resolvers/zod'
 
 type SelectCompanyModuleProps = React.HTMLAttributes<HTMLDivElement> & {
@@ -51,7 +46,7 @@ export const SelectCompanyModule = ({
   ...props
 }: SelectCompanyModuleProps) => {
   const [pending, startTransition] = useTransition()
-  const [disabled, setDisabled] = React.useState(false)
+  const disabled = false
   const { data: session } = useSession()
 
   const form = useForm<ISelectCorporationModuleSchema>({
@@ -157,11 +152,7 @@ export const SelectCompanyModule = ({
         {form.getValues('id_company') != null &&
           form.getValues('id_company') !== undefined &&
           form.getValues('id_company') !== '' && (
-            <ModuleMinhaUnidade
-              params={params}
-              idUnidade={form.getValues('id_company')}
-              unidades={unidades}
-            />
+            <ModuleMinhaUnidade params={params} />
           )}
       </Card>
     </>

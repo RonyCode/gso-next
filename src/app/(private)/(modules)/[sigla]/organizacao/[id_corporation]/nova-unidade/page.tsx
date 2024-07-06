@@ -7,7 +7,7 @@ import { getAllStates } from '@/lib/getAllStates'
 const NovaUnidade = async ({
   params,
 }: {
-  params: { id: string; id_corporation: string }
+  params: { sigla: string; name_unidade: string }
 }): Promise<JSX.Element> => {
   const states = await getAllStates()
 

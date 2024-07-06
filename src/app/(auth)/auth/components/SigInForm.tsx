@@ -1,6 +1,5 @@
 'use client'
 
-import { useSession } from 'next-auth/react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import * as React from 'react'
@@ -17,7 +16,6 @@ import {
 import LoadingPage from '@/components/Loadings/LoadingPage'
 import { GetUserNotification } from '@/functions/GetNotificationUser'
 import { cn } from '@/lib/utils'
-import { type ResultSignIn } from '@/types/index'
 import { Button } from '@/ui/button'
 import {
   Form,

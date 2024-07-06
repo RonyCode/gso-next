@@ -31,7 +31,11 @@ const nextConfig = {
       },
       {
         protocol: 'http',
-        hostname: '192.168.100.50',
+        hostname: '179.253.45.156:7777',
+      },
+      {
+        protocol: 'http',
+        hostname: '179.253.45.156',
       },
     ],
   },

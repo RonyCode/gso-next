@@ -2,9 +2,7 @@ import { type Metadata } from 'next'
 import React, { type ReactNode } from 'react'
 import { LuCalendarDays } from 'react-icons/lu'
 
-import CalendarGso from '@/components/CalendarGso/CalendarGso'
 import { CardDefault } from '@/components/Cards/CardDefault'
-import { type CarsUnity, type EventProps, type Member } from '@/types/index'
 
 export const metadata: Metadata = {
   title: 'GSO | Escalas',
@@ -21,7 +19,7 @@ const Escala = ({ params }: { params: { sigla: string } }): ReactNode => {
         imageMobile="https://apexpublicschool.com/assets/images/calender.jpg"
         icon={<LuCalendarDays size={28} />}
       >
-        <CalendarGso event={event} />
+        test
       </CardDefault>
     </>
   )
