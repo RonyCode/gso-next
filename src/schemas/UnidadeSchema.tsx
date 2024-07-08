@@ -18,7 +18,7 @@ export const UnidadeSchema = z.object({
     .optional(),
   cnpj: z.string().min(18, { message: 'CNPJ inválido' }).optional(),
   phone: z.string().min(11, { message: 'Telefone inválido' }).optional(),
-  image: z.string().optional(),
+  image: z.string().optional().nullable(),
   address: z
     .string()
     .min(1, { message: 'Endereço inválido deve conter no mínimo 1 caracteres' })

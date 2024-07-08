@@ -1,11 +1,10 @@
 'use client'
 
 import React from 'react'
-import { FaRegAddressCard } from 'react-icons/fa'
-import { LuBuilding2, LuPhone } from 'react-icons/lu'
+import { LuBuilding2, LuMail, LuPhone, LuUser } from 'react-icons/lu'
 
+import { DataTableRowActions } from '@/components/DataTables/DataTableMembers/data-table-row-actions'
 import { DataTableColumnHeader } from '@/components/DataTables/DataTableUnidades/data-table-column-header'
-import { DataTableRowActions } from '@/components/DataTables/DataTableUnidades/data-table-row-actions'
 import { types } from '@/components/DataTables/DataTableUnidades/data/data'
 import { maskPhone } from '@/functions/masks/maskphone'
 import { type IMemberSchema } from '@/schemas/MemberSchema'
@@ -52,35 +51,36 @@ export const columnsMembers: Array<ColumnDef<IMemberSchema>> = [
     cell: ({ row }) => {
       return (
         <>
-          <div className="flex w-64 items-center space-x-2 text-[0.8500rem] text-muted-foreground">
+          <div className="flex min-w-64 items-center space-x-2 text-[0.8500rem] text-muted-foreground">
             <Avatar
-              className="flex h-10 w-10 items-center justify-center  rounded-full shadow-sm shadow-foreground transition-all
-                        duration-300 hover:scale-[200%] md:h-20 md:w-20"
+              className="flex h-14 w-14 items-center justify-center  rounded-full transition-all
+                        duration-300 hover:scale-[200%]"
             >
               <AvatarImage
                 className="aspect-square rounded-full object-cover"
-                src={`${process.env.NEXT_PUBLIC_API_GSO + '/public/storage/' + row.original?.image}`}
+                src={
+                  row.original?.image ??
+                  process.env.NEXT_PUBLIC_API_GSO + '/public/images/avatar.svg'
+                }
               />
               <AvatarFallback>{<LuBuilding2 size={36} />}</AvatarFallback>
             </Avatar>
             <div className="flex flex-col justify-center ">
               <div>
-                <div className="flex items-center  p-1">
+                <div className="flex items-center  py-0.5">
                   {' '}
-                  <LuBuilding2 size={16} className="mr-2" />{' '}
-                  {row.getValue('name')}
+                  <LuUser size={16} className="mr-2" /> {row.getValue('name')}
                 </div>
               </div>
               <div>
                 {' '}
-                <div className="flex items-center p-1 ">
-                  <FaRegAddressCard size={16} className="mr-2" />{' '}
-                  {row.original?.email}
+                <div className="flex items-center py-0.5 ">
+                  <LuMail size={16} className="mr-2" /> {row.original?.email}
                 </div>
               </div>
               <div>
                 {' '}
-                <div className="flex items-center p-1">
+                <div className="flex items-center py-0.5">
                   <LuPhone size={16} className="mr-2" />{' '}
                   {maskPhone(row.original?.phone)}
                 </div>

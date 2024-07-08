@@ -7,7 +7,7 @@ export const CarSchema = z.object({
   prefix: z.string().min(1, { message: 'id inválido' }),
   model: z.string().min(1, { message: 'id inválido' }),
   color: z.string().min(1, { message: 'id inválido' }),
-  image: z.string().min(1, { message: 'id inválido' }),
+  image: z.string().optional().nullable(),
   plate: z.string().min(1, { message: 'id inválido' }),
   local: z.string().min(1, { message: 'id inválido' }),
   type: z.string().min(1, { message: 'id inválido' }),

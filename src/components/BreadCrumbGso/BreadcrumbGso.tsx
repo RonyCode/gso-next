@@ -58,7 +58,7 @@ const BreadcrumbGso = (): ReactElement => {
               </ol>
               <Link
                 href={link}
-                className="m-0 p-0 text-[.812rem] font-medium md:text-[.750rem]"
+                className="m-0 p-0 text-[.825rem] font-light md:font-medium"
               >
                 {path.charAt(0).toUpperCase() +
                   decodeURI(

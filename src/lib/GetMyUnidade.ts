@@ -3,14 +3,15 @@ import { type IUnidadeSchema } from '@/schemas/UnidadeSchema'
 import { unidadeStore } from '@/stores/unidades/unidadeStore'
 import { type ResponseApi } from '@/types/index'
 
-export const getUnidadeById = async (
-  idCorporation: string,
-  idCompany: string,
-  idSchedule?: string,
-  idCar?: string,
+export const getMyUnidade = async (
+  idCorporation?: string | undefined | null,
+  idCompany?: string | undefined | null,
+  $idUser?: string | undefined | null,
 ): Promise<ResponseApi<IUnidadeSchema>> => {
+  if ($idUser == null || idCompany == null || idCorporation == null)
+    return {} as ResponseApi<IUnidadeSchema>
   const response = await fetchWrapper<ResponseApi<IUnidadeSchema>>(
-    `${process.env.NEXT_PUBLIC_NEXT_URL}/api/unidade?id-corporation=${idCorporation}&id-company=${idCompany}`,
+    `${process.env.NEXT_PUBLIC_NEXT_URL}/api/minha-unidade?id-corporation=${idCorporation}&id-company=${idCompany}&id-user=${$idUser}`,
     {
       method: 'GET',
       headers: {
@@ -19,7 +20,6 @@ export const getUnidadeById = async (
       next: { revalidate: 1, tags: ['unidadesFetch'] },
     },
   )
-  if (response?.code === 202)
-    unidadeStore.setState({ state: { unidades: [response.data] } })
+  console.log(response)
   return response
 }

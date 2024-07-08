@@ -1,4 +1,7 @@
+import { getServerSession } from 'next-auth'
+import { useSession } from 'next-auth/react'
 import Link from 'next/link'
+import { useParams } from 'next/navigation'
 import { type ReactElement } from 'react'
 
 import { Button } from '@/components/ui/button'
@@ -20,6 +23,8 @@ export function DataTableRowActions<TData>({
   row,
 }: DataTableRowActionsProps<TData>): ReactElement {
   const task = MemberSchema.parse(row.original)
+  const { data: session } = useSession()
+  const params: { name_unidade: string } = useParams()
 
   return (
     <DropdownMenu>
@@ -34,7 +39,7 @@ export function DataTableRowActions<TData>({
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-[160px]">
         <Link
-          href={`/servicos/organizacao/${task?.id_company}/unidades/${task?.id}`}
+          href={`/${session?.short_name_corp?.toLowerCase()}-${session?.id_corporation}/unidades/${params?.name_unidade}/membros/${task?.name?.toLowerCase() + '-' + task?.id_user}`}
         >
           <DropdownMenuItem>Detalhes</DropdownMenuItem>
         </Link>

@@ -1,5 +1,5 @@
 import React from 'react'
-import { LuBuilding } from 'react-icons/lu'
+import { LuBuilding, LuSearchX } from 'react-icons/lu'
 import { MdOutlineSupervisorAccount } from 'react-icons/md'
 
 import TabCarsDetails from '@/app/(private)/(modules)/[sigla]/organizacao/[id_corporation]/unidades/component/TabCarsDetails'
@@ -16,8 +16,10 @@ const CarsUnidade = async ({
     params.sigla?.split('-')[1],
     params.name_unidade?.split('-')[1],
   )
-
-  const imgValided = await ImageExist(data.image)
+  if (data?.image === null) {
+    data.image = process.env.NEXT_PUBLIC_API_GSO + '/public/images/img.png'
+  }
+  const imgValided = await ImageExist(data?.image)
   if (imgValided.status !== 200) {
     data.image = process.env.NEXT_PUBLIC_API_GSO + '/public/images/img.png'
   }
@@ -28,20 +30,35 @@ const CarsUnidade = async ({
       return member
     }
   })
-
   return (
     <div>
       {
         <CardDefault
           title={data?.name + ' / ' + data?.companyAddress?.city}
           description={'CMD : ' + diretor?.competence + ' - ' + diretor?.name}
-          image={data.image}
-          imageMobile={data.image}
+          image={
+            data?.image ??
+            process.env.NEXT_PUBLIC_API_GSO + '/public/images/img.png'
+          }
+          imageMobile={
+            data?.image ??
+            process.env.NEXT_PUBLIC_API_GSO + '/public/images/img.png'
+          }
           icon={<LuBuilding size={28} />}
           iconDescription={<MdOutlineSupervisorAccount size={18} />}
         >
           <div className="md:overflow-none overflow-scroll">
-            <TabCarsDetails cars={data.companyCars} />
+            {data.companyCars?.[0].id !== null ? (
+              <TabCarsDetails cars={data.companyCars} />
+            ) : (
+              <div className="flex h-full w-full  items-center justify-center">
+                {' '}
+                <span className="flex items-center justify-center gap-1">
+                  <LuSearchX size={28} className="text-primary/60" /> SEM
+                  VEÍCULOS CADASTRADOS 🤯
+                </span>
+              </div>
+            )}
           </div>
         </CardDefault>
       }

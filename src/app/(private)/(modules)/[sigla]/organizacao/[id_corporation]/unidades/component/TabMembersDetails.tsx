@@ -12,11 +12,13 @@ import { Card } from '@/ui/card'
 
 type UserRegisterFormProps = React.HTMLAttributes<HTMLDivElement> & {
   members?: IMemberSchema[]
+  params?: { sigla: string; name_unidade: string }
   className?: string
 }
 
 export const TabMembersDetails = ({
   members,
+  params,
   className,
   ...props
 }: UserRegisterFormProps): JSX.Element => {

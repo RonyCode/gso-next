@@ -17,6 +17,7 @@ export const MemberSchema = z
       .optional()
       .nullable(),
     id_car: z.number().optional().nullable(),
+    id_user: z.number().optional().nullable(),
     id_schedule: z.number().optional().nullable(),
     id_function: z.number().optional().nullable(),
     short_name_function: z.string().optional().nullable(),

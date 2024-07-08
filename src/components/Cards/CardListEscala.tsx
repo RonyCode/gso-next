@@ -114,20 +114,20 @@ export const CardListEscala = ({
           </div>
         </CardHeader>
         <Separator />
-        <CardContent>
-          <div className="text-sm">
+        <CardContent className="p-1 xl:p-6 ">
+          <div>
             {unidade?.companySchedules?.map((schedule, index) => (
               <div key={index}>
                 {schedule?.schedule?.id === itemEvent?.id && (
                   <div>
-                    <div className="grid grid-cols-1 gap-2 overflow-hidden py-4 md:grid-cols-12 ">
+                    <div className="grid grid-cols-1 gap-2 overflow-hidden py-4 text-sm md:grid-cols-12">
                       <div className="col-span-6 flex flex-col justify-around rounded-[5px] border border-primary/60 p-2 ">
                         <div>
                           <div className="mb-2 flex items-center gap-1 border-b border-primary/60 p-2">
                             <LuClipboardCheck />
-                            <h1 className="text-md font-bold">Detalhes</h1>
+                            <h1 className="text-lg font-bold">Detalhes</h1>
                           </div>
-                          <div className=" grid grid-cols-1  gap-y-4  md:grid-cols-2">
+                          <div className=" grid grid-cols-1  gap-y-4 md:grid-cols-2 ">
                             <div>
                               <div className="flex items-center gap-1 text-sm text-muted-foreground">
                                 <LuPhone />
@@ -143,7 +143,7 @@ export const CardListEscala = ({
                                 <LuBuilding2 />
                                 Unidade
                               </div>
-                              <span className="ml-6 text-foreground">
+                              <span className="ml-6 text-foreground ">
                                 {' '}
                                 {unidade?.name}
                               </span>
@@ -176,7 +176,7 @@ export const CardListEscala = ({
                                 <LuPhone />
                                 CMT Unidade
                               </div>
-                              <div className="ml-6">
+                              <div className="ml-6 ">
                                 {unidade?.companyMembers?.map((member) => (
                                   <span
                                     key={member?.id}
@@ -201,15 +201,18 @@ export const CardListEscala = ({
                           </textarea>
                         </div>
                       </div>
-                      <div className="col-span-6 rounded-[5px] border border-primary/60 p-2 ">
+                      <div className="col-span-6 rounded-[5px] border border-primary/60 p-2  ">
                         <div className="flex items-center gap-2 border-b border-primary/60 p-2">
                           <LuUsers />
-                          <h1 className="text-md font-bold">Efetivo</h1>
+                          <h1 className="text-lg font-bold">Efetivo</h1>
                         </div>
                         <div className="h-full">
                           {unidade?.companyMembers?.map(
                             (memberUnidade, indexMember) => (
-                              <div key={indexMember}>
+                              <div
+                                key={indexMember}
+                                className="text-[.6rem] md:text-sm"
+                              >
                                 {memberUnidade?.id_function === 9 && (
                                   <div className="mt-2">
                                     <div className="flex items-center gap-2 text-sm text-muted-foreground">
@@ -219,7 +222,7 @@ export const CardListEscala = ({
                                     <div className="flex items-center justify-between px-2 py-1.5">
                                       <div className="flex items-center">
                                         <Avatar
-                                          className="flex h-10 w-10 items-center justify-center  rounded-full
+                                          className="flex h-10 w-10 items-center justify-center  rounded-full 
                                           duration-300 hover:scale-[200%]"
                                         >
                                           <AvatarImage
@@ -235,7 +238,10 @@ export const CardListEscala = ({
                                           </AvatarFallback>
                                         </Avatar>
 
-                                        <Button variant="outline">
+                                        <Button
+                                          variant="outline"
+                                          className="text-[.7rem] md:text-sm"
+                                        >
                                           {<LuUser className="mr-1" />}
                                           {memberUnidade?.competence +
                                             ' ' +
@@ -243,7 +249,7 @@ export const CardListEscala = ({
                                         </Button>
                                       </div>
                                       <Badge
-                                        className="ml-2 hidden md:block"
+                                        className="ml-2 hidden md:block "
                                         variant="secondary"
                                       >
                                         {memberUnidade?.short_name_function?.replace(
@@ -292,7 +298,7 @@ export const CardListEscala = ({
                                           </Button>
                                         </div>
                                         <Badge
-                                          className="ml-2 hidden md:block"
+                                          className="ml-2 hidden md:block "
                                           variant="secondary"
                                         >
                                           {memberUnidade?.short_name_function?.replace(
@@ -333,15 +339,18 @@ export const CardListEscala = ({
                                             </AvatarFallback>
                                           </Avatar>
 
-                                          <Button variant="outline">
-                                            {<LuUser className="mr-1" />}
+                                          <Button
+                                            variant="outline"
+                                            className="text-[.7rem] md:text-sm"
+                                          >
+                                            {<LuUser className="mr-1 " />}
                                             {memberUnidade?.competence +
                                               ' ' +
                                               memberUnidade?.name}
                                           </Button>
                                         </div>
                                         <Badge
-                                          className="ml-2 hidden md:block"
+                                          className="ml-2 hidden  md:block"
                                           variant="secondary"
                                         >
                                           {memberUnidade?.short_name_function?.replace(
@@ -363,11 +372,11 @@ export const CardListEscala = ({
                       <LuCar />
                       <h1>Viaturas</h1>
                     </div>
-                    <div className="grid grid-cols-1 gap-2  md:grid-cols-12 ">
+                    <div className="2 grid grid-cols-1  gap-2 md:grid-cols-12 ">
                       {schedule?.cars?.map((car, indexCar) => (
                         <div
                           key={indexCar}
-                          className={`col-span-6  rounded-[5px] border border-primary/60 p-2 `}
+                          className={`col-span-6  rounded-[5px] border border-primary/60 px-2 py-1 `}
                         >
                           <div className="flex items-center justify-between  border-b border-primary/60 py-1.5">
                             <div className="flex items-center ">
@@ -390,7 +399,7 @@ export const CardListEscala = ({
                               >
                                 {car?.car?.model}
                               </Button>
-                              <span className="rounded-[5px] border border-muted-foreground/60 p-1 text-[.6rem] md:text-[.725rem]">
+                              <span className="rounded-[5px] border border-muted-foreground/60 p-1 ">
                                 {car?.car?.plate}
                               </span>
                             </div>
@@ -398,10 +407,10 @@ export const CardListEscala = ({
                               {car?.car?.prefix}
                             </Button>
                           </div>
-                          <div className="mt-2">
+                          <div className="mt-2 ">
                             {car.members.map((member, indexMember) => (
                               <div key={indexMember} className="py-1">
-                                <div className="flex w-full items-center justify-between text-sm">
+                                <div className="flex w-full items-center justify-between ">
                                   <div className="flex items-center ">
                                     <Avatar
                                       className="flex  w-10 items-center justify-center  rounded-full
@@ -419,15 +428,18 @@ export const CardListEscala = ({
                                         {<LuUser size={36} />}
                                       </AvatarFallback>
                                     </Avatar>
-                                    <Button variant="outline">
-                                      <LuUser className="mr-1" />
+                                    <Button
+                                      variant="outline"
+                                      className="px-1 text-[.750rem] md:text-sm"
+                                    >
+                                      <LuUser className="mr-1 " />
                                       {member?.competence + ' ' + member?.name}
                                     </Button>{' '}
                                   </div>
 
                                   <Badge
-                                    className="xl:p-[.5rem ] xl:text-[.650rem]"
                                     variant="secondary"
+                                    className="text-[.7rem] md:text-sm"
                                   >
                                     {member?.short_name_function}
                                   </Badge>

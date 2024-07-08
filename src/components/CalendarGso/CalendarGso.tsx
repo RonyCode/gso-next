@@ -304,7 +304,7 @@ const CalendarGso = ({
               <div key={index}>
                 {day?.day > 0 && (
                   <ModalGso
-                    className="overflow-auto px-4 md:h-[80vh] md:w-[80vw] "
+                    className="overflow-auto px-3 md:h-[80vh] md:w-[80vw] xl:px-4 "
                     title="Detalhes Escala"
                     childrenButton={
                       <CalendarGsoGrid
