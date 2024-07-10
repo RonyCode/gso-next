@@ -10,6 +10,8 @@ import React, {
   useState,
 } from 'react'
 import {
+  LuBuilding2,
+  LuCalendarCheck,
   LuComponent,
   LuContact,
   LuDoorOpen,
@@ -17,7 +19,6 @@ import {
   LuHelpCircle,
   LuLogOut,
   LuMenu,
-  LuSettings,
   LuSiren,
   LuUser,
 } from 'react-icons/lu'
@@ -317,7 +318,15 @@ export function NavbarMain({
                     <DropdownMenuItem>
                       Minha Escala
                       <DropdownMenuShortcut>
-                        <LuSettings style={{ fontSize: '20px' }} />
+                        <LuCalendarCheck style={{ fontSize: '20px' }} />
+                      </DropdownMenuShortcut>
+                    </DropdownMenuItem>
+                  </Link>
+                  <Link href={`/conta/unidade`}>
+                    <DropdownMenuItem>
+                      Minha Unidade
+                      <DropdownMenuShortcut>
+                        <LuBuilding2 size={20} />
                       </DropdownMenuShortcut>
                     </DropdownMenuItem>
                   </Link>

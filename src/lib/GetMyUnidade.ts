@@ -1,6 +1,5 @@
 import { fetchWrapper } from '@/functions/fetch'
 import { type IUnidadeSchema } from '@/schemas/UnidadeSchema'
-import { unidadeStore } from '@/stores/unidades/unidadeStore'
 import { type ResponseApi } from '@/types/index'
 
 export const getMyUnidade = async (
@@ -10,7 +9,7 @@ export const getMyUnidade = async (
 ): Promise<ResponseApi<IUnidadeSchema>> => {
   if ($idUser == null || idCompany == null || idCorporation == null)
     return {} as ResponseApi<IUnidadeSchema>
-  const response = await fetchWrapper<ResponseApi<IUnidadeSchema>>(
+  return await fetchWrapper<ResponseApi<IUnidadeSchema>>(
     `${process.env.NEXT_PUBLIC_NEXT_URL}/api/minha-unidade?id-corporation=${idCorporation}&id-company=${idCompany}&id-user=${$idUser}`,
     {
       method: 'GET',
@@ -20,6 +19,4 @@ export const getMyUnidade = async (
       next: { revalidate: 1, tags: ['unidadesFetch'] },
     },
   )
-  console.log(response)
-  return response
 }

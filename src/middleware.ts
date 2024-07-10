@@ -1,8 +1,8 @@
 import type { NextRequest } from 'next/server'
 import { NextResponse } from 'next/server'
 
-// This function can be marked `async` if using `await` inside
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+import { getRefreshToken } from '@/lib/GetRefreshToken'
+
 export async function middleware(request: NextRequest) {
   const allowedOrigins =
     process.env.NODE_ENV === 'production'
@@ -14,17 +14,8 @@ export async function middleware(request: NextRequest) {
           `${process.env.NEXT_PUBLIC_NEXT_URL}`,
         ]
       : [
-          'http://192.168.100.50',
-          'http://192.168.100.50:3000',
-          'http://192.168.100.50/services/amqp/consume',
-          'http://localhost:3000',
-          'http://localhost:3000/services/estados',
-          'http://localhost:3000/services/cidades/',
           'https://gso-dev.vercel.app/',
           'https://viacep.com.br',
-          'http://localhost:3000/api/auth/callback/credentials',
-          'https://wsgso.000webhostapp.com/api/auth/estados',
-          'http://localhost:3000/api/pre-cadastro-usuario',
           `${process.env.NEXT_PUBLIC_API_GSO}`,
           `${process.env.NEXT_PUBLIC_API_NEXT}`,
           `${process.env.NEXT_PUBLIC_NEXT_URL}`,
@@ -56,17 +47,8 @@ export async function middleware(request: NextRequest) {
   if (refreshToken == null && sessaoToken != null) {
     if (token != null) {
       // RENOVA OS TOKENS
-      const resp = await fetch(
-        `${process.env.NEXT_PUBLIC_API_GSO}/api/auth/refresh-token/${tokenPayload}`,
-        {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`,
-          },
-        },
-      )
 
+      const resp = await getRefreshToken(tokenPayload, token)
       // SALVA NOVOS COKKIES
       if (resp.ok) {
         const tokenRes = await resp?.json()
@@ -240,11 +222,17 @@ export const config = {
   matcher: [
     '/auth/:path*',
     '/:sigla/',
+    '/escalas/:path*',
+    '/minha-organizacao/:path*',
+    '/module/:path*',
+    '/ocorrencias/:path*',
+    '/organizacao/:path*',
+    '/unidades/:path*',
     '/dashboard/:path*',
-    '/(modules)/:path*',
     '/private/:path*',
     '/about/:path*',
     '/contact/:path*',
     '/conta/:path*',
+    '/((?!api|_next/static|favicon.ico).*)',
   ],
 }

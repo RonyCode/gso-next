@@ -2,7 +2,7 @@ import React, { use } from 'react'
 
 import TabUnidadeDetails from './TabUnidadeDetails'
 
-import TabMembersDetails from '@/app/(private)/(modules)/[sigla]/organizacao/[id_corporation]/unidades/component/TabMembersDetails'
+import TabMembersDetails from '@/app/(private)/(modules)/[sigla]/components/TabMembersDetails'
 import { ImageExist } from '@/functions/ImageExist'
 import { getAllStates } from '@/lib/getAllStates'
 import { getUnidadeById } from '@/lib/GetUnidadeById'

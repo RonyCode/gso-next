@@ -31,7 +31,7 @@ export const columnsUnidades: Array<ColumnDef<IUnidadeSchema>> = [
             >
               <AvatarImage
                 className="aspect-square rounded-full object-cover"
-                src={row.original.image}
+                src={row.original.image ?? '/images/avatar.svg'}
               />
               <AvatarFallback>{<LuBuilding2 size={36} />}</AvatarFallback>
             </Avatar>

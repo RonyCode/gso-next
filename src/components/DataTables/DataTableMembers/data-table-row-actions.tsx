@@ -1,4 +1,3 @@
-import { getServerSession } from 'next-auth'
 import { useSession } from 'next-auth/react'
 import Link from 'next/link'
 import { useParams } from 'next/navigation'

@@ -33,8 +33,14 @@ const MinhaUnidade = async ({
         <CardDefault
           title={data?.name + ' / ' + data?.companyAddress?.city}
           description={'CMD : ' + diretor?.competence + ' - ' + diretor?.name}
-          image={data.image}
-          imageMobile={data.image}
+          image={
+            data.image ??
+            process.env.NEXT_PUBLIC_API_GSO + '/public/images/img.png'
+          }
+          imageMobile={
+            data.image ??
+            process.env.NEXT_PUBLIC_API_GSO + '/public/images/img.png'
+          }
           icon={<LuBuilding size={28} />}
           iconDescription={<MdOutlineSupervisorAccount size={18} />}
         >

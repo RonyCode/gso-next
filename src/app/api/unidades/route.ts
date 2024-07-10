@@ -27,5 +27,6 @@ export async function GET(request: Request): Promise<NextResponse> {
     )
   }
   const result = await res.json()
+
   return NextResponse.json(result)
 }

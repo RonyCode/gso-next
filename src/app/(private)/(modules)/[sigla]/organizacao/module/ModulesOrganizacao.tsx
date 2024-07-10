@@ -8,8 +8,10 @@ import { type IOrganizacaoSchema } from '@/schemas/OrganizacaoSchema'
 
 const ModulesOrganizacao = ({
   organizacoes,
+  params,
 }: {
-  organizacoes: IOrganizacaoSchema[]
+  organizacoes?: IOrganizacaoSchema[]
+  params: { sigla: string; name_unidade: string }
 }): JSX.Element => {
   return (
     <>
@@ -20,20 +22,20 @@ const ModulesOrganizacao = ({
               key={corporation?.id}
               title={corporation?.short_name_corp}
               subtitle={corporation?.city + ' - ' + corporation?.phone}
-              link={`/servicos/${corporation?.short_name_corp.toLowerCase()}/organizacao/${corporation?.id}`}
+              link={`/${corporation?.short_name_corp.toLowerCase() + '-' + corporation?.id} /`}
               icon={<IconBuild width={54} />}
             />
           ))}
           <CardModule
             title="Nova Organização"
             subtitle="Adicionar nova organização"
-            link={'/(modules)/organizacao/salvar'}
+            link={`/${params?.sigla.toLowerCase()}/organizacao/salvar`}
             icon={<IconBuildPlus width={58} className="ml-1" />}
           />
           <CardModule
             title="Privilégios"
             subtitle="Conceder privilégios"
-            link={'/(modules)/organizacao/privilegios'}
+            link={`/${params?.sigla.toLowerCase()}/organizacao/privilegios`}
             icon={<IconPrivileges width={80} />}
           />
         </div>

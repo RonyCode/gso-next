@@ -1,6 +1,6 @@
 import { getServerSession } from 'next-auth'
 import React, { type ReactNode } from 'react'
-import { LuUserCheck } from 'react-icons/lu'
+import { LuCalendarCheck } from 'react-icons/lu'
 
 import CalendarGso from '@/components/CalendarGso/CalendarGso'
 import { CardDefault } from '@/components/Cards/CardDefault'
@@ -19,11 +19,15 @@ const MinhaEscala = async (): Promise<ReactNode> => {
   )
   return (
     <>
-      <CardDefault icon={<LuUserCheck size={28} />}>
+      <CardDefault
+        title="Minha Escala"
+        description={data?.name}
+        image="https://apexpublicschool.com/assets/images/calender.jpg"
+        imageMobile="https://apexpublicschool.com/assets/images/calender.jpg"
+        icon={<LuCalendarCheck size={28} />}
+      >
         <div>
-          {/* {data != null && ( */}
           <CalendarGso unidade={data} functions={functions?.data} />
-          {/* )} */}
         </div>{' '}
       </CardDefault>
     </>

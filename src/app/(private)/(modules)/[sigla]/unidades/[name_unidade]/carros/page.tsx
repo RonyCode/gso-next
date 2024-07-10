@@ -2,7 +2,7 @@ import React from 'react'
 import { LuBuilding, LuSearchX } from 'react-icons/lu'
 import { MdOutlineSupervisorAccount } from 'react-icons/md'
 
-import TabCarsDetails from '@/app/(private)/(modules)/[sigla]/organizacao/[id_corporation]/unidades/component/TabCarsDetails'
+import TabCarsDetails from '@/app/(private)/(modules)/[sigla]/components/TabCarsDetails'
 import { CardDefault } from '@/components/Cards/CardDefault'
 import { ImageExist } from '@/functions/ImageExist'
 import { getUnidadeById } from '@/lib/GetUnidadeById'

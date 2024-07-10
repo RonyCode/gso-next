@@ -1,4 +1,4 @@
-import TabUnidadeDetails from '@/app/(private)/(modules)/[sigla]/organizacao/[id_corporation]/unidades/component/TabUnidadeDetails'
+import TabUnidadeDetails from '@/app/(private)/(modules)/[sigla]/components/TabUnidadeDetails'
 import { CardDefault } from '@/components/Cards/CardDefault'
 import IconBuildPlus from '@/icons/IconBuildPlus'
 import { getAllStates } from '@/lib/getAllStates'

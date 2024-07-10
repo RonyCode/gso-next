@@ -386,7 +386,11 @@ export const CardListEscala = ({
                               >
                                 <AvatarImage
                                   className="aspect-square rounded-full object-cover"
-                                  src={car?.car?.image}
+                                  src={
+                                    car?.car?.image ??
+                                    process.env.NEXT_PUBLIC_API_GSO +
+                                      '/public/images/img.png'
+                                  }
                                 />
                                 <AvatarFallback>
                                   {<LuCar size={36} />}

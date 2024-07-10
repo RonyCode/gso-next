@@ -2,7 +2,7 @@ import React from 'react'
 import { LuBuilding } from 'react-icons/lu'
 import { MdOutlineSupervisorAccount } from 'react-icons/md'
 
-import TabUnidadeDetails from '@/app/(private)/(modules)/[sigla]/organizacao/[id_corporation]/unidades/component/TabUnidadeDetails'
+import TabUnidadeDetails from '@/app/(private)/(modules)/[sigla]/components/TabUnidadeDetails'
 import { CardDefault } from '@/components/Cards/CardDefault'
 import { ImageExist } from '@/functions/ImageExist'
 import { getAllStates } from '@/lib/getAllStates'
@@ -29,8 +29,14 @@ const MinhaUnidade = async ({
         <CardDefault
           title={data?.name + ' / ' + data?.city}
           description={'CMD : ' + data?.director + ' - ' + data?.director}
-          image={data.image}
-          imageMobile={data.image}
+          image={
+            data.image ??
+            process.env.NEXT_PUBLIC_API_GSO + '/public/images/img.png'
+          }
+          imageMobile={
+            data.image ??
+            process.env.NEXT_PUBLIC_API_GSO + '/public/images/img.png'
+          }
           icon={<LuBuilding size={28} />}
           iconDescription={<MdOutlineSupervisorAccount size={18} />}
         >

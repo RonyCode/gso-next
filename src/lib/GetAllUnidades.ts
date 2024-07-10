@@ -16,6 +16,8 @@ export const getAllUnidades = async (
       next: { revalidate: 1, tags: ['unidadesFetch'] },
     },
   )
-  if (response?.code === 202) unidadeStore.getState().actions.add(response.data)
+  if (response?.code === 200) {
+    unidadeStore.getState().actions.add(response.data)
+  }
   return response
 }

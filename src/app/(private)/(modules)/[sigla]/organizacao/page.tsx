@@ -5,7 +5,11 @@ import ModulesOrganizacao from '@/app/(private)/(modules)/[sigla]/organizacao/mo
 import { CardDefault } from '@/components/Cards/CardDefault'
 import { getAllOrganizacoes } from '@/lib/GetAllOrganizacoes'
 
-const Organizacao = async (): Promise<ReactNode> => {
+const Organizacao = async ({
+  params,
+}: {
+  params: { sigla: string; name_unidade: string }
+}): Promise<ReactNode> => {
   const { data } = await getAllOrganizacoes()
   return (
     <>
@@ -20,7 +24,7 @@ const Organizacao = async (): Promise<ReactNode> => {
         }
         icon={<LuBuilding2 size={28} />}
       >
-        <ModulesOrganizacao organizacoes={data} />
+        <ModulesOrganizacao organizacoes={data} params={params} />
       </CardDefault>
     </>
   )

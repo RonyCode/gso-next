@@ -25,16 +25,6 @@ import { saveUnidadeAction } from '@/app/(private)/(modules)/[sigla]/organizacao
 import { EditPhoto } from '@/components/EditPhoto/EditPhoto'
 import { MyInputMask } from '@/components/Form/Input/myInputMask'
 import LoadingPage from '@/components/Loadings/LoadingPage'
-import {
-  Dialog,
-  DialogClose,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from '@/components/ui/dialog'
 import { maskCpfCnpj } from '@/functions/masks/maskCpfCnpj'
 import { maskDateBr } from '@/functions/masks/maskDateBr'
 import { maskPhone } from '@/functions/masks/maskphone'
@@ -55,6 +45,16 @@ import {
   CommandItem,
   CommandList,
 } from '@/ui/command'
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/ui/dialog'
 import {
   Form,
   FormControl,
@@ -336,7 +336,11 @@ export const TabUnidadeDetails = ({
                   <div className="absolute -left-3 -top-3">
                     <EditPhoto
                       disabled={disabled}
-                      directoryFile={form.getValues('image')}
+                      directoryFile={
+                        form?.getValues('image') ??
+                        process.env.NEXT_PUBLIC_API_GSO +
+                          '/public/images/img.png'
+                      }
                       updateFormExternal={form}
                     />
                   </div>
@@ -344,7 +348,7 @@ export const TabUnidadeDetails = ({
                     /* eslint-disable-next-line @typescript-eslint/ban-ts-comment */
                     // @ts-expect-error
                     src={
-                      form.getValues('image')
+                      form.getValues('image') != null
                         ? form.getValues('image')
                         : process.env.NEXT_PUBLIC_API_GSO +
                           '/public/images/img.png'

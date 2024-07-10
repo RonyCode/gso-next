@@ -306,7 +306,7 @@ export interface ResultSignIn {
   date_expires_token: number
 }
 
-export interface ResponseApi<T> {
+export interface ResponseApi<T = undefined> {
   data: T
   status: string
   code: number
