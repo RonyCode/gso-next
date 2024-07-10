@@ -14,7 +14,7 @@ const FooterHomePage = ({
   return (
     <footer
       className={cn(
-        ' fixed bottom-0 bg-secondary p-1 md:relative md:pb-6 md:pt-8',
+        '  relative bottom-0 z-50 flex h-14 items-center bg-secondary',
         className,
       )}
       {...props}

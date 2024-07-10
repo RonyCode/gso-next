@@ -19,7 +19,7 @@ export default async function Home(): Promise<JSX.Element> {
     <>
       <MaxWidthWrapper>
         <main className="bg-gradient-to-t from-background to-secondary ">
-          <header className="h-full min-h-screen  ">
+          <header className="z-0 h-full  min-h-screen ">
             <BannerHome1 />
           </header>
           <BannerHome2 />

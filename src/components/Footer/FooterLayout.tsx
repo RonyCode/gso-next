@@ -7,7 +7,7 @@ import { type ReactElement } from 'react'
 import FooterHomePage from '@/components/Footer/FooterHomePage'
 import FooterNormal from '@/components/Footer/FooterNormal'
 
-const FooterLayout = (): ReactElement => {
+const FooterLayout = ({ className }: { className?: string }): ReactElement => {
   const pathName = usePathname()
 
   return <>{pathName === '/' ? <FooterHomePage /> : <FooterNormal />}</>

@@ -1,10 +1,11 @@
 'use client'
 
 import { useSession } from 'next-auth/react'
+import Image from 'next/image'
 import { redirect, useRouter } from 'next/navigation'
 import * as React from 'react'
-import { useTransition } from 'react'
-import { useForm } from 'react-hook-form'
+import { useEffect, useTransition } from 'react'
+import { useForm, type UseFormReturn } from 'react-hook-form'
 import {
   FaBuildingColumns,
   FaHashtag,
@@ -17,6 +18,7 @@ import {
 import { LuCheck, LuChevronsUpDown } from 'react-icons/lu'
 
 import { saveUserAction } from '@/app/actions/saveUserAction'
+import { EditPhoto } from '@/components/EditPhoto/EditPhoto'
 import { MyInputMask } from '@/components/Form/Input/myInputMask'
 import LoadingPage from '@/components/Loadings/LoadingPage'
 import { maskCpfCnpj } from '@/functions/masks/maskCpfCnpj'
@@ -83,8 +85,16 @@ export const EditProfileForm = ({
   const [pending, startTransition] = useTransition()
   const { update } = useSession()
   const router = useRouter()
-
   let defaultValues = {}
+
+  useEffect(() => {
+    startTransition(async () => {
+      if (user?.address?.state != null) {
+        await getAllCitiesByState(user?.address?.state)
+      }
+    })
+  }, [user?.address?.state])
+
   if (user?.account?.name !== 'user-external') {
     defaultValues = {
       id: user?.id?.toString(),
@@ -94,13 +104,13 @@ export const EditProfileForm = ({
       cpf: maskCpfCnpj(user?.account?.cpf),
       data_nascimento: moment(user?.account?.birthday).format('DD/MM/yyyy'),
       telefone: maskPhone(user?.account?.phone),
-      cep: maskZipcode(user?.address?.zipcode),
+      cep: maskZipcode(user?.address?.zipCode),
       endereco: user?.address?.address,
       complemento: user?.address?.complement,
-      sigla: user?.address?.short_name,
+      sigla: user?.address?.state,
       numero: user?.address?.number,
       bairro: user?.address?.district,
-      estado: user?.address?.short_name,
+      estado: user?.address?.state,
       cidade: user?.address?.city,
     }
   }
@@ -109,7 +119,7 @@ export const EditProfileForm = ({
     mode: 'all',
     criteriaMode: 'all',
     resolver: zodResolver(EditUserSchema),
-    defaultValues: defaultValues as Partial<IEditUserSchema>,
+    defaultValues,
   })
 
   const handleSubmit = (dataForm: IEditUserSchema): void => {
@@ -185,9 +195,11 @@ export const EditProfileForm = ({
     }
   }
 
+  console.log(form.getValues())
+  console.log(form.formState.errors)
   return (
     <>
-      <div className="px-4 md:px-0">
+      <div className="px-4 2xl:px-20">
         <div className={cn(' grid w-full p-4  lg:pt-12', className)} {...props}>
           <LoadingPage pending={pending} />
           <Form {...form}>
@@ -199,163 +211,164 @@ export const EditProfileForm = ({
               className="w-full space-y-4"
             >
               <div className="flex w-full flex-col  gap-2 md:flex-row">
-                <FormField
-                  control={form.control}
-                  name="nome"
-                  render={({ field }) => (
-                    <FormItem className="w-full">
-                      <FormLabel
-                        htmlFor="nome"
-                        className="flex items-center gap-1"
-                      >
-                        <FaUser /> Nome
-                      </FormLabel>
-                      <FormControl>
-                        <Input
-                          {...field}
-                          id="nome"
-                          placeholder="Digite seu nome"
-                          autoCapitalize="none"
-                          autoComplete="nome"
-                          autoCorrect="off"
-                          disabled={pending}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </div>
-              <div className="flex w-full flex-col  gap-2 md:flex-row">
-                <FormField
-                  control={form.control}
-                  name="cpf"
-                  render={({ field }) => (
-                    <FormItem className="w-full">
-                      <FormLabel
-                        htmlFor="cpf"
-                        className="flex items-center gap-1"
-                      >
-                        <FaHashtag /> CPF
-                      </FormLabel>
-                      <FormControl>
-                        <MyInputMask
-                          className={cn(
-                            'flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50',
-                            className,
-                          )}
-                          {...field}
-                          id="cpf"
-                          placeholder="000.000.000-00"
-                          mask="___.___.___-__"
-                          autoCapitalize="none"
-                          autoCorrect="on"
-                          autoComplete="one-time-code"
-                          disabled={pending}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                <FormField
-                  control={form.control}
-                  name="data_nascimento"
-                  render={({ field }) => (
-                    <FormItem className="flex flex-col">
-                      <FormLabel>Data de nascimento</FormLabel>
-                      <Popover>
-                        <PopoverTrigger asChild>
+                <div className=" relative  mr-4 hidden  h-60 w-6/12 justify-center md:flex">
+                  <div className="absolute -left-3 -top-3 z-100">
+                    <EditPhoto
+                      disabled={false}
+                      directoryFile={form.getValues('image') ?? ''}
+                      updateFormExternal={form as unknown as UseFormReturn}
+                    />
+                  </div>
+                  <Image
+                    src={
+                      form.getValues('image') ??
+                      process.env.NEXT_PUBLIC_API_GSO + '/public/images/img.png'
+                    }
+                    fill
+                    quality={100}
+                    alt="imagem director"
+                    className="aspect-square  rounded-[5px] object-cover"
+                  />
+                </div>
+                <div className=" w-full">
+                  <div className="flex w-full flex-col  gap-2 md:flex-row">
+                    <FormField
+                      control={form.control}
+                      name="nome"
+                      render={({ field }) => (
+                        <FormItem className="w-full">
+                          <FormLabel
+                            htmlFor="nome"
+                            className="flex items-center gap-1"
+                          >
+                            <FaUser /> Nome
+                          </FormLabel>
                           <FormControl>
-                            <Button
-                              variant={'outline'}
-                              className={cn(
-                                'min-w-[240px] pl-3 text-left font-normal',
-                                field.value.toString() === '' &&
-                                  'text-muted-foreground',
-                              )}
-                            >
-                              {field.value.toString() !== '' ? (
-                                format(field.value, 'dd/MM/yyyy')
-                              ) : (
-                                <span>Selecione uma data</span>
-                              )}
-                              <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
-                            </Button>
+                            <Input
+                              {...field}
+                              id="nome"
+                              placeholder="Digite seu nome"
+                              autoCapitalize="none"
+                              autoComplete="nome"
+                              autoCorrect="off"
+                              disabled={pending}
+                            />
                           </FormControl>
-                        </PopoverTrigger>
-                        <PopoverContent className="w-auto p-0" align="start">
-                          <Calendar
-                            mode="single"
-                            onSelect={field.onChange}
-                            disabled={(date) =>
-                              date > new Date() || date < new Date('1900-01-01')
-                            }
-                            initialFocus
-                          />
-                        </PopoverContent>
-                      </Popover>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
+                  <div className="flex w-full flex-col  gap-2 md:flex-row">
+                    <FormField
+                      control={form.control}
+                      name="cpf"
+                      render={({ field }) => (
+                        <FormItem className="w-full">
+                          <FormLabel
+                            htmlFor="cpf"
+                            className="flex items-center gap-1"
+                          >
+                            <FaHashtag /> CPF
+                          </FormLabel>
+                          <FormControl>
+                            <MyInputMask
+                              className={cn(
+                                'flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50',
+                                className,
+                              )}
+                              {...field}
+                              id="cpf"
+                              placeholder="000.000.000-00"
+                              mask="___.___.___-__"
+                              autoCapitalize="none"
+                              autoCorrect="on"
+                              autoComplete="one-time-code"
+                              disabled={pending}
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
 
-                {/* <FormField */}
-                {/*  control={form.control} */}
-                {/*  name="data_nascimento" */}
-                {/*  render={({ field }) => ( */}
-                {/*    <FormItem> */}
-                {/*      <FormLabel */}
-                {/*        htmlFor="data_nascimento" */}
-                {/*        className="flex items-center gap-1" */}
-                {/*      > */}
-                {/*        <FaBirthdayCake /> */}
-                {/*        Nascimento */}
-                {/*      </FormLabel> */}
-                {/*      <FormControl> */}
-                {/*        <MyInputMask */}
-                {/*          {...field} */}
-                {/*          id="data_nascimento" */}
-                {/*          placeholder="00/00/0000" */}
-                {/*          mask="__/__/____" */}
-                {/*          autoCapitalize="none" */}
-                {/*          autoComplete="data_nascimento" */}
-                {/*          autoCorrect="off" */}
-                {/*          disabled={pending} */}
-                {/*        /> */}
-                {/*      </FormControl> */}
-                {/*      <FormMessage /> */}
-                {/*    </FormItem> */}
-                {/*  )} */}
-                {/* /> */}
-                <FormField
-                  control={form.control}
-                  name="telefone"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel
-                        htmlFor="telefone"
-                        className="flex items-center gap-1"
-                      >
-                        <FaPhone /> Telefone
-                      </FormLabel>
-                      <FormControl>
-                        <MyInputMask
-                          {...field}
-                          id="telefone"
-                          placeholder="(00) 00000-0000"
-                          mask="(__) _____-____"
-                          autoCapitalize="none"
-                          autoComplete="telefone"
-                          autoCorrect="off"
-                          disabled={pending}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+                    <FormField
+                      control={form.control}
+                      name="data_nascimento"
+                      render={({ field }) => (
+                        <FormItem className="flex flex-col">
+                          <FormLabel>Data de nascimento</FormLabel>
+                          <Popover>
+                            <PopoverTrigger asChild>
+                              <FormControl>
+                                <Button
+                                  variant={'outline'}
+                                  className={cn(
+                                    'min-w-[240px] pl-3 text-left font-normal',
+                                    field.value.toString() === '' &&
+                                      'text-muted-foreground',
+                                  )}
+                                >
+                                  {field.value.toString() !== '' ? (
+                                    format(field.value, 'dd/MM/yyyy')
+                                  ) : (
+                                    <span>Selecione uma data</span>
+                                  )}
+                                  <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                                </Button>
+                              </FormControl>
+                            </PopoverTrigger>
+                            <PopoverContent
+                              className="w-auto p-0"
+                              align="start"
+                            >
+                              <Calendar
+                                mode="single"
+                                onSelect={(date) => {
+                                  if (date == null) return
+                                  field.onChange(format(date, 'dd/MM/yyyy'))
+                                }}
+                                disabled={(date) =>
+                                  date > new Date() ||
+                                  date < new Date('1900-01-01')
+                                }
+                                initialFocus
+                              />
+                            </PopoverContent>
+                          </Popover>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={form.control}
+                      name="telefone"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel
+                            htmlFor="telefone"
+                            className="flex items-center gap-1"
+                          >
+                            <FaPhone /> Telefone
+                          </FormLabel>
+                          <FormControl>
+                            <MyInputMask
+                              {...field}
+                              id="telefone"
+                              placeholder="(00) 00000-0000"
+                              mask="(__) _____-____"
+                              autoCapitalize="none"
+                              autoComplete="telefone"
+                              autoCorrect="off"
+                              disabled={pending}
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
+                </div>
               </div>
               <div className="flex w-full flex-col  gap-2 md:flex-row">
                 <FormField
@@ -580,7 +593,6 @@ export const EditProfileForm = ({
                   )}
                 />
               </div>
-
               <div className="flex w-full flex-col  gap-2 md:flex-row">
                 <FormField
                   control={form.control}

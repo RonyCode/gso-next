@@ -1,4 +1,5 @@
 'use client'
+import { useSession } from 'next-auth/react'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import React, { useState, useTransition } from 'react'
@@ -46,6 +47,7 @@ export const EditPhoto = ({
   ...props
 }: EditPhotoProps): JSX.Element => {
   const [pending, startTransition] = useTransition()
+  const { update, data: session } = useSession()
   const [previewUrl, setPreviewUrl] = useState<string | null>(null)
   const [file, setFile] = useState<File | null>(null)
   const [open, setOpen] = useState(false)
@@ -89,6 +91,8 @@ export const EditPhoto = ({
         setOpen(false)
         handleResetValues()
         updateFormExternal?.setValue('image', response.data.data)
+        const user = session?.user
+        await update({ ...user, image: response.data.data })
         router.refresh()
         toast({
           variant: 'success',
@@ -134,7 +138,7 @@ export const EditPhoto = ({
         {disabled === false && (
           <DialogTrigger asChild>
             <div>
-              <LuCamera className="h-9 w-9 rounded-full border-2 border-foreground/50 bg-accent/50 p-1 text-foreground/50 backdrop-blur  hover:border-foreground hover:text-foreground " />
+              <LuCamera className="z-100 h-9 w-9 rounded-full border-2 border-foreground/50 bg-accent/50 p-1 text-foreground/50 backdrop-blur  hover:border-foreground hover:text-foreground " />
             </div>
           </DialogTrigger>
         )}

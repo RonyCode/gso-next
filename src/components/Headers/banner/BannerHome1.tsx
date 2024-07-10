@@ -5,6 +5,7 @@ import Logo from '../../../../public/images/Logo'
 
 const BannerHome1 = (): ReactElement => {
   const [showNavBar, setShowNavBar] = useState(false)
+  const [disapear, setDisapear] = useState(false)
 
   useEffect(() => {
     window.addEventListener('scroll', () => {
@@ -13,14 +14,20 @@ const BannerHome1 = (): ReactElement => {
       } else {
         setShowNavBar(false)
       }
+
+      if (window.scrollY > 2000) {
+        setDisapear(true)
+      } else {
+        setDisapear(false)
+      }
     })
   }, [showNavBar])
 
   return (
     <div>
       <div
-        className=" fixed  grid h-full  w-[calc(100%)] bg-no-repeat brightness-75 md:w-[80vw] md:grid-cols-2
-        md:place-items-center md:bg-cover"
+        className={`${disapear && 'hidden'}  fixed grid h-full  w-full bg-no-repeat brightness-75 md:w-[80vw] md:grid-cols-2
+        md:place-items-center md:bg-cover`}
         style={{
           backgroundImage: 'url(/images/banner.jpg)',
         }}

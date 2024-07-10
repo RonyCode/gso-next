@@ -6,7 +6,6 @@ import { usePathname } from 'next/navigation'
 import React, { type ReactNode } from 'react'
 import { LuList } from 'react-icons/lu'
 
-import { EditPhoto } from '@/components/EditPhoto/EditPhoto'
 import { GetFirstLettersNameUser } from '@/functions/GetFirstLettersNameUser'
 import { GetWindowSize } from '@/functions/GetWindowSize'
 import { cn } from '@/lib/utils'
@@ -28,7 +27,7 @@ interface SidebarNavProps extends React.HTMLAttributes<HTMLElement> {
 export function Sidebar({ className, items }: SidebarNavProps): JSX.Element {
   const pathname = usePathname()
   const { data: session } = useSession()
-  const image = session?.image
+  const image = session?.user?.image
   const nameUser = GetFirstLettersNameUser()
   const windowDevice = GetWindowSize()
   return (
@@ -44,7 +43,7 @@ export function Sidebar({ className, items }: SidebarNavProps): JSX.Element {
             </p>
           </div>
         </div>
-        <Avatar className="absolute top-10 z-10 h-24 w-24 shadow shadow-foreground  ">
+        <Avatar className="absolute top-12 z-10 h-20 w-20 shadow shadow-foreground  ">
           <Dialog>
             <DialogTrigger asChild>
               <AvatarImage
@@ -56,7 +55,7 @@ export function Sidebar({ className, items }: SidebarNavProps): JSX.Element {
             <DialogContent className={cn('min-w-[50vw]', className)}>
               {
                 <img
-                  src={image !== null ? image : '/images/avatar.svg'}
+                  src={image ?? '/images/avatar.svg'}
                   alt="Selecione um arquivo"
                   className="m-auto h-[80vh] object-contain"
                 />
@@ -70,10 +69,7 @@ export function Sidebar({ className, items }: SidebarNavProps): JSX.Element {
             {nameUser}
           </AvatarFallback>
         </Avatar>
-
-        <div className="absolute left-[5px] top-24 z-50">
-          <EditPhoto />
-        </div>
+        <div className="absolute left-[5px] top-24 z-50"></div>
         <div className="space-2 flex flex-col items-center justify-center lg:space-x-0 lg:space-y-1">
           {items.map((item) => (
             <div

@@ -137,6 +137,7 @@ export interface Address {
   address: string
   number: string
   zipcode: string
+  zipCode: string
   complement: string
   district: string
   city: string

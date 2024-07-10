@@ -4,6 +4,7 @@ import { LuUserCheck } from 'react-icons/lu'
 
 import { EditProfileForm } from '@/app/(private)/conta/component/EditProfileForm'
 import { CardDefault } from '@/components/Cards/CardDefault'
+import { EditPhoto } from '@/components/EditPhoto/EditPhoto'
 import { ImageExist } from '@/functions/ImageExist'
 import { authOptions } from '@/lib/auth'
 import { getAllStates } from '@/lib/getAllStates'

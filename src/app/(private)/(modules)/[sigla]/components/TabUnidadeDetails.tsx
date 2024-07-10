@@ -36,6 +36,7 @@ import { type IUnidadeSchema, UnidadeSchema } from '@/schemas/UnidadeSchema'
 import { cityStore } from '@/stores/Address/CityByStateStore'
 import type { AddressProps } from '@/types/index'
 import { Button, buttonVariants } from '@/ui/button'
+import { Calendar } from '@/ui/calendar'
 import { Card } from '@/ui/card'
 import {
   Command,
@@ -67,6 +68,8 @@ import { Input } from '@/ui/input'
 import { Popover, PopoverContent, PopoverTrigger } from '@/ui/popover'
 import { toast } from '@/ui/use-toast'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { CalendarIcon } from '@radix-ui/react-icons'
+import { format } from 'date-fns'
 
 enum Fields {
   address = 'address',
@@ -345,13 +348,9 @@ export const TabUnidadeDetails = ({
                     />
                   </div>
                   <Image
-                    /* eslint-disable-next-line @typescript-eslint/ban-ts-comment */
-                    // @ts-expect-error
                     src={
-                      form.getValues('image') != null
-                        ? form.getValues('image')
-                        : process.env.NEXT_PUBLIC_API_GSO +
-                          '/public/images/img.png'
+                      form.getValues('image') ??
+                      process.env.NEXT_PUBLIC_API_GSO + '/public/images/img.png'
                     }
                     width={500}
                     height={500}
@@ -460,29 +459,45 @@ export const TabUnidadeDetails = ({
                     control={form.control}
                     name="date_creation"
                     render={({ field }) => (
-                      <FormItem className="w-full">
-                        <FormLabel
-                          htmlFor="date_creation"
-                          className="flex items-center gap-1 text-muted-foreground"
-                        >
-                          <LuCalendarDays /> Data de Fundação
-                        </FormLabel>
-                        <FormControl>
-                          <MyInputMask
-                            className={cn(
-                              'flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50',
-                              className,
-                            )}
-                            {...field}
-                            id="date_creation"
-                            placeholder="00/00/0000"
-                            mask="__/__/____"
-                            autoCapitalize="none"
-                            autoComplete="date_creation"
-                            autoCorrect="off"
-                            disabled={disabled}
-                          />
-                        </FormControl>
+                      <FormItem className="flex flex-col text-muted-foreground">
+                        <FormLabel>Data de fundação</FormLabel>
+                        <Popover>
+                          <PopoverTrigger asChild>
+                            <FormControl>
+                              <Button
+                                disabled={disabled}
+                                variant={'outline'}
+                                className={cn(
+                                  'min-w-[240px] pl-3 text-left font-normal',
+                                  field?.value?.toString() === '' &&
+                                    'text-muted-foreground',
+                                )}
+                              >
+                                {field?.value?.toString() !== '' ? (
+                                  field?.value != null &&
+                                  format(field?.value, 'dd/MM/yyyy')
+                                ) : (
+                                  <span>Selecione uma data</span>
+                                )}
+                                <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                              </Button>
+                            </FormControl>
+                          </PopoverTrigger>
+                          <PopoverContent className="w-auto p-0" align="start">
+                            <Calendar
+                              mode="single"
+                              onSelect={(date) => {
+                                if (date == null) return
+                                field.onChange(format(date, 'dd/MM/yyyy'))
+                              }}
+                              disabled={(date) =>
+                                date > new Date() ||
+                                date < new Date('1900-01-01')
+                              }
+                              initialFocus
+                            />
+                          </PopoverContent>
+                        </Popover>
                         <FormMessage />
                       </FormItem>
                     )}

@@ -4,46 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4467a1d6-73df-479e-9cc5-8e8cf1a18f4d" name="Changes" comment="terminando modal escala">
-      <change afterPath="$PROJECT_DIR$/src/app/(private)/conta/unidade/page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/functions/isValidJson.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lib/GetRefreshToken.ts" afterDir="false" />
+    <list default="true" id="4467a1d6-73df-479e-9cc5-8e8cf1a18f4d" name="Changes" comment="arrumando middleware.ts">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/teste.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/teste.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/[sigla]/organizacao/[id_corporation]/detalhes/page.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/[sigla]/organizacao/[id_corporation]/nova-unidade/page.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/[sigla]/organizacao/[id_corporation]/page.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/[sigla]/organizacao/[id_corporation]/unidades/[id]/carros/page.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/[sigla]/organizacao/[id_corporation]/unidades/[id]/detalhes/page.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/[sigla]/organizacao/[id_corporation]/unidades/[id]/escalas/page.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/[sigla]/organizacao/[id_corporation]/unidades/[id]/membros/page.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/[sigla]/organizacao/[id_corporation]/unidades/[id]/page.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/[sigla]/organizacao/[id_corporation]/unidades/component/TabCarsDetails.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/[sigla]/components/TabCarsDetails.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/[sigla]/organizacao/[id_corporation]/unidades/component/TabEscalasDetails.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/[sigla]/components/TabEscalasDetails.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/[sigla]/organizacao/[id_corporation]/unidades/component/TabMembersDetails.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/[sigla]/components/TabMembersDetails.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/[sigla]/organizacao/[id_corporation]/unidades/component/TabUnidadeDetails.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/[sigla]/components/TabUnidadeDetails.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/[sigla]/organizacao/[id_corporation]/unidades/component/UnidadesForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/[sigla]/components/UnidadesForm.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/[sigla]/organizacao/[id_corporation]/unidades/page.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/[sigla]/organizacao/module/ModulesOrganizacao.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/[sigla]/organizacao/module/ModulesOrganizacao.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/[sigla]/organizacao/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/[sigla]/organizacao/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/[sigla]/unidades/[name_unidade]/carros/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/[sigla]/unidades/[name_unidade]/carros/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/[sigla]/unidades/[name_unidade]/detalhes/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/[sigla]/unidades/[name_unidade]/detalhes/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/[sigla]/unidades/[name_unidade]/escalas/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/[sigla]/unidades/[name_unidade]/escalas/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/[sigla]/unidades/[name_unidade]/membros/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/[sigla]/unidades/[name_unidade]/membros/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/[sigla]/unidades/[name_unidade]/nova-unidade/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/[sigla]/unidades/[name_unidade]/nova-unidade/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/[sigla]/unidades/[name_unidade]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/[sigla]/unidades/[name_unidade]/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/[sigla]/unidades/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/[sigla]/unidades/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(private)/conta/escala/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/conta/escala/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(private)/conta/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/conta/layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(private)/conta/minha-unidade/page.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/api/unidades/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/api/unidades/route.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Cards/CardListEscala.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Cards/CardListEscala.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/DataTables/DataTableUnidades/columnsUnidades.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DataTables/DataTableUnidades/columnsUnidades.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/[sigla]/components/TabUnidadeDetails.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/[sigla]/components/TabUnidadeDetails.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(private)/conta/component/EditProfileForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/conta/component/EditProfileForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(private)/conta/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/conta/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(public)/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(public)/layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(public)/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(public)/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/actions/saveUserAction.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/actions/saveUserAction.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/EditPhoto/EditPhoto.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/EditPhoto/EditPhoto.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Footer/FooterHomePage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Footer/FooterHomePage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Footer/FooterLayout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Footer/FooterLayout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Footer/FooterNormal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Footer/FooterNormal.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Headers/banner/BannerHome1.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Headers/banner/BannerHome1.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Nav/NavbarMain.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Nav/NavbarMain.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/functions/fetch.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/functions/fetch.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/GetAllUnidades.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/GetAllUnidades.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/GetMyUnidade.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/GetMyUnidade.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/middleware.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/middleware.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Sidebar/sidebar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Sidebar/sidebar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/schemas/EditUserSchema.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/schemas/EditUserSchema.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/types/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/types/index.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -260,7 +236,9 @@
       <workItem from="1720543016867" duration="1043000" />
       <workItem from="1720567083276" duration="5028000" />
       <workItem from="1720572137139" duration="1917000" />
-      <workItem from="1720612072621" duration="5834000" />
+      <workItem from="1720612072621" duration="12101000" />
+      <workItem from="1720637808437" duration="5053000" />
+      <workItem from="1720642906477" duration="4156000" />
     </task>
     <task id="LOCAL-00001" summary="refatorando com eslint">
       <option name="closed" value="true" />
@@ -526,7 +504,15 @@
       <option name="project" value="LOCAL" />
       <updated>1720454438907</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="arrumando middleware.ts">
+      <option name="closed" value="true" />
+      <created>1720618054840</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1720618054840</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -615,6 +601,7 @@
     <MESSAGE value="salvando deletando company" />
     <MESSAGE value="fazendo lista escala" />
     <MESSAGE value="terminando modal escala" />
-    <option name="LAST_COMMIT_MESSAGE" value="terminando modal escala" />
+    <MESSAGE value="arrumando middleware.ts" />
+    <option name="LAST_COMMIT_MESSAGE" value="arrumando middleware.ts" />
   </component>
 </project>

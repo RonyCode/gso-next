@@ -11,7 +11,7 @@ export default function PublicLayout({
   return (
     <>
       {children}
-      <FooterLayout />
+      <FooterLayout className="z-100" />
     </>
   )
 }

@@ -2,11 +2,10 @@
 
 import { revalidatePath } from 'next/cache'
 
-import { type ResultUserRegistered } from '../../../types/index'
-
 import { fetchWrapper } from '@/functions/fetch'
 import { type IEditUserSchema } from '@/schemas/EditUserSchema'
 import { type IRegisterUserSchema } from '@/schemas/RegisterUserSchema'
+import { type ResultUserRegistered } from '@/types/index'
 
 export async function saveUserAction(
   formData?: IEditUserSchema | IRegisterUserSchema,
@@ -15,6 +14,8 @@ export async function saveUserAction(
 
   try {
     if (formData != null) {
+      console.log(JSON.stringify(formData.data_nascimento, null, 2))
+
       return await fetchWrapper<ResultUserRegistered>(
         `${process.env.NEXT_PUBLIC_NEXT_URL}/api/cadastrar-usuario`,
         {

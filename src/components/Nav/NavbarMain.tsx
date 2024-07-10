@@ -171,7 +171,7 @@ export function NavbarMain({
       {...props}
       ref={myRef}
       className={
-        'fixed left-0 top-0 z-50 w-screen border-b bg-background/95 text-foreground/70 backdrop-blur  supports-[backdrop-filter]:bg-background/60 dark:text-foreground/70 ' +
+        'fixed left-0 top-0 z-10 w-screen border-b bg-background/95 text-foreground/70 backdrop-blur  supports-[backdrop-filter]:bg-background/60 dark:text-foreground/70 ' +
         `${
           !showNavBar &&
           ' text-[#e5e7eb]/60  dark:text-foreground/60 md:bg-background/10'
@@ -283,8 +283,8 @@ export function NavbarMain({
                   <Avatar className="h-10 w-10 lg:h-12 lg:w-12">
                     <AvatarImage
                       src={
-                        session?.image !== null
-                          ? session?.image
+                        session?.user.image !== null
+                          ? session?.user?.image
                           : '/images/avatar.svg'
                       }
                       alt="@shadcn"

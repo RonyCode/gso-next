@@ -5,7 +5,7 @@ export const EditUserSchema = z.object({
     message: 'nome inválido deve conter no mínimo 3 caracteres',
   }),
   id: z.string().min(1, { message: 'id inválido' }).nullable(),
-  image: z.string().min(1, { message: 'image inválida' }).nullable(),
+  image: z.string().optional().nullable(),
   cpf: z
     .string()
     .min(14, {
