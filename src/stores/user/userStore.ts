@@ -41,6 +41,7 @@ export const useUserStore = create<UserProps>()((set): UserProps => {
           address: '',
           number: '',
           zipcode: '',
+          zipCode: '',
           complement: '',
           district: '',
           city: '',

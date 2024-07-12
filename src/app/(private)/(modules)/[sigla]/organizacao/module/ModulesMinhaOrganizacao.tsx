@@ -31,7 +31,7 @@ const ModulesOrganizacao = ({
           <CardModule
             title="Ocorrências"
             subtitle="Ocorrências"
-            link="/ocorrencias"
+            link={`/${params?.sigla?.toLowerCase()}/ocorrencias`}
             icon={<IconSirene width={58} />}
           />{' '}
           <CardModule
@@ -82,13 +82,13 @@ const ModulesOrganizacao = ({
           <CardModule
             title="Privilégios"
             subtitle="Gerenciar privilégios"
-            link={'/(modules)/organizacao/save'}
+            link={`/${params?.sigla?.toLowerCase()}/privilegios`}
             icon={<IconPrivileges width={80} className="ml-1" />}
           />
           <CardModule
             title="Leis"
             subtitle="Acervo de leis "
-            link="/organizacao/leis"
+            link={`/${params?.sigla?.toLowerCase()}/leis`}
             icon={<IconOpenBook width={80} className="stroke-foreground/60" />}
           />{' '}
         </div>

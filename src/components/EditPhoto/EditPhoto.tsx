@@ -1,5 +1,4 @@
 'use client'
-import { useSession } from 'next-auth/react'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import React, { useState, useTransition } from 'react'
@@ -47,7 +46,6 @@ export const EditPhoto = ({
   ...props
 }: EditPhotoProps): JSX.Element => {
   const [pending, startTransition] = useTransition()
-  const { update, data: session } = useSession()
   const [previewUrl, setPreviewUrl] = useState<string | null>(null)
   const [file, setFile] = useState<File | null>(null)
   const [open, setOpen] = useState(false)
@@ -91,13 +89,12 @@ export const EditPhoto = ({
         setOpen(false)
         handleResetValues()
         updateFormExternal?.setValue('image', response.data.data)
-        const user = session?.user
-        await update({ ...user, image: response.data.data })
+
         router.refresh()
         toast({
           variant: 'success',
-          title: 'Ok! Foto atualizada! 🤯 ',
-          description: 'Tudo certo foto de usuário atualizado',
+          title: 'Ok! Arquivo carregado! 🚀 ',
+          description: 'Arquivo pronto para ser salvo.',
         })
       }
     })
@@ -231,7 +228,7 @@ export const EditPhoto = ({
                     className="float-end mt-4"
                     disabled={pending || file == null}
                   >
-                    Enviar Arquivo
+                    Upload
                   </Button>
                 )}{' '}
               </form>

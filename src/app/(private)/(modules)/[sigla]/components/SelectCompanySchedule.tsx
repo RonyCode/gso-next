@@ -1,9 +1,10 @@
 'use client'
 import { useSession } from 'next-auth/react'
-import React, { useTransition } from 'react'
+import React, { useEffect, useState, useTransition } from 'react'
 import { useForm } from 'react-hook-form'
 import { LuCheck, LuChevronsUpDown, LuLandmark } from 'react-icons/lu'
 
+import CalendarGso from '@/components/CalendarGso/CalendarGso'
 import LoadingPage from '@/components/Loadings/LoadingPage'
 import { cn } from '@/lib/utils'
 import {
@@ -11,6 +12,7 @@ import {
   SelectCorporationModuleSchema,
 } from '@/schemas/SelectCorpoationModuleSchema'
 import { type IUnidadeSchema } from '@/schemas/UnidadeSchema'
+import type { FunctionsMembers } from '@/types/index'
 import { Button } from '@/ui/button'
 import { Card } from '@/ui/card'
 import {
@@ -34,17 +36,29 @@ import { zodResolver } from '@hookform/resolvers/zod'
 
 type SelectCompanyModuleProps = React.HTMLAttributes<HTMLDivElement> & {
   unidades?: IUnidadeSchema[]
+  functions?: FunctionsMembers[]
   className?: string
 }
 
-export const SelectCompanyModule = ({
+export const SelectCompanySchedule = ({
   unidades,
+  functions,
   className,
   ...props
 }: SelectCompanyModuleProps) => {
-  const [pending, startTransition] = useTransition()
   const disabled = false
   const { data: session } = useSession()
+  const [dataUnidade, setDataUnidade] = useState<IUnidadeSchema>({})
+
+  useEffect(() => {
+    if (unidades !== undefined) {
+      unidades?.forEach((unidade) => {
+        if (unidade?.id?.toString() === session?.id_company?.toString()) {
+          setDataUnidade(unidade)
+        }
+      })
+    }
+  }, [session?.id_company, unidades])
 
   const form = useForm<ISelectCorporationModuleSchema>({
     mode: 'all',
@@ -56,9 +70,7 @@ export const SelectCompanyModule = ({
     },
   })
 
-  const handleSubmit = (): void => {
-    startTransition(async () => {})
-  }
+  console.log(dataUnidade)
   return (
     <>
       <Card x-chunk="dashboard-06-chunk-0" className="bg-background  p-6">
@@ -66,7 +78,6 @@ export const SelectCompanyModule = ({
           <Card className="flex w-full flex-col items-center justify-between gap-2 p-4 ">
             <h1 className="mr-auto pb-4 text-xl font-bold">Minhas unidades</h1>
             <Form {...form}>
-              <LoadingPage pending={pending} />
               <form className="w-full space-y-4">
                 <FormField
                   control={form.control}
@@ -90,10 +101,11 @@ export const SelectCompanyModule = ({
                                 disabled && 'text-muted-foreground',
                               )}
                             >
-                              {field?.value !== ''
+                              {dataUnidade !== null
                                 ? unidades?.find(
                                     (state) =>
-                                      state.id?.toString() === field.value,
+                                      dataUnidade?.id?.toString() ===
+                                      state?.id?.toString(),
                                   )?.name
                                 : 'Selecione uma unidade'}
                               <LuChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
@@ -112,10 +124,12 @@ export const SelectCompanyModule = ({
                                     value={state?.id?.toString()}
                                     key={index}
                                     onSelect={() => {
-                                      handleSubmit()
-                                      form.setValue(
-                                        'id_company',
-                                        state?.id?.toString(),
+                                      setDataUnidade(
+                                        unidades?.find(
+                                          (item) =>
+                                            item?.id?.toString() ===
+                                            state?.id?.toString(),
+                                        ) ?? {},
                                       )
                                     }}
                                   >
@@ -144,7 +158,10 @@ export const SelectCompanyModule = ({
           </Card>
         </div>
       </Card>
+      {dataUnidade !== null && (
+        <CalendarGso unidade={dataUnidade} functions={functions} />
+      )}
     </>
   )
 }
-export default SelectCompanyModule
+export default SelectCompanySchedule

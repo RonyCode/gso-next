@@ -5,22 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4467a1d6-73df-479e-9cc5-8e8cf1a18f4d" name="Changes" comment="arrumando middleware.ts">
+      <change afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/[sigla]/components/SelectCompanySchedule.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/[sigla]/escalas/SelectUnidades.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env.production" beforeDir="false" afterPath="$PROJECT_DIR$/.env.production" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/[sigla]/components/SelectCompanyModule.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/[sigla]/components/SelectCompanyModule.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/[sigla]/components/TabUnidadeDetails.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/[sigla]/components/TabUnidadeDetails.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/[sigla]/escalas/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/[sigla]/escalas/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/[sigla]/organizacao/module/ModulesMinhaOrganizacao.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/[sigla]/organizacao/module/ModulesMinhaOrganizacao.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/(private)/conta/component/EditProfileForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/conta/component/EditProfileForm.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/(private)/conta/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/conta/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(public)/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(public)/layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(public)/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(public)/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/actions/saveUserAction.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/actions/saveUserAction.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/EditPhoto/EditPhoto.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/EditPhoto/EditPhoto.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Footer/FooterHomePage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Footer/FooterHomePage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Footer/FooterLayout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Footer/FooterLayout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Footer/FooterNormal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Footer/FooterNormal.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Headers/banner/BannerHome1.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Headers/banner/BannerHome1.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Nav/NavbarMain.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Nav/NavbarMain.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Sidebar/sidebar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Sidebar/sidebar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/schemas/EditUserSchema.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/schemas/EditUserSchema.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/types/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/stores/user/userErrorRegisterStore.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/stores/user/userErrorRegisterStore.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/stores/user/userStore.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/stores/user/userStore.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,9 +29,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="TypeScript JSX File" />
         <option value="HTML File" />
         <option value="TypeScript File" />
+        <option value="TypeScript JSX File" />
       </list>
     </option>
   </component>
@@ -67,35 +66,35 @@
     <option name="showExcludedFiles" value="false" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;dev&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/rony/intranet&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.stylelint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
-    &quot;node.js.selected.package.stylelint&quot;: &quot;&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/home/rony/web/gso-next/node_modules/prettier&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/home/rony/web/gso-next/node_modules/typescript/lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "DefaultHtmlFileTemplate": "HTML File",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "dart.analysis.tool.window.visible": "false",
+    "git-widget-placeholder": "dev",
+    "last_opened_file_path": "/home/rony/web/gso-next/src/app/(private)/(modules)/[sigla]/components",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.standard": "true",
+    "node.js.detected.package.stylelint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.standard": "",
+    "node.js.selected.package.stylelint": "",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "prettierjs.PrettierConfiguration.Package": "/home/rony/web/gso-next/node_modules/prettier",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "ts.external.directory.path": "/home/rony/web/gso-next/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;mysql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
     ]
   }
-}</component>
+}]]></component>
   <component name="ReactDesignerToolWindowState">
     <option name="myId2Visible">
       <map>
@@ -107,11 +106,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/app/(private)/(modules)/[sigla]/components" />
       <recent name="$PROJECT_DIR$/src/app/api" />
       <recent name="$PROJECT_DIR$/src/lib" />
       <recent name="$PROJECT_DIR$/public/icons" />
       <recent name="$PROJECT_DIR$/src/schemas" />
-      <recent name="$PROJECT_DIR$/src/app/(private)/servicos/[sigla]/[name_unidade]" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/lib" />
@@ -239,6 +238,7 @@
       <workItem from="1720612072621" duration="12101000" />
       <workItem from="1720637808437" duration="5053000" />
       <workItem from="1720642906477" duration="4156000" />
+      <workItem from="1720782179508" duration="13877000" />
     </task>
     <task id="LOCAL-00001" summary="refatorando com eslint">
       <option name="closed" value="true" />

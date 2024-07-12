@@ -27,7 +27,7 @@ interface SidebarNavProps extends React.HTMLAttributes<HTMLElement> {
 export function Sidebar({ className, items }: SidebarNavProps): JSX.Element {
   const pathname = usePathname()
   const { data: session } = useSession()
-  const image = session?.user?.image
+  const image = session?.image
   const nameUser = GetFirstLettersNameUser()
   const windowDevice = GetWindowSize()
   return (
@@ -49,7 +49,7 @@ export function Sidebar({ className, items }: SidebarNavProps): JSX.Element {
               <AvatarImage
                 src={image !== null ? image : '/images/avatar.svg'}
                 alt="@shadcn"
-                className="cursor-pointer object-contain"
+                className="cursor-pointer object-cover"
               />
             </DialogTrigger>
             <DialogContent className={cn('min-w-[50vw]', className)}>

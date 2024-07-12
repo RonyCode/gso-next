@@ -5,7 +5,6 @@ import React, { useEffect, useTransition } from 'react'
 import { useForm } from 'react-hook-form'
 import {
   LuBuilding2,
-  LuCalendarDays,
   LuCheck,
   LuChevronsUpDown,
   LuClipboardEdit,

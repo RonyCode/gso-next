@@ -83,7 +83,7 @@ export const EditProfileForm = ({
   ...props
 }: UserRegisterFormProps): React.ReactElement => {
   const [pending, startTransition] = useTransition()
-  const { update } = useSession()
+  const { update, data: session } = useSession()
   const router = useRouter()
   let defaultValues = {}
 
@@ -104,7 +104,7 @@ export const EditProfileForm = ({
       cpf: maskCpfCnpj(user?.account?.cpf),
       data_nascimento: moment(user?.account?.birthday).format('DD/MM/yyyy'),
       telefone: maskPhone(user?.account?.phone),
-      cep: maskZipcode(user?.address?.zipCode),
+      cep: maskZipcode(user?.address?.zipCode ?? ''),
       endereco: user?.address?.address,
       complemento: user?.address?.complement,
       sigla: user?.address?.state,
@@ -141,7 +141,8 @@ export const EditProfileForm = ({
 
         await update({
           ...user,
-          name: user?.account?.name,
+          name: dataForm?.nome,
+          image: dataForm?.image,
         })
         router.refresh()
 
@@ -195,8 +196,6 @@ export const EditProfileForm = ({
     }
   }
 
-  console.log(form.getValues())
-  console.log(form.formState.errors)
   return (
     <>
       <div className="px-4 2xl:px-20">
@@ -222,6 +221,8 @@ export const EditProfileForm = ({
                   <Image
                     src={
                       form.getValues('image') ??
+                      session?.image ??
+                      user?.account?.image ??
                       process.env.NEXT_PUBLIC_API_GSO + '/public/images/img.png'
                     }
                     fill

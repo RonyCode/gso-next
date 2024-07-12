@@ -34,6 +34,7 @@ export const userErrorRegisterStore = create<UserStore>()((set): UserStore => {
         address: '',
         number: '',
         zipcode: '',
+        zipCode: '',
         complement: '',
         district: '',
         city: '',

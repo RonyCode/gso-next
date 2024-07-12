@@ -282,13 +282,9 @@ export function NavbarMain({
                 >
                   <Avatar className="h-10 w-10 lg:h-12 lg:w-12">
                     <AvatarImage
-                      src={
-                        session?.user.image !== null
-                          ? session?.user?.image
-                          : '/images/avatar.svg'
-                      }
+                      src={session?.image ?? '/images/avatar.svg'}
                       alt="@shadcn"
-                      style={{ objectFit: 'contain' }}
+                      style={{ objectFit: 'cover' }}
                     />
                     <AvatarFallback>{nameUser}</AvatarFallback>
                   </Avatar>
