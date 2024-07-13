@@ -3,28 +3,17 @@ import { getServerSession } from 'next-auth'
 import React from 'react'
 import { LuCalendarDays } from 'react-icons/lu'
 
-import SelectCompanyModule from '@/app/(private)/(modules)/[sigla]/components/SelectCompanyModule'
 import SelectCompanySchedule from '@/app/(private)/(modules)/[sigla]/components/SelectCompanySchedule'
-import SelectUnidades from '@/app/(private)/(modules)/[sigla]/escalas/SelectUnidades'
-import CalendarGso from '@/components/CalendarGso/CalendarGso'
 import { CardDefault } from '@/components/Cards/CardDefault'
 import { authOptions } from '@/lib/auth'
 import { getAllFunctions } from '@/lib/GetAllFunctions'
 import { getAllUnidades } from '@/lib/GetAllUnidades'
 import { getUnidadeById } from '@/lib/GetUnidadeById'
-import { Label } from '@/ui/label'
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/ui/select'
 
-// export const metadata: Metadata = {
-//   title: 'GSO | Escalas',
-//   description: 'Página de escalas do site GSO.',
-// }
+export const metadata: Metadata = {
+  title: 'GSO | Escalas',
+  description: 'Página de escalas do site GSO.',
+}
 
 const Escala = async () => {
   const session = await getServerSession(authOptions)
@@ -49,6 +38,7 @@ const Escala = async () => {
         <div>
           <SelectCompanySchedule
             unidades={unidades?.data}
+            unidade={data}
             functions={functions?.data}
           />
         </div>

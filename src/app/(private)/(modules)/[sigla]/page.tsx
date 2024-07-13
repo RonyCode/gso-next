@@ -1,3 +1,4 @@
+import { revalidatePath } from 'next/cache'
 import React from 'react'
 import { LuBuilding2 } from 'react-icons/lu'
 
@@ -23,7 +24,7 @@ const Page = async ({
     corporationFound.image =
       process.env.NEXT_PUBLIC_API_GSO + '/public/images/img.png'
   }
-
+  revalidatePath('/')
   return (
     <>
       <CardDefault

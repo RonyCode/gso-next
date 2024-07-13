@@ -91,32 +91,32 @@ export function NavbarMain({
   }> = [
     {
       title: 'Escala',
-      href: '/escalas',
+      href: `/${organizacaoFound.short_name_corp?.toLowerCase()}-${session?.id_corporation}/escalas`,
       description: 'Serviço de escalas dos membros de cada unidade',
     },
     {
       title: 'Ocorrência',
-      href: '/(modules)/ocorrencias',
+      href: `/${organizacaoFound.short_name_corp?.toLowerCase()}-${session?.id_corporation}/ocorrencias`,
       description: 'Serviço de ocorrência.',
     },
     {
       title: 'Estatísticas',
-      href: '/(modules)/#',
+      href: `/${organizacaoFound.short_name_corp?.toLowerCase()}-${session?.id_corporation}/estatisticas`,
       description: 'Serviço para obter estatísticas do sistema.',
     },
     {
       title: 'Aplicativo',
-      href: '/(modules)/#',
-      description: 'Visually or semantically separates content.',
+      href: `/${organizacaoFound.short_name_corp?.toLowerCase()}-${session?.id_corporation}/aplicativo`,
+      description: 'Novidades de nossos aplicativos',
     },
     {
-      title: 'Historico',
-      href: '/(modules)/#',
+      title: 'Histórico',
+      href: `/${organizacaoFound.short_name_corp?.toLowerCase()}-${session?.id_corporation}/historico`,
       description: 'Busque a ocorrência mais recente através do histórico .',
     },
     {
       title: 'Área do Gestor',
-      href: '/(modules)/#',
+      href: `/${organizacaoFound.short_name_corp?.toLowerCase()}-${session?.id_corporation}/gestor`,
       description:
         'Serviço para gerenciar o sistema de unidades, escalas e afins.',
     },

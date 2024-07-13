@@ -30,6 +30,8 @@ const CalendarGso = ({
   const [year, setYear] = useState(date.getFullYear())
   const [dayWeek, setDayWeek] = useState(date.getDay())
   useState(0)
+
+  console.log(unidade)
   const monthName = [
     { monthName: 'Janeiro', number: 0 },
     { monthName: 'Fevereiro', number: 1 },
@@ -241,7 +243,7 @@ const CalendarGso = ({
 
   return (
     <>
-      <div className="grid h-full w-full grid-cols-12  md:mt-0 ">
+      <div className="grid h-full w-full grid-cols-12  p-2 md:mt-0">
         {/* TABLE ESCALA */}
         <div
           className={`col-start-1  col-end-13 mt-32  h-full w-full rounded-[5px] bg-background p-2 md:col-end-7 md:mt-0`}
@@ -255,7 +257,7 @@ const CalendarGso = ({
         <div
           className={`col-start-1 col-end-13 row-end-2  w-full place-content-start rounded-[5px] px-2 md:col-start-7 md:row-start-1`}
         >
-          <div className="border-b-none flex justify-between border border-foreground/10 p-2">
+          <div className="border-b-none flex justify-between border border-foreground/10 p-1">
             <Button variant="default" onClick={handlePrevious}>
               <span className="hidden   md:block">Anterior</span>
               <span>
@@ -297,7 +299,7 @@ const CalendarGso = ({
 
           <div
             className="
-             grid grid-cols-7 overflow-scroll  rounded-[3px] md:h-[85%] md:overflow-hidden"
+             grid grid-cols-7 overflow-scroll  rounded-[3px] md:h-[90%] md:overflow-hidden"
           >
             {escalaObj.map((day, index) => (
               // MODAL TRIGGER
