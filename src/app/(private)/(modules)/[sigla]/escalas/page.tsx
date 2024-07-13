@@ -15,16 +15,12 @@ export const metadata: Metadata = {
   description: 'Página de escalas do site GSO.',
 }
 
-const Escala = async () => {
+const Escala = async ({ params }: { params: { sigla: string } }) => {
   const session = await getServerSession(authOptions)
   if (session === null) return <> </>
   // const { data } = await getAllUnidades(session?.id_corporation)
   const functions = await getAllFunctions()
-  const unidades = await getAllUnidades(session?.id_corporation)
-  const { data } = await getUnidadeById(
-    session?.id_corporation,
-    session?.id_company,
-  )
+  const unidades = await getAllUnidades(params?.sigla?.split('-')[1])
 
   return (
     <div>
@@ -38,7 +34,6 @@ const Escala = async () => {
         <div>
           <SelectCompanySchedule
             unidades={unidades?.data}
-            unidade={data}
             functions={functions?.data}
           />
         </div>

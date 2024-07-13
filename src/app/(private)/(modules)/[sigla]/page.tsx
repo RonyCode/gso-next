@@ -30,8 +30,14 @@ const Page = async ({
       <CardDefault
         title={corporationFound?.name}
         description={corporationFound?.city + ' - ' + corporationFound?.phone}
-        image={corporationFound?.image}
-        imageMobile={corporationFound?.image}
+        image={
+          corporationFound?.image ??
+          process.env.NEXT_PUBLIC_API_GSO + '/public/images/img.png'
+        }
+        imageMobile={
+          corporationFound?.image ??
+          process.env.NEXT_PUBLIC_API_GSO + '/public/images/img.png'
+        }
         icon={<LuBuilding2 size={28} />}
       >
         <ModulesMinhaOrganizacao params={params} />

@@ -9,8 +9,12 @@ const Ocorrencias = (): ReactNode => {
       <CardDefault
         title="Ocorrências"
         description="Ocorrencias do site GSO"
-        image="/images/ocorrencias.png"
-        imageMobile="/images/ocorrencias.png"
+        image={
+          process.env.NEXT_PUBLIC_API_GSO + '/public/images/ocorrencias.jpg'
+        }
+        imageMobile={
+          process.env.NEXT_PUBLIC_API_GSO + '/public/images/ocorrencias.jpg'
+        }
         className="w-screen"
         icon={<LuSiren size={28} />}
       >

@@ -1,5 +1,5 @@
 'use client'
-import React, { useState, useTransition } from 'react'
+import React, { useEffect, useState, useTransition } from 'react'
 import { LuCheck, LuChevronsUpDown } from 'react-icons/lu'
 
 import CalendarGso from '@/components/CalendarGso/CalendarGso'
@@ -22,20 +22,18 @@ import { Popover, PopoverContent, PopoverTrigger } from '@/ui/popover'
 
 type SelectCompanyModuleProps = React.HTMLAttributes<HTMLDivElement> & {
   unidades?: IUnidadeSchema[]
-  unidade?: IUnidadeSchema
   functions?: FunctionsMembers[]
   className?: string
 }
 
 export const SelectCompanySchedule = ({
   unidades,
-  unidade,
   functions,
   className,
   ...props
 }: SelectCompanyModuleProps): JSX.Element => {
   const disabled = false
-  const [dataUnidade, setDataUnidade] = useState<IUnidadeSchema>(unidade ?? {})
+  const [dataUnidade, setDataUnidade] = useState<IUnidadeSchema | null>(null)
   const [isPending, startTransition] = useTransition()
 
   const handleSelectUnidade = (unidadeOnSelect: IUnidadeSchema): void => {
@@ -55,7 +53,7 @@ export const SelectCompanySchedule = ({
       <Card x-chunk="dashboard-06-chunk-0" className="bg-background ">
         <LoadingPage pending={isPending} />
         <div className="flex items-center">
-          <Card className="flex w-full flex-col items-center justify-between gap-2 p-4 ">
+          <Card className="flex w-full flex-col items-center justify-between gap-2 p-2 ">
             <h1 className="mr-auto  text-xl font-bold">Minha unidade</h1>
 
             <Popover>

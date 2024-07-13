@@ -15,7 +15,12 @@ const NovaUnidade = async ({
       <CardDefault
         title={'Adicionar nova Unidade'}
         description={'Insira nova unidade de sua organização'}
-        icon={<IconBuildPlus width={58} className="ml-1" />}
+        icon={
+          <IconBuildPlus
+            width={58}
+            className="ml-1 fill-foreground/60 text-foreground/60"
+          />
+        }
       >
         <TabUnidadeDetails states={states} params={params} />
       </CardDefault>

@@ -115,7 +115,7 @@ export const TabUnidadeDetails = ({
       short_name_corp: params?.sigla ?? '',
       cnpj: maskCpfCnpj(unidade?.cnpj) ?? '',
       phone: maskPhone(unidade?.phone) ?? '',
-      image: unidade?.image ?? '',
+      image: unidade?.image ?? null,
       address: unidade?.companyAddress?.address ?? '',
       number: unidade?.companyAddress?.number ?? '',
       zipcode: maskZipcode(unidade?.companyAddress?.zipcode) ?? '',
@@ -334,7 +334,7 @@ export const TabUnidadeDetails = ({
               className="w-full space-y-4"
             >
               <div className="grid h-full w-full grid-cols-12 ">
-                <div className=" relative col-start-1 col-end-6   mr-4 hidden h-60 justify-center md:flex">
+                <div className=" relative col-start-1 col-end-6   mr-4 hidden h-60 justify-center rounded-[8px] border border-muted-foreground/10 md:flex">
                   <div className="absolute -left-3 -top-3">
                     <EditPhoto
                       disabled={disabled}
