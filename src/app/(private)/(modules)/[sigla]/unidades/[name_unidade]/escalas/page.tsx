@@ -22,7 +22,9 @@ const EscalasUnidade = async ({
   if (imgValided.status !== 200) {
     data.image = process.env.NEXT_PUBLIC_API_GSO + '/public/images/img.png'
   }
-
+  if (data?.id !== null) {
+    data.short_name_comp = data.name
+  }
   const functions = await getAllFunctions()
 
   return (

@@ -12,6 +12,7 @@ export const UnidadeSchema = z.object({
     .optional()
     .nullable(),
   short_name_corp: z.string().optional(),
+  short_name_comp: z.string().optional(),
   name: z
     .string()
     .min(1, { message: 'Nome inválido deve conter no mínimo 1 caracteres' })

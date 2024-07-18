@@ -33,9 +33,7 @@ export const ScheduleSchema = z.object({
   status: z.number().min(1, {
     message: 'status inválido deve conter no mínimo 1 caracteres',
   }),
-  date_creation: z.string().min(6, {
-    message: 'horário inválido deve conter no mínimo 1 caracteres',
-  }),
+  date_creation: z.date().optional(),
   obs: z
     .string()
     .min(1, {
@@ -44,6 +42,8 @@ export const ScheduleSchema = z.object({
     .max(400, {
       message: 'obs inválido deve conter no máximo 400 caracteres',
     }),
+  short_name_corp: z.string().optional(),
+  short_name_comp: z.string().optional(),
   cars: z
     .array(z.object({ car: CarSchema, members: z.array(MemberSchema) }))
     .optional(),

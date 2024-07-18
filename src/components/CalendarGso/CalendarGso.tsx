@@ -31,7 +31,6 @@ const CalendarGso = ({
   const [dayWeek, setDayWeek] = useState(date.getDay())
   useState(0)
 
-  console.log(unidade)
   const monthName = [
     { monthName: 'Janeiro', number: 0 },
     { monthName: 'Fevereiro', number: 1 },
@@ -237,9 +236,13 @@ const CalendarGso = ({
   const eventsList: IScheduleSchema[] = []
   escalaObj.forEach((item) => {
     item?.dayEvent?.forEach((event) => {
+      event.short_name_comp = unidade.short_name_comp
+      event.short_name_corp = unidade.short_name_corp
       eventsList.push(event)
     })
   })
+
+  console.log(eventsList)
 
   return (
     <>

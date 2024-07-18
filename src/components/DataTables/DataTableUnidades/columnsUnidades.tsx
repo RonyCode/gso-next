@@ -12,10 +12,43 @@ import { maskPhone } from '@/functions/masks/maskphone'
 import { type IUnidadeSchema } from '@/schemas/UnidadeSchema'
 import { type Unidade } from '@/types/index'
 import { Badge } from '@/ui/badge'
+import { Checkbox } from '@/ui/checkbox'
 import { Avatar, AvatarFallback, AvatarImage } from '@radix-ui/react-avatar'
 import { type ColumnDef } from '@tanstack/react-table'
 
 export const columnsUnidades: Array<ColumnDef<IUnidadeSchema>> = [
+  {
+    id: 'id',
+    header: ({ table }) => {
+      return (
+        <Checkbox
+          checked={
+            table.getIsAllPageRowsSelected() ||
+            (table.getIsSomePageRowsSelected() && 'indeterminate')
+          }
+          onCheckedChange={(value) => {
+            table.toggleAllPageRowsSelected(!!value)
+          }}
+          aria-label="Select all"
+          className="translate-y-[2px]"
+        />
+      )
+    },
+    cell: ({ row }) => {
+      return (
+        <Checkbox
+          checked={row.getIsSelected()}
+          onCheckedChange={(value) => {
+            row.toggleSelected(!!value)
+          }}
+          aria-label="Select row"
+          className="translate-y-[2px]"
+        />
+      )
+    },
+    enableSorting: false,
+    enableHiding: false,
+  },
   {
     accessorKey: 'name',
     header: ({ column }) => (
@@ -24,9 +57,9 @@ export const columnsUnidades: Array<ColumnDef<IUnidadeSchema>> = [
     cell: ({ row }) => {
       return (
         <>
-          <div className="flex w-64 items-center space-x-2 text-[0.8500rem] text-muted-foreground">
+          <div className="flex w-52 items-center space-x-2 text-[.750rem] text-muted-foreground  xl:text-[0.8500rem]">
             <Avatar
-              className="flex h-10 w-10 items-center justify-center  rounded-full shadow-sm shadow-foreground transition-all
+              className="flex h-12 w-12 items-center justify-center  rounded-full shadow-sm shadow-foreground transition-all
                         duration-300 hover:scale-[200%] md:h-14 md:w-14"
             >
               <AvatarImage
@@ -71,7 +104,7 @@ export const columnsUnidades: Array<ColumnDef<IUnidadeSchema>> = [
     ),
     cell: ({ row }) => {
       return (
-        <div className="flex w-full items-center">
+        <div className="flex w-48 items-center text-[.750rem] xl:text-[0.8500rem] ">
           <div className="mr-2 flex flex-col space-y-1 text-muted-foreground">
             <span>
               {row.original?.type} - {row.original?.name} -{' '}
@@ -102,10 +135,8 @@ export const columnsUnidades: Array<ColumnDef<IUnidadeSchema>> = [
       const $unidadeGerente: Unidade = row.getValue('manager_company')
 
       return (
-        <div className="flex w-full items-center">
-          <div className="mr-2 text-muted-foreground">
-            {$unidadeGerente?.name ?? 'N/A'}
-          </div>
+        <div className="flex w-20 items-center  text-[.750rem] xl:text-[0.8500rem] ">
+          <div className="mr-2">{$unidadeGerente?.name ?? 'N/A'}</div>
         </div>
       )
     },
@@ -127,7 +158,7 @@ export const columnsUnidades: Array<ColumnDef<IUnidadeSchema>> = [
       return (
         <Badge
           variant="secondary"
-          className="flex w-full items-center justify-center"
+          className="space-0 m-0  flex items-center justify-center p-0   text-[.750rem]  "
         >
           {type.label}
         </Badge>

@@ -1,5 +1,8 @@
 'use client'
 
+import Link from 'next/link'
+import { useParams } from 'next/navigation'
+
 import { Button } from '@/components/ui/button'
 import {
   DropdownMenu,
@@ -17,6 +20,7 @@ interface DataTableRowActionsProps<TData> {
 export function DataTableRowActions<TData>({
   row,
 }: DataTableRowActionsProps<TData>): JSX.Element {
+  const params: { sigla: string; name_unidade: string } = useParams()
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -30,7 +34,12 @@ export function DataTableRowActions<TData>({
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-[160px]">
-        <DropdownMenuItem>Editar</DropdownMenuItem>
+        {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
+        <Link // @ts-expect-error
+          href={`/${params.sigla}/unidades/${row.original?.short_name_comp?.toLowerCase()}-${row.original?.id_company}/escalas/salvar?id_schedule=${row.original?.id}`}
+        >
+          <DropdownMenuItem>Editar</DropdownMenuItem>
+        </Link>
       </DropdownMenuContent>
     </DropdownMenu>
   )

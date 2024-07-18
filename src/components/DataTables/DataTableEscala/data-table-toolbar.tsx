@@ -1,6 +1,6 @@
 'use client'
 
-import { labels, statuses, types } from './data/data'
+import { labels, statuses } from './data/data'
 
 import { DataTableFacetedFilter } from '@/components/DataTables/DataTableEscala/data-table-faceted-filter'
 import { DataTableViewOptions } from '@/components/DataTables/DataTableEscala/data-table-view-options'
@@ -37,15 +37,6 @@ export function DataTableToolbar<TData>({
               column={table.getColumn('status')}
               title="Situação"
               options={statuses}
-            />
-          )}
-        </div>
-        <div>
-          {table.getColumn('type') != null && (
-            <DataTableFacetedFilter
-              column={table.getColumn('type')}
-              title="Tipo"
-              options={types}
             />
           )}
         </div>

@@ -1,78 +1,65 @@
 'use client'
-
-// import { Checkbox } from '@/components/ui/checkbox'
-
 import { labels, statuses } from './data/data'
 
 import { DataTableColumnHeader } from '@/components/DataTables/DataTableEscala/data-table-column-header'
 import { DataTableRowActions } from '@/components/DataTables/DataTableEscala/data-table-row-actions'
 import { Badge } from '@/components/ui/badge'
 import { type IScheduleSchema } from '@/schemas/ScheduleSchema'
+import { Checkbox } from '@/ui/checkbox'
 import { type ColumnDef } from '@tanstack/react-table'
 import moment from 'moment'
 
 export const columnsEscala: Array<ColumnDef<IScheduleSchema>> = [
-  // {
-  //   id: 'select',
-  //   header: ({ table }) => {
-  //     return (
-  //       <Checkbox
-  //         checked={
-  //           table.getIsAllPageRowsSelected() ||
-  //           (table.getIsSomePageRowsSelected() && 'indeterminate')
-  //         }
-  //         onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
-  //         aria-label="Select all"
-  //         className="translate-y-[2px]"
-  //       />
-  //     )
-  //   },
-  //   cell: ({ row }) => {
-  //     return (
-  //       <Checkbox
-  //         checked={row.getIsSelected()}
-  //         onCheckedChange={(value) => row.toggleSelected(!!value)}
-  //         aria-label="Select row"
-  //         className="translate-y-[2px]"
-  //       />
-  //     )
-  //   },
-  //   enableSorting: false,
-  //   enableHiding: false,
-  // },
-
   {
-    accessorKey: 'date_creation',
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Data Inicio" />
-    ),
-    cell: ({ row }) => {
-      const hour = row?.original?.hour_start.split(':').slice(0, 1).join(':')
-
+    id: 'id',
+    header: ({ table }) => {
       return (
-        <div className="flex space-x-2 text-[.8rem] ">
-          <span className="max-w-96 truncate font-medium">
-            {moment(row.getValue('date_creation'))
-              .set({
-                hour: +hour ?? 0,
-                minute: 0,
-                second: 0,
-                millisecond: 0,
-              })
-              .format('DD/MM/yyyy HH:mm')}
-          </span>
-        </div>
+        <Checkbox
+          checked={
+            table.getIsAllPageRowsSelected() ||
+            (table.getIsSomePageRowsSelected() && 'indeterminate')
+          }
+          onCheckedChange={(value) => {
+            table.toggleAllPageRowsSelected(!!value)
+          }}
+          aria-label="Select all"
+          className="translate-y-[2px]"
+        />
       )
     },
+    cell: ({ row }) => {
+      return (
+        <Checkbox
+          checked={row.getIsSelected()}
+          onCheckedChange={(value) => {
+            row.toggleSelected(!!value)
+          }}
+          aria-label="Select row"
+          className="translate-y-[2px]"
+        />
+      )
+    },
+    enableSorting: false,
+    enableHiding: false,
   },
 
   {
     accessorKey: 'date_creation',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Data Fim" />
+      <div className="flex gap-14">
+        <DataTableColumnHeader column={column} title="Data Inicio" />
+        <DataTableColumnHeader column={column} title="Data Fim" />
+      </div>
     ),
     cell: ({ row }) => {
-      const hour = row?.original?.hour_start.split(':').slice(0, 1).join(':')
+      const hourStart = row?.original?.hour_start
+        .split(':')
+        .slice(0, 1)
+        .join(':')
+      const hourFinal = row?.original?.hour_start
+        .split(':')
+        .slice(0, 1)
+        .join(':')
       const qtdHour = row?.original?.type === 2 ? 12 : 24
 
       return (
@@ -80,7 +67,19 @@ export const columnsEscala: Array<ColumnDef<IScheduleSchema>> = [
           <span className="max-w-96 truncate font-medium">
             {moment(row.getValue('date_creation'))
               .set({
-                hour: +hour ?? 0,
+                hour: +hourStart ?? 0,
+                minute: 0,
+                second: 0,
+                millisecond: 0,
+              })
+              .format('DD/MM/yyyy HH:mm')}
+          </span>
+          <p></p>
+          <p></p> |<p></p>
+          <span className="max-w-96 truncate font-medium">
+            {moment(row.getValue('date_creation'))
+              .set({
+                hour: +hourFinal ?? 0,
                 minute: 0,
                 second: 0,
                 millisecond: 0,

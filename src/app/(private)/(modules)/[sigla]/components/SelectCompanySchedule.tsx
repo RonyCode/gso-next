@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect, useState, useTransition } from 'react'
+import React, { useState, useTransition } from 'react'
 import { LuCheck, LuChevronsUpDown } from 'react-icons/lu'
 
 import CalendarGso from '@/components/CalendarGso/CalendarGso'
@@ -43,6 +43,9 @@ export const SelectCompanySchedule = ({
           unidadeOnSelect.id_corporation?.toString() ?? '',
           unidadeOnSelect?.id?.toString() ?? '',
         )
+        data.short_name_comp = unidades?.find(
+          (uniItem) => uniItem.id === unidadeOnSelect.id,
+        )?.name
         setDataUnidade(data)
       }
     })

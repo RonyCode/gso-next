@@ -8,7 +8,6 @@ import { CardDefault } from '@/components/Cards/CardDefault'
 import { authOptions } from '@/lib/auth'
 import { getAllFunctions } from '@/lib/GetAllFunctions'
 import { getAllUnidades } from '@/lib/GetAllUnidades'
-import { getUnidadeById } from '@/lib/GetUnidadeById'
 
 export const metadata: Metadata = {
   title: 'GSO | Escalas',
@@ -27,8 +26,10 @@ const Escala = async ({ params }: { params: { sigla: string } }) => {
       <CardDefault
         title="Escalas"
         description="Serviço de escala"
-        image="https://apexpublicschool.com/assets/images/calender.jpg"
-        imageMobile="https://apexpublicschool.com/assets/images/calender.jpg"
+        image={process.env.NEXT_PUBLIC_API_GSO + '/public/images/calendar.jpg'}
+        imageMobile={
+          process.env.NEXT_PUBLIC_API_GSO + '/public/images/calendar.jpg'
+        }
         icon={<LuCalendarDays size={28} />}
       >
         <div>

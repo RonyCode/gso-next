@@ -3,15 +3,15 @@
 import { revalidateTag } from 'next/cache'
 
 import { fetchWrapper } from '@/functions/fetch'
-import { type IUnidadeSchema } from '@/schemas/UnidadeSchema'
+import { type IScheduleSchema } from '@/schemas/ScheduleSchema'
 import { type ResponseApi } from '@/types/index'
 
 export async function saveUnidadeAction(
-  formData?: Partial<IUnidadeSchema>,
-): Promise<ResponseApi<Partial<IUnidadeSchema>>> {
+  formData?: Partial<IScheduleSchema>,
+): Promise<ResponseApi<Partial<IScheduleSchema>>> {
   revalidateTag('unidadesFetch')
 
-  return await fetchWrapper<ResponseApi<Partial<IUnidadeSchema>>>(
+  return await fetchWrapper<ResponseApi<Partial<IScheduleSchema>>>(
     `${process.env.NEXT_PUBLIC_NEXT_URL}/api/unidade-save`,
     {
       method: 'POST',
