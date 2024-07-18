@@ -120,7 +120,10 @@ const CalendarGso = ({
     if (event == null) return []
     const result: IScheduleSchema[] = []
     event?.companySchedules?.forEach((itemEvento) => {
-      if (itemEvento?.schedule?.date_creation !== null && itemEvento != null) {
+      if (
+        itemEvento?.schedule?.date_creation !== null &&
+        itemEvento?.schedule?.date_creation !== undefined
+      ) {
         if (
           new Date(itemEvento?.schedule?.date_creation).getDate() === day &&
           new Date(itemEvento?.schedule?.date_creation).getMonth() === month &&
@@ -241,8 +244,6 @@ const CalendarGso = ({
       eventsList.push(event)
     })
   })
-
-  console.log(eventsList)
 
   return (
     <>

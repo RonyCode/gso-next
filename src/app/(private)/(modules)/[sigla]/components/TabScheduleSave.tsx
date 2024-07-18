@@ -23,6 +23,8 @@ import {
 import { saveUnidadeAction } from '@/app/(private)/(modules)/[sigla]/organizacao/actions/saveUnidadeAction'
 import LoadingPage from '@/components/Loadings/LoadingPage'
 import { cn } from '@/lib/utils'
+import { type ICarSchema } from '@/schemas/CarsSchema'
+import { IMemberSchema } from '@/schemas/MemberSchema'
 import { type IScheduleSchema, ScheduleSchema } from '@/schemas/ScheduleSchema'
 import { type IUnidadeSchema } from '@/schemas/UnidadeSchema'
 import type { AddressProps } from '@/types/index'
@@ -65,7 +67,7 @@ import { ptBR } from 'date-fns/locale/pt-BR'
 
 type UserRegisterFormProps = React.HTMLAttributes<HTMLDivElement> & {
   unidade?: IUnidadeSchema | null
-  schedule?: { schedule: IScheduleSchema }
+  schedule?: { schedule: IScheduleSchema; cars: ICarSchema[] }
   className?: string
   states?: AddressProps[] | null
   params?: { sigla: string; name_unidade: string }
@@ -101,7 +103,7 @@ export const TabScheduleSave = ({
       obs: schedule?.schedule?.obs ?? '',
       short_name_corp: schedule?.schedule?.short_name_corp ?? '',
       short_name_comp: schedule?.schedule?.short_name_comp ?? '',
-      cars: schedule?.schedule?.cars ?? [],
+      cars: schedule?.cars ?? ([] as ICarSchema[]),
       excluded: schedule?.schedule?.excluded ?? 0,
     },
   })
@@ -187,11 +189,6 @@ export const TabScheduleSave = ({
     { id: 2, name: 'EXTRA' },
     { id: 3, name: 'ORDEM SERVIÇO' },
   ]
-
-  if (schedule?.schedule?.id !== null && schedule?.schedule?.id !== undefined) {
-    const index = Number(schedule.schedule.id) ?? 0
-    console.log(schedule.schedule)
-  }
 
   return (
     <>
@@ -671,11 +668,14 @@ export const TabScheduleSave = ({
                                   disabled && 'text-muted-foreground',
                                 )}
                               >
-                                {schedule?.schedule?.cars?.find(
-                                  (car) =>
-                                    car?.car?.id?.toString() ===
-                                    field?.value?.toString(),
-                                )?.car.prefix ?? 'Selecione um veículo'}
+                                {schedule?.cars?.find((car) => {
+                                  console.log(field.value)
+                                  return field?.value.find(
+                                    (value) =>
+                                      value?.car?.id?.toString() ===
+                                      car?.car?.id?.toString(),
+                                  )
+                                })?.car?.prefix ?? 'Selecione um veículo'}
                                 <LuChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                               </Button>
                             </FormControl>
@@ -686,30 +686,48 @@ export const TabScheduleSave = ({
                               <CommandEmpty>Tipo não encontrado.</CommandEmpty>
                               <CommandGroup>
                                 <CommandList>
-                                  {schedule?.schedule?.cars?.map(
-                                    ({ car }, index) => (
-                                      <CommandItem
-                                        disabled={disabled}
-                                        value={car.id}
-                                        key={index}
-                                        onSelect={() => {
-                                          car != null &&
-                                            form.setValue('cars', car.id)
-                                        }}
-                                      >
-                                        <LuCheck
-                                          className={cn(
-                                            'mr-2 h-4 w-4',
-                                            car?.id?.toString() ===
-                                              field?.value?.toString()
-                                              ? 'opacity-100'
-                                              : 'opacity-0',
-                                          )}
-                                        />
-                                        {car?.prefix}
-                                      </CommandItem>
-                                    ),
-                                  )}
+                                  {schedule?.cars?.map((car, index) => (
+                                    <CommandItem
+                                      disabled={disabled}
+                                      value={car?.car?.id}
+                                      key={index}
+                                      onSelect={() => {
+                                        car != null &&
+                                          form.setValue('cars', [
+                                            {
+                                              car: {
+                                                id: car.id,
+                                                prefix: car.prefix,
+                                                plate: car.plate,
+                                                color: car.color,
+                                                type: car.type,
+                                                model: car.model,
+                                                local: car.local,
+                                                image: car.image,
+                                                id_company: car.id_company,
+                                                status: car.status,
+                                                condition_car:
+                                                  car.condition_car,
+                                                excluded: car.excluded,
+                                              },
+                                            },
+                                          ])
+                                      }}
+                                    >
+                                      <LuCheck
+                                        className={cn(
+                                          'mr-2 h-4 w-4',
+                                          field?.value?.find(
+                                            (value) =>
+                                              value?.car?.id === car?.car?.id,
+                                          ) !== undefined
+                                            ? 'opacity-100'
+                                            : 'opacity-0',
+                                        )}
+                                      />
+                                      {car?.car?.prefix}
+                                    </CommandItem>
+                                  ))}
                                 </CommandList>
                               </CommandGroup>
                             </Command>

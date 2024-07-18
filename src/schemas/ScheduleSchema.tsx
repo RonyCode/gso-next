@@ -45,7 +45,9 @@ export const ScheduleSchema = z.object({
   short_name_corp: z.string().optional(),
   short_name_comp: z.string().optional(),
   cars: z
-    .array(z.object({ car: CarSchema, members: z.array(MemberSchema) }))
+    .array(
+      z.object({ car: CarSchema, members: z.array(MemberSchema).optional() }),
+    )
     .optional(),
   excluded: z.number().optional(),
 })
