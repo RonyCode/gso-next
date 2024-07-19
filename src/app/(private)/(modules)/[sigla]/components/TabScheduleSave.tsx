@@ -82,8 +82,12 @@ export const TabScheduleSave = ({
 }: UserRegisterFormProps): JSX.Element => {
   const [pending, startTransition] = useTransition()
   const [disabled, setDisabled] = React.useState(true)
+  const [carSchedule, setCarSchedule] = React.useState<ICarSchema[]>(
+    schedule?.cars ?? ([] as ICarSchema[]),
+  )
   const router = useRouter()
 
+  console.log(carSchedule)
   const form = useForm<IScheduleSchema>({
     mode: 'all',
     criteriaMode: 'all',
@@ -668,14 +672,13 @@ export const TabScheduleSave = ({
                                   disabled && 'text-muted-foreground',
                                 )}
                               >
-                                {schedule?.cars?.find((car) => {
-                                  console.log(field.value)
-                                  return field?.value.find(
+                                {unidade?.companyCars?.find((car) => {
+                                  return field?.value?.find(
                                     (value) =>
                                       value?.car?.id?.toString() ===
-                                      car?.car?.id?.toString(),
+                                      car?.id?.toString(),
                                   )
-                                })?.car?.prefix ?? 'Selecione um veículo'}
+                                })?.prefix ?? 'Selecione um veículo'}
                                 <LuChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                               </Button>
                             </FormControl>
@@ -686,32 +689,17 @@ export const TabScheduleSave = ({
                               <CommandEmpty>Tipo não encontrado.</CommandEmpty>
                               <CommandGroup>
                                 <CommandList>
-                                  {schedule?.cars?.map((car, index) => (
+                                  {unidade?.companyCars?.map((car, index) => (
                                     <CommandItem
                                       disabled={disabled}
-                                      value={car?.car?.id}
+                                      value={car?.id?.toString()}
                                       key={index}
                                       onSelect={() => {
                                         car != null &&
-                                          form.setValue('cars', [
-                                            {
-                                              car: {
-                                                id: car.id,
-                                                prefix: car.prefix,
-                                                plate: car.plate,
-                                                color: car.color,
-                                                type: car.type,
-                                                model: car.model,
-                                                local: car.local,
-                                                image: car.image,
-                                                id_company: car.id_company,
-                                                status: car.status,
-                                                condition_car:
-                                                  car.condition_car,
-                                                excluded: car.excluded,
-                                              },
-                                            },
-                                          ])
+                                          setCarSchedule((pre) => [...pre, car])
+                                        schedule != null &&
+                                          form.getValues('cars')?.push({ car }) // schedule)
+                                        console.log(form.getValues('cars'))
                                       }}
                                     >
                                       <LuCheck
@@ -719,13 +707,13 @@ export const TabScheduleSave = ({
                                           'mr-2 h-4 w-4',
                                           field?.value?.find(
                                             (value) =>
-                                              value?.car?.id === car?.car?.id,
-                                          ) !== undefined
+                                              value?.car?.id === car?.id,
+                                          )?.car?.id === car?.id
                                             ? 'opacity-100'
                                             : 'opacity-0',
                                         )}
                                       />
-                                      {car?.car?.prefix}
+                                      {car?.prefix}
                                     </CommandItem>
                                   ))}
                                 </CommandList>
