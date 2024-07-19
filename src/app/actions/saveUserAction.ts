@@ -14,8 +14,6 @@ export async function saveUserAction(
 
   try {
     if (formData != null) {
-      console.log(JSON.stringify(formData.data_nascimento, null, 2))
-
       return await fetchWrapper<ResultUserRegistered>(
         `${process.env.NEXT_PUBLIC_NEXT_URL}/api/cadastrar-usuario`,
         {

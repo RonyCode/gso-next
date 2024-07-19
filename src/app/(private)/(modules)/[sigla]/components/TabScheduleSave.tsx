@@ -86,8 +86,6 @@ export const TabScheduleSave = ({
     schedule?.cars ?? ([] as ICarSchema[]),
   )
   const router = useRouter()
-
-  console.log(carSchedule)
   const form = useForm<IScheduleSchema>({
     mode: 'all',
     criteriaMode: 'all',
@@ -640,16 +638,6 @@ export const TabScheduleSave = ({
             <div className="flex w-full gap-4  ">
               <div className="flex w-full flex-col items-center justify-between rounded-sm border border-primary/30 p-2">
                 <div className="flex w-full items-center justify-between rounded-sm border border-primary/30 p-2">
-                  <label htmlFor="" className="flex items-center gap-2">
-                    <LuCar size={20} />
-                    Viaturas
-                  </label>
-                  <Button type="button" className="gap-1">
-                    <LuCar size={20} />
-                    <LuPlusCircle size={20} />
-                  </Button>
-                </div>
-                <div className="flex w-full items-center justify-between rounded-sm border border-primary/30 p-2">
                   <FormField
                     control={form.control}
                     name="cars"
@@ -659,7 +647,8 @@ export const TabScheduleSave = ({
                           htmlFor="cars"
                           className="flex items-center gap-1 text-muted-foreground"
                         >
-                          <LuClock1 /> Veículo
+                          <LuCar size={20} />
+                          Viaturas{' '}
                         </FormLabel>{' '}
                         <Popover>
                           <PopoverTrigger asChild>
@@ -696,16 +685,18 @@ export const TabScheduleSave = ({
                                       key={index}
                                       onSelect={() => {
                                         car != null &&
-                                          setCarSchedule((pre) => [...pre, car])
-                                        schedule != null &&
-                                          form.getValues('cars')?.push({ car }) // schedule)
-                                        console.log(form.getValues('cars'))
+                                          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                                          // @ts-expect-error
+                                          setCarSchedule((prev) => [
+                                            ...prev,
+                                            { car },
+                                          ])
                                       }}
                                     >
                                       <LuCheck
                                         className={cn(
                                           'mr-2 h-4 w-4',
-                                          field?.value?.find(
+                                          carSchedule?.find(
                                             (value) =>
                                               value?.car?.id === car?.id,
                                           )?.car?.id === car?.id
@@ -726,6 +717,23 @@ export const TabScheduleSave = ({
                     )}
                   />
                 </div>
+                <Button
+                  onClick={() => {
+                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                    // @ts-expect-error
+                    schedule != null && form.setValue('cars', carSchedule)
+                  }}
+                  type="button"
+                  className="gap-1"
+                >
+                  <LuCar size={20} />
+                  <LuPlusCircle size={20} />
+                </Button>
+                {form
+                  .getValues('cars')
+                  ?.map(({ car }, index) => (
+                    <div key={index}>{car.prefix}</div>
+                  ))}
               </div>
               <div className="flex w-full items-center justify-between rounded-sm border border-primary/30 p-2">
                 <label htmlFor="" className="flex items-center gap-2">
