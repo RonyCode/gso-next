@@ -210,7 +210,7 @@ export const EditProfileForm = ({
               className="w-full space-y-4"
             >
               <div className="flex w-full flex-col  gap-2 md:flex-row">
-                <div className=" relative  mr-4 hidden  h-60 w-6/12 justify-center md:flex">
+                <div className=" relative  mr-4  h-60 w-full justify-center md:flex md:w-6/12">
                   <div className="absolute -left-3 -top-3 z-100">
                     <EditPhoto
                       disabled={false}

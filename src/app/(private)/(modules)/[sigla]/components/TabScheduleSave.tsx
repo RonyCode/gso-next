@@ -11,12 +11,12 @@ import {
   LuClipboardEdit,
   LuClock1,
   LuLoader2,
+  LuMinusCircle,
   LuMousePointerClick,
-  LuPlus,
   LuPlusCircle,
+  LuTrash,
   LuTrash2,
   LuUser,
-  LuUserPlus,
   LuUsers,
 } from 'react-icons/lu'
 
@@ -24,10 +24,16 @@ import { saveUnidadeAction } from '@/app/(private)/(modules)/[sigla]/organizacao
 import LoadingPage from '@/components/Loadings/LoadingPage'
 import { cn } from '@/lib/utils'
 import { type ICarSchema } from '@/schemas/CarsSchema'
-import { IMemberSchema } from '@/schemas/MemberSchema'
 import { type IScheduleSchema, ScheduleSchema } from '@/schemas/ScheduleSchema'
 import { type IUnidadeSchema } from '@/schemas/UnidadeSchema'
 import type { AddressProps } from '@/types/index'
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@/ui/accordion'
+import { Avatar, AvatarImage } from '@/ui/avatar'
 import { Button, buttonVariants } from '@/ui/button'
 import { Calendar } from '@/ui/calendar'
 import { Card } from '@/ui/card'
@@ -58,7 +64,9 @@ import {
   FormMessage,
 } from '@/ui/form'
 import { Input } from '@/ui/input'
+import { Label } from '@/ui/label'
 import { Popover, PopoverContent, PopoverTrigger } from '@/ui/popover'
+import { Separator } from '@/ui/separator'
 import { toast } from '@/ui/use-toast'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { CalendarIcon } from '@radix-ui/react-icons'
@@ -192,6 +200,12 @@ export const TabScheduleSave = ({
     { id: 3, name: 'ORDEM SERVIÇO' },
   ]
 
+  const veiculoUnidade = unidade?.companyCars?.find((car) => {
+    return form
+      ?.getValues('cars')
+      ?.find((value) => value?.car?.id?.toString() === car?.id?.toString())
+  })
+
   return (
     <>
       <Card
@@ -199,7 +213,7 @@ export const TabScheduleSave = ({
         className={cn(' ', className)}
         {...props}
       >
-        <div className="flex items-center">
+        <div className="flex items-center ">
           <div className="flex w-full items-center justify-between p-6">
             <h1 className="ml-4 mr-auto text-xl font-bold">Detalhes</h1>
             {schedule?.schedule?.id != null && (
@@ -282,9 +296,9 @@ export const TabScheduleSave = ({
             onSubmit={form.handleSubmit(async (data) => {
               handleSubmit(data)
             })}
-            className="w-full space-y-4 px-6"
+            className="w-full md:space-y-4  "
           >
-            <div className="flex w-full gap-4">
+            <div className="flex w-full flex-col gap-4 px-4 md:flex-row  md:px-6">
               <div className="h-full w-full  ">
                 <FormField
                   control={form.control}
@@ -307,6 +321,83 @@ export const TabScheduleSave = ({
                           value={unidade?.name}
                         />
                       </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+              <div className="h-full w-full  ">
+                <FormField
+                  control={form.control}
+                  name="id_member_creator"
+                  render={({ field }) => (
+                    <FormItem className="flex w-full flex-col">
+                      <FormLabel
+                        htmlFor="id_member_creator"
+                        className="flex items-center gap-1 text-muted-foreground"
+                      >
+                        <LuMousePointerClick />
+                        CMT Socorro
+                      </FormLabel>{' '}
+                      <Popover>
+                        <PopoverTrigger asChild>
+                          <FormControl>
+                            <Button
+                              variant="outline"
+                              role="combobox"
+                              className={cn(
+                                'w-full justify-between',
+                                disabled && 'text-muted-foreground',
+                              )}
+                            >
+                              {field.value !== null
+                                ? unidade?.companyMembers?.find(
+                                    (member) =>
+                                      member?.id?.toString() ===
+                                      field.value?.toString(),
+                                  )?.name
+                                : 'Selecione um membro'}
+                              <LuChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                            </Button>
+                          </FormControl>
+                        </PopoverTrigger>
+                        <PopoverContent className="min-w-[200px] p-0">
+                          <Command>
+                            <CommandInput placeholder="procurando unidade ..." />
+                            <CommandEmpty>Membro não encontrado.</CommandEmpty>
+                            <CommandGroup>
+                              <CommandList>
+                                {unidade?.companyMembers?.map(
+                                  (member, index) => (
+                                    <CommandItem
+                                      disabled={disabled}
+                                      value={String(member?.id)}
+                                      key={index}
+                                      onSelect={() => {
+                                        member?.id != null &&
+                                          form.setValue(
+                                            'id_member_creator',
+                                            member?.id,
+                                          )
+                                      }}
+                                    >
+                                      <LuCheck
+                                        className={cn(
+                                          'mr-2 h-4 w-4',
+                                          member?.id === field?.value
+                                            ? 'opacity-100'
+                                            : 'opacity-0',
+                                        )}
+                                      />
+                                      {member?.name}
+                                    </CommandItem>
+                                  ),
+                                )}
+                              </CommandList>
+                            </CommandGroup>
+                          </Command>
+                        </PopoverContent>
+                      </Popover>
                       <FormMessage />
                     </FormItem>
                   )}
@@ -389,8 +480,85 @@ export const TabScheduleSave = ({
                   )}
                 />
               </div>
+              <div className="h-full w-full  ">
+                <FormField
+                  control={form.control}
+                  name="id_member_creator"
+                  render={({ field }) => (
+                    <FormItem className="flex w-full flex-col">
+                      <FormLabel
+                        htmlFor="id_member_creator"
+                        className="flex items-center gap-1 text-muted-foreground"
+                      >
+                        <LuMousePointerClick />
+                        Comunicação
+                      </FormLabel>{' '}
+                      <Popover>
+                        <PopoverTrigger asChild>
+                          <FormControl>
+                            <Button
+                              variant="outline"
+                              role="combobox"
+                              className={cn(
+                                'w-full justify-between',
+                                disabled && 'text-muted-foreground',
+                              )}
+                            >
+                              {field.value !== null
+                                ? unidade?.companyMembers?.find(
+                                    (member) =>
+                                      member?.id?.toString() ===
+                                      field.value?.toString(),
+                                  )?.name
+                                : 'Selecione um membro'}
+                              <LuChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                            </Button>
+                          </FormControl>
+                        </PopoverTrigger>
+                        <PopoverContent className="min-w-[200px] p-0">
+                          <Command>
+                            <CommandInput placeholder="procurando unidade ..." />
+                            <CommandEmpty>Membro não encontrado.</CommandEmpty>
+                            <CommandGroup>
+                              <CommandList>
+                                {unidade?.companyMembers?.map(
+                                  (member, index) => (
+                                    <CommandItem
+                                      disabled={disabled}
+                                      value={String(member?.id)}
+                                      key={index}
+                                      onSelect={() => {
+                                        member?.id != null &&
+                                          form.setValue(
+                                            'id_member_creator',
+                                            member?.id,
+                                          )
+                                      }}
+                                    >
+                                      <LuCheck
+                                        className={cn(
+                                          'mr-2 h-4 w-4',
+                                          member?.id === field?.value
+                                            ? 'opacity-100'
+                                            : 'opacity-0',
+                                        )}
+                                      />
+                                      {member?.name}
+                                    </CommandItem>
+                                  ),
+                                )}
+                              </CommandList>
+                            </CommandGroup>
+                          </Command>
+                        </PopoverContent>
+                      </Popover>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
             </div>
-            <div className="flex w-full gap-4">
+            <div className="flex w-full flex-col gap-4 px-4 md:flex-row md:px-6 ">
               <div className="h-full w-full  ">
                 <FormField
                   control={form.control}
@@ -635,21 +803,21 @@ export const TabScheduleSave = ({
                 />
               </div>
             </div>
-            <div className="flex w-full gap-4  ">
-              <div className="flex w-full flex-col items-center justify-between rounded-sm border border-primary/30 p-2">
-                <div className="flex w-full items-center justify-between rounded-sm border border-primary/30 p-2">
+            <div className="flex w-full gap-4   ">
+              <div className="w-full rounded-sm border border-primary/30">
+                <div className="flex w-full flex-col gap-4 rounded-sm p-4 md:flex-row md:items-center md:justify-between">
+                  <FormLabel
+                    htmlFor="cars"
+                    className="flex items-center gap-1 text-muted-foreground"
+                  >
+                    <LuCar size={20} />
+                    Viaturas
+                  </FormLabel>
                   <FormField
                     control={form.control}
                     name="cars"
                     render={({ field }) => (
                       <FormItem className="flex w-full flex-col">
-                        <FormLabel
-                          htmlFor="cars"
-                          className="flex items-center gap-1 text-muted-foreground"
-                        >
-                          <LuCar size={20} />
-                          Viaturas{' '}
-                        </FormLabel>{' '}
                         <Popover>
                           <PopoverTrigger asChild>
                             <FormControl>
@@ -661,18 +829,22 @@ export const TabScheduleSave = ({
                                   disabled && 'text-muted-foreground',
                                 )}
                               >
-                                {unidade?.companyCars?.find((car) => {
-                                  return field?.value?.find(
-                                    (value) =>
-                                      value?.car?.id?.toString() ===
-                                      car?.id?.toString(),
-                                  )
-                                })?.prefix ?? 'Selecione um veículo'}
+                                {veiculoUnidade?.prefix != null ? (
+                                  <div className="flex w-full items-center  gap-x-2">
+                                    <span className="rounded-sm border border-primary/30 px-2 py-0.5">
+                                      {veiculoUnidade?.prefix}
+                                    </span>
+                                    <span>{veiculoUnidade?.model}</span>
+                                  </div>
+                                ) : (
+                                  'Selecione um veículo'
+                                )}
+
                                 <LuChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                               </Button>
                             </FormControl>
                           </PopoverTrigger>
-                          <PopoverContent className="w-[200px] p-0">
+                          <PopoverContent className="min-w-[200px] p-0">
                             <Command>
                               <CommandInput placeholder="procurando horário ..." />
                               <CommandEmpty>Tipo não encontrado.</CommandEmpty>
@@ -700,11 +872,16 @@ export const TabScheduleSave = ({
                                             (value) =>
                                               value?.car?.id === car?.id,
                                           )?.car?.id === car?.id
-                                            ? 'opacity-100'
+                                            ? 'text-primary/60 opacity-100'
                                             : 'opacity-0',
                                         )}
                                       />
-                                      {car?.prefix}
+                                      <div className="flex items-center gap-x-2 border border-muted">
+                                        <span className="rounded-sm border border-primary/30 px-2 py-0.5">
+                                          {car?.prefix}
+                                        </span>
+                                        <span>{car?.model}</span>
+                                      </div>
                                     </CommandItem>
                                   ))}
                                 </CommandList>
@@ -716,39 +893,315 @@ export const TabScheduleSave = ({
                       </FormItem>
                     )}
                   />
+                  <Button
+                    onClick={() => {
+                      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                      // @ts-expect-error
+                      schedule != null && form.setValue('cars', carSchedule)
+                    }}
+                    size="sm"
+                    type="button"
+                    className="gap-1"
+                  >
+                    <LuPlusCircle size={20} />
+                    <LuCar size={20} />
+                  </Button>
                 </div>
-                <Button
-                  onClick={() => {
-                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                    // @ts-expect-error
-                    schedule != null && form.setValue('cars', carSchedule)
-                  }}
-                  type="button"
-                  className="gap-1"
-                >
-                  <LuCar size={20} />
-                  <LuPlusCircle size={20} />
-                </Button>
-                {form
-                  .getValues('cars')
-                  ?.map(({ car }, index) => (
-                    <div key={index}>{car.prefix}</div>
+
+                <div className="w-full border border-muted pr-2 md:pl-2 md:pr-4">
+                  {form.watch('cars')?.map((car, index) => (
+                    <div
+                      key={index}
+                      className="m-1 flex w-full items-center gap-2 text-sm"
+                    >
+                      <Accordion
+                        type="single"
+                        collapsible
+                        className="m-0 w-full rounded-sm border border-primary/60 px-2 md:px-5"
+                      >
+                        <AccordionItem value="item-1">
+                          <AccordionTrigger className="gap-2">
+                            <div className="flex w-full items-center  gap-2 rounded-sm ">
+                              <Avatar className="hover:scale-[200%]">
+                                <AvatarImage
+                                  src={
+                                    car?.car?.image ??
+                                    process.env.NEXT_PUBLIC_API_GSO +
+                                      '/public/images/calendar.jpg'
+                                  }
+                                />
+                              </Avatar>
+                              <span className="rounded-sm border border-primary/30 px-2 py-0.5">
+                                {car?.car?.prefix}
+                              </span>
+                              <span>{car?.car?.model}</span>
+                            </div>
+                            <Dialog>
+                              <DialogTrigger asChild>
+                                <Button
+                                  size="sm"
+                                  variant="secondary"
+                                  className="flex items-center gap-1"
+                                >
+                                  <LuMinusCircle size={16} />
+                                  <LuCar size={16} />{' '}
+                                </Button>
+                              </DialogTrigger>
+                              <DialogContent>
+                                <DialogHeader>
+                                  <DialogTitle>
+                                    Tem certeza que deseja excluir veiculo da
+                                    escala?
+                                  </DialogTitle>
+                                  <DialogDescription>
+                                    Está ação irá remover veiculo da escala.
+                                  </DialogDescription>
+                                </DialogHeader>
+                                <DialogFooter>
+                                  <DialogClose>
+                                    <div className="flex items-center gap-2">
+                                      <Button type="button" variant="secondary">
+                                        Cancelar
+                                      </Button>
+                                      <Button
+                                        onClick={() => {
+                                          carSchedule?.splice(index, 1)
+                                          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                                          // @ts-expect-error
+                                          form.setValue('cars', carSchedule)
+                                        }}
+                                        size="sm"
+                                        type="button"
+                                        className="gap-1"
+                                      >
+                                        <LuMinusCircle size={16} />
+                                        <LuUser size={16} />{' '}
+                                      </Button>
+                                    </div>
+                                  </DialogClose>
+                                </DialogFooter>
+                              </DialogContent>
+                            </Dialog>
+                          </AccordionTrigger>
+                          <Separator />
+                          <AccordionContent>
+                            <div className="my-4 flex items-center justify-between gap-4">
+                              <Label
+                                htmlFor="type"
+                                className="flex items-center gap-1 text-muted-foreground"
+                              >
+                                <LuUsers />
+                                <h4 className="hidden md:block">Membros</h4>
+                              </Label>{' '}
+                              <Popover>
+                                <PopoverTrigger asChild>
+                                  <FormControl>
+                                    <Button
+                                      variant="outline"
+                                      role="combobox"
+                                      className={cn(
+                                        'w-full justify-between',
+                                        disabled && 'text-muted-foreground',
+                                      )}
+                                    >
+                                      {unidade?.companyMembers?.find((member) =>
+                                        car?.members?.find(
+                                          (memberCar) =>
+                                            member?.id === memberCar?.id,
+                                        ),
+                                      )?.name ?? 'Selecione um membro'}
+                                      <LuChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                                    </Button>
+                                  </FormControl>
+                                </PopoverTrigger>
+                                <PopoverContent className="w-[200px] p-0">
+                                  <Command>
+                                    <CommandInput placeholder="procurando horário ..." />
+                                    <CommandEmpty>
+                                      Tipo não encontrado.
+                                    </CommandEmpty>
+                                    <CommandGroup>
+                                      <CommandList>
+                                        {unidade?.companyMembers?.map(
+                                          (member, index) => (
+                                            <CommandItem
+                                              disabled={disabled}
+                                              key={index}
+                                              onSelect={() => {
+                                                setCarSchedule((prev) => {
+                                                  return prev.map((value) => {
+                                                    if (
+                                                      value?.car?.id ===
+                                                      car?.car?.id
+                                                    ) {
+                                                      if (
+                                                        car?.members == null
+                                                      ) {
+                                                        return {
+                                                          ...value,
+                                                          members: [member],
+                                                        }
+                                                      } else {
+                                                        return {
+                                                          ...value,
+                                                          members: [
+                                                            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                                                            // @ts-expect-error
+                                                            // eslint-disable-next-line no-unsafe-optional-chaining
+                                                            ...value?.members,
+                                                            member,
+                                                          ],
+                                                        }
+                                                      }
+                                                    }
+                                                    return value
+                                                  })
+                                                })
+                                              }}
+                                            >
+                                              <LuCheck
+                                                className={cn(
+                                                  'mr-2 h-4 w-4',
+                                                  carSchedule?.find((value) =>
+                                                    value?.members?.find(
+                                                      (memberCheck) =>
+                                                        memberCheck?.id ===
+                                                          member?.id &&
+                                                        value.car?.id ===
+                                                          car?.car?.id,
+                                                    ),
+                                                  ) !== undefined
+                                                    ? 'opacity-100'
+                                                    : 'opacity-0',
+                                                )}
+                                              />
+                                              {member?.name}
+                                            </CommandItem>
+                                          ),
+                                        )}
+                                      </CommandList>
+                                    </CommandGroup>
+                                  </Command>
+                                </PopoverContent>
+                              </Popover>
+                              <FormMessage />
+                              <Button
+                                onClick={() => {
+                                  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                                  // @ts-expect-error
+                                  form.setValue('cars', carSchedule)
+                                }}
+                                size="sm"
+                                variant="default"
+                                className="mr-2 flex items-center gap-1"
+                              >
+                                <LuPlusCircle size={16} />
+                                <LuUser size={16} />
+                              </Button>
+                            </div>
+
+                            <div className="mb-4 flex items-center justify-between">
+                              <span>Componentes ({car?.members?.length})</span>
+                            </div>
+                            {car?.members?.map((member, indexMember) => (
+                              <div
+                                key={indexMember}
+                                className="flex items-center justify-between gap-2 border border-muted p-2"
+                              >
+                                <div className="flex items-center gap-2 ">
+                                  <Avatar className="hover:scale-[200%]">
+                                    <AvatarImage
+                                      src={
+                                        member?.image ??
+                                        process.env.NEXT_PUBLIC_API_GSO +
+                                          '/public/images/calendar.jpg'
+                                      }
+                                    />
+                                  </Avatar>
+                                  <span className="rounded-sm border border-primary/30 px-2 py-0.5">
+                                    {member?.competence}
+                                  </span>
+                                  <span>{member?.name}</span>
+                                </div>
+                                <Button
+                                  size="sm"
+                                  className="gap-1"
+                                  variant="secondary"
+                                  onClick={() => {
+                                    carSchedule.map((itemSchedule) =>
+                                      itemSchedule.members?.splice(
+                                        indexMember,
+                                        1,
+                                      ),
+                                    )
+                                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                                    // @ts-expect-error
+                                    form.setValue('cars', carSchedule)
+                                  }}
+                                >
+                                  <LuMinusCircle size={16} />
+                                  <LuUser size={16} />
+                                </Button>
+                              </div>
+                            ))}
+                          </AccordionContent>
+                        </AccordionItem>
+                      </Accordion>
+                      {/* <Dialog> */}
+                      {/*  <DialogTrigger asChild> */}
+                      {/*    <Button */}
+                      {/*      size="sm" */}
+                      {/*      variant="secondary" */}
+                      {/*      className="flex items-center gap-1" */}
+                      {/*    > */}
+                      {/*      <LuMinusCircle size={16} /> */}
+                      {/*      <LuCar size={16} />{' '} */}
+                      {/*    </Button> */}
+                      {/*  </DialogTrigger> */}
+                      {/*  <DialogContent> */}
+                      {/*    <DialogHeader> */}
+                      {/*      <DialogTitle> */}
+                      {/*        Tem certeza que deseja excluir veiculo da escala? */}
+                      {/*      </DialogTitle> */}
+                      {/*      <DialogDescription> */}
+                      {/*        Está ação irá remover veiculo da escala. */}
+                      {/*      </DialogDescription> */}
+                      {/*    </DialogHeader> */}
+                      {/*    <DialogFooter> */}
+                      {/*      <DialogClose> */}
+                      {/*        <div className="flex items-center gap-2"> */}
+                      {/*          <Button type="button" variant="secondary"> */}
+                      {/*            Cancelar */}
+                      {/*          </Button> */}
+                      {/*          <Button */}
+                      {/*            onClick={() => { */}
+                      {/*              carSchedule?.splice(index, 1) */}
+                      {/*              // eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
+                      {/*              // @ts-expect-error */}
+                      {/*              form.setValue('cars', carSchedule) */}
+                      {/*            }} */}
+                      {/*            size="sm" */}
+                      {/*            type="button" */}
+                      {/*            className="gap-1" */}
+                      {/*          > */}
+                      {/*            <LuMinusCircle size={16} /> */}
+                      {/*            <LuUser size={16} />{' '} */}
+                      {/*          </Button> */}
+                      {/*        </div> */}
+                      {/*      </DialogClose> */}
+                      {/*    </DialogFooter> */}
+                      {/*  </DialogContent> */}
+                      {/* </Dialog> */}
+                    </div>
                   ))}
-              </div>
-              <div className="flex w-full items-center justify-between rounded-sm border border-primary/30 p-2">
-                <label htmlFor="" className="flex items-center gap-2">
-                  <LuUsers size={20} />
-                  Efetivo
-                </label>
-                <Button type="button" className="gap-1">
-                  <LuUser size={20} />
-                  <LuPlusCircle size={20} />
-                </Button>
+                </div>
               </div>
             </div>
+
             <div className="flex w-full flex-col  justify-end gap-2 md:flex-row">
               {!disabled && (
                 <Button
+                  size="sm"
                   disabled={pending && !form.formState.isValid}
                   className={cn(
                     buttonVariants({ variant: 'default' }),

@@ -24,7 +24,6 @@ const SalvarEscala = async ({
   if (imgValided.status !== 200 && data?.image != null) {
     data.image = process.env.NEXT_PUBLIC_API_GSO + '/public/images/img.png'
   }
-
   return (
     <>
       <CardDefault
@@ -41,6 +40,8 @@ const SalvarEscala = async ({
         }
       >
         {scheduleFound?.schedule !== null && true && (
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-expect-error
           <TabScheduleSave unidade={data} schedule={scheduleFound} />
         )}
       </CardDefault>
