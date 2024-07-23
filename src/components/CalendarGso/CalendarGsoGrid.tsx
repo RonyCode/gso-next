@@ -1,9 +1,14 @@
+import { useSession } from 'next-auth/react'
+import Link from 'next/link'
+import { useParams } from 'next/navigation'
 import * as React from 'react'
 import { type ReactElement } from 'react'
+import { LuCalendarPlus, LuClipboardEdit, LuSave } from 'react-icons/lu'
 
 import { cn } from '@/lib/utils'
 import { type IScheduleSchema } from '@/schemas/ScheduleSchema'
 import { Badge } from '@/ui/badge'
+import { Button } from '@/ui/button'
 
 type CalendarGsoGridProps = {
   dayEvent?: IScheduleSchema[]
@@ -23,6 +28,7 @@ const CalendarGsoGrid = ({
   ...props
 }: CalendarGsoGridProps): ReactElement => {
   const date = new Date()
+
   return (
     <>
       {day != null && day > 0 && (

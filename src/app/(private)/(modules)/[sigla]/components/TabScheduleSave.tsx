@@ -1,7 +1,8 @@
 'use client'
-import { redirect, useRouter } from 'next/navigation'
-import React, { useTransition } from 'react'
+import { useRouter } from 'next/navigation'
+import React, { useEffect, useTransition } from 'react'
 import { useForm } from 'react-hook-form'
+import { GrGroup } from 'react-icons/gr'
 import {
   LuBuilding2,
   LuCalendarDays,
@@ -14,10 +15,11 @@ import {
   LuMinusCircle,
   LuMousePointerClick,
   LuPlusCircle,
-  LuTrash,
+  LuSave,
   LuTrash2,
   LuUser,
   LuUsers,
+  LuUsers2,
 } from 'react-icons/lu'
 
 import { saveUnidadeAction } from '@/app/(private)/(modules)/[sigla]/organizacao/actions/saveUnidadeAction'
@@ -34,7 +36,8 @@ import {
   AccordionTrigger,
 } from '@/ui/accordion'
 import { Avatar, AvatarImage } from '@/ui/avatar'
-import { Button, buttonVariants } from '@/ui/button'
+import { Badge } from '@/ui/badge'
+import { Button } from '@/ui/button'
 import { Calendar } from '@/ui/calendar'
 import { Card } from '@/ui/card'
 import {
@@ -67,6 +70,7 @@ import { Input } from '@/ui/input'
 import { Label } from '@/ui/label'
 import { Popover, PopoverContent, PopoverTrigger } from '@/ui/popover'
 import { Separator } from '@/ui/separator'
+import { Textarea } from '@/ui/textarea'
 import { toast } from '@/ui/use-toast'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { CalendarIcon } from '@radix-ui/react-icons'
@@ -79,6 +83,7 @@ type UserRegisterFormProps = React.HTMLAttributes<HTMLDivElement> & {
   className?: string
   states?: AddressProps[] | null
   params?: { sigla: string; name_unidade: string }
+  searchParams?: Record<string, string | string[]>
 }
 
 export const TabScheduleSave = ({
@@ -86,6 +91,7 @@ export const TabScheduleSave = ({
   schedule,
   className,
   params,
+  searchParams,
   ...props
 }: UserRegisterFormProps): JSX.Element => {
   const [pending, startTransition] = useTransition()
@@ -102,14 +108,20 @@ export const TabScheduleSave = ({
       id: schedule?.schedule?.id ?? undefined,
       id_company: unidade?.id ?? undefined,
       id_member_creator: schedule?.schedule?.id_member_creator ?? undefined,
-      date: schedule?.schedule?.date ?? '',
+      date:
+        schedule?.schedule?.date != null
+          ? new Date(schedule?.schedule?.date)
+          : undefined,
       hour_start: schedule?.schedule?.hour_start ?? '',
       hour_finish: schedule?.schedule?.hour_finish ?? '',
       team: schedule?.schedule?.team ?? undefined,
       situation: schedule?.schedule?.situation ?? undefined,
       type: schedule?.schedule?.type ?? undefined,
       status: schedule?.schedule?.status ?? undefined,
-      date_creation: schedule?.schedule?.date_creation ?? undefined,
+      date_creation:
+        schedule?.schedule?.date_creation != null
+          ? new Date(schedule?.schedule?.date_creation)
+          : undefined,
       obs: schedule?.schedule?.obs ?? '',
       short_name_corp: schedule?.schedule?.short_name_corp ?? '',
       short_name_comp: schedule?.schedule?.short_name_comp ?? '',
@@ -118,27 +130,33 @@ export const TabScheduleSave = ({
     },
   })
 
-  const handleSubmit = (formData: Partial<IScheduleSchema>): void => {
-    startTransition(async () => {
-      const result = await saveUnidadeAction(formData)
-      if (result?.code !== 202) {
-        toast({
-          variant: 'danger',
-          title: 'Erro ao salvar unidade! 🤯 ',
-          description: result?.message,
-        })
-      }
-      if (result?.code === 202) {
-        toast({
-          variant: 'success',
-          title: 'Ok! Unidade salva com sucesso! 🚀',
-          description: 'Tudo certo unidade salva',
-        })
-        redirect(
-          `/${params?.sigla.toLowerCase()}/unidades/${params?.name_unidade.toLowerCase()}`,
-        )
-      }
-    })
+  useEffect(() => {
+    searchParams?.id_schedule !== null && setDisabled(false)
+  }, [searchParams?.id_schedule])
+
+  const handleSubmit = (formData: IScheduleSchema): void => {
+    // startTransition(async () => {
+    console.log('formData')
+
+    // const result = await saveUnidadeAction(formData)
+    // if (result?.code !== 202) {
+    //   toast({
+    //     variant: 'danger',
+    //     title: 'Erro ao salvar Escala! 🤯 ',
+    //     description: result?.message,
+    //   })
+    // }
+    // if (result?.code === 202) {
+    //   toast({
+    //     variant: 'success',
+    //     title: 'Ok! Escala salva com sucesso! 🚀',
+    //     description: 'Tudo certo Escala salva',
+    //   })
+    //   redirect(
+    //     `/${params?.sigla.toLowerCase()}/unidades/${params?.name_unidade.toLowerCase()}`,
+    //   )
+    // }
+    // })
   }
 
   const handleDeleteAction = async (
@@ -200,6 +218,14 @@ export const TabScheduleSave = ({
     { id: 3, name: 'ORDEM SERVIÇO' },
   ]
 
+  const team = [
+    { id: 1, name: 'ALFA' },
+    { id: 2, name: 'BRAVO' },
+    { id: 3, name: 'CHARLIE' },
+    { id: 4, name: 'DELTA' },
+    { id: 5, name: 'EXTRA' },
+  ]
+
   const veiculoUnidade = unidade?.companyCars?.find((car) => {
     return form
       ?.getValues('cars')
@@ -210,83 +236,144 @@ export const TabScheduleSave = ({
     <>
       <Card
         x-chunk="dashboard-06-chunk-0"
-        className={cn(' ', className)}
+        className={cn(' mb-4 p-2  md:p-6', className)}
         {...props}
       >
         <div className="flex items-center ">
-          <div className="flex w-full items-center justify-between p-6">
-            <h1 className="ml-4 mr-auto text-xl font-bold">Detalhes</h1>
-            {schedule?.schedule?.id != null && (
-              <div>
-                <Dialog>
-                  <DialogTrigger asChild>
-                    <Button
-                      disabled={pending}
-                      className={cn(
-                        buttonVariants({ variant: 'outline' }),
-                        'group ',
-                      )}
+          <div className="flex w-full items-center">
+            <div className="mb-6 flex w-full items-center justify-between  border-b border-foreground/10">
+              <h1 className="ml-4  py-4 text-xl font-bold">Detalhes</h1>{' '}
+              {schedule?.schedule?.id != null && (
+                <div className="flex  items-center gap-2">
+                  <div className="text-md font-bold">
+                    <Badge
+                      className={` block ${
+                        schedule?.schedule?.team === 1
+                          ? 'border-primary/85 text-primary/85'
+                          : schedule?.schedule?.team === 2
+                            ? 'border-blue-500/85 text-blue-500/85'
+                            : schedule?.schedule?.team === 3
+                              ? 'border-yellow-400/85 text-yellow-400/85'
+                              : schedule?.schedule?.team === 4
+                                ? 'border-green-500/85 text-green-500/85'
+                                : schedule?.schedule?.team === 5
+                                  ? 'border-[#9400d3]/85 text-[#9400d3]/85'
+                                  : ''
+                      }`}
+                      variant="outline"
                     >
-                      <LuTrash2
+                      <span className="flex items-center gap-1 ">
+                        {' '}
+                        <GrGroup />
+                        <p>
+                          {schedule?.schedule?.team === 1
+                            ? 'ALFA'
+                            : schedule?.schedule?.team === 2
+                              ? 'BRAVO'
+                              : schedule?.schedule?.team === 3
+                                ? 'CHARLIE'
+                                : schedule?.schedule?.team === 4
+                                  ? 'DELTA'
+                                  : schedule?.schedule?.team === 5
+                                    ? 'EXTRA'
+                                    : ''}
+                        </p>
+                      </span>
+                    </Badge>{' '}
+                  </div>
+                  <span className="flex items-center gap-1">
+                    <i>
+                      <LuCalendarDays />
+                    </i>
+                    {schedule?.schedule?.date_creation != null && (
+                      <div className="font-bold text-muted-foreground">
+                        {' '}
+                        {format(
+                          new Date(schedule?.schedule?.date_creation),
+                          'eeeeee',
+                          {
+                            locale: ptBR,
+                          },
+                        ) +
+                          '  | ' +
+                          format(
+                            new Date(schedule?.schedule?.date_creation),
+                            'dd/MM',
+                            {
+                              locale: ptBR,
+                            },
+                          )}
+                      </div>
+                    )}
+                  </span>
+                </div>
+              )}
+              <div>
+                {schedule?.schedule?.id != null && (
+                  <div>
+                    <Dialog>
+                      <DialogTrigger asChild>
+                        <Button disabled={pending} variant="secondary">
+                          <LuTrash2
+                            className="text-foreground group-hover:text-muted-foreground"
+                            size={24}
+                          />
+                        </Button>
+                      </DialogTrigger>
+                      <DialogContent className="sm:max-w-[425px]">
+                        <DialogHeader>
+                          <DialogTitle>Excluir Escala</DialogTitle>
+                          <DialogDescription>
+                            Está ação precisa ser confirmada
+                          </DialogDescription>
+                        </DialogHeader>
+                        <div className="grid gap-4 py-4">
+                          <p>
+                            {' '}
+                            ATENÇÂO!!! Tem certeza que deseja excluir esta
+                            escala de sua unidade?
+                          </p>
+                        </div>
+                        <DialogFooter>
+                          <DialogClose asChild>
+                            <div>
+                              <Button variant="secondary" type="button">
+                                Cancelar
+                              </Button>
+
+                              <Button
+                                className="ml-2"
+                                type="button"
+                                /* eslint-disable-next-line @typescript-eslint/no-misused-promises */
+                                onClick={form.handleSubmit(async (data) => {
+                                  await handleDeleteAction(data)
+                                })}
+                              >
+                                Confirmar
+                              </Button>
+                            </div>
+                          </DialogClose>
+                        </DialogFooter>
+                      </DialogContent>
+                    </Dialog>
+
+                    <Button
+                      onClick={() => {
+                        setDisabled(!disabled)
+                      }}
+                      disabled={pending}
+                      className="ml-2"
+                      variant="secondary"
+                    >
+                      <LuClipboardEdit
                         className="text-foreground group-hover:text-muted-foreground"
                         size={24}
                       />
                     </Button>
-                  </DialogTrigger>
-                  <DialogContent className="sm:max-w-[425px]">
-                    <DialogHeader>
-                      <DialogTitle>Excluir Escala</DialogTitle>
-                      <DialogDescription>
-                        Está ação precisa ser confirmada
-                      </DialogDescription>
-                    </DialogHeader>
-                    <div className="grid gap-4 py-4">
-                      <p>
-                        {' '}
-                        ATENÇÂO!!! Tem certeza que deseja excluir esta escala de
-                        sua unidade?
-                      </p>
-                    </div>
-                    <DialogFooter>
-                      <DialogClose asChild>
-                        <div>
-                          <Button variant="secondary" type="button">
-                            Cancelar
-                          </Button>
-
-                          <Button
-                            className="ml-2"
-                            type="button"
-                            /* eslint-disable-next-line @typescript-eslint/no-misused-promises */
-                            onClick={form.handleSubmit(async (data) => {
-                              await handleDeleteAction(data)
-                            })}
-                          >
-                            Confirmar
-                          </Button>
-                        </div>
-                      </DialogClose>
-                    </DialogFooter>
-                  </DialogContent>
-                </Dialog>
-
-                <Button
-                  onClick={() => {
-                    setDisabled(!disabled)
-                  }}
-                  disabled={pending}
-                  className={cn(
-                    buttonVariants({ variant: 'outline' }),
-                    'group ',
-                  )}
-                >
-                  <LuClipboardEdit
-                    className="text-foreground group-hover:text-muted-foreground"
-                    size={24}
-                  />
-                </Button>
+                  </div>
+                )}
               </div>
-            )}
+            </div>
           </div>
         </div>
         <Form {...form}>
@@ -298,7 +385,7 @@ export const TabScheduleSave = ({
             })}
             className="w-full md:space-y-4  "
           >
-            <div className="flex w-full flex-col gap-4 px-4 md:flex-row  md:px-6">
+            <div className="flex w-full flex-col gap-4 pr-2 md:flex-row  md:px-6">
               <div className="h-full w-full  ">
                 <FormField
                   control={form.control}
@@ -558,7 +645,7 @@ export const TabScheduleSave = ({
                 />
               </div>
             </div>
-            <div className="flex w-full flex-col gap-4 px-4 md:flex-row md:px-6 ">
+            <div className="flex w-full flex-col gap-4 pr-2 md:flex-row md:px-6 ">
               <div className="h-full w-full  ">
                 <FormField
                   control={form.control}
@@ -802,7 +889,99 @@ export const TabScheduleSave = ({
                   )}
                 />
               </div>
+
+              <div className="h-full w-full  ">
+                <FormField
+                  control={form.control}
+                  name="team"
+                  render={({ field }) => (
+                    <FormItem className="flex w-full flex-col">
+                      <FormLabel
+                        htmlFor="team"
+                        className="flex items-center gap-1 text-muted-foreground"
+                      >
+                        <LuUsers2 /> Equipe
+                      </FormLabel>{' '}
+                      <Popover>
+                        <PopoverTrigger asChild>
+                          <FormControl>
+                            <Button
+                              variant="outline"
+                              role="combobox"
+                              className={cn(
+                                'w-full justify-between',
+                                disabled && 'text-muted-foreground',
+                              )}
+                            >
+                              {team?.find((tipo) => tipo?.id === field?.value)
+                                ?.name ?? 'Selecione uma equipe'}
+                              <LuChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                            </Button>
+                          </FormControl>
+                        </PopoverTrigger>
+                        <PopoverContent className="w-[200px] p-0">
+                          <Command>
+                            <CommandInput placeholder="procurando horário ..." />
+                            <CommandEmpty>Tipo não encontrado.</CommandEmpty>
+                            <CommandGroup>
+                              <CommandList>
+                                {team?.map((tipo, index) => (
+                                  <CommandItem
+                                    disabled={disabled}
+                                    value={String(tipo.id)}
+                                    key={index}
+                                    onSelect={() => {
+                                      tipo != null &&
+                                        form.setValue('team', tipo.id)
+                                    }}
+                                  >
+                                    <LuCheck
+                                      className={cn(
+                                        'mr-2 h-4 w-4',
+                                        tipo?.id === field?.value
+                                          ? 'opacity-100'
+                                          : 'opacity-0',
+                                      )}
+                                    />
+                                    {tipo?.name}
+                                  </CommandItem>
+                                ))}
+                              </CommandList>
+                            </CommandGroup>
+                          </Command>
+                        </PopoverContent>
+                      </Popover>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
             </div>
+
+            <div className="mb-6  w-full  gap-4 pr-2 md:flex-row md:px-6 ">
+              <FormField
+                disabled={disabled}
+                control={form.control}
+                name="obs"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="flex items-center gap-1">
+                      <LuClipboardEdit />
+                      Observação
+                    </FormLabel>
+                    <FormControl>
+                      <Textarea
+                        placeholder="Obrigatório relatar detalhes"
+                        className="resize-none"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+
             <div className="flex w-full gap-4   ">
               <div className="w-full rounded-sm border border-primary/30">
                 <div className="flex w-full flex-col gap-4 rounded-sm p-4 md:flex-row md:items-center md:justify-between">
@@ -846,8 +1025,10 @@ export const TabScheduleSave = ({
                           </PopoverTrigger>
                           <PopoverContent className="min-w-[200px] p-0">
                             <Command>
-                              <CommandInput placeholder="procurando horário ..." />
-                              <CommandEmpty>Tipo não encontrado.</CommandEmpty>
+                              <CommandInput placeholder="procurando veículo ..." />
+                              <CommandEmpty>
+                                Veículo não encontrado.
+                              </CommandEmpty>
                               <CommandGroup>
                                 <CommandList>
                                   {unidade?.companyCars?.map((car, index) => (
@@ -895,9 +1076,7 @@ export const TabScheduleSave = ({
                   />
                   <Button
                     onClick={() => {
-                      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                      // @ts-expect-error
-                      schedule != null && form.setValue('cars', carSchedule)
+                      form.setValue('cars', carSchedule)
                     }}
                     size="sm"
                     type="button"
@@ -920,7 +1099,7 @@ export const TabScheduleSave = ({
                         className="m-0 w-full rounded-sm border border-primary/60 px-2 md:px-5"
                       >
                         <AccordionItem value="item-1">
-                          <AccordionTrigger className="gap-2">
+                          <AccordionTrigger className="gap-2 p-2">
                             <div className="flex w-full items-center  gap-2 rounded-sm ">
                               <Avatar className="hover:scale-[200%]">
                                 <AvatarImage
@@ -974,8 +1153,7 @@ export const TabScheduleSave = ({
                                         type="button"
                                         className="gap-1"
                                       >
-                                        <LuMinusCircle size={16} />
-                                        <LuUser size={16} />{' '}
+                                        <LuTrash2 size={16} />{' '}
                                       </Button>
                                     </div>
                                   </DialogClose>
@@ -1147,51 +1325,6 @@ export const TabScheduleSave = ({
                           </AccordionContent>
                         </AccordionItem>
                       </Accordion>
-                      {/* <Dialog> */}
-                      {/*  <DialogTrigger asChild> */}
-                      {/*    <Button */}
-                      {/*      size="sm" */}
-                      {/*      variant="secondary" */}
-                      {/*      className="flex items-center gap-1" */}
-                      {/*    > */}
-                      {/*      <LuMinusCircle size={16} /> */}
-                      {/*      <LuCar size={16} />{' '} */}
-                      {/*    </Button> */}
-                      {/*  </DialogTrigger> */}
-                      {/*  <DialogContent> */}
-                      {/*    <DialogHeader> */}
-                      {/*      <DialogTitle> */}
-                      {/*        Tem certeza que deseja excluir veiculo da escala? */}
-                      {/*      </DialogTitle> */}
-                      {/*      <DialogDescription> */}
-                      {/*        Está ação irá remover veiculo da escala. */}
-                      {/*      </DialogDescription> */}
-                      {/*    </DialogHeader> */}
-                      {/*    <DialogFooter> */}
-                      {/*      <DialogClose> */}
-                      {/*        <div className="flex items-center gap-2"> */}
-                      {/*          <Button type="button" variant="secondary"> */}
-                      {/*            Cancelar */}
-                      {/*          </Button> */}
-                      {/*          <Button */}
-                      {/*            onClick={() => { */}
-                      {/*              carSchedule?.splice(index, 1) */}
-                      {/*              // eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
-                      {/*              // @ts-expect-error */}
-                      {/*              form.setValue('cars', carSchedule) */}
-                      {/*            }} */}
-                      {/*            size="sm" */}
-                      {/*            type="button" */}
-                      {/*            className="gap-1" */}
-                      {/*          > */}
-                      {/*            <LuMinusCircle size={16} /> */}
-                      {/*            <LuUser size={16} />{' '} */}
-                      {/*          </Button> */}
-                      {/*        </div> */}
-                      {/*      </DialogClose> */}
-                      {/*    </DialogFooter> */}
-                      {/*  </DialogContent> */}
-                      {/* </Dialog> */}
                     </div>
                   ))}
                 </div>
@@ -1201,17 +1334,19 @@ export const TabScheduleSave = ({
             <div className="flex w-full flex-col  justify-end gap-2 md:flex-row">
               {!disabled && (
                 <Button
+                  onClick={() => {
+                    console.log(form.getValues())
+                  }}
                   size="sm"
-                  disabled={pending && !form.formState.isValid}
-                  className={cn(
-                    buttonVariants({ variant: 'default' }),
-                    ' w-full animate-fadeIn  md:w-1/3 ',
-                  )}
+                  variant="default"
+                  disabled={pending}
+                  className={cn(' animate-fadeIn gap-1 md:mr-4')}
                   type="submit"
                 >
                   {pending && (
                     <LuLoader2 className="mr-2 h-4 w-4 animate-spin" />
                   )}
+                  <LuSave size={20} />
                   Salvar
                 </Button>
               )}{' '}

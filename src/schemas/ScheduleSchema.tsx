@@ -12,9 +12,7 @@ export const ScheduleSchema = z.object({
   id_member_creator: z.number().min(1, {
     message: 'id_member_creator inválido deve conter no mínimo 1 caracteres',
   }),
-  date: z.string().min(10, {
-    message: 'date inválido deve conter no mínimo 10 caracteres',
-  }),
+  date: z.date().optional(),
   hour_start: z.string().min(6, {
     message: 'horário inválido deve conter no mínimo 1 caracteres',
   }),

@@ -45,7 +45,9 @@ export function ModalGso({
         {children}
         <DialogFooter>
           <DialogClose asChild>
-            <Button type="submit">OK</Button>
+            <Button variant="secondary" type="submit">
+              Fechar
+            </Button>
           </DialogClose>
         </DialogFooter>
       </DialogContent>
