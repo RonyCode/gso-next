@@ -1059,6 +1059,7 @@ export const TabScheduleSave = ({
                                       value={car?.id?.toString()}
                                       key={index}
                                       onSelect={() => {
+                                        console.log(car)
                                         car != null &&
                                           // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                                           // @ts-expect-error

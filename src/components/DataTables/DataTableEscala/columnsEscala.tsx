@@ -156,8 +156,8 @@ export const columnsEscala: Array<ColumnDef<IScheduleSchema>> = [
       return value.includes(row.getValue(id))
     },
   },
-  {
-    id: 'actions',
-    cell: ({ row }) => <DataTableRowActions row={row} />,
-  },
+  // {
+  //   id: 'actions',
+  //   cell: ({ row }) => <DataTableRowActions row={row} />,
+  // },
 ]
