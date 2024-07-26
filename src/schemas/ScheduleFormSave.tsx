@@ -2,17 +2,21 @@ import { CarSchema } from '@/schemas/CarsSchema'
 import { MemberSchema } from '@/schemas/MemberSchema'
 import { z } from 'zod'
 
-export const ScheduleSchema = z.object({
-  id: z.number().min(1, {
-    message: 'id inválido deve conter no mínimo 1 caracteres',
-  }),
+export const ScheduleFormSave = z.object({
+  id: z.number().nullable().optional(),
   id_company: z.number().min(1, {
+    message: 'id_company inválido deve conter no mínimo 1 caracteres',
+  }),
+  id_cmt_sos: z.number().min(1, {
+    message: 'id_company inválido deve conter no mínimo 1 caracteres',
+  }),
+  id_member_comunication: z.number().min(1, {
     message: 'id_company inválido deve conter no mínimo 1 caracteres',
   }),
   id_member_creator: z.number().min(1, {
     message: 'id_member_creator inválido deve conter no mínimo 1 caracteres',
   }),
-  date: z.date().optional(),
+  date: z.date(),
   hour_start: z.string().min(6, {
     message: 'horário inválido deve conter no mínimo 1 caracteres',
   }),
@@ -22,15 +26,11 @@ export const ScheduleSchema = z.object({
   team: z.number().min(1, {
     message: 'equipe inválido deve conter no mínimo 1 caracteres',
   }),
-  situation: z.number().min(1, {
-    message: 'situação inválido deve conter no mínimo 1 caracteres',
-  }),
+  situation: z.number().nullable(),
   type: z.number().min(1, {
     message: 'type inválido deve conter no mínimo 1 caracteres',
   }),
-  status: z.number().min(1, {
-    message: 'status inválido deve conter no mínimo 1 caracteres',
-  }),
+  status: z.number().nullable(),
   date_creation: z.date().optional(),
   obs: z
     .string()
@@ -42,7 +42,6 @@ export const ScheduleSchema = z.object({
     }),
   short_name_corp: z.string().optional(),
   short_name_comp: z.string().optional(),
-  members: z.array(MemberSchema).optional(),
   cars: z
     .array(
       z.object({ car: CarSchema, members: z.array(MemberSchema).optional() }),
@@ -51,4 +50,4 @@ export const ScheduleSchema = z.object({
   excluded: z.number().optional(),
 })
 
-export type IScheduleSchema = z.infer<typeof ScheduleSchema>
+export type IScheduleFormSave = z.infer<typeof ScheduleFormSave>

@@ -26,7 +26,11 @@ import { saveUnidadeAction } from '@/app/(private)/(modules)/[sigla]/organizacao
 import LoadingPage from '@/components/Loadings/LoadingPage'
 import { cn } from '@/lib/utils'
 import { type ICarSchema } from '@/schemas/CarsSchema'
-import { type IScheduleSchema, ScheduleSchema } from '@/schemas/ScheduleSchema'
+import {
+  type IScheduleFormSave,
+  ScheduleFormSave,
+} from '@/schemas/ScheduleFormSave'
+import { type IScheduleSchema } from '@/schemas/ScheduleSchema'
 import { type IUnidadeSchema } from '@/schemas/UnidadeSchema'
 import type { AddressProps } from '@/types/index'
 import {
@@ -79,7 +83,7 @@ import { ptBR } from 'date-fns/locale/pt-BR'
 
 type UserRegisterFormProps = React.HTMLAttributes<HTMLDivElement> & {
   unidade?: IUnidadeSchema | null
-  schedule?: { schedule: IScheduleSchema; cars: ICarSchema[] }
+  schedule?: { schedule: IScheduleFormSave; cars: ICarSchema[] }
   className?: string
   states?: AddressProps[] | null
   params?: { sigla: string; name_unidade: string }
@@ -100,31 +104,41 @@ export const TabScheduleSave = ({
     schedule?.cars ?? ([] as ICarSchema[]),
   )
   const router = useRouter()
-  const form = useForm<IScheduleSchema>({
+  const form = useForm<IScheduleFormSave>({
     mode: 'all',
     criteriaMode: 'all',
-    resolver: zodResolver(ScheduleSchema),
+    resolver: zodResolver(ScheduleFormSave),
     defaultValues: {
-      id: schedule?.schedule?.id ?? undefined,
+      id: schedule?.schedule?.id ?? null,
       id_company: unidade?.id ?? undefined,
       id_member_creator: schedule?.schedule?.id_member_creator ?? undefined,
+      id_cmt_sos:
+        unidade?.companyMembers?.find(
+          (item) =>
+            item?.id_function === 3 &&
+            item?.id_schedule === schedule?.schedule?.id,
+        )?.id ?? undefined,
+      id_member_comunication:
+        schedule?.schedule?.id_member_creator ?? undefined,
       date:
         schedule?.schedule?.date != null
           ? new Date(schedule?.schedule?.date)
-          : undefined,
+          : new Date(),
       hour_start: schedule?.schedule?.hour_start ?? '',
       hour_finish: schedule?.schedule?.hour_finish ?? '',
       team: schedule?.schedule?.team ?? undefined,
-      situation: schedule?.schedule?.situation ?? undefined,
+      situation: schedule?.schedule?.situation ?? null,
       type: schedule?.schedule?.type ?? undefined,
-      status: schedule?.schedule?.status ?? undefined,
+      status: schedule?.schedule?.status ?? null,
       date_creation:
         schedule?.schedule?.date_creation != null
           ? new Date(schedule?.schedule?.date_creation)
           : undefined,
       obs: schedule?.schedule?.obs ?? '',
-      short_name_corp: schedule?.schedule?.short_name_corp ?? '',
-      short_name_comp: schedule?.schedule?.short_name_comp ?? '',
+      short_name_corp:
+        schedule?.schedule?.short_name_corp ?? params?.sigla ?? '',
+      short_name_comp:
+        schedule?.schedule?.short_name_comp ?? params?.name_unidade ?? '',
       cars: schedule?.cars ?? ([] as ICarSchema[]),
       excluded: schedule?.schedule?.excluded ?? 0,
     },
@@ -134,29 +148,33 @@ export const TabScheduleSave = ({
     searchParams?.id_schedule !== null && setDisabled(false)
   }, [searchParams?.id_schedule])
 
-  const handleSubmit = (formData: IScheduleSchema): void => {
-    // startTransition(async () => {
-    console.log('formData')
+  console.log(form.getValues('cars'))
+  console.log(schedule?.cars)
 
-    // const result = await saveUnidadeAction(formData)
-    // if (result?.code !== 202) {
-    //   toast({
-    //     variant: 'danger',
-    //     title: 'Erro ao salvar Escala! 🤯 ',
-    //     description: result?.message,
-    //   })
-    // }
-    // if (result?.code === 202) {
-    //   toast({
-    //     variant: 'success',
-    //     title: 'Ok! Escala salva com sucesso! 🚀',
-    //     description: 'Tudo certo Escala salva',
-    //   })
-    //   redirect(
-    //     `/${params?.sigla.toLowerCase()}/unidades/${params?.name_unidade.toLowerCase()}`,
-    //   )
-    // }
-    // })
+  const handleSubmit = async (formData: IScheduleFormSave): Promise<void> => {
+    startTransition(async () => {
+      console.log(JSON.stringify(form.getValues(), null, 2))
+      console.log(JSON.stringify(form.formState.errors, null, 2))
+
+      // const result = await saveUnidadeAction(formData)
+      // if (result?.code !== 202) {
+      //   toast({
+      //     variant: 'danger',
+      //     title: 'Erro ao salvar Escala! 🤯 ',
+      //     description: result?.message,
+      //   })
+      // }
+      // if (result?.code === 202) {
+      //   toast({
+      //     variant: 'success',
+      //     title: 'Ok! Escala salva com sucesso! 🚀',
+      //     description: 'Tudo certo Escala salva',
+      //   })
+      //   redirect(
+      //     `/${params?.sigla.toLowerCase()}/unidades/${params?.name_unidade.toLowerCase()}`,
+      //   )
+      // }
+    })
   }
 
   const handleDeleteAction = async (
@@ -416,11 +434,11 @@ export const TabScheduleSave = ({
               <div className="h-full w-full  ">
                 <FormField
                   control={form.control}
-                  name="id_member_creator"
+                  name="id_cmt_sos"
                   render={({ field }) => (
                     <FormItem className="flex w-full flex-col">
                       <FormLabel
-                        htmlFor="id_member_creator"
+                        htmlFor="id_cmt_sos"
                         className="flex items-center gap-1 text-muted-foreground"
                       >
                         <LuMousePointerClick />
@@ -456,28 +474,31 @@ export const TabScheduleSave = ({
                               <CommandList>
                                 {unidade?.companyMembers?.map(
                                   (member, index) => (
-                                    <CommandItem
-                                      disabled={disabled}
-                                      value={String(member?.id)}
-                                      key={index}
-                                      onSelect={() => {
-                                        member?.id != null &&
-                                          form.setValue(
-                                            'id_member_creator',
-                                            member?.id,
-                                          )
-                                      }}
-                                    >
-                                      <LuCheck
-                                        className={cn(
-                                          'mr-2 h-4 w-4',
-                                          member?.id === field?.value
-                                            ? 'opacity-100'
-                                            : 'opacity-0',
-                                        )}
-                                      />
-                                      {member?.name}
-                                    </CommandItem>
+                                    <div key={index}>
+                                      {member?.id_car === null && (
+                                        <CommandItem
+                                          disabled={disabled}
+                                          value={String(member?.id)}
+                                          onSelect={() => {
+                                            member?.id != null &&
+                                              form.setValue(
+                                                'id_cmt_sos',
+                                                member?.id,
+                                              )
+                                          }}
+                                        >
+                                          <LuCheck
+                                            className={cn(
+                                              'mr-2 h-4 w-4',
+                                              member?.id === field?.value
+                                                ? 'opacity-100'
+                                                : 'opacity-0',
+                                            )}
+                                          />
+                                          {member?.name}
+                                        </CommandItem>
+                                      )}
+                                    </div>
                                   ),
                                 )}
                               </CommandList>
@@ -570,11 +591,11 @@ export const TabScheduleSave = ({
               <div className="h-full w-full  ">
                 <FormField
                   control={form.control}
-                  name="id_member_creator"
+                  name="id_member_comunication"
                   render={({ field }) => (
                     <FormItem className="flex w-full flex-col">
                       <FormLabel
-                        htmlFor="id_member_creator"
+                        htmlFor="id_member_comunication"
                         className="flex items-center gap-1 text-muted-foreground"
                       >
                         <LuMousePointerClick />
@@ -617,7 +638,7 @@ export const TabScheduleSave = ({
                                       onSelect={() => {
                                         member?.id != null &&
                                           form.setValue(
-                                            'id_member_creator',
+                                            'id_member_comunication',
                                             member?.id,
                                           )
                                       }}
@@ -645,6 +666,7 @@ export const TabScheduleSave = ({
                 />
               </div>
             </div>
+
             <div className="flex w-full flex-col gap-4 pr-2 md:flex-row md:px-6 ">
               <div className="h-full w-full  ">
                 <FormField
@@ -1076,6 +1098,8 @@ export const TabScheduleSave = ({
                   />
                   <Button
                     onClick={() => {
+                      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                      // @ts-expect-error
                       form.setValue('cars', carSchedule)
                     }}
                     size="sm"
@@ -1335,7 +1359,7 @@ export const TabScheduleSave = ({
               {!disabled && (
                 <Button
                   onClick={() => {
-                    console.log(form.getValues())
+                    console.log(JSON.stringify(form.formState.errors, null, 2))
                   }}
                   size="sm"
                   variant="default"
