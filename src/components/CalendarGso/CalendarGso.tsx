@@ -306,7 +306,7 @@ const CalendarGso = ({
 
           <div
             className="
-             grid grid-cols-7 overflow-scroll  rounded-[3px] md:h-[90%] md:overflow-hidden"
+             grid w-full grid-cols-7  overflow-scroll rounded-[3px] md:h-[90%] md:overflow-hidden"
           >
             {escalaObj.map((day, index) => (
               // MODAL TRIGGER
@@ -333,14 +333,6 @@ const CalendarGso = ({
                     {day?.dayEvent?.length > 0 ? (
                       <div className="flex h-full w-full flex-col ">
                         {day?.dayEvent?.map((itemEvent, indexEvent) => (
-                          // <CardListEscala
-                          //   key={indexEvent}
-                          //   unidade={unidade}
-                          //   functions={functions}
-                          //   itemEvent={itemEvent}
-                          //   className=" border border-foreground/30"
-                          // />
-
                           <TabScheduleSave
                             key={indexEvent}
                             unidade={unidade}

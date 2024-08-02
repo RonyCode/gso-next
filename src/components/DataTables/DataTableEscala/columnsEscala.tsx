@@ -10,38 +10,38 @@ import { type ColumnDef } from '@tanstack/react-table'
 import moment from 'moment'
 
 export const columnsEscala: Array<ColumnDef<IScheduleSchema>> = [
-  {
-    id: 'id',
-    header: ({ table }) => {
-      return (
-        <Checkbox
-          checked={
-            table.getIsAllPageRowsSelected() ||
-            (table.getIsSomePageRowsSelected() && 'indeterminate')
-          }
-          onCheckedChange={(value) => {
-            table.toggleAllPageRowsSelected(!!value)
-          }}
-          aria-label="Select all"
-          className="translate-y-[2px]"
-        />
-      )
-    },
-    cell: ({ row }) => {
-      return (
-        <Checkbox
-          checked={row.getIsSelected()}
-          onCheckedChange={(value) => {
-            row.toggleSelected(!!value)
-          }}
-          aria-label="Select row"
-          className="translate-y-[2px]"
-        />
-      )
-    },
-    enableSorting: false,
-    enableHiding: false,
-  },
+  // {
+  //   id: 'id',
+  //   header: ({ table }) => {
+  //     return (
+  //       <Checkbox
+  //         checked={
+  //           table.getIsAllPageRowsSelected() ||
+  //           (table.getIsSomePageRowsSelected() && 'indeterminate')
+  //         }
+  //         onCheckedChange={(value) => {
+  //           table.toggleAllPageRowsSelected(!!value)
+  //         }}
+  //         aria-label="Select all"
+  //         className="translate-y-[2px]"
+  //       />
+  //     )
+  //   },
+  //   cell: ({ row }) => {
+  //     return (
+  //       <Checkbox
+  //         checked={row.getIsSelected()}
+  //         onCheckedChange={(value) => {
+  //           row.toggleSelected(!!value)
+  //         }}
+  //         aria-label="Select row"
+  //         className="translate-y-[2px]"
+  //       />
+  //     )
+  //   },
+  //   enableSorting: false,
+  //   enableHiding: false,
+  // },
 
   {
     accessorKey: 'date_creation',
