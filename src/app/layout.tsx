@@ -53,8 +53,6 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   themeColor: '#FFFFFF',
 }
-export const dynamic = 'force-dynamic'
-
 export default function RootLayout({
   children,
 }: {
@@ -66,6 +64,7 @@ export default function RootLayout({
         className={cn(
           ' m-0 h-screen min-h-screen w-screen  overflow-x-hidden p-0 font-sans antialiased',
           fontSans.variable,
+          fontSans.className,
         )}
       >
         <Suspense fallback={<LoadingPage pending={true} />}>
