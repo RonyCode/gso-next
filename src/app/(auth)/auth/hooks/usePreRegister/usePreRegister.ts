@@ -1,12 +1,11 @@
 import { toast } from 'react-toastify'
 
+import { type IPreRegisterUserSchema } from '@/app/(auth)/auth/schemas/IPreRegisterUserSchema'
+import { fetchWrapper } from '@/functions/fetch'
 import {
   type ResponseFetchFailed,
   type ResponseUserSigned,
-} from '../../../../../../types/index'
-
-import { type IPreRegisterUserSchema } from '@/app/(auth)/auth/schemas/IPreRegisterUserSchema'
-import { fetchWrapper } from '@/functions/fetch'
+} from '@/types/index'
 import { z } from 'zod'
 
 export const usePreRegister = (): {
@@ -17,7 +16,6 @@ export const usePreRegister = (): {
   const preRegisterUser = async (
     data: IPreRegisterUserSchema,
   ): Promise<ResponseUserSigned | ResponseFetchFailed | undefined> => {
-    const { email } = data
     try {
       return await fetchWrapper<ResponseUserSigned>(
         `${process.env.NEXT_PUBLIC_NEXT_URL}/api/pre-cadastro-usuario`,
@@ -26,7 +24,7 @@ export const usePreRegister = (): {
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ email }),
+          body: JSON.stringify(data?.email),
         },
       )
     } catch (error) {

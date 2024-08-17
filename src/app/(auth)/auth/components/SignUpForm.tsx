@@ -39,7 +39,7 @@ export function SignUpForm({
   const handleSubmitPreCadastro = (data: IPreRegisterUserSchema): void => {
     startTransition(async () => {
       const result = await preRegisterUserServerActions(data)
-      if (result.email !== 'failed') {
+      if (result?.email !== 'failed') {
         const emailSended = await preRegisterUser(result)
         if (emailSended?.data === true) {
           if (emailSended?.code !== 400) {

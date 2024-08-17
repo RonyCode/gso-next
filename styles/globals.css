@@ -51,11 +51,7 @@
         --input: 240 3.7% 15.9%;
         --ring: 346.8 77.2% 49.8%;
     }
-    .rdp-root {
-        --rdp-accent-color: indigo; /* Change the accent color to indigo. */
-        --rdp-accent-background-color: #f0f0f0; /* Change the accent background color. */
-        /* Add more CSS variables here. */
-    }
+
 }
 
 

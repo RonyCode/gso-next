@@ -42,6 +42,7 @@ export const preRegisterUserServerActions = async (
         } satisfies ReturnData
       }
     }
+    console.log(data)
     return data as IPreRegisterUserSchema
   } catch (error) {
     console.log(error)

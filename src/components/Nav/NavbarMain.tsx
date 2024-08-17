@@ -74,7 +74,7 @@ export function NavbarMain({
     startTransition(async () => {
       const { data } = await getAllOrganizacoes()
       // eslint-disable-next-line array-callback-return
-      data.forEach((item) => {
+      data?.forEach((item) => {
         if (item.id?.toString() === session?.id_corporation?.toString()) {
           setOrganizacaoFound(item)
         }

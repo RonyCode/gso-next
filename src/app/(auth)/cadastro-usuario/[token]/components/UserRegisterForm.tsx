@@ -111,11 +111,13 @@ export const UserRegisterForm = ({
 
   const [pending, startTransition] = useTransition()
 
+  const [date, setDate] = React.useState<Date>()
+
   const handleSubmit = (formData: IRegisterUserSchema): void => {
     startTransition(async () => {
-      console.log(formData)
       const result: ResultUserRegistered = await saveUserAction(formData)
 
+      console.log(JSON.stringify(form.getValues()))
       if (result?.data?.id == null) {
         toast({
           variant: 'danger',
@@ -323,8 +325,10 @@ export const UserRegisterForm = ({
                             toYear={2100}
                             fromYear={1900}
                             mode="single"
+                            selected={date}
                             onSelect={(date) => {
                               if (date == null) return
+                              setDate(date)
                               field.onChange(format(date, 'dd/MM/yyyy'))
                             }}
                             disabled={(date) =>

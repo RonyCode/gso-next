@@ -18,7 +18,7 @@ const LoginFormSlice = (): JSX.Element => {
 
   return (
     <>
-      <div className=" grid w-full grid-cols-1 place-items-center rounded-[8px] lg:h-[800px] lg:grid-cols-2 lg:grid-rows-1 lg:border lg:border-[var(--border)]">
+      <div className=" grid w-full grid-cols-1 place-items-center rounded-[8px] md:h-[80vh] lg:grid-cols-2 lg:grid-rows-1 lg:border lg:border-[var(--border)] 2xl:h-[800px]">
         <div
           className={`${
             sliceLogin === 'animate-sliceRegister'
