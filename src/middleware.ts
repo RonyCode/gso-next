@@ -205,7 +205,10 @@ export async function middleware(request: NextRequest) {
 
   // SE NÃO TEM O REFRESH-TOKEN PROTEGE TUDO
   if (sessaoToken == null) {
-    if (request.nextUrl.pathname === '/auth') {
+    if (
+      request.nextUrl.pathname === '/auth' ||
+      request.nextUrl.pathname === '/'
+    ) {
       return response
     } else {
       return NextResponse.redirect(new URL('/auth', request.url))
@@ -233,6 +236,6 @@ export const config = {
     '/about/:path*',
     '/contact/:path*',
     '/conta/:path*',
-    '/((?!api|_next/static|favicon.ico).*)',
+    '/((?!api|images|cadastro-usuario|recuperar-senha|_next/static|favicon.ico).*)',
   ],
 }

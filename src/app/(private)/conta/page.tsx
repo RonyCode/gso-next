@@ -15,7 +15,7 @@ const ProfileUser = async (): Promise<JSX.Element> => {
   const user = await GetUserById(session?.id)
 
   const imgValided = await ImageExist(user?.account?.image)
-  if (imgValided.status !== 200 && user.account !== null) {
+  if (imgValided.status !== 200 && user.account?.image != null) {
     user.account.image =
       process.env.NEXT_PUBLIC_API_GSO + '/public/images/img.png'
   }

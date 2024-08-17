@@ -1,7 +1,6 @@
-import { type UserType } from '../../types/index'
-
 import { fetchWrapper } from '@/functions/fetch'
 import { useUserStore } from '@/stores/user/userStore'
+import { type UserType } from '@/types/index'
 
 export const GetUserById = async (
   id: string | null | undefined,

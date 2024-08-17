@@ -1,11 +1,19 @@
 'use client'
 
 import * as React from 'react'
-import { DayPicker } from 'react-day-picker'
+import { DayPicker, type DropdownProps } from 'react-day-picker'
 import { LuChevronLeft, LuChevronRight } from 'react-icons/lu'
 
 import { buttonVariants } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
+import { ScrollArea } from '@/ui/scroll-area'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/ui/select'
 
 export type CalendarProps = React.ComponentProps<typeof DayPicker>
 
@@ -22,8 +30,10 @@ function Calendar({
       classNames={{
         months: 'flex flex-col sm:flex-row space-y-4 sm:space-x-4 sm:space-y-0',
         month: 'space-y-4',
-        caption: 'flex justify-center pt-1 relative items-center',
-        caption_label: 'text-sm font-medium',
+        caption: 'flex flex-row justify-center pt-1 relative items-center',
+        caption_dropdowns:
+          'flex flex-row justify-center pt-1 relative items-center',
+        caption_label: 'text-sm font-medium hidden',
         nav: 'space-x-1 flex items-center',
         nav_button: cn(
           buttonVariants({ variant: 'outline' }),
@@ -31,7 +41,7 @@ function Calendar({
         ),
         nav_button_previous: 'absolute left-1',
         nav_button_next: 'absolute right-1',
-        table: 'w-full border-collapse space-y-1',
+        table: 'w-full border-collapse  space-y-1',
         head_row: 'flex',
         head_cell:
           'text-muted-foreground rounded-md w-9 font-normal text-[0.8rem]',
@@ -54,6 +64,43 @@ function Calendar({
         ...classNames,
       }}
       components={{
+        Dropdown: ({ value, onChange, children, ...props }: DropdownProps) => {
+          const options = React.Children.toArray(children) as Array<
+            React.ReactElement<React.HTMLProps<HTMLOptionElement>>
+          >
+          const selected = options.find((child) => child.props.value === value)
+          const handleChange = (value: string) => {
+            const changeEvent = {
+              target: { value },
+            } as React.ChangeEvent<HTMLSelectElement>
+            onChange?.(changeEvent)
+          }
+          return (
+            <Select
+              value={value?.toString()}
+              onValueChange={(value) => {
+                handleChange(value)
+              }}
+            >
+              <SelectTrigger className="pr-1.5 focus:ring-0 ">
+                <SelectValue>{selected?.props?.children}</SelectValue>
+              </SelectTrigger>
+              <SelectContent position="popper" className="w-full">
+                <ScrollArea className="h-80 w-full">
+                  {options.map((option, id: number) => (
+                    <SelectItem
+                      /* eslint-disable-next-line @typescript-eslint/restrict-template-expressions */
+                      key={`${option.props.value}-${id}`}
+                      value={option.props.value?.toString() ?? ''}
+                    >
+                      {option.props.children}
+                    </SelectItem>
+                  ))}
+                </ScrollArea>
+              </SelectContent>
+            </Select>
+          )
+        },
         IconLeft: ({ ...props }) => <LuChevronLeft className="h-4 w-4" />,
         IconRight: ({ ...props }) => <LuChevronRight className="h-4 w-4" />,
       }}
@@ -61,6 +108,7 @@ function Calendar({
     />
   )
 }
+
 Calendar.displayName = 'Calendar'
 
 export { Calendar }

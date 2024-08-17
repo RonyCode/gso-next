@@ -26,7 +26,7 @@ const BannerHome1 = (): ReactElement => {
   return (
     <div>
       <div
-        className={`${disapear && 'hidden'}  fixed grid h-full  w-full bg-no-repeat brightness-75 md:w-[80vw] md:grid-cols-2
+        className={`${disapear}  fixed grid h-full  w-full bg-no-repeat brightness-75 md:w-[80vw] md:grid-cols-2
         md:place-items-center md:bg-cover`}
         style={{
           backgroundImage: 'url(/images/banner.jpg)',

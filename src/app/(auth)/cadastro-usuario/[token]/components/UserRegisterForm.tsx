@@ -36,6 +36,7 @@ import {
 import { cityStore } from '@/stores/Address/CityByStateStore'
 import { type AddressProps, type ResultUserRegistered } from '@/types/index'
 import { Button, buttonVariants } from '@/ui/button'
+import { Calendar } from '@/ui/calendar'
 import {
   Command,
   CommandEmpty,
@@ -55,6 +56,9 @@ import {
 import { Input } from '@/ui/input'
 import { toast } from '@/ui/use-toast'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { CalendarIcon } from '@radix-ui/react-icons'
+import { format } from 'date-fns'
+import { ptBR } from 'date-fns/locale/pt-BR'
 
 enum Fields {
   email = 'email',
@@ -89,7 +93,7 @@ export const UserRegisterForm = ({
     resolver: zodResolver(RegisterUserSchema),
     defaultValues: {
       nome: '',
-      email: '',
+      email: params,
       cpf: '',
       data_nascimento: '',
       telefone: '',
@@ -108,9 +112,10 @@ export const UserRegisterForm = ({
   const [pending, startTransition] = useTransition()
 
   const handleSubmit = (formData: IRegisterUserSchema): void => {
-    console.log('teste')
     startTransition(async () => {
+      console.log(formData)
       const result: ResultUserRegistered = await saveUserAction(formData)
+
       if (result?.data?.id == null) {
         toast({
           variant: 'danger',
@@ -140,6 +145,7 @@ export const UserRegisterForm = ({
     if (field === Fields.estado) await handleCity(newValue)
     form.clearErrors(field)
   }
+
   async function handleCity(value: string): Promise<void> {
     await getAllCitiesByState(value)
   }
@@ -244,7 +250,7 @@ export const UserRegisterForm = ({
                           autoCapitalize="none"
                           autoComplete="email"
                           autoCorrect="off"
-                          disabled={pending}
+                          disabled={true}
                         />
                       </FormControl>
                       <FormMessage />
@@ -288,26 +294,46 @@ export const UserRegisterForm = ({
                   control={form.control}
                   name="data_nascimento"
                   render={({ field }) => (
-                    <FormItem>
-                      <FormLabel
-                        htmlFor="data_nascimento"
-                        className="flex items-center gap-1"
-                      >
-                        <FaBirthdayCake />
-                        Nascimento
-                      </FormLabel>
-                      <FormControl>
-                        <MyInputMask
-                          {...field}
-                          id="data_nascimento"
-                          placeholder="00/00/0000"
-                          mask="__/__/____"
-                          autoCapitalize="none"
-                          autoComplete="data_nascimento"
-                          autoCorrect="off"
-                          disabled={pending}
-                        />
-                      </FormControl>
+                    <FormItem className="flex flex-col">
+                      <FormLabel>Data de nascimento</FormLabel>
+                      <Popover>
+                        <PopoverTrigger asChild>
+                          <FormControl>
+                            <Button
+                              variant={'outline'}
+                              className={cn(
+                                'min-w-[240px] pl-3 text-left font-normal',
+                                field.value.toString() === '' &&
+                                  'text-muted-foreground',
+                              )}
+                            >
+                              {field.value.toString() !== '' ? (
+                                field.value
+                              ) : (
+                                <span>Selecione uma data</span>
+                              )}
+                              <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                            </Button>
+                          </FormControl>
+                        </PopoverTrigger>
+                        <PopoverContent className="w-auto p-0" align="start">
+                          <Calendar
+                            captionLayout="dropdown-buttons"
+                            locale={ptBR}
+                            toYear={2100}
+                            fromYear={1900}
+                            mode="single"
+                            onSelect={(date) => {
+                              if (date == null) return
+                              field.onChange(format(date, 'dd/MM/yyyy'))
+                            }}
+                            disabled={(date) =>
+                              date > new Date() || date < new Date('1900-01-01')
+                            }
+                            initialFocus
+                          />
+                        </PopoverContent>
+                      </Popover>
                       <FormMessage />
                     </FormItem>
                   )}
@@ -475,8 +501,8 @@ export const UserRegisterForm = ({
                             >
                               {field.value !== ''
                                 ? states?.find(
-                                    (state) => state.shortName === field.value,
-                                  )?.state
+                                    (state) => state.sigla === field.value,
+                                  )?.nome
                                 : 'Selecione um Estado'}
                               <LuChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                             </Button>
@@ -490,23 +516,23 @@ export const UserRegisterForm = ({
                               <CommandList>
                                 {states?.map((state, index) => (
                                   <CommandItem
-                                    value={state.shortName}
+                                    value={state.sigla}
                                     key={index}
                                     /* eslint-disable-next-line @typescript-eslint/no-misused-promises */
                                     onSelect={async () => {
-                                      await handleCity(state.shortName)
-                                      form.setValue('estado', state.shortName)
+                                      await handleCity(state.sigla)
+                                      form.setValue('estado', state.sigla)
                                     }}
                                   >
                                     <LuCheck
                                       className={cn(
                                         'mr-2 h-4 w-4',
-                                        state.shortName === field.value
+                                        state.sigla === field.value
                                           ? 'opacity-100'
                                           : 'opacity-0',
                                       )}
                                     />
-                                    {state.state}
+                                    {state.nome}
                                   </CommandItem>
                                 ))}
                               </CommandList>
@@ -543,8 +569,8 @@ export const UserRegisterForm = ({
                             >
                               {field.value !== ''
                                 ? arrayCitiesByState?.find(
-                                    (city) => city.city === field.value,
-                                  )?.city
+                                    (city) => city.nome === field.value,
+                                  )?.nome
                                 : 'Selecione uma Cidade'}
                               <LuChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                             </Button>
@@ -558,21 +584,21 @@ export const UserRegisterForm = ({
                               <CommandList>
                                 {arrayCitiesByState?.map((city, index) => (
                                   <CommandItem
-                                    value={city.city}
+                                    value={city.nome}
                                     key={index}
                                     onSelect={() => {
-                                      form.setValue('cidade', city.city)
+                                      form.setValue('cidade', city.nome)
                                     }}
                                   >
                                     <LuCheck
                                       className={cn(
                                         'mr-2 h-4 w-4',
-                                        city.city === field.value
+                                        city.nome === field.value
                                           ? 'opacity-100'
                                           : 'opacity-0',
                                       )}
                                     />
-                                    {city.city}
+                                    {city.nome}
                                   </CommandItem>
                                 ))}
                               </CommandList>

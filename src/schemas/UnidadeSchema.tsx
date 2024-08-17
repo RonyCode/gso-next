@@ -5,9 +5,9 @@ import { ScheduleSchema } from '@/schemas/ScheduleSchema'
 import { z } from 'zod'
 
 export const UnidadeSchema = z.object({
-  id: z.number().min(1, { message: 'id inválido' }).optional().nullable(),
+  id: z.string().min(1, { message: 'id inválido' }).optional().nullable(),
   id_corporation: z
-    .number()
+    .string()
     .min(1, { message: 'id inválido' })
     .optional()
     .nullable(),
@@ -17,8 +17,8 @@ export const UnidadeSchema = z.object({
     .string()
     .min(1, { message: 'Nome inválido deve conter no mínimo 1 caracteres' })
     .optional(),
-  cnpj: z.string().min(18, { message: 'CNPJ inválido' }).optional(),
-  phone: z.string().min(11, { message: 'Telefone inválido' }).optional(),
+  cnpj: z.string().min(14, { message: 'CNPJ inválido' }).optional(),
+  phone: z.string().min(3, { message: 'Telefone inválido' }).optional(),
   image: z.string().optional().nullable(),
   address: z
     .string()
@@ -71,10 +71,9 @@ export const UnidadeSchema = z.object({
   companyAddress: AddressSchema.optional(),
   companyMembers: z.array(MemberSchema).optional(),
   companyCars: z.array(CarSchema).optional(),
-  manager: z.number().optional().nullable(),
-  director: z.number().optional().nullable(),
-  manager_company: z.number().optional().nullable(),
-  director_company: z.number().optional().nullable(),
+  manager: z.string().optional().nullable(),
+  director: z.string().optional().nullable(),
+  director_company: z.string().optional().nullable(),
   excluded: z.number().optional().nullable(),
 })
 

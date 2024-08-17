@@ -1,7 +1,7 @@
 import { z } from 'zod'
 
 export const OrganizacaoSchema = z.object({
-  id: z.number().min(1, { message: 'id inválido' }),
+  id: z.string().min(1, { message: 'id inválido' }),
   name: z
     .string()
     .min(1, { message: 'Nome inválido deve conter no mínimo 1 caracteres' }),

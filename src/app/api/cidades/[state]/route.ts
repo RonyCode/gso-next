@@ -6,7 +6,7 @@ export async function GET(
 ): Promise<NextResponse> {
   const state = params.state
   const res: Response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_GSO}/services/cities/${state}`,
+    `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${state}/distritos`,
   )
   if (!res.ok) {
     return NextResponse.json(

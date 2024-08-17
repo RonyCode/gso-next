@@ -570,8 +570,8 @@ export const OrganizacaoForm = ({
                             >
                               {field.value !== null
                                 ? states?.find(
-                                    (state) => state.shortName === field.value,
-                                  )?.state
+                                    (state) => state.sigla === field.value,
+                                  )?.nome
                                 : 'Selecione um Estado'}
                               <LuChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                             </Button>
@@ -586,26 +586,23 @@ export const OrganizacaoForm = ({
                                 {states?.map((state, index) => (
                                   <CommandItem
                                     disabled={disabled}
-                                    value={state.shortName}
+                                    value={state.sigla}
                                     key={index}
                                     /* eslint-disable-next-line @typescript-eslint/no-misused-promises */
                                     onSelect={async () => {
-                                      await handleCity(state.shortName)
-                                      form.setValue(
-                                        'short_name',
-                                        state.shortName,
-                                      )
+                                      await handleCity(state.sigla)
+                                      form.setValue('short_name', state.sigla)
                                     }}
                                   >
                                     <LuCheck
                                       className={cn(
                                         'mr-2 h-4 w-4',
-                                        state.shortName === field.value
+                                        state.sigla === field.value
                                           ? 'opacity-100'
                                           : 'opacity-0',
                                       )}
                                     />
-                                    {state.state}
+                                    {state.nome}
                                   </CommandItem>
                                 ))}
                               </CommandList>
@@ -643,8 +640,8 @@ export const OrganizacaoForm = ({
                             >
                               {field.value !== ''
                                 ? arrayCitiesByState?.find(
-                                    (city) => city.city === field.value,
-                                  )?.city
+                                    (city) => city.nome === field.value,
+                                  )?.nome
                                 : 'Selecione uma Cidade'}
                               <LuChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                             </Button>
@@ -659,21 +656,21 @@ export const OrganizacaoForm = ({
                                 {arrayCitiesByState?.map((city, index) => (
                                   <CommandItem
                                     disabled={disabled}
-                                    value={city.city}
+                                    value={city.nome}
                                     key={index}
                                     onSelect={() => {
-                                      form.setValue('city', city.city)
+                                      form.setValue('city', city.nome)
                                     }}
                                   >
                                     <LuCheck
                                       className={cn(
                                         'mr-2 h-4 w-4',
-                                        city.city === field.value
+                                        city.nome === field.value
                                           ? 'opacity-100'
                                           : 'opacity-0',
                                       )}
                                     />
-                                    {city.city}
+                                    {city.nome}
                                   </CommandItem>
                                 ))}
                               </CommandList>

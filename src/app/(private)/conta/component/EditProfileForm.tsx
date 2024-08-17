@@ -89,11 +89,11 @@ export const EditProfileForm = ({
 
   useEffect(() => {
     startTransition(async () => {
-      if (user?.address?.state != null) {
-        await getAllCitiesByState(user?.address?.state)
+      if (user?.address?.short_name != null) {
+        await getAllCitiesByState(user?.address?.short_name)
       }
     })
-  }, [user?.address?.state])
+  }, [user?.address?.short_name, user?.address?.state])
 
   if (user?.account?.name !== 'user-external') {
     defaultValues = {
@@ -107,10 +107,10 @@ export const EditProfileForm = ({
       cep: maskZipcode(user?.address?.zipCode ?? ''),
       endereco: user?.address?.address,
       complemento: user?.address?.complement,
-      sigla: user?.address?.state,
+      sigla: user?.address?.short_name,
       numero: user?.address?.number,
       bairro: user?.address?.district,
-      estado: user?.address?.state,
+      estado: user?.address?.short_name,
       cidade: user?.address?.city,
     }
   }
@@ -453,8 +453,8 @@ export const EditProfileForm = ({
                             >
                               {field.value !== ''
                                 ? states?.find(
-                                    (state) => state.short_name === field.value,
-                                  )?.state
+                                    (state) => state.sigla === field.value,
+                                  )?.nome
                                 : 'Selecione um Estado'}
                               <LuChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                             </Button>
@@ -470,23 +470,23 @@ export const EditProfileForm = ({
                               <CommandGroup>
                                 {states?.map((state, index) => (
                                   <CommandItem
-                                    value={state.short_name}
+                                    value={state.sigla}
                                     key={index + 1}
                                     /* eslint-disable-next-line @typescript-eslint/no-misused-promises */
                                     onSelect={async () => {
-                                      await handleCity(state.short_name)
-                                      form.setValue('estado', state.short_name)
+                                      await handleCity(state.sigla)
+                                      form.setValue('estado', state.sigla)
                                     }}
                                   >
                                     <LuCheck
                                       className={cn(
                                         'mr-2 h-4 w-4',
-                                        state?.short_name === field?.value
+                                        state?.sigla === field?.value
                                           ? 'opacity-100'
                                           : 'opacity-0',
                                       )}
                                     />
-                                    {state?.state}
+                                    {state?.nome}
                                   </CommandItem>
                                 ))}
                               </CommandGroup>
@@ -523,8 +523,8 @@ export const EditProfileForm = ({
                             >
                               {field.value !== ''
                                 ? arrayCitiesByState?.find(
-                                    (city) => city.city === field.value,
-                                  )?.city
+                                    (city) => city.nome === field.value,
+                                  )?.nome
                                 : 'Selecione uma Cidade'}
                               <LuChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                             </Button>
@@ -540,21 +540,21 @@ export const EditProfileForm = ({
                               <CommandGroup>
                                 {arrayCitiesByState?.map((city, index) => (
                                   <CommandItem
-                                    value={city.city}
+                                    value={city.nome}
                                     key={index + 1}
                                     onSelect={() => {
-                                      form.setValue('cidade', city.city)
+                                      form.setValue('cidade', city.nome)
                                     }}
                                   >
                                     <LuCheck
                                       className={cn(
                                         'mr-2 h-4 w-4',
-                                        city.city === field.value
+                                        city.nome === field.value
                                           ? 'opacity-100'
                                           : 'opacity-0',
                                       )}
                                     />
-                                    {city.city}
+                                    {city.nome}
                                   </CommandItem>
                                 ))}
                               </CommandGroup>
