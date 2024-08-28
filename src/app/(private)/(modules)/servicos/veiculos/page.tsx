@@ -2,7 +2,8 @@ import React from 'react'
 import { LuBuilding, LuSearchX } from 'react-icons/lu'
 import { MdOutlineSupervisorAccount } from 'react-icons/md'
 
-import TabCarsDetails from '@/app/(private)/(modules)/servicos/[sigla]/components/TabCarsDetails'
+import TabCarsDetails from '../../components/TabCarsDetails'
+
 import { CardDefault } from '@/components/Cards/CardDefault'
 import { ImageExist } from '@/functions/ImageExist'
 import { getUnidadeById } from '@/lib/GetUnidadeById'
@@ -16,13 +17,13 @@ const CarsUnidade = async ({
     params.sigla?.split('-')[1],
     params.name_unidade?.split('-')[1],
   )
-  if (data?.image === null) {
-    data.image = process.env.NEXT_PUBLIC_API_GSO + '/public/images/img.png'
-  }
-  const imgValided = await ImageExist(data?.image)
-  if (imgValided.status !== 200) {
-    data.image = process.env.NEXT_PUBLIC_API_GSO + '/public/images/img.png'
-  }
+  // if (data?.image === undefined) {
+  //   data.image = process.env.NEXT_PUBLIC_API_GSO + '/public/images/img.png'
+  // }
+  // const imgValided = await ImageExist(data?.image)
+  // if (imgValided.status !== 200) {
+  //   data.image = process.env.NEXT_PUBLIC_API_GSO + '/public/images/img.png'
+  // }
 
   // eslint-disable-next-line array-callback-return
   const diretor = data?.companyMembers?.find((member) => {

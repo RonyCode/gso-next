@@ -2,9 +2,11 @@ import React from 'react'
 import { LuBuilding, LuSearchX } from 'react-icons/lu'
 import { MdOutlineSupervisorAccount } from 'react-icons/md'
 
-import TabMembersDetails from '@/app/(private)/(modules)/servicos/[sigla]/components/TabMembersDetails'
+import TabMembersDetails from '../../components/TabMembersDetails'
+
 import { CardDefault } from '@/components/Cards/CardDefault'
 import { ImageExist } from '@/functions/ImageExist'
+import { getAllOrganizacoes } from '@/lib/GetAllOrganizacoes'
 import { getUnidadeById } from '@/lib/GetUnidadeById'
 
 const MembrosUnidade = async ({
@@ -12,10 +14,7 @@ const MembrosUnidade = async ({
 }: {
   params: { sigla: string; name_unidade: string }
 }): Promise<JSX.Element> => {
-  const { data } = await getUnidadeById(
-    params.sigla?.split('-')[1],
-    params.name_unidade?.split('-')[1],
-  )
+  const { data } = await getAllOrganizacoes()
 
   const imgValided = await ImageExist(data?.image)
   if (imgValided.status !== 200) {

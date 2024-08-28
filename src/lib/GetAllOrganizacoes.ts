@@ -13,7 +13,7 @@ export const getAllOrganizacoes = async (): Promise<
       headers: {
         'Content-Type': 'application/json',
       },
-      next: { tags: ['organizacaoFetch'] },
+      next: { revalidate: 1, tags: ['organizacaoFetch'] },
     },
   )
 

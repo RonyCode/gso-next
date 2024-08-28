@@ -1,3 +1,4 @@
+import { getServerSession } from 'next-auth'
 import React from 'react'
 import { LuBuilding } from 'react-icons/lu'
 import { MdOutlineSupervisorAccount } from 'react-icons/md'
@@ -5,25 +6,40 @@ import { MdOutlineSupervisorAccount } from 'react-icons/md'
 import ModuleMinhaUnidade from '@/app/(private)/(modules)/components/module/ModuleMinhaUnidade'
 import { CardDefault } from '@/components/Cards/CardDefault'
 import { ImageExist } from '@/functions/ImageExist'
-import { getUnidadeById } from '@/lib/GetUnidadeById'
+import { authOptions } from '@/lib/auth'
+import { getAllOrganizacoes } from '@/lib/GetAllOrganizacoes'
+import { type IOrganizacaoSchema } from '@/schemas/OrganizacaoSchema'
 
 const MinhaUnidade = async ({
   params,
 }: {
-  params: { sigla: string; name_unidade: string }
+  params: { name_unidade: string }
 }): Promise<JSX.Element> => {
-  const { data } = await getUnidadeById(
-    params.sigla?.split('-')[1],
-    params.name_unidade?.split('-')[1],
-  )
-  const imgValided = await ImageExist(data?.image)
-  if (imgValided.status !== 200 && data?.image != null) {
-    data.image = process.env.NEXT_PUBLIC_API_GSO + '/public/images/img.png'
+  const { data } = await getAllOrganizacoes()
+  const session = await getServerSession(authOptions)
+
+  const corpFound = data?.find((corp) => {
+    if (corp?._id?.$oid === session?.id_corporation) {
+      return corp
+    }
+    return null
+  })
+
+  const companyFounded = corpFound?.companies?.find((company) => {
+    if (company?._id?.$oid === params?.name_unidade) {
+      return company
+    }
+    return null
+  })
+
+  const imgValided = await ImageExist(companyFounded?.image)
+  if (imgValided.status !== 200 && companyFounded?.image != null) {
+    companyFounded.image =
+      process.env.NEXT_PUBLIC_API_GSO + '/public/images/img.png'
   }
 
-  // eslint-disable-next-line array-callback-return
-  const diretor = data?.companyMembers?.find((member) => {
-    if (member?.id === data?.director) {
+  const diretor = corpFound?.members?.find((member) => {
+    if (member?.id === companyFounded?.director) {
       return member
     }
   })
@@ -31,14 +47,16 @@ const MinhaUnidade = async ({
     <div>
       {
         <CardDefault
-          title={data?.name + ' / ' + data?.companyAddress?.city}
+          title={
+            companyFounded?.name + ' / ' + companyFounded?.companyAddress?.city
+          }
           description={'CMD : ' + diretor?.competence + ' - ' + diretor?.name}
           image={
-            data.image ??
+            companyFounded?.image ??
             process.env.NEXT_PUBLIC_API_GSO + '/public/images/img.png'
           }
           imageMobile={
-            data.image ??
+            companyFounded?.image ??
             process.env.NEXT_PUBLIC_API_GSO + '/public/images/img.png'
           }
           icon={<LuBuilding size={28} />}

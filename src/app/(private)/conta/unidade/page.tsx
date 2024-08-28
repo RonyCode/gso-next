@@ -2,7 +2,7 @@ import { getServerSession } from 'next-auth'
 import React, { type ReactNode } from 'react'
 import { LuCalendarCheck } from 'react-icons/lu'
 
-import TabUnidadeDetails from '@/app/(private)/(modules)/[sigla]/components/TabUnidadeDetails'
+import TabUnidadeDetails from '@/app/(private)/(modules)/servicos/[sigla]/components/TabUnidadeDetails'
 import { CardDefault } from '@/components/Cards/CardDefault'
 import { ImageExist } from '@/functions/ImageExist'
 import { authOptions } from '@/lib/auth'

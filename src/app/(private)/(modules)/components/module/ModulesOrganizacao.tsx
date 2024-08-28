@@ -16,28 +16,16 @@ const ModulesOrganizacao = ({
   return (
     <>
       <div>
-        <div className=" grid grid-cols-2 gap-4 p-8 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-5">
+        <div className=" grid grid-cols-2 gap-4 p-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-5">
           {organizacoes?.map((corporation) => (
             <CardModule
               key={corporation?.id}
               title={corporation?.short_name_corp}
               subtitle={corporation?.city + ' - ' + corporation?.phone}
-              link={`/${corporation?.short_name_corp.toLowerCase() + '-' + corporation?.id} /`}
+              link={`/servicos/${corporation?.short_name_corp.toLowerCase() + '-' + corporation?.id} /`}
               icon={<IconBuild width={54} />}
             />
           ))}
-          <CardModule
-            title="Nova Organização"
-            subtitle="Adicionar nova organização"
-            link={`/${params?.sigla.toLowerCase()}/organizacao/salvar`}
-            icon={<IconBuildPlus width={58} className="ml-1" />}
-          />
-          <CardModule
-            title="Privilégios"
-            subtitle="Conceder privilégios"
-            link={`/${params?.sigla.toLowerCase()}/organizacao/privilegios`}
-            icon={<IconPrivileges width={80} />}
-          />
         </div>
       </div>
     </>

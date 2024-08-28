@@ -3,23 +3,23 @@ import { z } from 'zod'
 export const MemberSchema = z
   .object({
     id: z
-      .number()
+      .string()
       .min(1, {
         message: 'id inválido deve conter no mínimo 1 caracteres',
       })
       .optional()
       .nullable(),
     id_company: z
-      .number()
+      .string()
       .min(1, {
         message: 'id inválido deve conter no mínimo 1 caracteres',
       })
       .optional()
       .nullable(),
-    id_car: z.number().optional().nullable(),
-    id_user: z.number().optional().nullable(),
-    id_schedule: z.number().optional().nullable(),
-    id_function: z.number().optional().nullable(),
+    id_car: z.string().optional().nullable(),
+    id_user: z.string().optional().nullable(),
+    id_schedule: z.string().optional().nullable(),
+    id_function: z.string().optional().nullable(),
     short_name_function: z.string().optional().nullable(),
     competence: z
       .string()

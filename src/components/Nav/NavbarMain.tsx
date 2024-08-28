@@ -91,39 +91,39 @@ export function NavbarMain({
   }> = [
     {
       title: 'Escala',
-      href: `/${organizacaoFound.short_name_corp?.toLowerCase()}-${session?.id_corporation}/escalas`,
+      href: `/servicos/escalas`,
       description: 'Serviço de escalas dos membros de cada unidade',
     },
     {
       title: 'Ocorrência',
-      href: `/${organizacaoFound.short_name_corp?.toLowerCase()}-${session?.id_corporation}/ocorrencias`,
+      href: `/servicos/ocorrencias`,
       description: 'Serviço de ocorrência.',
     },
     {
-      title: 'Estatísticas',
-      href: `/${organizacaoFound.short_name_corp?.toLowerCase()}-${session?.id_corporation}/estatisticas`,
+      title: 'Dashboard',
+      href: `/servicos/estatisticas`,
       description: 'Serviço para obter estatísticas do sistema.',
     },
     {
       title: 'Aplicativo',
-      href: `/${organizacaoFound.short_name_corp?.toLowerCase()}-${session?.id_corporation}/aplicativo`,
+      href: `/servicos/aplicativo`,
       description: 'Novidades de nossos aplicativos',
     },
     {
-      title: 'Histórico',
-      href: `/${organizacaoFound.short_name_corp?.toLowerCase()}-${session?.id_corporation}/historico`,
+      title: 'Dashboard',
+      href: `/servicos/historico`,
       description: 'Busque a ocorrência mais recente através do histórico .',
     },
     {
       title: 'Área do Gestor',
-      href: `/${organizacaoFound.short_name_corp?.toLowerCase()}-${session?.id_corporation}/gestor`,
+      href: `/servicos/gestor`,
       description:
         'Serviço para gerenciar o sistema de unidades, escalas e afins.',
     },
     {
-      title: 'Organização',
-      href: `/${organizacaoFound?.short_name_corp?.toLowerCase()}-${session?.id_corporation}`,
-      description: 'Serviço para gerenciar o organização.',
+      title: 'corporacao',
+      href: `/servicos/organizacao`,
+      description: 'Serviço para gerenciar a corporação.',
     },
   ]
 
@@ -156,7 +156,7 @@ export function NavbarMain({
     {
       title: 'Serviços',
       icon: <LuComponent />,
-      path: `/${organizacaoFound?.short_name_corp?.toLowerCase()}-${session?.id_corporation}`,
+      path: `/servicos`,
     },
     { title: 'Contato', icon: <LuContact />, path: '/contact' },
     {

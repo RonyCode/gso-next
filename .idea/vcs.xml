@@ -2,5 +2,8 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../cbmto-ws" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../prevenir" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../wsgso" vcs="Git" />
   </component>
 </project>

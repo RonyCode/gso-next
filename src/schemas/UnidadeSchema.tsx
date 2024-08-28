@@ -6,6 +6,7 @@ import { z } from 'zod'
 
 export const UnidadeSchema = z.object({
   id: z.string().min(1, { message: 'id inválido' }).optional().nullable(),
+  _id: z.object({ $oid: z.string() }).optional(),
   id_corporation: z
     .string()
     .min(1, { message: 'id inválido' })

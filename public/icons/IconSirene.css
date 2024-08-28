@@ -35,6 +35,8 @@
 
 @keyframes flipBrilho {
     50% {
-        transform: rotateX(180deg);;
+        transform: rotateX(180deg);
+
+        fill: #e11d48;
     }
 }

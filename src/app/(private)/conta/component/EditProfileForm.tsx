@@ -7,15 +7,16 @@ import * as React from 'react'
 import { useEffect, useTransition } from 'react'
 import { useForm, type UseFormReturn } from 'react-hook-form'
 import {
-  FaBuildingColumns,
-  FaHashtag,
-  FaMapLocationDot,
-  FaPhone,
-  FaSpinner,
-  FaTreeCity,
-  FaUser,
-} from 'react-icons/fa6'
-import { LuCheck, LuChevronsUpDown } from 'react-icons/lu'
+  LuCalendar,
+  LuCheck,
+  LuChevronsUpDown,
+  LuHash,
+  LuLoader2,
+  LuMapPin,
+  LuPhone,
+  LuSquare,
+  LuUser,
+} from 'react-icons/lu'
 
 import { saveUserAction } from '@/app/actions/saveUserAction'
 import { EditPhoto } from '@/components/EditPhoto/EditPhoto'
@@ -54,8 +55,7 @@ import { toast } from '@/ui/use-toast'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { CalendarIcon } from '@radix-ui/react-icons'
 import { format } from 'date-fns'
-import moment from 'moment'
-
+import { ptBR } from 'date-fns/locale/pt-BR'
 enum Fields {
   cep = 'cep',
   endereco = 'endereco',
@@ -83,6 +83,7 @@ export const EditProfileForm = ({
   ...props
 }: UserRegisterFormProps): React.ReactElement => {
   const [pending, startTransition] = useTransition()
+  const [date, setDate] = React.useState<Date>()
   const { update, data: session } = useSession()
   const router = useRouter()
   let defaultValues = {}
@@ -102,9 +103,9 @@ export const EditProfileForm = ({
       image: user?.account?.image,
       email: user?.userAuth?.email,
       cpf: maskCpfCnpj(user?.account?.cpf),
-      data_nascimento: moment(user?.account?.birthday).format('DD/MM/yyyy'),
+      data_nascimento: user?.account?.birthday,
       telefone: maskPhone(user?.account?.phone),
-      cep: maskZipcode(user?.address?.zipCode ?? ''),
+      cep: maskZipcode(user?.address?.zipcode ?? ''),
       endereco: user?.address?.address,
       complemento: user?.address?.complement,
       sigla: user?.address?.short_name,
@@ -195,7 +196,6 @@ export const EditProfileForm = ({
       })
     }
   }
-
   return (
     <>
       <div className="px-4 2xl:px-20">
@@ -232,7 +232,7 @@ export const EditProfileForm = ({
                   />
                 </div>
                 <div className=" w-full">
-                  <div className="flex w-full flex-col  gap-2 md:flex-row">
+                  <div className="flex w-full flex-col  gap-2 pb-2 md:flex-row">
                     <FormField
                       control={form.control}
                       name="nome"
@@ -242,7 +242,7 @@ export const EditProfileForm = ({
                             htmlFor="nome"
                             className="flex items-center gap-1"
                           >
-                            <FaUser /> Nome
+                            <LuUser /> Nome
                           </FormLabel>
                           <FormControl>
                             <Input
@@ -270,7 +270,7 @@ export const EditProfileForm = ({
                             htmlFor="cpf"
                             className="flex items-center gap-1"
                           >
-                            <FaHashtag /> CPF
+                            <LuHash /> CPF
                           </FormLabel>
                           <FormControl>
                             <MyInputMask
@@ -297,8 +297,13 @@ export const EditProfileForm = ({
                       control={form.control}
                       name="data_nascimento"
                       render={({ field }) => (
-                        <FormItem className="flex flex-col">
-                          <FormLabel>Data de nascimento</FormLabel>
+                        <FormItem className="w-full">
+                          <FormLabel
+                            htmlFor="data_nascimento"
+                            className="flex items-center gap-1"
+                          >
+                            <LuCalendar /> Data Nascimento
+                          </FormLabel>{' '}
                           <Popover>
                             <PopoverTrigger asChild>
                               <FormControl>
@@ -311,7 +316,7 @@ export const EditProfileForm = ({
                                   )}
                                 >
                                   {field.value.toString() !== '' ? (
-                                    format(field.value, 'dd/MM/yyyy')
+                                    field.value
                                   ) : (
                                     <span>Selecione uma data</span>
                                   )}
@@ -324,9 +329,15 @@ export const EditProfileForm = ({
                               align="start"
                             >
                               <Calendar
+                                captionLayout="dropdown-buttons"
+                                locale={ptBR}
+                                toYear={2100}
+                                fromYear={1900}
                                 mode="single"
+                                selected={date}
                                 onSelect={(date) => {
                                   if (date == null) return
+                                  setDate(date)
                                   field.onChange(format(date, 'dd/MM/yyyy'))
                                 }}
                                 disabled={(date) =>
@@ -345,12 +356,12 @@ export const EditProfileForm = ({
                       control={form.control}
                       name="telefone"
                       render={({ field }) => (
-                        <FormItem>
+                        <FormItem className="w-full">
                           <FormLabel
                             htmlFor="telefone"
                             className="flex items-center gap-1"
                           >
-                            <FaPhone /> Telefone
+                            <LuPhone /> Telefone
                           </FormLabel>
                           <FormControl>
                             <MyInputMask
@@ -382,7 +393,7 @@ export const EditProfileForm = ({
                         htmlFor="cep"
                         className="flex items-center gap-1"
                       >
-                        <FaHashtag /> Cep
+                        <LuMapPin /> Cep
                       </FormLabel>
                       <FormControl>
                         <MyInputMask
@@ -410,7 +421,7 @@ export const EditProfileForm = ({
                         htmlFor="endereco"
                         className="flex items-center gap-1"
                       >
-                        <FaMapLocationDot width={16} /> Endereco
+                        <LuMapPin width={16} /> Endereco
                       </FormLabel>
                       <FormControl>
                         <Input
@@ -438,7 +449,7 @@ export const EditProfileForm = ({
                         htmlFor="estado"
                         className="flex items-center gap-1"
                       >
-                        <FaBuildingColumns /> Estado
+                        <LuMapPin /> Estado
                       </FormLabel>{' '}
                       <Popover>
                         <PopoverTrigger asChild>
@@ -508,7 +519,7 @@ export const EditProfileForm = ({
                         htmlFor="cidade"
                         className="flex items-center gap-1"
                       >
-                        <FaBuildingColumns /> Cidade
+                        <LuMapPin /> Cidade
                       </FormLabel>{' '}
                       <Popover>
                         <PopoverTrigger asChild>
@@ -576,7 +587,7 @@ export const EditProfileForm = ({
                         htmlFor="bairro"
                         className="flex items-center gap-1"
                       >
-                        <FaTreeCity /> Bairro
+                        <LuMapPin /> Bairro
                       </FormLabel>
                       <FormControl>
                         <Input
@@ -604,7 +615,7 @@ export const EditProfileForm = ({
                         htmlFor="numero"
                         className="flex items-center gap-1"
                       >
-                        <FaHashtag /> Numero
+                        <LuSquare /> Número
                       </FormLabel>
                       <FormControl>
                         <Input
@@ -631,7 +642,7 @@ export const EditProfileForm = ({
                         htmlFor="complemento"
                         className="flex items-center gap-1"
                       >
-                        <FaHashtag /> Complemento
+                        <LuMapPin /> Complemento
                       </FormLabel>
                       <FormControl>
                         <Input
@@ -656,7 +667,7 @@ export const EditProfileForm = ({
                     type="submit"
                   >
                     {pending && (
-                      <FaSpinner className="mr-2 h-4 w-4 animate-spin" />
+                      <LuLoader2 className="mr-2 h-4 w-4 animate-spin" />
                     )}
                     Salvar
                   </Button>{' '}

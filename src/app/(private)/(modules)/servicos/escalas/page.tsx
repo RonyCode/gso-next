@@ -3,11 +3,14 @@ import { getServerSession } from 'next-auth'
 import React from 'react'
 import { LuCalendarDays } from 'react-icons/lu'
 
-import SelectCompanySchedule from '@/app/(private)/(modules)/servicos/[sigla]/components/SelectCompanySchedule'
+import SelectCompanySchedule from '../../components/SelectCompanySchedule'
+
 import { CardDefault } from '@/components/Cards/CardDefault'
 import { authOptions } from '@/lib/auth'
 import { getAllFunctions } from '@/lib/GetAllFunctions'
 import { getAllUnidades } from '@/lib/GetAllUnidades'
+import ModuloEscala from '@/app/(private)/(modules)/servicos/escalas/module/ModuloEscala'
+import { getUnidadeById } from '@/lib/GetUnidadeById'
 
 export const metadata: Metadata = {
   title: 'GSO | Escalas',
@@ -19,7 +22,7 @@ const Escala = async ({ params }: { params: { sigla: string } }) => {
   if (session === null) return <> </>
   // const { data } = await getAllUnidades(session?.id_corporation)
   const functions = await getAllFunctions()
-  const unidades = await getAllUnidades(params?.sigla?.split('-')[1])
+  const unidades = await getUnidadeById(session?.id_corporation,session?.id_company)
 
   return (
     <div>
@@ -33,10 +36,11 @@ const Escala = async ({ params }: { params: { sigla: string } }) => {
         icon={<LuCalendarDays size={28} />}
       >
         <div>
-          <SelectCompanySchedule
-            unidades={unidades?.data}
-            functions={functions?.data}
-          />
+          <ModuloEscala />
+          {/*<SelectCompanySchedule*/}
+          {/*  unidades={unidades?.data}*/}
+          {/*  functions={functions?.data}*/}
+          {/*/>*/}
         </div>
       </CardDefault>
     </div>

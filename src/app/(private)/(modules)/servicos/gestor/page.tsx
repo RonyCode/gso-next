@@ -1,13 +1,11 @@
 import { getServerSession } from 'next-auth'
 import { revalidatePath } from 'next/cache'
-import Link from 'next/link'
 import React from 'react'
-import { LuBuilding2 } from 'react-icons/lu'
+import { LuCrown } from 'react-icons/lu'
 
-import ModulesMinhaOrganizacao from '@/app/(private)/(modules)/components/module/ModulesMinhaOrganizacao'
+import ModuloGestor from '../../components/module/ModuloGestor'
+
 import { CardDefault } from '@/components/Cards/CardDefault'
-import { CardWithLogo } from '@/components/Cards/CardWithLogo'
-import { Button } from '@/components/ui/button'
 import { ImageExist } from '@/functions/ImageExist'
 import { authOptions } from '@/lib/auth'
 import { getAllOrganizacoes } from '@/lib/GetAllOrganizacoes'
@@ -20,11 +18,11 @@ const Page = async ({
 }): Promise<JSX.Element> => {
   const session = await getServerSession(authOptions)
   const { data } = await getAllOrganizacoes()
-  // eslint-disable-next-line array-callback-return
   const corporationFound = data?.find((corp) => {
     if (corp?.id === session?.id_corporation) {
       return corp
     }
+    return null
   })
   const imgValided = await ImageExist(corporationFound?.image)
   if (imgValided.status !== 200 && corporationFound?.image != null) {
@@ -45,30 +43,18 @@ const Page = async ({
   return (
     <>
       <CardDefault
-        title={corporationFound?.name}
-        description={corporationFound?.city + ' - ' + corporationFound?.phone}
-        image={
-          corporationFound?.image ??
-          process.env.NEXT_PUBLIC_API_GSO + '/public/images/img.png'
-        }
+        title="Gestor de Organizações"
+        description="Área de Gestão"
+        image={process.env.NEXT_PUBLIC_API_GSO + '/public/images/manager.jpg'}
         imageMobile={
-          corporationFound?.image ??
-          process.env.NEXT_PUBLIC_API_GSO + '/public/images/img.png'
+          process.env.NEXT_PUBLIC_API_GSO + '/public/images/manager.jpg'
         }
-        icon={<LuBuilding2 size={28} />}
+        icon={<LuCrown size={28} />}
       >
-        {/* {session?.id_corporation != null ? ( */}
-        <ModulesMinhaOrganizacao params={params} />
-        {/* ) : ( */}
-        {/*  <CardWithLogo */}
-        {/*    title="Usuário sem organização" */}
-        {/*    description="É necessário solicitar inclusão em uma organização para acessar nossos módulos" */}
-        {/*  > */}
-        {/*    <Link href="/contact"> */}
-        {/*      <Button>Solicitar inclusão</Button> */}
-        {/*    </Link> */}
-        {/*  </CardWithLogo> */}
-        {/* )} */}
+        <div className="w-full">
+          {' '}
+          <ModuloGestor params={params} />
+        </div>
       </CardDefault>
     </>
   )

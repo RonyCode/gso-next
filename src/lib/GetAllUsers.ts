@@ -1,8 +1,8 @@
 import { fetchWrapper } from '@/functions/fetch'
-import { type UserType } from '@/types/index'
+import { type ResponseApi, type UserType } from '@/types/index'
 
-export const getAllUser = async (): Promise<UserType> => {
-  return await fetchWrapper<UserType>(
+export const getAllUsers = async (): Promise<ResponseApi<UserType[]>> => {
+  return await fetchWrapper<ResponseApi<UserType[]>>(
     `${process.env.NEXT_PUBLIC_NEXT_URL}/api/users`,
     {
       method: 'GET',

@@ -1,32 +1,50 @@
 #celular {
-  stroke-width: 1px;
+    stroke-width: .1;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-miterlimit: 10;
+    fill-rule: evenodd;
+    animation: fadeColor 1s forwards alternate-reverse;
+
 }
 
 #dedo1 {
-  animation: maoCelular .5s forwards;
+    animation: maoCelular .5s forwards;
 }
 
 #dedo2 {
-  animation: maoCelular 1s forwards;
+    animation: maoCelular 1s forwards;
 }
 
 #dedo3 {
-  animation: maoCelular 1.5s forwards;
+    animation: maoCelular 1.5s forwards;
 }
 
 #dedo4 {
-  animation: maoCelular 2s forwards;
+    animation: maoCelular 2s forwards;
 }
 
 
 #cardModule:hover #dedo1, #cardModule:hover #dedo2, #cardModule:hover #dedo3, #cardModule:hover #dedo4 {
-  animation: maoCelular 1.5s infinite;
+    animation: maoCelular 1.5s infinite;
 }
-
+#cardModule:hover #celular {
+    animation: fadeColor 1.5s infinite ease-in-out;
+}
 
 @keyframes maoCelular {
+    50% {
+        fill: #a40101;
+    }
+    100% {
+        transform: translate(7%, -15px);
+    }
 
-  to {
-    transform: translate(7%, -15px);
-  }
 }
+
+@keyframes fadeColor {
+    100% {
+        fill: #a40101;
+    }
+}
+

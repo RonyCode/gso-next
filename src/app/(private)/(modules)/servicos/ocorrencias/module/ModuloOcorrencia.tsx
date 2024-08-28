@@ -9,10 +9,10 @@ import IconPrivileges from '@/icons/IconPrivileges'
 import IconCalendar from '@/icons/IconCalendar'
 import IconEditSave from '@/icons/IconEditSave'
 
-const ModuloEscala = async ({
+const ModuloOcorrencia = async ({
   params,
 }: {
-  params: { sigla: string; id_corporation: string }
+  params?: { sigla: string; id_corporation: string }
 }): Promise<JSX.Element> => {
   return (
     <>
@@ -20,19 +20,19 @@ const ModuloEscala = async ({
         <div className="group">
           <CardModule
             title="Editar / Salvar"
-            subtitle="Salvar  Escala"
-            link={`/servicos/escala/salvar`}
+            subtitle="Salvar  Ocorrência"
+            link={`/servicos/ocorrencias/salvar`}
             icon={<IconEditSave width={58} className="ml-1" />}
           />
         </div>
         <CardModule
-          title="Escalas"
-          subtitle="Lista de Escalas"
-          link={`/servicos/gestor/salvar-organizacao`}
-          icon={<IconCalendar width={58} className="ml-1" />}
+          title="Ocorrências"
+          subtitle="Lista de Ocorrências"
+          link={`/servicos/ocorrencias/lista`}
+          icon={<IconList width={58} className="ml-1" />}
         />
       </div>
     </>
   )
 }
-export default ModuloEscala
+export default ModuloOcorrencia

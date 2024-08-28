@@ -1,8 +1,7 @@
 import { type ReactNode } from 'react'
 import { LuBuilding2 } from 'react-icons/lu'
 
-import OrganizacaoForm from './component/OrganizacaoForm'
-
+import OrganizacaoForm from '@/app/(private)/(modules)/servicos/gestor/component/OrganizacaoForm'
 import { CardDefault } from '@/components/Cards/CardDefault'
 import { getAllStates } from '@/lib/getAllStates'
 

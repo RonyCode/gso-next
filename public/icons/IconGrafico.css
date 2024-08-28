@@ -1,11 +1,18 @@
 #seta {
   stroke-linecap: round;
-  fill: var(--foreground);
+  stroke-linejoin: round;
+  stroke-miterlimit: 10;
+  fill-rule: evenodd;
+  fill: none;
+  stroke-dasharray: 4490;
+    stroke-width: .6;
+
 }
 
 #setaPath path {
   animation: arrowRight  2s forwards;
   transform-origin: left center;
+
 
 }
 
@@ -27,8 +34,12 @@
 @keyframes arrowRight {
   to {
     transform: translate(5px, -3px);
-
   }
+    from    {
+    transform: translate(0, 0);
+        stroke: #e11d48;
+
+    }
 }
 
 @keyframes expandGraph {

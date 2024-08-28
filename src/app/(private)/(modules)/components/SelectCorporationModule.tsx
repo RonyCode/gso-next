@@ -1,6 +1,6 @@
 'use client'
 import { useSession } from 'next-auth/react'
-import { redirect } from 'next/navigation'
+import { redirect, useRouter } from 'next/navigation'
 import React, { useEffect, useState, useTransition } from 'react'
 import { useForm } from 'react-hook-form'
 import { LuCheck, LuChevronsUpDown, LuLandmark } from 'react-icons/lu'
@@ -34,6 +34,7 @@ import {
 import { Popover, PopoverContent, PopoverTrigger } from '@/ui/popover'
 import { toast } from '@/ui/use-toast'
 import { zodResolver } from '@hookform/resolvers/zod'
+import TabMembersDetails from '@/app/(private)/(modules)/components/TabMembersDetails'
 
 type SelectCompanyModuleProps = React.HTMLAttributes<HTMLDivElement> & {
   organizacoes?: IOrganizacaoSchema[]
@@ -48,9 +49,10 @@ export const SelectCompanyModule = ({
   ...props
 }: SelectCompanyModuleProps): React.ReactElement => {
   const [pending, startTransition] = useTransition()
-
-  const { data: session } = useSession()
+  const router = useRouter()
+  const { data: session,update } = useSession()
   const [disable, setDisable] = useState(false)
+  const [organizacaoFounded, setOrganizacaoFounded] = useState({} as IOrganizacaoSchema)
   const form = useForm<ISelectCorporationModuleSchema>({
     mode: 'all',
     criteriaMode: 'all',
@@ -73,9 +75,7 @@ export const SelectCompanyModule = ({
           organizacao.id?.toString() === session?.id_corporation?.toString()
         )
       })
-      redirect(
-        `/servicos/${organizacaoFound?.short_name_corp.toLowerCase()}-${session?.id_corporation}`,
-      )
+      setOrganizacaoFounded(organizacaoFound as IOrganizacaoSchema)
     }
   }, [disable, organizacoes, session?.id_corporation, session?.role])
 
@@ -93,17 +93,22 @@ export const SelectCompanyModule = ({
         })
       }
       if (organizacaoFound?.id === formData?.id_corporation) {
+         update({
+          ...session,
+          id_corporation: formData?.id_corporation,
+        })
+        router.refresh()
+
         toast({
           variant: 'success',
           title: 'Ok! Serviços encontrados com sucesso! 🚀',
           description: `Tudo certo serviços para ${organizacaoFound?.short_name_corp} encontrados`,
         })
-        redirect(
-          `/servicos/${organizacaoFound?.short_name_corp.toLowerCase()}-${formData.id_corporation}`,
-        )
+        setOrganizacaoFounded(organizacaoFound as IOrganizacaoSchema)
       }
     })
   }
+  console.log(organizacaoFounded)
 
   return (
     <>
@@ -131,7 +136,6 @@ export const SelectCompanyModule = ({
                         <PopoverTrigger asChild>
                           <FormControl>
                             <Button
-                              disabled={disable}
                               variant="outline"
                               role="combobox"
                               className={cn(
@@ -199,6 +203,8 @@ export const SelectCompanyModule = ({
             </Form>
           </Card>
         </div>
+        <TabMembersDetails  members={organizacaoFounded?.members}/>
+
       </Card>
     </>
   )

@@ -1,8 +1,10 @@
+import { getServerSession } from 'next-auth'
 import React, { type ReactNode } from 'react'
 import { LuBuilding2 } from 'react-icons/lu'
 
-import OrganizacaoForm from '@/app/(private)/(modules)/[sigla]/organizacao/salvar/component/OrganizacaoForm'
+import OrganizacaoForm from '@/app/(private)/(modules)/servicos/gestor/component/OrganizacaoForm'
 import { CardDefault } from '@/components/Cards/CardDefault'
+import { authOptions } from '@/lib/auth'
 import { getAllOrganizacoes } from '@/lib/GetAllOrganizacoes'
 import { getAllStates } from '@/lib/getAllStates'
 
@@ -13,14 +15,12 @@ const MinhaOrganizacao = async ({
 }): Promise<ReactNode> => {
   const { data } = await getAllOrganizacoes()
   const state = await getAllStates()
+  const session = await getServerSession(authOptions)
+
   // eslint-disable-next-line array-callback-return
   const organizacaoFound = data?.find((item) => {
-    if (
-      item.id !== undefined &&
-      item.id !== null &&
-      params?.sigla !== undefined
-    ) {
-      return item.id?.toString() === params.sigla?.split('-')[1]?.toString()
+    if (item.id !== undefined && item.id !== null) {
+      return item.id === session?.id_corporation
     }
   })
   return (

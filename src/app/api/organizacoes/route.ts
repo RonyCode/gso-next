@@ -8,7 +8,7 @@ export async function GET(): Promise<NextResponse> {
       headers: {
         'Content-Type': 'application/json',
       },
-      next: { tags: ['organizacaoFetch'] },
+      next: { revalidate: 1, tags: ['organizacaoFetch'] },
     },
   )
   if (!res.ok) {
@@ -17,6 +17,7 @@ export async function GET(): Promise<NextResponse> {
       { status: res.status },
     )
   }
+
   const result = await res.json()
   return NextResponse.json(result)
 }

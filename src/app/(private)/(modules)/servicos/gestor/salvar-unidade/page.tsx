@@ -1,32 +1,32 @@
 import { type Metadata } from 'next'
 import { getServerSession } from 'next-auth'
-import Link from 'next/link'
 import React, { type ReactNode } from 'react'
 import { LuMenuSquare } from 'react-icons/lu'
 
-import ModuleMinhaUnidade from '@/app/(private)/(modules)/components/module/ModuleMinhaUnidade'
-import ModulesOrganizacao from '@/app/(private)/(modules)/components/module/ModulesOrganizacao'
+import TabUnidadeDetails from '@/app/(private)/(modules)/components/TabUnidadeDetails'
 import { CardDefault } from '@/components/Cards/CardDefault'
-import { CardWithLogo } from '@/components/Cards/CardWithLogo'
 import { columnsUnidades } from '@/components/DataTables/DataTableUnidades/columnsUnidades'
 import { DataTableUnidades } from '@/components/DataTables/DataTableUnidades/data-table-unidades'
 import { authOptions } from '@/lib/auth'
+import { getAllOrganizacoes } from '@/lib/GetAllOrganizacoes'
+import { getAllStates } from '@/lib/getAllStates'
 import { getAllUnidades } from '@/lib/GetAllUnidades'
-import { Button } from '@/ui/button'
 
 export const metadata: Metadata = {
   title: 'GSO | unidades',
   description: 'Página de unidades do site GSO.',
 }
 
-const Unidades = async ({
+const SalvarUnidade = async ({
   params,
 }: {
   params: { sigla: string; name_unidade: string }
 }): Promise<ReactNode> => {
   const session = await getServerSession(authOptions)
 
-  const { data } = await getAllUnidades(params?.sigla?.split('-')[1])
+  const { data } = await getAllUnidades(session?.id_corporation)
+  const dataCorporations = await getAllOrganizacoes()
+  const dataStates = await getAllStates()
   return (
     <>
       <CardDefault
@@ -37,17 +37,19 @@ const Unidades = async ({
         icon={<LuMenuSquare size={28} />}
       >
         <div className="overflow-scroll p-6 lg:overflow-hidden">
-          {/* <TabUnidadeDetails /> */}
+          <TabUnidadeDetails
+            states={dataStates}
+            corporations={dataCorporations.data}
+          />
           {data !== null && data !== undefined && (
             <DataTableUnidades data={data} columns={columnsUnidades} />
           )}
         </div>
 
         {/* {session?.id_corporation != null ? ( */}
-        <ModuleMinhaUnidade params={params} />
         {/* ) : ( */}
         {/*  <CardWithLogo */}
-        {/*    title="Usuário sem Corporação" */}
+        {/*    title="Usuário sem corporacao" */}
         {/*    description="É necessário solicitar inclusão em uma corporação para acessar nossos módulos" */}
         {/*  > */}
         {/*    <Link href="/contact"> */}
@@ -60,4 +62,4 @@ const Unidades = async ({
     </>
   )
 }
-export default Unidades
+export default SalvarUnidade

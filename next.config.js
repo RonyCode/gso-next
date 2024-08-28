@@ -29,6 +29,15 @@ const nextConfig = {
         protocol: 'http',
         hostname: 'wsgso.localhost',
       },
+
+      {
+        protocol: 'http',
+        hostname: '192.168.100.57:7777',
+      },
+      {
+        protocol: 'http',
+        hostname: '192.168.100.57',
+      },
       {
         protocol: 'http',
         hostname: '179.253.45.156:7777',

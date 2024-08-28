@@ -143,6 +143,7 @@ export interface Address {
   city: string
   state: string
   short_name: string
+  sigla: string
 }
 
 export interface Profile {
@@ -180,9 +181,9 @@ export interface Unidades {
   companies: Unidade[]
 }
 export interface Unidade {
-  id: number
-  id_corporation: number
-  id_company: number
+  id: string
+  id_corporation: string
+  id_company: string
   name: string
   cnpj: string
   image: string
@@ -191,7 +192,6 @@ export interface Unidade {
   type: number
   director: Member
   manager: Member
-  manager_company: Unidade
   director_company: Unidade
   companyAddress: Address
   companyMembers: IMemberSchema[]
@@ -220,7 +220,7 @@ export interface UserType {
   estado: string
   senha: string
   confirmaSenha: string
-  id: number
+  id: string
   excluded: number
 }
 

@@ -18,7 +18,7 @@ const InitializeStores = (): JSX.Element => {
       <UserErrorRegisterInitializeStore userError={dataUserErro} />
       <StateStoreInitialize states={dataStates} />
       <UserStoreInitialize user={dataUser} />
-      {/* <OrganizacaoStoreInitialize organizacao={dataOrganizacao} /> */}
+      {/* <OrganizacaoStoreInitialize corporacao={dataOrganizacao} /> */}
     </>
   )
 }

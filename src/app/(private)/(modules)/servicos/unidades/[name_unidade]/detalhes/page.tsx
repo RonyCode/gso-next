@@ -2,7 +2,7 @@ import React from 'react'
 import { LuBuilding } from 'react-icons/lu'
 import { MdOutlineSupervisorAccount } from 'react-icons/md'
 
-import TabUnidadeDetails from '@/app/(private)/(modules)/servicos/[sigla]/components/TabUnidadeDetails'
+import TabUnidadeDetails from '@/app/(private)/(modules)/components/TabUnidadeDetails'
 import { CardDefault } from '@/components/Cards/CardDefault'
 import { ImageExist } from '@/functions/ImageExist'
 import { getAllStates } from '@/lib/getAllStates'

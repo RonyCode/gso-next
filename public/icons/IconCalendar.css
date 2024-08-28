@@ -3,7 +3,12 @@
   animation: rotateDias 2s forwards;
 }
 #calendario{
-  fill: var(--foreground);
+  stroke-width: .5;
+  stroke-dasharray: none;
+  stroke-linecap: butt;
+  stroke-linejoin: miter;
+  stroke-miterlimit: 10;
+  fill-rule: nonzero;
 
 }
 
@@ -13,6 +18,9 @@
 @keyframes rotateDias {
   to {
     transform: translate(25%);
-
   }
+    from {
+        fill: #e11d48;
+
+    }
 }

@@ -17,12 +17,10 @@ export const AddressSchema = z.object({
   city: z.string().min(2, {
     message: 'cidade inválido deve conter no mínimo 3 caracteres',
   }),
-  state: z.string().min(2, {
-    message: 'estado inválido deve conter no mínimo 3 caracteres',
-  }),
   short_name: z.string().min(2, {
     message: 'sigla estado inválido deve conter no mínimo 3 caracteres',
   }),
+  sigla: z.string().optional(),
   shortNameCorp: z
     .string()
     .min(2, {

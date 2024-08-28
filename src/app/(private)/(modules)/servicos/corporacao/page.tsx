@@ -26,8 +26,8 @@ const Organizacao = async ({
   return (
     <>
       <CardDefault
-        title="Organizações"
-        description="Gerenciar organizações"
+        title="Minha Corporação"
+        description="Gerenciar Corporação"
         image={
           process.env.NEXT_PUBLIC_API_GSO + '/public/images/bannerCorp.jpg'
         }

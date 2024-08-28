@@ -1,18 +1,115 @@
-#dias {
-  transform-origin: center center;
-  animation: rotateDias 2s forwards;
-}
-#calendario{
-  fill: var(--foreground);
+
+#path1 {
+
+    stroke-width: 2;
+    stroke-dasharray: none;
+    stroke-linecap: butt;
+    stroke-linejoin: miter;
+    stroke-miterlimit: 10;
+    fill: transparent;
+    fill-rule: nonzero;
+    opacity: 1;
+    animation: expandeRight 2.5s forwards;
 
 }
 
-#cardModule:hover #dias {
-  animation: rotateDias 2s infinite;
-}
-@keyframes rotateDias {
-  to {
-    transform: translate(25%);
+#path2 {
 
-  }
+    stroke-width: 2;
+    stroke-dasharray: none;
+    stroke-linecap: butt;
+    stroke-linejoin: miter;
+    stroke-miterlimit: 10;
+    fill: transparent;
+    fill-rule: nonzero;
+    animation: expandeTop 2.5s forwards;
+    opacity: 1;
+
+}
+
+#path3 {
+    stroke-width: 2;
+    stroke-dasharray: none;
+    stroke-linecap: butt;
+    stroke-linejoin: miter;
+    stroke-miterlimit: 10;
+    fill: transparent;
+    fill-rule: nonzero;
+    opacity: 1;
+    animation: expandeLeft 2.5s forwards;
+
+}
+
+#path4 {
+    stroke-width: 2;
+    stroke-dasharray: none;
+    stroke-linecap: butt;
+    stroke-linejoin: miter;
+    stroke-miterlimit: 10;
+    fill: transparent;
+    fill-rule: nonzero;
+    opacity: 1;
+    animation: expandeBotton 2.5s forwards;
+}
+
+
+svg:hover #path1, #cardModule:hover #path1 {
+    animation: expandeRight 2.5s forwards infinite;
+}
+
+svg:hover #path2, #cardModule:hover #path2 {
+    animation: expandeTop 2.5s forwards infinite;
+}
+
+svg:hover #path3, #cardModule:hover #path3 {
+    animation: expandeLeft 2.5s forwards infinite;
+}
+
+svg:hover #path4, #cardModule:hover #path4 {
+    animation: expandeBotton 2.5s forwards infinite;
+}
+
+
+@keyframes expandeBotton {
+    0% {
+        transform: translateY(10%);
+    }
+
+    100% {
+        transform: translateY(0%);
+    }
+}
+
+
+@keyframes expandeLeft {
+    0% {
+        transform: translateX(10%);
+    }
+
+    100% {
+        transform: translateX(0%);
+    }
+
+}
+
+@keyframes expandeRight {
+    0% {
+        transform: translateX(-10%);
+    }
+
+    100% {
+        transform: translateX(0%);
+    }
+
+}
+
+@keyframes expandeTop {
+    0% {
+        transform: translateY(-10%);
+    }
+
+    100% {
+        transform: translateY(0%);
+    }
+
 }

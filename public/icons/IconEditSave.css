@@ -1,29 +1,55 @@
-#empregadoDireita {
-    animation: fadeEmpregadoEsquerda 1500ms alternate-reverse;
-    -webkit-animation:fadeEmpregadoEsquerda 1500ms alternate-reverse;
-    -o-animation: fadeEmpregadoEsquerda 1500ms alternate-reverse;
-    opacity: 1;
+#pencil {
+    animation: __slideInDown 3s forwards ease-in-out ;
+    transform-origin: left;
 
 }
 
-#empregadoEsquerda{
-    -webkit-animation: fadeEmpregadoDireita 3000ms alternate-reverse;
-    -o-animation: fadeEmpregadoDireita 3000ms alternate-reverse;
-    animation: fadeEmpregadoDireita 3000ms alternate-reverse;
-    opacity: 1;
+#plus {
+    transform-origin: 0 900%;
+    animation: plusScale 3s forwards ease-in-out  alternate-reverse;
+}
+
+svg:hover #plus,  #cardModule:hover #plus {
+    animation: plusScale 3s infinite ease-in-out ;
 
 }
 
-#cardModule:hover #empregadoDireita {
-    animation: fadeEmpregadoEsquerda 1500ms infinite;
-}
-#cardModule:hover #empregadoEsquerda {
-    animation: fadeEmpregadoDireita 3000ms infinite;
+svg:hover #pencil,  #cardModule:hover #pencil {
+    animation: __slideInDown 3s infinite ease-in-out ;
+
 }
 
-@keyframes fadeEmpregadoEsquerda {
-    50% { opacity: 0; }
+@keyframes __slideInDown {
+    0% {
+        transform: translate(0, 0);
+    }
+    20% {
+        transform: translateX(-250%);
+    }
+    40% {
+        transform: translateX(150%);
+        fill: #e11d48;
+
+    }
+    60% {
+        transform: translate(-250%, -250%);
+    }
+    80% {
+        transform: translate(-250%, -250%) translateX(300%);
+    }
+    100% {
+        transform: translateX(0);
+
+    }
 }
-@keyframes fadeEmpregadoDireita {
-    50% { opacity: 0; }
+
+@keyframes plusScale {
+    50% {
+        fill: #e11d48;
+        transform: scale(115%);
+
+    }
+
 }
+
+

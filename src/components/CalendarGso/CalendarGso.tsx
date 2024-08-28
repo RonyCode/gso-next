@@ -4,9 +4,8 @@ import Link from 'next/link'
 import { useState } from 'react'
 import { LuArrowBigLeft, LuArrowBigRight, LuCalendarPlus } from 'react-icons/lu'
 
-import TabScheduleSave from '@/app/(private)/(modules)/[sigla]/components/TabScheduleSave'
+import TabScheduleSave from '@/app/(private)/(modules)/components/TabScheduleSave'
 import CalendarGsoGrid from '@/components/CalendarGso/CalendarGsoGrid'
-import { CardListEscala } from '@/components/Cards/CardListEscala'
 import { columnsEscala } from '@/components/DataTables/DataTableEscala/columnsEscala'
 import { DataTableEscala } from '@/components/DataTables/DataTableEscala/data-table-escala'
 import { ModalGso } from '@/components/Modal/ModalGso/ModalGso'
@@ -14,7 +13,6 @@ import { type IScheduleSchema } from '@/schemas/ScheduleSchema'
 import { type IUnidadeSchema } from '@/schemas/UnidadeSchema'
 import { type FunctionsMembers } from '@/types/index'
 import { Button } from '@/ui/button'
-import { scheduler } from 'node:timers/promises'
 
 interface DaysMonthProps {
   dias: number
@@ -338,7 +336,7 @@ const CalendarGso = ({
                             unidade={unidade}
                             /* eslint-disable-next-line @typescript-eslint/ban-ts-comment */
                             // @ts-expect-error
-                            schedule={unidade.companySchedules?.find(
+                            schedule={unidade?.companySchedules?.find(
                               (schedule) =>
                                 schedule?.schedule?.id?.toString() ===
                                 itemEvent?.id?.toString(),
@@ -349,7 +347,7 @@ const CalendarGso = ({
                     ) : (
                       <Link
                         className="flex h-full w-full flex-col items-center justify-between gap-2 p-2 "
-                        href={`/${unidade.short_name_corp?.toLowerCase()}-${unidade.id_corporation}/unidades/${unidade.short_name_comp?.toLowerCase()}-${unidade.id}/escalas/salvar`}
+                        href={`/${unidade?.short_name_corp?.toLowerCase()}-${unidade?.id_corporation}/unidades/${unidade?.short_name_comp?.toLowerCase()}-${unidade?.id}/escalas/salvar`}
                       >
                         <p>
                           Não existe escala para esta data. Deseja criar escala?

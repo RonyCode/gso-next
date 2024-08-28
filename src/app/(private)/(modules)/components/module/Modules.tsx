@@ -3,23 +3,19 @@ import React from 'react'
 import { CardModule } from '@/components/Cards/CardModule'
 import IconBuild from '@/icons/IconBuild'
 import IconCalendar from '@/icons/IconCalendar'
+import IconCarFrontal from '@/icons/IconCarFrontal'
 import IconCelular from '@/icons/IconCelular'
 import IconCog from '@/icons/IconCog'
 import IconGrafico from '@/icons/IconGrafico'
 import IconList from '@/icons/IconList'
-import IconOpenBook from '@/icons/IconOpenBook'
-import IconPrivileges from '@/icons/IconPrivileges'
+import IconMembers from '@/icons/IconMembers'
 import IconSirene from '@/icons/IconSirene'
 
-const ModulesOrganizacao = ({
-  params,
-}: {
-  params: { sigla: string }
-}): JSX.Element => {
+const Modules = (): JSX.Element => {
   return (
     <>
       <div>
-        <div className=" grid grid-cols-2 gap-4 p-8 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-5">
+        <div className=" grid grid-cols-2 gap-4 p-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-5">
           <div className="group">
             <CardModule
               title="Escalas"
@@ -38,16 +34,16 @@ const ModulesOrganizacao = ({
             title="Unidades"
             subtitle="Gerenciar unidades"
             link={`/servicos/unidades`}
-            icon={<IconList width={58} />}
+            icon={<IconBuild width={58} />}
           />{' '}
           <CardModule
-            title="Organizações"
-            subtitle="Serviço de sua Organizacão"
-            link={`/servicos/organizacao`}
+            title="Corporação"
+            subtitle="Serviço de sua Corporação"
+            link={`/servicos/corporacao`}
             icon={<IconBuild width={54} />}
           />{' '}
           <CardModule
-            title="Estatísticas"
+            title="Dashboard"
             subtitle="Estatítiscas gerais"
             icon={<IconGrafico width={58} />}
           />{' '}
@@ -60,43 +56,23 @@ const ModulesOrganizacao = ({
             title="Área do Gestor"
             subtitle="Serviço de gestão"
             link={`/servicos/gestor`}
-
             icon={<IconCog width={58} />}
           />{' '}
-
           <CardModule
-            title={'Minha Organização'}
-            subtitle={'Detalhes'}
-            link={`/${params?.sigla?.toLowerCase()}/minha-organizacao`}
-            icon={<IconBuild width={54} />}
-          />
-          {/* <CardModule */}
-          {/*  title="Adicionar Unidade" */}
-          {/*  subtitle="Adicionar nova unidade" */}
-          {/*  link={`/organizacao/${idcorporation}/nova-unidade`} */}
-          {/*  icon={<IconBuildPlus width={58} className="ml-1" />} */}
-          {/* /> */}
-          {/* <CardModule */}
-          {/*  title="Unidades" */}
-          {/*  subtitle="Unidades da minha organização" */}
-          {/*  link={`/organizacao/${idcorporation}/unidades`} */}
-          {/*  icon={<IconList width={64} className="ml-1" />} */}
-          {/* /> */}
+            title="Efetivo"
+            subtitle="Gerenciar membros"
+            link={`/servicos/membros`}
+            icon={<IconMembers width={58} />}
+          />{' '}
           <CardModule
-            title="Privilégios"
-            subtitle="Gerenciar privilégios"
-            link={`/${params?.sigla?.toLowerCase()}/privilegios`}
-            icon={<IconPrivileges width={80} className="ml-1" />}
-          />
-          <CardModule
-            title="Leis"
-            subtitle="Acervo de leis "
-            link={`/${params?.sigla?.toLowerCase()}/leis`}
-            icon={<IconOpenBook width={80} className="stroke-foreground/60" />}
+            title="Veículos"
+            subtitle="Gerenciar veículos"
+            link={`/servicos/veiculos`}
+            icon={<IconCarFrontal width={58} />}
           />{' '}
         </div>
       </div>
     </>
   )
 }
-export default ModulesOrganizacao
+export default Modules

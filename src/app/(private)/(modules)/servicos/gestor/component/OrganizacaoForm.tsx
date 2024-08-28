@@ -19,7 +19,7 @@ import {
   LuTrash2,
 } from 'react-icons/lu'
 
-import { saveCorporationAction } from '@/app/(private)/(modules)/servicos/gestor/salvar-organizacao/actions/saveCorporationAction'
+import { saveCorporationAction } from '@/app/(private)/(modules)/servicos/gestor/actions/saveCorporationAction'
 import { EditPhoto } from '@/components/EditPhoto/EditPhoto'
 import { MyInputMask } from '@/components/Form/Input/myInputMask'
 import LoadingPage from '@/components/Loadings/LoadingPage'
@@ -67,12 +67,13 @@ import { Input } from '@/ui/input'
 import { Popover, PopoverContent, PopoverTrigger } from '@/ui/popover'
 import { toast } from '@/ui/use-toast'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useSession } from 'next-auth/react'
 
 enum Fields {
-  address = 'address',
-  district = 'district',
-  city = 'city',
-  shortName = 'short_name',
+  address = 'address.address',
+  district = 'address.district',
+  city = 'address.city',
+  shortName = 'address.short_name',
 }
 
 type UserRegisterFormProps = React.HTMLAttributes<HTMLDivElement> & {
@@ -82,22 +83,23 @@ type UserRegisterFormProps = React.HTMLAttributes<HTMLDivElement> & {
 }
 
 export const OrganizacaoForm = ({
-  organizacao,
-  className,
-  states,
-}: UserRegisterFormProps): JSX.Element => {
+                                  organizacao,
+                                  className,
+                                  states,
+                                }: UserRegisterFormProps): JSX.Element => {
   const [pending, startTransition] = useTransition()
+  const { data:session } = useSession();
   const [disabled, setDisabled] = React.useState(true)
   const router = useRouter()
 
   useEffect(() => {
     startTransition(async () => {
-      if (organizacao?.short_name != null) {
-        await getAllCitiesByState(organizacao?.short_name)
+      if (organizacao?.address?.short_name != null) {
+        await getAllCitiesByState(organizacao?.address?.short_name)
       }
     })
-    if (organizacao?.short_name == null) setDisabled(false)
-  }, [organizacao?.short_name, disabled])
+    if (organizacao?.address?.short_name == null) setDisabled(false)
+  }, [organizacao?.address?.short_name, disabled])
 
   const form = useForm<Partial<IOrganizacaoSchema>>({
     mode: 'all',
@@ -110,13 +112,16 @@ export const OrganizacaoForm = ({
       cnpj: maskCpfCnpj(organizacao?.cnpj) ?? '',
       phone: maskPhone(organizacao?.phone) ?? '',
       image: organizacao?.image ?? '',
-      address: organizacao?.address ?? '',
-      number: organizacao?.number ?? '',
-      zipcode: maskZipcode(organizacao?.zipcode) ?? '',
-      complement: organizacao?.complement ?? '',
-      district: organizacao?.district ?? '',
-      city: organizacao?.city ?? '',
-      short_name: organizacao?.short_name ?? '',
+      address: {
+        address: organizacao?.address?.address ?? '',
+        number: organizacao?.address?.number ?? '',
+        zipcode: maskZipcode(organizacao?.address?.zipcode) ?? '',
+        complement: organizacao?.address?.complement ?? '',
+        district: organizacao?.address?.district ?? '',
+        city: organizacao?.address?.city ?? '',
+        short_name: organizacao?.address?.short_name ?? '',
+        sigla: organizacao?.address?.short_name ?? '',
+      },
       excluded: 0,
     },
   })
@@ -210,6 +215,7 @@ export const OrganizacaoForm = ({
       })
     }
   }
+  console.log(session?.role)
 
   return (
     <>
@@ -217,7 +223,7 @@ export const OrganizacaoForm = ({
         <div className="flex items-center">
           <div className="flex w-full items-center justify-between gap-2 p-4 ">
             <h1 className="ml-4 mr-auto text-xl font-bold">Detalhes</h1>
-            {organizacao?.id != null && (
+            {organizacao?.id != undefined || session?.role === 'admin' && (
               <div>
                 <Dialog>
                   <DialogTrigger asChild>
@@ -236,7 +242,7 @@ export const OrganizacaoForm = ({
                   </DialogTrigger>
                   <DialogContent className="sm:max-w-[425px]">
                     <DialogHeader>
-                      <DialogTitle>Excluir Unidade</DialogTitle>
+                      <DialogTitle>Excluir Corporação</DialogTitle>
                       <DialogDescription>
                         Está ação precisa ser confirmada
                       </DialogDescription>
@@ -244,8 +250,7 @@ export const OrganizacaoForm = ({
                     <div className="grid gap-4 py-4">
                       <p>
                         {' '}
-                        ATENÇÂO!!! Tem certeza que deseja excluir esta unidade
-                        de sua corporação?
+                        ATENÇÂO!!! Tem certeza que deseja excluir esta Corporação?
                       </p>
                     </div>
                     <DialogFooter>
@@ -329,13 +334,13 @@ export const OrganizacaoForm = ({
                           htmlFor="name"
                           className="flex items-center gap-1 text-muted-foreground"
                         >
-                          <LuBuilding2 /> Organização
+                          <LuBuilding2 /> Corporação
                         </FormLabel>
                         <FormControl>
                           <Input
                             {...field}
                             id="name"
-                            placeholder="Digite nome da organização"
+                            placeholder="Digite nome da Corporação"
                             autoCapitalize="none"
                             autoComplete="name"
                             autoCorrect="off"
@@ -355,13 +360,13 @@ export const OrganizacaoForm = ({
                           htmlFor="short_name_corp"
                           className="flex items-center gap-1 text-muted-foreground"
                         >
-                          <LuBuilding2 /> Sigla Organização
+                          <LuBuilding2 /> Sigla Corporação
                         </FormLabel>
                         <FormControl>
                           <Input
                             {...field}
                             id="short_name_corp"
-                            placeholder="Digite sigla da organização"
+                            placeholder="Digite sigla da Corporação"
                             autoCapitalize="none"
                             autoComplete="short_name_corp"
                             autoCorrect="off"
@@ -438,12 +443,12 @@ export const OrganizacaoForm = ({
               <div className="flex w-full flex-col  gap-2 md:flex-row">
                 <FormField
                   control={form.control}
-                  name="zipcode"
+                  name="address.zipcode"
                   render={({ field }) => (
                     // eslint-disable-next-line @typescript-eslint/no-misused-promises
                     <FormItem onChange={handleCep}>
                       <FormLabel
-                        htmlFor="zipcode"
+                        htmlFor="address.zipcode"
                         className="flex items-center gap-1 text-muted-foreground"
                       >
                         <LuHash /> Cep
@@ -451,7 +456,7 @@ export const OrganizacaoForm = ({
                       <FormControl>
                         <MyInputMask
                           {...field}
-                          id="zipcode"
+                          id="address.zipcode"
                           placeholder="00000-000"
                           mask="_____-___"
                           autoCapitalize="none"
@@ -467,11 +472,11 @@ export const OrganizacaoForm = ({
 
                 <FormField
                   control={form.control}
-                  name="address"
+                  name="address.address"
                   render={({ field }) => (
                     <FormItem className="w-full">
                       <FormLabel
-                        htmlFor="address"
+                        htmlFor="address.address"
                         className="flex items-center gap-1 text-muted-foreground"
                       >
                         <LuMapPin /> Endereco
@@ -479,7 +484,7 @@ export const OrganizacaoForm = ({
                       <FormControl>
                         <Input
                           {...field}
-                          id="address"
+                          id="address.address"
                           placeholder="Digite seu endereço"
                           autoCapitalize="none"
                           autoComplete="address"
@@ -495,11 +500,11 @@ export const OrganizacaoForm = ({
               <div className="flex w-full flex-col  gap-2 md:flex-row">
                 <FormField
                   control={form.control}
-                  name="number"
+                  name="address.number"
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel
-                        htmlFor="number"
+                        htmlFor="address.number"
                         className="flex items-center gap-1 text-muted-foreground"
                       >
                         <LuHash /> Numero
@@ -507,7 +512,7 @@ export const OrganizacaoForm = ({
                       <FormControl>
                         <Input
                           {...field}
-                          id="number"
+                          id="address.number"
                           placeholder="Digite o numero da casa"
                           autoCapitalize="none"
                           autoComplete="number"
@@ -522,11 +527,11 @@ export const OrganizacaoForm = ({
 
                 <FormField
                   control={form.control}
-                  name="complement"
+                  name="address.complement"
                   render={({ field }) => (
                     <FormItem className="w-full">
                       <FormLabel
-                        htmlFor="complement"
+                        htmlFor="address.complement"
                         className="flex items-center gap-1 text-muted-foreground"
                       >
                         <LuScrollText /> Complemento
@@ -534,7 +539,7 @@ export const OrganizacaoForm = ({
                       <FormControl>
                         <Input
                           {...field}
-                          id="complement"
+                          id="address.complement"
                           placeholder="Digite ponto de referência"
                           autoComplete="complement"
                           disabled={disabled}
@@ -548,11 +553,11 @@ export const OrganizacaoForm = ({
               <div className="flex w-full flex-col  gap-2 md:flex-row">
                 <FormField
                   control={form.control}
-                  name="short_name"
+                  name="address.short_name"
                   render={({ field }) => (
                     <FormItem className="flex w-full flex-col">
                       <FormLabel
-                        htmlFor="short_name"
+                        htmlFor="address.short_name"
                         className="flex items-center gap-1 text-muted-foreground"
                       >
                         <LuLandmark /> Estado
@@ -570,8 +575,8 @@ export const OrganizacaoForm = ({
                             >
                               {field.value !== null
                                 ? states?.find(
-                                    (state) => state.sigla === field.value,
-                                  )?.nome
+                                  (state) => state.sigla === field.value,
+                                )?.nome
                                 : 'Selecione um Estado'}
                               <LuChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                             </Button>
@@ -579,7 +584,7 @@ export const OrganizacaoForm = ({
                         </PopoverTrigger>
                         <PopoverContent className="min-w-[200px] p-0">
                           <Command>
-                            <CommandInput placeholder="Search language..." />
+                            <CommandInput placeholder="Procurando Estado..." />
                             <CommandEmpty>Estado não encontrado.</CommandEmpty>
                             <CommandGroup>
                               <CommandList>
@@ -591,7 +596,7 @@ export const OrganizacaoForm = ({
                                     /* eslint-disable-next-line @typescript-eslint/no-misused-promises */
                                     onSelect={async () => {
                                       await handleCity(state.sigla)
-                                      form.setValue('short_name', state.sigla)
+                                      form.setValue('address.short_name', state.sigla)
                                     }}
                                   >
                                     <LuCheck
@@ -617,11 +622,11 @@ export const OrganizacaoForm = ({
 
                 <FormField
                   control={form.control}
-                  name="city"
+                  name="address.city"
                   render={({ field }) => (
                     <FormItem className="flex w-full flex-col">
                       <FormLabel
-                        htmlFor="companyAddress.city"
+                        htmlFor="address.city"
                         className="flex items-center gap-1 text-muted-foreground"
                       >
                         <LuGlobe2 /> Cidade
@@ -640,8 +645,8 @@ export const OrganizacaoForm = ({
                             >
                               {field.value !== ''
                                 ? arrayCitiesByState?.find(
-                                    (city) => city.nome === field.value,
-                                  )?.nome
+                                  (city) => city.nome === field.value,
+                                )?.nome
                                 : 'Selecione uma Cidade'}
                               <LuChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                             </Button>
@@ -659,7 +664,7 @@ export const OrganizacaoForm = ({
                                     value={city.nome}
                                     key={index}
                                     onSelect={() => {
-                                      form.setValue('city', city.nome)
+                                      form.setValue('address.city', city.nome)
                                     }}
                                   >
                                     <LuCheck
@@ -685,11 +690,11 @@ export const OrganizacaoForm = ({
 
                 <FormField
                   control={form.control}
-                  name="district"
+                  name="address.district"
                   render={({ field }) => (
                     <FormItem className="w-full">
                       <FormLabel
-                        htmlFor="district"
+                        htmlFor="address.district"
                         className="flex items-center gap-1 text-muted-foreground"
                       >
                         <LuFlag /> Bairro
@@ -697,10 +702,10 @@ export const OrganizacaoForm = ({
                       <FormControl>
                         <Input
                           {...field}
-                          id="district"
+                          id="address.district"
                           placeholder="Digite seu bairro"
                           autoCapitalize="none"
-                          autoComplete="district"
+                          autoComplete="address.district"
                           autoCorrect="off"
                           disabled={disabled}
                         />
@@ -711,7 +716,7 @@ export const OrganizacaoForm = ({
                 />
               </div>
               <div className="flex w-full flex-col  justify-end gap-2 md:flex-row">
-                {!disabled && (
+                {!disabled  &&  session?.role === 'admin'&&(
                   <Button
                     disabled={pending && !form.formState.isValid}
                     className={cn(

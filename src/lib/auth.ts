@@ -198,6 +198,8 @@ export const authOptions: NextAuthOptions = {
 
       if (trigger === 'update') {
         // Note, that `session` can be any arbitrary object, remember to validate it!
+        token.id_corporation = session.id_corporation
+        token.id_company = session.id_company
         token.name = session.name
         token.image = session.image
       }
@@ -228,6 +230,8 @@ export const authOptions: NextAuthOptions = {
         // await adapter.updateUser(session.user.id, { name: newSession.name })
 
         // Make sure the updated value is reflected on the client
+        session.id_corporation = newSession.id_corporation
+        session.id_company = newSession.id_company
         session.name = newSession.name
       }
 

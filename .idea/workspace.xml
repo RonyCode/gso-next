@@ -5,18 +5,169 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4467a1d6-73df-479e-9cc5-8e8cf1a18f4d" name="Changes" comment="implementando schedule save">
+      <change afterPath="$PROJECT_DIR$/../wsgso/.idea/git_toolbox_blame.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../wsgso/public/images/manager.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../wsgso/public/images/modules.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../wsgso/public/images/modules.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/App/Command/SaveMemberCorporationCommand.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/App/UseCases/CorporationSaveMember/CorporationMemberSaveCase.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/App/UseCases/CorporationSaveMember/InputBoundaryCorporationMemberSave.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/App/UseCases/CorporationSaveMember/OutputBoundaryCorporationMemberSave.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/App/handler/SaveMemberCorporationHandler.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/Infra/Interface/CorporationMemberSavePresentationInterface.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../wsgso/src/Web/Controllers/CorporationSaveMemberController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../wsgso/src/Web/Controllers/UsersGetAllController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../wsgso/src/Web/Presentation/CorporationMemberSavePresentation.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env.production" beforeDir="false" afterPath="$PROJECT_DIR$/.env.production" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/prettier.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/prettier.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(auth)/auth/actions/preRegisterUserServerAction.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(auth)/auth/actions/preRegisterUserServerAction.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(auth)/auth/components/LoginFormSlice.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(auth)/auth/components/LoginFormSlice.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(auth)/auth/components/SignUpForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(auth)/auth/components/SignUpForm.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(auth)/auth/hooks/usePreRegister/usePreRegister.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(auth)/auth/hooks/usePreRegister/usePreRegister.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(auth)/auth/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(auth)/auth/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/next.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/next.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/icons/IconBuild.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/icons/IconBuild.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/icons/IconCalendar.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/icons/IconCalendar.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/icons/IconCarFrontal.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/icons/IconCarFrontal.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/icons/IconCelular.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/icons/IconCelular.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/icons/IconCog.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/icons/IconCog.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/icons/IconEditSave.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/icons/IconEditSave.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/icons/IconEditSave.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/public/icons/IconEditSave.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/icons/IconGrafico.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/icons/IconGrafico.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/icons/IconList.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/icons/IconList.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/icons/IconMembers.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/icons/IconMembers.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/icons/IconPuzzle.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/icons/IconPuzzle.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/icons/IconPuzzle.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/public/icons/IconPuzzle.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/icons/IconSirene.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/icons/IconSirene.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/icons/plus.svg" beforeDir="false" afterPath="$PROJECT_DIR$/public/icons/plus.svg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/(auth)/cadastro-usuario/[token]/components/UserRegisterForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(auth)/cadastro-usuario/[token]/components/UserRegisterForm.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(auth)/cadastro-usuario/[token]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(auth)/cadastro-usuario/[token]/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/components/SelectCorporationModule.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/components/SelectCorporationModule.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/components/TabMembersDetails.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/components/TabMembersDetails.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/components/TabUnidadeDetails.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/components/TabUnidadeDetails.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/components/module/Modules.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/components/module/Modules.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/components/module/ModulesOrganizacao.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/components/module/ModulesOrganizacao.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/components/module/ModuloGestor.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/components/module/ModuloGestor.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/corporacao/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/corporacao/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/escalas/module/ModuloEscala.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/escalas/module/ModuloEscala.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/escalas/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/escalas/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/escalas/salvar/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/escalas/salvar/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/gestor/component/MemberForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/gestor/component/MemberForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/gestor/component/OrganizacaoForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/gestor/component/OrganizacaoForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/gestor/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/gestor/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/gestor/salvar-membro/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/gestor/salvar-membro/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/gestor/salvar-organizacao/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/gestor/salvar-organizacao/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/gestor/salvar-unidade/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/gestor/salvar-unidade/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/membros/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/membros/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/ocorrencias/module/ModuloOcorrencia.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/ocorrencias/module/ModuloOcorrencia.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/ocorrencias/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/ocorrencias/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/unidades/[name_unidade]/detalhes/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/unidades/[name_unidade]/detalhes/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/unidades/[name_unidade]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/unidades/[name_unidade]/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/unidades/module/ModuleUnidades.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/unidades/module/ModuleUnidades.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/unidades/salvar-unidade/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/unidades/salvar-unidade/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/veiculos/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/veiculos/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(private)/conta/component/EditProfileForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/conta/component/EditProfileForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(private)/conta/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/conta/layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(private)/conta/organizacao/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/conta/organizacao/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(private)/conta/unidade/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/conta/unidade/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(public)/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(public)/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/api/corporation-save/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/api/corporation-save/route.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/api/organizacoes/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/api/organizacoes/route.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/api/users/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/api/users/route.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/CalendarGso/CalendarGso.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CalendarGso/CalendarGso.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/DataTables/DataTableUnidades/data-table-row-actions.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DataTables/DataTableUnidades/data-table-row-actions.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Nav/NavbarMain.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Nav/NavbarMain.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/styles/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/styles/globals.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/GetAllOrganizacoes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/GetAllOrganizacoes.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/GetAllUsers.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/GetAllUsers.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/auth.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/auth.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/middleware.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/middleware.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/schemas/AddressSchema.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/schemas/AddressSchema.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/schemas/MemberSchema.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/schemas/MemberSchema.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/schemas/OrganizacaoSchema.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/schemas/OrganizacaoSchema.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/schemas/SaveMemberSchema.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/schemas/SaveMemberSchema.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/schemas/UnidadeSchema.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/schemas/UnidadeSchema.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/stores/initializeStores.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/stores/initializeStores.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/types/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/types/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vercel.txt" beforeDir="false" afterPath="$PROJECT_DIR$/vercel.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../prevenir/src/app/modulos/servicos/gestao-protocolo/detalhes/detalhes-andamentos.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../prevenir/src/app/modulos/servicos/gestao-protocolo/detalhes/detalhes-andamentos.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../prevenir/src/app/modulos/servicos/pscip-solicita/pscip-solicita.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../prevenir/src/app/modulos/servicos/pscip-solicita/pscip-solicita.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../prevenir/src/environments/environment.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../prevenir/src/environments/environment.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wsgso/.env.development" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/.env.development" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wsgso/.env.localhost" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/.env.localhost" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wsgso/.env.production" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/.env.production" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wsgso/.idea/gsoapi.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/.idea/gsoapi.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wsgso/.idea/php-test-framework.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wsgso/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wsgso/WSGSO/Get all Companies.bru" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/WSGSO/Get all Companies.bru" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wsgso/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wsgso/config/config.php" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/config/config.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wsgso/public/images/abt.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/public/images/abt.jpeg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wsgso/public/images/abtf.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/public/images/abtf.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wsgso/public/images/as-14.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/public/images/as-14.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wsgso/public/images/bannerCorp.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/public/images/bannerCorp.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wsgso/public/images/calendar.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/public/images/calendar.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wsgso/public/images/calendar.png" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/public/images/calendar.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wsgso/public/images/esc.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/public/images/esc.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wsgso/public/images/img.png" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/public/images/img.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wsgso/public/images/ocorrencias.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/public/images/ocorrencias.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wsgso/public/images/ur.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/public/images/ur.jpeg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wsgso/public/storage/image/48e4082b1bb27df7.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/public/storage/image/48e4082b1bb27df7.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wsgso/public/storage/image/52cdd93e601c058e.png" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/public/storage/image/52cdd93e601c058e.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wsgso/public/storage/image/7078b99204c64340.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/public/storage/image/7078b99204c64340.jpeg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wsgso/public/storage/image/76fa5070f649cc7f.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/public/storage/image/76fa5070f649cc7f.jpeg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wsgso/public/storage/image/7b4524c2c8c02dc2.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/public/storage/image/7b4524c2c8c02dc2.jpeg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wsgso/public/storage/image/949241ec516d8c6a.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/public/storage/image/949241ec516d8c6a.jpeg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wsgso/public/storage/image/abt.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/public/storage/image/abt.jpeg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wsgso/public/storage/image/abtf.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/public/storage/image/abtf.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wsgso/public/storage/image/as-14.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/public/storage/image/as-14.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wsgso/public/storage/image/bannerCorp.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/public/storage/image/bannerCorp.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wsgso/public/storage/image/bc51ebfb88bf221d.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/public/storage/image/bc51ebfb88bf221d.jpeg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wsgso/public/storage/image/esc.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/public/storage/image/esc.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wsgso/public/storage/image/f20f299566495661.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/public/storage/image/f20f299566495661.jpeg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wsgso/public/storage/image/f59f919b53b88b7e.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/public/storage/image/f59f919b53b88b7e.jpeg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wsgso/public/storage/image/ur.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/public/storage/image/ur.jpeg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/App/Command/SaveScheduleIntoCompanyCommand.php" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/App/Command/SaveScheduleIntoCompanyCommand.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/App/UseCases/CorporationCompanyCarSave/CompanyCarSaveCase.php" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/App/UseCases/CompanyCarSave/CompanyCarSaveCase.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/App/UseCases/CorporationCompanyCarSave/InputBoundaryCarSaveCase.php" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/App/UseCases/CompanyCarSave/InputBoundaryCarSaveCase.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/App/UseCases/CorporationCompanyCarSave/OutputBoundaryCarSaveCase.php" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/App/UseCases/CompanyCarSave/OutputBoundaryCarSaveCase.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/App/UseCases/CorporationCompanyMemberSave/CompanyMemberSaveCase.php" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/App/UseCases/CompanyMemberSave/CompanyMemberSaveCase.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/App/UseCases/CorporationCompanyMemberSave/InputBoundaryCompanyMemberSaveCase.php" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/App/UseCases/CompanyMemberSave/InputBoundaryCompanyMemberSaveCase.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/App/UseCases/CorporationCompanyMemberSave/OutputBoundaryMemberSaveCase.php" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/App/UseCases/CompanyMemberSave/OutputBoundaryMemberSaveCase.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/App/UseCases/CorporationCompanySave/CompanySaveCase.php" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/App/UseCases/CompanySave/CompanySaveCase.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/App/UseCases/CorporationCompanySave/InputBoundaryCompanySave.php" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/App/UseCases/CompanySave/InputBoundaryCompanySave.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/App/UseCases/CorporationCompanySave/OutputBoundaryCompanySave.php" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/App/UseCases/CompanySave/OutputBoundaryCompanySave.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/App/UseCases/CorporationCompanyScheduleSave/CompanyScheduleSaveCase.php" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/App/UseCases/CompanyScheduleSave/CompanyScheduleSaveCase.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/App/UseCases/CorporationCompanyScheduleSave/InputBoundaryCompanyScheduleSaveCase.php" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/App/UseCases/CompanyScheduleSave/InputBoundaryCompanyScheduleSaveCase.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/App/UseCases/CorporationCompanyScheduleSave/OutputBoundaryScheduleSaveCase.php" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/App/UseCases/CompanyScheduleSave/OutputBoundaryScheduleSaveCase.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/App/UseCases/CorporationGetAll/CorporationGetAllCase.php" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/App/UseCases/CorporationGetAll/CorporationGetAllCase.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/App/handler/SaveCompanyIntoCorporationHandler.php" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/App/handler/SaveCompanyIntoCorporationHandler.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/App/handler/SaveCorporationHandler.php" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/App/handler/SaveCorporationHandler.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/App/handler/SaveMemberIntoCompanyHandler.php" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/App/handler/SaveMemberIntoCompanyHandler.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/Domains/Corporation/Corporation.php" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/Domains/Corporation/Corporation.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/Domains/Corporation/Interface/CorporationRepositoryInterface.php" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/Domains/Corporation/Interface/CorporationRepositoryInterface.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/Domains/Corporation/Member.php" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/Domains/Corporation/Member.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/Infra/Interface/CompanyCarSavePresentationInterface.php" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/Infra/Interface/CompanyCarSavePresentationInterface.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/Infra/Interface/CompanyMemberSavePresentationInterface.php" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/Infra/Interface/CompanyMemberSavePresentationInterface.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/Infra/Interface/CompanyScheduleSavePresentationInterface.php" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/Infra/Interface/CompanyScheduleSavePresentationInterface.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/Infra/Interface/CorporationCompanySavePresentationInterface.php" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/Infra/Interface/CorporationCompanySavePresentationInterface.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/Infra/Repository/CorporationRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/Infra/Repository/CorporationRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wsgso/src/Context/User/App/UseCases/User/UserAuth/UserAuthSignUp/UserAuthSignUpCase.php" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/src/Context/User/App/UseCases/User/UserAuth/UserAuthSignUp/UserAuthSignUpCase.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wsgso/src/Context/User/Domains/User/Account.php" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/src/Context/User/Domains/User/Account.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wsgso/src/Context/User/Domains/User/Events/command/UserRegistredEvent.php" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/src/Context/User/Domains/User/Events/command/UserRegistredEvent.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wsgso/src/Context/User/Infra/Repository/UserRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/src/Context/User/Infra/Repository/UserRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wsgso/src/Web/Controllers/CompanySaveCarController.php" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/src/Web/Controllers/CompanySaveCarController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wsgso/src/Web/Controllers/CompanySaveController.php" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/src/Web/Controllers/CompanySaveController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wsgso/src/Web/Controllers/CompanySaveMemberController.php" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/src/Web/Controllers/CompanySaveMemberController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wsgso/src/Web/Controllers/CompanySaveScheduleController.php" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/src/Web/Controllers/CompanySaveScheduleController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wsgso/src/Web/Controllers/UserAuthPreRegisterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/src/Web/Controllers/UserAuthPreRegisterController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wsgso/src/Web/Controllers/UserRegisterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/src/Web/Controllers/UserRegisterController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wsgso/src/Web/Presentation/CompanyCarSavePresentation.php" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/src/Web/Presentation/CompanyCarSavePresentation.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wsgso/src/Web/Presentation/CompanyMemberSavePresentation.php" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/src/Web/Presentation/CompanyMemberSavePresentation.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wsgso/src/Web/Presentation/CompanySavePresentation.php" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/src/Web/Presentation/CompanySavePresentation.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wsgso/src/Web/Presentation/CompanyScheduleSavePresentation.php" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/src/Web/Presentation/CompanyScheduleSavePresentation.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wsgso/src/Web/Presentation/CorporationGetAllPresentation.php" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/src/Web/Presentation/CorporationGetAllPresentation.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wsgso/src/Web/Presentation/CorporationSavePresentation.php" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/src/Web/Presentation/CorporationSavePresentation.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wsgso/src/Web/Presentation/UserPresentationRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/src/Web/Presentation/UserPresentationRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wsgso/src/Web/Routes/RouteCorporation.php" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/src/Web/Routes/RouteCorporation.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wsgso/src/Web/Routes/RouteUser.php" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/src/Web/Routes/RouteUser.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,6 +185,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -41,6 +193,31 @@
     &quot;assignee&quot;: &quot;RonyCode&quot;
   }
 }</component>
+  <component name="GitToolBoxStore">
+    <option name="recentBranches">
+      <RecentBranches>
+        <option name="branchesForRepo">
+          <list>
+            <RecentBranchesForRepo>
+              <option name="branches">
+                <list>
+                  <RecentBranch>
+                    <option name="branchName" value="master" />
+                    <option name="lastUsedInstant" value="1724766274" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="homologacao" />
+                    <option name="lastUsedInstant" value="1724766273" />
+                  </RecentBranch>
+                </list>
+              </option>
+              <option name="repositoryRootUrl" value="file://$PROJECT_DIR$/../cbmto-ws" />
+            </RecentBranchesForRepo>
+          </list>
+        </option>
+      </RecentBranches>
+    </option>
+  </component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;git@github.com:RonyCode/gso-next.git&quot;,
@@ -55,7 +232,7 @@
   &quot;associatedIndex&quot;: 5
 }</component>
   <component name="ProjectId" id="2gwCtCYqhasa8r641FzApV9zpzu" />
-  <component name="ProjectLevelVcsManager">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
@@ -63,35 +240,36 @@
     <option name="showExcludedFiles" value="false" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "DefaultHtmlFileTemplate": "HTML File",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "dart.analysis.tool.window.visible": "false",
-    "git-widget-placeholder": "dev",
-    "last_opened_file_path": "/home/rony/web/gso-next/src/app/(private)/(modules)/[sigla]/components",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.standard": "true",
-    "node.js.detected.package.stylelint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.standard": "",
-    "node.js.selected.package.stylelint": "",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "prettierjs.PrettierConfiguration.Package": "/home/rony/web/gso-next/node_modules/prettier",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "ts.external.directory.path": "/Users/rony/Sites/gso-next/node_modules/typescript/lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;com.codeium.enabled&quot;: &quot;true&quot;,
+    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;dev&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/rony/Sites/gso-next/src/schemas&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.stylelint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
+    &quot;node.js.selected.package.stylelint&quot;: &quot;&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/Users/rony/Sites/gso-next/node_modules/prettier&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;settings.javascript.linters.eslint&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Users/rony/Sites/gso-next/node_modules/typescript/lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mysql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="ReactDesignerToolWindowState">
     <option name="myId2Visible">
       <map>
@@ -103,24 +281,24 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/app/(private)/(modules)/[sigla]/components" />
-      <recent name="$PROJECT_DIR$/public/images" />
+      <recent name="$PROJECT_DIR$/src/schemas" />
       <recent name="$PROJECT_DIR$/src/app/api" />
       <recent name="$PROJECT_DIR$/src/lib" />
-      <recent name="$PROJECT_DIR$/public/icons" />
+      <recent name="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/veiculos" />
+      <recent name="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/membros" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/lib" />
-      <recent name="$PROJECT_DIR$/src/app/(private)/(modules)/[sigla]/components" />
-      <recent name="$PROJECT_DIR$/src/app/api/cidades" />
-      <recent name="$PROJECT_DIR$/src/app/(private)/(modules)/[sigla]/unidades" />
-      <recent name="$PROJECT_DIR$/src/app/(private)/(modules)/[sigla]" />
+      <recent name="$PROJECT_DIR$/src/app/(private)/(modules)/servicos" />
+      <recent name="$PROJECT_DIR$/src/app/(private)/(modules)" />
+      <recent name="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/unidades" />
+      <recent name="$PROJECT_DIR$/public/icons" />
+      <recent name="$PROJECT_DIR$/src/app/(private)/(modules)/components" />
     </key>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-410509235cf1-JavaScript-WS-242.20224.342" />
+        <option value="bundled-js-predefined-d6986cc7102b-410509235cf1-JavaScript-WS-242.20224.426" />
       </set>
     </attachedChunks>
   </component>
@@ -279,7 +457,28 @@
       <workItem from="1723517326820" duration="2983000" />
       <workItem from="1723548517822" duration="448000" />
       <workItem from="1723909112320" duration="261000" />
-      <workItem from="1723909383179" duration="1903000" />
+      <workItem from="1723909383179" duration="2606000" />
+      <workItem from="1723913151052" duration="20000" />
+      <workItem from="1723913208599" duration="114000" />
+      <workItem from="1723913774983" duration="203000" />
+      <workItem from="1723915853776" duration="2113000" />
+      <workItem from="1723945204222" duration="4786000" />
+      <workItem from="1724029439807" duration="6862000" />
+      <workItem from="1724093144534" duration="3797000" />
+      <workItem from="1724096965439" duration="27459000" />
+      <workItem from="1724150557200" duration="13463000" />
+      <workItem from="1724164770105" duration="8141000" />
+      <workItem from="1724237481862" duration="14240000" />
+      <workItem from="1724258916014" duration="599000" />
+      <workItem from="1724558700117" duration="138000" />
+      <workItem from="1724590903224" duration="16033000" />
+      <workItem from="1724632750706" duration="7547000" />
+      <workItem from="1724679561034" duration="7248000" />
+      <workItem from="1724696494311" duration="2138000" />
+      <workItem from="1724698645128" duration="9610000" />
+      <workItem from="1724721090748" duration="5686000" />
+      <workItem from="1724761672666" duration="17650000" />
+      <workItem from="1724843592720" duration="668000" />
     </task>
     <task id="LOCAL-00001" summary="refatorando com eslint">
       <option name="closed" value="true" />
@@ -601,7 +800,15 @@
       <option name="project" value="LOCAL" />
       <updated>1722592217448</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="implementando schedule save">
+      <option name="closed" value="true" />
+      <created>1723912638307</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1723912638307</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -625,11 +832,6 @@
     </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
-    <option name="OPEN_GENERIC_TABS">
-      <map>
-        <entry key="eeb45ff0-8932-4a35-885f-fced40ba97a2" value="TOOL_WINDOW" />
-      </map>
-    </option>
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
@@ -640,42 +842,12 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="dev" />
+                        <option value="origin/dev" />
                       </list>
                     </value>
                   </entry>
                 </map>
               </option>
-            </State>
-          </value>
-        </entry>
-        <entry key="eeb45ff0-8932-4a35-885f-fced40ba97a2">
-          <value>
-            <State>
-              <option name="CUSTOM_BOOLEAN_PROPERTIES">
-                <map>
-                  <entry key="Show.Git.Branches" value="false" />
-                </map>
-              </option>
-              <option name="FILTERS">
-                <map>
-                  <entry key="branch">
-                    <value>
-                      <list>
-                        <option value="HEAD" />
-                      </list>
-                    </value>
-                  </entry>
-                  <entry key="structure">
-                    <value>
-                      <list>
-                        <option value="dir:/home/rony/web/gso-next/src/components/Notification" />
-                      </list>
-                    </value>
-                  </entry>
-                </map>
-              </option>
-              <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
             </State>
           </value>
         </entry>

@@ -41,8 +41,13 @@ const sidebarNavItems = [
   },
 
   {
-    titleGroup: 'Minha Unidade',
+    titleGroup: 'Dados da Organização',
     group: [
+      {
+        title: 'Minha Organização',
+        href: '/conta/corporacao',
+        icon: <LuBuilding2 size={20} />,
+      },
       {
         title: 'Minha Unidade',
         href: '/conta/unidade',

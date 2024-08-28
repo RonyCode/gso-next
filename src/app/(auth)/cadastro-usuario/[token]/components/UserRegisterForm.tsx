@@ -4,7 +4,6 @@ import { redirect } from 'next/navigation'
 import * as React from 'react'
 import { useTransition } from 'react'
 import { useForm } from 'react-hook-form'
-import { FaBirthdayCake } from 'react-icons/fa'
 import {
   FaBuildingColumns,
   FaEnvelope,

@@ -4,11 +4,12 @@ import { CardModule } from '@/components/Cards/CardModule'
 import IconBuild from '@/icons/IconBuild'
 import IconBuildPlus from '@/icons/IconBuildPlus'
 import IconCarFrontal from '@/icons/IconCarFrontal'
+import IconEditSave from '@/icons/IconEditSave'
 import IconList from '@/icons/IconList'
 import IconMembers from '@/icons/IconMembers'
 import { type IUnidadeSchema } from '@/schemas/UnidadeSchema'
 
-const ModuleMinhaUnidade = ({
+const ModuleUnidades = ({
   params,
 }: {
   params?: { sigla: string; name_unidade: string }
@@ -18,16 +19,16 @@ const ModuleMinhaUnidade = ({
     <>
       <div className=" grid grid-cols-2 gap-4  sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-5">
         <CardModule
-          title="Minha unidade"
+          title="Add+ / Editar"
           subtitle="Detalhes da minha unidade"
-          link={`/${params?.sigla?.toLowerCase()}/unidades/${params?.name_unidade?.toLowerCase()}/detalhes`}
-          icon={<IconBuild width={54} className="ml-1" />}
+          link={`/servicos/unidades/salvar-unidade`}
+          icon={<IconEditSave width={52} className="ml-1" />}
         />
         <CardModule
-          title="Efetivo"
-          subtitle="Membros da minha unidade"
-          link={`/${params?.sigla?.toLowerCase()}/unidades/${params?.name_unidade?.toLowerCase()}/membros`}
-          icon={<IconMembers width={50} className="ml-1" />}
+          title="Unidades"
+          subtitle="Lista de unidades"
+          link={`/servicos/unidades/lista-unidades`}
+          icon={<IconList width={60} className="ml-1" />}
         />
         <CardModule
           title="Carros"
@@ -39,16 +40,10 @@ const ModuleMinhaUnidade = ({
           title="Escalas"
           subtitle="Escalas da minha unidade"
           link={`/${params?.sigla?.toLowerCase()}/unidades/${params?.name_unidade?.toLowerCase()}/escalas`}
-          icon={<IconList width={64} className="ml-1" />}
-        />
-        <CardModule
-          title="Add+ Unidade"
-          subtitle="Adicionar unidade"
-          link={`/${params?.sigla?.toLowerCase()}/unidades/${params?.name_unidade?.toLowerCase()}/nova-unidade`}
-          icon={<IconBuildPlus width={54} className="ml-1" />}
+          icon={<IconList width={60} className="ml-1" />}
         />
       </div>
     </>
   )
 }
-export default ModuleMinhaUnidade
+export default ModuleUnidades

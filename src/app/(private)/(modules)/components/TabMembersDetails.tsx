@@ -3,21 +3,19 @@ import Link from 'next/link'
 import React from 'react'
 import { LuListPlus } from 'react-icons/lu'
 
-import { columnsMembers } from '@/components/DataTables/DataTableMembers/columnsMembers'
-import { DataTableMembers } from '@/components/DataTables/DataTableMembers/data-table-members'
 import { cn } from '@/lib/utils'
-import { type IMemberSchema } from '@/schemas/MemberSchema'
+import { type IOrganizacaoSchema } from '@/schemas/OrganizacaoSchema'
 import { Button, buttonVariants } from '@/ui/button'
 import { Card } from '@/ui/card'
 
 type UserRegisterFormProps = React.HTMLAttributes<HTMLDivElement> & {
-  members?: IMemberSchema[]
+  corporations?: IOrganizacaoSchema
   params?: { sigla: string; name_unidade: string }
   className?: string
 }
 
 export const TabMembersDetails = ({
-  members,
+  corporations,
   params,
   className,
   ...props
@@ -40,11 +38,7 @@ export const TabMembersDetails = ({
             </Link>
           </div>
         </div>
-        <div className=" md:px-28 md:py-4 ">
-          {members !== null && members !== undefined && (
-            <DataTableMembers columns={columnsMembers} data={members} />
-          )}
-        </div>
+        <div className=" md:px-28 md:py-4 "></div>
       </Card>
     </div>
   )
