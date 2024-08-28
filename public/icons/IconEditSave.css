@@ -1,0 +1,29 @@
+#empregadoDireita {
+    animation: fadeEmpregadoEsquerda 1500ms alternate-reverse;
+    -webkit-animation:fadeEmpregadoEsquerda 1500ms alternate-reverse;
+    -o-animation: fadeEmpregadoEsquerda 1500ms alternate-reverse;
+    opacity: 1;
+
+}
+
+#empregadoEsquerda{
+    -webkit-animation: fadeEmpregadoDireita 3000ms alternate-reverse;
+    -o-animation: fadeEmpregadoDireita 3000ms alternate-reverse;
+    animation: fadeEmpregadoDireita 3000ms alternate-reverse;
+    opacity: 1;
+
+}
+
+#cardModule:hover #empregadoDireita {
+    animation: fadeEmpregadoEsquerda 1500ms infinite;
+}
+#cardModule:hover #empregadoEsquerda {
+    animation: fadeEmpregadoDireita 3000ms infinite;
+}
+
+@keyframes fadeEmpregadoEsquerda {
+    50% { opacity: 0; }
+}
+@keyframes fadeEmpregadoDireita {
+    50% { opacity: 0; }
+}
