@@ -4,7 +4,6 @@ import { LuCheck, LuChevronsUpDown } from 'react-icons/lu'
 
 import CalendarGso from '@/components/CalendarGso/CalendarGso'
 import LoadingPage from '@/components/Loadings/LoadingPage'
-import { getUnidadeById } from '@/lib/GetUnidadeById'
 import { cn } from '@/lib/utils'
 import { type IUnidadeSchema } from '@/schemas/UnidadeSchema'
 import type { FunctionsMembers } from '@/types/index'
@@ -39,14 +38,11 @@ export const SelectCompanySchedule = ({
   const handleSelectUnidade = (unidadeOnSelect: IUnidadeSchema): void => {
     startTransition(async () => {
       if (unidadeOnSelect !== null && unidadeOnSelect !== undefined) {
-        const { data } = await getUnidadeById(
-          unidadeOnSelect.id_corporation?.toString() ?? '',
-          unidadeOnSelect?.id?.toString() ?? '',
-        )
-        data.short_name_comp = unidades?.find(
+        const unidadeSelected = unidades?.find(
           (uniItem) => uniItem.id === unidadeOnSelect.id,
-        )?.name
-        setDataUnidade(data)
+        )
+
+        setDataUnidade(unidadeSelected ?? null)
       }
     })
   }

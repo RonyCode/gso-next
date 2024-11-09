@@ -2,13 +2,7 @@
 import { signOut, useSession } from 'next-auth/react'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
-import React, {
-  type ReactElement,
-  startTransition,
-  useEffect,
-  useRef,
-  useState,
-} from 'react'
+import React, { type ReactElement, useEffect, useRef, useState } from 'react'
 import {
   LuBuilding2,
   LuCalendarCheck,
@@ -30,9 +24,7 @@ import { deleteCookies } from '@/components/Buttoms/SignOutButton/LogoutAction'
 import LoadingPage from '@/components/Loadings/LoadingPage'
 import { NotificationCard } from '@/components/Notification/NotiicationCard'
 import { GetFirstLettersNameUser } from '@/functions/GetFirstLettersNameUser'
-import { getAllOrganizacoes } from '@/lib/GetAllOrganizacoes'
 import { cn } from '@/lib/utils'
-import { type IOrganizacaoSchema } from '@/schemas/OrganizacaoSchema'
 import { Avatar, AvatarFallback, AvatarImage } from '@/ui/avatar'
 import { Button } from '@/ui/button'
 import {
@@ -45,14 +37,14 @@ import {
   DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from '@/ui/dropdown-menu'
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-} from '@/ui/navigation-menu'
+// import {
+//   NavigationMenu,
+//   NavigationMenuContent,
+//   NavigationMenuItem,
+//   NavigationMenuLink,
+//   NavigationMenuList,
+//   NavigationMenuTrigger,
+// } from '@/ui/navigation-menu'
 
 export function NavbarMain({
   // eslint-disable-next-line react/prop-types
@@ -62,70 +54,53 @@ export function NavbarMain({
   const { data: session } = useSession()
 
   const [state, setState] = useState(false)
-  const [organizacaoFound, setOrganizacaoFound] = useState(
-    {} as IOrganizacaoSchema,
-  )
   const [showNavBar, setShowNavBar] = useState(false)
   const router = useRouter()
   const myRef = useRef(null)
   const nameUser = GetFirstLettersNameUser()
 
-  useEffect(() => {
-    startTransition(async () => {
-      const { data } = await getAllOrganizacoes()
-      // eslint-disable-next-line array-callback-return
-      data?.forEach((item) => {
-        if (item.id?.toString() === session?.id_corporation?.toString()) {
-          setOrganizacaoFound(item)
-        }
-      })
-    })
-
-    // eslint-disable-next-line array-callback-return
-  }, [session?.id_corporation])
-
-  const components: Array<{
-    title: string
-    href: string
-    description: string
-  }> = [
-    {
-      title: 'Escala',
-      href: `/servicos/escalas`,
-      description: 'Serviço de escalas dos membros de cada unidade',
-    },
-    {
-      title: 'Ocorrência',
-      href: `/servicos/ocorrencias`,
-      description: 'Serviço de ocorrência.',
-    },
-    {
-      title: 'Dashboard',
-      href: `/servicos/estatisticas`,
-      description: 'Serviço para obter estatísticas do sistema.',
-    },
-    {
-      title: 'Aplicativo',
-      href: `/servicos/aplicativo`,
-      description: 'Novidades de nossos aplicativos',
-    },
-    {
-      title: 'Dashboard',
-      href: `/servicos/historico`,
-      description: 'Busque a ocorrência mais recente através do histórico .',
-    },
-    {
-      title: 'Área do Gestor',
-      href: `/servicos/gestor`,
-      description:
-        'Serviço para gerenciar o sistema de unidades, escalas e afins.',
-    },
-    {
-      title: 'corporacao',
-      href: `/servicos/organizacao`,
-      description: 'Serviço para gerenciar a corporação.',
-    },
-  ]
+  // const components: Array<{
+  //   title: string
+  //   href: string
+  //   description: string
+  // }> = [
+  //   {
+  //     title: 'Escala',
+  //     href: `/servicos/escalas`,
+  //     description: 'Serviço de escalas dos membros de cada unidade',
+  //   },
+  //   {
+  //     title: 'Ocorrência',
+  //     href: `/servicos/ocorrencias`,
+  //     description: 'Serviço de ocorrência.',
+  //   },
+  //   {
+  //     title: 'Dashboard',
+  //     href: `/servicos/estatisticas`,
+  //     description: 'Serviço para obter estatísticas do sistema.',
+  //   },
+  //   {
+  //     title: 'Aplicativo',
+  //     href: `/servicos/aplicativo`,
+  //     description: 'Novidades de nossos aplicativos',
+  //   },
+  //   {
+  //     title: 'Dashboard',
+  //     href: `/servicos/historico`,
+  //     description: 'Busque a ocorrência mais recente através do histórico .',
+  //   },
+  //   {
+  //     title: 'Área do Gestor',
+  //     href: `/servicos/gestor`,
+  //     description:
+  //       'Serviço para gerenciar o sistema de unidades, escalas e afins.',
+  //   },
+  //   {
+  //     title: 'corporacao',
+  //     href: `/servicos/organizacao`,
+  //     description: 'Serviço para gerenciar a corporação.',
+  //   },
+  // ]
 
   useEffect(() => {
     window.addEventListener('scroll', () => {
@@ -221,41 +196,41 @@ export function NavbarMain({
                 className="text-[#e5e7eb]/60 transition-colors hover:text-[#e5e7eb]/80"
               >
                 <div className="flex items-center space-x-1 transition-colors hover:text-primary/80">
-                  <NavigationMenu className=" m-0  p-0">
-                    <NavigationMenuList className=" m-0  p-0">
-                      <NavigationMenuItem className=" m-0  p-0">
-                        <NavigationMenuTrigger className="m-0 gap-1 space-x-0 bg-transparent p-0 outline-none hover:bg-transparent focus:bg-transparent md:flex md:text-sm ">
-                          <Link
-                            className="flex  items-center justify-center gap-1 text-foreground/60 hover:text-foreground/80 md:space-x-6 md:space-y-0 "
-                            href={item.path}
-                          >
-                            <label
-                              className={` hover:text-primary/80 ${item.path === pathname ? 'text-primary/60' : ''}`}
-                            >
-                              {item.icon}
-                            </label>{' '}
-                            {item.title}
-                          </Link>
-                        </NavigationMenuTrigger>
+                  {/* <NavigationMenu className=" m-0  p-0"> */}
+                  {/*  <NavigationMenuList className=" m-0  p-0"> */}
+                  {/*    <NavigationMenuItem className=" m-0  p-0"> */}
+                  {/*      <NavigationMenuTrigger className="m-0 gap-1 space-x-0 bg-transparent p-0 outline-none hover:bg-transparent focus:bg-transparent md:flex md:text-sm "> */}
+                  <Link
+                    className="flex  items-center justify-center gap-1 text-foreground/60 hover:text-foreground/80 md:space-x-6 md:space-y-0 "
+                    href={item.path}
+                  >
+                    <label
+                      className={` hover:text-primary/80 ${item.path === pathname ? 'text-primary/60' : ''}`}
+                    >
+                      {item.icon}
+                    </label>{' '}
+                    {item.title}
+                  </Link>
+                  {/* </NavigationMenuTrigger> */}
 
-                        <NavigationMenuContent>
-                          {item.title === 'Serviços' && (
-                            <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-                              {components.map((component) => (
-                                <ListItem
-                                  key={component.title}
-                                  title={component.title}
-                                  href={component.href}
-                                >
-                                  {component.description}
-                                </ListItem>
-                              ))}
-                            </ul>
-                          )}
-                        </NavigationMenuContent>
-                      </NavigationMenuItem>
-                    </NavigationMenuList>
-                  </NavigationMenu>
+                  {/* <NavigationMenuContent> */}
+                  {/*  {item.title === 'Serviços' && ( */}
+                  {/*    <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] "> */}
+                  {/*      {components.map((component) => ( */}
+                  {/*        <ListItem */}
+                  {/*          key={component.title} */}
+                  {/*          title={component.title} */}
+                  {/*          href={component.href} */}
+                  {/*        > */}
+                  {/*          {component.description} */}
+                  {/*        </ListItem> */}
+                  {/*      ))} */}
+                  {/*    </ul> */}
+                  {/*  )} */}
+                  {/* </NavigationMenuContent> */}
+                  {/*    </NavigationMenuItem> */}
+                  {/*  </NavigationMenuList> */}
+                  {/* </NavigationMenu> */}
                 </div>
               </li>
             ))}
@@ -378,21 +353,21 @@ const ListItem = React.forwardRef<
 >(({ className, title, children, ...props }, ref) => {
   return (
     <li>
-      <NavigationMenuLink asChild>
-        <a
-          ref={ref}
-          className={cn(
-            'block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground',
-            className,
-          )}
-          {...props}
-        >
-          <div className="text-sm font-medium leading-none">{title}</div>
-          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-            {children}
-          </p>
-        </a>
-      </NavigationMenuLink>
+      {/* <NavigationMenuLink asChild> */}
+      <a
+        ref={ref}
+        className={cn(
+          'block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground',
+          className,
+        )}
+        {...props}
+      >
+        <div className="text-sm font-medium leading-none">{title}</div>
+        <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+          {children}
+        </p>
+      </a>
+      {/* </NavigationMenuLink> */}
     </li>
   )
 })

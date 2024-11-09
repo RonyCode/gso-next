@@ -1,15 +1,13 @@
-import TabUnidadeDetails from '@/app/(private)/(modules)/servicos/[sigla]/components/TabUnidadeDetails'
+import ModuleMinhaUnidade from '@/app/(private)/(modules)/components/module/ModuleMinhaUnidade'
+import ModuloGestorUnidade from '@/app/(private)/(modules)/components/module/ModuloGestorUnidade'
 import { CardDefault } from '@/components/Cards/CardDefault'
 import IconBuildPlus from '@/icons/IconBuildPlus'
-import { getAllStates } from '@/lib/getAllStates'
 
 const NovaUnidade = async ({
   params,
 }: {
   params: { sigla: string; name_unidade: string }
 }): Promise<JSX.Element> => {
-  const states = await getAllStates()
-
   return (
     <>
       <CardDefault
@@ -22,7 +20,7 @@ const NovaUnidade = async ({
           />
         }
       >
-        <TabUnidadeDetails states={states} params={params} />
+        <ModuloGestorUnidade params={params} />
       </CardDefault>
     </>
   )

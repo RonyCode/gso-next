@@ -132,13 +132,12 @@ export const EditPhoto = ({
   return (
     <>
       <Dialog open={open} onOpenChange={setOpen}>
-        {disabled === false && (
-          <DialogTrigger asChild>
-            <div>
-              <LuCamera className="z-100 h-9 w-9 rounded-full border-2 border-foreground/50 bg-accent/50 p-1 text-foreground/50 backdrop-blur  hover:border-foreground hover:text-foreground " />
-            </div>
-          </DialogTrigger>
-        )}
+        <DialogTrigger asChild>
+          <div>
+            <LuCamera className="z-100 h-9 w-9 rounded-full border-2 border-foreground/50 bg-accent/50 p-1 text-foreground/50 backdrop-blur  hover:border-foreground hover:text-foreground " />
+          </div>
+        </DialogTrigger>
+
         <DialogContent
           className={cn(' w-full md:w-7/12', className)}
           {...props}

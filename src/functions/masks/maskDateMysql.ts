@@ -5,5 +5,5 @@ export const maskDateMysql = (
 ): string | null | undefined => {
   if (value == null) return value
 
-  return moment(value).format('YYYY-DD-MM')
+  return moment(new Date(value)).format('YYYY-DD-MM')
 }

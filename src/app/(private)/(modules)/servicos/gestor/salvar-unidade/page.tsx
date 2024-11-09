@@ -23,7 +23,6 @@ const SalvarUnidade = async ({
   params: { sigla: string; name_unidade: string }
 }): Promise<ReactNode> => {
   const session = await getServerSession(authOptions)
-
   const { data } = await getAllUnidades(session?.id_corporation)
   const dataCorporations = await getAllOrganizacoes()
   const dataStates = await getAllStates()
@@ -32,8 +31,10 @@ const SalvarUnidade = async ({
       <CardDefault
         title="Unidades"
         description="Gerenciar unidades"
-        image="https://dpobjetivo.com.br/images/2023/10/01/01b8947d-acf2-4c97-a67c-9e0a2e7f139e_large.png"
-        imageMobile="https://dpobjetivo.com.br/images/2023/10/01/01b8947d-acf2-4c97-a67c-9e0a2e7f139e_large.png"
+        image={process.env.NEXT_PUBLIC_API_GSO + '/public/images/manager1.jpg'}
+        imageMobile={
+          process.env.NEXT_PUBLIC_API_GSO + '/public/images/manager1.jpg'
+        }
         icon={<LuMenuSquare size={28} />}
       >
         <div className="overflow-scroll p-6 lg:overflow-hidden">

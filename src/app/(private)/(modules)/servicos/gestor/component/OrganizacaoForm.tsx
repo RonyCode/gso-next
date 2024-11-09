@@ -125,7 +125,6 @@ export const OrganizacaoForm = ({
       excluded: 0,
     },
   })
-  console.log(form.formState.errors)
   const handleSubmit = (formData: Partial<IOrganizacaoSchema>): void => {
     startTransition(async () => {
       const result = await saveCorporationAction(formData)

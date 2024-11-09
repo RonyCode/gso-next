@@ -1,53 +1,69 @@
+import { getServerSession } from 'next-auth'
 import React from 'react'
 import { LuBuilding, LuSearchX } from 'react-icons/lu'
 import { MdOutlineSupervisorAccount } from 'react-icons/md'
 
-import TabMembersDetails from '@/app/(private)/(modules)/servicos/[sigla]/components/TabMembersDetails'
 import { CardDefault } from '@/components/Cards/CardDefault'
+import { columnsMembers } from '@/components/DataTables/DataTableMembers/columnsMembers'
+import { DataTableMembers } from '@/components/DataTables/DataTableMembers/data-table-members'
 import { ImageExist } from '@/functions/ImageExist'
-import { getUnidadeById } from '@/lib/GetUnidadeById'
+import { authOptions } from '@/lib/auth'
+import { getAllOrganizacoes } from '@/lib/GetAllOrganizacoes'
 
 const MembrosUnidade = async ({
   params,
 }: {
   params: { sigla: string; name_unidade: string }
 }): Promise<JSX.Element> => {
-  const { data } = await getUnidadeById(
-    params.sigla?.split('-')[1],
-    params.name_unidade?.split('-')[1],
-  )
+  const { data } = await getAllOrganizacoes()
+  const session = await getServerSession(authOptions)
+  const corpFound = data?.find((corp) => {
+    return corp?.id === session?.id_corporation
+  })
 
-  const imgValided = await ImageExist(data?.image)
-  if (imgValided.status !== 200) {
-    data.image = process.env.NEXT_PUBLIC_API_GSO + '/public/images/avatar.png'
+  const companyFound = corpFound?.companies?.find((comp) => {
+    if (comp?.id === params?.name_unidade?.split('-')[1]) {
+      return comp
+    }
+    return null
+  })
+
+  const imgValided = await ImageExist(companyFound?.image)
+  if (imgValided.status !== 200 && companyFound?.image != null) {
+    companyFound.image =
+      process.env.NEXT_PUBLIC_API_GSO + '/public/images/img.png'
   }
 
   // eslint-disable-next-line array-callback-return
-  const diretor = data?.companyMembers?.find((member) => {
-    if (member?.id === data?.director) {
+  const diretor = companyFound?.companyMembers?.find((member) => {
+    if (member?.id === companyFound?.director) {
       return member
     }
   })
-
   return (
     <div>
       {
         <CardDefault
-          title={data?.name + ' / ' + data?.companyAddress?.city}
+          title={
+            companyFound?.name + ' / ' + companyFound?.companyAddress?.city
+          }
           description={'CMD : ' + diretor?.competence + ' - ' + diretor?.name}
           image={
-            data.image ??
-            process.env.NEXT_PUBLIC_API_GSO + '/public/images/avatar.png'
+            companyFound?.image ??
+            process.env.NEXT_PUBLIC_API_GSO + '/public/images/img.png'
           }
           imageMobile={
-            data.image ??
-            process.env.NEXT_PUBLIC_API_GSO + '/public/images/avatar.png'
+            companyFound?.image ??
+            process.env.NEXT_PUBLIC_API_GSO + '/public/images/img.png'
           }
           icon={<LuBuilding size={28} />}
           iconDescription={<MdOutlineSupervisorAccount size={18} />}
         >
-          {data?.companyMembers?.[0]?.id !== null ? (
-            <TabMembersDetails members={data.companyMembers} params={params} />
+          {companyFound?.companyMembers != null ? (
+            <DataTableMembers
+              columns={columnsMembers}
+              data={companyFound.companyMembers}
+            />
           ) : (
             <div className="flex h-full w-full  items-center justify-center">
               {' '}

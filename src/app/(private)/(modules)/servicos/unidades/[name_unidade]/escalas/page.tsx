@@ -1,3 +1,4 @@
+import { getServerSession } from 'next-auth'
 import React from 'react'
 import { LuBuilding } from 'react-icons/lu'
 import { MdOutlineSupervisorAccount } from 'react-icons/md'
@@ -5,7 +6,9 @@ import { MdOutlineSupervisorAccount } from 'react-icons/md'
 import CalendarGso from '@/components/CalendarGso/CalendarGso'
 import { CardDefault } from '@/components/Cards/CardDefault'
 import { ImageExist } from '@/functions/ImageExist'
+import { authOptions } from '@/lib/auth'
 import { getAllFunctions } from '@/lib/GetAllFunctions'
+import { getAllOrganizacoes } from '@/lib/GetAllOrganizacoes'
 import { getUnidadeById } from '@/lib/GetUnidadeById'
 
 const EscalasUnidade = async ({
@@ -13,17 +16,22 @@ const EscalasUnidade = async ({
 }: {
   params: { sigla: string; name_unidade: string }
 }): Promise<JSX.Element> => {
-  const { data } = await getUnidadeById(
-    params.sigla?.split('-')[1],
-    params.name_unidade?.split('-')[1],
-  )
+  const session = await getServerSession(authOptions)
+  const { data } = await getAllOrganizacoes()
+  const corpFound = data?.find((corp) => {
+    return corp?.id === session?.id_corporation
+  })
 
-  const imgValided = await ImageExist(data.image)
-  if (imgValided.status !== 200) {
-    data.image = process.env.NEXT_PUBLIC_API_GSO + '/public/images/img.png'
-  }
-  if (data?.id !== null) {
-    data.short_name_comp = data.name
+  const companyFound = corpFound?.companies?.find((comp) => {
+    if (comp?._id?.$oid === params?.name_unidade?.split('-')[1]) {
+      return comp
+    }
+    return null
+  })
+  const imgValided = await ImageExist(companyFound?.image)
+  if (imgValided.status !== 200 && companyFound?.image != null) {
+    companyFound.image =
+      process.env.NEXT_PUBLIC_API_GSO + '/public/images/img.png'
   }
   const functions = await getAllFunctions()
 
@@ -31,22 +39,24 @@ const EscalasUnidade = async ({
     <div>
       {
         <CardDefault
-          title={data?.name + ' / ' + data?.city}
-          description={'CMD : ' + data?.director + ' - ' + data?.director}
+          title={companyFound?.name + ' / ' + companyFound?.city}
+          description={
+            'CMD : ' + companyFound?.director + ' - ' + companyFound?.director
+          }
           image={
-            data.image ??
+            companyFound?.image ??
             process.env.NEXT_PUBLIC_API_GSO + '/public/images/img.png'
           }
           imageMobile={
-            data.image ??
+            companyFound?.image ??
             process.env.NEXT_PUBLIC_API_GSO + '/public/images/img.png'
           }
           icon={<LuBuilding size={28} />}
           iconDescription={<MdOutlineSupervisorAccount size={18} />}
         >
           <div>
-            {data.companySchedules != null && (
-              <CalendarGso unidade={data} functions={functions?.data} />
+            {companyFound?.companySchedules != null && (
+              <CalendarGso unidade={companyFound} functions={functions?.data} />
             )}
           </div>
         </CardDefault>

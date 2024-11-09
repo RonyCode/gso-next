@@ -1,19 +1,19 @@
+import { getServerSession } from 'next-auth'
+
 import { CardDefault } from '@/components/Cards/CardDefault'
 import { ImageExist } from '@/functions/ImageExist'
+import { authOptions } from '@/lib/auth'
+import { getAllOrganizacoes } from '@/lib/GetAllOrganizacoes'
 import { getUnidadeById } from '@/lib/GetUnidadeById'
 
-const Members = async ({
-  params,
-}: {
-  params: { sigla: string; name_unidade: string; membro: string }
-}) => {
-  const { data } = await getUnidadeById(
-    params.sigla?.split('-')[1],
-    params.name_unidade?.split('-')[1],
+const Members = async ({ params }: { params: { membro: string } }) => {
+  const session = await getServerSession(authOptions)
+  const { data } = await getAllOrganizacoes()
+  const corpFounded = data?.find(
+    (member) => member?.id === session?.id_corporation,
   )
-  const memberFOunded = data.companyMembers?.find(
-    (member) =>
-      member?.id_user?.toString() === params?.membro?.split('-')[1].toString(),
+  const memberFOunded = corpFounded?.members?.find(
+    (member) => member?.id === params?.membro?.split('-')[1],
   )
 
   const imgValided = await ImageExist(memberFOunded?.image)

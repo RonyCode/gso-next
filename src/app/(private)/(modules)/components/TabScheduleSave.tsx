@@ -24,6 +24,7 @@ import {
 
 import { saveUnidadeAction } from '@/app/(private)/(modules)/servicos/gestor/actions/saveUnidadeAction'
 import LoadingPage from '@/components/Loadings/LoadingPage'
+import { maskDateMysql } from '@/functions/masks/maskDateMysql'
 import { cn } from '@/lib/utils'
 import { type ICarSchema } from '@/schemas/CarsSchema'
 import {
@@ -83,7 +84,8 @@ import { ptBR } from 'date-fns/locale/pt-BR'
 
 type UserRegisterFormProps = React.HTMLAttributes<HTMLDivElement> & {
   unidade?: IUnidadeSchema | null
-  schedule?: { schedule: IScheduleFormSave; cars: ICarSchema[] }
+  dateSchedule?: string
+  schedule?: { schedule: IScheduleFormSave; vehicles: ICarSchema[] }
   className?: string
   states?: AddressProps[] | null
   params?: { sigla: string; name_unidade: string }
@@ -92,6 +94,7 @@ type UserRegisterFormProps = React.HTMLAttributes<HTMLDivElement> & {
 
 export const TabScheduleSave = ({
   unidade,
+  dateSchedule,
   schedule,
   className,
   params,
@@ -100,8 +103,10 @@ export const TabScheduleSave = ({
 }: UserRegisterFormProps): JSX.Element => {
   const [pending, startTransition] = useTransition()
   const [disabled, setDisabled] = React.useState(true)
+  const [dateStart, setDateStart] = React.useState<Date>()
+  const [dateFinish, setDateFinish] = React.useState<Date>()
   const [carSchedule, setCarSchedule] = React.useState<ICarSchema[]>(
-    schedule?.cars ?? ([] as ICarSchema[]),
+    schedule?.vehicles ?? ([] as ICarSchema[]),
   )
   const router = useRouter()
   const form = useForm<IScheduleFormSave>({
@@ -113,17 +118,13 @@ export const TabScheduleSave = ({
       id_company: unidade?.id ?? undefined,
       id_member_creator: schedule?.schedule?.id_member_creator ?? undefined,
       id_cmt_sos:
-        unidade?.companyMembers?.find(
+        unidade?.members?.find(
           (item) =>
             item?.id_function === 3 &&
             item?.id_schedule === schedule?.schedule?.id,
         )?.id ?? undefined,
       id_member_comunication:
         schedule?.schedule?.id_member_creator ?? undefined,
-      date:
-        schedule?.schedule?.date != null
-          ? new Date(schedule?.schedule?.date)
-          : new Date(),
       hour_start: schedule?.schedule?.hour_start ?? '',
       hour_finish: schedule?.schedule?.hour_finish ?? '',
       team: schedule?.schedule?.team ?? undefined,
@@ -131,15 +132,19 @@ export const TabScheduleSave = ({
       type: schedule?.schedule?.type ?? undefined,
       status: schedule?.schedule?.status ?? null,
       date_creation:
-        schedule?.schedule?.date_creation != null
-          ? new Date(schedule?.schedule?.date_creation)
-          : undefined,
+        schedule?.schedule?.date_creation ??
+        new Date().toLocaleDateString('pt-BR'),
+      date_start:
+        schedule?.schedule?.date_start ??
+        new Date(dateSchedule).toLocaleDateString('pt-Br') ??
+        undefined,
+      date_finish: schedule?.schedule?.date_finish ?? undefined,
       obs: schedule?.schedule?.obs ?? '',
       short_name_corp:
         schedule?.schedule?.short_name_corp ?? params?.sigla ?? '',
       short_name_comp:
         schedule?.schedule?.short_name_comp ?? params?.name_unidade ?? '',
-      cars: schedule?.cars ?? ([] as ICarSchema[]),
+      vehicles: schedule?.vehicles ?? ([] as ICarSchema[]),
       excluded: schedule?.schedule?.excluded ?? 0,
     },
   })
@@ -148,14 +153,8 @@ export const TabScheduleSave = ({
     searchParams?.id_schedule !== null && setDisabled(false)
   }, [searchParams?.id_schedule])
 
-  console.log(form.getValues('cars'))
-  console.log(schedule?.cars)
-
   const handleSubmit = async (formData: IScheduleFormSave): Promise<void> => {
     startTransition(async () => {
-      console.log(JSON.stringify(form.getValues(), null, 2))
-      console.log(JSON.stringify(form.formState.errors, null, 2))
-
       // const result = await saveUnidadeAction(formData)
       // if (result?.code !== 202) {
       //   toast({
@@ -204,30 +203,30 @@ export const TabScheduleSave = ({
   }
 
   const horarios = [
-    '01:00:00',
-    '02:00:00',
-    '03:00:00',
-    '04:00:00',
-    '05:00:00',
-    '06:00:00',
-    '07:00:00',
-    '08:00:00',
-    '09:00:00',
-    '10:00:00',
-    '11:00:00',
-    '12:00:00',
-    '13:00:00',
-    '14:00:00',
-    '15:00:00',
-    '16:00:00',
-    '17:00:00',
-    '18:00:00',
-    '19:00:00',
-    '20:00:00',
-    '21:00:00',
-    '22:00:00',
-    '23:00:00',
-    '00:00:00',
+    '01:00',
+    '02:00',
+    '03:00',
+    '04:00',
+    '05:00',
+    '06:00',
+    '07:00',
+    '08:00',
+    '09:00',
+    '10:00',
+    '11:00',
+    '12:00',
+    '13:00',
+    '14:00',
+    '15:00',
+    '16:00',
+    '17:00',
+    '18:00',
+    '19:00',
+    '20:00',
+    '21:00',
+    '22:00',
+    '23:00',
+    '00:00',
   ]
 
   const tipos = [
@@ -246,8 +245,8 @@ export const TabScheduleSave = ({
 
   const veiculoUnidade = unidade?.companyCars?.find((car) => {
     return form
-      ?.getValues('cars')
-      ?.find((value) => value?.car?.id?.toString() === car?.id?.toString())
+      ?.getValues('vehicles')
+      ?.find((value) => value?.vehicles?.id?.toString() === car?.id?.toString())
   })
 
   return (
@@ -303,11 +302,11 @@ export const TabScheduleSave = ({
                     <i>
                       <LuCalendarDays />
                     </i>
-                    {schedule?.schedule?.date_creation != null && (
+                    {schedule?.schedule?.date_start != undefined && (
                       <div className="font-bold text-muted-foreground">
                         {' '}
                         {format(
-                          new Date(schedule?.schedule?.date_creation),
+                          new Date(schedule?.schedule?.date_start),
                           'eeeeee',
                           {
                             locale: ptBR,
@@ -315,7 +314,7 @@ export const TabScheduleSave = ({
                         ) +
                           '  | ' +
                           format(
-                            new Date(schedule?.schedule?.date_creation),
+                            new Date(schedule?.schedule?.date_start),
                             'dd/MM',
                             {
                               locale: ptBR,
@@ -399,7 +398,7 @@ export const TabScheduleSave = ({
           <form
             /* eslint-disable-next-line @typescript-eslint/no-misused-promises */
             onSubmit={form.handleSubmit(async (data) => {
-              handleSubmit(data)
+              await handleSubmit(data)
             })}
             className="w-full md:space-y-4  "
           >
@@ -456,7 +455,7 @@ export const TabScheduleSave = ({
                               )}
                             >
                               {field.value !== null
-                                ? unidade?.companyMembers?.find(
+                                ? unidade?.members?.find(
                                     (member) =>
                                       member?.id?.toString() ===
                                       field.value?.toString(),
@@ -472,35 +471,33 @@ export const TabScheduleSave = ({
                             <CommandEmpty>Membro não encontrado.</CommandEmpty>
                             <CommandGroup>
                               <CommandList>
-                                {unidade?.companyMembers?.map(
-                                  (member, index) => (
-                                    <div key={index}>
-                                      {member?.id_car === null && (
-                                        <CommandItem
-                                          disabled={disabled}
-                                          value={String(member?.id)}
-                                          onSelect={() => {
-                                            member?.id != null &&
-                                              form.setValue(
-                                                'id_cmt_sos',
-                                                member?.id,
-                                              )
-                                          }}
-                                        >
-                                          <LuCheck
-                                            className={cn(
-                                              'mr-2 h-4 w-4',
-                                              member?.id === field?.value
-                                                ? 'opacity-100'
-                                                : 'opacity-0',
-                                            )}
-                                          />
-                                          {member?.name}
-                                        </CommandItem>
-                                      )}
-                                    </div>
-                                  ),
-                                )}
+                                {unidade?.members?.map((member, index) => (
+                                  <div key={index}>
+                                    {member?.id_car === null && (
+                                      <CommandItem
+                                        disabled={disabled}
+                                        value={String(member?.id)}
+                                        onSelect={() => {
+                                          member?.id != null &&
+                                            form.setValue(
+                                              'id_cmt_sos',
+                                              member?.id,
+                                            )
+                                        }}
+                                      >
+                                        <LuCheck
+                                          className={cn(
+                                            'mr-2 h-4 w-4',
+                                            member?.id === field?.value
+                                              ? 'opacity-100'
+                                              : 'opacity-0',
+                                          )}
+                                        />
+                                        {member?.name}
+                                      </CommandItem>
+                                    )}
+                                  </div>
+                                ))}
                               </CommandList>
                             </CommandGroup>
                           </Command>
@@ -536,7 +533,7 @@ export const TabScheduleSave = ({
                               )}
                             >
                               {field.value !== null
-                                ? unidade?.companyMembers?.find(
+                                ? unidade?.members?.find(
                                     (member) =>
                                       member?.id?.toString() ===
                                       field.value?.toString(),
@@ -552,32 +549,30 @@ export const TabScheduleSave = ({
                             <CommandEmpty>Membro não encontrado.</CommandEmpty>
                             <CommandGroup>
                               <CommandList>
-                                {unidade?.companyMembers?.map(
-                                  (member, index) => (
-                                    <CommandItem
-                                      disabled={disabled}
-                                      value={String(member?.id)}
-                                      key={index}
-                                      onSelect={() => {
-                                        member?.id != null &&
-                                          form.setValue(
-                                            'id_member_creator',
-                                            member?.id,
-                                          )
-                                      }}
-                                    >
-                                      <LuCheck
-                                        className={cn(
-                                          'mr-2 h-4 w-4',
-                                          member?.id === field?.value
-                                            ? 'opacity-100'
-                                            : 'opacity-0',
-                                        )}
-                                      />
-                                      {member?.name}
-                                    </CommandItem>
-                                  ),
-                                )}
+                                {unidade?.members?.map((member, index) => (
+                                  <CommandItem
+                                    disabled={disabled}
+                                    value={String(member?.id)}
+                                    key={index}
+                                    onSelect={() => {
+                                      member?.id != null &&
+                                        form.setValue(
+                                          'id_member_creator',
+                                          member?.id,
+                                        )
+                                    }}
+                                  >
+                                    <LuCheck
+                                      className={cn(
+                                        'mr-2 h-4 w-4',
+                                        member?.id === field?.value
+                                          ? 'opacity-100'
+                                          : 'opacity-0',
+                                      )}
+                                    />
+                                    {member?.name}
+                                  </CommandItem>
+                                ))}
                               </CommandList>
                             </CommandGroup>
                           </Command>
@@ -613,7 +608,7 @@ export const TabScheduleSave = ({
                               )}
                             >
                               {field.value !== null
-                                ? unidade?.companyMembers?.find(
+                                ? unidade?.members?.find(
                                     (member) =>
                                       member?.id?.toString() ===
                                       field.value?.toString(),
@@ -629,32 +624,30 @@ export const TabScheduleSave = ({
                             <CommandEmpty>Membro não encontrado.</CommandEmpty>
                             <CommandGroup>
                               <CommandList>
-                                {unidade?.companyMembers?.map(
-                                  (member, index) => (
-                                    <CommandItem
-                                      disabled={disabled}
-                                      value={String(member?.id)}
-                                      key={index}
-                                      onSelect={() => {
-                                        member?.id != null &&
-                                          form.setValue(
-                                            'id_member_comunication',
-                                            member?.id,
-                                          )
-                                      }}
-                                    >
-                                      <LuCheck
-                                        className={cn(
-                                          'mr-2 h-4 w-4',
-                                          member?.id === field?.value
-                                            ? 'opacity-100'
-                                            : 'opacity-0',
-                                        )}
-                                      />
-                                      {member?.name}
-                                    </CommandItem>
-                                  ),
-                                )}
+                                {unidade?.members?.map((member, index) => (
+                                  <CommandItem
+                                    disabled={disabled}
+                                    value={String(member?.id)}
+                                    key={index}
+                                    onSelect={() => {
+                                      member?.id != null &&
+                                        form.setValue(
+                                          'id_member_comunication',
+                                          member?.id,
+                                        )
+                                    }}
+                                  >
+                                    <LuCheck
+                                      className={cn(
+                                        'mr-2 h-4 w-4',
+                                        member?.id === field?.value
+                                          ? 'opacity-100'
+                                          : 'opacity-0',
+                                      )}
+                                    />
+                                    {member?.name}
+                                  </CommandItem>
+                                ))}
                               </CommandList>
                             </CommandGroup>
                           </Command>
@@ -671,12 +664,12 @@ export const TabScheduleSave = ({
               <div className="h-full w-full  ">
                 <FormField
                   control={form.control}
-                  name="date_creation"
+                  name="date_start"
                   render={({ field }) => (
                     <FormItem className="flex flex-col ">
                       <FormLabel className="flex items-center gap-1 text-muted-foreground">
                         <LuCalendarDays />
-                        Data de criação
+                        Data de Ínicio
                       </FormLabel>
                       <Popover>
                         <PopoverTrigger asChild>
@@ -690,22 +683,34 @@ export const TabScheduleSave = ({
                                   'text-muted-foreground',
                               )}
                             >
-                              {field?.value?.toString() !== '' ? (
-                                field?.value != null &&
-                                format(field?.value, 'dd/MM/yyyy')
-                              ) : (
-                                <span>Selecione uma data</span>
-                              )}
+                              {field?.value !== undefined
+                                ? field?.value
+                                : 'Selecione uma data'}
                               <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
                             </Button>
                           </FormControl>
                         </PopoverTrigger>
                         <PopoverContent className="w-auto p-0" align="start">
                           <Calendar
+                            captionLayout="dropdown-buttons"
                             locale={ptBR}
+                            toYear={2100}
+                            fromYear={1900}
                             mode="single"
-                            selected={field?.value}
-                            onSelect={field.onChange}
+                            selected={dateStart}
+                            onSelect={(date) => {
+                              if (date == null) return
+                              setDateStart(date)
+                              form.setValue(
+                                'date_start',
+                                new Date(date)?.toLocaleDateString('pt-BR'),
+                              )
+                            }}
+                            disabled={(date) =>
+                              date.setHours(0, 1, 1, 1) <
+                                new Date().setHours(0, 0, 0, 0) ||
+                              date < new Date('1900-01-01')
+                            }
                             initialFocus
                           />
                         </PopoverContent>
@@ -714,8 +719,7 @@ export const TabScheduleSave = ({
                     </FormItem>
                   )}
                 />
-              </div>
-              <div className="h-full w-full  ">
+
                 <FormField
                   control={form.control}
                   name="hour_start"
@@ -738,7 +742,11 @@ export const TabScheduleSave = ({
                                 disabled && 'text-muted-foreground',
                               )}
                             >
-                              {field.value ?? 'Selecione um horário'}
+                              {field.value
+                                ? field.value +
+                                  ' dia ' +
+                                  form.getValues('date_start')
+                                : 'Selecione um horário'}
                               <LuChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                             </Button>
                           </FormControl>
@@ -783,6 +791,67 @@ export const TabScheduleSave = ({
               <div className="h-full w-full  ">
                 <FormField
                   control={form.control}
+                  name="date_finish"
+                  render={({ field }) => (
+                    <FormItem className="flex flex-col ">
+                      <FormLabel className="flex items-center gap-1 text-muted-foreground">
+                        <LuCalendarDays />
+                        Data Fim
+                      </FormLabel>
+                      <Popover>
+                        <PopoverTrigger asChild>
+                          <FormControl>
+                            <Button
+                              disabled={disabled}
+                              variant={'outline'}
+                              className={cn(
+                                'min-w-[240px] pl-3 text-left font-normal',
+                                field?.value?.toString() === '' &&
+                                  'text-muted-foreground',
+                              )}
+                            >
+                              {field?.value !== undefined
+                                ? field?.value
+                                : 'Selecione uma data'}
+                              <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                            </Button>
+                          </FormControl>
+                        </PopoverTrigger>
+                        <PopoverContent className="w-auto p-0" align="start">
+                          <Calendar
+                            captionLayout="dropdown-buttons"
+                            locale={ptBR}
+                            toYear={2100}
+                            fromYear={1900}
+                            mode="single"
+                            selected={dateFinish}
+                            onSelect={(date) => {
+                              if (date == null) return
+                              setDateFinish(date)
+                              form.setValue(
+                                'date_finish',
+                                new Date(date)?.toLocaleDateString('pt-BR'),
+                              )
+                            }}
+                            disabled={(date) =>
+                              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                              // @ts-expect-error
+                              date <
+                                new Date(
+                                  maskDateMysql(form?.getValues('date_start')),
+                                ) || date < new Date('1900-01-01')
+                            }
+                            initialFocus
+                          />
+                        </PopoverContent>
+                      </Popover>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <FormField
+                  control={form.control}
                   name="hour_finish"
                   render={({ field }) => (
                     <FormItem className="flex w-full flex-col">
@@ -803,7 +872,11 @@ export const TabScheduleSave = ({
                                 disabled && 'text-muted-foreground',
                               )}
                             >
-                              {field.value ?? 'Selecione um horário'}
+                              {field.value !== ''
+                                ? field.value +
+                                  ' dia ' +
+                                  form.getValues('date_finish')
+                                : 'Selecione um horário'}
                               <LuChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                             </Button>
                           </FormControl>
@@ -910,9 +983,7 @@ export const TabScheduleSave = ({
                     </FormItem>
                   )}
                 />
-              </div>
 
-              <div className="h-full w-full  ">
                 <FormField
                   control={form.control}
                   name="team"
@@ -1207,7 +1278,7 @@ export const TabScheduleSave = ({
                                         disabled && 'text-muted-foreground',
                                       )}
                                     >
-                                      {unidade?.companyMembers?.find((member) =>
+                                      {unidade?.members?.find((member) =>
                                         car?.members?.find(
                                           (memberCar) =>
                                             member?.id === memberCar?.id,
@@ -1225,7 +1296,7 @@ export const TabScheduleSave = ({
                                     </CommandEmpty>
                                     <CommandGroup>
                                       <CommandList>
-                                        {unidade?.companyMembers?.map(
+                                        {unidade?.members?.map(
                                           (member, index) => (
                                             <CommandItem
                                               disabled={disabled}

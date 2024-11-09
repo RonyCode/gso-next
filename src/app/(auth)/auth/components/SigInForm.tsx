@@ -121,7 +121,7 @@ const SigInForm = ({ className, ...props }: UserAuthFormProps): JSX.Element => {
 
       <div className=" flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
         <div className="flex flex-col space-y-2 text-center">
-          <h1 className="text-2xl font-semibold tracking-tight">Login</h1>
+          <h1 className="text-3xl font-semibold tracking-tight">Login</h1>
           <p className="text-sm text-muted-foreground">
             Digite seu email e senha para acessar sua conta
           </p>

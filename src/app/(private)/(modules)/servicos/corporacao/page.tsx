@@ -1,10 +1,8 @@
 import React, { type ReactNode } from 'react'
 import { LuBuilding2 } from 'react-icons/lu'
 
-import ModulesOrganizacao from '@/app/(private)/(modules)/components/module/ModulesOrganizacao'
 import { CardDefault } from '@/components/Cards/CardDefault'
 import { getAllOrganizacoes } from '@/lib/GetAllOrganizacoes'
-import SelectCorporationModule from '@/app/(private)/(modules)/components/SelectCorporationModule'
 import OrganizacaoForm from '@/app/(private)/(modules)/servicos/gestor/component/OrganizacaoForm'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth'

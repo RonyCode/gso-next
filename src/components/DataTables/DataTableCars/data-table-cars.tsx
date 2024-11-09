@@ -4,7 +4,7 @@ import * as React from 'react'
 
 import { DataTablePagination } from './data-table-pagination'
 
-import { DataTableToolbar } from '@/components/DataTables/DataTableUnidades/data-table-toolbar'
+import { DataTableToolbar } from '@/components/DataTables/DataTableCars/data-table-toolbar'
 import {
   Table,
   TableBody,

@@ -1,11 +1,12 @@
 import { AddressSchema } from '@/schemas/AddressSchema'
+import { CarSchema } from '@/schemas/CarsSchema'
 import { MemberSchema } from '@/schemas/MemberSchema'
 import { UnidadeSchema } from '@/schemas/UnidadeSchema'
 import { z } from 'zod'
 
 export const OrganizacaoSchema = z.object({
   id: z.string().optional().nullable(),
-  _id: z.object({ $oid: z.string().nullable() }).nullable(),
+  _id: z.object({ $oid: z.string().nullable() }).optional(),
   name: z
     .string()
     .min(1, { message: 'Nome inválido deve conter no mínimo 1 caracteres' }),
@@ -14,30 +15,12 @@ export const OrganizacaoSchema = z.object({
   short_name_corp: z
     .string()
     .min(1, { message: 'Sigla  inválido deve conter no mínimo 1 caracteres' }),
-  image: z.string(),
+  image: z.string().optional(),
   address: AddressSchema,
-  companies: z.array(UnidadeSchema),
-  // address: z.string().min(1, {
-  //   message: 'Endereço inválido deve conter no mínimo 1 caracteres',
-  // }),
-  // number: z
-  //   .string()
-  //   .min(1, { message: 'Número inválido deve conter no mínimo 1 caracteres' }),
-  // zipcode: z
-  //   .string()
-  //   .min(9, { message: 'CEP inválido deve conter no mínimo 9 caracteres' }),
-  // complement: z.string().optional(),
-  // district: z
-  //   .string()
-  //   .min(1, { message: 'Bairro inválido deve conter no mínimo 1 caracteres' }),
-  // city: z
-  //   .string()
-  //   .min(1, { message: 'Cidade inválida deve conter no mínimo 1 caracteres' }),
-  // short_name: z
-  //   .string()
-  //   .min(1, { message: 'Estado inválida deve conter no mínimo 1 caracteres' }),
+  companies: z.array(UnidadeSchema).optional(),
   excluded: z.number(),
   members: z.array(MemberSchema).optional(),
+  vehicles: z.array(CarSchema).optional(),
 })
 
 export type IOrganizacaoSchema = z.infer<typeof OrganizacaoSchema>

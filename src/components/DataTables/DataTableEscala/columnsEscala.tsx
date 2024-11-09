@@ -2,10 +2,8 @@
 import { labels, statuses } from './data/data'
 
 import { DataTableColumnHeader } from '@/components/DataTables/DataTableEscala/data-table-column-header'
-import { DataTableRowActions } from '@/components/DataTables/DataTableEscala/data-table-row-actions'
 import { Badge } from '@/components/ui/badge'
 import { type IScheduleSchema } from '@/schemas/ScheduleSchema'
-import { Checkbox } from '@/ui/checkbox'
 import { type ColumnDef } from '@tanstack/react-table'
 import moment from 'moment'
 

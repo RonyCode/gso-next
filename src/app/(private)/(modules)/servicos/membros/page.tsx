@@ -1,60 +1,52 @@
+import { getServerSession } from 'next-auth'
+import Link from 'next/link'
 import React from 'react'
-import { LuBuilding, LuSearchX } from 'react-icons/lu'
+import {
+  LuBuilding,
+  LuListChecks,
+  LuUser2,
+  LuUserCog2,
+  LuUsers,
+  LuUsers2,
+  LuUserX2,
+} from 'react-icons/lu'
 import { MdOutlineSupervisorAccount } from 'react-icons/md'
 
-import TabMembersDetails from '../../components/TabMembersDetails'
-
+import SelectMembersCorporation from '@/app/(private)/(modules)/components/SelectMembersCorporation'
 import { CardDefault } from '@/components/Cards/CardDefault'
-import { ImageExist } from '@/functions/ImageExist'
+import { CardWithLogo } from '@/components/Cards/CardWithLogo'
+import { authOptions } from '@/lib/auth'
 import { getAllOrganizacoes } from '@/lib/GetAllOrganizacoes'
-import { getUnidadeById } from '@/lib/GetUnidadeById'
+import { Button } from '@/ui/button'
 
-const MembrosUnidade = async ({
-  params,
-}: {
-  params: { sigla: string; name_unidade: string }
-}): Promise<JSX.Element> => {
+const MembrosUnidade = async (): Promise<JSX.Element> => {
   const { data } = await getAllOrganizacoes()
-
-  const imgValided = await ImageExist(data?.image)
-  if (imgValided.status !== 200) {
-    data.image = process.env.NEXT_PUBLIC_API_GSO + '/public/images/avatar.png'
-  }
-
-  // eslint-disable-next-line array-callback-return
-  const diretor = data?.companyMembers?.find((member) => {
-    if (member?.id === data?.director) {
-      return member
-    }
-  })
-
   return (
     <div>
       {
         <CardDefault
-          title={data?.name + ' / ' + data?.companyAddress?.city}
-          description={'CMD : ' + diretor?.competence + ' - ' + diretor?.name}
-          image={
-            data.image ??
-            process.env.NEXT_PUBLIC_API_GSO + '/public/images/avatar.png'
-          }
+          title={'Efetivo de minha corporação'}
+          description="Membros"
+          image={process.env.NEXT_PUBLIC_API_GSO + '/public/images/members.jpg'}
           imageMobile={
-            data.image ??
-            process.env.NEXT_PUBLIC_API_GSO + '/public/images/avatar.png'
+            process.env.NEXT_PUBLIC_API_GSO + '/public/images/members.jpg'
           }
-          icon={<LuBuilding size={28} />}
-          iconDescription={<MdOutlineSupervisorAccount size={18} />}
+          icon={<LuUsers size={28} />}
+          iconDescription={<LuListChecks size={18} />}
         >
-          {data?.companyMembers?.[0]?.id !== null ? (
-            <TabMembersDetails members={data.companyMembers} params={params} />
-          ) : (
-            <div className="flex h-full w-full  items-center justify-center">
-              {' '}
-              <span className="flex items-center justify-center gap-1">
-                <LuSearchX size={28} className="text-primary/60" /> SEM EFETIVO
-                CADASTRADOS 🤯
-              </span>
+          {data !== undefined ? (
+            <div className="overflow-scroll p-4 lg:overflow-hidden">
+              <SelectMembersCorporation organizacoes={data} />
             </div>
+          ) : (
+            <CardWithLogo
+              title="Usuário sem Corporação"
+              description="É necessário solicitar inclusão em uma corporação para acessar nossos módulos"
+            >
+              <Link href="/contact">
+                <Button>Solicitar inclusão</Button>
+              </Link>
+            </CardWithLogo>
           )}
         </CardDefault>
       }

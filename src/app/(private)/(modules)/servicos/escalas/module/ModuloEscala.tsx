@@ -1,11 +1,4 @@
 import { CardModule } from '@/components/Cards/CardModule'
-import IconBuild from '@/icons/IconBuild'
-import IconBuildPlus from '@/icons/IconBuildPlus'
-import IconCarFrontal from '@/icons/IconCarFrontal'
-import IconList from '@/icons/IconList'
-import IconMembers from '@/icons/IconMembers'
-import IconOpenBook from '@/icons/IconOpenBook'
-import IconPrivileges from '@/icons/IconPrivileges'
 import IconCalendar from '@/icons/IconCalendar'
 import IconEditSave from '@/icons/IconEditSave'
 

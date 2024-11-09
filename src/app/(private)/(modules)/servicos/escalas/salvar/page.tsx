@@ -18,8 +18,6 @@ const SalvarEscala = async ({ params }: { params: { sigla: string } }) => {
   const session = await getServerSession(authOptions)
   if (session === null) return <> </>
   // const { data } = await getAllUnidades(session?.id_corporation)
-  const functions = await getAllFunctions()
-  const unidades = await getAllUnidades(params?.sigla?.split('-')[1])
 
   return (
     <div>

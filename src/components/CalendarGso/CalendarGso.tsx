@@ -2,7 +2,13 @@
 
 import Link from 'next/link'
 import { useState } from 'react'
-import { LuArrowBigLeft, LuArrowBigRight, LuCalendarPlus } from 'react-icons/lu'
+import {
+  LuAlertTriangle,
+  LuArrowBigLeft,
+  LuArrowBigRight,
+  LuBadgeAlert,
+  LuCalendarPlus,
+} from 'react-icons/lu'
 
 import TabScheduleSave from '@/app/(private)/(modules)/components/TabScheduleSave'
 import CalendarGsoGrid from '@/components/CalendarGso/CalendarGsoGrid'
@@ -30,7 +36,6 @@ const CalendarGso = ({
   const [month, setMonth] = useState(date.getMonth())
   const [year, setYear] = useState(date.getFullYear())
   const [dayWeek, setDayWeek] = useState(date.getDay())
-  useState(0)
 
   const monthName = [
     { monthName: 'Janeiro', number: 0 },
@@ -120,7 +125,7 @@ const CalendarGso = ({
   ): IScheduleSchema[] => {
     if (event == null) return []
     const result: IScheduleSchema[] = []
-    event?.companySchedules?.forEach((itemEvento) => {
+    event?.schedules?.forEach((itemEvento) => {
       if (
         itemEvento?.schedule?.date_creation !== null &&
         itemEvento?.schedule?.date_creation !== undefined
@@ -138,6 +143,7 @@ const CalendarGso = ({
   }
 
   let daysCalculate = 0
+
   if (daysInMonth?.dias != null) {
     daysCalculate =
       dayWeek === date.getDay()
@@ -208,7 +214,6 @@ const CalendarGso = ({
       }
     }
   }
-  escalaObj.shift()
 
   const handlePrevious = (): void => {
     const lastDayWeek = escalaObj[escalaObj.length - 1].dayWeek
@@ -251,7 +256,7 @@ const CalendarGso = ({
       <div className="grid h-full w-full grid-cols-12  p-2 md:mt-0">
         {/* TABLE ESCALA */}
         <div
-          className={`col-start-1  col-end-13 mt-32  h-full w-full rounded-[5px] bg-background p-2 md:col-end-7 md:mt-0`}
+          className={`col-start-1  col-end-13 mt-8  h-full w-full rounded-[5px] bg-background p-2`}
         >
           <div className="h-full w-full overflow-scroll">
             <DataTableEscala data={eventsList} columns={columnsEscala} />
@@ -260,7 +265,7 @@ const CalendarGso = ({
 
         {/* HEADER GRID WEEK */}
         <div
-          className={`col-start-1 col-end-13 row-end-2  w-full place-content-start rounded-[5px] px-2 md:col-start-7 md:row-start-1`}
+          className={`col-start-1 col-end-13 row-end-2  w-full place-content-start rounded-[5px] px-2 md:col-start-2 md:col-end-12 md:row-start-1`}
         >
           <div className="border-b-none flex justify-between border border-foreground/10 p-1">
             <Button variant="default" onClick={handlePrevious}>
@@ -304,28 +309,30 @@ const CalendarGso = ({
 
           <div
             className="
-             grid w-full grid-cols-7  overflow-scroll rounded-[3px] md:h-[90%] md:overflow-hidden"
+             grid grid-cols-7  overflow-scroll rounded-[3px] md:h-[90%] md:overflow-hidden"
           >
             {escalaObj.map((day, index) => (
               // MODAL TRIGGER
-              <div key={index}>
+              <div key={index} className=" relative h-full w-full ">
                 {day?.day > 0 && (
                   <ModalGso
-                    className={` overflow-auto px-3 ${day?.dayEvent?.length > 0 ? 'h-[80vh] w-[80vw]' : 'md:h-[30vh] md:w-[30vw]'} xl:px-4 `}
+                    className={` overflow-auto  ${day?.dayEvent?.length > 0 ? 'h-[85vh] w-[80vw]' : 'md:h-[35vh] md:w-[30vw]'} xl:px-4 `}
                     title="Detalhes Escala"
                     childrenButton={
-                      <CalendarGsoGrid
-                        index={
-                          daysInMonth?.dias != null
-                            ? index - daysInMonth.dias
-                            : index
-                        }
-                        day={day.day}
-                        dayEvent={day?.dayEvent}
-                        month={day.month}
-                        year={day.year}
-                        className="h-28 w-14 sm:w-24 md:w-12 lg:w-14 xl:h-32 xl:w-[86px] 2xl:h-36 2xl:w-[98px]"
-                      />
+                      <div className=" relative h-full w-full ">
+                        <CalendarGsoGrid
+                          index={
+                            daysInMonth?.dias != null
+                              ? index - daysInMonth.dias
+                              : index
+                          }
+                          day={day.day}
+                          dayEvent={day?.dayEvent}
+                          month={day.month}
+                          year={day.year}
+                          className="  h-24 w-14 sm:h-24 sm:w-[94px] md:h-24 md:w-20 lg:h-28 lg:w-24 xl:h-32 xl:w-[122px]"
+                        />
+                      </div>
                     }
                   >
                     {day?.dayEvent?.length > 0 ? (
@@ -333,10 +340,10 @@ const CalendarGso = ({
                         {day?.dayEvent?.map((itemEvent, indexEvent) => (
                           <TabScheduleSave
                             key={indexEvent}
-                            unidade={unidade}
+                            unidades={unidade}
                             /* eslint-disable-next-line @typescript-eslint/ban-ts-comment */
                             // @ts-expect-error
-                            schedule={unidade?.companySchedules?.find(
+                            schedule={unidade?.schedules?.find(
                               (schedule) =>
                                 schedule?.schedule?.id?.toString() ===
                                 itemEvent?.id?.toString(),
@@ -345,18 +352,36 @@ const CalendarGso = ({
                         ))}
                       </div>
                     ) : (
-                      <Link
-                        className="flex h-full w-full flex-col items-center justify-between gap-2 p-2 "
-                        href={`/${unidade?.short_name_corp?.toLowerCase()}-${unidade?.id_corporation}/unidades/${unidade?.short_name_comp?.toLowerCase()}-${unidade?.id}/escalas/salvar`}
-                      >
-                        <p>
-                          Não existe escala para esta data. Deseja criar escala?
-                        </p>
-                        <Button className="flex items-center gap-1">
-                          <LuCalendarPlus />
-                          Criar nova escala
-                        </Button>
-                      </Link>
+                      <div>
+                        {new Date(day.year, day.month, day.day).setHours(
+                          1,
+                          1,
+                          1,
+                          1,
+                        ) > new Date().setHours(0, 0, 0, 0) ? (
+                          <Link
+                            className="flex h-full w-full flex-col items-center justify-between gap-2 p-2 "
+                            href={`/servicos/gestor/salvar-escala?cod_unidade=${unidade.id}&date_schedule=${day.year}-${day.month + 1}-${day.day}`}
+                          >
+                            <p>
+                              Não existe escala para esta data. Deseja criar
+                              escala?
+                            </p>
+                            <Button className="flex items-center gap-1">
+                              <LuCalendarPlus />
+                              Criar nova escala
+                            </Button>
+                          </Link>
+                        ) : (
+                          <div className="flex  items-center gap-1">
+                            <LuAlertTriangle size={80} />
+                            <span>
+                              DATA INVÁLIDA! não é possível criar escala com
+                              data vencida
+                            </span>
+                          </div>
+                        )}
+                      </div>
                     )}
                   </ModalGso>
                 )}

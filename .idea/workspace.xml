@@ -4,188 +4,140 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4467a1d6-73df-479e-9cc5-8e8cf1a18f4d" name="Changes" comment="implementando schedule save">
-      <change afterPath="$PROJECT_DIR$/../wsgso/.idea/git_toolbox_blame.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../wsgso/public/images/manager.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../wsgso/public/images/modules.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../wsgso/public/images/modules.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/App/Command/SaveMemberCorporationCommand.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/App/UseCases/CorporationSaveMember/CorporationMemberSaveCase.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/App/UseCases/CorporationSaveMember/InputBoundaryCorporationMemberSave.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/App/UseCases/CorporationSaveMember/OutputBoundaryCorporationMemberSave.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/App/handler/SaveMemberCorporationHandler.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/Infra/Interface/CorporationMemberSavePresentationInterface.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../wsgso/src/Web/Controllers/CorporationSaveMemberController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../wsgso/src/Web/Controllers/UsersGetAllController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../wsgso/src/Web/Presentation/CorporationMemberSavePresentation.php" afterDir="false" />
+    <list default="true" id="b29fa024-552d-4036-adf4-d22d972a39f9" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.github/workflows/qodana_code_quality.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/git_toolbox_blame.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/icons/IconBrandsCars.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/icons/IconBrandsCars.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/icons/chevrolet-1.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/icons/fiat-2.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/icons/ford-5.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/icons/ford-8.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/icons/ford-logo-flat.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/icons/ford.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/icons/iveco-1.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/icons/iveco-2.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/icons/iveco.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/icons/marca.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/icons/mercedes-benz-1.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/icons/trademark.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/icons/vecteezy_car-logo-vectors_88073.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/icons/volkswagen-1.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/icons/volvo-3.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/icons/volvo-logo-2021.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/engenharia-producao.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/components/MembersCompanyForm.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/components/SelectMembersCorporation.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/components/VehicleCompanyForm.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/components/VehicleCorporationForm.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/components/module/ModuloGestorUnidade.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/gestor/layout.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/gestor/salvar-escala/page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/gestor/salvar-veiculo/page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/unidades/[name_unidade]/gestor-unidade/membro-unidade-salvar/page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/unidades/[name_unidade]/gestor-unidade/veiculo-unidade-salvar/page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/actions/saveMemberIntoCompanyAction.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/actions/saveMemberIntoCorporationAction.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/actions/saveVehicleIntoCorporationAction.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/api/cadastrar-membro-unidade/route.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/api/cadastrar-membro/route.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/api/users-without-corp/route.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lib/GetAllVehicles.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/schemas/FipeSchema.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/schemas/SaveCarCompanySchema.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.env.production" beforeDir="false" afterPath="$PROJECT_DIR$/.env.production" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/prettier.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/prettier.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/cee89a81-5f5d-492e-b0e5-11dd16a43cfb.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/cee89a81-5f5d-492e-b0e5-11dd16a43cfb/storage_v2/_src_/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/cee89a81-5f5d-492e-b0e5-11dd16a43cfb/storage_v2/_src_/schema/mysql.osA4Bg.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/cee89a81-5f5d-492e-b0e5-11dd16a43cfb/storage_v2/_src_/schema/performance_schema.kIw0nw.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/cee89a81-5f5d-492e-b0e5-11dd16a43cfb/storage_v2/_src_/schema/sys.zb4BAA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/cee89a81-5f5d-492e-b0e5-11dd16a43cfb/storage_v2/_src_/schema/wsgsoHomologacao.5KDRnw.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/git_toolbox_prj.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gso-next.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gso-next.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/material_theme_project_new.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/material_theme_project_new.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/prettier.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/next.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/next.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/icons/IconBuild.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/icons/IconBuild.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/icons/IconCalendar.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/icons/IconCalendar.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/icons/IconCarFrontal.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/icons/IconCarFrontal.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/icons/IconCelular.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/icons/IconCelular.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/icons/IconCog.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/icons/IconCog.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/icons/IconEditSave.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/icons/IconEditSave.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/postcss.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/postcss.config.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/icons/IconEditSave.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/public/icons/IconEditSave.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/icons/IconGrafico.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/icons/IconGrafico.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/icons/IconList.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/icons/IconList.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/icons/IconMembers.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/icons/IconMembers.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/icons/IconPuzzle.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/icons/IconPuzzle.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/icons/IconPuzzle.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/public/icons/IconPuzzle.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/icons/IconSirene.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/icons/IconSirene.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/icons/plus.svg" beforeDir="false" afterPath="$PROJECT_DIR$/public/icons/plus.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(auth)/cadastro-usuario/[token]/components/UserRegisterForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(auth)/cadastro-usuario/[token]/components/UserRegisterForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/IconSirene.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/IconSirene.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/escala.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/teste.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/teste.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(auth)/auth/components/LoginFormSlice.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(auth)/auth/components/LoginFormSlice.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(auth)/auth/components/SigInForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(auth)/auth/components/SigInForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(auth)/auth/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(auth)/auth/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/components/SelectCompanySchedule.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/components/SelectCompanySchedule.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/components/SelectCorporationModule.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/components/SelectCorporationModule.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/components/TabMembersDetails.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/components/TabMembersDetails.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/components/TabCarsDetails.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/components/TabCarsDetails.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/components/TabScheduleSave.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/components/TabScheduleSave.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/components/TabUnidadeDetails.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/components/TabUnidadeDetails.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/components/module/ModuleMinhaUnidade.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/components/module/ModuleMinhaUnidade.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/components/module/Modules.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/components/module/Modules.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/components/module/ModulesOrganizacao.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/components/module/ModulesOrganizacao.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/components/module/ModuloGestor.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/components/module/ModuloGestor.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/corporacao/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/corporacao/page.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/escalas/module/ModuloEscala.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/escalas/module/ModuloEscala.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/escalas/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/escalas/page.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/escalas/salvar/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/escalas/salvar/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/gestor/actions/saveUnidadeAction.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/gestor/actions/saveUnidadeAction.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/gestor/component/MemberForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/gestor/component/MemberForm.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/gestor/component/OrganizacaoForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/gestor/component/OrganizacaoForm.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/gestor/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/gestor/page.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/gestor/salvar-membro/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/gestor/salvar-membro/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/gestor/salvar-organizacao/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/gestor/salvar-organizacao/page.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/gestor/salvar-unidade/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/gestor/salvar-unidade/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/membros/[membro]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/membros/[membro]/page.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/membros/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/membros/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/ocorrencias/module/ModuloOcorrencia.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/ocorrencias/module/ModuloOcorrencia.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/ocorrencias/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/ocorrencias/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/unidades/[name_unidade]/carros/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/unidades/[name_unidade]/carros/page.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/unidades/[name_unidade]/detalhes/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/unidades/[name_unidade]/detalhes/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/unidades/[name_unidade]/escalas/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/unidades/[name_unidade]/escalas/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/unidades/[name_unidade]/membros/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/unidades/[name_unidade]/membros/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/unidades/[name_unidade]/nova-unidade/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/unidades/[name_unidade]/gestor-unidade/page.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/unidades/[name_unidade]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/unidades/[name_unidade]/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/unidades/module/ModuleUnidades.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/unidades/module/ModuleUnidades.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/unidades/salvar-unidade/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/unidades/salvar-unidade/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/unidades/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/unidades/page.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/veiculos/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/veiculos/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(private)/conta/component/EditProfileForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/conta/component/EditProfileForm.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(private)/conta/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/conta/layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(private)/conta/organizacao/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/conta/organizacao/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(private)/conta/unidade/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/conta/unidade/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(public)/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(public)/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/api/corporation-save/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/api/corporation-save/route.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/api/organizacoes/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/api/organizacoes/route.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/api/users/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/api/users/route.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/CalendarGso/CalendarGso.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CalendarGso/CalendarGso.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/DataTables/DataTableUnidades/data-table-row-actions.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DataTables/DataTableUnidades/data-table-row-actions.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/DataTables/DataTableCars/columnsCars.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DataTables/DataTableCars/columnsCars.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/DataTables/DataTableCars/data-table-cars.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DataTables/DataTableCars/data-table-cars.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/DataTables/DataTableCars/data-table-row-actions.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DataTables/DataTableCars/data-table-row-actions.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/DataTables/DataTableCars/data-table-toolbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DataTables/DataTableCars/data-table-toolbar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/DataTables/DataTableCars/data-table-view-options.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DataTables/DataTableCars/data-table-view-options.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/DataTables/DataTableCars/data/data.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DataTables/DataTableCars/data/data.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/DataTables/DataTableEscala/columnsEscala.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DataTables/DataTableEscala/columnsEscala.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/DataTables/DataTableMembers/data-table-row-actions.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DataTables/DataTableMembers/data-table-row-actions.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/DataTables/DataTableUnidades/columnsUnidades.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DataTables/DataTableUnidades/columnsUnidades.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/EditPhoto/EditPhoto.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/EditPhoto/EditPhoto.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Nav/NavbarMain.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Nav/NavbarMain.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Notification/NotiicationCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Notification/NotiicationCard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/textarea.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/textarea.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/functions/masks/maskDateMysql.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/functions/masks/maskDateMysql.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/lib/GetAllOrganizacoes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/GetAllOrganizacoes.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/GetAllUnidades.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/GetAllUnidades.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/lib/GetAllUsers.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/GetAllUsers.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/auth.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/auth.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/middleware.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/middleware.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/schemas/AddressSchema.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/schemas/AddressSchema.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/schemas/CarsSchema.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/schemas/CarsSchema.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/schemas/MemberSchema.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/schemas/MemberSchema.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/schemas/OrganizacaoSchema.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/schemas/OrganizacaoSchema.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/schemas/SaveMemberSchema.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/schemas/SaveMemberSchema.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/schemas/ScheduleFormSave.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/schemas/ScheduleFormSave.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/schemas/UnidadeSchema.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/schemas/UnidadeSchema.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/stores/initializeStores.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/stores/initializeStores.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/types/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/types/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vercel.txt" beforeDir="false" afterPath="$PROJECT_DIR$/vercel.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../prevenir/src/app/modulos/servicos/gestao-protocolo/detalhes/detalhes-andamentos.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../prevenir/src/app/modulos/servicos/gestao-protocolo/detalhes/detalhes-andamentos.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../prevenir/src/app/modulos/servicos/pscip-solicita/pscip-solicita.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../prevenir/src/app/modulos/servicos/pscip-solicita/pscip-solicita.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../prevenir/src/environments/environment.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../prevenir/src/environments/environment.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wsgso/.env.development" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/.env.development" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wsgso/.env.localhost" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/.env.localhost" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wsgso/.env.production" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/.env.production" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wsgso/.idea/gsoapi.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/.idea/gsoapi.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wsgso/.idea/php-test-framework.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wsgso/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wsgso/WSGSO/Get all Companies.bru" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/WSGSO/Get all Companies.bru" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wsgso/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wsgso/config/config.php" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/config/config.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wsgso/public/images/abt.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/public/images/abt.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wsgso/public/images/abtf.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/public/images/abtf.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wsgso/public/images/as-14.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/public/images/as-14.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wsgso/public/images/bannerCorp.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/public/images/bannerCorp.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wsgso/public/images/calendar.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/public/images/calendar.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wsgso/public/images/calendar.png" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/public/images/calendar.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wsgso/public/images/esc.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/public/images/esc.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wsgso/public/images/img.png" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/public/images/img.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wsgso/public/images/ocorrencias.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/public/images/ocorrencias.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wsgso/public/images/ur.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/public/images/ur.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wsgso/public/storage/image/48e4082b1bb27df7.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/public/storage/image/48e4082b1bb27df7.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wsgso/public/storage/image/52cdd93e601c058e.png" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/public/storage/image/52cdd93e601c058e.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wsgso/public/storage/image/7078b99204c64340.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/public/storage/image/7078b99204c64340.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wsgso/public/storage/image/76fa5070f649cc7f.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/public/storage/image/76fa5070f649cc7f.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wsgso/public/storage/image/7b4524c2c8c02dc2.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/public/storage/image/7b4524c2c8c02dc2.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wsgso/public/storage/image/949241ec516d8c6a.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/public/storage/image/949241ec516d8c6a.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wsgso/public/storage/image/abt.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/public/storage/image/abt.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wsgso/public/storage/image/abtf.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/public/storage/image/abtf.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wsgso/public/storage/image/as-14.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/public/storage/image/as-14.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wsgso/public/storage/image/bannerCorp.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/public/storage/image/bannerCorp.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wsgso/public/storage/image/bc51ebfb88bf221d.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/public/storage/image/bc51ebfb88bf221d.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wsgso/public/storage/image/esc.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/public/storage/image/esc.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wsgso/public/storage/image/f20f299566495661.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/public/storage/image/f20f299566495661.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wsgso/public/storage/image/f59f919b53b88b7e.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/public/storage/image/f59f919b53b88b7e.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wsgso/public/storage/image/ur.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/public/storage/image/ur.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/App/Command/SaveScheduleIntoCompanyCommand.php" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/App/Command/SaveScheduleIntoCompanyCommand.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/App/UseCases/CorporationCompanyCarSave/CompanyCarSaveCase.php" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/App/UseCases/CompanyCarSave/CompanyCarSaveCase.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/App/UseCases/CorporationCompanyCarSave/InputBoundaryCarSaveCase.php" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/App/UseCases/CompanyCarSave/InputBoundaryCarSaveCase.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/App/UseCases/CorporationCompanyCarSave/OutputBoundaryCarSaveCase.php" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/App/UseCases/CompanyCarSave/OutputBoundaryCarSaveCase.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/App/UseCases/CorporationCompanyMemberSave/CompanyMemberSaveCase.php" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/App/UseCases/CompanyMemberSave/CompanyMemberSaveCase.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/App/UseCases/CorporationCompanyMemberSave/InputBoundaryCompanyMemberSaveCase.php" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/App/UseCases/CompanyMemberSave/InputBoundaryCompanyMemberSaveCase.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/App/UseCases/CorporationCompanyMemberSave/OutputBoundaryMemberSaveCase.php" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/App/UseCases/CompanyMemberSave/OutputBoundaryMemberSaveCase.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/App/UseCases/CorporationCompanySave/CompanySaveCase.php" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/App/UseCases/CompanySave/CompanySaveCase.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/App/UseCases/CorporationCompanySave/InputBoundaryCompanySave.php" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/App/UseCases/CompanySave/InputBoundaryCompanySave.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/App/UseCases/CorporationCompanySave/OutputBoundaryCompanySave.php" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/App/UseCases/CompanySave/OutputBoundaryCompanySave.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/App/UseCases/CorporationCompanyScheduleSave/CompanyScheduleSaveCase.php" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/App/UseCases/CompanyScheduleSave/CompanyScheduleSaveCase.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/App/UseCases/CorporationCompanyScheduleSave/InputBoundaryCompanyScheduleSaveCase.php" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/App/UseCases/CompanyScheduleSave/InputBoundaryCompanyScheduleSaveCase.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/App/UseCases/CorporationCompanyScheduleSave/OutputBoundaryScheduleSaveCase.php" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/App/UseCases/CompanyScheduleSave/OutputBoundaryScheduleSaveCase.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/App/UseCases/CorporationGetAll/CorporationGetAllCase.php" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/App/UseCases/CorporationGetAll/CorporationGetAllCase.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/App/handler/SaveCompanyIntoCorporationHandler.php" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/App/handler/SaveCompanyIntoCorporationHandler.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/App/handler/SaveCorporationHandler.php" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/App/handler/SaveCorporationHandler.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/App/handler/SaveMemberIntoCompanyHandler.php" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/App/handler/SaveMemberIntoCompanyHandler.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/Domains/Corporation/Corporation.php" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/Domains/Corporation/Corporation.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/Domains/Corporation/Interface/CorporationRepositoryInterface.php" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/Domains/Corporation/Interface/CorporationRepositoryInterface.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/Domains/Corporation/Member.php" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/Domains/Corporation/Member.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/Infra/Interface/CompanyCarSavePresentationInterface.php" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/Infra/Interface/CompanyCarSavePresentationInterface.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/Infra/Interface/CompanyMemberSavePresentationInterface.php" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/Infra/Interface/CompanyMemberSavePresentationInterface.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/Infra/Interface/CompanyScheduleSavePresentationInterface.php" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/Infra/Interface/CompanyScheduleSavePresentationInterface.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/Infra/Interface/CorporationCompanySavePresentationInterface.php" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/Infra/Interface/CorporationCompanySavePresentationInterface.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/Infra/Repository/CorporationRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/src/Context/Corporation/Infra/Repository/CorporationRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wsgso/src/Context/User/App/UseCases/User/UserAuth/UserAuthSignUp/UserAuthSignUpCase.php" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/src/Context/User/App/UseCases/User/UserAuth/UserAuthSignUp/UserAuthSignUpCase.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wsgso/src/Context/User/Domains/User/Account.php" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/src/Context/User/Domains/User/Account.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wsgso/src/Context/User/Domains/User/Events/command/UserRegistredEvent.php" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/src/Context/User/Domains/User/Events/command/UserRegistredEvent.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wsgso/src/Context/User/Infra/Repository/UserRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/src/Context/User/Infra/Repository/UserRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wsgso/src/Web/Controllers/CompanySaveCarController.php" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/src/Web/Controllers/CompanySaveCarController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wsgso/src/Web/Controllers/CompanySaveController.php" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/src/Web/Controllers/CompanySaveController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wsgso/src/Web/Controllers/CompanySaveMemberController.php" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/src/Web/Controllers/CompanySaveMemberController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wsgso/src/Web/Controllers/CompanySaveScheduleController.php" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/src/Web/Controllers/CompanySaveScheduleController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wsgso/src/Web/Controllers/UserAuthPreRegisterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/src/Web/Controllers/UserAuthPreRegisterController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wsgso/src/Web/Controllers/UserRegisterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/src/Web/Controllers/UserRegisterController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wsgso/src/Web/Presentation/CompanyCarSavePresentation.php" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/src/Web/Presentation/CompanyCarSavePresentation.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wsgso/src/Web/Presentation/CompanyMemberSavePresentation.php" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/src/Web/Presentation/CompanyMemberSavePresentation.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wsgso/src/Web/Presentation/CompanySavePresentation.php" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/src/Web/Presentation/CompanySavePresentation.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wsgso/src/Web/Presentation/CompanyScheduleSavePresentation.php" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/src/Web/Presentation/CompanyScheduleSavePresentation.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wsgso/src/Web/Presentation/CorporationGetAllPresentation.php" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/src/Web/Presentation/CorporationGetAllPresentation.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wsgso/src/Web/Presentation/CorporationSavePresentation.php" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/src/Web/Presentation/CorporationSavePresentation.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wsgso/src/Web/Presentation/UserPresentationRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/src/Web/Presentation/UserPresentationRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wsgso/src/Web/Routes/RouteCorporation.php" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/src/Web/Routes/RouteCorporation.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wsgso/src/Web/Routes/RouteUser.php" beforeDir="false" afterPath="$PROJECT_DIR$/../wsgso/src/Web/Routes/RouteUser.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="HTML File" />
-        <option value="TypeScript File" />
-        <option value="TypeScript JSX File" />
-      </list>
-    </option>
+  <component name="ComposerSettings">
+    <execution />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="ROOT_SYNC" value="DONT_SYNC" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -193,48 +145,17 @@
     &quot;assignee&quot;: &quot;RonyCode&quot;
   }
 }</component>
-  <component name="GitToolBoxStore">
-    <option name="recentBranches">
-      <RecentBranches>
-        <option name="branchesForRepo">
-          <list>
-            <RecentBranchesForRepo>
-              <option name="branches">
-                <list>
-                  <RecentBranch>
-                    <option name="branchName" value="master" />
-                    <option name="lastUsedInstant" value="1724766274" />
-                  </RecentBranch>
-                  <RecentBranch>
-                    <option name="branchName" value="homologacao" />
-                    <option name="lastUsedInstant" value="1724766273" />
-                  </RecentBranch>
-                </list>
-              </option>
-              <option name="repositoryRootUrl" value="file://$PROJECT_DIR$/../cbmto-ws" />
-            </RecentBranchesForRepo>
-          </list>
-        </option>
-      </RecentBranches>
-    </option>
-  </component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;git@github.com:RonyCode/gso-next.git&quot;,
     &quot;accountId&quot;: &quot;b902a297-1afe-4f73-ae98-213f2b6e8e9b&quot;
   }
 }</component>
-  <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
-  </component>
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="/opt/homebrew/Cellar/php/8.3.10/bin/php" />
   <component name="ProjectColorInfo">{
-  &quot;customColor&quot;: &quot;&quot;,
-  &quot;associatedIndex&quot;: 5
+  &quot;associatedIndex&quot;: 6
 }</component>
-  <component name="ProjectId" id="2gwCtCYqhasa8r641FzApV9zpzu" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
-    <ConfirmationsSetting value="2" id="Add" />
-  </component>
+  <component name="ProjectId" id="2nRV6EUmOjdk6pNu7qcAEDFYBWC" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="false" />
@@ -242,32 +163,22 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
     &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;com.codeium.enabled&quot;: &quot;true&quot;,
-    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;dev&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/rony/Sites/gso-next/src/schemas&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/rony/Sites/gso-next&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.stylelint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
-    &quot;node.js.selected.package.stylelint&quot;: &quot;&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/Users/rony/Sites/gso-next/node_modules/prettier&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;settings.javascript.linters.eslint&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;yarn&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
     &quot;ts.external.directory.path&quot;: &quot;/Users/rony/Sites/gso-next/node_modules/typescript/lib&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
-  },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;mysql&quot;
-    ]
   }
 }</component>
   <component name="ReactDesignerToolWindowState">
@@ -281,534 +192,82 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/gestor" />
+      <recent name="$PROJECT_DIR$/public/icons" />
       <recent name="$PROJECT_DIR$/src/schemas" />
-      <recent name="$PROJECT_DIR$/src/app/api" />
+      <recent name="$PROJECT_DIR$/src/app/actions" />
       <recent name="$PROJECT_DIR$/src/lib" />
-      <recent name="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/veiculos" />
-      <recent name="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/membros" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/app/(private)/(modules)/servicos" />
-      <recent name="$PROJECT_DIR$/src/app/(private)/(modules)" />
-      <recent name="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/unidades" />
+      <recent name="$PROJECT_DIR$/public/images" />
       <recent name="$PROJECT_DIR$/public/icons" />
-      <recent name="$PROJECT_DIR$/src/app/(private)/(modules)/components" />
     </key>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-410509235cf1-JavaScript-WS-242.20224.426" />
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-WS-242.23726.96" />
       </set>
     </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="4467a1d6-73df-479e-9cc5-8e8cf1a18f4d" name="Changes" comment="" />
-      <created>1716599466691</created>
+      <changelist id="b29fa024-552d-4036-adf4-d22d972a39f9" name="Changes" comment="" />
+      <created>1723912660655</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1716599466691</updated>
-      <workItem from="1716599468684" duration="5711000" />
-      <workItem from="1716605207831" duration="1431000" />
-      <workItem from="1716606649591" duration="868000" />
-      <workItem from="1716643617645" duration="15105000" />
-      <workItem from="1716659196815" duration="9661000" />
-      <workItem from="1716690969113" duration="11400000" />
-      <workItem from="1716728337496" duration="6968000" />
-      <workItem from="1716735556159" duration="6323000" />
-      <workItem from="1716753386619" duration="5986000" />
-      <workItem from="1716775417583" duration="5377000" />
-      <workItem from="1716810661249" duration="11000" />
-      <workItem from="1716840887847" duration="13579000" />
-      <workItem from="1716930305341" duration="3522000" />
-      <workItem from="1716982249470" duration="93000" />
-      <workItem from="1717080975408" duration="5327000" />
-      <workItem from="1717115381043" duration="8694000" />
-      <workItem from="1717160498993" duration="3019000" />
-      <workItem from="1717189329383" duration="19648000" />
-      <workItem from="1717341121292" duration="9848000" />
-      <workItem from="1717351539805" duration="4303000" />
-      <workItem from="1717428315315" duration="4171000" />
-      <workItem from="1717432535991" duration="3513000" />
-      <workItem from="1717504840511" duration="5935000" />
-      <workItem from="1717513155361" duration="10294000" />
-      <workItem from="1717531796684" duration="6549000" />
-      <workItem from="1717594204655" duration="4000" />
-      <workItem from="1717602327743" duration="1951000" />
-      <workItem from="1717620159523" duration="6310000" />
-      <workItem from="1717671005269" duration="6437000" />
-      <workItem from="1717680623473" duration="29000" />
-      <workItem from="1717687032070" duration="1690000" />
-      <workItem from="1717705312423" duration="7145000" />
-      <workItem from="1717722643704" duration="8177000" />
-      <workItem from="1717767578070" duration="11192000" />
-      <workItem from="1717788021419" duration="11386000" />
-      <workItem from="1717806661905" duration="2768000" />
-      <workItem from="1717847207000" duration="11033000" />
-      <workItem from="1717958778918" duration="5224000" />
-      <workItem from="1718017488563" duration="21677000" />
-      <workItem from="1718068231813" duration="4744000" />
-      <workItem from="1718102910640" duration="31000" />
-      <workItem from="1718121311195" duration="4119000" />
-      <workItem from="1718150555589" duration="7468000" />
-      <workItem from="1718239583891" duration="5376000" />
-      <workItem from="1718285391270" duration="3483000" />
-      <workItem from="1718290660265" duration="8743000" />
-      <workItem from="1718314032538" duration="4888000" />
-      <workItem from="1718319230331" duration="3264000" />
-      <workItem from="1718385128675" duration="13574000" />
-      <workItem from="1718412184267" duration="9663000" />
-      <workItem from="1718449939178" duration="19491000" />
-      <workItem from="1718479691115" duration="85000" />
-      <workItem from="1718479791545" duration="20000" />
-      <workItem from="1718479996022" duration="6702000" />
-      <workItem from="1718547768770" duration="8658000" />
-      <workItem from="1718568154479" duration="5376000" />
-      <workItem from="1718584379892" duration="12771000" />
-      <workItem from="1718621604047" duration="19677000" />
-      <workItem from="1718653614889" duration="10269000" />
-      <workItem from="1718671509875" duration="3144000" />
-      <workItem from="1718707835632" duration="2181000" />
-      <workItem from="1718719250269" duration="5173000" />
-      <workItem from="1718754580745" duration="8774000" />
-      <workItem from="1718794102843" duration="3815000" />
-      <workItem from="1718799084418" duration="15907000" />
-      <workItem from="1718830697601" duration="200000" />
-      <workItem from="1718844444465" duration="1393000" />
-      <workItem from="1718848116897" duration="5868000" />
-      <workItem from="1718885038269" duration="18000" />
-      <workItem from="1718890808956" duration="3948000" />
-      <workItem from="1718897007269" duration="6699000" />
-      <workItem from="1718914422317" duration="4563000" />
-      <workItem from="1718990769121" duration="14375000" />
-      <workItem from="1719229904106" duration="25000" />
-      <workItem from="1719234608088" duration="15477000" />
-      <workItem from="1719276605036" duration="1722000" />
-      <workItem from="1719313282330" duration="7172000" />
-      <workItem from="1719404981456" duration="132000" />
-      <workItem from="1719405154822" duration="611000" />
-      <workItem from="1719405884265" duration="16475000" />
-      <workItem from="1719485599268" duration="54000" />
-      <workItem from="1719485677279" duration="13371000" />
-      <workItem from="1719756501661" duration="3055000" />
-      <workItem from="1719770196870" duration="632000" />
-      <workItem from="1719780149914" duration="2107000" />
-      <workItem from="1719925164733" duration="9670000" />
-      <workItem from="1719952095326" duration="1919000" />
-      <workItem from="1719966983723" duration="6849000" />
-      <workItem from="1720043178436" duration="3861000" />
-      <workItem from="1720090737647" duration="24664000" />
-      <workItem from="1720138893323" duration="3019000" />
-      <workItem from="1720141929122" duration="1175000" />
-      <workItem from="1720217283701" duration="6519000" />
-      <workItem from="1720231519372" duration="4147000" />
-      <workItem from="1720353986903" duration="15372000" />
-      <workItem from="1720439863434" duration="6182000" />
-      <workItem from="1720523197936" duration="8798000" />
-      <workItem from="1720543016867" duration="1043000" />
-      <workItem from="1720567083276" duration="5028000" />
-      <workItem from="1720572137139" duration="1917000" />
-      <workItem from="1720612072621" duration="12101000" />
-      <workItem from="1720637808437" duration="5053000" />
-      <workItem from="1720642906477" duration="4156000" />
-      <workItem from="1720782179508" duration="13877000" />
-      <workItem from="1721049775119" duration="917000" />
-      <workItem from="1721050727856" duration="12547000" />
-      <workItem from="1721071195855" duration="5210000" />
-      <workItem from="1721145278969" duration="778000" />
-      <workItem from="1721146951148" duration="579000" />
-      <workItem from="1721230079013" duration="2944000" />
-      <workItem from="1721246185915" duration="6519000" />
-      <workItem from="1721327268974" duration="220000" />
-      <workItem from="1721327501756" duration="8982000" />
-      <workItem from="1721386557772" duration="295000" />
-      <workItem from="1721416757889" duration="3678000" />
-      <workItem from="1721486023146" duration="1661000" />
-      <workItem from="1721503863267" duration="10862000" />
-      <workItem from="1721582720368" duration="7207000" />
-      <workItem from="1721606494026" duration="6276000" />
-      <workItem from="1721649877798" duration="5558000" />
-      <workItem from="1721665217443" duration="6790000" />
-      <workItem from="1721684363336" duration="115000" />
-      <workItem from="1721689816217" duration="2665000" />
-      <workItem from="1721769356260" duration="5541000" />
-      <workItem from="1721826600060" duration="4901000" />
-      <workItem from="1721905200969" duration="134000" />
-      <workItem from="1721905346909" duration="599000" />
-      <workItem from="1721920968976" duration="7666000" />
-      <workItem from="1721941097382" duration="546000" />
-      <workItem from="1721966567434" duration="153000" />
-      <workItem from="1722031695662" duration="1338000" />
-      <workItem from="1722173639464" duration="1846000" />
-      <workItem from="1722259291212" duration="618000" />
-      <workItem from="1722358874320" duration="54000" />
-      <workItem from="1722592112914" duration="140000" />
-      <workItem from="1722948991967" duration="30000" />
-      <workItem from="1723035632381" duration="147000" />
-      <workItem from="1723124924345" duration="3834000" />
-      <workItem from="1723380375882" duration="843000" />
-      <workItem from="1723382594036" duration="2205000" />
-      <workItem from="1723384926247" duration="962000" />
-      <workItem from="1723464560327" duration="606000" />
-      <workItem from="1723473813010" duration="11183000" />
-      <workItem from="1723488442582" duration="4170000" />
-      <workItem from="1723517326820" duration="2983000" />
-      <workItem from="1723548517822" duration="448000" />
-      <workItem from="1723909112320" duration="261000" />
-      <workItem from="1723909383179" duration="2606000" />
-      <workItem from="1723913151052" duration="20000" />
-      <workItem from="1723913208599" duration="114000" />
-      <workItem from="1723913774983" duration="203000" />
-      <workItem from="1723915853776" duration="2113000" />
-      <workItem from="1723945204222" duration="4786000" />
-      <workItem from="1724029439807" duration="6862000" />
-      <workItem from="1724093144534" duration="3797000" />
-      <workItem from="1724096965439" duration="27459000" />
-      <workItem from="1724150557200" duration="13463000" />
-      <workItem from="1724164770105" duration="8141000" />
-      <workItem from="1724237481862" duration="14240000" />
-      <workItem from="1724258916014" duration="599000" />
-      <workItem from="1724558700117" duration="138000" />
-      <workItem from="1724590903224" duration="16033000" />
-      <workItem from="1724632750706" duration="7547000" />
-      <workItem from="1724679561034" duration="7248000" />
-      <workItem from="1724696494311" duration="2138000" />
-      <workItem from="1724698645128" duration="9610000" />
-      <workItem from="1724721090748" duration="5686000" />
-      <workItem from="1724761672666" duration="17650000" />
-      <workItem from="1724843592720" duration="668000" />
+      <updated>1723912660655</updated>
+      <workItem from="1723912662045" duration="29000" />
+      <workItem from="1723912729125" duration="72000" />
+      <workItem from="1723912831673" duration="115000" />
+      <workItem from="1728935699313" duration="8447000" />
+      <workItem from="1728946153186" duration="1022000" />
+      <workItem from="1728953153590" duration="3729000" />
+      <workItem from="1729012596391" duration="4661000" />
+      <workItem from="1729031677261" duration="183000" />
+      <workItem from="1729076587601" duration="8561000" />
+      <workItem from="1729096883974" duration="321000" />
+      <workItem from="1729097216143" duration="1434000" />
+      <workItem from="1729102302900" duration="1695000" />
+      <workItem from="1729168304386" duration="16000" />
+      <workItem from="1729168330181" duration="5606000" />
+      <workItem from="1729188119652" duration="13331000" />
+      <workItem from="1729250510906" duration="8463000" />
+      <workItem from="1729273436356" duration="8366000" />
+      <workItem from="1729422327162" duration="1486000" />
+      <workItem from="1729427201721" duration="4192000" />
+      <workItem from="1729513965810" duration="6210000" />
+      <workItem from="1729538069654" duration="6111000" />
+      <workItem from="1729566800222" duration="17112000" />
+      <workItem from="1729632464057" duration="757000" />
+      <workItem from="1729687564135" duration="15228000" />
+      <workItem from="1729710941886" duration="7421000" />
+      <workItem from="1729770155444" duration="42000" />
+      <workItem from="1729770204745" duration="9014000" />
+      <workItem from="1729857171149" duration="190000" />
+      <workItem from="1729857382165" duration="4090000" />
+      <workItem from="1729936220633" duration="5403000" />
+      <workItem from="1729988374961" duration="7833000" />
+      <workItem from="1730084179170" duration="850000" />
+      <workItem from="1730136812073" duration="5161000" />
+      <workItem from="1730171115345" duration="2008000" />
+      <workItem from="1730200430949" duration="10768000" />
+      <workItem from="1730216847762" duration="22000" />
+      <workItem from="1730235604513" duration="1840000" />
+      <workItem from="1730248559691" duration="27000" />
+      <workItem from="1730248638576" duration="5827000" />
+      <workItem from="1730285490732" duration="17000" />
+      <workItem from="1730285928562" duration="18787000" />
+      <workItem from="1730373063801" duration="22253000" />
+      <workItem from="1730425437371" duration="346000" />
+      <workItem from="1730568279842" duration="2886000" />
+      <workItem from="1730719122807" duration="18947000" />
+      <workItem from="1730985294703" duration="262000" />
+      <workItem from="1731088886612" duration="11505000" />
+      <workItem from="1731107020796" duration="6140000" />
+      <workItem from="1731157978432" duration="26595000" />
     </task>
-    <task id="LOCAL-00001" summary="refatorando com eslint">
-      <option name="closed" value="true" />
-      <created>1716604854618</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1716604854618</updated>
-    </task>
-    <task id="LOCAL-00002" summary="refatorando com eslint">
-      <option name="closed" value="true" />
-      <created>1716606001093</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1716606001093</updated>
-    </task>
-    <task id="LOCAL-00003" summary="refatorando com eslint">
-      <option name="closed" value="true" />
-      <created>1716606298409</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1716606298409</updated>
-    </task>
-    <task id="LOCAL-00004" summary="refatorando com eslint">
-      <option name="closed" value="true" />
-      <created>1716606548344</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1716606548344</updated>
-    </task>
-    <task id="LOCAL-00005" summary="refatorando com eslint">
-      <option name="closed" value="true" />
-      <created>1716606792753</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1716606792753</updated>
-    </task>
-    <task id="LOCAL-00006" summary="refatorando com eslint">
-      <option name="closed" value="true" />
-      <created>1716606983743</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1716606983743</updated>
-    </task>
-    <task id="LOCAL-00007" summary="refatorando com eslint">
-      <option name="closed" value="true" />
-      <created>1716656105505</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1716656105505</updated>
-    </task>
-    <task id="LOCAL-00008" summary="refatorando com eslint">
-      <option name="closed" value="true" />
-      <created>1716665207262</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1716665207262</updated>
-    </task>
-    <task id="LOCAL-00009" summary="refatorando com eslint">
-      <option name="closed" value="true" />
-      <created>1716851995596</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1716851995596</updated>
-    </task>
-    <task id="LOCAL-00010" summary="refatorando com eslint">
-      <option name="closed" value="true" />
-      <created>1716854143248</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1716854143248</updated>
-    </task>
-    <task id="LOCAL-00011" summary="refatorando com organizações">
-      <option name="closed" value="true" />
-      <created>1717343869824</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1717343869824</updated>
-    </task>
-    <task id="LOCAL-00012" summary="refatorando com organizações">
-      <option name="closed" value="true" />
-      <created>1717343987570</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1717343987570</updated>
-    </task>
-    <task id="LOCAL-00013" summary="refatorando com organizações">
-      <option name="closed" value="true" />
-      <created>1717344197722</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1717344197722</updated>
-    </task>
-    <task id="LOCAL-00014" summary="refatorando com organizações">
-      <option name="closed" value="true" />
-      <created>1717344433342</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1717344433342</updated>
-    </task>
-    <task id="LOCAL-00015" summary="refatorando com organizações">
-      <option name="closed" value="true" />
-      <created>1717348100942</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1717348100943</updated>
-    </task>
-    <task id="LOCAL-00016" summary="refatorando com organizações">
-      <option name="closed" value="true" />
-      <created>1717431197064</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1717431197064</updated>
-    </task>
-    <task id="LOCAL-00017" summary="refatorando com organizações">
-      <option name="closed" value="true" />
-      <created>1717431594620</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1717431594620</updated>
-    </task>
-    <task id="LOCAL-00018" summary="refatorando com organizações">
-      <option name="closed" value="true" />
-      <created>1717431601602</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1717431601602</updated>
-    </task>
-    <task id="LOCAL-00019" summary="salvando company">
-      <option name="closed" value="true" />
-      <created>1717962889717</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1717962889717</updated>
-    </task>
-    <task id="LOCAL-00020" summary="salvando company">
-      <option name="closed" value="true" />
-      <created>1718017693540</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1718017693540</updated>
-    </task>
-    <task id="LOCAL-00021" summary="salvando company">
-      <option name="closed" value="true" />
-      <created>1718025878503</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1718025878503</updated>
-    </task>
-    <task id="LOCAL-00022" summary="salvando deletando company">
-      <option name="closed" value="true" />
-      <created>1718071776225</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1718071776225</updated>
-    </task>
-    <task id="LOCAL-00023" summary="salvando deletando company">
-      <option name="closed" value="true" />
-      <created>1718071912239</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1718071912239</updated>
-    </task>
-    <task id="LOCAL-00024" summary="salvando deletando company">
-      <option name="closed" value="true" />
-      <created>1718300117210</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1718300117210</updated>
-    </task>
-    <task id="LOCAL-00025" summary="salvando deletando company">
-      <option name="closed" value="true" />
-      <created>1718486396064</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1718486396064</updated>
-    </task>
-    <task id="LOCAL-00026" summary="fazendo lista escala">
-      <option name="closed" value="true" />
-      <created>1719674368168</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1719674368168</updated>
-    </task>
-    <task id="LOCAL-00027" summary="terminando modal escala">
-      <option name="closed" value="true" />
-      <created>1719974031795</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1719974031795</updated>
-    </task>
-    <task id="LOCAL-00028" summary="terminando modal escala">
-      <option name="closed" value="true" />
-      <created>1720115565371</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1720115565371</updated>
-    </task>
-    <task id="LOCAL-00029" summary="terminando modal escala">
-      <option name="closed" value="true" />
-      <created>1720141949292</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1720141949292</updated>
-    </task>
-    <task id="LOCAL-00030" summary="terminando modal escala">
-      <option name="closed" value="true" />
-      <created>1720231610163</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1720231610163</updated>
-    </task>
-    <task id="LOCAL-00031" summary="terminando modal escala">
-      <option name="closed" value="true" />
-      <created>1720231662227</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1720231662227</updated>
-    </task>
-    <task id="LOCAL-00032" summary="terminando modal escala">
-      <option name="closed" value="true" />
-      <created>1720235642938</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1720235642938</updated>
-    </task>
-    <task id="LOCAL-00033" summary="terminando modal escala">
-      <option name="closed" value="true" />
-      <created>1720454438907</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1720454438907</updated>
-    </task>
-    <task id="LOCAL-00034" summary="arrumando middleware.ts">
-      <option name="closed" value="true" />
-      <created>1720618054840</created>
-      <option name="number" value="00034" />
-      <option name="presentableId" value="LOCAL-00034" />
-      <option name="project" value="LOCAL" />
-      <updated>1720618054840</updated>
-    </task>
-    <task id="LOCAL-00035" summary="arrumando middleware.ts">
-      <option name="closed" value="true" />
-      <created>1720890132262</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL-00035" />
-      <option name="project" value="LOCAL" />
-      <updated>1720890132262</updated>
-    </task>
-    <task id="LOCAL-00036" summary="arrumando middleware.ts">
-      <option name="closed" value="true" />
-      <created>1720892829309</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1720892829309</updated>
-    </task>
-    <task id="LOCAL-00037" summary="arrumando middleware.ts">
-      <option name="closed" value="true" />
-      <created>1721386852234</created>
-      <option name="number" value="00037" />
-      <option name="presentableId" value="LOCAL-00037" />
-      <option name="project" value="LOCAL" />
-      <updated>1721386852234</updated>
-    </task>
-    <task id="LOCAL-00038" summary="arrumando middleware.ts">
-      <option name="closed" value="true" />
-      <created>1721612789196</created>
-      <option name="number" value="00038" />
-      <option name="presentableId" value="LOCAL-00038" />
-      <option name="project" value="LOCAL" />
-      <updated>1721612789196</updated>
-    </task>
-    <task id="LOCAL-00039" summary="implementando schedule save">
-      <option name="closed" value="true" />
-      <created>1721966698549</created>
-      <option name="number" value="00039" />
-      <option name="presentableId" value="LOCAL-00039" />
-      <option name="project" value="LOCAL" />
-      <updated>1721966698549</updated>
-    </task>
-    <task id="LOCAL-00040" summary="implementando schedule save">
-      <option name="closed" value="true" />
-      <created>1722592217448</created>
-      <option name="number" value="00040" />
-      <option name="presentableId" value="LOCAL-00040" />
-      <option name="project" value="LOCAL" />
-      <updated>1722592217448</updated>
-    </task>
-    <task id="LOCAL-00041" summary="implementando schedule save">
-      <option name="closed" value="true" />
-      <created>1723912638307</created>
-      <option name="number" value="00041" />
-      <option name="presentableId" value="LOCAL-00041" />
-      <option name="project" value="LOCAL" />
-      <updated>1723912638307</updated>
-    </task>
-    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -826,7 +285,6 @@
         <option value="Default.Author" />
         <option value="Default.Date" />
         <option value="Default.Subject" />
-        <option value="Space.CommitStatus" />
         <option value="GitHub.CommitStatus" />
       </list>
     </option>
@@ -836,34 +294,10 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="FILTERS">
-                <map>
-                  <entry key="branch">
-                    <value>
-                      <list>
-                        <option value="origin/dev" />
-                      </list>
-                    </value>
-                  </entry>
-                </map>
-              </option>
-            </State>
+            <State />
           </value>
         </entry>
       </map>
     </option>
-  </component>
-  <component name="VcsManagerConfiguration">
-    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="refatorando com eslint" />
-    <MESSAGE value="refatorando com organizações" />
-    <MESSAGE value="salvando company" />
-    <MESSAGE value="salvando deletando company" />
-    <MESSAGE value="fazendo lista escala" />
-    <MESSAGE value="terminando modal escala" />
-    <MESSAGE value="arrumando middleware.ts" />
-    <MESSAGE value="implementando schedule save" />
-    <option name="LAST_COMMIT_MESSAGE" value="implementando schedule save" />
   </component>
 </project>

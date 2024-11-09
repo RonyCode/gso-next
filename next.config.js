@@ -36,7 +36,15 @@ const nextConfig = {
       },
       {
         protocol: 'http',
+        hostname: 'localhost:7777',
+      },
+      {
+        protocol: 'http',
         hostname: '192.168.100.57',
+      },
+      {
+        protocol: 'http',
+        hostname: 'localhost',
       },
       {
         protocol: 'http',

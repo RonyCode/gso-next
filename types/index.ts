@@ -240,6 +240,11 @@ export interface UserNotification {
   qtd: number
   status: string
   code: number
+  notification?: {
+    id_message: string
+    queue_name: string
+    exchange: string
+  }
 }
 
 export interface CepProps {
@@ -308,10 +313,11 @@ export interface ResultSignIn {
 }
 
 export interface ResponseApi<T = undefined> {
-  data: T
+  data?: T
   status: string
   code: number
   message: string
+  notification?: UserNotification
 }
 
 export interface DataUserRegistered {

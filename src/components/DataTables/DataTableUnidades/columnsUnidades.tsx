@@ -64,7 +64,13 @@ export const columnsUnidades: Array<ColumnDef<IUnidadeSchema>> = [
             >
               <AvatarImage
                 className="aspect-square rounded-full object-cover"
-                src={row.original.image ?? '/images/avatar.svg'}
+                src={
+                  process.env.NEXT_PUBLIC_API_GSO != null &&
+                  row.original.image != null
+                    ? process?.env?.NEXT_PUBLIC_API_GSO + row.original.image
+                    : process?.env?.NEXT_PUBLIC_API_GSO +
+                      '/public/images/img.jpg'
+                }
               />
               <AvatarFallback>{<LuBuilding2 size={36} />}</AvatarFallback>
             </Avatar>

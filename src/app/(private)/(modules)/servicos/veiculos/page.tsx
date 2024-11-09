@@ -1,3 +1,4 @@
+import { getServerSession } from 'next-auth'
 import React from 'react'
 import { LuBuilding, LuSearchX } from 'react-icons/lu'
 import { MdOutlineSupervisorAccount } from 'react-icons/md'
@@ -6,6 +7,8 @@ import TabCarsDetails from '../../components/TabCarsDetails'
 
 import { CardDefault } from '@/components/Cards/CardDefault'
 import { ImageExist } from '@/functions/ImageExist'
+import { authOptions } from '@/lib/auth'
+import { getAllOrganizacoes } from '@/lib/GetAllOrganizacoes'
 import { getUnidadeById } from '@/lib/GetUnidadeById'
 
 const CarsUnidade = async ({
@@ -13,44 +16,34 @@ const CarsUnidade = async ({
 }: {
   params: { sigla: string; name_unidade: string }
 }): Promise<JSX.Element> => {
-  const { data } = await getUnidadeById(
-    params.sigla?.split('-')[1],
-    params.name_unidade?.split('-')[1],
-  )
-  // if (data?.image === undefined) {
-  //   data.image = process.env.NEXT_PUBLIC_API_GSO + '/public/images/img.png'
-  // }
-  // const imgValided = await ImageExist(data?.image)
-  // if (imgValided.status !== 200) {
-  //   data.image = process.env.NEXT_PUBLIC_API_GSO + '/public/images/img.png'
-  // }
+  const { data } = await getAllOrganizacoes()
+  const session = await getServerSession(authOptions)
 
-  // eslint-disable-next-line array-callback-return
-  const diretor = data?.companyMembers?.find((member) => {
-    if (member?.id === data?.director) {
-      return member
-    }
+  const corpFound = data?.find((corp) => {
+    return corp?.id === session?.id_corporation
   })
   return (
     <div>
       {
         <CardDefault
-          title={data?.name + ' / ' + data?.companyAddress?.city}
-          description={'CMD : ' + diretor?.competence + ' - ' + diretor?.name}
+          title={corpFound?.name + ' / ' + corpFound?.address?.city}
+          description={'CMD '}
           image={
-            data?.image ??
-            process.env.NEXT_PUBLIC_API_GSO + '/public/images/img.png'
+            corpFound?.image != null
+              ? process.env.NEXT_PUBLIC_API_GSO + corpFound?.image
+              : process.env.NEXT_PUBLIC_API_GSO + '/public/images/img.png'
           }
           imageMobile={
-            data?.image ??
-            process.env.NEXT_PUBLIC_API_GSO + '/public/images/img.png'
+            corpFound?.image != null
+              ? process.env.NEXT_PUBLIC_API_GSO + corpFound?.image
+              : process.env.NEXT_PUBLIC_API_GSO + '/public/images/img.png'
           }
           icon={<LuBuilding size={28} />}
           iconDescription={<MdOutlineSupervisorAccount size={18} />}
         >
           <div className="md:overflow-none overflow-scroll">
-            {data.companyCars?.[0].id !== null ? (
-              <TabCarsDetails cars={data.companyCars} />
+            {corpFound !== null ? (
+              <TabCarsDetails cars={corpFound?.vehicles} />
             ) : (
               <div className="flex h-full w-full  items-center justify-center">
                 {' '}

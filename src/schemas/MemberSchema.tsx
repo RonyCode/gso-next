@@ -61,7 +61,7 @@ export const MemberSchema = z
       })
       .optional()
       .nullable(),
-    date_register_user: z
+    date_creation: z
       .string()
       .min(10, {
         message:
@@ -127,7 +127,7 @@ export const MemberSchema = z
       })
       .optional()
       .nullable(),
-    state_shortname: z
+    short_name: z
       .string()
       .min(2, {
         message: 'Sigla Estado inválido deve conter no mínimo 1 caracteres',
@@ -142,7 +142,7 @@ export const MemberSchema = z
       })
       .optional()
       .nullable(),
-    date_granted_role: z
+    date_granted: z
       .string()
       .min(10, {
         message:
@@ -150,7 +150,7 @@ export const MemberSchema = z
       })
       .optional()
       .nullable(),
-    date_expires_role: z
+    date_expires: z
       .string()
       .min(11, {
         message:
@@ -158,7 +158,7 @@ export const MemberSchema = z
       })
       .optional()
       .nullable(),
-    granted_by_iduser: z.number().optional().nullable(),
+    granted_by_iduser: z.string().optional().nullable(),
   })
   .optional()
 

@@ -2,8 +2,6 @@ import React from 'react'
 
 import { CardModule } from '@/components/Cards/CardModule'
 import IconBuild from '@/icons/IconBuild'
-import IconBuildPlus from '@/icons/IconBuildPlus'
-import IconPrivileges from '@/icons/IconPrivileges'
 import { type IOrganizacaoSchema } from '@/schemas/OrganizacaoSchema'
 
 const ModulesOrganizacao = ({

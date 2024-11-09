@@ -7,7 +7,6 @@ import IconCarFrontal from '@/icons/IconCarFrontal'
 import IconCelular from '@/icons/IconCelular'
 import IconCog from '@/icons/IconCog'
 import IconGrafico from '@/icons/IconGrafico'
-import IconList from '@/icons/IconList'
 import IconMembers from '@/icons/IconMembers'
 import IconSirene from '@/icons/IconSirene'
 

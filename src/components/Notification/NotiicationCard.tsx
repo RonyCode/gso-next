@@ -23,6 +23,7 @@ import {
   DropdownMenuTrigger,
 } from '@/ui/dropdown-menu'
 import { Switch } from '@/ui/switch'
+import { setCookie } from 'cookies-next'
 
 type NotificationProps = {
   className?: string
@@ -99,9 +100,9 @@ export const NotificationCard = ({
                     </div>
                     <Switch
                       /* eslint-disable-next-line @typescript-eslint/no-misused-promises */
-                      onClick={async () =>
+                      onClick={async () => {
                         await Notification.requestPermission()
-                      }
+                      }}
                       checked={Notification.permission === 'granted'}
                     />
                   </div>
@@ -131,6 +132,7 @@ export const NotificationCard = ({
                                           )
                                       }
                                     }
+                                    console.log(notification)
                                   },
                                 )
                             }}

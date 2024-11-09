@@ -8,7 +8,6 @@ import { CardDefault } from '@/components/Cards/CardDefault'
 import { ImageExist } from '@/functions/ImageExist'
 import { authOptions } from '@/lib/auth'
 import { getAllOrganizacoes } from '@/lib/GetAllOrganizacoes'
-import { type IOrganizacaoSchema } from '@/schemas/OrganizacaoSchema'
 
 const MinhaUnidade = async ({
   params,
@@ -19,14 +18,14 @@ const MinhaUnidade = async ({
   const session = await getServerSession(authOptions)
 
   const corpFound = data?.find((corp) => {
-    if (corp?._id?.$oid === session?.id_corporation) {
+    if (corp?.id === session?.id_corporation) {
       return corp
     }
     return null
   })
 
   const companyFounded = corpFound?.companies?.find((company) => {
-    if (company?._id?.$oid === params?.name_unidade) {
+    if (company?._id?.$oid === params?.name_unidade?.split('-')[1]) {
       return company
     }
     return null

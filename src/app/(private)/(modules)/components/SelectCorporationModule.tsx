@@ -1,10 +1,12 @@
 'use client'
 import { useSession } from 'next-auth/react'
-import { redirect, useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 import React, { useEffect, useState, useTransition } from 'react'
 import { useForm } from 'react-hook-form'
 import { LuCheck, LuChevronsUpDown, LuLandmark } from 'react-icons/lu'
 
+import { columnsMembers } from '@/components/DataTables/DataTableMembers/columnsMembers'
+import { DataTableMembers } from '@/components/DataTables/DataTableMembers/data-table-members'
 import LoadingPage from '@/components/Loadings/LoadingPage'
 import { cn } from '@/lib/utils'
 import { type IOrganizacaoSchema } from '@/schemas/OrganizacaoSchema'
@@ -34,7 +36,6 @@ import {
 import { Popover, PopoverContent, PopoverTrigger } from '@/ui/popover'
 import { toast } from '@/ui/use-toast'
 import { zodResolver } from '@hookform/resolvers/zod'
-import TabMembersDetails from '@/app/(private)/(modules)/components/TabMembersDetails'
 
 type SelectCompanyModuleProps = React.HTMLAttributes<HTMLDivElement> & {
   organizacoes?: IOrganizacaoSchema[]
@@ -47,12 +48,14 @@ export const SelectCompanyModule = ({
   className,
   param,
   ...props
-}: SelectCompanyModuleProps): React.ReactElement => {
+}: SelectCompanyModuleProps) => {
   const [pending, startTransition] = useTransition()
   const router = useRouter()
-  const { data: session,update } = useSession()
+  const { data: session } = useSession()
   const [disable, setDisable] = useState(false)
-  const [organizacaoFounded, setOrganizacaoFounded] = useState({} as IOrganizacaoSchema)
+  const [organizacaoFounded, setOrganizacaoFounded] = useState(
+    {} as IOrganizacaoSchema,
+  )
   const form = useForm<ISelectCorporationModuleSchema>({
     mode: 'all',
     criteriaMode: 'all',
@@ -68,16 +71,7 @@ export const SelectCompanyModule = ({
         session?.id_corporation !== undefined &&
         session?.role !== 'admin',
     )
-
-    if (disable) {
-      const organizacaoFound = organizacoes?.find((organizacao) => {
-        return (
-          organizacao.id?.toString() === session?.id_corporation?.toString()
-        )
-      })
-      setOrganizacaoFounded(organizacaoFound as IOrganizacaoSchema)
-    }
-  }, [disable, organizacoes, session?.id_corporation, session?.role])
+  }, [session?.id_corporation, session?.role])
 
   const handleSubmit = (formData: ISelectCorporationModuleSchema): void => {
     startTransition(() => {
@@ -93,10 +87,10 @@ export const SelectCompanyModule = ({
         })
       }
       if (organizacaoFound?.id === formData?.id_corporation) {
-         update({
-          ...session,
-          id_corporation: formData?.id_corporation,
-        })
+        //  update({
+        //   ...session,
+        //   id_corporation: formData?.id_corporation,
+        // })
         router.refresh()
 
         toast({
@@ -104,12 +98,9 @@ export const SelectCompanyModule = ({
           title: 'Ok! Serviços encontrados com sucesso! 🚀',
           description: `Tudo certo serviços para ${organizacaoFound?.short_name_corp} encontrados`,
         })
-        setOrganizacaoFounded(organizacaoFound as IOrganizacaoSchema)
       }
     })
   }
-  console.log(organizacaoFounded)
-
   return (
     <>
       <Card x-chunk="dashboard-06-chunk-0" className="bg-background  p-6">
@@ -162,32 +153,33 @@ export const SelectCompanyModule = ({
                             </CommandEmpty>
                             <CommandGroup>
                               <CommandList>
-                                {organizacoes?.map((state, index) => (
+                                {organizacoes?.map((corp, index) => (
                                   <CommandItem
-                                    value={state?.id ?? undefined}
+                                    value={corp?.id ?? undefined}
                                     key={index}
                                     onSelect={() => {
                                       unidadeStore.setState({
                                         state: { unidades: [] },
                                       })
                                       form.setValue('id_company', '')
+                                      setOrganizacaoFounded(corp)
                                       handleSubmit({
                                         ...form.getValues(),
                                         id_corporation:
-                                          String(state.id) ?? state.id,
+                                          String(corp.id) ?? corp.id,
                                       })
-                                      form.setValue('id_corporation', state?.id)
+                                      form.setValue('id_corporation', corp?.id)
                                     }}
                                   >
                                     <LuCheck
                                       className={cn(
                                         'mr-2 h-4 w-4',
-                                        state?.id === field.value
+                                        corp?.id === field.value
                                           ? 'opacity-100'
                                           : 'opacity-0',
                                       )}
                                     />
-                                    {state.name}
+                                    {corp.name}
                                   </CommandItem>
                                 ))}
                               </CommandList>
@@ -203,8 +195,12 @@ export const SelectCompanyModule = ({
             </Form>
           </Card>
         </div>
-        <TabMembersDetails  members={organizacaoFounded?.members}/>
-
+        {organizacaoFounded?.members != null && (
+          <DataTableMembers
+            columns={columnsMembers}
+            data={organizacaoFounded?.members}
+          />
+        )}
       </Card>
     </>
   )

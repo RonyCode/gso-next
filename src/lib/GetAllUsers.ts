@@ -9,6 +9,7 @@ export const getAllUsers = async (): Promise<ResponseApi<UserType[]>> => {
       headers: {
         'Content-Type': 'application/json',
       },
+      next: { revalidate: 1, tags: ['userFetch'] },
     },
   )
 }

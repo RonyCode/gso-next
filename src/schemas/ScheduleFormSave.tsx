@@ -3,20 +3,19 @@ import { MemberSchema } from '@/schemas/MemberSchema'
 import { z } from 'zod'
 
 export const ScheduleFormSave = z.object({
-  id: z.number().nullable().optional(),
-  id_company: z.number().min(1, {
+  id: z.string().nullable().optional(),
+  id_company: z.string().min(1, {
     message: 'id_company inválido deve conter no mínimo 1 caracteres',
   }),
   id_cmt_sos: z.number().min(1, {
     message: 'id_company inválido deve conter no mínimo 1 caracteres',
   }),
-  id_member_comunication: z.number().min(1, {
+  id_member_comunication: z.string().min(1, {
     message: 'id_company inválido deve conter no mínimo 1 caracteres',
   }),
-  id_member_creator: z.number().min(1, {
+  id_member_creator: z.string().min(1, {
     message: 'id_member_creator inválido deve conter no mínimo 1 caracteres',
   }),
-  date: z.date(),
   hour_start: z.string().min(6, {
     message: 'horário inválido deve conter no mínimo 1 caracteres',
   }),
@@ -31,7 +30,9 @@ export const ScheduleFormSave = z.object({
     message: 'type inválido deve conter no mínimo 1 caracteres',
   }),
   status: z.number().nullable(),
-  date_creation: z.date().optional(),
+  date_creation: z.string(),
+  date_start: z.string().optional(),
+  date_finish: z.string().optional(),
   obs: z
     .string()
     .min(1, {
@@ -42,9 +43,12 @@ export const ScheduleFormSave = z.object({
     }),
   short_name_corp: z.string().optional(),
   short_name_comp: z.string().optional(),
-  cars: z
+  vehicles: z
     .array(
-      z.object({ car: CarSchema, members: z.array(MemberSchema).optional() }),
+      z.object({
+        vehicles: CarSchema,
+        members: z.array(MemberSchema).optional(),
+      }),
     )
     .optional(),
   excluded: z.number().optional(),

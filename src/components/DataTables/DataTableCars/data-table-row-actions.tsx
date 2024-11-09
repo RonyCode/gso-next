@@ -1,8 +1,6 @@
 import Link from 'next/link'
 import { type ReactElement } from 'react'
 
-import { taskSchema } from './data/schema'
-
 import { Button } from '@/components/ui/button'
 import {
   DropdownMenu,
@@ -10,6 +8,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
+import { CarSchema } from '@/schemas/CarsSchema'
 import { DotsHorizontalIcon } from '@radix-ui/react-icons'
 import { type Row } from '@tanstack/react-table'
 
@@ -20,7 +19,7 @@ interface DataTableRowActionsProps<TData> {
 export function DataTableRowActions<TData>({
   row,
 }: DataTableRowActionsProps<TData>): ReactElement {
-  const task = taskSchema.parse(row.original)
+  const task = CarSchema.parse(row.original)
 
   return (
     <DropdownMenu>
@@ -34,9 +33,7 @@ export function DataTableRowActions<TData>({
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-[160px]">
-        <Link
-          href={`/servicos/organizacao/${task.id_corporation}/unidades/${task.id}`}
-        >
+        <Link href={`/servicos/gestor/salvar-veiculo?id_vehicle=${task.id}`}>
           <DropdownMenuItem>Detalhes</DropdownMenuItem>
         </Link>
       </DropdownMenuContent>

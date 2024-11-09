@@ -1,0 +1,125 @@
+#logo1 {
+    opacity: 0;
+    animation: fadeIn 1s linear forwards;
+}
+
+#logo2 {
+    opacity: 0;
+    animation: fadeIn 2s linear forwards;
+}
+
+#logo3 {
+    opacity: 0;
+    animation: fadeIn 3s linear forwards;
+}
+
+#logo4 {
+    opacity: 0;
+    animation: fadeIn 4s linear forwards;
+}
+
+#logo5 {
+    opacity: 0;
+    animation: fadeIn 5s linear forwards;
+}
+
+#logo6 {
+    opacity: 1;
+    animation: fadeIn 6s linear alternate-reverse;
+}
+
+#cardModule:hover #logo1 {
+    opacity: 0;
+
+    animation: fadeInHover 1s linear infinite;
+}
+
+/*svg:hover  #logo1, #cardModule:hover #logo1, svg.animate path {*/
+/*    animation: fadeInHover 1s linear infinite;*/
+/*}*/
+
+
+#cardModule:hover #logo2 {
+    opacity: 0;
+
+    animation: fadeInHover 2s linear infinite;
+}
+
+#cardModule:hover #logo3 {
+    opacity: 0;
+
+    animation: fadeInHover 3s linear infinite;
+}
+
+#cardModule:hover #logo4 {
+    opacity: 0;
+
+    animation: fadeInHover 4s linear infinite;
+}
+
+#cardModule:hover #logo5 {
+    opacity: 0;
+
+    animation: fadeInHover 5s linear infinite;
+}
+
+#cardModule:hover #logo6 {
+    opacity: 0;
+
+    animation: fadeInHover 6.5s linear infinite;
+}
+
+
+@keyframes fadeIn {
+
+    15% {
+        opacity: 0;
+    }
+
+    30% {
+        opacity: 0;
+    }
+
+    45% {
+        opacity: 1;
+    }
+
+    60% {
+        opacity: 0;
+    }
+
+    75% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes fadeInHover {
+    15% {
+        opacity: 0;
+    }
+
+    30% {
+        opacity: 0;
+    }
+
+    45% {
+        opacity: 1;
+    }
+
+    60% {
+        opacity: 0;
+    }
+
+    75% {
+        opacity: 0;
+
+    }
+
+    100% {
+        opacity: 0;
+    }
+}

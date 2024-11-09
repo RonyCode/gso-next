@@ -3,14 +3,10 @@ import { getServerSession } from 'next-auth'
 import React from 'react'
 import { LuCalendarDays } from 'react-icons/lu'
 
-import SelectCompanySchedule from '../../components/SelectCompanySchedule'
-
+import SelectCompanySchedule from '@/app/(private)/(modules)/components/SelectCompanySchedule'
 import { CardDefault } from '@/components/Cards/CardDefault'
 import { authOptions } from '@/lib/auth'
-import { getAllFunctions } from '@/lib/GetAllFunctions'
-import { getAllUnidades } from '@/lib/GetAllUnidades'
-import ModuloEscala from '@/app/(private)/(modules)/servicos/escalas/module/ModuloEscala'
-import { getUnidadeById } from '@/lib/GetUnidadeById'
+import { getAllOrganizacoes } from '@/lib/GetAllOrganizacoes'
 
 export const metadata: Metadata = {
   title: 'GSO | Escalas',
@@ -20,9 +16,10 @@ export const metadata: Metadata = {
 const Escala = async ({ params }: { params: { sigla: string } }) => {
   const session = await getServerSession(authOptions)
   if (session === null) return <> </>
-  // const { data } = await getAllUnidades(session?.id_corporation)
-  const functions = await getAllFunctions()
-  const unidades = await getUnidadeById(session?.id_corporation,session?.id_company)
+  const { data } = await getAllOrganizacoes()
+  const corporacaoFound = data?.find((corp) => {
+    return corp?.id === session?.id_corporation
+  })
 
   return (
     <div>
@@ -35,12 +32,8 @@ const Escala = async ({ params }: { params: { sigla: string } }) => {
         }
         icon={<LuCalendarDays size={28} />}
       >
-        <div>
-          <ModuloEscala />
-          {/*<SelectCompanySchedule*/}
-          {/*  unidades={unidades?.data}*/}
-          {/*  functions={functions?.data}*/}
-          {/*/>*/}
+        <div className="md:p-4">
+          <SelectCompanySchedule unidades={corporacaoFound?.companies} />
         </div>
       </CardDefault>
     </div>

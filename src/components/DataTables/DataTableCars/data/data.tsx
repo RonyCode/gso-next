@@ -1,4 +1,18 @@
-import { LuFlag, LuHome, LuHotel, LuLandmark } from 'react-icons/lu'
+import {
+  LuActivitySquare,
+  LuCheck,
+  LuCheckCircle,
+  LuCircleOff,
+  LuFlag,
+  LuGem,
+  LuHeartPulse,
+  LuHome,
+  LuHotel,
+  LuLandmark,
+  LuSkull,
+  LuStar,
+  LuWrench,
+} from 'react-icons/lu'
 
 import {
   CheckCircledIcon,
@@ -6,78 +20,56 @@ import {
   StopwatchIcon,
 } from '@radix-ui/react-icons'
 
-export const labels = [
+export const typeFuel = [
   {
-    value: 'Alfa',
-    label: 'Alfa',
+    value: 'Gasolina',
+    label: 'Gasolina',
   },
   {
-    value: '07:00',
-    label: '07:00',
+    value: 'Alcool',
+    label: 'Alcool',
   },
   {
-    value: '19:00',
-    label: '19:00',
-  },
-  {
-    value: 'Bravo',
-    label: 'Bravo',
-  },
-  {
-    value: 'Charlie',
-    label: 'Charlie',
-  },
-  {
-    value: 'Delta',
-    label: 'Delta',
-  },
-
-  {
-    value: 'Extra',
-    label: 'Extra',
+    value: 'Diesel',
+    label: 'Diesel',
   },
 ]
 
-export const statuses = [
+export const statusVehicle = [
   {
-    value: 'aguardando',
-    label: 'Aguardando',
-    icon: StopwatchIcon,
-  },
-  {
-    value: 'publicado',
-    label: 'Publicado',
-    icon: CheckCircledIcon,
-  },
-  {
-    value: 'cancelado',
-    label: 'Cancelado',
-    icon: CrossCircledIcon,
-  },
-]
-
-export const types = [
-  {
-    label: 'UNIDADE',
     value: 1,
-    icon: LuHome,
+    label: 'Operante',
+    icon: LuCheck,
   },
   {
-    label: 'BATALHÃO',
     value: 2,
-    icon: LuHotel,
+    label: 'Inoperante',
+    icon: LuSkull,
+  },
+]
+
+export const condition = [
+  {
+    label: 'NOVO',
+    value: 1,
+    icon: LuGem,
+  },
+  {
+    label: 'USADO',
+    value: 2,
+    icon: LuHeartPulse,
   },
 
   {
-    label: 'COMANDO',
+    label: 'MANUTENÇÃO',
     value: 3,
-    icon: LuLandmark,
+    icon: LuActivitySquare,
   },
 
   {
-    label: 'INDEPENDENTE',
+    label: 'AVARIADO',
     value: 4,
-    icon: LuFlag,
+    icon: LuWrench,
   },
 ]
 

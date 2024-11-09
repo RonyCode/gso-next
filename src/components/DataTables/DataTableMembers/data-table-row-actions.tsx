@@ -22,8 +22,6 @@ export function DataTableRowActions<TData>({
   row,
 }: DataTableRowActionsProps<TData>): ReactElement {
   const task = MemberSchema.parse(row.original)
-  const { data: session } = useSession()
-  const params: { name_unidade: string } = useParams()
 
   return (
     <DropdownMenu>
@@ -38,7 +36,7 @@ export function DataTableRowActions<TData>({
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-[160px]">
         <Link
-          href={`/${session?.short_name_corp?.toLowerCase()}-${session?.id_corporation}/unidades/${params?.name_unidade}/membros/${task?.name?.toLowerCase() + '-' + task?.id_user}`}
+          href={`/servicos/membros/${task?.name?.toLowerCase() + '-' + task?.id}`}
         >
           <DropdownMenuItem>Detalhes</DropdownMenuItem>
         </Link>

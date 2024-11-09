@@ -12,6 +12,7 @@ export const UnidadeSchema = z.object({
     .min(1, { message: 'id inválido' })
     .optional()
     .nullable(),
+
   short_name_corp: z.string().optional(),
   short_name_comp: z.string().optional(),
   name: z
@@ -52,7 +53,7 @@ export const UnidadeSchema = z.object({
     .min(1, { message: 'Tipo inválido deve conter no mínimo 1 caracteres' })
     .optional()
     .nullable(),
-  companySchedules: z
+  schedules: z
     .array(
       z
         .object({
@@ -70,7 +71,7 @@ export const UnidadeSchema = z.object({
     )
     .optional(),
   companyAddress: AddressSchema.optional(),
-  companyMembers: z.array(MemberSchema).optional(),
+  members: z.array(MemberSchema).optional(),
   companyCars: z.array(CarSchema).optional(),
   manager: z.string().optional().nullable(),
   director: z.string().optional().nullable(),

@@ -48,7 +48,7 @@ const LoginFormSlice = (): JSX.Element => {
           </div>
           <div
             className={`${sliceLogin} 
-             rounder d-[8px] relative hidden h-full flex-col rounded-[8px] border-l border-r border-[var(--border)] bg-muted  bg-slate-400 text-white dark:border-r lg:z-10 lg:flex `}
+             rounder d-[8px] relative hidden h-full w-full flex-col rounded-[8px] border-l border-r border-[var(--border)] bg-muted  bg-slate-400 text-white dark:border-r lg:z-10 lg:flex `}
           >
             <div className=" absolute  inset-0  flex flex-col justify-between bg-zinc-900 py-12 ">
               <div className="relative flex items-center  justify-center text-lg font-medium">
@@ -99,10 +99,10 @@ const LoginFormSlice = (): JSX.Element => {
         >
           <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
             <div className="flex flex-col space-y-2 text-center">
-              <h1 className="text-2xl font-semibold tracking-tight">
+              <h1 className="text-3xl font-semibold tracking-tight">
                 Crie uma conta
               </h1>
-              <p className="text-sm text-muted-foreground">
+              <p className="text-muted-foreground">
                 Digite seu email abaixo para criar sua conta
               </p>
             </div>
@@ -119,7 +119,7 @@ const LoginFormSlice = (): JSX.Element => {
               Entrar
             </Button>
             <SignUpForm />
-            <p className="px-8 text-center text-sm text-muted-foreground">
+            <p className="px-8 text-center text-[0.675rem] font-light text-muted-foreground">
               Ao se cadastrar você concorda com nossos{' '}
               <Link
                 href="/src/app/(auth)/terms"

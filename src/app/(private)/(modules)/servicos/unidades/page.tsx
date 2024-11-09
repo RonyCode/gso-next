@@ -4,19 +4,13 @@ import Link from 'next/link'
 import React from 'react'
 import { LuFolderCog } from 'react-icons/lu'
 
-import ModulesForAll from '@/app/(private)/(modules)/components/module/Modules'
-import ModulesMinhaOrganizacao from '@/app/(private)/(modules)/components/module/Modules'
-import Modules from '@/app/(private)/(modules)/components/module/Modules'
-import SelectCompanyModule from '@/app/(private)/(modules)/components/SelectCompanyModule'
 import SelectCorporationModule from '@/app/(private)/(modules)/components/SelectCorporationModule'
-import ModuleUnidades from '@/app/(private)/(modules)/servicos/unidades/module/ModuleUnidades'
 import { CardDefault } from '@/components/Cards/CardDefault'
 import { CardWithLogo } from '@/components/Cards/CardWithLogo'
 import { columnsUnidades } from '@/components/DataTables/DataTableUnidades/columnsUnidades'
 import { DataTableUnidades } from '@/components/DataTables/DataTableUnidades/data-table-unidades'
 import { authOptions } from '@/lib/auth'
 import { getAllOrganizacoes } from '@/lib/GetAllOrganizacoes'
-import { getAllUnidades } from '@/lib/GetAllUnidades'
 import { Button } from '@/ui/button'
 
 const listaUnidades = async ({
@@ -26,7 +20,11 @@ const listaUnidades = async ({
 }): Promise<JSX.Element> => {
   const session = await getServerSession(authOptions)
   const dataCorporacao = await getAllOrganizacoes()
-  const { data } = await getAllUnidades(session?.id_corporation)
+  const corporacaoFound = dataCorporacao?.data?.find((corp) => {
+    return corp?.id === session?.id_corporation
+  })
+  // const { data } = await getAllUnidades(session?.id_corporation ?? '')
+
   revalidatePath('/')
   return (
     <>
@@ -43,9 +41,13 @@ const listaUnidades = async ({
           <SelectCorporationModule organizacoes={dataCorporacao?.data} />
         )}
 
-        {session?.id_corporation != null && data !== undefined ? (
+        {session?.id_corporation != null &&
+        corporacaoFound?.companies !== undefined ? (
           <div className="overflow-scroll p-4 lg:overflow-hidden">
-            <DataTableUnidades data={data} columns={columnsUnidades} />
+            <DataTableUnidades
+              data={corporacaoFound.companies}
+              columns={columnsUnidades}
+            />
           </div>
         ) : (
           <CardWithLogo

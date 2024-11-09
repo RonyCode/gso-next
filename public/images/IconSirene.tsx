@@ -1,4 +1,4 @@
-import './IconSirene.css';
+import './IconSirene.css'
 
 export default function IconSirene() {
   return (
@@ -27,5 +27,5 @@ export default function IconSirene() {
         <path d="M319.7,95c7.7,.5,15.4,.5,23.1,0,8-.6,13.4-6.8,13.2-14.4-.2-7.6-5.7-13.2-13.9-13.8-3.3-.2-6.7,0-10.1,0h0c-3.8,0-7.7-.2-11.5,0-8,.7-13.7,6.9-13.7,14.1s5.3,13.4,12.9,14Z" />
       </g>
     </svg>
-  );
+  )
 }
