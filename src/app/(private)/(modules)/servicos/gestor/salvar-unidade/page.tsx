@@ -1,16 +1,19 @@
 import { type Metadata } from 'next'
 import { getServerSession } from 'next-auth'
+import Link from 'next/link'
 import React, { type ReactNode } from 'react'
 import { LuMenuSquare } from 'react-icons/lu'
 
 import TabUnidadeDetails from '@/app/(private)/(modules)/components/TabUnidadeDetails'
 import { CardDefault } from '@/components/Cards/CardDefault'
+import { CardWithLogo } from '@/components/Cards/CardWithLogo'
 import { columnsUnidades } from '@/components/DataTables/DataTableUnidades/columnsUnidades'
 import { DataTableUnidades } from '@/components/DataTables/DataTableUnidades/data-table-unidades'
 import { authOptions } from '@/lib/auth'
 import { getAllOrganizacoes } from '@/lib/GetAllOrganizacoes'
 import { getAllStates } from '@/lib/getAllStates'
 import { getAllUnidades } from '@/lib/GetAllUnidades'
+import { Button } from '@/ui/button'
 
 export const metadata: Metadata = {
   title: 'GSO | unidades',
@@ -23,8 +26,10 @@ const SalvarUnidade = async ({
   params: { sigla: string; name_unidade: string }
 }): Promise<ReactNode> => {
   const session = await getServerSession(authOptions)
-  const { data } = await getAllUnidades(session?.id_corporation)
-  const dataCorporations = await getAllOrganizacoes()
+  const { data } = await getAllOrganizacoes()
+  const corpFound = await data?.find(
+    (corp) => corp?.id === session?.id_corporation,
+  )
   const dataStates = await getAllStates()
   return (
     <>
@@ -38,27 +43,31 @@ const SalvarUnidade = async ({
         icon={<LuMenuSquare size={28} />}
       >
         <div className="overflow-scroll p-6 lg:overflow-hidden">
-          <TabUnidadeDetails
-            states={dataStates}
-            corporations={dataCorporations.data}
-          />
+          <TabUnidadeDetails states={dataStates} corporations={data} />
           {data !== null && data !== undefined && (
-            <DataTableUnidades data={data} columns={columnsUnidades} />
+            <DataTableUnidades data={corpFound} columns={columnsUnidades} />
           )}
         </div>
 
-        {/* {session?.id_corporation != null ? ( */}
-        {/* ) : ( */}
-        {/*  <CardWithLogo */}
-        {/*    title="Usuário sem corporacao" */}
-        {/*    description="É necessário solicitar inclusão em uma corporação para acessar nossos módulos" */}
-        {/*  > */}
-        {/*    <Link href="/contact"> */}
-        {/*      <Button>Solicitar inclusão</Button> */}
-        {/*    </Link> */}
-        {/*  </CardWithLogo> */}
-        {/* ) */}
-        {/* } */}
+        {session?.id_corporation != null ? (
+          <CardWithLogo
+            title="Usuário com corporacao"
+            description="Usuário com corporação"
+          >
+            <Link href="/contact">
+              <Button>Solicitar inclusão</Button>
+            </Link>
+          </CardWithLogo>
+        ) : (
+          <CardWithLogo
+            title="Usuário sem corporacao"
+            description="É necessário solicitar inclusão em uma corporação para acessar nossos módulos"
+          >
+            <Link href="/contact">
+              <Button>Solicitar inclusão</Button>
+            </Link>
+          </CardWithLogo>
+        )}
       </CardDefault>
     </>
   )

@@ -21,8 +21,8 @@ export const UnidadesForm = ({
   const { data } = use(getUnidadeById(params.id_corporation, params.id))
   const states = use(getAllStates())
 
-  const result = use(ImageExist(data.image))
-  if (result.status !== 200) {
+  const result = use(ImageExist(data?.image))
+  if (result.status !== 200 && data?.image) {
     data.image = process.env.NEXT_PUBLIC_API_GSO + '/public/images/img.png'
   }
   return (
@@ -41,7 +41,7 @@ export const UnidadesForm = ({
             <TabUnidadeDetails unidade={data} states={states} />
           </TabsContent>
           <TabsContent value="efetivo">
-            <TabMembersDetails members={data.companyMembers} />
+            <TabMembersDetails members={data?.members} />
           </TabsContent>
           <TabsContent value="viaturas"></TabsContent>
           <TabsContent value="listaEscala"></TabsContent>

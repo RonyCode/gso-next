@@ -90,9 +90,8 @@ export const VehicleCompanyForm = ({
     return (
       memberItem?.id !== null &&
       memberItem?.id !==
-        company?.companyMembers?.find(
-          (itemComp) => itemComp?.id === memberItem?.id,
-        )?.id
+        company?.members?.find((itemComp) => itemComp?.id === memberItem?.id)
+          ?.id
     )
   })
 
@@ -224,7 +223,7 @@ export const VehicleCompanyForm = ({
                                 {field.value !== null
                                   ? $carWithoutComp?.find((corp) => {
                                       return corp?.id === field.value
-                                    })?.prefix
+                                    })?.id
                                   : 'Selecione um membro'}
                                 <LuChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                               </Button>
@@ -255,7 +254,7 @@ export const VehicleCompanyForm = ({
                                             : 'opacity-0',
                                         )}
                                       />
-                                      {car?.prefix}
+                                      {car?.id}
                                     </CommandItem>
                                   ))}
                                 </CommandList>

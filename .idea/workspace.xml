@@ -6,26 +6,21 @@
   <component name="ChangeListManager">
     <list default="true" id="b29fa024-552d-4036-adf4-d22d972a39f9" name="Changes" comment="Versao 0.3 ]">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/components/MembersCompanyForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/components/MembersCompanyForm.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/components/module/ModuleMinhaUnidade.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/components/module/ModuleMinhaUnidade.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/components/module/ModuloGestorUnidade.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/components/module/ModuloGestorUnidade.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/gestor/component/MemberForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/gestor/component/MemberForm.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/unidades/[name_unidade]/carros/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/unidades/[id_company]/carros/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/components/SelectCompanySchedule.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/components/SelectCompanySchedule.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/components/TabScheduleSave.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/components/TabScheduleSave.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/components/UnidadesForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/components/UnidadesForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/components/VehicleCompanyForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/components/VehicleCompanyForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/components/module/ModulesOrganizacao.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/components/module/ModulesOrganizacao.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/gestor/salvar-unidade/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/gestor/salvar-unidade/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/unidades/[id_company]/membros/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/unidades/[id_company]/membros/page.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/unidades/[name_unidade]/detalhes/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/unidades/[id_company]/detalhes/page.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/unidades/[name_unidade]/escalas/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/unidades/[id_company]/escalas/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/unidades/[name_unidade]/escalas/salvar/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/unidades/[id_company]/escalas/salvar/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/unidades/[name_unidade]/gestor-unidade/membro-unidade-salvar/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/unidades/[id_company]/gestor-unidade/membro-unidade-salvar/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/unidades/[name_unidade]/gestor-unidade/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/unidades/[id_company]/gestor-unidade/page.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/unidades/[name_unidade]/gestor-unidade/veiculo-unidade-salvar/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/unidades/[id_company]/gestor-unidade/veiculo-unidade-salvar/page.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/unidades/[name_unidade]/membros/[membro]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/unidades/[id_company]/membros/[membro]/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/unidades/[name_unidade]/membros/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/unidades/[id_company]/membros/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/unidades/[name_unidade]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/unidades/[id_company]/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/unidades/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/unidades/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/unidades/salvar-unidade/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/(modules)/servicos/unidades/salvar-unidade/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(private)/conta/unidade/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/conta/unidade/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/schemas/ScheduleFormSave.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/schemas/ScheduleFormSave.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(private)/conta/organizacao/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(private)/conta/organizacao/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Cards/CardListEscala.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Cards/CardListEscala.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/stores/user/userErrorRegisterStore.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/stores/user/userErrorRegisterStore.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/stores/user/userStore.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/stores/user/userStore.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,6 +46,9 @@
   }
 }</component>
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="/opt/homebrew/Cellar/php/8.3.10/bin/php" />
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="ProjectErrors" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 6
 }</component>
@@ -168,7 +166,7 @@
       <workItem from="1731157978432" duration="27179000" />
       <workItem from="1731247693076" duration="11402000" />
       <workItem from="1731281510766" duration="598000" />
-      <workItem from="1731289102730" duration="1452000" />
+      <workItem from="1731289102730" duration="2963000" />
     </task>
     <task id="LOCAL-00001" summary="Versao 0.3 ]">
       <option name="closed" value="true" />
@@ -178,7 +176,15 @@
       <option name="project" value="LOCAL" />
       <updated>1731188732066</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Versao 0.3 ]">
+      <option name="closed" value="true" />
+      <created>1731290562487</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1731290562487</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

@@ -117,12 +117,7 @@ export const TabScheduleSave = ({
       id: schedule?.schedule?.id ?? null,
       id_company: unidade?.id ?? undefined,
       id_member_creator: schedule?.schedule?.id_member_creator ?? undefined,
-      id_cmt_sos:
-        unidade?.members?.find(
-          (item) =>
-            item?.id_function === 3 &&
-            item?.id_schedule === schedule?.schedule?.id,
-        )?.id ?? undefined,
+      id_cmt_sos: schedule?.schedule?.id_cmt_sos ?? undefined,
       id_member_comunication:
         schedule?.schedule?.id_member_creator ?? undefined,
       hour_start: schedule?.schedule?.hour_start ?? '',
@@ -834,8 +829,6 @@ export const TabScheduleSave = ({
                               )
                             }}
                             disabled={(date) =>
-                              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                              // @ts-expect-error
                               date <
                                 new Date(
                                   maskDateMysql(form?.getValues('date_start')),
@@ -1087,7 +1080,7 @@ export const TabScheduleSave = ({
                   </FormLabel>
                   <FormField
                     control={form.control}
-                    name="cars"
+                    name="vehicle"
                     render={({ field }) => (
                       <FormItem className="flex w-full flex-col">
                         <Popover>

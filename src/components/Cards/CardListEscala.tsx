@@ -116,7 +116,7 @@ export const CardListEscala = ({
         <Separator />
         <CardContent className="p-1 xl:p-6 ">
           <div>
-            {unidade?.companySchedules?.map((schedule, index) => (
+            {unidade?.schedules?.map((schedule, index) => (
               <div key={index}>
                 {schedule?.schedule?.id === itemEvent?.id && (
                   <div>
@@ -177,7 +177,7 @@ export const CardListEscala = ({
                                 CMT Unidade
                               </div>
                               <div className="ml-6 ">
-                                {unidade?.companyMembers?.map((member) => (
+                                {unidade?.members?.map((member) => (
                                   <span
                                     key={member?.id}
                                     className="text-foreground"
@@ -207,7 +207,7 @@ export const CardListEscala = ({
                           <h1 className="text-lg font-bold">Efetivo</h1>
                         </div>
                         <div className="h-full">
-                          {unidade?.companyMembers?.map(
+                          {unidade?.members?.map(
                             (memberUnidade, indexMember) => (
                               <div
                                 key={indexMember}

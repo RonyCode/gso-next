@@ -108,7 +108,7 @@ export const SelectCompanySchedule = ({
         </div>
       </Card>
       <div>
-        {dataUnidade?.companySchedules != null && (
+        {dataUnidade?.schedules != null && (
           <div>
             <CalendarGso unidade={dataUnidade} functions={functions} />
           </div>

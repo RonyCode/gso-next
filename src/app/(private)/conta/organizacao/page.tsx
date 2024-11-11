@@ -28,7 +28,9 @@ const MinhaOrganizacao = async ({
       {organizacaoFound !== undefined && organizacaoFound !== null && (
         <CardDefault
           title={organizacaoFound?.name}
-          description={organizacaoFound?.city + ' - ' + organizacaoFound?.phone}
+          description={
+            organizacaoFound?.short_name_corp + ' - ' + organizacaoFound?.phone
+          }
           icon={<LuBuilding2 />}
         >
           <OrganizacaoForm organizacao={organizacaoFound} states={state} />

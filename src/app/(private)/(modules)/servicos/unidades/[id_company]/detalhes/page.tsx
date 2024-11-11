@@ -58,7 +58,6 @@ const MinhaUnidade = async ({
           icon={<LuBuilding size={28} />}
           iconDescription={<MdOutlineSupervisorAccount size={18} />}
         >
-
           <div className="md:overflow-none overflow-scroll">
             <TabUnidadeDetails
               unidade={companyFound}

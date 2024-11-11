@@ -35,7 +35,7 @@ const MembrosUnidade = async ({
   }
 
   // eslint-disable-next-line array-callback-return
-  const diretor = companyFound?.companyMembers?.find((member) => {
+  const diretor = companyFound?.members?.find((member) => {
     if (member?.id === companyFound?.director) {
       return member
     }
@@ -59,10 +59,10 @@ const MembrosUnidade = async ({
           icon={<LuBuilding size={28} />}
           iconDescription={<MdOutlineSupervisorAccount size={18} />}
         >
-          {companyFound?.companyMembers != null ? (
+          {companyFound?.members != null ? (
             <DataTableMembers
               columns={columnsMembers}
-              data={companyFound.companyMembers}
+              data={companyFound.members}
             />
           ) : (
             <div className="flex h-full w-full  items-center justify-center">

@@ -46,6 +46,7 @@ export const useUserStore = create<UserProps>()((set): UserProps => {
           district: '',
           city: '',
           state: '',
+          sigla: '',
           short_name: '',
         },
 
@@ -71,7 +72,7 @@ export const useUserStore = create<UserProps>()((set): UserProps => {
         },
 
         excluded: 0,
-        id: 0,
+        id: '',
       },
     },
     actions: {

@@ -39,6 +39,7 @@ export const userErrorRegisterStore = create<UserStore>()((set): UserStore => {
         district: '',
         city: '',
         state: '',
+        sigla: '',
         short_name: '',
       },
       profile: {
@@ -60,7 +61,7 @@ export const userErrorRegisterStore = create<UserStore>()((set): UserStore => {
         dateCriation: '',
       },
       excluded: 0,
-      id: 0,
+      id: '',
     },
     add: (user: UserType): void => {
       set((state) => ({ ...state.user, user }))

@@ -3,12 +3,11 @@ import React from 'react'
 import { LuBuilding, LuSearchX } from 'react-icons/lu'
 import { MdOutlineSupervisorAccount } from 'react-icons/md'
 
-import MembersCompanyForm from '@/app/(private)/(modules)/components/MembersCompanyForm'
+import VehicleCompanyForm from '@/app/(private)/(modules)/components/VehicleCompanyForm'
 import { CardDefault } from '@/components/Cards/CardDefault'
 import { ImageExist } from '@/functions/ImageExist'
 import { authOptions } from '@/lib/auth'
 import { getAllOrganizacoes } from '@/lib/GetAllOrganizacoes'
-import VehicleCompanyForm from '@/app/(private)/(modules)/components/VehicleCompanyForm'
 
 const MembrosUnidade = async ({
   params,
@@ -32,7 +31,7 @@ const MembrosUnidade = async ({
   }
 
   // eslint-disable-next-line array-callback-return
-  const diretor = companyFound?.companyMembers?.find((member) => {
+  const diretor = companyFound?.members?.find((member) => {
     if (member?.id === companyFound?.director) {
       return member
     }
@@ -56,7 +55,7 @@ const MembrosUnidade = async ({
           icon={<LuBuilding size={28} />}
           iconDescription={<MdOutlineSupervisorAccount size={18} />}
         >
-          {companyFound?.companyMembers != null ? (
+          {companyFound?.members != null ? (
             <VehicleCompanyForm
               corporation={corpFound}
               company={companyFound}

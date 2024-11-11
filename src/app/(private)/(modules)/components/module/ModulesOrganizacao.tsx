@@ -19,7 +19,9 @@ const ModulesOrganizacao = ({
             <CardModule
               key={corporation?.id}
               title={corporation?.short_name_corp}
-              subtitle={corporation?.city + ' - ' + corporation?.phone}
+              subtitle={
+                corporation?.short_name_corp + ' - ' + corporation?.phone
+              }
               link={`/servicos/${corporation?.short_name_corp.toLowerCase() + '-' + corporation?.id} /`}
               icon={<IconBuild width={54} />}
             />

@@ -11,7 +11,7 @@ const Members = async ({
     params.sigla?.split('-')[1],
     params.name_unidade?.split('-')[1],
   )
-  const memberFOunded = data.companyMembers?.find(
+  const memberFOunded = data?.members?.find(
     (member) =>
       member?.id_user?.toString() === params?.membro?.split('-')[1].toString(),
   )

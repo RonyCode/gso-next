@@ -9,7 +9,6 @@ import { ImageExist } from '@/functions/ImageExist'
 import { authOptions } from '@/lib/auth'
 import { getAllFunctions } from '@/lib/GetAllFunctions'
 import { getAllOrganizacoes } from '@/lib/GetAllOrganizacoes'
-import { getUnidadeById } from '@/lib/GetUnidadeById'
 
 const EscalasUnidade = async ({
   params,
@@ -55,7 +54,7 @@ const EscalasUnidade = async ({
           iconDescription={<MdOutlineSupervisorAccount size={18} />}
         >
           <div>
-            {companyFound?.companySchedules != null && (
+            {companyFound?.schedules != null && (
               <CalendarGso unidade={companyFound} functions={functions?.data} />
             )}
           </div>
