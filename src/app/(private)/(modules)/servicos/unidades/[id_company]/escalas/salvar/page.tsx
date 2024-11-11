@@ -1,6 +1,6 @@
 import { LuCalendarDays } from 'react-icons/lu'
 
-import TabScheduleSave from '@/app/(private)/(modules)/servicos/[sigla]/components/TabScheduleSave'
+import TabScheduleSave from '@/app/(private)/(modules)/components/TabScheduleSave'
 import { CardDefault } from '@/components/Cards/CardDefault'
 import { ImageExist } from '@/functions/ImageExist'
 import { getUnidadeById } from '@/lib/GetUnidadeById'
@@ -16,7 +16,7 @@ const SalvarEscala = async ({
     params.sigla?.split('-')[1],
     params.name_unidade?.split('-')[1],
   )
-  const scheduleFound = data.companySchedules?.find(
+  const scheduleFound = data?.schedules?.find(
     (schedule) =>
       schedule?.schedule?.id?.toString() === searchParams?.id_schedule,
   )
@@ -27,7 +27,7 @@ const SalvarEscala = async ({
   return (
     <>
       <CardDefault
-        title={`Escala ${data.name}`}
+        title={`Escala ${data?.name}`}
         description="Editar/Salvar"
         icon={<LuCalendarDays size={28} />}
         image={

@@ -90,13 +90,6 @@ export const MemberForm = ({
     })
   }
 
-  const handleSelectCorporation = async (
-    corp: IOrganizacaoSchema,
-  ): Promise<void> => {
-    form.setValue('id_corporation', corp?.id)
-    setCorpFound(corp)
-  }
-
   return (
     <>
       <Card x-chunk="dashboard-06-chunk-0">
@@ -208,11 +201,11 @@ export const MemberForm = ({
                   />
                   <FormField
                     control={form.control}
-                    name="id_user"
+                    name="id_member"
                     render={({ field }) => (
                       <FormItem className="flex w-full flex-col">
                         <FormLabel
-                          htmlFor="id_cuser"
+                          htmlFor="id_member"
                           className="flex items-center gap-1 text-muted-foreground"
                         >
                           <LuUser2 /> Usuário

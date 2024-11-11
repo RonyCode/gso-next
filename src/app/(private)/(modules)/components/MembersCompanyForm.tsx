@@ -91,9 +91,8 @@ export const MembersCompanyForm = ({
     return (
       memberItem?.id !== null &&
       memberItem?.id !==
-        company?.companyMembers?.find(
-          (itemComp) => itemComp?.id === memberItem?.id,
-        )?.id
+        company?.members?.find((itemComp) => itemComp?.id === memberItem?.id)
+          ?.id
     )
   })
 
@@ -103,7 +102,7 @@ export const MembersCompanyForm = ({
         <div className="flex items-center">
           <div className="flex w-full items-center justify-between space-y-2 p-4">
             <h1 className=" mr-auto text-xl font-bold">
-              Salvar Efetivo de Unidade
+              Salvar Efetivo na Unidade
             </h1>
           </div>
         </div>
@@ -138,7 +137,7 @@ export const MembersCompanyForm = ({
                     render={({ field }) => (
                       <FormItem className="flex w-full flex-col">
                         <FormLabel
-                          htmlFor="id_cuser"
+                          htmlFor="id_company"
                           className="flex items-center gap-1 text-muted-foreground"
                         >
                           <LuUser2 /> Unidade

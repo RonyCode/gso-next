@@ -6,7 +6,7 @@ import IconMembers from '@/icons/IconMembers'
 const ModuloGestorUnidade = async ({
   params,
 }: {
-  params: { name_unidade: string }
+  params: { id_company: string }
 }): Promise<JSX.Element> => {
   return (
     <>
@@ -15,20 +15,20 @@ const ModuloGestorUnidade = async ({
           <CardModule
             title="Adicionar Membro"
             subtitle="Add Membros"
-            link={`/servicos/unidades/${params?.name_unidade?.toLowerCase()}/gestor-unidade/membro-unidade-salvar`}
+            link={`/servicos/unidades/${params?.id_company?.toLowerCase()}/gestor-unidade/membro-unidade-salvar`}
             icon={<IconMembers width={58} className="ml-1" />}
           />
         </div>
         <CardModule
           title="Adicionar Veículo"
           subtitle="Add veiculo"
-          link={`/servicos/unidades/${params?.name_unidade?.toLowerCase()}/gestor-unidade/veiculo-unidade-salvar`}
+          link={`/servicos/unidades/${params?.id_company?.toLowerCase()}/gestor-unidade/veiculo-unidade-salvar`}
           icon={<IconCarFrontal width={58} className="ml-1" />}
         />
         <CardModule
           title="Adicionar Escala"
           subtitle="Add Escala"
-          link={`/servicos/unidades/${params?.name_unidade?.toLowerCase()}/gestor-unidade/escala-unidade-salvar`}
+          link={`/servicos/unidades/${params?.id_company?.toLowerCase()}/gestor-unidade/escala-unidade-salvar`}
           icon={<IconCalendar width={58} className="ml-1" />}
         />{' '}
       </div>

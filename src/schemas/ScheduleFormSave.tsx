@@ -8,10 +8,10 @@ export const ScheduleFormSave = z.object({
     message: 'id_company inválido deve conter no mínimo 1 caracteres',
   }),
   id_cmt_sos: z.number().min(1, {
-    message: 'id_company inválido deve conter no mínimo 1 caracteres',
+    message: '[id_company] inválido deve conter no mínimo 1 caracteres',
   }),
   id_member_comunication: z.string().min(1, {
-    message: 'id_company inválido deve conter no mínimo 1 caracteres',
+    message: '[id_company] inválido deve conter no mínimo 1 caracteres',
   }),
   id_member_creator: z.string().min(1, {
     message: 'id_member_creator inválido deve conter no mínimo 1 caracteres',

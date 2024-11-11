@@ -12,7 +12,7 @@ import { getAllOrganizacoes } from '@/lib/GetAllOrganizacoes'
 const MinhaUnidade = async ({
   params,
 }: {
-  params: { name_unidade: string }
+  params: { id_company: string }
 }): Promise<JSX.Element> => {
   const { data } = await getAllOrganizacoes()
   const session = await getServerSession(authOptions)
@@ -25,7 +25,7 @@ const MinhaUnidade = async ({
   })
 
   const companyFounded = corpFound?.companies?.find((company) => {
-    if (company?._id?.$oid === params?.name_unidade?.split('-')[1]) {
+    if (company?.id === params?.id_company?.split('-')[1]) {
       return company
     }
     return null
@@ -41,6 +41,7 @@ const MinhaUnidade = async ({
     if (member?.id === companyFounded?.director) {
       return member
     }
+    return null
   })
   return (
     <div>

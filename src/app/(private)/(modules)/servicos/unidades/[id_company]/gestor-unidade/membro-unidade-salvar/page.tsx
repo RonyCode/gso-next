@@ -1,6 +1,6 @@
 import { getServerSession } from 'next-auth'
 import React from 'react'
-import { LuBuilding, LuSearchX } from 'react-icons/lu'
+import { LuBuilding } from 'react-icons/lu'
 import { MdOutlineSupervisorAccount } from 'react-icons/md'
 
 import MembersCompanyForm from '@/app/(private)/(modules)/components/MembersCompanyForm'
@@ -12,7 +12,7 @@ import { getAllOrganizacoes } from '@/lib/GetAllOrganizacoes'
 const MembrosUnidade = async ({
   params,
 }: {
-  params: { sigla: string; name_unidade: string }
+  params: { sigla: string; id_company: string }
 }): Promise<JSX.Element> => {
   const { data } = await getAllOrganizacoes()
   const session = await getServerSession(authOptions)
@@ -21,7 +21,7 @@ const MembrosUnidade = async ({
   })
 
   const companyFound = corpFound?.companies?.find((comp) => {
-    return comp?.id === params?.name_unidade?.split('-')[1]
+    return comp?.id === params?.id_company?.split('-')[1]
   })
 
   const imgValided = await ImageExist(companyFound?.image)
@@ -31,7 +31,7 @@ const MembrosUnidade = async ({
   }
 
   // eslint-disable-next-line array-callback-return
-  const diretor = companyFound?.companyMembers?.find((member) => {
+  const diretor = companyFound?.members?.find((member) => {
     if (member?.id === companyFound?.director) {
       return member
     }
@@ -55,20 +55,7 @@ const MembrosUnidade = async ({
           icon={<LuBuilding size={28} />}
           iconDescription={<MdOutlineSupervisorAccount size={18} />}
         >
-          {companyFound?.companyMembers != null ? (
-            <MembersCompanyForm
-              corporation={corpFound}
-              company={companyFound}
-            />
-          ) : (
-            <div className="flex h-full w-full items-center justify-center">
-              {' '}
-              <span className="flex items-center justify-center gap-1">
-                <LuSearchX size={28} className="text-primary/60" /> SEM EFETIVO
-                CADASTRADOS 🤯
-              </span>
-            </div>
-          )}
+          <MembersCompanyForm corporation={corpFound} company={companyFound} />
         </CardDefault>
       }
     </div>

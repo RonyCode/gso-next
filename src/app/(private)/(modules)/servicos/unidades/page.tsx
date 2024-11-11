@@ -4,7 +4,6 @@ import Link from 'next/link'
 import React from 'react'
 import { LuFolderCog } from 'react-icons/lu'
 
-import SelectCorporationModule from '@/app/(private)/(modules)/components/SelectCorporationModule'
 import { CardDefault } from '@/components/Cards/CardDefault'
 import { CardWithLogo } from '@/components/Cards/CardWithLogo'
 import { columnsUnidades } from '@/components/DataTables/DataTableUnidades/columnsUnidades'
@@ -13,17 +12,12 @@ import { authOptions } from '@/lib/auth'
 import { getAllOrganizacoes } from '@/lib/GetAllOrganizacoes'
 import { Button } from '@/ui/button'
 
-const listaUnidades = async ({
-  params,
-}: {
-  params: { sigla: string; id_corporation: string }
-}): Promise<JSX.Element> => {
+const listaUnidades = async (): Promise<JSX.Element> => {
   const session = await getServerSession(authOptions)
   const dataCorporacao = await getAllOrganizacoes()
   const corporacaoFound = dataCorporacao?.data?.find((corp) => {
     return corp?.id === session?.id_corporation
   })
-  // const { data } = await getAllUnidades(session?.id_corporation ?? '')
 
   revalidatePath('/')
   return (
@@ -37,12 +31,7 @@ const listaUnidades = async ({
         }
         icon={<LuFolderCog size={28} />}
       >
-        {session?.id_corporation === null && session?.role === 'admin' && (
-          <SelectCorporationModule organizacoes={dataCorporacao?.data} />
-        )}
-
-        {session?.id_corporation != null &&
-        corporacaoFound?.companies !== undefined ? (
+        {corporacaoFound?.companies !== undefined ? (
           <div className="overflow-scroll p-4 lg:overflow-hidden">
             <DataTableUnidades
               data={corporacaoFound.companies}

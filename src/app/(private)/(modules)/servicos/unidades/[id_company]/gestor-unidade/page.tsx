@@ -1,4 +1,3 @@
-import ModuleMinhaUnidade from '@/app/(private)/(modules)/components/module/ModuleMinhaUnidade'
 import ModuloGestorUnidade from '@/app/(private)/(modules)/components/module/ModuloGestorUnidade'
 import { CardDefault } from '@/components/Cards/CardDefault'
 import IconBuildPlus from '@/icons/IconBuildPlus'
@@ -6,7 +5,7 @@ import IconBuildPlus from '@/icons/IconBuildPlus'
 const NovaUnidade = async ({
   params,
 }: {
-  params: { sigla: string; name_unidade: string }
+  params: { sigla: string; id_company: string }
 }): Promise<JSX.Element> => {
   return (
     <>

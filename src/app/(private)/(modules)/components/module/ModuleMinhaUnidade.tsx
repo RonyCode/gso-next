@@ -2,18 +2,15 @@ import React from 'react'
 
 import { CardModule } from '@/components/Cards/CardModule'
 import IconBuild from '@/icons/IconBuild'
-import IconBuildPlus from '@/icons/IconBuildPlus'
 import IconCarFrontal from '@/icons/IconCarFrontal'
 import IconCog from '@/icons/IconCog'
 import IconList from '@/icons/IconList'
 import IconMembers from '@/icons/IconMembers'
-import { type IUnidadeSchema } from '@/schemas/UnidadeSchema'
 
 const ModuleMinhaUnidade = ({
   params,
 }: {
-  params?: { sigla: string; name_unidade: string }
-  unidadeFound?: IUnidadeSchema
+  params?: { id_company: string }
 }): JSX.Element => {
   return (
     <>
@@ -21,31 +18,31 @@ const ModuleMinhaUnidade = ({
         <CardModule
           title="Minha unidade"
           subtitle="Detalhes da minha unidade"
-          link={`/servicos/unidades/${params?.name_unidade?.toLowerCase()}/detalhes`}
+          link={`/servicos/unidades/${params?.id_company?.toLowerCase()}/detalhes`}
           icon={<IconBuild width={54} className="ml-1" />}
         />
         <CardModule
           title="Efetivo"
           subtitle="Membros da minha unidade"
-          link={`/servicos/unidades/${params?.name_unidade?.toLowerCase()}/membros`}
+          link={`/servicos/unidades/${params?.id_company?.toLowerCase()}/membros`}
           icon={<IconMembers width={50} className="ml-1" />}
         />
         <CardModule
           title="Carros"
           subtitle="Carros da minha unidade"
-          link={`/servicos/unidades/${params?.name_unidade?.toLowerCase()}/carros`}
+          link={`/servicos/unidades/${params?.id_company?.toLowerCase()}/carros`}
           icon={<IconCarFrontal width={64} className="ml-1" />}
         />
         <CardModule
           title="Escalas"
           subtitle="Escalas da minha unidade"
-          link={`/servicos/unidades/${params?.name_unidade?.toLowerCase()}/escalas`}
+          link={`/servicos/unidades/${params?.id_company?.toLowerCase()}/escalas`}
           icon={<IconList width={64} className="ml-1" />}
         />
         <CardModule
           title="Gestor unidade"
           subtitle="Adicionar unidade"
-          link={`/servicos/unidades/${params?.name_unidade?.toLowerCase()}/gestor-unidade`}
+          link={`/servicos/unidades/${params?.id_company?.toLowerCase()}/gestor-unidade`}
           icon={<IconCog width={54} className="ml-1" />}
         />
       </div>
