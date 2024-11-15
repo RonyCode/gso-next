@@ -1,17 +1,17 @@
 'use client'
 import Image from 'next/image'
-import { redirect } from 'next/navigation'
 import React, { useTransition } from 'react'
 import { useForm } from 'react-hook-form'
 import {
+  LuBuilding2,
   LuCheck,
   LuChevronsUpDown,
   LuLandmark,
   LuLoader2,
-  LuUser2,
 } from 'react-icons/lu'
 
 import { saveMemberIntoCorporationAction } from '@/app/actions/saveMemberIntoCorporationAction'
+import { searchUserAction } from '@/app/actions/searchUserAction'
 import LoadingPage from '@/components/Loadings/LoadingPage'
 import { cn } from '@/lib/utils'
 import { type IOrganizacaoSchema } from '@/schemas/OrganizacaoSchema'
@@ -39,9 +39,11 @@ import {
   FormLabel,
   FormMessage,
 } from '@/ui/form'
+import { Input } from '@/ui/input'
 import { Popover, PopoverContent, PopoverTrigger } from '@/ui/popover'
 import { toast } from '@/ui/use-toast'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { debounce } from 'lodash'
 
 type UserRegisterFormProps = React.HTMLAttributes<HTMLDivElement> & {
   corporations?: IOrganizacaoSchema[] | null
@@ -53,7 +55,6 @@ type UserRegisterFormProps = React.HTMLAttributes<HTMLDivElement> & {
 
 export const MemberForm = ({
   corporations,
-  users,
   className,
 }: UserRegisterFormProps): JSX.Element => {
   const [pending, startTransition] = useTransition()
@@ -66,29 +67,48 @@ export const MemberForm = ({
 
     defaultValues: {
       id_corporation: null,
-      id_user: null,
+      termo_busca: null,
     },
   })
   const handleSubmit = (formData: Partial<IUnidadeSchema>): void => {
-    startTransition(async () => {
-      const result = await saveMemberIntoCorporationAction(formData)
-      if (result?.code !== 202) {
-        toast({
-          variant: 'danger',
-          title: 'Erro ao salvar membro na corporação! 🤯 ',
-          description: result?.message,
-        })
-      }
-      if (result?.code === 202) {
-        toast({
-          variant: 'success',
-          title: 'Ok! Membro salvo com sucesso! 🚀',
-          description: 'Tudo certo membro salvo na corporação',
-        })
-        redirect(`/servicos/membros`)
-      }
-    })
+    // startTransition(async () => {
+    //   const result = await saveMemberIntoCorporationAction(formData)
+    //   if (result?.code !== 202) {
+    //     toast({
+    //       variant: 'danger',
+    //       title: 'Erro ao salvar membro na corporação! 🤯 ',
+    //       description: result?.message,
+    //     })
+    //   }
+    //   if (result?.code === 202) {
+    //     toast({
+    //       variant: 'success',
+    //       title: 'Ok! Membro salvo com sucesso! 🚀',
+    //       description: 'Tudo certo membro salvo na corporação',
+    //     })
+    //     redirect(`/servicos/membros`)
+    //   }
+    // })
   }
+
+  async function search(criteria: string) {
+    if (
+      form.getValues('id_corporation') != null &&
+      form.getValues('id_corporation') !== undefined
+    ) {
+      const response = await searchUserAction(
+        form.getValues('id_corporation'),
+        criteria,
+      )
+      return response
+    }
+  }
+
+  // Debounced function recreated on every render 😞
+  const debouncedSearch = debounce(async (criteria: string) => {
+    const re = await search(criteria)
+    console.log(re)
+  }, 800)
 
   return (
     <>
@@ -199,78 +219,54 @@ export const MemberForm = ({
                       </FormItem>
                     )}
                   />
-                  <FormField
-                    control={form.control}
-                    name="id_member"
-                    render={({ field }) => (
-                      <FormItem className="flex w-full flex-col">
-                        <FormLabel
-                          htmlFor="id_member"
-                          className="flex items-center gap-1 text-muted-foreground"
-                        >
-                          <LuUser2 /> Usuário
-                        </FormLabel>{' '}
-                        <Popover>
-                          <PopoverTrigger asChild>
-                            <FormControl>
-                              <Button
-                                variant="outline"
-                                role="combobox"
-                                className={cn(
-                                  'w-full justify-between text-muted-foreground',
-                                )}
-                              >
-                                {field.value !== null
-                                  ? users?.find(
-                                      (user) => user?.id === field.value,
-                                    )?.account?.name
-                                  : 'Selecione um usuário'}
-                                <LuChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-                              </Button>
-                            </FormControl>
-                          </PopoverTrigger>
-                          <PopoverContent className="w-[200px] p-0">
-                            <Command>
-                              <CommandInput placeholder="Procurando Estados..." />
-                              <CommandEmpty>
-                                Usuário não encontrada.
-                              </CommandEmpty>
-                              <CommandGroup>
-                                <CommandList>
-                                  {users?.map((user, index) => (
-                                    <CommandItem
-                                      value={user?.id}
-                                      key={index}
-                                      onSelect={() => {
-                                        form.setValue('id_user', user?.id)
-                                      }}
-                                    >
-                                      <LuCheck
-                                        className={cn(
-                                          'mr-2 h-4 w-4',
-                                          user?.id === field.value
-                                            ? 'opacity-100'
-                                            : 'opacity-0',
-                                        )}
-                                      />
-                                      {user?.account?.name}
-                                    </CommandItem>
-                                  ))}
-                                </CommandList>
-                              </CommandGroup>
-                            </Command>
-                          </PopoverContent>
-                        </Popover>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
+                  <div className="flex w-full items-end gap-2">
+                    <FormField
+                      control={form.control}
+                      name="termo_busca"
+                      render={({ field }) => (
+                        <FormItem className="w-full">
+                          <FormLabel
+                            htmlFor="termo_busca"
+                            className="flex items-center gap-1 text-muted-foreground"
+                          >
+                            <LuBuilding2 /> Buscar Membro
+                          </FormLabel>
+                          <FormControl>
+                            <Input
+                              onInput={async () => {
+                                await debouncedSearch(field?.value)
+                              }}
+                              {...field}
+                              id="termo_busca"
+                              placeholder="Buscar por Nome, CPF ou Email"
+                              autoCapitalize="none"
+                              autoComplete="termo_busca"
+                              autoCorrect="off"
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <Button
+                      type="button"
+                      className={cn(
+                        buttonVariants({ variant: 'default' }),
+                        ' w-full animate-fadeIn  md:w-1/3 ',
+                      )}
+                    >
+                      {pending && (
+                        <LuLoader2 className="mr-2 h-4 w-4 animate-spin" />
+                      )}{' '}
+                      Buscar
+                    </Button>
+                  </div>
                 </div>
               </div>
 
               <div className="flex w-full flex-col  justify-end gap-2 md:flex-row">
                 <Button
-                  disabled={pending && !form.formState.isValid}
+                  disabled={!form.formState.isValid}
                   className={cn(
                     buttonVariants({ variant: 'default' }),
                     ' w-full animate-fadeIn  md:w-1/3 ',

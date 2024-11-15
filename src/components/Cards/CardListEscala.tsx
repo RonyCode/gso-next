@@ -88,14 +88,14 @@ export const CardListEscala = ({
                 <i>
                   <LuCalendarDays />
                 </i>
-                <div className="font-bold text-muted-foreground">
-                  {' '}
-                  {format(itemEvent?.date_creation, 'eeeeee', {
-                    locale: ptBR,
-                  }) +
-                    '  | ' +
-                    format(itemEvent?.date_creation, 'dd/MM', { locale: ptBR })}
-                </div>
+                {/* <div className="font-bold text-muted-foreground"> */}
+                {/*  {' '} */}
+                {/*  {format(itemEvent?.date_creation, 'eeeeee', { */}
+                {/*    locale: ptBR, */}
+                {/*  }) + */}
+                {/*    '  | ' + */}
+                {/*    format(itemEvent?.date_creation, 'dd/MM', { locale: ptBR })} */}
+                {/* </div> */}
               </span>
               <span className="flex items-center gap-1">
                 <i>
@@ -213,7 +213,7 @@ export const CardListEscala = ({
                                 key={indexMember}
                                 className="text-[.6rem] md:text-sm"
                               >
-                                {memberUnidade?.id_function === 9 && (
+                                {memberUnidade?.id_function === '9' && (
                                   <div className="mt-2">
                                     <div className="flex items-center gap-2 text-sm text-muted-foreground">
                                       <LuCalendarCheck />
@@ -263,7 +263,7 @@ export const CardListEscala = ({
 
                                 {memberUnidade?.id_schedule?.toString() ===
                                   itemEvent?.id?.toString() &&
-                                  memberUnidade?.id_function === 6 && (
+                                  memberUnidade?.id_function === '6' && (
                                     <div>
                                       <div className="flex items-center gap-2 text-sm text-muted-foreground">
                                         <LuMegaphone />
@@ -312,7 +312,8 @@ export const CardListEscala = ({
 
                                 {memberUnidade?.id_schedule?.toString() ===
                                   itemEvent?.id?.toString() &&
-                                  memberUnidade?.id_function === 3 && (
+                                  memberUnidade?.id_function?.toString() ===
+                                    '3' && (
                                     <div>
                                       <div className="flex items-center gap-2 text-sm text-muted-foreground">
                                         <LuUserCog2 size={18} />

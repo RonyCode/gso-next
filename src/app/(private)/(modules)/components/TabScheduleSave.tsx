@@ -131,8 +131,9 @@ export const TabScheduleSave = ({
         new Date().toLocaleDateString('pt-BR'),
       date_start:
         schedule?.schedule?.date_start ??
-        new Date(dateSchedule).toLocaleDateString('pt-Br') ??
-        undefined,
+        (dateSchedule != null
+          ? new Date(dateSchedule).toLocaleDateString('pt-BR')
+          : new Date().toLocaleDateString('pt-BR')),
       date_finish: schedule?.schedule?.date_finish ?? undefined,
       obs: schedule?.schedule?.obs ?? '',
       short_name_corp:
@@ -297,7 +298,7 @@ export const TabScheduleSave = ({
                     <i>
                       <LuCalendarDays />
                     </i>
-                    {schedule?.schedule?.date_start != undefined && (
+                    {schedule?.schedule?.date_start !== undefined && (
                       <div className="font-bold text-muted-foreground">
                         {' '}
                         {format(

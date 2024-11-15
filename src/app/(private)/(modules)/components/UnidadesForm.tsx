@@ -41,7 +41,7 @@ export const UnidadesForm = ({
             <TabUnidadeDetails unidade={data} states={states} />
           </TabsContent>
           <TabsContent value="efetivo">
-            <TabMembersDetails members={data?.members} />
+            {/* <TabMembersDetails members={data?.members} /> */}
           </TabsContent>
           <TabsContent value="viaturas"></TabsContent>
           <TabsContent value="listaEscala"></TabsContent>

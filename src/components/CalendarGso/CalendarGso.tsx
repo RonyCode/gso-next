@@ -253,7 +253,7 @@ const CalendarGso = ({
 
   return (
     <>
-      <div className="grid h-full w-full grid-cols-12  p-2 md:mt-0">
+      <div className="grid h-full w-full grid-cols-12 md:mt-0">
         {/* TABLE ESCALA */}
         <div
           className={`col-start-1  col-end-13 mt-8  h-full w-full rounded-[5px] bg-background p-2`}

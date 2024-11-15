@@ -12,7 +12,7 @@ import { DataTableUnidades } from '@/components/DataTables/DataTableUnidades/dat
 import { authOptions } from '@/lib/auth'
 import { getAllOrganizacoes } from '@/lib/GetAllOrganizacoes'
 import { getAllStates } from '@/lib/getAllStates'
-import { getAllUnidades } from '@/lib/GetAllUnidades'
+import { type IUnidadeSchema } from '@/schemas/UnidadeSchema'
 import { Button } from '@/ui/button'
 
 export const metadata: Metadata = {
@@ -20,16 +20,10 @@ export const metadata: Metadata = {
   description: 'Página de unidades do site GSO.',
 }
 
-const SalvarUnidade = async ({
-  params,
-}: {
-  params: { sigla: string; name_unidade: string }
-}): Promise<ReactNode> => {
+const SalvarUnidade = async (): Promise<ReactNode> => {
   const session = await getServerSession(authOptions)
   const { data } = await getAllOrganizacoes()
-  const corpFound = await data?.find(
-    (corp) => corp?.id === session?.id_corporation,
-  )
+  const corpFound = data?.find((corp) => corp?.id === session?.id_corporation)
   const dataStates = await getAllStates()
   return (
     <>
@@ -44,8 +38,11 @@ const SalvarUnidade = async ({
       >
         <div className="overflow-scroll p-6 lg:overflow-hidden">
           <TabUnidadeDetails states={dataStates} corporations={data} />
-          {data !== null && data !== undefined && (
-            <DataTableUnidades data={corpFound} columns={columnsUnidades} />
+          {corpFound !== null && corpFound !== undefined && (
+            <DataTableUnidades
+              data={corpFound as unknown as IUnidadeSchema[]}
+              columns={columnsUnidades}
+            />
           )}
         </div>
 

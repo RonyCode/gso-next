@@ -13,7 +13,7 @@ import { getAllOrganizacoes } from '@/lib/GetAllOrganizacoes'
 const EscalasUnidade = async ({
   params,
 }: {
-  params: { sigla: string; name_unidade: string }
+  params: { id_company: string }
 }): Promise<JSX.Element> => {
   const session = await getServerSession(authOptions)
   const { data } = await getAllOrganizacoes()
@@ -22,7 +22,7 @@ const EscalasUnidade = async ({
   })
 
   const companyFound = corpFound?.companies?.find((comp) => {
-    if (comp?._id?.$oid === params?.name_unidade?.split('-')[1]) {
+    if (comp?.id === params?.id_company?.split('-')[1]) {
       return comp
     }
     return null
@@ -55,7 +55,12 @@ const EscalasUnidade = async ({
         >
           <div>
             {companyFound?.schedules != null && (
-              <CalendarGso unidade={companyFound} functions={functions?.data} />
+              <div className="p-6">
+                <CalendarGso
+                  unidade={companyFound}
+                  functions={functions?.data}
+                />
+              </div>
             )}
           </div>
         </CardDefault>

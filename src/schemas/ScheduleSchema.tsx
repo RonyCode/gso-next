@@ -3,10 +3,10 @@ import { MemberSchema } from '@/schemas/MemberSchema'
 import { z } from 'zod'
 
 export const ScheduleSchema = z.object({
-  id: z.number().min(1, {
+  id: z.string().min(1, {
     message: 'id inválido deve conter no mínimo 1 caracteres',
   }),
-  id_company: z.number().min(1, {
+  id_company: z.string().min(1, {
     message: 'id_company inválido deve conter no mínimo 1 caracteres',
   }),
   id_member_creator: z.number().min(1, {
@@ -31,7 +31,7 @@ export const ScheduleSchema = z.object({
   status: z.number().min(1, {
     message: 'status inválido deve conter no mínimo 1 caracteres',
   }),
-  date_creation: z.date().optional(),
+  date_creation: z.string().optional(),
   obs: z
     .string()
     .min(1, {

@@ -1,21 +1,11 @@
 import { getServerSession } from 'next-auth'
 import Link from 'next/link'
 import React from 'react'
-import {
-  LuBuilding,
-  LuListChecks,
-  LuUser2,
-  LuUserCog2,
-  LuUsers,
-  LuUsers2,
-  LuUserX2,
-} from 'react-icons/lu'
-import { MdOutlineSupervisorAccount } from 'react-icons/md'
+import { LuListChecks, LuUsers } from 'react-icons/lu'
 
 import SelectMembersCorporation from '@/app/(private)/(modules)/components/SelectMembersCorporation'
 import { CardDefault } from '@/components/Cards/CardDefault'
 import { CardWithLogo } from '@/components/Cards/CardWithLogo'
-import { authOptions } from '@/lib/auth'
 import { getAllOrganizacoes } from '@/lib/GetAllOrganizacoes'
 import { Button } from '@/ui/button'
 

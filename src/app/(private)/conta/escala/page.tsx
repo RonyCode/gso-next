@@ -27,7 +27,9 @@ const MinhaEscala = async (): Promise<ReactNode> => {
         icon={<LuCalendarCheck size={28} />}
       >
         <div>
-          <CalendarGso unidade={data} functions={functions?.data} />
+          {data !== null && data !== undefined && (
+            <CalendarGso unidade={data} functions={functions?.data} />
+          )}
         </div>{' '}
       </CardDefault>
     </>
